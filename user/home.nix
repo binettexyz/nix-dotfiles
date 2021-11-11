@@ -1,1 +1,0 @@
-home.nix##hostname.bin-laptop
