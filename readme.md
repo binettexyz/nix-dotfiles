@@ -3,8 +3,9 @@
 ## installation
 Clone this repo as follow:
 ```
-nix-shell -p yadm -p git -p gnupg1orig
+nix-shell -p yadm -p git
 yadm clone https://github.com/Binetto/.nixos.git -w /etc/nixos --yadm-dir /etc/nixos/.yadm/config --yadm-data /etc/nixos/.yadm/data
+yadm --yadm-dir /etc/nixos/.yadm/config --yadm-data /etc/nixos/.yadm/data alt
 exit
 ```
 ps: if your hostname isn't the same as in the files name (e.g: configuration.nix##hostname.`yourHostName`), symlink won't be created.
