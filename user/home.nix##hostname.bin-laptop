@@ -8,6 +8,15 @@ in
 
   {
 
+    programs.git = {
+      enable = true;
+      userName = "Binetto";
+      userEmail = "46168797+Binetto@users.noreply.github.com";
+      extraConfig = {
+        credential.helper = "cache";
+      };
+    };
+
   nixpkgs.config.allowUnfree = true;
 
   home = {

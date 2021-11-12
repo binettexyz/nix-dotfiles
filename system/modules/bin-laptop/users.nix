@@ -7,7 +7,7 @@
     home = "/home/binette";
     extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
   };
-     
+
    # auto login user on startup
 #  services.getty.autologinUser = "binette";
 

@@ -27,7 +27,6 @@
 
   hardware = {
     opengl.enable = true;
-#    acpilight.enable = true;
   };
 
   environment.etc.current-nixos-config.source = ./.;
