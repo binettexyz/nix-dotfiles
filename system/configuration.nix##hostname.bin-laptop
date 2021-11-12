@@ -26,7 +26,12 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    cpu.intel.updateMicrocode = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
   };
 
   environment.etc.current-nixos-config.source = ./.;
