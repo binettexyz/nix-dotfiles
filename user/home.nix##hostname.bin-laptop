@@ -17,6 +17,17 @@ in
       };
     };
 
+    programs = {
+      password-store = {
+        enable = true;
+        package = pkgs.pass.withExtensions (
+          exts: with exts; [
+            pass-otp
+          ]);
+        #settings = { "$XDG_DATA_HOME/password-store"; };
+      };
+    };
+
   nixpkgs.config.allowUnfree = true;
 
   home = {
@@ -45,7 +56,7 @@ in
       sxhkd
 
        # notification-daemon
-      dunst
+      dunst libnotify
 
         # torrent
       transmission

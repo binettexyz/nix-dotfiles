@@ -60,10 +60,13 @@ in
     slstatus-head
     st-head
 
+      # encryption
+    gnupg
+    pass pass-otp
+    pinentry-qt # pinentry for gpg-agent
+
       # other
     light # backlight
-    gnupg
-    pinentry-qt
     ];
 
     nix = {

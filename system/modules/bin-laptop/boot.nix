@@ -11,7 +11,6 @@ in {
   boot = {
     cleanTmpDir = false;
     kernelPackages = pkgs.linuxPackages_5_14;
-    plymouth.enable = false;
     loader.grub = {
       enable = true;
       version = 2;

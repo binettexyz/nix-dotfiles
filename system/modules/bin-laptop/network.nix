@@ -31,11 +31,11 @@
           pskRaw = "6df6c695105bc76306832ba0643f9de718f72d8886e072605f5ef256f8df5542";
         };
 
-#          # girlfriend's
-#        "VIDEOTRON5124" = {
-#          priority = 2;
-#          pskRaw = "...";
-#        };
+          # girlfriend's
+        "VIDEOTRON4142" = {
+          priority = 2;
+          pskRaw = "dbb4484b30281f5bafd84d6030f4863bdd7709ca7fce550cdfc2bfda69b31642";
+        };
       };
     };
   };

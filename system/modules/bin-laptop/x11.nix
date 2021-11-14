@@ -15,13 +15,8 @@
       };
       videoDrivers = [ "intel" ];
       displayManager.startx.enable = true;
-      desktopManager.session = [{
-        name = "dwm";
-        start = ''
-          /run/current-system/sw/bin/dwm &
-          waitPID=$!
-        '';
-      }];
+#      displayManager.lightdm.enable = true;
+      windowManager.dwm.enable = true;
     };
    };
 
