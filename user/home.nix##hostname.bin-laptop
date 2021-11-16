@@ -17,17 +17,6 @@ in
       };
     };
 
-    programs = {
-      password-store = {
-        enable = true;
-        package = pkgs.pass.withExtensions (
-          exts: with exts; [
-            pass-otp
-          ]);
-        #settings = { "$XDG_DATA_HOME/password-store"; };
-      };
-    };
-
   nixpkgs.config.allowUnfree = true;
 
   home = {
@@ -37,7 +26,6 @@ in
         # browser
       brave
       qutebrowser
-#      ungoogled-chromium
       unstable.zoom-us
 
         # media

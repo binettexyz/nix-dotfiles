@@ -11,9 +11,11 @@ in {
   boot = {
     cleanTmpDir = false;
     kernelPackages = pkgs.linuxPackages_5_14;
+    plymouth.enable = true;
     loader.grub = {
       enable = true;
       version = 2;
+      configurationName = "nixos";
       device = "/dev/sda";
         # use "blkdid" command to set UUID of your partition
 #      extraEntries = ''

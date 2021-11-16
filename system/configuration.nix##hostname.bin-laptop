@@ -36,6 +36,15 @@
 
   environment.etc.current-nixos-config.source = ./.;
 
+  nix = {
+    autoOptimiseStore = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 3d";
+    };
+  };
+
   system.stateVersion = "21.05";
 
 }

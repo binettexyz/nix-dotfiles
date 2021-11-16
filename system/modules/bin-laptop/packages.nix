@@ -4,9 +4,14 @@ let
   unstable = import
     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
     { config = config.nixpkgs.config; allowUnfree = true; };
+
 in
 
   {
+
+    programs = {
+      adb.enable = true;
+    };
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -35,7 +40,7 @@ in
     xdotool xcape killall lm_sensors
 
       # programing language
-    python3Minimal
+      python3Minimal
 
       # browser
     firefox
