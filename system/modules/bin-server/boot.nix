@@ -7,7 +7,7 @@
       timout = 1;
       grub.enable = false;
       systemd-boot.enable = true;
-      efi.cantouchEfiVariables = true;
+      efi.canTouchEfiVariables = true;
     };
 
         # use "blkdid" command to set UUID of your partition
