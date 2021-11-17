@@ -4,6 +4,7 @@
     cleanTmpDir = false;
     kernelPackages = pkgs.linuxPackages_5_14;
     loader = {
+      timout = 1;
       grub.enable = false;
       systemd-boot.enable = true;
       efi.cantouchEfiVariables = true;
@@ -17,5 +18,4 @@
 #        }
 #      '';
     };
-  };
-}
+  }

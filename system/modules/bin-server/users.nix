@@ -7,7 +7,7 @@
     home = "/home/binserv";
     hashedPassword = "$6$GAEKk6atuYJ2y$HvJDzPyvv4qy9eaIn239xrFL3NWd5Dd4fb9c84hpCE/8BRrySjH96/vSnI./RYF8RbhAEf4CquwwDN.wtKbJP1";
     description = "Binette's server";
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+    extraGroups = [ "wheel" "audio" "video" ];
   };
 
     # auto login user on startup

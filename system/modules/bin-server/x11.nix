@@ -5,8 +5,6 @@
     xserver = {
       enable = true;
       layout = "us";
-        };
-      };
       videoDrivers = [ "nvidia" ];
       displayManager.startx.enable = true;
       windowManager.dwm.enable = true;
