@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+
   unstable = import
     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
     { config = config.nixpkgs.config; allowUnfree = true; };
@@ -18,33 +19,26 @@ in
     nixpkgs.config = {
       allowUnfree = true;
       packageOverrides = pkgs: rec {
-        dwm-head      = pkgs.callPackage /home/binette/.config/suckless/dwm {};
-        slstatus-head = pkgs.callPackage /home/binette/.config/suckless/slstatus {};
+        dwm-head      = pkgs.callPackage ./pkgs/dwm {};
+        slstatus-head = pkgs.callPackage ./pkgs/slstatus {};
         st-head       = pkgs.callPackage ./pkgs/st {};
       };
     };
 
     environment.systemPackages = with pkgs; [
 
-      # nixos home-manager
-    home-manager
-
       # xorg
     xorg.xinit
     xorg.xev
     xorg.xmodmap
-    xorg.xorgserver
 
       # utilities
     wget git git-crypt dmenu xclip maim gcc exa hsetroot htop unclutter-xfixes trash-cli
     mediainfo chafa odt2txt atool unzip ntfs3g gnumake ffmpeg slop binutils bat
-    xdotool xcape killall lm_sensors
+    xdotool xcape killall
 
       # programing language
-      python3Minimal
-
-      # browser
-    firefox
+    python3Minimal
 
       # media storage
     udiskie
@@ -53,7 +47,7 @@ in
     zsh
 
       # media
-    mpv sxiv zathura python39Packages.youtube-dl
+    python39Packages.youtube-dl
 
       # editor
     vim neovim
@@ -68,19 +62,15 @@ in
 
       # encryption
     gnupg
-    pass pass-otp
     pinentry-qt # pinentry for gpg-agent
 
       # other
-    light # backlight
     wmname
+    brave
+    pulsemixer
+    unstable.pamixer
+    unclutter-xfixes
+    unstable.mcrcon
     ];
-
-    nix = {
-      package = pkgs.nixFlakes;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
-    };
 
 }

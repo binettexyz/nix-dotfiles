@@ -1,21 +1,14 @@
-{ config, pkgs, ...}:
-
-let
-
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    { config = config.nixpkgs.config; allowUnfree = true; };
-
-in {
+{ config, pkgs, ...}: {
 
   boot = {
     cleanTmpDir = false;
     kernelPackages = pkgs.linuxPackages_5_14;
-    loader.grub = {
-      enable = true;
-      version = 2;
-      configurationName = "nixos";
-      device = "/dev/sda";
+    loader = {
+      grub.enable = false;
+      systemd-boot.enable = true;
+      efi.cantouchEfiVariables = true;
+    };
+
         # use "blkdid" command to set UUID of your partition
 #      extraEntries = ''
 #        menuentry "NAME-HERE" {

@@ -46,10 +46,6 @@ in
        # notification-daemon
       dunst libnotify
 
-        # torrent
-      transmission
-      plex
-
         # editor
       emacs
 
@@ -57,7 +53,7 @@ in
       unclutter-xfixes # remove mouse wen idle
       unstable.mcrcon # minecraft rcon client
       xcompmgr # compositor (transparency)
-      i3lock
+      betterlockscreen
     ];
 
   };

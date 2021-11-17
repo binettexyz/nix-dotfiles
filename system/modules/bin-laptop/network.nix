@@ -2,7 +2,10 @@
 
   networking = {
     hostName = "bin-laptop";
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 9091 ];
+    };
     enableIPv6 = false;
     useDHCP = false;
 
