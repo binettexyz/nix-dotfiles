@@ -19,6 +19,7 @@ in
       allowUnfree = true;
       packageOverrides = pkgs: rec {
         dwm-head      = pkgs.callPackage /home/binette/.config/suckless/dwm {};
+        dmenu-head    = pkgs.callPackage /home/binette/.config/suckless/dmenu {};
         slstatus-head = pkgs.callPackage /home/binette/.config/suckless/slstatus {};
         st-head       = pkgs.callPackage ./pkgs/st {};
       };
@@ -36,7 +37,7 @@ in
     xorg.xorgserver
 
       # utilities
-    wget git git-crypt dmenu xclip maim gcc exa hsetroot htop unclutter-xfixes trash-cli
+    wget git git-crypt xclip maim gcc exa hsetroot htop unclutter-xfixes trash-cli
     mediainfo chafa odt2txt atool unzip ntfs3g gnumake ffmpeg slop binutils bat
     xdotool xcape killall lm_sensors
 
@@ -57,6 +58,7 @@ in
 
       # editor
     vim neovim
+    vscodium
 
       # file manager
     lf
@@ -65,15 +67,23 @@ in
     dwm-head
     slstatus-head
     st-head
-
+    dmenu-head
       # encryption
     gnupg
     pass pass-otp
     pinentry-qt # pinentry for gpg-agent
 
+      # server
+    nfs-utils
+
       # other
     light # backlight
     wmname
+    cmatrix
+
+      # clipboard manager
+    clipmenu
+    haskellPackages.greenclip
     ];
 
     nix = {

@@ -10,7 +10,7 @@ in {
 
   boot = {
     cleanTmpDir = false;
-    kernelPackages = pkgs.linuxPackages_5_14;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       timeout = 1;
       grub = {
@@ -25,6 +25,7 @@ in {
 #         configfile "(Smyroot)/boot/grub/grub.cfg"
 #         }
 #       '';
+      };
     };
   };
 }

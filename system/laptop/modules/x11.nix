@@ -5,20 +5,25 @@
     xserver = {
       enable = true;
       layout = "us";
+#      synaptics = {
+#        enable = true;
+#        accelFactor = "0.05";
+#        fingersMap = [ 1 3 2 ];
+#        twoFingerScroll = true;
+#        horizontalScroll = true;
+#        buttonsMap = [1 3 2];
+#      };
       libinput = {
         enable = true;
         touchpad = {
-          naturalScrolling = false;
-          middleEmulation = true;
+          naturalScrolling = true;
           tapping = true;
+          disableWhileTyping = true;
+          middleEmulation = true;
         };
       };
       videoDrivers = [ "intel" ];
       displayManager.startx.enable = true;
-#      displayManager.sddm = {
-#        enable = true;
-#        theme = "simplicity";
-#      };
       windowManager.dwm.enable = true;
     };
    };

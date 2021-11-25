@@ -4,15 +4,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/bin-laptop/audio.nix
-      ./modules/bin-laptop/boot.nix
-      ./modules/bin-laptop/fonts.nix
-      ./modules/bin-laptop/network.nix
-      ./modules/bin-laptop/packages.nix
-      ./modules/bin-laptop/powerManagement.nix
-      ./modules/bin-laptop/security.nix
-      ./modules/bin-laptop/users.nix
-      ./modules/bin-laptop/x11.nix
+      ./modules/audio.nix
+      ./modules/boot.nix
+      ./modules/fonts.nix
+      ./modules/network.nix
+      ./modules/packages.nix
+      ./modules/powerManagement.nix
+      ./modules/security.nix
+      ./modules/ssh.nix
+      ./modules/tty-prompt.nix
+      ./modules/users.nix
+      ./modules/x11.nix
     ];
 
     # Set your time zone.

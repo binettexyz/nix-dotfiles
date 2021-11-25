@@ -5,6 +5,9 @@
     thermald.enable = true;
     auto-cpufreq.enable = true;
   };
-  powerManagement.powertop.enable = true;
+     # usb ports are idle after a moment
+#  powerManagement = {
+#    powertop.enable = true;
+#  };
 
 }
