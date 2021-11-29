@@ -7,7 +7,7 @@ let
 
 
   dwm-head      = pkgs.callPackage ./pkgs/dwm/default.nix {};
-#  dmenu-head    = pkgs.callPackage ./pkgs/dmenu/default.nix {};
+  dmenu-head    = pkgs.callPackage ./pkgs/dmenu/default.nix {};
   slstatus-head = pkgs.callPackage ./pkgs/slstatus/default.nix {};
   st-head       = pkgs.callPackage ./pkgs/st/default.nix {};
 
