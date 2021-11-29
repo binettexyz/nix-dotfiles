@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     homepage = "https://github.com/LukeSmithXYZ/st";
-    description = "Luke's fork of the suckless simple terminal (st) with vim bindings and Xresource compatibility.";
+    description = "Luke's fork of the suckless simple terminal (st)";
     license = licenses.mit;
     platforms = platforms.linux;
   };
