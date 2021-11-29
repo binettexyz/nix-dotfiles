@@ -1,6 +1,3 @@
-[submodule "test/dwm"]
-	path = test/dwm
-	url = https://github.com/Binetto/dwm.git
 [submodule "user/binette/pkgs/dwm"]
 	path = user/binette/pkgs/dwm
 	url = https://github.com/Binetto/dwm.git

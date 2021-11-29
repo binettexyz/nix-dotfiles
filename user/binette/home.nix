@@ -4,6 +4,13 @@ let
   unstable = import
     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
     { config = config.nixpkgs.config; allowUnfree = true; };
+
+
+  dwm-head      = pkgs.callPackage ./pkgs/dwm/default.nix {};
+  dmenu-head    = pkgs.callPackage ./pkgs/dmenu/default.nix {};
+  slstatus-head = pkgs.callPackage ./pkgs/slstatus/default.nix {};
+  st-head       = pkgs.callPackage ./pkgs/st {};
+
 in
 
   {
@@ -48,6 +55,11 @@ in
 
         # editor
       emacs
+
+      dwm-head
+      dmenu-head
+      slstatus-head
+      st-head
 
        # others
       unclutter-xfixes # remove mouse wen idle

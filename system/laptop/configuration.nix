@@ -1,5 +1,5 @@
 #!/run/current-system/sw/bin/nix
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports =
     [ # Include the results of the hardware scan.
@@ -7,6 +7,7 @@
       ./modules/audio.nix
       ./modules/boot.nix
       ./modules/fonts.nix
+      ./modules/hardware.nix
       ./modules/network.nix
       ./modules/packages.nix
       ./modules/powerManagement.nix
@@ -27,14 +28,9 @@
     keyMap = "us";
   };
 
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-  };
+  documentation.nixos.enable = true;
+
+#  services.throttled.enable = lib.mkDefault true;
 
   environment.etc.current-nixos-config.source = ./.;
 

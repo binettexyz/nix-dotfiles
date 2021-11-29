@@ -39,6 +39,13 @@
           priority = 2;
           pskRaw = "dbb4484b30281f5bafd84d6030f4863bdd7709ca7fce550cdfc2bfda69b31642";
         };
+          # phone's hotspot
+        "bin-hotspot" = {
+          hidden = true;
+          priority = 3;
+          pskRaw = "2855045c3fb78c87d82fca5761710f259cf7b4f20c5f022c5937349b9bf71707";
+        };
+
       };
     };
   };
