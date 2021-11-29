@@ -4,3 +4,6 @@
 [submodule "user/binette/pkgs/slstatus"]
 	path = user/binette/pkgs/slstatus
 	url = https://github.com/Binetto/slstatus
+[submodule "user/binette/pkgs/dmenu"]
+	path = user/binette/pkgs/dmenu
+	url = https://github.com/Binetto/dmenu
