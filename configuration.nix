@@ -1,0 +1,1 @@
+/home/binette/.nixos/system/laptop/configuration.nix
