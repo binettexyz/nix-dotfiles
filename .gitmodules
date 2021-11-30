@@ -1,0 +1,9 @@
+[submodule "machines/bin-laptop/user/binette/pkgs/dwm"]
+	path = machines/bin-laptop/user/binette/pkgs/dwm
+	url = https://github.com/Binetto/dwm.git
+[submodule "machines/bin-laptop/user/binette/pkgs/dmenu"]
+	path = machines/bin-laptop/user/binette/pkgs/dmenu
+	url = https://github.com/Binetto/dmenu.git
+[submodule "machines/bin-laptop/user/binette/pkgs/slstatus"]
+	path = machines/bin-laptop/user/binette/pkgs/slstatus
+	url = https://github.com/Binetto/slstatus.git
