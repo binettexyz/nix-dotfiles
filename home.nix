@@ -1,1 +1,0 @@
-machines/bin-laptop/user/binette/home.nix

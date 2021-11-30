@@ -1,1 +1,0 @@
-machines/bin-laptop/hardware-configuration.nix
