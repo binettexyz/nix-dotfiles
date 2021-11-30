@@ -1,0 +1,1 @@
+machines/bin-laptop/configuration.nix
