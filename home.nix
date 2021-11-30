@@ -1,1 +1,1 @@
-/home/binette/.nixos/user/binette/home.nix
+machines/bin-laptop/user/binette/home.nix

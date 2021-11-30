@@ -1,1 +1,1 @@
-/home/binette/.nixos/system/laptop/configuration.nix
+machines/bin-laptop/configuration.nix

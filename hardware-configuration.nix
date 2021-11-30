@@ -1,1 +1,1 @@
-/home/binette/.nixos/system/laptop/hardware-configuration.nix
+machines/bin-laptop/hardware-configuration.nix

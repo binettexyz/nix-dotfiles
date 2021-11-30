@@ -4,7 +4,7 @@
 #  unstable = import
 #    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
 #    { config = config.nixpkgs.config; allowUnfree = true; };
-
+#
 #in
 
   {
@@ -17,8 +17,14 @@
     # $ nix search wget
     nixpkgs.config = {
       allowUnfree = true;
-      packageOverrides = pkgs: rec {
-        unstable = import <nixpkgs-unstable> {
+      packageOverrides = pkgs: {
+        unstable = import <nixos-unstable> {
+          config = config.nixpkgs.config;
+        };
+        unstable-small = import <nixos-unstable-small> {
+          config = config.nixpkgs.config;
+        };
+        small = import <nixos-small> {
           config = config.nixpkgs.config;
         };
       };
@@ -41,10 +47,6 @@
         mediainfo chafa odt2txt atool unzip ntfs3g gnumake ffmpeg slop binutils bat
         xdotool xcape killall lm_sensors
 
-          # programing language
-        python3Minimal
-        nodejs
-
           # browser
         firefox
 
@@ -59,7 +61,7 @@
 
           # editor
         vim neovim
-        vscodium
+        unstable.vscodium
 
           # file manager
         lf
