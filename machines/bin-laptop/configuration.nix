@@ -3,24 +3,47 @@
 
   imports =
     [ # Include the results of the hardware scan.
+      <home-manager/nixos>
       ./hardware-configuration.nix
-      ./modules/audio.nix
+      ./user/binette.nix
+
+      ./modules/hardware/audio.nix
+      ./modules/hardware/bluetooth.nix
+      ./modules/hardware/intel-cpu.nix
+      ./modules/hardware/intel-gpu.nix
+      ./modules/hardware/power-management.nix
+      ./modules/hardware/ssd.nix
+      ./modules/hardware/touchpad.nix
+
+      ./modules/network/adguard.nix
+
+      ./modules/packages/common.nix
+      ./modules/packages/x-common.nix
+
+      ./modules/services/x.nix
+#      ./modules/services/xrandr.nix
+      ./modules/services/x/dwm.nix
+      ./modules/services/x/picom.nix
+
+      ./modules/sys/nix.nix
+      ./modules/sys/tty.nix
+
       ./modules/boot.nix
       ./modules/fonts.nix
-      ./modules/hardware.nix
       ./modules/network.nix
-      ./modules/packages.nix
-      ./modules/powerManagement.nix
       ./modules/security.nix
       ./modules/ssh.nix
-      ./modules/tty-prompt.nix
+      ./modules/torrent.nix
       ./modules/users.nix
-      ./modules/x11.nix
     ];
 
     # Set your time zone.
   time.timeZone = "Canada/Eastern";
-
+  location = {
+    provider = "manual";
+    latitude = 45.30;
+    longitude = -73.35;
+  };
     # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -28,21 +51,6 @@
     keyMap = "us";
   };
 
-  documentation.nixos.enable = true;
-
-#  services.throttled.enable = lib.mkDefault true;
-
-  environment.etc.current-nixos-config.source = ./.;
-
-  nix = {
-    autoOptimiseStore = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 3d";
-    };
-  };
-
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 
 }

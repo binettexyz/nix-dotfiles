@@ -1,13 +1,24 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   networking = {
     hostName = "bin-laptop";
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 9091 ];
-    };
     enableIPv6 = false;
     useDHCP = false;
+    nameservers = [ "94.140.14.14" "94.140.15.15" ];
+    networkmanager.enable = false;
+    firewall = {
+      enable = lib.mkForce true;
+      interfaces = {
+        wlp3s0 = {
+          allowedTCPPorts = [ 9091 ];
+          allowedUDPPorts = [];
+        };
+        enp0s25 = {
+          allowedTCPPorts = [ 9091 ];
+          allowedUDPPorts = [];
+        };
+      };
+    };
 
       # networkManager
 #   wireless.enable = false;

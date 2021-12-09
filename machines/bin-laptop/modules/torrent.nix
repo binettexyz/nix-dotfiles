@@ -2,7 +2,7 @@
 
     # services
 
-    transmission = {
+    services.transmission = {
       enable = true;
       group = "users";
       settings = {
@@ -27,6 +27,5 @@
         utp-enabled = true;
       };
     };
-  };
 
 }

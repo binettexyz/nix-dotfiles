@@ -21,15 +21,15 @@
       fsType = "ext4";
     };
 
-#  fileSystems."/home/media/server/data" = {
-#    device = "192.168.1.141:/data";
-#    fsType = "nfs";
-#  };
+  fileSystems."/home/media/server/home" = {
+    device = "192.168.1.141:/home";
+    fsType = "nfs";
+      # don't freeze system if mount point not available on boot
+    options = [ "x-systemd.automount" "noauto" ];
 
-#  fileSystems."/home/media/server/home" = {
-#    device = "192.168.1.141:/home";
-#    fsType = "nfs";
-#  };
+    # TODO full disk encryption with luks
+
+  };
 
 
   swapDevices = [ ];
