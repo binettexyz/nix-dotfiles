@@ -70,10 +70,11 @@
       woeusb # write win10.iso to usb drive
 
         # pass
-       pinentry-curses
+       pinentry-qt
+       pinentry-gtk2
+       pinentry-gnome
        gopass
        pass
-
 
         # monitoring
       bandwhich
@@ -104,7 +105,7 @@
       nnn
       viu
       exa
-      zoxide # smarter cd command
+      #zoxide # smarter cd command
       sshfs # mount directory over ssh
       ntfs3g
       rsync # replace scp
@@ -112,6 +113,8 @@
         # bells and whistles
       cava
       cmatrix
+
+      nim
     ];
   };
 }

@@ -7,8 +7,8 @@
         users.binette = {
         programs.git = {
           enable = true;
-          userName = "Binetto";
-          userEmail = "46168797+Binetto@users.noreply.github.com";
+          userName = "Binettexyz";
+          userEmail = "46168797+Binettexyz@users.noreply.github.com";
           extraConfig = {
             credential.helper = "cache";
           };

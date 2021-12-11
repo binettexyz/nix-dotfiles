@@ -7,6 +7,7 @@
           # system
         xorg.xinit
         xorg.xev
+        xorg.xmodmap
         xdotool
         maim
         slop
