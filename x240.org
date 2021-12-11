@@ -1,0 +1,80 @@
+#+TITLE: Binette's Nixos Config
+#+AUTHOR: Jonathan Binette
+#+DESCRIPTION: x240's configuration
+#+STARTUP: showeverything
+#+PROPERTY: header-args :tangle "configuration_test.nix"
+
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include all :ignore this
+:END:
+:CONTENTS:
+- [[#Let-In][Let In]]
+- [[#imports][Imports]]
+:END:
+
+* ???
+
+#+begin_src nix
+{ config, pkgs, lib, modulesPath,  ... }:
+#+end_src
+
+* Let In
+* Imports
+
+#+begin_src nix
+  imports =
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+      <home-manager/nixos>
+    ];
+#+end_src
+
+* File Systems
+
+#+begin_src nix
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/b4abc5fa-bd46-4f94-93ce-1e03ada99be4";
+      fsType = "ext4";
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/cd678c62-85dc-4b13-8a2a-d5f80da5298e";
+      fsType = "ext4";
+    };
+
+  fileSystems."/home/media/server/home" = {
+    device = "192.168.1.141:/home";
+    fsType = "nfs";
+      # don't freeze system if mount point not available on boot
+    options = [ "x-systemd.automount" "noauto" ];
+
+  swapDevices = [];
+#+end_src
+
+* Time Zone
+
+#+begin_src nix
+  time.timeZone = "Canada/Eastern";
+  location = {
+    provider = "manual";
+    latitude = 45.30;
+    longitude = -73.35;
+  };
+#+end_src
+
+* ???
+
+#+begin_src nix
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
+#+end_src
+
+* System Version
+
+#+begin_src nix
+system.stateVersion = "21.05";
+#+end_src
