@@ -10,3 +10,17 @@
 - [[#Let-In][Let In]]
 - [[#imports][Imports]]
 :END:
+
+* ???
+
+#+begin_src nix
+{ config, lib, pkgs, ... }:
+#+end_src
+* Let In
+* Imports
+#+begin_src nix
+  imports =
+    [
+      <home-manager/nixos>
+    ];
+#+end_src
