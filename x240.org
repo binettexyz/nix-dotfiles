@@ -2,7 +2,7 @@
 #+AUTHOR: Jonathan Binette
 #+DESCRIPTION: x240's configuration
 #+STARTUP: showeverything
-#+PROPERTY: header-args :tangle "configuration_test.nix"
+##+PROPERTY: header-args :tangle "configuration_test.nix"
 
 * Table of Contents
 :PROPERTIES:
@@ -15,46 +15,53 @@
 
 * ???
 
-#+begin_src nix
-{ config, pkgs, lib, modulesPath,  ... }:
+#+begin_src nix :tangle "configuration.nix"
+{ config, pkgs, lib,  ... }:
 #+end_src
 
-* Let In
 * Imports
 
-#+begin_src nix
+#+begin_src nix :tangle "configuration.nix"
   imports =
     [
-      (modulesPath + "/installer/scan/not-detected.nix")
       <home-manager/nixos>
+      ./hardware-configuration.nix
+      ./user/binette.nix
+
+      ./modules/hardware/audio.nix
+      ./modules/hardware/bluetooth.nix
+      ./modules/hardware/intel-cpu.nix
+      ./modules/hardware/intel-gpu.nix
+      ./modules/hardware/power-management.nix
+      ./modules/hardware/ssd.nix
+      ./modules/hardware/touchpad.nix
+
+      ./modules/network/adguard.nix
+
+      ./modules/packages/common.nix
+      ./modules/packages/x-common.nix
+
+      ./modules/services/x.nix
+#      ./modules/services/xrandr.nix
+      ./modules/services/x/dwm.nix
+      ./modules/services/x/picom.nix
+
+      ./modules/sys/nix.nix
+      ./modules/sys/tty.nix
+
+      ./modules/boot.nix
+      ./modules/fonts.nix
+      ./modules/network.nix
+      ./modules/security.nix
+      ./modules/ssh.nix
+      ./modules/torrent.nix
+      ./modules/users.nix
     ];
-#+end_src
-
-* File Systems
-
-#+begin_src nix
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b4abc5fa-bd46-4f94-93ce-1e03ada99be4";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/cd678c62-85dc-4b13-8a2a-d5f80da5298e";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/media/server/home" = {
-    device = "192.168.1.141:/home";
-    fsType = "nfs";
-      # don't freeze system if mount point not available on boot
-    options = [ "x-systemd.automount" "noauto" ];
-
-  swapDevices = [];
 #+end_src
 
 * Time Zone
 
-#+begin_src nix
+#+begin_src nix :tangle "configuration.nix"
   time.timeZone = "Canada/Eastern";
   location = {
     provider = "manual";
@@ -65,7 +72,7 @@
 
 * ???
 
-#+begin_src nix
+#+begin_src nix :tangle "configuration.nix"
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
@@ -75,6 +82,6 @@
 
 * System Version
 
-#+begin_src nix
+#+begin_src nix :tangle "configuration.nix"
 system.stateVersion = "21.05";
 #+end_src
