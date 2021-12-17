@@ -107,8 +107,9 @@
       exa
       #zoxide # smarter cd command
       sshfs # mount directory over ssh
-      ntfs3g
+      #ntfs3g
       rsync # replace scp
+      parted
 
         # bells and whistles
       cava

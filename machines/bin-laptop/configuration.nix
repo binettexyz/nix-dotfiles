@@ -33,7 +33,7 @@
       ./modules/network.nix
       ./modules/security.nix
       ./modules/ssh.nix
-      ./modules/torrent.nix
+#      ./modules/torrent.nix
       ./modules/users.nix
     ];
 
