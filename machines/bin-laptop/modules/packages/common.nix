@@ -2,31 +2,6 @@
 
   {
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    nixpkgs.config = {
-      allowUnfree = true;
-      packageOverrides = pkgs: {
-        unstable = import <nixos-unstable> {
-          config = config.nixpkgs.config;
-        };
-      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-        unstable-small = import <nixos-unstable-small> {
-          config = config.nixpkgs.config;
-        };
-        small = import <nixos-small> {
-          config = config.nixpkgs.config;
-        };
-        dwm-head = pkgs.callPackage ./pkgs/dwm {};
-        st-head = pkgs.callPackage ./../user/binette/pkgs/st {};
-        dmenu-head = pkgs.callPackage ./../user/binette/pkgs/dmenu {};
-        slstatus-head = pkgs.callPackage ./../user/binette/pkgs/slstatus {};
-
-      };
-    };
-
     environment = {
       variables = {
         VISUAL = "nvim";
@@ -38,10 +13,14 @@
       systemPackages = with pkgs; [
         # sys
       zsh
+      powerline-go
+      nnn
       fzf
       sd
       bat
       cron
+      dash
+      wipe
       #watchman
       git
       git-crypt
@@ -102,12 +81,11 @@
       unrar
       atool
       lf
-      nnn
       viu
       exa
+      ntfs3g
       #zoxide # smarter cd command
       sshfs # mount directory over ssh
-      #ntfs3g
       rsync # replace scp
       parted
 
@@ -118,4 +96,5 @@
       nim
     ];
   };
+
 }

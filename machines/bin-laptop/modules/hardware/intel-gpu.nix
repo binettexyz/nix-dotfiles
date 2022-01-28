@@ -5,7 +5,7 @@
   hardware = {
     enableRedistributableFirmware = true;
     opengl = {
-      enable = true;
+      enable = false;
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [

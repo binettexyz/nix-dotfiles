@@ -1,6 +1,8 @@
 { config, pkgs, ... }: {
 
   security = {
+      # prevent replacing the running kernel image
+    protectKernelImage = true;
     sudo.enable = false;
     doas = {
       enable = true;

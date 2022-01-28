@@ -2,17 +2,28 @@
 
   {
 
+    services.flatpak.enable = true;
+    xdg.portal.enable = true;
+
     home-manager = {
       useGlobalPkgs = true;
         users.binette = {
-        programs.git = {
-          enable = true;
-          userName = "Binettexyz";
-          userEmail = "46168797+Binettexyz@users.noreply.github.com";
-          extraConfig = {
-            credential.helper = "cache";
+          programs.git = {
+            enable = true;
+            userName = "Binettexyz";
+            userEmail = "46168797+Binettexyz@users.noreply.github.com";
+            extraConfig = {
+              credential.helper = "cache";
+            };
           };
-        };
+          programs.powerline-go.enable = true;
+
+          programs.zsh = {
+            enable = true;
+            enableAutosuggestions = true;
+            enableCompletion = true;
+            enableSyntaxHighlighting = true;
+          };
 
             home = {
               username = "binette";
@@ -20,12 +31,12 @@
               packages = with pkgs; [
                   # browser
                 brave
+                vieb
                 nur.repos.sikmir.librewolf
-                qutebrowser
                 unstable.zoom-us
                   # media
                 discord
-                spotify
+                unstable.ripcord
                   # graphical tools
                 geany # editor
                 pcmanfm # file manager
@@ -38,6 +49,8 @@
                 emacs
                   # tools
                 newsboat
+                    # kindle
+                  calibre calibre-web
                   # emails
                 mutt-wizard
                 neomutt
@@ -51,7 +64,6 @@
 
                 unclutter-xfixes # remove mouse wen idle
                 unstable.mcrcon # minecraft rcon client
-                xcompmgr # compositor (transparency)
                 betterlockscreen
               ];
             };

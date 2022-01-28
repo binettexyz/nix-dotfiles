@@ -3,7 +3,7 @@
   boot = {
     cleanTmpDir = true;
     tmpOnTmpfs = true;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      # luks encryption
     initrd.luks = {
       reusePassphrases = true;
       devices = {
@@ -17,34 +17,32 @@
         };
       };
     };
+      # boot loader
     loader = {
       timeout = 1;
       systemd-boot.enable = false;
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
       grub = {
         enable = true;
+        version = 2;
         enableCryptodisk = true;
         efiSupport = true;
-        version = 2;
+#        useOSProber = true;
+        gfxmodeEfi = "1366x768";
         backgroundColor = "#000000";
         configurationLimit = 30;
-        configurationName = "nixos";
+        configurationName = "nixos-laptop";
         device = "nodev";
         extraConfig = ''
           set menu_color_normal=yellow/black
           set menu_color_highlight=black/yellow
         '';
         splashImage = null;
-#        splashImage = ../assets/Season-01-Gas-station-by-dutchtide.png;
-#        splashMode = "stretch";
+        splashMode = "normal";
 
-          # use "blkdid" command to set UUID of your partition
-#        extraEntries = ''
-#          menuentry "NAME-HERE" {
-#          search --set=myroot --fs-uuid <UUID-HERE>
-#          configfile "(Smyroot)/boot/grub/grub.cfg"
-#          }
-#        '';
       };
     };
   };

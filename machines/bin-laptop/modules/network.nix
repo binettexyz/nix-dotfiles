@@ -10,11 +10,11 @@
       enable = lib.mkForce true;
       interfaces = {
         wlp3s0 = {
-          allowedTCPPorts = [ 9091 ];
+          allowedTCPPorts = [ 22 9091 ];
           allowedUDPPorts = [];
         };
         enp0s25 = {
-          allowedTCPPorts = [ 9091 ];
+          allowedTCPPorts = [ 22 9091 ];
           allowedUDPPorts = [];
         };
       };
@@ -64,6 +64,7 @@
       # enable openssh daemon
     services.openssh = {
       enable = true;
+      ports = [ 22 ];
       startWhenNeeded = true;
     };
 

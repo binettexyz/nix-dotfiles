@@ -6,10 +6,16 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
+      kernelModules = [ "dm-snapshot" "cryptd" "usb_storage" ];
+    };
+    extraModulePackages = [ ];
+    kernelModules = [ ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [  ];
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
@@ -24,7 +30,11 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-label/home";
       fsType = "ext4";
-#      options = [  ];
+    };
+
+  fileSystems."/home/media/ventoy" =
+    { device = "/dev/disk/by-label/Ventoy";
+      fsType = "exfat";
     };
 
 #  fileSystems."/home/media/server/home" = {
