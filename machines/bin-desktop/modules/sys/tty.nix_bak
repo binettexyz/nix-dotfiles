@@ -1,0 +1,28 @@
+{ pkgs, ... }:
+{
+  services.getty.greetingLine = ''\l'';
+
+  console = {
+    earlySetup = true;
+
+    colors = [
+      "#000000"
+      "#8f423c"
+      "#bbbb88"
+      "#f9d25b"
+      "#e0ba69"
+      "#709289"
+      "#d13516"
+      "#efe2e0"
+      "#ffffff"
+      "#eeaa88"
+      "#ccc68d"
+      "#eedd99"
+      "#c9b957"
+      "#ffcbab"
+      "#c25431"
+      "#f9f1ed"
+
+    ];
+  };
+}
