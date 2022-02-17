@@ -25,7 +25,7 @@ in
         ./modules/power-management/acpi_call.nix
 
         ./modules/services/x.nix
-#        ./modules/services/xrandr.nix
+        ./modules/services/xrandr.nix
         ./modules/services/x/dwm.nix
         ./modules/services/x/picom.nix
 

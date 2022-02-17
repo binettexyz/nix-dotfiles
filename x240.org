@@ -16,7 +16,7 @@
 * ???
 
 #+begin_src nix :tangle "configuration.nix"
-{ config, pkgs, lib,  ... }:
+{ config, pkgs, lib,  ... }: {
 #+end_src
 
 * Imports

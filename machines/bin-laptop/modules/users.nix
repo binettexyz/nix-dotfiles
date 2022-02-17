@@ -33,7 +33,7 @@
 
   nix = {
     allowedUsers = [ "@wheel" ];
-    trustedUsers = [ "root" "@wheel" ];
+    trustedUsers = [ "@wheel" ];
   };
 
 }

@@ -12,9 +12,6 @@
     };
   };
 
-      # cmd: nixos-help
-#    documentation.nixos.enable = true;
-
     environment.etc.current-nixos-config.source = ./.;
 
     system = {

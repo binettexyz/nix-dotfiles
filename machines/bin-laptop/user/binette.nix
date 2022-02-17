@@ -2,27 +2,28 @@
 
   {
 
-    services.flatpak.enable = true;
-    xdg.portal.enable = true;
-
     home-manager = {
       useGlobalPkgs = true;
         users.binette = {
-          programs.git = {
-            enable = true;
-            userName = "Binettexyz";
-            userEmail = "46168797+Binettexyz@users.noreply.github.com";
-            extraConfig = {
-              credential.helper = "cache";
-            };
-          };
-          programs.powerline-go.enable = true;
+          programs = {
+#            git = {
+#              enable = true;
+#              userName = "Binettexyz";
+#              userEmail = "46168797+Binettexyz@users.noreply.github.com";
+#              extraConfig = {
+#                credential.helper = "cache";
+#              };
+#            };
 
-          programs.zsh = {
-            enable = true;
-            enableAutosuggestions = true;
-            enableCompletion = true;
-            enableSyntaxHighlighting = true;
+            powerline-go.enable = true;
+
+#            zsh = {
+#              enable = true;
+#              enableAutosuggestions = true;
+#              enableCompletion = true;
+#              enableSyntaxHighlighting = true;
+#            };
+
           };
 
             home = {
@@ -43,10 +44,6 @@
                   # audio mixer
                 pulsemixer
                 unstable.pamixer
-                  # Keybind-Manager daemon
-                sxhkd
-                  # editor
-                emacs
                   # tools
                 newsboat
                     # kindle

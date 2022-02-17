@@ -22,13 +22,14 @@
         neovim
         twmn
         redshift
-        polybar
           # media
         mpv
         sxiv
         playerctl
           # text
         zathura
+        mupdf
+        texlive.combined.scheme-full
       ];
     };
 }

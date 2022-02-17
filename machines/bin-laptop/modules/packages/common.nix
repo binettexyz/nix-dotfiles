@@ -10,17 +10,19 @@
       };
       homeBinInPath = true;
       localBinInPath = true;
+        # get rid of defaults packages like nano, perl and rsync
+      defaultPackages = lib.mkForce [];
       systemPackages = with pkgs; [
         # sys
       zsh
       powerline-go
-      nnn
       fzf
       sd
       bat
       cron
       dash
       wipe
+      xstow
       #watchman
       git
       git-crypt
@@ -31,7 +33,6 @@
       lnav # logfile naviguator
       wget
       curl
-      brightnessctl
       gnumake
       ffmpeg
       binutils
@@ -54,15 +55,12 @@
        pinentry-gnome
        gopass
        pass
+       bitwarden bitwarden-cli
 
         # monitoring
       bandwhich
       lm_sensors
-      lsof
       gotop
-      htop
-      iotop
-      lshw # lshardware
       pciutils # lspci
       usbutils # lsusb
 
@@ -76,6 +74,12 @@
       mediainfo
       chafa
       odt2txt
+      python39Packages.pdftotext
+      ueberzug
+      ffmpegthumbnailer
+      imagemagick
+      poppler
+      wkhtmltopdf
       zip
       unzip
       unrar

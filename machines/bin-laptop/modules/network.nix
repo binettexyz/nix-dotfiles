@@ -8,6 +8,7 @@
     networkmanager.enable = false;
     firewall = {
       enable = lib.mkForce true;
+      trustedInterfaces = [ "tailscale0" ];
       interfaces = {
         wlp3s0 = {
           allowedTCPPorts = [ 22 9091 ];
@@ -61,11 +62,14 @@
     };
   };
 
-      # enable openssh daemon
-    services.openssh = {
-      enable = true;
-      ports = [ 22 ];
-      startWhenNeeded = true;
+    services = {
+        # enable openssh daemon
+      openssh = {
+        enable = true;
+        ports = [ 22 ];
+        startWhenNeeded = true;
+      };
+      tailscale.enable = true;
     };
 
   programs = {

@@ -6,6 +6,7 @@
     jetbrains-mono
     fira-code
     dejavu_fonts
+    lmodern
   ];
 
  }

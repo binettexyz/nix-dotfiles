@@ -37,8 +37,8 @@
         configurationName = "nixos-laptop";
         device = "nodev";
         extraConfig = ''
-          set menu_color_normal=yellow/black
-          set menu_color_highlight=black/yellow
+          set menu_color_normal=white/black
+          set menu_color_highlight=black/white
         '';
         splashImage = null;
         splashMode = "normal";
