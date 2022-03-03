@@ -61,6 +61,7 @@
       gotop
 
         # file system
+      file
       mediainfo
       chafa
       odt2txt
