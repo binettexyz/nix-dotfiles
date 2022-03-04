@@ -22,21 +22,13 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-#    services.syncthing = {
-#      enable = true;
-#      dataDir = "/var/lib/syncthing";
-#      configDir = dataDir + "/.config/syncthing";
-#      devices = {
-#        "nas" = {};
-#        "gamingDesktop" = {};
-#      };
-#      folders = {
-#        "test" = {                                 # Name of folder in Syncthing, also the folder ID
-#          path = "/home/binette/documents/test";   # Which folder to add to Syncthing
-#          devices = [ "nas" ];                     # Which devices to share the folder with
-#        };
-#      };
-#    };
+    services.syncthing = {
+      enable = true;
+      dataDir = "/var/lib/syncthing";
+      configDir = dataDir + "/.config/syncthing";
+      relay.enable = true;
+      openDefaultPorts = true;
+    };
 
       # screen resolution
     services.xserver = {
