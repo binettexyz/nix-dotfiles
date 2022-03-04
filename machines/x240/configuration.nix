@@ -22,7 +22,21 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-    # TODO: services.syncthing
+#    services.syncthing = {
+#      enable = true;
+#      dataDir = "/var/lib/syncthing";
+#      configDir = dataDir + "/.config/syncthing";
+#      devices = {
+#        "nas" = {};
+#        "gamingDesktop" = {};
+#      };
+#      folders = {
+#        "test" = {                                 # Name of folder in Syncthing, also the folder ID
+#          path = "/home/binette/documents/test";   # Which folder to add to Syncthing
+#          devices = [ "nas" ];                     # Which devices to share the folder with
+#        };
+#      };
+#    };
 
       # screen resolution
     services.xserver = {
@@ -65,6 +79,12 @@ in
       # swap ram when % bellow is reach (1-100)
     boot.kernel.sysctl = { "vm.swappiness" = 1; };
     services.fstrim.enable = true; # ssd trimming
+
+      # Set environment variables
+    environment.variables = {
+      NIXOS_CONFIG="$HOME/.git/repos/.nixos/machines/x240/configuration.nix";
+      NIXOS_CONFIG_DIR="$HOME/.git/repos/.nixos/machines/x240/";
+  };
 
 
     system.stateVersion = "21.11";
