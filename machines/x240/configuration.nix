@@ -28,6 +28,9 @@ in
       configDir = "/var/lib/syncthing/.config/syncthing";
       relay.enable = true;
       openDefaultPorts = true;
+      declarative = {
+        folders = { "test" = { path = "/home/binette/.sync/test"; devices = [ "server" ]; }; };
+      };
     };
 
       # screen resolution

@@ -78,7 +78,13 @@ in {
 #             3000 # adguard home
 #	     5432 # miniflux
 #           ];
-#       };
+       };
+     };
+
+     services.syncthing = {
+      enable = true;
+      user = "syncthing";
+      guiAddress = "0.0.0.0:8384";
      };
 
        # fileSystem
