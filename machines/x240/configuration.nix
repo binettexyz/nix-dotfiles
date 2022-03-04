@@ -1,6 +1,7 @@
 #!/run/current-system/sw/bin/nix
 { config, pkgs, lib, ... }:
 let
+  user = "binette";
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
   {
@@ -22,21 +23,15 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-    services.syncthing = {
-      enable = true;
-      dataDir = "/var/lib/syncthing";
-      configDir = "/var/lib/syncthing/.config/syncthing";
-      relay.enable = true;
-      openDefaultPorts = true;
-      declarative = {
-        folders = { "test" = { path = "/home/binette/.sync/test"; devices = [ "server" ]; }; };
-      };
-    };
+  services.syncthing = {
+    user = "binette";
+    dataDir = "/home/binette/.config/syncthing";
+  };
 
       # screen resolution
     services.xserver = {
       xrandrHeads = [{
-        output = "eDP-1";
+        output = "eDP1";
         primary = true;
         monitorConfig = ''
           Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync

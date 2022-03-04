@@ -20,6 +20,11 @@ in
     # ryzen 5 3600
   nix.maxJobs = 12;
 
+  services.syncthing = {
+    user = "binette";
+    dataDir = "/home/binette/.config/syncthing";
+  };
+
     # screen resolution
   services.xserver = {
     xrandrHeads = [
