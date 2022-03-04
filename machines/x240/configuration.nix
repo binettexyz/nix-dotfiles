@@ -25,7 +25,7 @@ in
     services.syncthing = {
       enable = true;
       dataDir = "/var/lib/syncthing";
-      configDir = dataDir + "/.config/syncthing";
+      configDir = "/var/lib/syncthing/.config/syncthing";
       relay.enable = true;
       openDefaultPorts = true;
     };
