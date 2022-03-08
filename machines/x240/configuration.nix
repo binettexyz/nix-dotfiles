@@ -3,6 +3,7 @@
 let
   user = "binette";
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in
   {
 
@@ -18,6 +19,7 @@ in
         ./../../modules/intel/cpu.nix
         ./../../modules/intel/igpu.nix
         (import "${home-manager}/nixos")
+        (import "${impermanence}/nixos.nix")
       ];
 
       # x240 cpu cores
@@ -25,7 +27,7 @@ in
 
   services.syncthing = {
     user = "binette";
-    dataDir = "/home/binette/.config/syncthing";
+    dataDir = "/nix/persist/home/binette/.config/syncthing";
   };
 
       # screen resolution
@@ -71,10 +73,30 @@ in
     services.fstrim.enable = true; # ssd trimming
 
       # Set environment variables
-    environment.variables = {
-      NIXOS_CONFIG="$HOME/.git/repos/.nixos/machines/x240/configuration.nix";
-      NIXOS_CONFIG_DIR="$HOME/.git/repos/.nixos/machines/x240/";
-  };
+#    environment.variables = {
+#      NIXOS_CONFIG="$HOME/.git/repos/.nixos/machines/x240/configuration.nix";
+#      NIXOS_CONFIG_DIR="$HOME/.git/repos/.nixos/machines/x240/";
+#    };
+
+    environment.persistence."/nix/persist" = {
+      directories = [
+        "/etc/nixos"
+        "/srv"
+        "/var/lib"
+        "/var/log"
+        "/home"
+      ];
+    };
+
+    environment.etc = {
+      "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+      "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+      "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+      "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+    };
+
+    environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+
 
 
     system.stateVersion = "21.11";

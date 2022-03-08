@@ -16,51 +16,35 @@
     kernelParams = [];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
-      kernelModules = [ "dm-snapshot" "cryptd" "usb_storage" "acpi_call" ];
+      kernelModules = [ "acpi_call" ];
     };
   };
 
-      # luks encryption
-    boot.loader.grub.enableCryptodisk = true;
-    boot.initrd.luks = {
-      reusePassphrases = true;
-      devices.crypted = {
-        device = "/dev/disk/by-uuid/3bdc652b-8ad3-40dc-ae59-bb51370c491a";
-        keyFile = "/dev/disk/by-id/usb-General_UDisk-0:0";
-        keyFileSize = 4096;
-        preLVM = true;
-        fallbackToPassword = true;
-        bypassWorkqueues = true;
-      };
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
     };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-      options = [ "noatime" "discard" ];
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/777A-EEA1";
       fsType = "vfat";
-      options = [ "noatime" "discard" ];
     };
-    "/home" = {
-      device = "/dev/disk/by-label/home";
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/c1aa747e-6ced-444e-8084-5c7810144bd9";
       fsType = "ext4";
     };
-    "/home/media/ventoy" = {
-      device = "/dev/disk/by-label/Ventoy";
-      fsType = "exfat";
-    };
+  fileSystems."/nix/persist/home" = {
+    device = "/dev/disk/by-label/home";
+    fsType = "ext4";
   };
-#    "/home/media/server/home" = {
-#      device = "192.168.1.141:/home";
-#      fsType = "nfs";
-#        # don't freeze system if mount point not available on boot
-#      options = [ "x-systemd.automount" "noauto" ];
+#    "/home/media/ventoy" = {
+#      device = "/dev/disk/by-label/Ventoy";
+#      fsType = "exfat";
 #    };
+#  };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];
 
 }
