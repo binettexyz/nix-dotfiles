@@ -15,10 +15,11 @@
         };
 
           # girlfriend's
-#        "" = {
-#          priority = 2;
-#          pskRaw = "";
-#        };
+        "VIDEOTRON4361" = {
+          priority = 2;
+          pskRaw = "6295a743cc0873d712b7d3524ed091609208add77ebfead74f0be6496581357f";
+        };
+
           # phone's hotspot
         "bin-hotspot" = {
           hidden = true;

@@ -6,6 +6,7 @@
     ../system/security.nix
     ../modules/audio.nix
     ../modules/bluetooth.nix
+    ../services/x/greenclip.nix
     ../users/binette.nix
     ../users/cath.nix
     ../users/shared.nix
