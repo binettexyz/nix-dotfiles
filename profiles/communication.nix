@@ -7,8 +7,9 @@
       # irc
     weechat
       # others
-    ripcord
-    zoom-us
+    unstable.ripcord
+    unstable.zoom-us
+    unstable.teams
   ];
 
 }

@@ -23,7 +23,6 @@
       slstatus-head = pkgs.callPackage /home/binette/.git/repos/slstatus {};
       surf-head = pkgs.callPackage /home/binette/.git/repos/surf {};
       tabbed-head = pkgs.callPackage /home/binette/.git/repos/tabbed {};
-
      };
   };
 }

@@ -31,6 +31,7 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "cimiefiiaegbelhefglklhhakcgmhkai" # plasma integration
       "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock for YouTube
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
     ];
       # See available options at https://chromeenterprise.google/policies/
     extraOpts = {
