@@ -30,20 +30,23 @@ in
       imports = [ "${impermanence}/home-manager.nix" ];
 
       programs = {
-          # See available extensions at https://chrome.google.com/webstore/category/extensions
-        chromium.extensions = [
-          { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
-          { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-          { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # ClearURLs
-          { id = "ldpochfccmkkmhdbclfhpagapcfdljkj"; } # Decentraleyes
-          { id = "ahjhlnckcgnoikkfkfnkbfengklhglpg"; } # Dictionary all over with Synonyms
-          { id = "oocalimimngaihdkbihfgmpkcpnmlaoa"; } # Netflix Party (Teleparty)
-          { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
-          { id = "ocgpenflpmgnfapjedencafcfakcekcd"; } # Redirector
-          { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for YouTube
-          { id = "gcbommkclmclpchllfjekcdonpmejbdp"; } # HTTPS Everywhere
-          { id = "fploionmjgeclbkemipmkogoaohcdbig"; } # Page load time
-        ];
+        chromium = {
+          enable = true;
+#          package = pkgs.ungoogled-chromium;
+            # See available extensions at https://chrome.google.com/webstore/category/extensions
+          extensions = [
+            { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
+            { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
+            { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # ClearURLs
+            { id = "ldpochfccmkkmhdbclfhpagapcfdljkj"; } # Decentraleyes
+            { id = "ahjhlnckcgnoikkfkfnkbfengklhglpg"; } # Dictionary all over with Synonyms
+            { id = "oocalimimngaihdkbihfgmpkcpnmlaoa"; } # Netflix Party (Teleparty)
+            { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
+            { id = "ocgpenflpmgnfapjedencafcfakcekcd"; } # Redirector
+            { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for YouTube
+            { id = "gcbommkclmclpchllfjekcdonpmejbdp"; } # HTTPS Everywhere
+          ];
+        };
       };
 
       home = {

@@ -7,9 +7,9 @@
     ../modules/audio.nix
     ../modules/bluetooth.nix
     ../services/x/greenclip.nix
-    ../users/binette.nix
-    ../users/cath.nix
-    ../users/shared.nix
+    ../users/binette/default.nix
+    ../users/cath/default.nix
+    ../users/shared/default.nix
   ];
 
     services.xserver = {
@@ -50,6 +50,7 @@
       "CloudPrintSubmitEnabled" = false;
       "BlockThirdPartyCookies" = true;
       "AutoplayAllowed" = false;
+      "HomepageIsNewTabPage" = false;
     };
   };
 
@@ -64,7 +65,7 @@
     brave
     chromium
     vieb
-    nur.repos.sikmir.librewolf
+    nur.repos.foolnotion.librewolf
       # system
     xorg.xinit
     xorg.xev

@@ -4,7 +4,7 @@
     package = pkgs.nixFlakes;
     useSandbox = true;
     trustedUsers = [ "@wheel" ];
-    allowedUsers = [ "@wheel" ];
+    allowedUsers = [ "@wheel" "cath" ];
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true

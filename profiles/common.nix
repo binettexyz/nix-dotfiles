@@ -12,6 +12,7 @@
       ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
+      ../services/x/tmux.nix
     ];
 
     # mount tmpfs on /tmp

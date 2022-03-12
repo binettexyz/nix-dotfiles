@@ -28,19 +28,35 @@ in
   services.syncthing = {
     user = "binette";
     dataDir = "/nix/persist/home/binette/.config/syncthing";
-  };
+    folders = {
+      "test" = {        # Name of folder in Syncthing, also the folder ID
+        path = "/nix/persist/home/binette/test";    # Which folder to add to Syncthing
+        devices = [ "nas" ];      # Which devices to share the folder with
+       };
+     };
+   };
 
       # screen resolution
     services.xserver = {
-      xrandrHeads = [{
-        output = "eDP1";
-        primary = true;
-        monitorConfig = ''
-          Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
-          Option "PreferredMode" "1366x768_60.11"
-          Option "Position" "0 0"
-        '';
-      }];
+      xrandrHeads = [
+        {
+          output = "eDP1";
+          primary = true;
+          monitorConfig = ''
+            Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+            Option "PreferredMode" "1366x768_60.11"
+            Option "Position" "0 0"
+          '';
+        }
+        {
+          output = "HDMI1";
+          primary = false;
+          monitorConfig = ''
+            Modeline "2560x1440R"  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync
+            Option "PreferredMode" "2560x1440R"
+            Option "Position" "0 1366"
+          '';
+        }];
     };
       # grub
     boot.loader.grub = {
