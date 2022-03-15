@@ -4,6 +4,8 @@ let
 in
   {
 
+  imports = [ ./firefox.nix ];
+
   users = {
     groups.binette.gid = 1000;
     users.binette = {
@@ -32,7 +34,6 @@ in
       programs = {
         chromium = {
           enable = true;
-#          package = pkgs.ungoogled-chromium;
             # See available extensions at https://chrome.google.com/webstore/category/extensions
           extensions = [
             { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
@@ -45,6 +46,9 @@ in
             { id = "ocgpenflpmgnfapjedencafcfakcekcd"; } # Redirector
             { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for YouTube
             { id = "gcbommkclmclpchllfjekcdonpmejbdp"; } # HTTPS Everywhere
+            { id = "lcbjdhceifofjlpecfpeimnnphbcjgnc"; } # xBrowserSync
+            { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+            { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
           ];
         };
       };

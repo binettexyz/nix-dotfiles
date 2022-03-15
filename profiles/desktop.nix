@@ -31,7 +31,7 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "cimiefiiaegbelhefglklhhakcgmhkai" # plasma integration
       "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock for YouTube
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+#      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
     ];
       # See available options at https://chromeenterprise.google/policies/
     extraOpts = {
@@ -65,7 +65,6 @@
     brave
     chromium
     vieb
-    nur.repos.foolnotion.librewolf
       # system
     xorg.xinit
     xorg.xev
