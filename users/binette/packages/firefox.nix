@@ -73,6 +73,14 @@
 
 #        "browser.startup.homepage" = "https://nixos.org";
         "browser.search.region" = "CA";
+          # clear data on shutdown
+        "privacy.clearOnShutdown.cache" = true;
+        "privacy.clearOnShutdown.history" = true;
+        "privacy.clearOnShutdown.cookies" = true;
+        "privacy.clearOnShutdown.downloads" = true;
+        "privacy.clearOnShutdown.offlineApps" = true;
+        "privacy.clearOnShutdown.sessions" = true;
+        "privacy.clearOnShutdown.formdata" = true;
 
         "browser.warnOnQuitShortcut" = false;
         "browser.search.isUS" = false;

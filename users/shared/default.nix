@@ -10,4 +10,6 @@
     };
   };
 
+  home-manager.useGlobalPkgs = true;
+
 }

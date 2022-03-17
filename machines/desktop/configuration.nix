@@ -45,6 +45,8 @@ in
     gfxmodeEfi = "2560x1440";
     configurationName = "Gaming Desktop";
     useOSProber = true;
+      # Index of the default menu item to be booted
+    default = 4;
   };
 
     # networking

@@ -1,0 +1,6 @@
+#+TITLE: Nixos Configuration
+#+AUTHOR: Binette
+
+* TODO  Stuff to add
+  - [ ] /home on a tmpfs
+  - [ ] write .config files in my nixos configuration

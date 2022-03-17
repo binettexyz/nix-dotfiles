@@ -61,7 +61,9 @@ in
       # grub
     boot.loader.grub = {
       gfxmodeEfi = "1366x768";
-      configurationName = "Lenovo thinkpad X240";
+      configurationName = lib.mkForce "Lenovo thinkpad X240";
+        # Index of the default menu item to be booted
+      default = 0;
     };
 
       # network

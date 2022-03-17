@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-let
-  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-in
-  {
+{ config, pkgs, ... }: {
 
-  imports = [ ./firefox.nix ];
+  imports =
+    [
+      ./packages/firefox.nix
+      ./packages/chromium.nix
+      ./persistence.nix
+    ];
 
   users = {
     groups.binette.gid = 1000;
@@ -23,124 +24,28 @@ in
     };
   };
 
-  programs.fuse.userAllowOther = true;
-
     # packages & programs
-  home-manager = {
-    useGlobalPkgs = true;
-    users.binette = {
-      imports = [ "${impermanence}/home-manager.nix" ];
-
-      programs = {
-        chromium = {
-          enable = true;
-            # See available extensions at https://chrome.google.com/webstore/category/extensions
-          extensions = [
-            { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
-            { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-            { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # ClearURLs
-            { id = "ldpochfccmkkmhdbclfhpagapcfdljkj"; } # Decentraleyes
-            { id = "ahjhlnckcgnoikkfkfnkbfengklhglpg"; } # Dictionary all over with Synonyms
-            { id = "oocalimimngaihdkbihfgmpkcpnmlaoa"; } # Netflix Party (Teleparty)
-            { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
-            { id = "ocgpenflpmgnfapjedencafcfakcekcd"; } # Redirector
-            { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for YouTube
-            { id = "gcbommkclmclpchllfjekcdonpmejbdp"; } # HTTPS Everywhere
-            { id = "lcbjdhceifofjlpecfpeimnnphbcjgnc"; } # xBrowserSync
-            { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
-            { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
-          ];
-        };
-      };
-
-      home = {
-        homeDirectory = "/nix/persist/home/binette";
-        packages = with pkgs; [
-            # browser
-          vieb
-          brave
-            # kindle
-          calibre
-          calibre-web
-            # emails
-          mutt-wizard
-          neomutt
-          isync
-          msmtp
-          lynx
-          notmuch
-          abook
-          urlview
-          mpop
-            #rcon
-          mcrcon
-        ];
-
-        # kde's config
-        persistence."/nix/persist/dotfiles/plasma" = {
-          removePrefixDirectory = false;
-          allowOther = true;
-          directories = [
-            ".config/gtk-4.0"
-            ".config/kde"
-            ".config/kdedefaults"
-            ".config/session"
-            ".config/xsettingsd"
-
-            ".local/share/baloo"
-            ".local/share/dolphin"
-            ".local/share/kactivitymanagerd"
-            ".local/share/klipper"
-            ".local/share/konsole"
-            ".local/share/kscreen"
-            ".local/share/kwalletd"
-            ".local/share/kxmlgui5"
-            ".local/share/sddm"
-          ];
-
-          files = [
-            ".gtkrc-2.0"
-            ".config/akregatorrc"
-            ".config/baloofilerc"
-            ".config/dolphinrc"
-            ".config/gtkrc"
-            ".config/gtkrc-2.0"
-            ".config/gwenviewrc"
-            ".config/kactivitymanagerdrc"
-            ".config/kateschemarc"
-            ".config/kcminputrc"
-            ".config/kconf_updaterc"
-            ".config/kded5rc"
-            ".config/kdeglobals"
-            ".config/kglobalshortcutsrc"
-            ".config/khotkeysrc"
-            ".config/kmixrc"
-            ".config/konsolerc"
-            ".config/kscreenlockerrc"
-            ".config/ksmserverrc"
-            ".config/ktimezonedrc"
-            ".config/kwinrc"
-            ".config/kwinrulesrc"
-            ".config/kxkbrc"
-            ".config/plasma-localerc"
-            ".config/plasmashellrc"
-            ".config/powerdevilrc"
-            ".config/powermanagementprofilesrc"
-            ".config/spectaclerc"
-            ".config/QtProject.conf"
-            ".config/spectaclerc"
-            ".config/startkderc"
-            ".config/systemsettingsrc"
-            ".config/Trolltech.conf"
-            ".config/user-dirs.dirs"
-
-            ".local/share/krunnerstaterc"
-            ".local/share/user-places.xbel"
-            ".local/share/user-places.xbel.bak"
-            ".local/share/user-places.xbel.tbcache"
-          ];
-        };
-      };
-    };
+  home-manager.users.binette.home = {
+    homeDirectory = "/nix/persist/home/binette";
+    packages = with pkgs; [
+        # browser
+      vieb
+      brave
+        # kindle
+      calibre
+      calibre-web
+        # emails
+      mutt-wizard
+      neomutt
+      isync
+      msmtp
+      lynx
+      notmuch
+      abook
+      urlview
+      mpop
+        #rcon
+      mcrcon
+    ];
   };
 }
