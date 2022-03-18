@@ -35,10 +35,10 @@
     { device = "/dev/disk/by-uuid/c1aa747e-6ced-444e-8084-5c7810144bd9";
       fsType = "ext4";
     };
-  fileSystems."/nix/persist/home" = {
-    device = "/dev/disk/by-label/home";
-    fsType = "ext4";
-  };
+#  fileSystems."/nix/persist/home" = {
+#    device = "/dev/disk/by-label/home";
+#    fsType = "ext4";
+#  };
    fileSystems."/home/media/ventoy" = {
       device = "/dev/disk/by-label/Ventoy";
       fsType = "exfat";

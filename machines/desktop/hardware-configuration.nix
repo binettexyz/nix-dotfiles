@@ -27,10 +27,10 @@
       fsType = "vfat";
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
+#  fileSystems."/home" =
+#    { device = "/dev/disk/by-label/home";
+#      fsType = "ext4";
+#    };
 
 #  fileSystems."/home/media" = {
 #    device = "@100.98.195.37:/home";

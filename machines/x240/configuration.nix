@@ -1,7 +1,7 @@
 #!/run/current-system/sw/bin/nix
 { config, pkgs, lib, ... }:
 let
-  user = "binette";
+#  user = "binette";
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
   impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in
@@ -27,10 +27,10 @@ in
 
   services.syncthing = {
     user = "binette";
-    dataDir = "/nix/persist/home/binette/.config/syncthing";
+    dataDir = "/home/binette/.config/syncthing";
     folders = {
       "test" = {        # Name of folder in Syncthing, also the folder ID
-        path = "/nix/persist/home/binette/test";    # Which folder to add to Syncthing
+        path = "/home/binette/test";    # Which folder to add to Syncthing
         devices = [ "nas" ];      # Which devices to share the folder with
        };
      };
@@ -102,7 +102,7 @@ in
         "/srv"
         "/var/lib"
         "/var/log"
-        "/home"
+#        "/home"
       ];
     };
 

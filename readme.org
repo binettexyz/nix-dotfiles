@@ -1,6 +1,8 @@
 #+TITLE: Nixos Configuration
 #+AUTHOR: Binette
 
-* TODO  Stuff to add
+* TODO Stuff to add
+  - [X] setup persistence for my ~/.config
   - [ ] /home on a tmpfs
   - [ ] write .config files in my nixos configuration
+  - [ ] finish setting up my server config
