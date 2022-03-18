@@ -44,6 +44,7 @@ in {
              ".gnupg"
              ".nimble"
              ".ssh"
+             ".mozilla"
 
              "documents"
              "pictures"
@@ -54,11 +55,8 @@ in {
            ];
 
            files = [
-             ".cache/zsh/history"
-
 	     ".config/pulse/daemon.conf"
              ".config/greenclip.toml"
-             ".config/mimeapps.list"
              ".config/wall.png"
 
              ".local/share/Ripcord/settings.ini"
@@ -128,7 +126,6 @@ in {
              ".config/spectaclerc"
              ".config/startkderc"
              ".config/systemsettingsrc"
-             ".config/Trolltech.conf"
              ".config/user-dirs.dirs"
            ];
          };

@@ -91,10 +91,10 @@ in
     services.fstrim.enable = true; # ssd trimming
 
       # Set environment variables
-#    environment.variables = {
-#      NIXOS_CONFIG="$HOME/.git/repos/.nixos/machines/x240/configuration.nix";
+    environment.variables = {
+      NIXOS_CONFIG="/etc/nixos/machines/x240/configuration.nix";
 #      NIXOS_CONFIG_DIR="$HOME/.git/repos/.nixos/machines/x240/";
-#    };
+    };
 
     environment.persistence."/nix/persist" = {
       directories = [
