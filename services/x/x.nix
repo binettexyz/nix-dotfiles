@@ -38,8 +38,13 @@ in
   };
 
 
-    # enable startx as display manager
+    # enable startx as X display manager
   services.xserver.displayManager.startx.enable = lib.mkDefault true;
+    # enable gddm as wayland display manager
+#  services.xserver.displayManager.gdm = {
+#    enable = lib.mkForce true;
+#    wayland = true;
+#  };
 
     # tty login prompt
   console.earlySetup = true;

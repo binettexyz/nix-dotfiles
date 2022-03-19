@@ -25,16 +25,16 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-  services.syncthing = {
-    user = "binette";
-    dataDir = "/home/binette/.config/syncthing";
-    folders = {
-      "test" = {        # Name of folder in Syncthing, also the folder ID
-        path = "/home/binette/test";    # Which folder to add to Syncthing
-        devices = [ "nas" ];      # Which devices to share the folder with
-       };
-     };
-   };
+#  services.syncthing = {
+#    user = "binette";
+#    dataDir = "/home/binette/.config/syncthing";
+#    folders = {
+#      "test" = {        # Name of folder in Syncthing, also the folder ID
+#        path = "/home/binette/test";    # Which folder to add to Syncthing
+#        devices = [ "nas" ];      # Which devices to share the folder with
+#       };
+#     };
+#   };
 
       # screen resolution
     services.xserver = {
