@@ -2,8 +2,7 @@
 
   imports =
     [
-      ./packages/firefox.nix
-      ./packages/chromium.nix
+      ./packages
       ./persistence.nix
     ];
 
@@ -24,8 +23,20 @@
     };
   };
 
+#  home = {
+#    sessionPath = [ "$HOME/.local/bin/*" ];
+#    sessionVariables = {
+#      EDITOR = "nvim";
+#      BROWSER = "firefox";
+#    };
+
+
     # packages & programs
   home-manager.users.binette.home = {
+    file.".config/startkderc".text = ''
+      [General]
+      systemdBoot=false
+    '';
     homeDirectory = "/home/binette";
     packages = with pkgs; [
         # browser

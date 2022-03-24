@@ -8,8 +8,8 @@
       ../services/localization.nix
       ../services/net/ssh.nix
 #      ../services/net/transmission.nix
-#      ../services/net/tailscale.nix
-#      ../services/net/syncthing.nix
+      ../services/net/tailscale.nix
+      ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
       ../services/x/tmux.nix
@@ -20,11 +20,11 @@
   boot.cleanTmpDir = true;
 
     # silent boot
-    boot.consoleLogLevel = 1;
-    boot.kernelParams = [
-      "quiet" "splash" "vga=current" "i915.fastboot=1"
-      "loglevel=3" "systemd.show_status=auto" "udev.log_priority=3"
-    ];
+  boot.consoleLogLevel = 1;
+  boot.kernelParams = [
+    "quiet" "splash" "vga=current" "i915.fastboot=1"
+    "loglevel=3" "systemd.show_status=auto" "udev.log_priority=3"
+  ];
 
   environment = {
     homeBinInPath = true;

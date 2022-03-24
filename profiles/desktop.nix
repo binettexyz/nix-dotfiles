@@ -7,9 +7,7 @@
     ../modules/audio.nix
     ../modules/bluetooth.nix
     ../services/x/greenclip.nix
-    ../users/binette/default.nix
-    ../users/cath/default.nix
-    ../users/shared/default.nix
+    ../users
   ];
 
     services.xserver = {

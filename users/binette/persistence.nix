@@ -59,7 +59,12 @@ in {
              ".config/greenclip.toml"
              ".config/wall.png"
 
+             ".cache/greenclip.history"
+
              ".local/share/Ripcord/settings.ini"
+             ".local/share/Ripcord/ripcord_accounts.bin"
+
+             ".emacs.d/emacs-dash.png"
 
              ".nix-channels"
              ".zprofile"
@@ -124,7 +129,7 @@ in {
              ".config/spectaclerc"
              ".config/QtProject.conf"
              ".config/spectaclerc"
-             ".config/startkderc"
+#             ".config/startkderc"
              ".config/systemsettingsrc"
              ".config/user-dirs.dirs"
            ];

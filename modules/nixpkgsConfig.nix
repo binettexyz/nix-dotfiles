@@ -18,6 +18,7 @@
       };
         # Suckless Packages
       dwm-head = pkgs.callPackage /home/binette/.git/repos/dwm {};
+#      slock-head = pkgs.callPackage /home/binette/.git/repos/slock {};
       st-head = pkgs.callPackage /home/binette/.git/repos/st {};
       dmenu-head = pkgs.callPackage /home/binette/.git/repos/dmenu {};
       slstatus-head = pkgs.callPackage /home/binette/.git/repos/slstatus {};

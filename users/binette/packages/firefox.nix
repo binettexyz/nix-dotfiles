@@ -15,6 +15,7 @@
       xbrowsersync
       vimium
       violentmonkey
+      stylus
     ];
     profiles.main = {
       id = 0;

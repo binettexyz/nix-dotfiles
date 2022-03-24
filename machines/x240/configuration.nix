@@ -72,12 +72,13 @@ in
       enableIPv6 = false;
       useDHCP = false;
       nameservers = [ "94.140.14.14" "94.140.15.15" ];
-      interfaces.wlp3s0.useDHCP = true;
+      interfaces.wlan0.useDHCP = true;
+#      interfaces.enp0s25.useDHCP = true;
       wireless = {
         enable = true;
-        interfaces =  [ "wlp3s0" ];
+        interfaces =  [ "wlan0" ];
       };
-
+       
         # firewall
       firewall = {
         enable = lib.mkForce true;

@@ -19,8 +19,6 @@
     };
   };
 
-    environment.etc.current-nixos-config.source = ./.;
-
     system = {
       autoUpgrade = {
         enable = true;
