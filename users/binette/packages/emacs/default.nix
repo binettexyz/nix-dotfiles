@@ -59,5 +59,11 @@ in {
 #      '';
 
     };
+
+    home.peristence."/nix/persist/home/binette" = {
+      removePrefixDirectory = false;
+      allowOther = true;
+      files = [ ".emacs.d/emacs-dash.png" ];
+    };
   };
 }

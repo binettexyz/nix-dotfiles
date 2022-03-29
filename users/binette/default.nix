@@ -39,9 +39,6 @@
     '';
     homeDirectory = "/home/binette";
     packages = with pkgs; [
-        # browser
-      vieb
-      brave
         # kindle
       calibre
       calibre-web

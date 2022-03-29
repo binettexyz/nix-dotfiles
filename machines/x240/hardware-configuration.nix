@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/nix
+#!/bin/nix
 # acpi_call makes tlp work for newer thinkpads
 
 { config, lib, pkgs, modulesPath, ... }:

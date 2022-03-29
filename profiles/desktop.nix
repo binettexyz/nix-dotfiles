@@ -17,13 +17,13 @@
         # enable suckless window manager
       windowManager.dwm.enable =true;
         # enable plasma desktop environment
-      desktopManager.plasma5.enable = true;
+      desktopManager.plasma5.enable = false;
         # disable xterm session
       desktopManager.xterm.enable = false;
     };
 
   programs.chromium = {
-    enable = true;
+    enable = false;
     defaultSearchProviderSearchURL = "https://duckduckgo.com/?q=%s";
     extensions = [
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
@@ -60,9 +60,9 @@
     dmenu-head
     slstatus-head
       # browser
-    brave
-    chromium
-    vieb
+#    brave
+#    chromium
+#    vieb
       # system
     xorg.xinit
     xorg.xev

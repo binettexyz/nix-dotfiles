@@ -2,7 +2,7 @@
   imports =
   [
 #    ./emacs
-    ./chromium.nix
+#    ./chromium.nix
     ./firefox.nix
   ];
 }

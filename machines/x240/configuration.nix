@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/nix
+#!/bin/nix
 { config, pkgs, lib, ... }:
 let
 #  user = "binette";
@@ -82,8 +82,36 @@ in
         # firewall
       firewall = {
         enable = lib.mkForce true;
+        allowedUDPPorts = [
+          51820 # wireguard
+        ];
         trustedInterfaces = [ "tailscale0" ];
       };
+
+        # wireguard
+#      wireguard = {
+#        enable = true;
+#        interface."wireguard" = {
+#          privateKeyFile = "/var/wireguard-keys/private";
+#          ips = [ "04.07.21.2/24" ];
+#          listenPort = 51820;
+#          peers = [
+#            {
+#                # server
+#              publicKey = "ydKX8rqG/CUcjnTCZZfTBy14xzjEbLQy1q/NRkKDDSY=";
+#                # Forward all the traffic via VPN
+#              allowedIPs = [ "0.0.0.0/0" ];
+#                # Set this to the server IP and port.
+#
+#              dynamicEndpointRefreshSeconds = 5;
+#
+#                # Send keepalives every 25 seconds. Important to keep NAT tables alive.
+#             persistentKeepalive = 25;
+#            }
+#          ];
+#        };
+#      };
+
     };
 
       # SSD STUFF
@@ -103,7 +131,7 @@ in
         "/srv"
         "/var/lib"
         "/var/log"
-#        "/home"
+        "/var/wireguard-keys"
       ];
     };
 

@@ -60,7 +60,8 @@
       woeusb # write win10.iso to usb drive
       mkpasswd
       fzf
-
+        # internet
+#      wireguard-tools
         # pass
       pinentry-qt
       pass

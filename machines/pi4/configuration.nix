@@ -1,29 +1,20 @@
-{ config, pkgs, lib, modulesPath, ... }:
+#!/bin/nix
+{ config, pkgs, lib, ... }:
 
 let
-home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in {
 
      imports =
-       [   # Include the results of the hardware scan.
-         "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/936e4649098d6a5e0762058cb7687be1b2d90550.tar.gz" }/raspberry-pi/4"
+       [
+         ./hardware-configuration.nix
+        ./../../profiles/common.nix
+        ./../../profiles/server.nix
+        ./../../modules/pi4/gpu.nix
          (import "${home-manager}/nixos")
-         (modulesPath + "/installer/scan/not-detected.nix")
+         (import "${impermanence}/nixos.nix")
        ];
-
-       # kernel stuff
-     boot = {
-       kernelPackages = pkgs.linuxPackages_rpi4;
-       initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
-         # ttyAMA0 is the serial console broken out to the GPIO
-       kernelParams = [
-         "8250.nr_uarts=1"
-         "console=ttyAMA0,115200"
-         "console=tty1"
-           # Some gui programs need this
-         "cma=128M"
-       ];
-     };
 
        # pi4 cpu core
      nix.maxJobs = 4;
@@ -79,25 +70,41 @@ in {
 #	     5432 # miniflux
 #           ];
        };
-     };
 
-     services.syncthing = {
-      enable = true;
-      user = "syncthing";
-      guiAddress = "0.0.0.0:8384";
-     };
+         # enable NAT
+       nat = {
+         enable = true;
+         externalInterface = "eth0";
+         internalInterfaces = [ "wg0" ];
+         firewall = {
+           allowedUDPPorts = [ 51820 ];
+         };
+       };
 
-       # fileSystem
-     fileSystems."/" = {
-       device = "/dev/disk/by-label/NIXOS_SD";
-       fsType = "ext4";
+       # wireguard
+       wireguard = {
+         enable = true;
+         interface."wireguard" = {
+           privateKeyFile = "/var/wireguard-keys/private";
+           ips = [ "04.07.21.1/24" ];
+           listenPort = 51820;
+           postSetup = ''
+             ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 04.07.21.0/24 -o eth0 -j MASQUERADE
+           '';
+           postShutdown = ''
+             ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 04.07.21.0/24 -o eth0 -j MASQUERADE
+           '';
+           peers = [
+             {
+                 # laptop
+               publicKey = "ydKX8rqG/CUcjnTCZZfTBy14xzjEbLQy1q/NRkKDDSY=";
+               allowedIPs = [ "04.07.21.2/24" ];
+             }
+           ];
+         };
+       };
      };
-
-     fileSystems."/home/media/exthdd" = {
-       device = "/dev/disk/by-label/exthdd";
-       fsType = "ntfs";
-       options = [ "rw" "uid=1001" "gid=100" ];
-     };
+   };
 
      system.stateVersion = "22.05";
 }
