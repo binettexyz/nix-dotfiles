@@ -2,9 +2,9 @@
 
   imports =
    [
-     ../../services/net/adguard.nix
-     ../../services/net/torrents.nix
-     ../../services/net/adguard.nix
+     ./../services/net/adguard.nix
+     ./../services/net/torrents.nix
+     ./../users/server
     ];
 
 

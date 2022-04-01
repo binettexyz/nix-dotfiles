@@ -87,31 +87,6 @@ in
         ];
         trustedInterfaces = [ "tailscale0" ];
       };
-
-        # wireguard
-#      wireguard = {
-#        enable = true;
-#        interface."wireguard" = {
-#          privateKeyFile = "/var/wireguard-keys/private";
-#          ips = [ "04.07.21.2/24" ];
-#          listenPort = 51820;
-#          peers = [
-#            {
-#                # server
-#              publicKey = "ydKX8rqG/CUcjnTCZZfTBy14xzjEbLQy1q/NRkKDDSY=";
-#                # Forward all the traffic via VPN
-#              allowedIPs = [ "0.0.0.0/0" ];
-#                # Set this to the server IP and port.
-#
-#              dynamicEndpointRefreshSeconds = 5;
-#
-#                # Send keepalives every 25 seconds. Important to keep NAT tables alive.
-#             persistentKeepalive = 25;
-#            }
-#          ];
-#        };
-#      };
-
     };
 
       # SSD STUFF
@@ -122,7 +97,6 @@ in
       # Set environment variables
     environment.variables = {
       NIXOS_CONFIG="/etc/nixos/machines/x240/configuration.nix";
-#      NIXOS_CONFIG_DIR="$HOME/.git/repos/.nixos/machines/x240/";
     };
 
     environment.persistence."/nix/persist" = {
@@ -131,7 +105,6 @@ in
         "/srv"
         "/var/lib"
         "/var/log"
-        "/var/wireguard-keys"
       ];
     };
 

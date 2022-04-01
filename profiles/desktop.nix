@@ -10,17 +10,24 @@
     ../users
   ];
 
-    services.xserver = {
-      enable = true;
-        # enable startx
-      displayManager.startx.enable = true;
-        # enable suckless window manager
-      windowManager.dwm.enable =true;
-        # enable plasma desktop environment
-      desktopManager.plasma5.enable = false;
-        # disable xterm session
-      desktopManager.xterm.enable = false;
-    };
+  services.xserver = {
+    enable = true;
+      # enable startx
+    displayManager.startx.enable = true;
+      # enable suckless window manager
+    windowManager.dwm.enable =true;
+      # enable plasma desktop environment
+    desktopManager.plasma5.enable = false;
+      # disable xterm session
+    desktopManager.xterm.enable = false;
+  };
+
+  # silent boot
+  boot.consoleLogLevel = 1;
+  boot.kernelParams = [
+    "quiet" "splash" "vga=current" "i915.fastboot=1"
+    "loglevel=3" "systemd.show_status=auto" "udev.log_priority=3"
+  ];
 
   programs.chromium = {
     enable = false;
@@ -77,7 +84,6 @@
     dunst
     libnotify
     seturgent
-    neovim
     twmn
     redshift
       # media

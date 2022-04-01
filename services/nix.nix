@@ -1,12 +1,12 @@
 { config, pkgs, ... }: {
 
   nix = {
-    package = pkgs.nixFlakes;
+#    package = pkgs.nixFlakes;
     useSandbox = true;
     trustedUsers = [ "@wheel" ];
     allowedUsers = [ "@wheel" "cath" ];
     extraOptions = ''
-      experimental-features = nix-command flakes
+#      experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
     '';
@@ -15,7 +15,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 7d";
     };
   };
 

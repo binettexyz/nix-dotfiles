@@ -19,13 +19,6 @@
   boot.tmpOnTmpfs = lib.mkDefault true;
   boot.cleanTmpDir = true;
 
-    # silent boot
-  boot.consoleLogLevel = 1;
-  boot.kernelParams = [
-    "quiet" "splash" "vga=current" "i915.fastboot=1"
-    "loglevel=3" "systemd.show_status=auto" "udev.log_priority=3"
-  ];
-
   environment = {
     homeBinInPath = true;
     localBinInPath = true;
@@ -37,6 +30,7 @@
       # TODO: dash watchman
       # TODO: tomb pwgen cryptsetup
       zsh
+      neovim
       powerline-go
       sd # replace 'sed'
       bat # cat clone with syntax highlighting
@@ -107,6 +101,6 @@
   documentation.doc.enable = false; # documentation distributed in packages' /share/doc
 
     # copy the system configuration into nix-store
-  system.copySystemConfiguration = true;
+#  system.copySystemConfiguration = true;
 
 }
