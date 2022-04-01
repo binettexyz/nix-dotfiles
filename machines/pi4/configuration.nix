@@ -20,13 +20,13 @@ in {
     # pi4 cpu core
   nix.maxJobs = 4;
 
-  powerManagement.cpuFreqGovernor = mkForce "powersaver";
+  powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
     # auto login user on startup
   services.getty.autologinUser = "server";
 
     # grub and pi4 bootloader
-  boot.loader.canTouchEfiVariables = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.loader = {
     generic-extlinux-compatible.enable = true;
     raspberryPi = {

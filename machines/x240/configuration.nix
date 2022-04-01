@@ -11,13 +11,12 @@ in
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
         ./touchpad.nix
-        ./../../profiles/common.nix
+        ./../../modules/intel/cpu.nix
+        ./../../modules/intel/igpu.nix
         ./../../profiles/communication.nix
         ./../../profiles/desktop.nix
         ./../../profiles/laptop.nix
         ./../../services/net/wifi.nix
-        ./../../modules/intel/cpu.nix
-        ./../../modules/intel/igpu.nix
         (import "${home-manager}/nixos")
         (import "${impermanence}/nixos.nix")
       ];

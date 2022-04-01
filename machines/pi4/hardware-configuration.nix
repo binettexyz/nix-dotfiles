@@ -25,7 +25,7 @@
     "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "default" "size=2G" "mode=755";
+      options = [ "default" "size=2G" "mode=755" ];
     };
     "/boot" = {
       device = "/dev/disk/by-label/boot";

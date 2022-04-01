@@ -9,10 +9,12 @@
       ../services/net/ssh.nix
 #      ../services/net/transmission.nix
       ../services/net/tailscale.nix
-      ../services/net/syncthing.nix
+#      ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
       ../services/x/tmux.nix
+      ../system/fonts.nix
+      ../system/security.nix
     ];
 
     # mount tmpfs on /tmp
@@ -36,7 +38,7 @@
       bat # cat clone with syntax highlighting
       cron
       wipe # command to wipe drives
-      xstow # dotfile manager
+#      xstow # dotfile manager
       git git-crypt
       gcc
       trash-cli
@@ -101,6 +103,6 @@
   documentation.doc.enable = false; # documentation distributed in packages' /share/doc
 
     # copy the system configuration into nix-store
-#  system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
 }

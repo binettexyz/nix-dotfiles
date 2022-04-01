@@ -2,8 +2,6 @@
 
   imports = [
     ./common.nix
-    ../system/fonts.nix
-    ../system/security.nix
     ../modules/audio.nix
     ../modules/bluetooth.nix
     ../services/x/greenclip.nix
