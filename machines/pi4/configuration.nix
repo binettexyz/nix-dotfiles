@@ -34,13 +34,13 @@ in {
       version = 4;
     };
     grub = {
-      enable = false;
+      enable = lib.mkForce false;
     };
   };
 
     # network
   networking = {
-    hostName = "bin-server";
+    hostName = "nas";
     networkmanager.enable= false;
     enableIPv6 = false;
     useDHCP = false;

@@ -19,16 +19,11 @@
     ];
   };
 
-
     # fileSystem
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
-    };
-    "/nix/store" = {
-      device = "/nix/store";
-      fsType = "none";
     };
 #    "/home/media/exthdd" = {
 #      device = "/dev/disk/by-label/exthdd";
