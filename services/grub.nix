@@ -8,7 +8,7 @@
         efiSysMountPoint = "/boot";
       };
       grub = {
-        enable = true;
+        enable = lib.mkDefault true;
         version = 2;
         device = lib.mkDefault "nodev";
         efiSupport = lib.mkDefault true;

@@ -1,5 +1,8 @@
 {pkgs, ... }: {
 
+
+  enviroment.systemPackages = with pkgs; [ light ];
+
   powerManagement = {
     enable = true;
   };

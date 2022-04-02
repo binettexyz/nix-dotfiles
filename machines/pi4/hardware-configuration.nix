@@ -21,15 +21,27 @@
 
     # fileSystem
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
+    "/" =
+      { device = "none";
+        fsType = "tmpfs";
+        options = [ "defaults" "size=2G" "mode=755" ];
+      };
+
+    "/boot" =
+      { device = "/dev/disk/by-label/boot";
+        fsType = "ext4";
+      };
+
+    "/nix" =
+      { device = "/dev/disk/by-label/nixos";
+        fsType = "ext4";
+      };
+
+    "/home/media/exthdd" = {
+      device = "/dev/disk/by-label/exthdd";
+      fsType = "ntfs";
+      options = [ "rw" "uid=1000" "gid=100" ];
     };
-#    "/home/media/exthdd" = {
-#      device = "/dev/disk/by-label/exthdd";
-#      fsType = "ntfs";
-#      options = [ "rw" "uid=1001" "gid=100" ];
-#    };
   };
 
   swapDevices = [ ];

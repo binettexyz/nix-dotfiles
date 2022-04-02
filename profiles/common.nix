@@ -22,10 +22,10 @@
   boot.cleanTmpDir = true;
 
   environment = {
-    homeBinInPath = true;
+#    homeBinInPath = true;
     localBinInPath = true;
       # get rid of defaults packages like nano, perl and rsync
-    defaultPackages = lib.mkForce [];
+    defaultPackages = lib.mkForce [ ];
       # install basic packages
     systemPackages = with pkgs; [
         # sys
@@ -34,7 +34,7 @@
       zsh
       neovim
       powerline-go
-      sd # replace 'sed'
+#      sd # replace 'sed'
       bat # cat clone with syntax highlighting
       cron
       wipe # command to wipe drives
@@ -42,30 +42,29 @@
       git git-crypt
       gcc
       trash-cli
-      lnav # logfile naviguator
+#      lnav # logfile naviguator
       wget
       curl
       gnumake
-      ffmpeg
+#      ffmpeg
       binutils
-      xcape
+#      xcape
       killall
-      nfs-utils
-      light
-      youtube-dl
-      woeusb # write win10.iso to usb drive
-      mkpasswd
+#      nfs-utils
+#      youtube-dl
+#      woeusb # write win10.iso to usb drive
+#      mkpasswd
       fzf
         # internet
 #      wireguard-tools
         # pass
       pinentry-qt
       pass
-      bitwarden bitwarden-cli
+      bitwarden-cli # bitwarden
 
         # monitoring
       lm_sensors
-      gotop
+      htop
 
         # file system
       file
@@ -83,20 +82,20 @@
       unrar
       atool
       lf
-      viu
+#      viu # image viewer in terminal
       exa
       ntfs3g
-      sshfs # mount directory over ssh
+#      sshfs # mount directory over ssh
       rsync # replace scp
       parted
 
         # autre
-      nim
+#      nim
     ];
   };
 
     # don't install documentation i don't use
-  documentation.enable = true; # documentation of packages
+  documentation.enable = mkDefault true; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
   documentation.man.enable = true; # manual pages and the man command
   documentation.info.enable = false; # info pages and the info command
