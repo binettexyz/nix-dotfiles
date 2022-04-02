@@ -77,13 +77,10 @@ in
         enable = true;
         interfaces =  [ "wlan0" ];
       };
-       
+
         # firewall
       firewall = {
         enable = lib.mkForce true;
-        allowedUDPPorts = [
-          51820 # wireguard
-        ];
         trustedInterfaces = [ "tailscale0" ];
       };
     };
