@@ -3,7 +3,7 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+#  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in {
 
   imports =
@@ -14,7 +14,7 @@ in {
       ./../../modules/pi4/gpu.nix
       ./../../services/net/wifi.nix
       (import "${home-manager}/nixos")
-      (import "${impermanence}/nixos.nix")
+#      (import "${impermanence}/nixos.nix")
     ];
 
     # pi4 cpu core
@@ -71,23 +71,23 @@ in {
     };
   };
 
-  environment.persistence."/nix/persist" = {
-    directories = [
-      "/etc/nixos"
-      "/srv"
-      "/var/lib"
-      "/var/log"
-    ];
-  };
-
-  environment.etc = {
-    "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
-    "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
-    "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
-    "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
-  };
-
-  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+#  environment.persistence."/nix/persist" = {
+#    directories = [
+#      "/etc/nixos"
+#      "/srv"
+#      "/var/lib"
+#      "/var/log"
+#    ];
+#  };
+#
+#  environment.etc = {
+#    "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+#    "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+#    "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+#    "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+#  };
+#
+#  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
   system.stateVersion = "22.05";
 }

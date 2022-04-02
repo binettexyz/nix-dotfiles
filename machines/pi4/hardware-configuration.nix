@@ -23,17 +23,12 @@
     # fileSystem
   fileSystems = {
     "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "default" "size=2G" "mode=755" ];
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
-    "/nix" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
+    };
+    "/nix/store" = {
+      device = "/nix/store";
+      fsType = "none";
     };
 #    "/home/media/exthdd" = {
 #      device = "/dev/disk/by-label/exthdd";

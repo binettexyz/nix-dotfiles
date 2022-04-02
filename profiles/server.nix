@@ -47,7 +47,7 @@
     chafa
     odt2txt
     python39Packages.pdftotext
-    uebergzug
+    ueberzug
     ffmpegthumbnailer
     imagemagick
     poppler

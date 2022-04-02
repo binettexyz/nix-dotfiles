@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   users.users.cath = {
     isNormalUser = true;
-    createHome = true;
     home = "/nix/persist/home/cath";
     group = "users";
     initialPassword = "1234";

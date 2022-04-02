@@ -65,7 +65,7 @@
     dmenu-head
     slstatus-head
       # browser
-#    brave
+    brave play-with-mpv
 #    chromium
 #    vieb
       # system
