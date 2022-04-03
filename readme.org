@@ -6,4 +6,5 @@
   - [X] /home on a tmpfs
   - [ ] convert nixos config into a flake
   - [ ] write .config files in my nixos configuration
-  - [ ] finish setting up my server config
+  - [X] finish setting up my server config
+  - [ ] set ssh properly

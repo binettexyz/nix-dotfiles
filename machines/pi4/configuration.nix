@@ -39,6 +39,8 @@ in {
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
+    wireless.enable = true;
+    wireless.interfaces = [ "wlan0" ];
       # static ip
 #    defaultGateway = "192.168.0.255"; # Router gateway IP
 #    interfaces.wlan0.ipv4.addresses = [{

@@ -16,6 +16,7 @@
 #     ../system/fonts.nix
 #     ../system/security.nix
      ../users/server
+     ../users/shared
     ];
 
 
