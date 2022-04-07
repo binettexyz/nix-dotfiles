@@ -2,7 +2,6 @@
 
   imports =
     [
-      ./packages
       ./persistence.nix
     ];
 
@@ -16,7 +15,6 @@
       group = "binette";
       extraGroups = [ "wheel" "binette" "users" "audio" "video" ];
       hashedPassword = "$6$sXbE2tHuk9pd63mA$B10NqVR9zqwvod5acnGhK0sYPZ3JiV592PYG.DMswbFEgflfR.QOticvEGFMkLvsENsBUWefDOfR26RUxlRHS0";
-      ];
     };
   };
 

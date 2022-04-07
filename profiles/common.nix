@@ -95,7 +95,7 @@
   };
 
     # don't install documentation i don't use
-  documentation.enable = mkDefault true; # documentation of packages
+  documentation.enable = lib.mkDefault true; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
   documentation.man.enable = true; # manual pages and the man command
   documentation.info.enable = false; # info pages and the info command

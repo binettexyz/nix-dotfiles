@@ -1,8 +1,8 @@
 {
   imports =
   [
-#    ./emacs
+    ./emacs
 #    ./chromium.nix
-    ./firefox.nix
+#    ./firefox.nix
   ];
 }

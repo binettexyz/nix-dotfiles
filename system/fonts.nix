@@ -21,4 +21,8 @@
     lmodern
   ];
 
+  environment.systemPackages = with pkgs; [
+    faba-mono-icons
+  ];
+
  }

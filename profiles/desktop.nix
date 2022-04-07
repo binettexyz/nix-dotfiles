@@ -5,6 +5,7 @@
     ../modules/audio.nix
     ../modules/bluetooth.nix
     ../services/x/greenclip.nix
+    ../services/net/printer.nix
     ../users
   ];
 
@@ -82,8 +83,8 @@
     dunst
     libnotify
     seturgent
-    twmn
     redshift
+    xcompmgr
       # media
     mpv
     sxiv

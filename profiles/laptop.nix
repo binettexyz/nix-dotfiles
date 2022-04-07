@@ -1,8 +1,6 @@
 {pkgs, ... }: {
 
 
-  enviroment.systemPackages = with pkgs; [ light ];
-
   powerManagement = {
     enable = true;
   };
@@ -52,6 +50,7 @@
       powertop
       acpi
       tlp
+      light
     ];
   };
 

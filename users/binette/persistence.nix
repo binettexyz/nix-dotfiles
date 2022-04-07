@@ -17,6 +17,7 @@ in {
              ".cache/BraveSoftware"
              ".cache/chromium"
              ".cache/mozilla"
+             ".config/BraveSoftware"
              ".config/dunst"
              ".config/git"
              ".config/lf"
