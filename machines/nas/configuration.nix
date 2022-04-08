@@ -3,7 +3,7 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-#  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in {
 
   imports =
@@ -21,6 +21,16 @@ in {
   nix.maxJobs = 4;
 
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
+
+  services.syncthing = {
+    guiAddress = "0.0.0.0:8384";
+    folders = {
+      "nixos config" = {        # Name of folder in Syncthing, also the folder ID
+        path = "/etc/nixos";    # Which folder to add to Syncthing
+        devices = [ "x240" ];      # Which devices to share the folder with
+       };
+     };
+   };
 
     # grub and pi4 bootloader
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
@@ -71,6 +81,10 @@ in {
   };
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+
+  environment.variables = {
+    HOSTNAME="nas";
+  };
 
   system.stateVersion = "21.11";
 }

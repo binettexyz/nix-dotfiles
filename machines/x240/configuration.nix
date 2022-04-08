@@ -24,16 +24,11 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-#  services.syncthing = {
-#    user = "binette";
-#    dataDir = "/home/binette/.config/syncthing";
-#    folders = {
-#      "test" = {        # Name of folder in Syncthing, also the folder ID
-#        path = "/home/binette/test";    # Which folder to add to Syncthing
-#        devices = [ "nas" ];      # Which devices to share the folder with
-#       };
-#     };
-#   };
+    # syncthing
+  services.syncthing = {
+    enable = true;
+#    dataDir = "/home/binette";
+  };
 
       # screen resolution
     services.xserver = {
@@ -67,7 +62,7 @@ in
 
       # network
     networking = {
-      hostName = "bin-x240";
+      hostName = "x240";
       enableIPv6 = false;
       useDHCP = false;
       nameservers = [ "94.140.14.14" "94.140.15.15" ];
@@ -90,11 +85,6 @@ in
     boot.kernel.sysctl = { "vm.swappiness" = 1; };
     services.fstrim.enable = true; # ssd trimming
 
-      # Set environment variables
-    environment.variables = {
-      NIXOS_CONFIG="/etc/nixos/machines/x240/configuration.nix";
-    };
-
     environment.persistence."/nix/persist" = {
       directories = [
         "/etc/nixos"
@@ -113,7 +103,9 @@ in
 
     environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
-
+    environment.variables = {
+      HOSTNAME="x240";
+    };
 
     system.stateVersion = "21.11";
 

@@ -13,7 +13,7 @@
       createHome = true;
       home = "/home/binette";
       group = "binette";
-      extraGroups = [ "wheel" "binette" "users" "audio" "video" ];
+      extraGroups = [ "wheel" "binette" "users" "audio" "video" "syncthing" ];
       hashedPassword = "$6$sXbE2tHuk9pd63mA$B10NqVR9zqwvod5acnGhK0sYPZ3JiV592PYG.DMswbFEgflfR.QOticvEGFMkLvsENsBUWefDOfR26RUxlRHS0";
     };
   };

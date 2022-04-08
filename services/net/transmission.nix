@@ -4,11 +4,11 @@
       enable = true;
       group = "users";
       settings = {
-        download-dir = "/home/binette/downloads/torrents";
+        download-dir = "$HOME/downloads/torrents";
         blocklist-enabled = true;
         blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
         encryption = 1;
-        incomplete-dir = "/home/binette/downloads/torrents/.incomplete";
+        incomplete-dir = "$HOME/downloads/torrents/.incomplete";
         incomplete-dir-enabled = true;
         message-level = 1;
         peer-port = 50778;
@@ -20,7 +20,7 @@
         rpc-enable = true;
         rpc-password = "{0e3d50e4df22a91a07b8a67658748b4c295cbfeaghfWAG9u";
         script-torrent-done-enabled = true;
-        script-torrent-done-filename = "/home/binette/.local/bin/tordone";
+        script-torrent-done-filename = "$HOME/.local/bin/tordone";
         umask = 18;
         utp-enabled = true;
       };

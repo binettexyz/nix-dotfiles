@@ -1,24 +1,12 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports =
    [
-#     ../modules/nixpkgsConfig.nix
-#     ../services/nix.nix
-#     ../services/localization.nix
-#     ../services/net/transmission.nix
-#     ../services/net/tailscale.nix
-#     ../services/net/ssh.nix
      ../services/net/adguard.nix
      ../services/net/torrents.nix
-#     ../services/x/x.nix
-#     ../services/x/systemd.nix
-#     ../services/x/tmux.nix
-#     ../system/fonts.nix
-#     ../system/security.nix
      ../users/server
      ../users/shared
     ];
-
 
     environment.systemPackages = with pkgs; [
 #      # system

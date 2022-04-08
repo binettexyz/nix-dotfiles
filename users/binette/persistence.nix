@@ -28,7 +28,7 @@ in {
              ".config/qutebrowser"
              ".config/shell"
              ".config/sxhkd"
-#             ".config/syncthing"
+             ".config/syncthing"
              ".config/twmn"
              ".config/x11"
              ".config/zsh"

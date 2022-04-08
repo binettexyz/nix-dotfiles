@@ -95,6 +95,8 @@ in
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
+  environment.variables = {
+    HOSTNAME="desktop";
 
   system.stateVersion = "21.11";
 

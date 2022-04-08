@@ -10,7 +10,7 @@
       ../services/net/ssh.nix
 #      ../services/net/transmission.nix
       ../services/net/tailscale.nix
-#      ../services/net/syncthing.nix
+      ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
       ../services/x/tmux.nix
@@ -25,8 +25,13 @@
     # enable Font/DPI configuration optimized for HiDPI displays
   hardware.video.hidpi.enable = true;
 
+    # Set environment variables
+#  environment.variables = {
+#    NIXOS_CONFIG="/etc/nixos/machines/x240/configuration.nix";
+#    EDITOR="nvim";
+#  };
+
   environment = {
-#    homeBinInPath = true;
     localBinInPath = true;
       # get rid of defaults packages like nano, perl and rsync
     defaultPackages = lib.mkForce [ ];
