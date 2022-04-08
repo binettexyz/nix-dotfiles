@@ -10,11 +10,11 @@
     devices = {
       "nas" = {
         introducer = true; # be allowed to add folders on this computer
-        id = "JXSGWKA-QFPVCRS-5MCBRGU-2KCOS6C-JZX27P6-CDKBFSF-QD7W27M-5ID3WQY";
+        id = "WBBICHO-UGY7YDG-ZZLDFQN-GCVPACG-ABJSPK4-ZNHBCNR-KQOHVFO-VNMPUQU";
       };
       "x240" = {
         introducer = true;
-        id = "QYDL5PI-BIAEWEE-SB32DSL-4QHZKQV-2IMCBD7-THKBNZK-MCCMGXN-STNS4AX";
+        id = "7Y6DE45-OR6OTCR-BIUGNPB-RLTRUMI-KQVPFQR-E5EMSAN-ZDBFK32-JMWKJQE";
       };
       "phone" = {
         introducer = true;
