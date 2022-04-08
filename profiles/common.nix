@@ -1,3 +1,4 @@
+#!/bin/nix
 { config, pkgs, lib, ... }: {
 
   imports =
@@ -96,10 +97,10 @@
 
     # don't install documentation i don't use
   documentation.enable = lib.mkDefault true; # documentation of packages
-  documentation.nixos.enable = false; # nixos documentation
-  documentation.man.enable = true; # manual pages and the man command
-  documentation.info.enable = false; # info pages and the info command
-  documentation.doc.enable = false; # documentation distributed in packages' /share/doc
+  documentation.nixos.enable = lib.mkDefault false; # nixos documentation
+  documentation.man.enable = lib.mkDefault true; # manual pages and the man command
+  documentation.info.enable = lib.mkDefault false; # info pages and the info command
+  documentation.doc.enable = lib.mkDefault false; # documentation distributed in packages' /share/doc
 
     # copy the system configuration into nix-store
   system.copySystemConfiguration = true;

@@ -46,4 +46,6 @@
 
   swapDevices = [ ];
 
+  hardware.video.hidpi.enable = true;
+
 }

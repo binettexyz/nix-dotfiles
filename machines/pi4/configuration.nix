@@ -22,9 +22,6 @@ in {
 
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
-    # auto login user on startup
-  services.getty.autologinUser = "nas";
-
     # grub and pi4 bootloader
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.loader.generic-extlinux-compatible.enable = true;
@@ -62,6 +59,7 @@ in {
       "/srv"
       "/var/lib"
       "/var/log"
+      "/home"
     ];
   };
 
