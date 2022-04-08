@@ -24,14 +24,6 @@ in
       # x240 cpu cores
     nix.maxJobs = 4;
 
-    # syncthing
-  services.syncthing = {
-    enable = true;
-    user = "binette";
-    group = "binette";
-    configDir = "/home/binette/.config/syncthing";
-  };
-
       # screen resolution
     services.xserver = {
       xrandrHeads = [

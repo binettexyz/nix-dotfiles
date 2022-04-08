@@ -22,19 +22,6 @@ in {
 
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
-  services.syncthing = {
-    user = "nas";
-    group = "nas";
-    configDir = "/home/nas/.config/syncthing";
-    guiAddress = "0.0.0.0:8384";
-    folders = {
-      "nixos config" = {        # Name of folder in Syncthing, also the folder ID
-        path = "/nix/persist/etc/nixos";    # Which folder to add to Syncthing
-        devices = [ "x240" ];      # Which devices to share the folder with
-       };
-     };
-   };
-
     # grub and pi4 bootloader
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.loader.generic-extlinux-compatible.enable = true;
