@@ -20,10 +20,10 @@ in
     # ryzen 5 3600
   nix.maxJobs = 12;
 
-  services.syncthing = {
-    user = "binette";
-    dataDir = "/home/binette/.config/syncthing";
-  };
+#  services.syncthing = {
+#    user = "binette";
+#    dataDir = "/home/binette/.config/syncthing";
+#  };
 
     # screen resolution
   services.xserver = {
@@ -43,7 +43,7 @@ in
     # grub
   boot.loader.grub = {
     gfxmodeEfi = "2560x1440";
-    configurationName = "Gaming Desktop";
+    configurationName = "Gaming";
     useOSProber = true;
       # Index of the default menu item to be booted
     default = 4;
@@ -74,8 +74,27 @@ in
   boot.kernel.sysctl = { "vm.swappiness" = 1; };
   services.fstrim.enable = true; # ssd trimming
 
-  environment.systemPackages = with pkgs;
-    [ os-prober ];
+  environment.systemPackages = with pkgs; [ os-prober ];
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/etc/nixos"
+      "/srv"
+      "/var/lib"
+      "/var/log"
+      "/home"
+    ];
+  };
+
+  environment.etc = {
+    "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+    "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+    "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+    "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+  };
+
+  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+
 
   system.stateVersion = "21.11";
 

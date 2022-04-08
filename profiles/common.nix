@@ -22,6 +22,9 @@
   boot.tmpOnTmpfs = lib.mkDefault true;
   boot.cleanTmpDir = true;
 
+    # enable Font/DPI configuration optimized for HiDPI displays
+  hardware.video.hidpi.enable = true;
+
   environment = {
 #    homeBinInPath = true;
     localBinInPath = true;
