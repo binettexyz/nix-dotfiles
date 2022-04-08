@@ -27,7 +27,9 @@ in
     # syncthing
   services.syncthing = {
     enable = true;
-#    dataDir = "/home/binette";
+    user = "binette";
+    group = "binette";
+    configDir = "/home/binette/.config/syncthing";
   };
 
       # screen resolution
