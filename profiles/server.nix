@@ -9,47 +9,6 @@
     ];
 
     environment.systemPackages = with pkgs; [
-#      # system
-#    zsh
-#    neovim
-#    powerline-go
-#    bat # cat clone with syntax highlighting
-#    cron
-#    wipe # command to wipe drives
-#    git git-crypt
-#    gcc
-#    trash-cli
-#    wget
-#    curl
-#    gnumake
-#    binutils
-#    killall
-#    fzf
-#      # pass
-#    bitwarden-cli
-#      # monitoring
-#    lm_sensors
-#    htop
-#      # file system
-#    file
-#    mediainfo
-#    chafa
-#    odt2txt
-#    python39Packages.pdftotext
-#    ueberzug
-#    ffmpegthumbnailer
-#    imagemagick
-#    poppler
-#    wkhtmltopdf
-#    zip
-#    unzip
-#    unrar
-#    atool
-#    lf
-#    exa
-#    ntfs3g
-#    rsync
-#    parted
       # torrent
     unstable.sonarr
     unstable.radarr

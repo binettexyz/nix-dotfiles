@@ -2,6 +2,7 @@
 { config, pkgs, lib, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
 in
   {
 
@@ -15,15 +16,11 @@ in
         ./../../modules/amd/cpu.nix
         ./../../modules/amd/gpu.nix
         (import "${home-manager}/nixos")
+        (import "${impermanence}/nixos.nix")
       ];
 
     # ryzen 5 3600
   nix.maxJobs = 12;
-
-#  services.syncthing = {
-#    user = "binette";
-#    dataDir = "/home/binette/.config/syncthing";
-#  };
 
     # screen resolution
   services.xserver = {
