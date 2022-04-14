@@ -86,6 +86,7 @@
     redshift
     xcompmgr
     ffmpeg
+    xcape
       # media
     mpv
     sxiv

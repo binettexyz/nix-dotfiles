@@ -43,6 +43,7 @@
       zsh
       neovim
       powerline-go
+      dash
 #      sd # replace 'sed'
       bat # cat clone with syntax highlighting
       cron
