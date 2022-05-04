@@ -9,7 +9,7 @@ in
     imports =
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
-        ./peristence.nix
+        ./persistence.nix
         ./../../profiles/common.nix
         ./../../profiles/communication.nix
         ./../../profiles/desktop.nix
@@ -80,7 +80,7 @@ in
       "/srv"
       "/var/lib"
       "/var/log"
-      "/home"
+#      "/home"
     ];
   };
 
@@ -95,6 +95,7 @@ in
 
   environment.variables = {
     HOSTNAME="desktop";
+    };
 
   system.stateVersion = "21.11";
 
