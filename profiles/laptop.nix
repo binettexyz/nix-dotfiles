@@ -28,9 +28,9 @@
         PCIE_ASPM_ON_AC = "default";
         PCIE_ASPM_ON_BAT = "powersave";
         START_CHARGE_THRESH_BAT0 = 85;
-        STOP_CHARGE_THRESH_BAT0 = 95;
+        STOP_CHARGE_THRESH_BAT0 = 96;
         START_CHARGE_THRESH_BAT1 = 85;
-        STOP_CHARGE_THRESH_BAT1 = 95;
+        STOP_CHARGE_THRESH_BAT1 = 96;
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
         ENERGY_PERF_POLICY_ON_AC = "performance";
