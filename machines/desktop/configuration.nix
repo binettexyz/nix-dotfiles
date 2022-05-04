@@ -9,6 +9,7 @@ in
     imports =
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
+        ./peristence.nix
         ./../../profiles/common.nix
         ./../../profiles/communication.nix
         ./../../profiles/desktop.nix

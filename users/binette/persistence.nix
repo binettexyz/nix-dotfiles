@@ -16,7 +16,6 @@ in {
            directories = [
              ".cache/BraveSoftware"
              ".cache/chromium"
-#             ".cache/mozilla"
              ".config/BraveSoftware"
              ".config/dunst"
              ".config/git"
@@ -27,7 +26,6 @@ in {
              ".config/nvim"
              ".config/qutebrowser"
              ".config/shell"
-#             ".config/sxhkd"
              ".config/x11"
              ".config/zsh"
 
@@ -36,19 +34,16 @@ in {
              ".local/share/cargo"
              ".local/share/gnupg"
              ".local/share/password-store"
+             ".local/share/Ripcord"
              ".local/share/xorg"
              ".local/share/zoxide"
 
              ".git"
              ".gnupg"
-             ".nimble"
              ".ssh"
-#             ".mozilla"
 
              "documents"
              "pictures"
-#             "Sync"
-#             "test"
              "videos"
              "downloads"
            ];
@@ -59,9 +54,6 @@ in {
              ".config/wall.png"
 
              ".cache/greenclip.history"
-
-             ".local/share/Ripcord/settings.ini"
-             ".local/share/Ripcord/ripcord_accounts.bin"
 
              ".ssh/config"
 
