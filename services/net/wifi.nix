@@ -4,10 +4,10 @@
     userControlled.enable = true;
     networks = {
         # home
-      "VIDEOTRON4361" = {
+      "Hal" = {
         priority = 1;
-  	  #psk="NF4NHFU4E7J4J"
-        pskRaw = "6295a743cc0873d712b7d3524ed091609208add77ebfead74f0be6496581357f";
+  	  # psk = "2954Jardin";
+	pskRaw = "af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26";
       };
 
         # mother

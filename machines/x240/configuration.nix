@@ -34,17 +34,18 @@ in
             Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
             Option "PreferredMode" "1366x768_60.11"
             Option "Position" "0 0"
-          '';
-        }
-        {
-          output = "HDMI1";
-          primary = false;
-          monitorConfig = ''
-            Modeline "2560x1440R"  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync
-            Option "PreferredMode" "2560x1440R"
-            Option "Position" "0 1366"
+            DisplaySize 276 156
           '';
         }];
+#        {
+#          output = "HDMI1";
+#          primary = false;
+#          monitorConfig = ''
+#            Modeline "2560x1440R"  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync
+#            Option "PreferredMode" "2560x1440R"
+#            Option "Position" "0 1366"
+#          '';
+#        }];
     };
       # grub
     boot.loader.grub = {
@@ -61,7 +62,7 @@ in
       useDHCP = false;
       nameservers = [ "94.140.14.14" "94.140.15.15" ];
       interfaces.wlan0.useDHCP = true;
-#      interfaces.enp0s25.useDHCP = true;
+      interfaces.enp0s25.useDHCP = true;
       wireless = {
         enable = true;
         interfaces =  [ "wlan0" ];

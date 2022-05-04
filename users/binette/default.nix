@@ -28,10 +28,10 @@
 
     # packages & programs
   home-manager.users.binette.home = {
-    file.".config/startkderc".text = ''
-      [General]
-      systemdBoot=false
-    '';
+#    file.".config/startkderc".text = ''
+#      [General]
+#      systemdBoot=false
+#    '';
     homeDirectory = "/home/binette";
     packages = with pkgs; [
         # kindle

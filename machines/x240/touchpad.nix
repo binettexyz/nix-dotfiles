@@ -15,6 +15,11 @@
         Option "LockedDrags" "1"
         Option "LockedDragTimeout" "200"
         Option "TapAndDragGesture" "1"
+          # Helps reduce mouse "jitter"
+        Option "HorizHysteresis" "30"
+        Option "VertHysteresis" "30"
+        Option "FingerLow" "40"
+        Option "FingerHigh" "45"
       '';
     };
     libinput = {
@@ -31,8 +36,9 @@
       # trackpoint
     trackpoint = {
       enable = true;
-      sensitivity = 300;
-      speed = 60;
+      #sensitivity = 300;
+      sensitivity = 100000;
+      speed = 100;
       emulateWheel = false;
     };
   };
