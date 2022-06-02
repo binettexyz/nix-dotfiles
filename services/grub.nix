@@ -21,6 +21,16 @@
           set menu_color_normal=white/black
           set menu_color_highlight=black/white
         '';
+
+        extraEntries = ''
+          menuentry "Poweroff" {
+	    halt
+	  }
+	    # Reboot
+	  menuentry "Reboot" {
+	    reboot
+          }
+        '';
       };
     };
   };

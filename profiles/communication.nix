@@ -10,6 +10,7 @@
     unstable.ripcord
     unstable.zoom-us
     unstable.teams
+    unstable.discord
   ];
 
 }

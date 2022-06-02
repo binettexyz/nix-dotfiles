@@ -1,54 +1,50 @@
 { config, pkgs, ... }: {
 
-  imports =
-    [
-      ./persistence.nix
-    ];
+        imports = [
+                ./persistence.nix
+                ./../shared
+        ];
 
-  users = {
-    groups.binette.gid = 1000;
-    users.binette = {
-      uid = 1000;
-      isNormalUser = true;
-      createHome = true;
-      home = "/home/binette";
-      group = "binette";
-      extraGroups = [ "wheel" "binette" "users" "audio" "video" "syncthing" ];
-      hashedPassword = "$6$sXbE2tHuk9pd63mA$B10NqVR9zqwvod5acnGhK0sYPZ3JiV592PYG.DMswbFEgflfR.QOticvEGFMkLvsENsBUWefDOfR26RUxlRHS0";
-    };
-  };
+        users.groups.binette.gid = 1000;
+        users.users.binette = {
+                uid = 1000;
+                isNormalUser = true;
+                createHome = true;
+                home = "/home/binette";
+                group = "binette";
+                extraGroups = [ "wheel" "binette" "users" "audio" "video" "libvirtd" ];
+                hashedPassword = "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
+        };
 
-#  home = {
-#    sessionPath = [ "$HOME/.local/bin/*" ];
-#    sessionVariables = {
-#      EDITOR = "nvim";
-#      BROWSER = "firefox";
-#    };
+          # unlock gpg keys with my login password (not working)
+#        security.pam.services.login.gnupg.enable = true;
+#        security.pam.services.login.gnupg.noAutostart = true;
+#        security.pam.services.login.gnupg.storeOnly = true;
 
+          # remove passwd prompt
+        security.doas.extraRules = [{
+                users = [ "binette" ]; noPass = true; keepEnv = true; }
+        ];
 
-    # packages & programs
-  home-manager.users.binette.home = {
-#    file.".config/startkderc".text = ''
-#      [General]
-#      systemdBoot=false
-#    '';
-    homeDirectory = "/home/binette";
-    packages = with pkgs; [
-        # kindle
-      calibre
-      calibre-web
-        # emails
-      mutt-wizard
-      neomutt
-      isync
-      msmtp
-      lynx
-      notmuch
-      abook
-      urlview
-      mpop
-        #rcon
-      mcrcon
-    ];
-  };
+          # packages & programs
+        home-manager.users.binette.home = {
+                homeDirectory = "/home/binette";
+                packages = with pkgs; [
+                          # kindle
+                        calibre
+                        calibre-web
+                          # emails
+                        mutt-wizard
+                        neomutt
+                        isync
+                        msmtp
+                        lynx
+                        notmuch
+                        abook
+                        urlview
+                        mpop
+                          #rcon
+                        mcrcon
+                ];
+        };
 }

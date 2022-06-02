@@ -15,7 +15,7 @@ in
         ./../../profiles/desktop.nix
         ./../../profiles/gaming.nix
         ./../../modules/amd/cpu.nix
-        ./../../modules/amd/gpu.nix
+        ./../../modules/nvidia/gpu.nix
         (import "${home-manager}/nixos")
         (import "${impermanence}/nixos.nix")
       ];
@@ -55,12 +55,6 @@ in
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
     wireless.enable = false;
     networkmanager.enable = true;
-
-      # firewall
-    firewall = {
-      enable = lib.mkForce true;
-      trustedInterfaces = [ "tailscale0" ];
-    };
   };
 
     # performance stuff

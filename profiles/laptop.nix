@@ -1,6 +1,5 @@
 {pkgs, ... }: {
 
-
   powerManagement = {
     enable = true;
   };

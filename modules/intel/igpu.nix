@@ -1,20 +1,18 @@
 { pkgs, ... }: {
 
-  services.xserver.videoDrivers = [ "intel" ];
+        services.xserver.videoDrivers = [ "intel" ];
 
-  hardware = {
-    enableRedistributableFirmware = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
-        intel-media-driver
-      ];
-    };
-  };
+        hardware.enableRedistributableFirmware = true;
+        hardware.opengl = {
+                enable = true;
+                driSupport = true;
+                driSupport32Bit = true;
+                extraPackages = with pkgs; [
+                        vaapiIntel
+                        vaapiVdpau
+                        libvdpau-va-gl
+                        intel-media-driver
+                ];
+        };
 
 }

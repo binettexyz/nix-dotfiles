@@ -1,12 +1,12 @@
 { config, pkgs, ... }: {
 
   nix = {
-#    package = pkgs.nixFlakes;
+    package = pkgs.nixFlakes;
     useSandbox = true;
     trustedUsers = [ "@wheel" ];
-    allowedUsers = [ "@wheel" "cath" ];
+    allowedUsers = [ "@wheel" ];
     extraOptions = ''
-#      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
     '';

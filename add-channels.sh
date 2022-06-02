@@ -1,4 +1,5 @@
 #!/bin/sh
+doas nix-channel --add https://nixos.org/channels/nixos-21.11 nixos
 nix-channel --add https://nixos.org/channels/nixos-21.11 nixos
 nix-channel --add https://nixos.org/channels/nixos-21.11-small nixos-small
 nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable

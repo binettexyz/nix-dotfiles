@@ -1,1 +1,0 @@
-host/nixos/config.nix

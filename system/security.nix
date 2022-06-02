@@ -6,7 +6,7 @@
     sudo.enable = false;
     doas = {
       enable = true;
-      extraRules = [{ users = [ "binette" "nas" ]; noPass = true; keepEnv = true; }];
+#      extraRules = [{ users = [ "binette" "nas" ]; noPass = true; keepEnv = true; }];
     };
   };
 
@@ -15,6 +15,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      pinentryFlavor = "qt";
     };
   };
 

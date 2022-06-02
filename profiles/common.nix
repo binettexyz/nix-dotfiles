@@ -10,7 +10,7 @@
       ../services/net/ssh.nix
 #      ../services/net/transmission.nix
       ../services/net/tailscale.nix
-      ../services/net/syncthing.nix
+#      ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
       ../services/x/tmux.nix
@@ -25,11 +25,13 @@
     # enable Font/DPI configuration optimized for HiDPI displays
   hardware.video.hidpi.enable = true;
 
-    # Set environment variables
-#  environment.variables = {
-#    NIXOS_CONFIG="/etc/nixos/machines/x240/configuration.nix";
-#    EDITOR="nvim";
-#  };
+    # firewall
+  networking.firewall = {
+    enable = lib.mkForce true;
+      # tailscale
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+  };
 
   environment = {
     localBinInPath = true;
@@ -48,7 +50,7 @@
       bat # cat clone with syntax highlighting
       cron
       wipe # command to wipe drives
-#      xstow # dotfile manager
+      xstow # dotfile manager
       git git-crypt
       gcc
       trash-cli
@@ -56,18 +58,15 @@
       wget
       curl
       gnumake
-#      ffmpeg
       binutils
-#      xcape
       killall
 #      nfs-utils
 #      youtube-dl
 #      woeusb # write win10.iso to usb drive
 #      mkpasswd
       fzf
-        # internet
-#      wireguard-tools
         # pass
+      pinentry
       pinentry-qt
       pass
       bitwarden-cli # bitwarden
@@ -106,7 +105,7 @@
 
     # don't install documentation i don't use
   documentation.enable = lib.mkDefault true; # documentation of packages
-  documentation.nixos.enable = lib.mkDefault false; # nixos documentation
+  documentation.nixos.enable = lib.mkDefault true; # nixos documentation
   documentation.man.enable = lib.mkDefault true; # manual pages and the man command
   documentation.info.enable = lib.mkDefault false; # info pages and the info command
   documentation.doc.enable = lib.mkDefault false; # documentation distributed in packages' /share/doc

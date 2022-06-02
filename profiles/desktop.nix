@@ -6,7 +6,7 @@
     ../modules/bluetooth.nix
     ../services/x/greenclip.nix
     ../services/net/printer.nix
-    ../users
+    ../users/binette
   ];
 
   services.xserver = {
@@ -67,6 +67,8 @@
     slstatus-head
       # browser
     brave play-with-mpv
+    unstable.librewolf
+    qutebrowser
 #    chromium
 #    vieb
       # system
@@ -87,6 +89,8 @@
     xcompmgr
     ffmpeg
     xcape
+      # virtualisation
+    virt-manager
       # media
     mpv
     sxiv

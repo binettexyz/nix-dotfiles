@@ -21,6 +21,7 @@ in {
              ".config/git"
              ".config/lf"
              ".config/mpv"
+             ".config/mutt"
              ".config/newsboat"
              ".config/nixpkgs"
              ".config/nvim"
@@ -40,6 +41,7 @@ in {
 
              ".git"
              ".gnupg"
+             ".librewolf"
              ".ssh"
 
              "documents"
@@ -55,8 +57,7 @@ in {
 
              ".cache/greenclip.history"
 
-             ".ssh/config"
-
+#             ".pam-gnupg"
              ".nix-channels"
              ".zprofile"
            ];

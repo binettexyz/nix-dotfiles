@@ -45,12 +45,6 @@ in {
 #      address = "192.168.0.130";
 #      prefixLength = 24;
 #    }];
-
-      # firewall
-    firewall = {
-      enable = true;
-      trustedInterfaces = [ "tailscale0" ];
-    };
   };
 
   environment.persistence."/nix/persist" = {
