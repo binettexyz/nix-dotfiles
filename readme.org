@@ -5,6 +5,5 @@
   - [X] setup persistence for my ~/.config
   - [X] /home on a tmpfs
   - [ ] convert nixos config into a flake
-  - [ ] write .config files in my nixos configuration
-  - [X] finish setting up my server config
+  - [ ] finish setting up my server config
   - [ ] set ssh properly
