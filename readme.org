@@ -1,9 +1,0 @@
-#+TITLE: Nixos Configuration
-#+AUTHOR: Binette
-
-* TODO Stuff to add
-  - [X] setup persistence for my ~/.config
-  - [X] /home on a tmpfs
-  - [ ] convert nixos config into a flake
-  - [ ] finish setting up my server config
-  - [ ] set ssh properly
