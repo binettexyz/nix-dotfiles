@@ -93,7 +93,7 @@
     virt-manager
       # media
     mpv
-    sxiv
+    nsxiv
     playerctl
       # text
     zathura

@@ -11,5 +11,6 @@
   };
 
   home-manager.useGlobalPkgs = true;
+  home-manager.users.binette.home.stateVersion = "22.05";
 
 }

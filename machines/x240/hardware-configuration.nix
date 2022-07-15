@@ -54,11 +54,11 @@
                         device = "/dev/disk/by-label/home";
                         fsType = "ext4";
                 };
-                "/home/media/ventoy" = {
-                        device = "/dev/disk/by-label/Ventoy";
-                        fsType = "exfat";
-                        options = [ "defaults" ];
-                };
+#                "/home/media/ventoy" = {
+#                        device = "/dev/disk/by-label/Ventoy";
+#                        fsType = "exfat";
+#                        options = [ "defaults" ];
+#                };
         };
 
         swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];

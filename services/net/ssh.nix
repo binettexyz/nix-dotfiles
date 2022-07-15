@@ -5,7 +5,7 @@
     startWhenNeeded = true;
     passwordAuthentication = false;
     allowSFTP = false; # Don't set this if you need sftp
-    challengeResponseAuthentication = false;
+    kbdInteractiveAuthentication = false;
     # nixos 22.05
 #    kbdInteractiveAuthentication = false;
     forwardX11 = false;
