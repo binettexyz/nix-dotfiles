@@ -11,7 +11,7 @@ in
         ./../../profiles/common.nix
         ./../../profiles/communication.nix
         ./../../profiles/desktop.nix
-        ./../../profiles/gaming.nix
+#        ./../../profiles/gaming.nix
         ./../../modules/amd/cpu.nix
         ./../../modules/amd/gpu.nix
         (import "${home-manager}/nixos")
@@ -20,10 +20,10 @@ in
     # ryzen 5 3600
   nix.maxJobs = 12;
 
-  services.syncthing = {
-    user = "binette";
-    dataDir = "/home/binette/.config/syncthing";
-  };
+#  services.syncthing = {
+#    user = "binette";
+#    dataDir = "/home/binette/.config/syncthing";
+#  };
 
     # screen resolution
   services.xserver = {
@@ -49,7 +49,7 @@ in
 
     # networking
   networking = {
-    hostName = "bin-desktop";
+    hostName = "desktop-nix";
     enableIPv6 = false;
     useDHCP = false;
     nameservers = [ "94.140.14.14" "94.140.15.15" ];

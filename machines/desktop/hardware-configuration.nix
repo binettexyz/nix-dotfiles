@@ -18,7 +18,7 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
+    { device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
 
