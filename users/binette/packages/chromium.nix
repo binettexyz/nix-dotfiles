@@ -8,7 +8,6 @@
       { id = "lckanjgmijmafbedllaakclkaicjfmnk"; } # ClearURLs
       { id = "ldpochfccmkkmhdbclfhpagapcfdljkj"; } # Decentraleyes
       { id = "ahjhlnckcgnoikkfkfnkbfengklhglpg"; } # Dictionary all over with Synonyms
-      { id = "oocalimimngaihdkbihfgmpkcpnmlaoa"; } # Netflix Party (Teleparty)
       { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
       { id = "ocgpenflpmgnfapjedencafcfakcekcd"; } # Redirector
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for YouTube

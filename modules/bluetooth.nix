@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
 
         hardware = {
-                bluetooth.enable = true;
+                bluetooth.enable = false;
         };
 
 #        services.blueman.enable = lib.mkIf (config.services.xserver.enable) true;

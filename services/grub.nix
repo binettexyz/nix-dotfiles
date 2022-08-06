@@ -12,7 +12,7 @@
         version = 2;
         device = lib.mkDefault "nodev";
         efiSupport = lib.mkDefault true;
-        memtest86.enable = true;
+        memtest86.enable = false;
         configurationLimit = lib.mkDefault 30;
         backgroundColor = lib.mkDefault "#000000";
         splashImage = null;

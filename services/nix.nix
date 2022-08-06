@@ -2,16 +2,18 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    useSandbox = true;
-    trustedUsers = [ "@wheel" ];
-    allowedUsers = [ "@wheel" ];
+    settings = {
+      sandbox = true;
+      trusted-users = [ "@wheel" ];
+      allowed-users = [ "@wheel" ];
+      auto-optimise-store = true;
+    };
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
     '';
 
-    autoOptimiseStore = true;
     gc = {
       automatic = true;
       dates = "weekly";
@@ -23,7 +25,7 @@
       autoUpgrade = {
         enable = true;
         allowReboot = false;
-        channel = https://nixos.org/channels/nixos-21.11;
+        channel = https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
       };
     };
 

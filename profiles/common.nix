@@ -8,7 +8,7 @@
       ../services/nix.nix
       ../services/localization.nix
       ../services/net/ssh.nix
-#      ../services/net/transmission.nix
+      ../services/net/transmission.nix
       ../services/net/tailscale.nix
 #      ../services/net/syncthing.nix
       ../services/x/x.nix
@@ -45,7 +45,7 @@
       zsh
       neovim
       powerline-go
-      dash
+#      dash
 #      sd # replace 'sed'
       bat # cat clone with syntax highlighting
       cron

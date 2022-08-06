@@ -3,6 +3,7 @@
         imports = [
                 ./persistence.nix
                 ./../shared
+#                <impermanence/home-manager.nix>
         ];
 
         users.groups.binette.gid = 1000;
@@ -12,7 +13,7 @@
                 createHome = true;
                 home = "/home/binette";
                 group = "binette";
-                extraGroups = [ "wheel" "binette" "users" "audio" "video" "libvirtd" ];
+                extraGroups = [ "wheel" "binette" "users" "audio" "video" "storage" "libvirtd" ];
                 hashedPassword = "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
         };
 
@@ -44,7 +45,7 @@
                         urlview
                         mpop
                           #rcon
-                        mcrcon
+#                        mcrcon
                 ];
         };
 }

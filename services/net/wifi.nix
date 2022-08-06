@@ -3,7 +3,7 @@
   networking.wireless = {
     userControlled.enable = true;
     networks = {
-        # home
+       # home
       "Hal" = {
         priority = 1;
   	  # psk = "2954Jardin";

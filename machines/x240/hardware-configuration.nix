@@ -43,22 +43,22 @@
                         options = [ "defaults" "size=2G" "mode=755" ];
                 };
                 "/boot" = {
-                        device = "/dev/disk/by-uuid/777A-EEA1";
+                        device = "/dev/disk/by-label/boot";
                         fsType = "vfat";
                 };
                 "/nix" = {
-                        device = "/dev/disk/by-uuid/c1aa747e-6ced-444e-8084-5c7810144bd9";
+                        device = "/dev/disk/by-label/nix";
                         fsType = "ext4";
                 };
                 "/nix/persist/home" = {
                         device = "/dev/disk/by-label/home";
                         fsType = "ext4";
                 };
-#                "/home/media/ventoy" = {
-#                        device = "/dev/disk/by-label/Ventoy";
-#                        fsType = "exfat";
-#                        options = [ "defaults" ];
-#                };
+                "/home/media/ventoy" = {
+                        device = "/dev/disk/by-label/ventoy";
+                        fsType = "exfat";
+                        options = [ "defaults" ];
+                };
         };
 
         swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];

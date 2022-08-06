@@ -1,12 +1,10 @@
 { config, ... }:
-let
-  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-in {
 
+  {
      programs.fuse.userAllowOther = true;
 
      home-manager.users.binette = {
-       imports = [ "${impermanence}/home-manager.nix" ];
+       imports = [ <impermanence/home-manager.nix> ];
          # dotfiles
        home.persistence = {
          "/nix/persist/home/binette" = {
@@ -15,7 +13,8 @@ in {
 
            directories = [
              ".cache/BraveSoftware"
-             ".cache/chromium"
+#             ".cache/chromium"
+             ".cache/librewolf"
              ".config/BraveSoftware"
              ".config/dunst"
              ".config/git"
@@ -54,6 +53,7 @@ in {
 	     ".config/pulse/daemon.conf"
              ".config/greenclip.toml"
              ".config/wall.png"
+             ".config/zoomus.conf"
 
              ".cache/greenclip.history"
 

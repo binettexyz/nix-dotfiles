@@ -2,15 +2,13 @@
 
     # install packages
   environment.systemPackages = with pkgs; [
-      # matrix
-    weechatScripts.weechat-matrix
       # irc
-    weechat
+#    weechat
       # others
     unstable.ripcord
     unstable.zoom-us
-    unstable.teams
-    unstable.discord
+#    unstable.teams
+#    unstable.discord
   ];
 
 }

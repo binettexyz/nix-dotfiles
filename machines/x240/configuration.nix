@@ -1,13 +1,6 @@
 #!/bin/nix
 { config, lib, pkgs, ... }:
 
-let
-
-        home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-        impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-
-in
-
 {
 
         imports = [
@@ -19,25 +12,37 @@ in
                 ./../../profiles/desktop.nix
                 ./../../profiles/laptop.nix
                 ./../../services/net/wifi.nix
-                (import "${home-manager}/nixos")
-                (import "${impermanence}/nixos.nix")
+                <home-manager/nixos>
+                <impermanence/nixos.nix>
         ];
 
           ### x240 cpu cores
-        nix.maxJobs = 4;
+        nix.settings.max-jobs = 4;
 
           ### screen resolution
         services.xserver = {
-                xrandrHeads = [{
-                        output = "eDP1";
-                        primary = true;
-                        monitorConfig = ''
-                                Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
-                                Option "PreferredMode" "1366x768_60.11"
-                                Option "Position" "0 0"
-                                DisplaySize 276 156
-                        '';
-                }];
+          xrandrHeads = [
+            {
+              output = "eDP1";
+              primary = true;
+              monitorConfig = ''
+                Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+                Option "PreferredMode" "1366x768_60.11"
+                Option "Position" "0 0"
+                DisplaySize 276 156
+              '';
+            }
+
+            {
+              output = "HDMI1";
+              primary = false;
+              monitorConfig = ''
+                Modeline "2560x1440R"  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync
+                Option "PreferredMode" "2560x1440R"
+                Option "Position" "1366 0"
+              '';
+            }
+          ];
         };
 
           ### grub
@@ -72,6 +77,7 @@ in
                         "/srv"
                         "/var/lib"
                         "/var/log"
+                        "/root"
                 ];
         };
 
@@ -86,6 +92,6 @@ in
 
         environment.variables.HOSTNAME="x240";
 
-        system.stateVersion = "21.11";
+        system.stateVersion = "22.05";
 
 }

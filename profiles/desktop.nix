@@ -66,11 +66,14 @@
     dmenu-head
     slstatus-head
       # browser
-    brave play-with-mpv
+    brave
+    play-with-mpv
     unstable.librewolf
-    qutebrowser
+#    qutebrowser
 #    chromium
 #    vieb
+      # programming language
+#    unstable.python3
       # system
     xorg.xinit
     xorg.xev
@@ -90,7 +93,7 @@
     ffmpeg
     xcape
       # virtualisation
-    virt-manager
+#    virt-manager
       # media
     mpv
     nsxiv
@@ -106,6 +109,8 @@
     unstable.pamixer
       # graphical tools
     pcmanfm
+      # logitech device manager
+#    solaar
   ];
 
 }

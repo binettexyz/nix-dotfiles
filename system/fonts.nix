@@ -12,6 +12,7 @@
   };
 
   fonts.fonts = with pkgs; [
+#    nerdfonts
     font-awesome
     noto-fonts-emoji
     jetbrains-mono
