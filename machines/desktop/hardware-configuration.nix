@@ -18,8 +18,9 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
     };
 
   fileSystems."/boot" =
@@ -27,7 +28,12 @@
       fsType = "vfat";
     };
 
-  fileSystems."/home" =
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+    };
+
+  fileSystems."/nix/persist/home" =
     { device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };

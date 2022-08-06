@@ -1,29 +1,23 @@
 #!/run/current-system/sw/bin/nix
 { config, pkgs, lib, ... }:
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-in
   {
-
     imports =
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
+        ./persistence.nix
         ./../../profiles/common.nix
         ./../../profiles/communication.nix
         ./../../profiles/desktop.nix
-#        ./../../profiles/gaming.nix
+        ./../../profiles/gaming.nix
         ./../../modules/amd/cpu.nix
-        ./../../modules/amd/gpu.nix
+        ./../../modules/nvidia/gpu.nix
+        ./../../services/net/wifi.nix
         (import "${home-manager}/nixos")
+        (import "${impermanence}/nixos.nix")
       ];
 
     # ryzen 5 3600
   nix.maxJobs = 12;
-
-#  services.syncthing = {
-#    user = "binette";
-#    dataDir = "/home/binette/.config/syncthing";
-#  };
 
     # screen resolution
   services.xserver = {
@@ -42,9 +36,11 @@ in
 
     # grub
   boot.loader.grub = {
-    gfxmodeEfi = "2560x1440";
-    configurationName = "Gaming Desktop";
+    gfxmodeEfi = "1280x720";
+    configurationName = "Gaming";
     useOSProber = true;
+      # Index of the default menu item to be booted
+    default = 4;
   };
 
     # networking
@@ -53,14 +49,11 @@ in
     enableIPv6 = false;
     useDHCP = false;
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
-    wireless.enable = false;
-    networkmanager.enable = true;
-
-      # firewall
-    firewall = {
-      enable = lib.mkForce true;
-      trustedInterfaces = [ "tailscale0" ];
+    wireless = {
+      enable = true;
+      interfaces = [ "wlp40s0f3u2" ];
     };
+    networkmanager.enable = false;
   };
 
     # performance stuff
@@ -72,8 +65,30 @@ in
   boot.kernel.sysctl = { "vm.swappiness" = 1; };
   services.fstrim.enable = true; # ssd trimming
 
-  environment.systemPackages = with pkgs;
-    [ os-prober ];
+  environment.systemPackages = with pkgs; [ os-prober ];
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/etc/nixos"
+      "/srv"
+      "/var/lib"
+      "/var/log"
+#      "/home"
+    ];
+  };
+
+  environment.etc = {
+    "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+    "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+    "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+    "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+  };
+
+  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+
+  environment.variables = {
+    HOSTNAME="desktop";
+    };
 
   system.stateVersion = "21.11";
 
