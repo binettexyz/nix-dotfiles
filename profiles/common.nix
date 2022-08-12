@@ -69,7 +69,6 @@
       pinentry
       pinentry-qt
       pass
-      bitwarden-cli # bitwarden
 
         # monitoring
       lm_sensors
@@ -93,7 +92,7 @@
       lf
 #      viu # image viewer in terminal
       exa
-      ntfs3g
+#      ntfs3g
 #      sshfs # mount directory over ssh
       rsync # replace scp
       parted

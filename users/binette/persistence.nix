@@ -5,7 +5,6 @@
 
      home-manager.users.binette = {
        imports = [ <impermanence/home-manager.nix> ];
-         # dotfiles
        home.persistence = {
          "/nix/persist/home/binette" = {
            removePrefixDirectory = false;
@@ -52,9 +51,6 @@
              ".local/share/history"
 
              ".cache/greenclip.history"
-
-             ".nix-channels"
-#             ".zprofile"
            ];
          };
        };

@@ -31,7 +31,7 @@
         fi
       }
 
-      bindkey '^l' autosuggest-accept
+      bindkey '^ ' autosuggest-accept
       bindkey '^h' autosuggest-clear
       '';
 
@@ -68,12 +68,20 @@
       fi
       '';
 
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "jeffreytse/zsh-vi-mode"; }
-      ];
-    };
+    plugins = [
+        # to find sha256, keep it empty and the build error will find it for you
+      {
+        name = "zsh-vi-mode";
+        src = pkgs.fetchFromGitHub {
+          owner = "jeffreytse";
+          repo = "zsh-vi-mode";
+          rev = "debe9c8ad191b68b143230eb7bee437caba9c74f";
+          sha256 = "sha256-rgC1lKyZluYHi4Fk8zUSgMM/UqrJ6QcwYGvaDyuWAxo=";
+        };
+
+      }
+    ];
+
   };
 
 }

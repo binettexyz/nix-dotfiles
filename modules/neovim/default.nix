@@ -73,6 +73,10 @@
     plugins = with pkgs.vimPlugins; [
       gruvbox-material
       vim-nix
+      vifm-vim
+      vimwiki
+      vimagit
+      rainbow
       nvim-web-devicons
       # auto-pairs # or coc-pairs
       nerdtree
@@ -154,6 +158,9 @@
         " Run xrdb whenever Xdefaults or Xresources are updated.
       autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
       autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
+      
+        " enable vim-rainbow
+      let g:rainbow_active = 1
 
       highlight Normal ctermbg=none guibg=NONE
       highlight NonText ctermbg=none guibg=NONE
@@ -188,9 +195,9 @@
         " --- indent ---
       set smartindent
       set expandtab
-      set tabstop=2
-      set softtabstop=2
-      set shiftwidth=2
+      set tabstop=4
+      set softtabstop=1
+      set shiftwidth=4
 
         " --- auto complete ---
       set completeopt=noinsert,menuone,noselect
@@ -203,7 +210,7 @@
       set clipboard+=unnamedplus
       set backspace=indent,eol,start
       set hidden
-      set textwidth=0
+      set textwidth=300
       set encoding=utf-8
       set nobackup
       set nocompatible
