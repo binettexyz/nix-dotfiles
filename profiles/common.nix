@@ -4,16 +4,15 @@
   imports =
     [
       ../modules/nixpkgsConfig.nix
-      ../services/grub.nix
-      ../services/nix.nix
-      ../services/localization.nix
+      ../modules/grub
+      ../system/nix.nix
+      ../system/localization.nix
       ../services/net/ssh.nix
       ../services/net/transmission.nix
       ../services/net/tailscale.nix
-#      ../services/net/syncthing.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
-      ../services/x/tmux.nix
+      ../modules/tmux
       ../system/fonts.nix
       ../system/security.nix
     ];
@@ -42,9 +41,10 @@
         # sys
       # TODO: dash watchman
       # TODO: tomb pwgen cryptsetup
+      perl
       zsh
       neovim
-      powerline-go
+#      powerline-go
 #      dash
 #      sd # replace 'sed'
       bat # cat clone with syntax highlighting

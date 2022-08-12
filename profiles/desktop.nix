@@ -2,8 +2,9 @@
 
   imports = [
     ./common.nix
-    ../modules/audio.nix
-    ../modules/bluetooth.nix
+    ../profiles/devs.nix
+    ../modules/pipewire
+    ../modules/bluetooth
     ../services/x/greenclip.nix
     ../services/net/printer.nix
     ../users/binette
@@ -28,36 +29,6 @@
     "loglevel=3" "systemd.show_status=auto" "udev.log_priority=3"
   ];
 
-  programs.chromium = {
-    enable = false;
-    defaultSearchProviderSearchURL = "https://duckduckgo.com/?q=%s";
-    extensions = [
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-      "cimiefiiaegbelhefglklhhakcgmhkai" # plasma integration
-      "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock for YouTube
-#      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-    ];
-      # See available options at https://chromeenterprise.google/policies/
-    extraOpts = {
-      "BrowserSignin" = 0;
-      "BrowserAddPersonEnabled" = false;
-      "SyncDisabled" = true;
-      "PasswordManagerEnabled" = false;
-      "AutofillAddressEnabled" = false;
-      "AutofillCreditCardEnabled" = false;
-      "BuiltInDnsClientEnabled" = false;
-      "MetricsReportingEnabled" = false;
-      "SearchSuggestEnabled" = false;
-      "AlternateErrorPagesEnabled" = false;
-      "UrlKeyedAnonymizedDataCollectionEnabled" = false;
-      "SpellcheckEnabled" = false;
-      "CloudPrintSubmitEnabled" = false;
-      "BlockThirdPartyCookies" = true;
-      "AutoplayAllowed" = false;
-      "HomepageIsNewTabPage" = false;
-    };
-  };
-
     # install packages
   environment.systemPackages = with pkgs; [
       # suckless
@@ -66,11 +37,8 @@
     dmenu-head
     slstatus-head
       # browser
-    brave
-    play-with-mpv
     unstable.librewolf
 #    qutebrowser
-#    chromium
 #    vieb
       # programming language
 #    unstable.python3
@@ -89,7 +57,6 @@
     libnotify
     seturgent
     redshift
-    xcompmgr
     ffmpeg
     xcape
       # virtualisation
@@ -101,7 +68,7 @@
       # text
     zathura
     mupdf
-    texlive.combined.scheme-full
+#    texlive.combined.scheme-full
       # rss
     newsboat
       # audio mixer
@@ -111,6 +78,8 @@
     pcmanfm
       # logitech device manager
 #    solaar
+
+    nodejs
   ];
 
 }

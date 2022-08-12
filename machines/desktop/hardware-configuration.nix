@@ -7,14 +7,14 @@
     ];
 
   boot = {
+    extraModulePackages = [ ];
+    kernelModules = [ "kvm-amd" "nvidia" ];
+    kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelParams = [ "video=DisplayPort-0:2560x1440@165" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
-    extraModulePackages = [ ];
-    kernelModules = [ ];
-    kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "video=DisplayPort-0:2560x1440@165" ];
   };
 
   fileSystems."/" =
@@ -45,7 +45,10 @@
 #    options = [ "x-systemd.automount" "noauto" ];
 #  };
 
-
   swapDevices = [ ];
+
+    # hardware
+  hardware.cpu.amd.updateMicrocode = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 }

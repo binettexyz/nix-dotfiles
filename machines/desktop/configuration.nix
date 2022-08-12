@@ -5,19 +5,18 @@
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
         ./persistence.nix
+        ./packages.nix
         ./../../profiles/common.nix
-        ./../../profiles/communication.nix
         ./../../profiles/desktop.nix
-        ./../../profiles/gaming.nix
-        ./../../modules/amd/cpu.nix
-        ./../../modules/nvidia/gpu.nix
-        ./../../services/net/wifi.nix
-        (import "${home-manager}/nixos")
-        (import "${impermanence}/nixos.nix")
-      ];
+        ./../../system/wifi.nix
+        ./../../services/x/picom.nix
+         <home-manager/nixos>
+         <impermanence/nixos.nix>
 
-    # ryzen 5 3600
-  nix.maxJobs = 12;
+     ];
+
+    # ryzen 7 5800x
+  nix.settings.max-jobs = 16;
 
     # screen resolution
   services.xserver = {
@@ -37,21 +36,21 @@
     # grub
   boot.loader.grub = {
     gfxmodeEfi = "1280x720";
-    configurationName = "Gaming";
+    configurationName = "Desktop";
     useOSProber = true;
-      # Index of the default menu item to be booted
-    default = 4;
   };
+
+  environment.systemPackages = with pkgs; [ os-prober ];
 
     # networking
   networking = {
     hostName = "desktop-nix";
     enableIPv6 = false;
-    useDHCP = false;
+    useDHCP = true;
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
     wireless = {
       enable = true;
-      interfaces = [ "wlp40s0f3u2" ];
+      interfaces = [ "wlo1" ];
     };
     networkmanager.enable = false;
   };
@@ -65,18 +64,6 @@
   boot.kernel.sysctl = { "vm.swappiness" = 1; };
   services.fstrim.enable = true; # ssd trimming
 
-  environment.systemPackages = with pkgs; [ os-prober ];
-
-  environment.persistence."/nix/persist" = {
-    directories = [
-      "/etc/nixos"
-      "/srv"
-      "/var/lib"
-      "/var/log"
-#      "/home"
-    ];
-  };
-
   environment.etc = {
     "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
     "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
@@ -86,10 +73,8 @@
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
-  environment.variables = {
-    HOSTNAME="desktop";
-    };
+#  environment.variables.HOSTNAME="desktop";
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
 }

@@ -6,12 +6,10 @@
         imports = [
                   # Include the results of the hardware scan.
                 ./hardware-configuration.nix
-                ./../../modules/intel/cpu.nix
-                ./../../modules/intel/igpu.nix
-                ./../../profiles/communication.nix
+                ./persistence.nix
                 ./../../profiles/desktop.nix
                 ./../../profiles/laptop.nix
-                ./../../services/net/wifi.nix
+                ./../../system/wifi.nix
                 <home-manager/nixos>
                 <impermanence/nixos.nix>
         ];
@@ -33,23 +31,12 @@
               '';
             }
 
-            {
-              output = "HDMI1";
-              primary = false;
-              monitorConfig = ''
-                Modeline "2560x1440R"  241.50  2560 2608 2640 2720  1440 1443 1448 1481 +hsync -vsync
-                Option "PreferredMode" "2560x1440R"
-                Option "Position" "1366 0"
-              '';
-            }
           ];
         };
 
           ### grub
         boot.loader.grub = {
                 gfxmodeEfi = "1366x768";
-                  # Index of the default menu item to be booted
-                default = 0;
         };
 
           ### network

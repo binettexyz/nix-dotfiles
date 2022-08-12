@@ -1,9 +1,14 @@
 { config, pkgs, ... }: {
 
         imports = [
-                ./persistence.nix
-                ./../shared
-#                <impermanence/home-manager.nix>
+          ./persistence.nix
+          ./../shared
+	        ./../../modules/bluetooth
+	        ./../../modules/neovim
+	        ./../../modules/pipewire
+	        ./../../modules/tmux
+	        ./../../modules/xprofile
+	        ./../../modules/zsh
         ];
 
         users.groups.binette.gid = 1000;
