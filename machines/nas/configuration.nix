@@ -22,9 +22,13 @@ in {
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
     # grub and pi4 bootloader
-  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
-  boot.loader.generic-extlinux-compatible.enable = true;
-  boot.loader.grub.enable = lib.mkForce false;
+  boot.loader = {
+    raspberryPi = { enable = true; version = 4; };
+    efi.canTouchEfiVariables = lib.mkForce false;
+    generic-extlinux-compatible.enable = true;
+    grub.enable = lib.mkForce false;
+
+  };
 
     # network
   networking = {
