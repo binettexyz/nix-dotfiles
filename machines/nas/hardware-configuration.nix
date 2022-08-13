@@ -20,22 +20,12 @@
   };
 
     # fileSystem
-  fileSystems = {
-    "/" =
-      { device = "none";
-        fsType = "tmpfs";
-        options = [ "defaults" "size=2G" "mode=755" ];
-      };
-
-    "/boot" =
-      { device = "/dev/disk/by-label/boot";
-        fsType = "ext4";
-      };
-
-    "/nix" =
-      { device = "/dev/disk/by-label/nixos";
-        fsType = "ext4";
-      };
+fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
 
     "/home/media/exthdd" = {
       device = "/dev/disk/by-label/exthdd";

@@ -5,11 +5,15 @@ let
 in
   
 {
+
+  services.sonarr.enable = true;
+
   nixpkgs.overlays = [ powercord-overlay.overlay ];
 
 
   environment.systemPackages = with pkgs; [
     #(unstable.discord.override { withOpenASAR = true; nss = nss_latest; })
+    flameshot
     unstable.tidal-hifi
 
     (discord-plugged.override {
