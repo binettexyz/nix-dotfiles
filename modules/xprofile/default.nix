@@ -9,7 +9,7 @@
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
     slstatus &				    # suckless status bar
-    udiskie &				    # automount device daemon
+#    udiskie &				    # automount device daemon
     greenclip daemon &
     transmission-daemon &
     redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter

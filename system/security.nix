@@ -6,7 +6,7 @@
     sudo.enable = false;
     doas = {
       enable = true;
-#      extraRules = [{ users = [ "binette" "nas" ]; noPass = true; keepEnv = true; }];
+      extraRules = [{ users = [ "binette" ]; noPass = true; keepEnv = true; }];
     };
   };
 

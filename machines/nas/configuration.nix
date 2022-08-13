@@ -11,14 +11,13 @@ in {
       ./hardware-configuration.nix
       ./../../profiles/common.nix
       ./../../profiles/server.nix
-      ./../../modules/pi4/gpu.nix
-      ./../../services/net/wifi.nix
+      ./../../system/wifi.nix
       (import "${home-manager}/nixos")
       (import "${impermanence}/nixos.nix")
     ];
 
     # pi4 cpu core
-  nix.maxJobs = 4;
+  nix.settings.max-jobs = 4;
 
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
@@ -38,13 +37,6 @@ in {
     interfaces.wlan0.useDHCP = true;
     wireless.enable = true;
     wireless.interfaces = [ "wlan0" ];
-      # static ip
-#    defaultGateway = "192.168.0.255"; # Router gateway IP
-#    interfaces.wlan0.ipv4.addresses = [{
-         # Static IP
-#      address = "192.168.0.130";
-#      prefixLength = 24;
-#    }];
   };
 
   environment.persistence."/nix/persist" = {
@@ -65,10 +57,6 @@ in {
   };
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
-
-  environment.variables = {
-    HOSTNAME="nas";
-  };
 
   system.stateVersion = "21.11";
 }
