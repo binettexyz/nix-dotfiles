@@ -22,9 +22,11 @@ in {
   powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
 
     # grub and pi4 bootloader
+  boot.loader = {
     efi.canTouchEfiVariables = lib.mkForce false;
     generic-extlinux-compatible.enable = true;
     grub.enable = lib.mkForce false;
+  };
 
     # network
   networking = {
@@ -41,6 +43,7 @@ in {
 
   environment.persistence."/nix/persist" = {
     directories = [
+      "root"
       "/etc/nixos"
       "/srv"
       "/var/lib"

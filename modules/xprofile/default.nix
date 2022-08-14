@@ -12,7 +12,7 @@
 #    udiskie &				    # automount device daemon
     greenclip daemon &
     transmission-daemon &
-    redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
+#    redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
     # xrandr --dpi 96
@@ -20,8 +20,7 @@
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
 
-      ### Wallpaper, xresources and compositor ###
-    # xcompmgr &
+      ### Visual ###
     picom &
     hsetroot -fill $HOME/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
