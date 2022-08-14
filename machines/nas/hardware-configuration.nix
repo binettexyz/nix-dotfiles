@@ -20,11 +20,27 @@
   };
 
     # fileSystem
-fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
+#fileSystems = {
+#    "/" = {
+#      device = "/dev/disk/by-label/NIXOS_SD";
+#      fsType = "ext4";
+#      options = [ "noatime" ];
+#    };
+
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-label/boot";
+      fsType = "vfat";
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-label/nix";
       fsType = "ext4";
-      options = [ "noatime" ];
     };
 
     "/home/media/exthdd" = {
@@ -32,9 +48,8 @@ fileSystems = {
       fsType = "ntfs";
       options = [ "rw" "uid=1000" "gid=100" ];
     };
-  };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
     # video drivers
     #  services.xserver.videoDrivers = [ "fbdev" ]; # without gpu
