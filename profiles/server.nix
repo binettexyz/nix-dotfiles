@@ -2,6 +2,8 @@
 
   imports =
    [
+     ../modules/zsh
+     ../modules/neovim
      ../services/net/adguard.nix
      ../services/net/torrents.nix
      ../users/server

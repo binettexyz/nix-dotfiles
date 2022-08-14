@@ -43,7 +43,7 @@ in {
 
   environment.persistence."/nix/persist" = {
     directories = [
-      "root"
+      "/root"
       "/etc/nixos"
       "/srv"
       "/var/lib"
@@ -61,5 +61,5 @@ in {
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }
