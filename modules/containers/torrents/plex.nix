@@ -12,7 +12,7 @@
     privateNetwork = true;
 #    hostBridge = "br0";
     hostAddress = "192.168.100.12";
-    localAddress = "192.168.100.11";
+    localAddress = "192.168.100.22";
 
       # mounts
     bindMounts = {

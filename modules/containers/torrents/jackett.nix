@@ -11,8 +11,8 @@
       # networking & port forwarding
     privateNetwork = true;
 #    hostBridge = "br0";
-    hostAddress = "192.168.100.14";
-    localAddress = "192.168.100.11";
+    hostAddress = "192.168.100.13";
+    localAddress = "192.168.100.23";
 
       # mounts
     bindMounts = {
