@@ -1,0 +1,7 @@
+{
+
+	imports = [
+		./torrents/sonarr.nix
+	];
+
+}

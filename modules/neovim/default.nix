@@ -195,7 +195,7 @@
         " --- indent ---
       set smartindent
       set expandtab
-      set tabstop=4
+      set tabstop=2
       set softtabstop=1
       set shiftwidth=4
 

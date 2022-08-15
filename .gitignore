@@ -1,1 +1,2 @@
 /configuration.nix
+./modules/containers/gitea.nix
