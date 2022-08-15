@@ -6,8 +6,6 @@ in
   
 {
 
-  services.sonarr.enable = true;
-
   nixpkgs.overlays = [ powercord-overlay.overlay ];
 
 

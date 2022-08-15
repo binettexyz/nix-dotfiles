@@ -6,6 +6,7 @@
     ../modules/pipewire
     ../modules/bluetooth
     ../services/x/greenclip.nix
+    ../services/x/picom.nix
     ../services/net/printer.nix
     ../users/binette
   ];

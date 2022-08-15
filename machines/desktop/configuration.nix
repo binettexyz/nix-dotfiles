@@ -9,7 +9,6 @@
         ./../../profiles/common.nix
         ./../../profiles/desktop.nix
         ./../../system/wifi.nix
-        ./../../services/x/picom.nix
          <home-manager/nixos>
          <impermanence/nixos.nix>
 
