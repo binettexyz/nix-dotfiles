@@ -39,6 +39,10 @@ in {
     interfaces.wlan0.useDHCP = true;
     wireless.enable = true;
     wireless.interfaces = [ "wlan0" ];
+    networking.nat = {
+      enable = true;
+      externalInterface = "wlan0";
+    };
   };
 
   environment.persistence."/nix/persist" = {
