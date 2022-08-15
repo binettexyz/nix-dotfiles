@@ -36,11 +36,11 @@
       fsType = "ext4";
     };
 
-    "/home/media/exthdd" = {
-      device = "/dev/disk/by-label/exthdd";
-      fsType = "ntfs";
-      options = [ "rw" "uid=1000" "gid=100" ];
-    };
+#    "/home/media/exthdd" = {
+#      device = "/dev/disk/by-label/exthdd";
+#      fsType = "ntfs";
+#      options = [ "rw" "uid=1000" "gid=100" ];
+#    };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
