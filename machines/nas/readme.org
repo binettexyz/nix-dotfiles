@@ -1,11 +1,4 @@
 #+TITLE: Raspberry Pi 4B
 
-
-1. $ sudo systemctl start wpa_supplicant
-
-2. $ wpa_cli and setup wifi
-
-3. make partition and mount drive
-
   # !!IMPORTANT!!
-4. $ export TMPDIR=/mnt/tmp
+export TMPDIR=/mnt/tmp

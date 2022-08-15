@@ -43,6 +43,7 @@ in {
       enable = true;
       externalInterface = "wlan0";
     };
+    bridges."br0".interfaces = [ "wlan0" ];
   };
 
   environment.persistence."/nix/persist" = {

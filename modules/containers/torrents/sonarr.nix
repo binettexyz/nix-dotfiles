@@ -15,8 +15,8 @@
 
       # mounts
     bindMounts = {
-      "/var/lib/sonarr" = {
-        hostPath = "/nix/persist/var/lib/sonarr";
+      "/var/lib/sonarr/.config/NzbDrone" = {
+        hostPath = "/nix/persist/var/lib/sonarr/.config/NzbDrone";
         isReadOnly = false;
       };        
     };
@@ -36,6 +36,8 @@
 
       services.sonarr = {
         enable = true;
+        user = "sonarr";
+        group = "sonarr";
         openFirewall = true;
       };
 
