@@ -4,7 +4,6 @@
    [
      ../modules/zsh
      ../modules/neovim
-     ../services/net/adguard.nix
      ../modules/containers
      ../users/server
      ../users/shared
