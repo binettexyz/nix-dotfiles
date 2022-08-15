@@ -35,6 +35,8 @@
       system.stateVersion = "22.05";
       networking.hostName = "plex";
 
+      nixpkgs.config.allowUnfree = true;
+
       services.plex = {
         enable = true;
         user = "plex";

@@ -3,7 +3,7 @@
   networking.nat.internalInterfaces = [ "ve-jackett" ];
   networking.firewall.allowedTCPPorts = [ 9117 ];
 
-  containers.sonarr = {
+  containers.jackett = {
     autoStart = true;
       # starts fresh every time it is updated or reloaded
 #    ephemeral = true;
@@ -35,7 +35,7 @@
       system.stateVersion = "22.05";
       networking.hostName = "jackett";
 
-      services.sonarr = {
+      services.jackett = {
         enable = true;
         user = "jackett";
         group = "jackett";
