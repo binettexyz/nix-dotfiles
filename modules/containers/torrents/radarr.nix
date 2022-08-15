@@ -16,8 +16,8 @@
 
       # mounts
     bindMounts = {
-      "/var/lib/radarr" = {
-        hostPath = "/var/lib/radarr";
+      "/var/lib/radarr/.config/radarr" = {
+        hostPath = "/var/lib/radarr/.config/radarr";
         isReadOnly = false;
       };
     };
