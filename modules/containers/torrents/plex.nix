@@ -10,8 +10,9 @@
 
       # networking & port forwarding
     privateNetwork = true;
-    hostAddress = "192.168.300.10";
-    localAddress = "192.168.300.11";
+    hostBridge = "br0";
+#    hostAddress = "192.168.100.12";
+#    localAddress = "192.168.100.11";
 
       # mounts
     bindMounts = {
