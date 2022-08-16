@@ -47,7 +47,7 @@ in {
 #      useDHCP = true;
 #    };
 #    bridges.br0 = {
-#      interfaces = [ "wlan0" "tailscale0" ];
+#      interfaces = [ "eth0" ];
 #    };
   };
 
