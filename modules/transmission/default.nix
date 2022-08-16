@@ -1,9 +1,12 @@
 { config, pkgs, ... }: {
 
+
+
     services.transmission = {
       enable = true;
       user = "transmission";
       group = "transmission";
+      openFirewall = true;
       settings = {
         download-dir = /media/downloads/torrents;
         blocklist-enabled = true;
