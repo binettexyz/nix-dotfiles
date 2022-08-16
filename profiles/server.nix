@@ -5,6 +5,7 @@
      ../modules/zsh
      ../modules/neovim
      ../modules/containers
+     ../modules/transmission
      ../users/server
      ../users/shared
     ];

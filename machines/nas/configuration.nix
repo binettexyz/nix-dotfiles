@@ -48,6 +48,7 @@ in {
 
   environment.persistence."/nix/persist" = {
     directories = [
+      "/media"
       "/root"
       "/etc/nixos"
       "/srv"
