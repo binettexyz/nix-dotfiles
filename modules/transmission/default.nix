@@ -8,11 +8,11 @@
       group = "transmission";
       openFirewall = true;
       settings = {
-        download-dir = /media/downloads/torrents;
+        download-dir = /nix/persist/media/downloads/torrents;
         blocklist-enabled = true;
         blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
         encryption = 1;
-        incomplete-dir = /media/downloads/torrents/.incomplete;
+        incomplete-dir = /nix/persist/media/downloads/torrents/.incomplete;
         incomplete-dir-enabled = true;
         message-level = 1;
         peer-port = 50778;
