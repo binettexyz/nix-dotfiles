@@ -36,7 +36,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/media" = {
+  fileSystems."/nix/persist/media" = {
     device = "/dev/disk/by-label/exthdd";
     fsType = "ntfs";
     options = [ "rw" "uid=1000" "gid=100" ];
