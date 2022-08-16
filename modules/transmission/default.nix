@@ -19,14 +19,17 @@
         peer-port-random-high = 65535;
         peer-port-random-low = 49152;
         peer-port-random-on-start = true;
-        rpc-bind-address = "127.0.0.1";
+        rpc-bind-address = "100.71.254.90";
         rpc-port = 9091;
         rpc-enable = true;
-        rpc-password = "{0e3d50e4df22a91a07b8a67658748b4c295cbfeaghfWAG9u";
+        rpc-authentication-required = true;
+        rpc-username = "binette";
+        rpc-password = "cd";
         script-torrent-done-enabled = true;
         script-torrent-done-filename = /home/binette/.local/bin/tordone;
         umask = 18;
         utp-enabled = true;
+        rpc-whitelist-enabled = false;
       };
     };
 
