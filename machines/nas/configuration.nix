@@ -43,7 +43,12 @@ in {
       enable = true;
       externalInterface = "wlan0";
     };
-#    bridges."br0".interfaces = [ "wlan0" ];
+#    interfaces.br0 = {
+#      useDHCP = true;
+#    };
+#    bridges.br0 = {
+#      interfaces = [ "wlan0" "tailscale0" ];
+#    };
   };
 
   environment.persistence."/nix/persist" = {
