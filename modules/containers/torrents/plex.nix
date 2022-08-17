@@ -9,10 +9,10 @@
 #    ephemeral = true;
 
       # networking & port forwarding
-    privateNetwork = true;
+    privateNetwork = false;
 #    hostBridge = "br0";
-    hostAddress = "192.168.100.12";
-    localAddress = "192.168.100.22";
+#    hostAddress = "192.168.100.12";
+#    localAddress = "192.168.100.22";
 
       # mounts
     bindMounts = {
@@ -35,12 +35,20 @@
 			}
 		];
 
-    config = { config, pkgs, ... }: {
+    config = { config, pkgs, ... }:
+    let
+
+      unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
+        config = config.nixpkgs.config;
+      };
+
+    in {
 
       system.stateVersion = "22.05";
       networking.hostName = "plex";
 
       nixpkgs.config.allowUnfree = true;
+      environment.systemPackages = with pkgs; [ unstable.plex ];
 
       services.plex = {
         enable = true;
