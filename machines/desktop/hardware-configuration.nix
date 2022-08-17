@@ -38,12 +38,12 @@
       fsType = "ext4";
     };
 
-#  fileSystems."/home/media" = {
-#    device = "@100.98.195.37:/home";
-#    fsType = "nfs";
-#      # don't freeze system if mount point not available on boot
-#    options = [ "x-systemd.automount" "noauto" ];
-#  };
+  fileSystems."/media" = {
+    device = "@100.71.254.90:/media";
+    fsType = "nfs";
+      # don't freeze system if mount point not available on boot
+    options = [ "x-systemd.automount" "noauto" ];
+  };
 
   swapDevices = [ ];
 
