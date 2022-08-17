@@ -44,8 +44,10 @@
         enable = true;
         user = "nginx";
         group = "nginx";
+        appendHttpConfig = "listen 127.0.0.1:80";
 
-        virtualHosts."kodi.binette" = {
+        virtualHosts."kodi.binette.xyz" = {
+          serverName = "kodi.binette.xyz";
           root = "/media/videos";
           locations."/" = {
             extraConfig = ''
