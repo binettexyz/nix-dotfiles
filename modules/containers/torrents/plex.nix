@@ -20,6 +20,11 @@
         hostPath = "/nix/persist/var/lib/plex";
         isReadOnly = false;
       };        
+      "/media/videos" = {
+        hostPath = "/media/videos";
+        isReadOnly = false;
+      };
+
     };
 
     forwardPorts = [

@@ -9,7 +9,7 @@
 #    ephemeral = true;
 
       # networking & port forwarding
-    privateNetwork = true;
+    privateNetwork = false;
 #    hostBridge = "br0";
     hostAddress = "192.168.100.13";
     localAddress = "192.168.100.23";

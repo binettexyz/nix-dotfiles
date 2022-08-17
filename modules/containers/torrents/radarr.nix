@@ -9,10 +9,10 @@
 #    ephemeral = true;
 
       # networking & port forwarding
-    privateNetwork = true;
+    privateNetwork = false;
 #    hostBridge = "br0";
-    hostAddress = "192.168.100.11";
-    localAddress = "192.168.100.21";
+#    hostAddress = "192.168.100.11";
+#    localAddress = "192.168.100.21";
 
       # mounts
     bindMounts = {
@@ -20,6 +20,15 @@
         hostPath = "/var/lib/radarr/.config/radarr";
         isReadOnly = false;
       };
+      "/media/videos" = {
+        hostPath = "/media/videos";
+        isReadOnly = false;
+      };
+      "/media/downloads/torrents" = {
+        hostPath = "/media/downloads/torrents";
+        isReadOnly = false;
+      };
+
     };
 
     forwardPorts = [

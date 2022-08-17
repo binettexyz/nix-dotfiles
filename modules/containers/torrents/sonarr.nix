@@ -9,10 +9,10 @@
 #    ephemeral = true;
 
       # networking & port forwarding
-    privateNetwork = true;
+    privateNetwork = false;
 #    hostBridge = "br0";
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.20";
+#    hostAddress = "192.168.100.10";
+#    localAddress = "192.168.100.20";
 
       # mounts
     bindMounts = {
@@ -20,6 +20,14 @@
         hostPath = "/nix/persist/var/lib/sonarr/.config/NzbDrone";
         isReadOnly = false;
       };        
+      "/media/videos" = {
+        hostPath = "/media/videos";
+        isReadOnly = false;
+      };
+      "/media/downloads/torrents" = {
+        hostPath = "/media/downloads/torrents";
+        isReadOnly = false;
+      };
     };
 
     forwardPorts = [

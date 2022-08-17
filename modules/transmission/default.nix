@@ -8,11 +8,11 @@
       group = "transmission";
       openFirewall = true;
       settings = {
-        download-dir = /nix/persist/media/downloads/torrents;
+        download-dir = "/nix/persist/media/downloads/torrents";
         blocklist-enabled = true;
         blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
         encryption = 1;
-        incomplete-dir = /nix/persist/media/downloads/torrents/.incomplete;
+        incomplete-dir = "/nix/persist/media/downloads/torrents/.incomplete";
         incomplete-dir-enabled = true;
         message-level = 1;
         peer-port = 50778;
@@ -27,7 +27,7 @@
         rpc-username = "binette";
         rpc-password = "cd";
         script-torrent-done-enabled = true;
-        script-torrent-done-filename = /home/binette/.local/bin/tordone;
+        script-torrent-done-filename = "/home/binette/.local/bin/tordone";
         umask = 18;
         utp-enabled = true;
         rpc-whitelist-enabled = false;
