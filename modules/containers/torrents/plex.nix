@@ -1,7 +1,7 @@
 {config, lib, pkgs, ... }: {
 
   networking.nat.internalInterfaces = [ "ve-plex" ];
-  networking.firewall.allowedTCPPorts = [ 32400 ];
+  networking.firewall.allowedTCPPorts = [ 32400 80 443 ];
 
   containers.plex = {
     autoStart = true;

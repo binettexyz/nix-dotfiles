@@ -1,9 +1,9 @@
 {config, lib, pkgs, ... }: {
 
-  networking.nat.internalInterfaces = [ "ve-nginx" ];
+  networking.nat.internalInterfaces = [ "ve-kodi" ];
   networking.firewall.allowedTCPPorts = [ 80 ];
 
-  containers.nginx = {
+  containers.kodi = {
     autoStart = true;
       # starts fresh every time it is updated or reloaded
 #    ephemeral = true;
@@ -38,12 +38,22 @@
     config = { config, pkgs, ... }: {
 
       system.stateVersion = "22.05";
-      networking.hostName = "nginx";
+      networking.hostName = "kodi";
 
       services.nginx = {
         enable = true;
         user = "nginx";
         group = "nginx";
+
+        virtualHosts."kodi.binette" = {
+          root = "/media/videos";
+          locations."/" = {
+            extraConfig = ''
+              autoindex on;
+              try_files $uri $uri/ =404;
+            '';
+          };
+        };
       };
 
     };
