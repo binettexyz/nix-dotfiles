@@ -7,7 +7,6 @@
 	        ./../../modules/neovim
 	        ./../../modules/pipewire
 	        ./../../modules/tmux
-	        ./../../modules/xprofile
 	        ./../../modules/zsh
         ];
 
