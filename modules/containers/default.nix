@@ -4,8 +4,9 @@
 		./torrents/sonarr.nix
 		./torrents/radarr.nix
 		./torrents/jackett.nix
-#		./torrents/plex.nix
-    ./torrents/kodi.nix
+		./torrents/plex.nix
+		./torrents/deluge.nix
+		./torrents/bazarr.nix
 	];
 
 }
