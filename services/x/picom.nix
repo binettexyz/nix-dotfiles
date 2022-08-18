@@ -6,9 +6,9 @@
     experimentalBackends = true;
     fade = lib.mkDefault true;
     fadeDelta = lib.mkDefault 5;
-    activeOpacity = 0.9;
+#    activeOpacity = 0.9;
 #    opacityRules = [ "100:class_g = 'spfm'" ];
-    inactiveOpacity = 0.7;
+#    inactiveOpacity = 0.7;
     shadow = lib.mkDefault false;
     vSync = true;
   };
