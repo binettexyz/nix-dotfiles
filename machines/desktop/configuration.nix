@@ -33,13 +33,12 @@
   };
 
     # grub
+  environment.systemPackages = with pkgs; [ os-prober ];
   boot.loader.grub = {
     gfxmodeEfi = "1280x720";
     configurationName = "Desktop";
     useOSProber = true;
   };
-
-  environment.systemPackages = with pkgs; [ os-prober ];
 
     # networking
   networking = {
@@ -47,11 +46,11 @@
     enableIPv6 = false;
     useDHCP = true;
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
+    networkmanager.enable = false;
     wireless = {
       enable = true;
       interfaces = [ "wlo1" ];
     };
-    networkmanager.enable = false;
   };
 
     # performance stuff
@@ -71,8 +70,6 @@
   };
 
   environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
-
-#  environment.variables.HOSTNAME="desktop";
 
   system.stateVersion = "22.05";
 

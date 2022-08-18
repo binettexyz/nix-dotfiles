@@ -8,11 +8,9 @@
       ../system/nix.nix
       ../system/localization.nix
       ../services/net/ssh.nix
-#      ../services/net/transmission.nix
       ../services/net/tailscale.nix
       ../services/x/x.nix
       ../services/x/systemd.nix
-      ../modules/tmux
       ../system/fonts.nix
       ../system/security.nix
     ];

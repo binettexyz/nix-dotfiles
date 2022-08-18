@@ -11,21 +11,24 @@
       "/var/log"
       "/root"
     ];
+  };
 
-    users.binette = {
+  home-manager.users.binette = {
+    imports = [ <impermanence/home-manager.nix> ];
+    home.persistence."/nix/persist/home/binette" = {
+      removePrefixDirectory = false;
+      allowOther = true;
       directories = [
         ".config/discordcanary"
         ".config/powercord"
         ".config/tidal-hifi"
         ".steam"
-        { directory = ".gnupg"; mode = "0700"; }
-        { directory = ".ssh"; mode = "0700"; }
       ];
+
       files = [
         ".nvidia-settings-rc"
-#        ".steampath"
-#        ".steampid"
       ];
     };
   };
+
 }

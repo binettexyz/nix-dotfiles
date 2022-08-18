@@ -6,7 +6,6 @@
         imports = [
                   # Include the results of the hardware scan.
                 ./hardware-configuration.nix
-                ./persistence.nix
                 ./../../profiles/desktop.nix
                 ./../../profiles/laptop.nix
                 ./../../system/wifi.nix
@@ -76,8 +75,6 @@
         };
 
         environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
-
-        environment.variables.HOSTNAME="x240";
 
         system.stateVersion = "22.05";
 

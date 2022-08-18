@@ -33,6 +33,8 @@
 
              ".git"
              ".librewolf"
+             ".ssh"
+             ".gnupg"
              ".zplug"
 
              "documents"
