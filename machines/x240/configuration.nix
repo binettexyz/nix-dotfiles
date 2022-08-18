@@ -6,6 +6,7 @@
         imports = [
                   # Include the results of the hardware scan.
                 ./hardware-configuration.nix
+                ./packages.nix
                 ./../../profiles/desktop.nix
                 ./../../profiles/laptop.nix
                 ./../../system/wifi.nix
