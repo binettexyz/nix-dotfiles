@@ -8,6 +8,8 @@
 	        ./../../modules/pipewire
 	        ./../../modules/tmux
 	        ./../../modules/zsh
+	        ./../../modules/git
+	        ./../../modules/lf
         ];
 
         users.groups.binette.gid = 1000;

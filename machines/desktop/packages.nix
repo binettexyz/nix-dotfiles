@@ -6,7 +6,7 @@ in
   
 {
 
-  import = [
+  imports = [
     ../../modules/xprofile/desktop.nix
   ];
 
