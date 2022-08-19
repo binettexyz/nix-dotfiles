@@ -3,14 +3,14 @@
   {
     imports =
       [ # Include the results of the hardware scan.
+        <home-manager/nixos>
+        <impermanence/nixos.nix>
         ./hardware-configuration.nix
-        ./persistence.nix
         ./packages.nix
+        ./persistence.nix
         ./../../profiles/common.nix
         ./../../profiles/desktop.nix
         ./../../system/wifi.nix
-         <home-manager/nixos>
-         <impermanence/nixos.nix>
 
      ];
 
@@ -19,17 +19,16 @@
 
     # screen resolution
   services.xserver = {
-    xrandrHeads = [
-      { output = "DisplayPort-0";
-        primary = true;
-        monitorConfig = ''
-            # 2560x1440 164.90 Hz (CVT) hsync: 261.86 kHz; pclk: 938.50 MHz
-          Modeline "2560x1440_165.00"  938.50  2560 2792 3072 3584  1440 1443 1448 1588 -hsync +vsync
-          Option "PreferredMode" "2560x1440_165.00"
-          Option "Position" "0 0"
-        '';
-      }
-    ];
+    xrandrHeads = [{
+      output = "DisplayPort-0";
+      primary = true;
+      monitorConfig = ''
+          # 2560x1440 164.90 Hz (CVT) hsync: 261.86 kHz; pclk: 938.50 MHz
+        Modeline "2560x1440_165.00"  938.50  2560 2792 3072 3584  1440 1443 1448 1588 -hsync +vsync
+        Option "PreferredMode" "2560x1440_165.00"
+        Option "Position" "0 0"
+      '';
+    }];
   };
 
     # grub
@@ -42,7 +41,7 @@
 
     # networking
   networking = {
-    hostName = "desktop-nix";
+    hostName = "desktop";
     enableIPv6 = false;
     useDHCP = true;
     nameservers = [ "94.140.14.14" "94.140.15.15" ];
@@ -63,13 +62,12 @@
   services.fstrim.enable = true; # ssd trimming
 
   environment.etc = {
+    "machine-id".source = "/nix/persist/etc/machine-id";
     "ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
     "ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
     "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
     "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
   };
-
-  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
   system.stateVersion = "22.05";
 
