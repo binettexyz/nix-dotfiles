@@ -6,10 +6,11 @@
     hideMounts = true;
     directories = [
       "/etc/nixos"
-      "/srv"
       "/var/lib"
       "/var/log"
+      "/mounts"
       "/root"
+      "/srv"
     ];
   };
 

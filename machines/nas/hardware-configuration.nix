@@ -42,6 +42,11 @@
     options = [ "rw" "uid=1000" "gid=100" ];
   };
 
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /media  100.110.26.48(rw,insecure,no_subtree_check) 100.91.89.2(rw,insecure,no_subtree_check)
+  '';
+
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
     # video drivers

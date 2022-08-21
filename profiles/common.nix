@@ -25,6 +25,9 @@
     # firewall
   networking.firewall = {
     enable = lib.mkForce true;
+    allowedTCPPorts = [
+      2049 # NFSv4
+    ];
       # tailscale
     checkReversePath = "loose";
     trustedInterfaces = [ "tailscale0" ];
