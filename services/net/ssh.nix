@@ -11,8 +11,8 @@
       AllowTcpForwarding yes
       AllowAgentForwarding no
       AllowStreamLocalForwarding no
+      AuthenticationMethods publickey
     '';
-      #AuthenticationMethods publickey
   };
 
 }
