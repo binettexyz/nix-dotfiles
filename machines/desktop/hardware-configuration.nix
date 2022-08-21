@@ -38,7 +38,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/media" = {
+  fileSystems."/mounts/nas" = {
     device = "100.71.254.90:/media";
     fsType = "nfs";
       # don't freeze system if mount point not available on boot
