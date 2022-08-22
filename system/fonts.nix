@@ -12,9 +12,12 @@
   };
 
   fonts.fonts = with pkgs; [
-#    nerdfonts
+      # Emoji/Icons
     font-awesome
     noto-fonts-emoji
+
+#    nerdfonts
+#    iosevka
     jetbrains-mono
     fira-code
     dejavu_fonts

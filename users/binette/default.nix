@@ -10,6 +10,7 @@
 	        ./../../modules/zsh
 	        ./../../modules/git
 	        ./../../modules/lf
+	        ./../../modules/mpv
         ];
 
         users.groups.binette.gid = 1000;
