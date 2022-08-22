@@ -169,6 +169,7 @@
       highlight EndOfBuffer ctermbg=none guibg=NONE
 
         " --- visual ---
+      set title
       set termguicolors
       set background=dark
         " Available values: 'hard', 'medium'(default), 'soft'

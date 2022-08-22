@@ -62,7 +62,7 @@
       binutils
       killall
 #      nfs-utils
-#      youtube-dl
+      yt-dlp
 #      woeusb # write win10.iso to usb drive
 #      mkpasswd
       fzf

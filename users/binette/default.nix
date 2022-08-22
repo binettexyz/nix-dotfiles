@@ -11,6 +11,7 @@
 	        ./../../modules/git
 	        ./../../modules/lf
 	        ./../../modules/mpv
+	        ./../../modules/qutebrowser
         ];
 
         users.groups.binette.gid = 1000;

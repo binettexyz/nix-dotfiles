@@ -53,7 +53,7 @@
   };
 
     # performance stuff
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "conservative";
   programs.gamemode.enable = true;
 
     # SSD STUFF
