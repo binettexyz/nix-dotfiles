@@ -1,7 +1,7 @@
 {config, lib, pkgs, ... }: {
 
   networking.nat.internalInterfaces = [ "ve-prowlarr" ];
-  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedTCPPorts = [ 9696 ];
 
   containers.prowlarr = {
     autoStart = true;
