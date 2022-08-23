@@ -11,6 +11,7 @@
            allowOther = true;
            directories = [
              ".cache/librewolf"
+             ".cache/qutebrowser"
              ".config/dunst"
              ".config/git"
              ".config/lf"
@@ -30,6 +31,7 @@
              ".local/share/Ripcord"
              ".local/share/xorg"
              ".local/share/zoxide"
+             ".local/share/qutebrowser"
 
              ".git"
              ".librewolf"
