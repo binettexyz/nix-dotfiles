@@ -37,6 +37,7 @@
 
       services.jackett = {
         enable = true;
+        package = pkgs.unstable.jackett;
         user = "jackett";
         group = "jackett";
         openFirewall = true;
