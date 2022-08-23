@@ -67,8 +67,8 @@
     nsxiv
     playerctl
       # text
-    zathura
-    mupdf
+#    zathura
+#    mupdf
 #    texlive.combined.scheme-full
       # rss
     newsboat
