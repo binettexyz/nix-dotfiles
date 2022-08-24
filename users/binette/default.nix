@@ -12,6 +12,7 @@
 	        ./../../modules/lf
 	        ./../../modules/mpv
 	        ./../../modules/qutebrowser
+	        ./../../modules/dunst
         ];
 
         users.groups.binette.gid = 1000;

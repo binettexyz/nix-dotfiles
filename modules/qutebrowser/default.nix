@@ -52,31 +52,32 @@
             "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt"
           ];
           adblock.lists = [
-            "https://easylist.to/easylist/easylist.txt"
-            "https://easylist.to/easylist/easyprivacy.txt"
-            "https://paulgb.github.io/BarbBlock/blacklists/hosts-file.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2020.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2021.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2022.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/legacy.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/lan-block.txt"
-            "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt"
-            "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt"
-            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
-            "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
-            "https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext&_=223428"
+#            "https://easylist.to/easylist/easylist.txt"
+#            "https://easylist.to/easylist/easyprivacy.txt"
+#            "https://paulgb.github.io/BarbBlock/blacklists/hosts-file.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2020.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2021.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2022.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/legacy.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/lan-block.txt"
+#            "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt"
+#            "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt"
+#            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
+#            "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
+#            "https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext&_=223428"
+
+            "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt"
+            "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
             "https://fanboy.co.nz/r/fanboy-ultimate.txt"
             "https://fanboy.co.nz/fanboy-antifacebook.txt"
             "https://fanboy.co.nz/fanboy-annoyance.txt"
             "https://fanboy.co.nz/fanboy-cookiemonster.txt"
-            "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt"
-            "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
             "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
             "https://github.com/DandelionSprout/adfilt/raw/master/AnnoyancesList"
             "https://github.com/DandelionSprout/adfilt/raw/master/SocialShareList.txt"
@@ -114,6 +115,15 @@
         select_on_remove = "last-used";
       };
 
+      fonts = {
+        contextmenu = "Noto Sans";
+        default_family = [ "JetBrainsMono Nerd Font" ];
+        default_size = "14px";
+        web.family = {
+          sans_serif = "Noto Sans";
+          serif = "Noto Serif";
+        };
+      };
     };
   };
 }

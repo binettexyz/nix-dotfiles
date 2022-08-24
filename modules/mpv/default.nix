@@ -54,7 +54,7 @@
         # luma upscaling
         # note: any FSRCNNX above FSRCNNX_x2_8-0-4-1 is not worth the additional computional overhead
       glsl-shaders = "./shaders/FSRCNNX_x2_8-0-4-1.glsl";
-#      scale = "ewa_lanczos";
+      scale = "ewa_lanczos";
         # luma downscaling
         # note: ssimdownscaler is tuned for mitchell and downscaling=no
       glsl-shaders-append = "./shaders/SSimDownscaler.glsl";
