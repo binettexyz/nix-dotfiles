@@ -15,10 +15,6 @@ in
       };
 
       plugins = [
-          # BetterMediaPlayer
-        (builtins.fetchTarball "https://github.com/doggybootsy/BetterMediaPlayer/archive/master.tar.gz")
-          # better status indicators
-        (builtins.fetchTarball "https://github.com/griefmodz/better-status-indicators/archive/master.tar.gz")
           # better replies
         (builtins.fetchTarball "https://github.com/cyyynthia/better-replies/archive/master.tar.gz")
           # better settings
@@ -39,14 +35,12 @@ in
         (builtins.fetchTarball "https://github.com/Vap0r1ze/vpc-shiki/archive/master.tar.gz")
           # silent typing
         (builtins.fetchTarball "https://github.com/svby/powercord-silenttyping/archive/master.tar.gz")
-          # image-tools
-        (builtins.fetchTarball "https://github.com/powerfart-plugins/image-tools/archive/master.tar.gz")
       ];
 
       themes = [
           # gruvbox
-        #(builtins.fetchTarball "https://github.com/binettexyz/discord-gruvbox/archive/master.tar.gz")
-        /home/binette/.git/repos/discord-gruvbox
+        (builtins.fetchTarball "https://github.com/binettexyz/discord-gruvbox/archive/master.tar.gz")
+#        /home/binette/.git/repos/discord-gruvbox
       ];
     })
   ];
