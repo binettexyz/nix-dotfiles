@@ -1,2 +1,3 @@
-/configuration.nix
-/modules/containers/gitea.nix
+/.github/source
+/modules/home/programs/lf/etc
+result

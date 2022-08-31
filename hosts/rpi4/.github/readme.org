@@ -1,0 +1,4 @@
+#+TITLE: Raspberry Pi 4B
+
+  # !!IMPORTANT!!
+export TMPDIR=/mnt/tmp
