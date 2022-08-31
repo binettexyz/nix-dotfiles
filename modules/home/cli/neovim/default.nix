@@ -180,15 +180,18 @@ in
         highlight LineNr ctermbg=none guibg=NONE
         highlight Folded ctermbg=none guibg=NONE
         highlight EndOfBuffer ctermbg=none guibg=NONE
+
+        " --- Themes ---
+        " Gruvbox-Material
+          " Available values: 'hard', 'medium'(default), 'soft'
+        let g:gruvbox_material_background = 'medium'
+        let g:gruvbox_material_transparent_background = 1
+        colorscheme gruvbox-material
   
           " --- visual ---
         set title
         set termguicolors
         set background=dark
-          " Available values: 'hard', 'medium'(default), 'soft'
-        let g:gruvbox_material_background = 'medium'
-        let g:gruvbox_material_transparent_background = 1
-        colorscheme gruvbox-material
         set number relativenumber
         set noruler
         set wrap
