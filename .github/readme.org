@@ -1,9 +1,9 @@
-#+TITLE: NixOS Setup
+#+TITLE:  NixOS Setup
 #+AUTHOR: Binette
 
 * Partitioning/Setup
 The partitioning setup will be based on these projects:
 
-- [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄: tmpfs as root]]
+- [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS : tmpfs as root]]
 - [[https://github.com/nix-community/impermanence][Impermanence]]
 
