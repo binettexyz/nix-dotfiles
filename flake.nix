@@ -3,13 +3,9 @@
 
     # System's Input
   inputs = {
-#    nixpkgs.url = "github:NixOS/nixpkgs/master";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
-
-#    flake-utils.url = "github:numtide/flake-utils";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -33,7 +29,6 @@
   outputs = {
     self,
     nixpkgs,
-#    nixpkgs-unstable,
     nur,
     home-manager,
     impermanence,
@@ -79,7 +74,6 @@
       t440p = mkSystem inputs.nixpkgs "x86_64-linux" "t440p";
       rpi4 = mkSystem inputs.nixpkgs "aarch64" "rpi4";
     };
-
-     };
+  }; 
 }
 

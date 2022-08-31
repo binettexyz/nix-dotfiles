@@ -6,6 +6,7 @@
     ../../modules/system/default.nix
   ];
 
+  ## Custom modules ##
   modules = {
     bootloader = "generic-extlinux";
     services = {

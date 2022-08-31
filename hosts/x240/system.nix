@@ -5,7 +5,7 @@
     ../../modules/system/default.nix
   ];
 
-  ## Modules ##
+  ## Custom modules ##
   modules = {
     bootloader = "grub";
     services = {
