@@ -37,6 +37,7 @@
         # Remove the two lines bellow if playback issues
       profile = "gpu-hq";
       vo = "gpu";
+#      gpu-api = "vulkan";
 
       hwdec = "auto";
 #      hwdec = "nvdec-copy";
@@ -70,7 +71,7 @@
 #      linear-downscaling = "no";
 
         # Languages
-      alang = "en,eng";
+      alang = "ja,jp,jpn,en,eng";
       slang = "en,eng";
 
         # osc

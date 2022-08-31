@@ -3,6 +3,7 @@
   imports = [
     ../../modules/xprofile/desktop.nix
     ../../modules/discord
+    ../../modules/virtualbox
   ];
 
   environment.systemPackages = with pkgs; [
