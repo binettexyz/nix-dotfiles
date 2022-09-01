@@ -18,9 +18,6 @@ in
         # Enabled client-side shadows on windows. 
       enable = true;
       backend = "glx";
-        # Specify refresh rate of the screen. If not specified or 0, picom will 
-        # try detecting this with X RandR extension.
-      refreshRate = 0;
 
       /* Opacity */
       activeOpacity = 1.0; # (0.0 - 1.0 )

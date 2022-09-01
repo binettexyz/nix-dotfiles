@@ -105,7 +105,7 @@ in
           cache32Bit = true;
           defaultFonts = {
             emoji = [ "Noto Color Emoji" ];
-            monospace = [ "Fira Code" ];
+            monospace = [ "comic-mono" ];
           };
         };
         fonts = with pkgs; [
@@ -115,6 +115,7 @@ in
     
 #          nerdfonts
 #          iosevka
+          comic-mono
           jetbrains-mono
           fira-code
           dejavu_fonts
