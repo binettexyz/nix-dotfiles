@@ -34,7 +34,7 @@ in
 
           " Use <Tab> and <S-Tab> to navigate the completion list
           inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
+"                \ pumvisible() ? "\<C-n>" :
                 \ CheckBackspace() ? "\<TAB>" :
                 \ coc#refresh()
           inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"

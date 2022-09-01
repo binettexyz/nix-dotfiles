@@ -67,7 +67,6 @@ in
     ({
         # Set environment variables
       environment.variables = {
-        NIXOS_CONFIG = "$HOME/.config/nixos/host/$HOST/configuration.nix";
         NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
         PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
         EDITOR = "nvim";

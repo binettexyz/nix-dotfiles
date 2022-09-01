@@ -71,7 +71,8 @@ in
         # aliases
       shellAliases = {
         nixsh = "nix-shell -p";
-        nixbuild = "doas nixos-rebuild switch; notify-send 'Rebuild complete!'";
+        nixbuild = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd; notify-send '❄️ NixOS' 'Rebuild complete!'";
+        nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Update complete!'";
       };
   
       envExtra = ''

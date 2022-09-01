@@ -71,7 +71,7 @@
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
-    picom &
+    picom --experimental-backends &
     hsetroot -fill $HOME/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
