@@ -72,7 +72,7 @@
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
-    hsetroot & # -fill $HOME/.config/wall.png &
+    hsetroot -fill $HOME/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
