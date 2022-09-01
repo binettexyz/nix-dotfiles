@@ -28,7 +28,7 @@ in
           # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
           # If markup is not allowed, those tags will be stripped out of the
           # message.
-        markup = "full";
+#        markup = "full";
           # The format of the message.  Possible variables are:
           #   %a  appname
           #   %s  summary
@@ -37,11 +37,11 @@ in
           #   %I  iconname (without its path)
           #   %p  progress value if set ([  0%] to [100%]) or nothing
           # Markup is allowed
-        format = "%s\n%b";
+#        format = "%s\n%b";
           # Sort messages by urgency.
-        sort = "no";
+#        sort = "no";
           # Show how many messages are currently hidden (because of geometry).
-        indicate_hidden = "yes";
+#        indicate_hidden = "yes";
 
         global = {
           monitor = 0;
