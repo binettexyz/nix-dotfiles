@@ -105,10 +105,12 @@ in
           cache32Bit = true;
           defaultFonts = {
             emoji = [ "Noto Color Emoji" ];
+            sansSerif = [
+              "JetBrainsMono Nerd Font Mono"
+            ];
             monospace = [
 #              "FiraCode Nerd Font Mono"
-              "JetBrainsMono Nerd Font Mono"
-#              "Iosevka"
+              "Iosevka Term"
             ];
           };
         };
@@ -117,11 +119,13 @@ in
             # Emoji/Icons
           font-awesome
           noto-fonts-emoji
+          material-design-icons
+          material-icons
     
             # Fonts
-          iosevka
           (nerdfonts.override {
             fonts = [
+              "Iosevka"
               "FiraCode"
               "JetBrainsMono"
               "Mononoki"
@@ -132,6 +136,15 @@ in
         ];
       };
       environment.systemPackages = with pkgs; [ faba-mono-icons ];
+
+      programs.ssh = {
+        extraConfig = ''
+          Host github.com
+            IdentitiesOnly yes
+            AddKeysToAgent yes
+            IdentityFile ~/.ssh/id_ed25519
+        '';
+      };
 
       services.openssh = {
         enable = true;
@@ -172,8 +185,6 @@ in
         layout = "us";
           # enable startx
         displayManager.startx.enable = true;
-          # enable suckless window manager
-        windowManager.dwm.enable =true;
           # disable xterm
         desktopManager.xterm.enable = false;
       };

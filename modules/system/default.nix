@@ -6,6 +6,7 @@
     ./laptop
     ./containers
     ./services
+    ./desktop
 #    ./server
     ./gaming
   ];
