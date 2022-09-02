@@ -105,22 +105,30 @@ in
           cache32Bit = true;
           defaultFonts = {
             emoji = [ "Noto Color Emoji" ];
-            monospace = [ "comic-mono" ];
+            monospace = [
+              #"FiraCode Nerd Font Mono"
+              #"JetBrainsMono Nerd Font Mono"
+              "Iosevka"
+            ];
           };
         };
+
         fonts = with pkgs; [
             # Emoji/Icons
           font-awesome
           noto-fonts-emoji
     
-#          nerdfonts
-#          iosevka
-          comic-mono
-          jetbrains-mono
-          fira-code
-          dejavu_fonts
+            # Fonts
+          iosevka
+          (nerdfonts.override {
+            fonts = [
+              "FiraCode"
+              "JetBrainsMono"
+              "Mononoki"
+            ];
+          })
             # LaTeX
-#          lmodern
+          lmodern
         ];
       };
       environment.systemPackages = with pkgs; [ faba-mono-icons ];

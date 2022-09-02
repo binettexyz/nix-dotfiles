@@ -55,9 +55,9 @@ in
         vids = "$HOME/videos";
         pics = "$HOME/pictures";
         dl = "$HOME/downloads";
-        repos = "$HOME/.git/repos";
+        git = "$HOME/.git";
         dots = "/nix/persist/home/binette/.dotfiles";
-        nixconf = "/etc/nixos";
+        nix = "/etc/nixos";
       };
   
         # history settings
@@ -70,6 +70,7 @@ in
   
         # aliases
       shellAliases = {
+          # Nixos related aliases.
         nixsh = "nix-shell -p";
         nixbuild = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd; notify-send '❄️ NixOS' 'Rebuild complete!'";
         nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Update complete!'";
