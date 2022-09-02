@@ -22,6 +22,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+      # Suckless
+    dwm = { url = "github:binettexyz/dwm"; flake = false; };
+    st = { url = "github:binettexyz/st"; flake = false; };
+    slstatus = { url = "github:binettexyz/slstatus"; flake = false; };
+    dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
+
     powercord-overlay.url = "github:LavaDesu/powercord-overlay";
   };
 
@@ -32,6 +38,7 @@
     nur,
     home-manager,
     impermanence,
+    dwm,
     powercord-overlay,
     ...
   }@inputs: let

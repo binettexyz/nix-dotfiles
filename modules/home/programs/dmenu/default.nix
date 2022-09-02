@@ -1,8 +1,9 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 with lib;
 
 let
   cfg = config.modules.programs.dmenu;
+  dmenu-head = pkgs.callPackage (inputs.dmenu + "/default.nix") {};
 in
 {
   options.modules.programs.dmenu = {
@@ -14,7 +15,7 @@ in
   };
 
   config = mkIf (cfg.enable) {
-    home.packages = with pkgs; [ dmenu ];
+    home.packages = with pkgs; [ dmenu-head ];
 };
 
 }

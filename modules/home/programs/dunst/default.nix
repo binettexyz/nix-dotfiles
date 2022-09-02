@@ -53,7 +53,7 @@ in
           padding = 2;
           horizontal_padding = 2;
           transparency = 25;
-          font = "Monospace 10";
+          font = "sans-serif 13";
           frame_color = "#458588";
         };
   

@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 with lib;
 
 let
@@ -14,8 +14,8 @@ in
 
   config = mkIf (cfg == "dwm") {
       # enable suckless window manager
-    windowManager.dwm.enable =true;
-    home.packages = with pkgs; [ dwm-head ];
+    services.xserver.windowManager.dwm.enable =true;
+    environment.systemPackages = with pkgs; [ dwm-head ];
 };
 
 }

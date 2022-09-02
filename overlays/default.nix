@@ -1,37 +1,29 @@
 { pkgs, lib, ... }: {
   nixpkgs.overlays = [
     (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: {
-        src = pkgs.fetchFromGitHub {
-          owner = "binettexyz";
-          repo = "dwm";
-          rev = "5a22d28e48a6cf44989982e28d76d367d54fe492";
-          sha256 = "sha256-2U01hJpKEpy5/4JWiQu9PiG20L8EFcT2rx6lRAPlNFg=";
-        };
-      });
-      dmenu = prev.dmenu.overrideAttrs (old: {
-        src = pkgs.fetchFromGitHub {
-          owner = "binettexyz";
-          repo = "dmenu";
-          rev = "8adc9f4d48956767a685c24a2927942f307403cd";
-          sha256 = "sha256-I8HLOxafOpsc5ZOYunte8Wt14Lx58ruizL2fmgb42mU=";
-        };
-      });
-      slstatus = prev.slstatus.overrideAttrs (old: {
-        src = pkgs.fetchFromGitHub {
-          owner = "binettexyz";
-          repo = "slstatus";
-          rev = "4f00e50beb99c6d30393f89f27eba19a580ae222";
-          sha256 = "sha256-wxnB9YsMDDuXrz/fzGa7ulF5/4CoPNna5pe7izMuea4=";
-        };
-      });
+#      dwm = prev.dwm.overrideAttrs (old: {
+#        src = builtins.fetchTarball {
+#          url = "https://github.com/binettexyz/dwm/tree/47233703d3f5ed777d754b07148cc2f9d105517b.tar.gz";
+#          sha256 = "";
+#        };
+#      });
+#      dmenu = prev.dmenu.overrideAttrs (old: {
+#        src = builtins.fetchTarball {
+#          url = "https://github.com/binettexyz/dmenu/archive/master.tar.gz";
+#          sha256 = "sha256:0rs5ny8n3rn0qppan5nbyfx2pwpsc0i9pakbkbva1v97bnqbn6b6";
+#        };
+#      });
+#      slstatus = prev.slstatus.overrideAttrs (old: {
+#        src = builtins.fetchTarball {
+#          url = "https://github.com/binettexyz/slstatus/archive/master.tar.gz";
+#          sha256 = "sha256:108h9xd8sn4s6hngw965kw2jjh8hjcnb1g6d8waimpdyiz4kry70";
+#        };
+#      });
       st = prev.st.overrideAttrs (old: {
         buildInputs = old.buildInputs ++ [ prev.harfbuzz ];
-        src = pkgs.fetchFromGitHub {
-          owner = "lukesmithxyz";
-          repo = "st";
-          rev = "13b3c631be13849cd80bef76ada7ead93ad48dc6";
-          sha256 = "009za6dv8cr2brs31sjqixnkk3jwm8k62qk38sz4ggby3ps9dzf4";
+        src = builtins.fetchTarball {
+          url = "https://github.com/LukeSmithxyz/st/archive/master.tar.gz";
+          sha256 = "sha256:1lsx32v085g50rg933is3ww20yysri4mh96sz3mw372iqxzwscrz";
         };
       });
     })

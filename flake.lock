@@ -1,5 +1,37 @@
 {
   "nodes": {
+    "dmenu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662132357,
+        "narHash": "sha256-Zhm7sF0n7aD2mmuqmyJg+vIruvPLFqvuxcDmYZG3RWc=",
+        "owner": "binettexyz",
+        "repo": "dmenu",
+        "rev": "0d7de0e83c7f345f0a4eab546bd3e4e58101718f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "repo": "dmenu",
+        "type": "github"
+      }
+    },
+    "dwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662142124,
+        "narHash": "sha256-kRpf+x6LutLxzlXRMHDGIkQY2bUcC8LAvz2UfAiZc+s=",
+        "owner": "binettexyz",
+        "repo": "dwm",
+        "rev": "0b7a20ca57ddf879bb2fb7620d47de0146ae6790",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "repo": "dwm",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -120,11 +152,47 @@
     },
     "root": {
       "inputs": {
+        "dmenu": "dmenu",
+        "dwm": "dwm",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "powercord-overlay": "powercord-overlay"
+        "powercord-overlay": "powercord-overlay",
+        "slstatus": "slstatus",
+        "st": "st"
+      }
+    },
+    "slstatus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659502874,
+        "narHash": "sha256-4Pg8yY++3RoVR828sCyTEEEpBZ/FJP4sNJpYjVpPEIE=",
+        "owner": "binettexyz",
+        "repo": "slstatus",
+        "rev": "7afcf4176fee6563872e9686a3e7646fd2d38a18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "repo": "slstatus",
+        "type": "github"
+      }
+    },
+    "st": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662151799,
+        "narHash": "sha256-7M5OAF6luM7r7/9c5XsdS/8k5Ttk5uJR4+rZIIwv6Bs=",
+        "owner": "binettexyz",
+        "repo": "st",
+        "rev": "c2b184fc9934045f2df1b102d91c17ba7f89dbf7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "repo": "st",
+        "type": "github"
       }
     },
     "utils": {

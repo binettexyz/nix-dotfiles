@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }:
-
 with lib;
-let cfg = 
-    config.modules.packages;
+
+let 
+  cfg = config.modules.packages;
 #    screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
 #    maintenance = pkgs.writeShellScriptBin "maintenance" ''${builtins.readFile ./maintenance}'';
 

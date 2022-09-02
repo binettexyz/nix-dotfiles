@@ -1,8 +1,9 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 with lib;
 
 let
   cfg = config.modules.programs.slstatus;
+  slstatus-head = pkgs.callPackage (inputs.slstatus + "/default.nix") {};
 in
 {
   options.modules.programs.slstatus = {
@@ -14,7 +15,7 @@ in
   };
 
   config = mkIf (cfg.enable) {
-    home.packages = with pkgs; [ slstatus ];
+    home.packages = with pkgs; [ slstatus-head ];
   };
 
 

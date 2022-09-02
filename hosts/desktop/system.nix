@@ -1,4 +1,4 @@
-{ pkgs, system, config, lib, modulesPath, ... }: {
+{ pkgs, system, config, lib, inputs, modulesPath, ... }: {
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -8,6 +8,7 @@
   ## Custom modules ##
   modules = {
     bootloader = "grub";
+    windowManager = "dwm";
     services = {
       tty-login-prompt.enable = true;
     };

@@ -1,6 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }: {
 
-{
   imports = [
     ../../modules/home/default.nix 
     (inputs.impermanence + "/home-manager.nix")
