@@ -106,9 +106,9 @@ in
           defaultFonts = {
             emoji = [ "Noto Color Emoji" ];
             monospace = [
-              #"FiraCode Nerd Font Mono"
-              #"JetBrainsMono Nerd Font Mono"
-              "Iosevka"
+#              "FiraCode Nerd Font Mono"
+              "JetBrainsMono Nerd Font Mono"
+#              "Iosevka"
             ];
           };
         };
