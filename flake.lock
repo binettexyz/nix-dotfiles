@@ -159,11 +159,29 @@
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "powercord-overlay": "powercord-overlay",
-        "slstatus": "slstatus",
+        "slstatus-desktop": "slstatus-desktop",
+        "slstatus-laptop": "slstatus-laptop",
         "st": "st"
       }
     },
-    "slstatus": {
+    "slstatus-desktop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661882073,
+        "narHash": "sha256-tkEZ9PrplN+QBBP84X8BrnP1eSs5/Pif80oENFv9h0w=",
+        "owner": "binettexyz",
+        "repo": "slstatus",
+        "rev": "527c068e574b5edb08f33c1f2df696de60b2c44f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "ref": "desktop",
+        "repo": "slstatus",
+        "type": "github"
+      }
+    },
+    "slstatus-laptop": {
       "flake": false,
       "locked": {
         "lastModified": 1659502874,

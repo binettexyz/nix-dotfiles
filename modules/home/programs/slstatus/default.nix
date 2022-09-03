@@ -3,20 +3,24 @@ with lib;
 
 let
   cfg = config.modules.programs.slstatus;
-  slstatus-head = pkgs.callPackage (inputs.slstatus + "/default.nix") {};
+  slstatus-laptop = pkgs.callPackage (inputs.slstatus-laptop + "/default.nix") {};
+  slstatus-desktop = pkgs.callPackage (inputs.slstatus-desktop + "/default.nix") {};
 in
 {
-  options.modules.programs.slstatus = {
-    enable = mkOption {
+  options.modules.programs.slstatus = mkOption {
       description = "Enable slstatus bar";
-      type = types.bool;
-      default = false;
-    };
+      type = types.enum [ "desktop" "laptop" ];
+      default = null;
   };
 
-  config = mkIf (cfg.enable) {
-    home.packages = with pkgs; [ slstatus-head ];
-  };
+  config = mkMerge [
+    (mkIf (cfg == "laptop") {
+      home.packages = with pkgs; [ slstatus-laptop ];
+    })
+    (mkIf (cfg == "desktop") {
+      home.packages = with pkgs; [ slstatus-desktop ];
+    })
+  ];
 
 
 }

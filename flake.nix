@@ -25,7 +25,8 @@
       # Suckless
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
     st = { url = "github:binettexyz/st"; flake = false; };
-    slstatus = { url = "github:binettexyz/slstatus"; flake = false; };
+    slstatus-laptop = { url = "github:binettexyz/slstatus"; flake = false; };
+    slstatus-desktop = { url = "github:binettexyz/slstatus/desktop"; flake = false; };
     dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
 
     powercord-overlay.url = "github:LavaDesu/powercord-overlay";

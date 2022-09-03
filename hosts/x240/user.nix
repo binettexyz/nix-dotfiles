@@ -36,7 +36,7 @@
 #      nnn.enable = true;
 #      powercord.enable = true;
       qutebrowser.enable = true;
-      slstatus.enable = true;
+      slstatus = "laptop";
       st.enable = true;
 #      zathura.enable = true;
     };
