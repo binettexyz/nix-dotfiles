@@ -45,7 +45,6 @@ in
       shadowOffsets = [ (-7) (-7) ]; # (defaults to -15)
         # Specify a list of conditions of windows that should have no shadow.
       shadowExclude = [
-        "class_g = 'slop'"   # maim
       ];
 
         # Reduce screen tearing
@@ -56,6 +55,8 @@ in
         /* Shadow */
           # The blur radius for shadows, in pixels.
         shadow-radius = 7; # (defaults to 12)
+
+        /* Focus */
 
         /* Fading */
           # Specify a list of conditions of windows that should not be faded.
@@ -69,6 +70,9 @@ in
           strength = 7;
             # Use fixed blur strength rather than adjusting according to window opacity
           background-fixed = true;
+          blur-background-exclude = [
+            "class_g = 'slop'"
+          ];
         };
 
         /* Wintype */

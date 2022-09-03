@@ -26,7 +26,6 @@
      chromium.enable = true;
 #     discocss.enable = true;
      dmenu.enable = true;
-     dunst.enable = true;
      lf.enable = true;
      librewolf.enable = true;
      mpv.enable = true;
@@ -41,6 +40,8 @@
     };
 
     services = {
+      dunst.enable = true;
+      flameshot.enable = true;
       picom.enable = true;
 #      redshift.enable = true;
 #      sxhkd.enable = true;
@@ -61,6 +62,7 @@
     slstatus &				    # suckless status bar
     udiskie &				    # automount device daemon
     greenclip daemon &
+#    flameshot &
 #    transmission-daemon &
 
       ### Settings ###

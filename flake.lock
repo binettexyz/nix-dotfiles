@@ -19,11 +19,11 @@
     "dwm": {
       "flake": false,
       "locked": {
-        "lastModified": 1662153207,
-        "narHash": "sha256-KLC3SwezesaRIseJHRv6eBukE7LSTUypPB0wbmNW6fw=",
+        "lastModified": 1662237383,
+        "narHash": "sha256-6zOhbrBJg7dI2KIb+LnkMfc/p3vOHajCioEvnSMOGjw=",
         "owner": "binettexyz",
         "repo": "dwm",
-        "rev": "92effc4c0cb386a9ce9c6662abc2bc40e0bfd081",
+        "rev": "b30e2f048442603aeed4ccf150c36b8a98a112a6",
         "type": "github"
       },
       "original": {

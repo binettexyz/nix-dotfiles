@@ -18,7 +18,6 @@
     ./programs/chromium
 #    ./programs/discocss
     ./programs/dmenu
-    ./programs/dunst
     ./programs/librewolf
     ./programs/lf
     ./programs/mpv
@@ -31,7 +30,9 @@
     ./programs/st
 #    ./programs/zathura
 
+    ./services/dunst
     ./services/picom
+    ./services/flameshot
 #    ./services/redshift
 #    ./services/sxhkd
 #    ./services/syncthing
