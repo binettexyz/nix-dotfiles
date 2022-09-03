@@ -8,7 +8,7 @@
   ## Custom modules ##
   modules = {
     bootloader = "grub";
-    windowsManager = "dwm";
+    windowManager = "dwm";
     services = {
       tty-login-prompt.enable = true;
     };
