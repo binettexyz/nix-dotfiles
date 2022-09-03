@@ -4,7 +4,6 @@
     ./boot
     ./core
     ./laptop
-    ./containers
     ./services
     ./desktop
 #    ./server

@@ -23,12 +23,12 @@
     };
 
     programs = {
-      chromium.enable = true;
+     chromium.enable = true;
 #     discocss.enable = true;
      dmenu.enable = true;
      dunst.enable = true;
-     librewolf.enable = true;
      lf.enable = true;
+     librewolf.enable = true;
      mpv.enable = true;
 #     mutt.enable = true;
 #     newsboat.enable = true;
@@ -54,7 +54,7 @@
     #!/bin/sh
 
       ### screen ###
-    xrandr --output DP-2 --gamma 0.8 # --set "Broadcast RGB" "Full"
+    xrandr --output DP-2 --gamma 1 # --set "Broadcast RGB" "Full"
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications

@@ -3,11 +3,11 @@
     "dmenu": {
       "flake": false,
       "locked": {
-        "lastModified": 1662132357,
-        "narHash": "sha256-Zhm7sF0n7aD2mmuqmyJg+vIruvPLFqvuxcDmYZG3RWc=",
+        "lastModified": 1662153192,
+        "narHash": "sha256-AAjRN8+xH2TLvHQLF7LPLdXa1hgjyTd5Q5McX+3/zeo=",
         "owner": "binettexyz",
         "repo": "dmenu",
-        "rev": "0d7de0e83c7f345f0a4eab546bd3e4e58101718f",
+        "rev": "b5e39acdba31207aed93f5eb1ddeb956527717e5",
         "type": "github"
       },
       "original": {
@@ -19,11 +19,11 @@
     "dwm": {
       "flake": false,
       "locked": {
-        "lastModified": 1662142124,
-        "narHash": "sha256-kRpf+x6LutLxzlXRMHDGIkQY2bUcC8LAvz2UfAiZc+s=",
+        "lastModified": 1662153207,
+        "narHash": "sha256-KLC3SwezesaRIseJHRv6eBukE7LSTUypPB0wbmNW6fw=",
         "owner": "binettexyz",
         "repo": "dwm",
-        "rev": "0b7a20ca57ddf879bb2fb7620d47de0146ae6790",
+        "rev": "92effc4c0cb386a9ce9c6662abc2bc40e0bfd081",
         "type": "github"
       },
       "original": {

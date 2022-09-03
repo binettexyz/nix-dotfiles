@@ -55,7 +55,7 @@
     #!/bin/sh
 
       ### screen ###
-    xrandr --output eDP1 --gamma 0.6 --set "Broadcast RGB" "Full"
+    xrandr --output eDP1 --gamma 1 --set "Broadcast RGB" "Full"
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications

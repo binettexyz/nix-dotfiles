@@ -2,6 +2,7 @@
 
   imports = [
     ./dwm
+    ./containers
   ];
 
 }
