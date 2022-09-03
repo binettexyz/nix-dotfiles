@@ -20,7 +20,8 @@ in
         General = {
           disabledTrayIcon = true;
           showStartupLaunchMessage = false;
-          savePath = "~/pictures/screenshots";
+          savePath = "/home/binette/pictures/screenshots";
+          savePathFixed = true;
           saveAsFileExtension = ".png";
           uiColor = "#458588";
           contrastUiColor = "#83a598";

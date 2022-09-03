@@ -76,8 +76,6 @@ in
           history_length = 20;
           dmenu = "/usr/bin/dmenu -p dunst:";
           browser = "librewolf -new-tab";
-          ignore_newline = "no";
-          history_length = 20;
 
             # Always run rule-defined scripts, even if the notification is suppressed
           always_run_script = true;
