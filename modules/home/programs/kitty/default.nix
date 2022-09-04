@@ -17,14 +17,14 @@ in
     programs.kitty = {
       enable = true;
       environment = {};
-      font = {};
       keybindings = {};
         # https://github.com/kovidgoyal/kitty-themes
       theme = "Gruvbox Material Dark Hard";
       settings = {
         font_family = "monospace";
-        font_size = 13.0;
+        font_size = "13.0";
         disable_ligatures = "never";
+        background_opacity = "0.6";
       };
     };
 };
