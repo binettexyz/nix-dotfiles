@@ -42,7 +42,6 @@
       dunst.enable = true;
       flameshot.enable = true;
       picom.enable = true;
-      redshift.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
@@ -65,7 +64,7 @@
     redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
-     xrandr --dpi 96
+    xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle

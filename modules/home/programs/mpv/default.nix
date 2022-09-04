@@ -47,47 +47,22 @@ in
 
         # Video
         # Remove the two lines bellow if playback issues
-        profile = "gpu-hq";
-        vo = "gpu";
-  #      gpu-api = "vulkan";
+        #profile = "gpu-hq";
+        #vo = "gpu";
+        gpu-api = "vulkan";
 
-        hwdec = "auto";
+        #hwdec = "auto";
+        hwdec = "false";
   #      hwdec = "nvdec-copy";
-        icc-profile-auto = "";
-
-          # https://gist.github.com/igv/
-          # https://gist.github.com/agyild/
-          # Shader / Scaler
-  #      gpu-shader-cache-dir = "~~/shaders/cache";
-  #      glsl-shader = "~~/shaders/FSR.glsl";
-  #      glsl-shader = "~~/shaders/SSimDownscaler.glsl";
-
-          # Upscaling & Processing
-        glsl-shaders-clr = "";
-          # luma upscaling
-          # note: any FSRCNNX above FSRCNNX_x2_8-0-4-1 is not worth the additional computional overhead
-        glsl-shaders = "./shaders/FSRCNNX_x2_8-0-4-1.glsl";
-        scale = "ewa_lanczos";
-          # luma downscaling
-          # note: ssimdownscaler is tuned for mitchell and downscaling=no
-        glsl-shaders-append = "./shaders/SSimDownscaler.glsl";
-        dscale = "mitchell";
-        linear-downscaling = "no";
-          # chroma upscaling and downscaling
-  #      glsl-shaders-append = "./shaders/KrigBilateral.glsl";
-  #      cscale = "mitchell";
-  #      sigmoid-upscaling = "yes";
-
-  #      scale = "ewa_lanczossharp";
-  #      dscale = "lanczos";
-  #      linear-downscaling = "no";
+        #icc-profile-auto = "";
+        dither-depth = false; # to test
 
           # Languages
         alang = "ja,jp,jpn,en,eng";
         slang = "en,eng";
 
           # osc
-        osd-font = "Fira Code"; # Sets a custom font
+        osd-font = "sans-serif"; # Sets a custom font
 
           # osc
         no-osc = "";
@@ -95,24 +70,47 @@ in
         osd-font-size = 16;
         osd-border-size = 2;
 
-          # window
-        no-border = "";
-        keep-open = "";
+        /* Window */
+        #no-border = "";
+        border = false;  # to test
+        #keep-open = "";
+        keep-open = true;  # to test
         force-window = "immediate";
+        force-seekable = true;  # to test
+        cursor-autohide = 100;  # to test
         autofit = "50%x50%";
         geometry = "90%:5%";
 
+        /* Subtitle */ # to test
+        demuxer-mkv-subtitle-preroll = true;
+        sub-font-size = 52;
+        sub-blur = 0.2;
+        sub-color = "1.0/1.0/1.0/1.0";
+        sub-margin-x = 100;
+        sub-margin-y = 50;
+        sub-shadow-color = "0.0/0.0/0.0/0.25";
+        sub-shadow-offset = 0;
+
+        /* Scaling */ # to test
+        correct-downscaling = true;
+        linear-downscaling = true;
+        linear-upscaling = true;
+        sigmoid-upscaling = true;
+        scale-antiring = 0.7;
+        dscale-antiring = 0.7;
+        cscale-antiring = 0.7;
 
           # Motion Interpolation
-        override-display-fps = 60;
-        video-sync = "display-resample";
-        interpolation = "yes";
+        #video-sync = "display-resample";
+        interpolation = true;
         tscale = "oversample"; # smoothmotion
 
           # screenshot
         screenshot-directory = "~/pictures/screenshots";
         screenshot-template = "%F-%P";
-        screenshot-jpeg-quality = 95;
+        #screenshot-jpeg-quality = 95;
+        screenshot-format = "png"; # to test
+        screenshot-sw = true; # to test
 
         save-position-on-quit = "yes"; # Saves the seekbar position on exit
       };

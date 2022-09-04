@@ -48,7 +48,7 @@ in {
         newsboat
           # audio mixer
         pulsemixer
-        #unstable.pamixer
+        pamixer
         pamixer
           # logitech device manager
 #        solaar

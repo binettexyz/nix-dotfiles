@@ -21,14 +21,14 @@
     };
 
     programs = {
-     chromium.enable = true;
+     chromium.enable = false;
 #     discocss.enable = true;
      dmenu.enable = true;
      lf.enable = true;
      librewolf.enable = true;
      mpv.enable = true;
 #     mutt.enable = true;
-#     newsboat.enable = true;
+     newsboat.enable = true;
 #     nnn.enable = true;
 #     powercord.enable = true;
      qutebrowser.enable = true;
@@ -41,7 +41,6 @@
       dunst.enable = true;
       flameshot.enable = true;
       picom.enable = true;
-      redshift.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
@@ -49,7 +48,7 @@
 
   home.packages = with pkgs; [ virt-manager tidal-hifi ];
 
-  home.file.".config/x11/xprofile".text = ''
+  home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
 
       ### screen ###
@@ -60,11 +59,11 @@
     slstatus &				    # suckless status bar
     udiskie &				    # automount device daemon
     greenclip daemon &
-#    flameshot &
+    nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
 #    transmission-daemon &
 
       ### Settings ###
-    xrandr --dpi 96
+#    xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
@@ -75,6 +74,8 @@
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+    ssh-agent dwm
   '';
 
   home.persistence."/nix/persist/home/binette" = {
@@ -88,7 +89,7 @@
     ];
 
     files = [
-      ".nvidia-settings-rc"
+      ".config/.nvidia-settings-rc"
     ];
   };
 

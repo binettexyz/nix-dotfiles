@@ -32,7 +32,6 @@
     ./services/dunst
     ./services/picom
     ./services/flameshot
-    ./services/redshift
 #    ./services/sxhkd
 #    ./services/syncthing
 #    ./services/udiskie
