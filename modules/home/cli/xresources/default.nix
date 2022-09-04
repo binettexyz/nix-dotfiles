@@ -8,49 +8,48 @@ in
   options.modules.cli.xresources = mkOption {
       description = "Add xresources theme";
       type = types.enum [ "gruvbox" "jmbi" ];
-      default = gruvbox;
+      default = "gruvbox";
   };
 
   config = mkMerge [
     (mkIf (cfg == "gruvbox") {
-      xresources.path = "/home/binette/.config/x11/.Xresources";
+      xresources.path = "/home/binette/.config/x11/xresources";
       xresources.extraConfig = ''
         *.font: monospace:size=13
         *background: #282828
         *foreground: #ebdbb2
-          ! Black + DarkGrey
+        ! Black + DarkGrey
         *color0:  #282828
         *color8:  #928374
-          ! DarkRed + Red
+        ! DarkRed + Red
         *color1:  #cc241d
         *color9:  #fb4934
-          ! DarkGreen + Green
+        ! DarkGreen + Green
         *color2:  #98971a
         *color10: #b8bb26
-          ! DarkYellow + Yellow
+        ! DarkYellow + Yellow
         *color3:  #d79921
         *color11: #fabd2f
-          ! DarkBlue + Blue
+        ! DarkBlue + Blue
         *color4:  #458588
         *color12: #83a598
-          ! DarkMagenta + Magenta
+        ! DarkMagenta + Magenta
         *color5:  #b16286
         *color13: #d3869b
-          ! DarkCyan + Cyan
+        ! DarkCyan + Cyan
         *color6:  #689d6a
         *color14: #8ec07c
-          ! LightGrey + White
+        ! LightGrey + White
         *color7:  #a89984
         *color15: #ebdbb2
       '';
     })
     (mkIf (cfg == "jmbi") {
-      xresources.path = "/home/binette/.config/x11/.Xresources";
+      xresources.path = "/home/binette/.config/x11/xresources";
       xresources.extraConfig = ''
         *.font: monospace:size=13
-        *.foreground:   #ffffff
         *.background:   #000000
-        *.cursorColor:  #ffffff
+        *.foreground:   #ffffff
           ! Black + DarkGrey
         *.color0:       #5a7260
         *.color8:       #8da691

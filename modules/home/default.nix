@@ -10,7 +10,7 @@
     ./cli/git
     ./cli/neovim
     ./cli/tmux
-#    ./cli/xdg
+    ./cli/xdg
     ./cli/xresources
     ./cli/zsh
 
@@ -32,7 +32,7 @@
     ./services/dunst
     ./services/picom
     ./services/flameshot
-#    ./services/redshift
+    ./services/redshift
 #    ./services/sxhkd
 #    ./services/syncthing
 #    ./services/udiskie

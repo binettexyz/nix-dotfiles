@@ -10,15 +10,13 @@
       enable = true;
       gaming.enable = true;
     };
-    themes = {
-      xresources = "gruvbox";
-    };
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = true;
       xdg.enable = true;
+      xresources = "gruvbox";
       zsh.enable = true;
     };
 
@@ -43,7 +41,7 @@
       dunst.enable = true;
       flameshot.enable = true;
       picom.enable = true;
-#      redshift.enable = true;
+      redshift.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;
     };

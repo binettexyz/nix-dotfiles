@@ -12,15 +12,12 @@
       gaming.enable = false;
     };
 
-    themes = {
-      xresources = "gruvbox";
-    };
-
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = true;
       xdg.enable = true;
+      xresources = "gruvbox";
       zsh.enable = true;
     };
 

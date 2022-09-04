@@ -14,15 +14,16 @@ in
   };
 
   config = mkIf (cfg.enable) {
-    xdg.userDirs = {
-      enable = true;
-      createDirectories = true;
+    xdg = {
+      userDirs = {
+        enable = true;
+        createDirectories = false;
     
-      desktop = "$HOME/desktop";
-      documents = "$HOME/documents";
-      downloads = "$HOME/downloads";
-      pictures = "$HOME/pictures";
-      videos = "$HOME/videos";
+        documents = "$HOME/documents";
+        download = "$HOME/downloads";
+        pictures = "$HOME/pictures";
+        videos = "$HOME/videos";
+      };
     };
-  };
+  };  
 }
