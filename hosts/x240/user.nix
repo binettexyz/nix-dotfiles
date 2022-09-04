@@ -11,15 +11,16 @@
       enable = true;
       gaming.enable = false;
     };
-#    desktop = {
-#      lockscreen.enable = false;
-#      xresources.enable = true;
+
+    themes = {
+      xresources = "gruvbox";
+    };
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = true;
-#     xdg.enable = true;
+      xdg.enable = true;
       zsh.enable = true;
     };
 
@@ -42,6 +43,8 @@
     };
 
     services = {
+      dunst.enable = true;
+      flameshot.enable = true;
       picom.enable = true;
 #      redshift.enable = true;
 #      sxhkd.enable = true;

@@ -14,7 +14,8 @@
       gnumake
       binutils
       killall
-#      yt-dlp
+      yt-dlp
+      htop
       fzf
         # pass
 #      pinentry
@@ -28,7 +29,6 @@
       atool # archive tool
       exa
       rsync # replace scp
-#      parted
     ];
 
 }

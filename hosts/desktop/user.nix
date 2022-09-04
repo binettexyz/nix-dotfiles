@@ -10,15 +10,15 @@
       enable = true;
       gaming.enable = true;
     };
-#    desktop = {
-#      lockscreen.enable = false;
-#      xresources.enable = true;
+    themes = {
+      xresources = "gruvbox";
+    };
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = true;
-#     xdg.enable = true;
+      xdg.enable = true;
       zsh.enable = true;
     };
 
@@ -49,7 +49,7 @@
     };
   };
 
-  home.packages = with pkgs; [ virt-manager tidal-hifi flameshot ];
+  home.packages = with pkgs; [ virt-manager tidal-hifi ];
 
   home.file.".config/x11/xprofile".text = ''
     #!/bin/sh

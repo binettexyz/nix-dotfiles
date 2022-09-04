@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.modules.services.tty-login-prompt;
 
-    c1 = "\\e[22;31m";
+    c1 = "\\e[1;36m";
   c2 = "\\e[1;33m";
   nixos = [    " ${c1}          ::::.    ${c2}':::::     ::::'          "
     " ${c1}          ':::::    ${c2}':::::.  ::::'           "

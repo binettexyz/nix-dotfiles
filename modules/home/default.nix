@@ -6,13 +6,12 @@
     (inputs.impermanence + "/home-manager.nix")
     ./packages.nix
 
-#    ./desktop/lockscreen
-#    ./desktop/xresources
 
     ./cli/git
     ./cli/neovim
     ./cli/tmux
 #    ./cli/xdg
+    ./cli/xresources
     ./cli/zsh
 
     ./programs/chromium
