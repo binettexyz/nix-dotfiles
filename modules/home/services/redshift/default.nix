@@ -14,9 +14,9 @@ in
   };
 
   config = mkIf (cfg.enable) {
-
     services.redshift = {
       enable = true;
+      package = pkgs.redshift;
       latitude = "45.35";
       longitude = "-73.30";
       dawnTime = null;

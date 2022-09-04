@@ -42,7 +42,7 @@
       dunst.enable = true;
       flameshot.enable = true;
       picom.enable = true;
-      redshift.enable = false;
+      redshift.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
