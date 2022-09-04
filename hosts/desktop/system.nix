@@ -10,6 +10,7 @@
     bootloader = "grub";
     windowManager = "dwm";
     services = {
+      greenclip.enable = true;
       tty-login-prompt.enable = true;
     };
     profiles = {

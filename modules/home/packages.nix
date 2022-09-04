@@ -36,7 +36,6 @@ in {
         unclutter-xfixes
         xbanish # Hides the mouse when using the keyboard
         dunst
-        libnotify
         xcape
           # media
         nsxiv

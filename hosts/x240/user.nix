@@ -25,7 +25,6 @@
       chromium.enable = true;
 #      discocss.enable = true;
       dmenu.enable = true;
-      dunst.enable = true;
       librewolf.enable = true;
       lf.enable = true;
       mpv.enable = true;
@@ -72,6 +71,7 @@
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
+    picom --experimental-backend &
     hsetroot -fill $HOME/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
