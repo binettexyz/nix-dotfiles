@@ -76,7 +76,7 @@ in
         #keep-open = "";
         keep-open = true;  # to test
         force-window = "immediate";
-        force-seekable = true;  # to test
+        #force-seekable = true;  # to test
         cursor-autohide = 100;  # to test
         autofit = "50%x50%";
         geometry = "90%:5%";
@@ -92,7 +92,7 @@ in
         sub-shadow-offset = 0;
 
         /* Scaling */ # to test
-        correct-downscaling = true;
+        #correct-downscaling = true;
         linear-downscaling = true;
         linear-upscaling = true;
         sigmoid-upscaling = true;
@@ -101,7 +101,7 @@ in
         cscale-antiring = 0.7;
 
           # Motion Interpolation
-        #video-sync = "display-resample";
+        video-sync = "display-resample";
         interpolation = true;
         tscale = "oversample"; # smoothmotion
 
@@ -112,7 +112,7 @@ in
         screenshot-format = "png"; # to test
         screenshot-sw = true; # to test
 
-        save-position-on-quit = "yes"; # Saves the seekbar position on exit
+        #save-position-on-quit = "yes"; # Saves the seekbar position on exit
       };
 
       profiles = {

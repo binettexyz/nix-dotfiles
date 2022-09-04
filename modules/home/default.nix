@@ -21,7 +21,7 @@
     ./programs/lf
     ./programs/mpv
 #    ./programs/mutt
-#    ./programs/newsboat
+    ./programs/newsboat
 #    ./programs/nnn
 #    ./programs/powercord
     ./programs/qutebrowser
