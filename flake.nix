@@ -7,10 +7,10 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#    nur = {
+#      url = "github:nix-community/NUR";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
 
 #    discord-overlay = {
 #      url = "github:InternetUnexplorer/discord-overlay";
@@ -36,7 +36,7 @@
   outputs = {
     self,
     nixpkgs,
-    nur,
+#    nur,
     home-manager,
     impermanence,
     dwm,
@@ -65,7 +65,7 @@
               users.binette = (./. + "/hosts/${hostname}/user.nix");
             };
             nixpkgs.overlays = [
-              nur.overlay
+#              nur.overlay
             ];
           }
         ];
