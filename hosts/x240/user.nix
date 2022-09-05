@@ -25,7 +25,6 @@
       chromium.enable = true;
 #      discocss.enable = true;
       dmenu.enable = true;
-      kitty.enable = true;
       librewolf.enable = true;
       lf.enable = true;
       mpv.enable = true;
