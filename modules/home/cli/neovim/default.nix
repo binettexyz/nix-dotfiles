@@ -16,63 +16,63 @@ in
   config = mkIf (cfg.enable) {
     programs.neovim = {
       enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        gruvbox-material
+#        vim-nix
+        vifm-vim
+        vimwiki
+        vimagit
+        rainbow
+        nvim-web-devicons
+        # auto-pairs # or coc-pairs
+        nerdtree
+        vim-airline
+        colorizer
+        vim-latex-live-preview
+        vim-orgmode
+        vim-polyglot
+  
+        # coc
+        coc-clangd
+        coc-python
+        coc-prettier
+        coc-pairs
+      ];
 
       coc = {
         enable = true;
-        pluginConfig = ''
-          nmap <silent> <space><space> :<C-u>call CocAction('doHover')<cr>
-          " go back from definition is C-O
-          nmap <silent> <space>d <Plug>(coc-definition)
-          nmap <silent> <space>r <Plug>(coc-references)
-          nmap <silent> <space>n <Plug>(coc-rename)
-          nmap <silent> <space>f <Plug>(coc-format)
+        pluginConfig = lib.strings.concatStringsSep "\n" [
+            # use <tab> for trigger completion and navigate to the next complete item:
+          ''
+            function! CheckBackspace() abort
+              let col = col('.') - 1
+              return !col || getline('.')[col - 1]  =~# '\s'
+            endfunction
 
-          function! CheckBackspace() abort
-            let col = col('.') - 1
-            return !col || getline('.')[col - 1]  =~# '\s'
-          endfunction
+            inoremap <silent><expr> <Tab>
+              \ coc#pum#visible() ? coc#pum#next(1) :
+              \ CheckBackspace() ? "\<Tab>" :
+              \ coc#refresh()
+          ''
+            # Use <Tab> and <S-Tab> to naviguate the completion list:
+          ''
+            inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+            inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+          ''
+        ];
 
-          " Use <Tab> and <S-Tab> to navigate the completion list
-          inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ CheckBackspace() ? "\<TAB>" :
-                \ coc#refresh()
-          inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-          let g:coc_user_config = {
-            \"suggest.completionItemKindLabels": {
-              \"class": "\uf0e8",
-              \"color": "\ue22b",
-              \"constant": "\uf8ff",
-              \"default": "\uf29c",
-              \"enum": "\uf435",
-              \"enumMember": "\uf02b",
-              \"event": "\ufacd",
-              \"field": "\uf93d",
-              \"file": "\uf471",
-              \"folder": "\uf115",
-              \"function": "\uf794",
-              \"interface": "\ufa52",
-              \"keyword": "\uf893",
-              \"method": "\uf6a6",
-              \"operator": "\uf915",
-              \"property": "\ufab6",
-              \"reference": "\uf87a",
-              \"snippet": "\uf64d",
-              \"struct": "\ufb44",
-              \"text": "\ue612",
-              \"typeParameter": "\uf278",
-              \"unit": "\uf475",
-              \"value": "\uf8a3",
-              \"variable": "\uf71b"
-            \}
-          \}
-        '';
-
-        # $XDG_CONFIG_HOME/nvim/coc-settings.json
+          # https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
+          # ~/.config/nvim/coc-settings.json
         settings = {
+          "suggest.noselect" = true;
+          "suggest.enablePreview" = true;
+          "suggest.enablePreselect" = false;
           "languageserver" = {
-            # https://gitlab.com/jD91mZM2/nix-lsp
+              # https://gitlab.com/jD91mZM2/nix-lsp
             "nix" = {
               "command" = "rnix-lsp";
               "filetypes" = [
@@ -83,34 +83,6 @@ in
         };
       };
 
-      plugins = with pkgs.vimPlugins; [
-        gruvbox-material
-        vim-nix
-        vifm-vim
-        vimwiki
-        vimagit
-        rainbow
-        nvim-web-devicons
-        # auto-pairs # or coc-pairs
-        nerdtree
-        vim-airline
-  #      vim-css-color
-        colorizer
-        vim-latex-live-preview
-        vim-orgmode
-        vim-polyglot
-  
-        # coc
-        coc-json
-        coc-yaml
-        coc-html
-        coc-clangd
-        coc-python
-        coc-tsserver
-        coc-eslint
-        coc-pairs # or auto-pairs
-        coc-prettier
-      ];
   
       extraConfig = lib.strings.concatStringsSep "\n" [
         ''
