@@ -2,4 +2,4 @@
 /modules/home/programs/lf/etc
 result
 /flake.nix
-/.github/flake.nix
+/.github/assets/flake.lock
