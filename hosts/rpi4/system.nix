@@ -48,7 +48,7 @@
 
   ## Networking ##
   networking = {
-    hostName = "nas";
+    hostName = "rpi4";
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     wireless.interfaces = [ "wlan0" ];
