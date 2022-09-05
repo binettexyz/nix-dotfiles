@@ -8,7 +8,7 @@
 
   ## Custom modules ##
   modules = {
-    bootloader = "generic-extlinux";
+    bootloader = "rpi4";
     services = {
       tty-login-prompt.enable = true;
     };
@@ -32,6 +32,10 @@
       radarr.enable = true;
       sonarr.enable = true;
       transmission.enable = true;
+    };
+    services = {
+      adGuardHome.enable = true;
+      miniflux.enable = true;
     };
   };
 

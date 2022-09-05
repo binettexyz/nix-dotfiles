@@ -30,7 +30,7 @@
 #     mutt.enable = true;
      newsboat.enable = true;
 #     nnn.enable = true;
-#     powercord.enable = true;
+     powercord.enable = true;
      qutebrowser.enable = true;
      slstatus = "desktop";
      st.enable = true;

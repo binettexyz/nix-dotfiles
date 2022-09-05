@@ -9,15 +9,13 @@
 
   modules = {
     packages.enable = false;
-#    desktop = {
-#      lockscreen.enable = false;
-#      xresources.enable = true;
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = false;
-#     xdg.enable = true;
+      xdg.enable = true;
+      xresources = null;
       zsh.enable = true;
     };
 

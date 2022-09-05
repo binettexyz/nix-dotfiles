@@ -23,7 +23,7 @@
 #    ./programs/mutt
     ./programs/newsboat
 #    ./programs/nnn
-#    ./programs/powercord
+    ./programs/powercord
     ./programs/qutebrowser
     ./programs/slstatus
     ./programs/st

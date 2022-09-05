@@ -20,11 +20,12 @@ in
       backend = "glx";
 
       /* Opacity */
-      activeOpacity = 1.0; # (0.0 - 1.0 )
-      inactiveOpacity = 0.8; # (0.0 - 1.0 )
+      activeOpacity = 0.7; # (0.0 - 1.0 )
+      inactiveOpacity = 0.6; # (0.0 - 1.0 )
       opacityRules = [
         "100:class_g = 'Navigator'"
         "100:class_g = 'Dunst'"
+        "100:class_g = 'librewolf'"
       ];
 
       /* Fading */
@@ -72,6 +73,7 @@ in
           background-fixed = true;
           blur-background-exclude = [
             "class_g = 'slop'"
+            "class_g = 'librewolf'"
           ];
         };
 

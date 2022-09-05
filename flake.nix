@@ -29,7 +29,16 @@
     slstatus-desktop = { url = "github:binettexyz/slstatus/desktop"; flake = false; };
     dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
 
+      # Discord stuff
     powercord-overlay.url = "github:LavaDesu/powercord-overlay";
+    disc-betterReplies = { url = "github:cyyynthia/better-replies"; flake = false; };
+    disc-doubleClickVC = { url = "github:discord-modifications/double-click-vc"; flake = false; };
+    disc-muteNewGuild = { url = "github:RazerMoon/muteNewGuild"; flake = false; };
+    disc-popoutFix = { url = "github:Nexure/PowerCord-Popout-Fix"; flake = false; };
+    disc-screenshareCrack = { url = "github:discord-modifications/screenshare-crack"; flake = false; };
+    disc-unindent = { url = "github:VenPlugs/Unindent"; flake = false; };
+    disc-silentTyping = { url = "github:svby/powercord-silenttyping"; flake = false; };
+    disc-gruvbox = { url = "github:binettexyz/discord-gruvbox"; flake = false; };
   };
 
     # System's Output
@@ -65,6 +74,7 @@
               users.binette = (./. + "/hosts/${hostname}/user.nix");
             };
             nixpkgs.overlays = [
+              powercord-overlay.overlay
 #              nur.overlay
             ];
           }

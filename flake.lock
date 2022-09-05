@@ -1,5 +1,133 @@
 {
   "nodes": {
+    "disc-betterReplies": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647695491,
+        "narHash": "sha256-Wru9PZIDl9yyhbdCK96jTMu/vDtCT3puke496ORSlv4=",
+        "owner": "cyyynthia",
+        "repo": "better-replies",
+        "rev": "c3e5465dd761599ed00f77cc4f6e47fef397102b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cyyynthia",
+        "repo": "better-replies",
+        "type": "github"
+      }
+    },
+    "disc-doubleClickVC": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649870457,
+        "narHash": "sha256-HwraJQ1rjKcck+HxcFtfsvLpww1DjOFSUZYwcqpppLo=",
+        "owner": "discord-modifications",
+        "repo": "double-click-vc",
+        "rev": "c6be846075ac7c1135e62a270a155ab405916a37",
+        "type": "github"
+      },
+      "original": {
+        "owner": "discord-modifications",
+        "repo": "double-click-vc",
+        "type": "github"
+      }
+    },
+    "disc-gruvbox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661366473,
+        "narHash": "sha256-vuhncPMUdxdH/nLjuV8JPmfHHcHprMfXYWeotJR3yAg=",
+        "owner": "binettexyz",
+        "repo": "discord-gruvbox",
+        "rev": "157b97520b99481affcbae7be02ba6514c5d5e79",
+        "type": "github"
+      },
+      "original": {
+        "owner": "binettexyz",
+        "repo": "discord-gruvbox",
+        "type": "github"
+      }
+    },
+    "disc-muteNewGuild": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1624122573,
+        "narHash": "sha256-vWZt2dBfPEw3hxLtYo3a15I/TLXFRSxy19OHdKctxfs=",
+        "owner": "RazerMoon",
+        "repo": "muteNewGuild",
+        "rev": "dc843236c17fa6e43f689320d1b07d3eecd7d28a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RazerMoon",
+        "repo": "muteNewGuild",
+        "type": "github"
+      }
+    },
+    "disc-popoutFix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1609018964,
+        "narHash": "sha256-wfuTvKeBEzaNlc/5CuqbKwbfWHoomd2KG78a7JfYQ7c=",
+        "owner": "Nexure",
+        "repo": "PowerCord-Popout-Fix",
+        "rev": "54c85f6f25bf8183846ab976160638cdafa86b51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Nexure",
+        "repo": "PowerCord-Popout-Fix",
+        "type": "github"
+      }
+    },
+    "disc-screenshareCrack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648684327,
+        "narHash": "sha256-meIHQQvV8l1vS8OjtkPnkCkQ96xElGmbbi6HmSxaBr4=",
+        "owner": "discord-modifications",
+        "repo": "screenshare-crack",
+        "rev": "03df88815b93f2a54b6905a7215cf8a41b090c56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "discord-modifications",
+        "repo": "screenshare-crack",
+        "type": "github"
+      }
+    },
+    "disc-silentTyping": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1558707600,
+        "narHash": "sha256-dixV74yUG5Egv05OqOtXJMdkqEmxSQpThYhaynrV7SA=",
+        "owner": "svby",
+        "repo": "powercord-silenttyping",
+        "rev": "751f9a78aa06d6a8a6a80b0e2ab3e85baeedea40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "svby",
+        "repo": "powercord-silenttyping",
+        "type": "github"
+      }
+    },
+    "disc-unindent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1622506264,
+        "narHash": "sha256-Cyf28MplOiROqwlJ745CQ/PUMH0TcE/pRxN7Y58i9SA=",
+        "owner": "VenPlugs",
+        "repo": "Unindent",
+        "rev": "006ea845dff3e54454e6f55256083813ffc83c32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VenPlugs",
+        "repo": "Unindent",
+        "type": "github"
+      }
+    },
     "dmenu": {
       "flake": false,
       "locked": {
@@ -137,6 +265,14 @@
     },
     "root": {
       "inputs": {
+        "disc-betterReplies": "disc-betterReplies",
+        "disc-doubleClickVC": "disc-doubleClickVC",
+        "disc-gruvbox": "disc-gruvbox",
+        "disc-muteNewGuild": "disc-muteNewGuild",
+        "disc-popoutFix": "disc-popoutFix",
+        "disc-screenshareCrack": "disc-screenshareCrack",
+        "disc-silentTyping": "disc-silentTyping",
+        "disc-unindent": "disc-unindent",
         "dmenu": "dmenu",
         "dwm": "dwm",
         "home-manager": "home-manager",
