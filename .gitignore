@@ -1,3 +1,5 @@
 /.github/source
 /modules/home/programs/lf/etc
 result
+/flake.nix
+/.github/flake.nix
