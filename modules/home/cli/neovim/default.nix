@@ -97,6 +97,7 @@ in
   #      vim-css-color
         colorizer
         vim-latex-live-preview
+        vim-orgmode
         vim-polyglot
   
         # coc

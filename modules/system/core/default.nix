@@ -110,7 +110,9 @@ in
             ];
             monospace = [
 #              "FiraCode Nerd Font Mono"
-              "Iosevka Term"
+#              "Iosevka Term"
+              "FantasqueSansMono Nerd Font Mono"
+#              "mononoki Nerd Font Mono"
             ];
           };
         };
@@ -129,6 +131,7 @@ in
               "FiraCode"
               "JetBrainsMono"
               "Mononoki"
+              "FantasqueSansMono"
             ];
           })
             # LaTeX
