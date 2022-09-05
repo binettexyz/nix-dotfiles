@@ -18,7 +18,6 @@
 #    ./programs/discocss
     ./programs/dmenu
     ./programs/librewolf
-    ./programs/kitty
     ./programs/lf
     ./programs/mpv
 #    ./programs/mutt

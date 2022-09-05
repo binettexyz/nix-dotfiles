@@ -15,7 +15,7 @@ in
     (mkIf (cfg == "gruvbox") {
       xresources.path = "/home/binette/.config/x11/xresources";
       xresources.extraConfig = ''
-        *.font: monospace:size=13
+        *.font: monospace:size=14
         *background: #282828
         *foreground: #ebdbb2
         ! Black + DarkGrey

@@ -200,11 +200,11 @@
     "st": {
       "flake": false,
       "locked": {
-        "lastModified": 1662151799,
-        "narHash": "sha256-7M5OAF6luM7r7/9c5XsdS/8k5Ttk5uJR4+rZIIwv6Bs=",
+        "lastModified": 1662343823,
+        "narHash": "sha256-sQkUzrL5VkGmDACSm4Gwll4rUCZ4j/EiAJPoI2dMag0=",
         "owner": "binettexyz",
         "repo": "st",
-        "rev": "c2b184fc9934045f2df1b102d91c17ba7f89dbf7",
+        "rev": "1e6784c526b23512557911c286ebd628df707b27",
         "type": "github"
       },
       "original": {
