@@ -5,6 +5,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
+
     impermanence.url = "github:nix-community/impermanence";
 
 #    nur = {
@@ -45,6 +47,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixos-hardware,
 #    nur,
     home-manager,
     impermanence,

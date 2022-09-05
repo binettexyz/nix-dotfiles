@@ -1,7 +1,7 @@
 { pkgs, system, config, lib, modulesPath, ... }: {
 
   imports = [
-    "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/936e4649098d6a5e0762058cb7687be1b2d90550.tar.gz" }/raspberry-pi/4"
+    (inputs.nixos-hardware + "/raspberry-pi/4")
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
   ];
