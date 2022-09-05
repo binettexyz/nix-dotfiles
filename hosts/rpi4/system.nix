@@ -10,10 +10,9 @@
   modules = {
     bootloader = "rpi4";
     services = {
-      tty-login-prompt.enable = true;
+      tty-login-prompt.enable = false;
     };
     profiles = {
-      server.enable = true;
       core = {
         enable = true;
         bluetooth.enable = false;

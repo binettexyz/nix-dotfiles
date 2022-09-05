@@ -196,6 +196,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662092548,
+        "narHash": "sha256-nmAbyJ5+DBXcNJ2Rcy/Gx84maqtLdr6xEe82+AXCaY8=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "786633331724f36967853b98d9100b5cfaa4d798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1662019588,
@@ -277,6 +293,7 @@
         "dwm": "dwm",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "powercord-overlay": "powercord-overlay",
         "slstatus-desktop": "slstatus-desktop",
