@@ -16,7 +16,7 @@
       server.enable = true;
       core = {
         enable = true;
-        bluetooth.enable = true;
+        bluetooth.enable = false;
         wifi.enable = true;
         print.enable = false;
         ssd.enable = false;
