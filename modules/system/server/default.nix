@@ -29,7 +29,7 @@ in
       };
       services = {
         adGuardHome.enable = true;
-        miniflux.enable = true;
+        miniflux.enable = false;
       };
     };
   
