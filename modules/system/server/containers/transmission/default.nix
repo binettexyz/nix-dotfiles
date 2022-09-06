@@ -49,15 +49,10 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "transmission";
 
-        users.groups.nas = {
-          name = "users";
-          members = [ "transmission" ];
-        };
-  
         services.transmission = {
           enable = true;
           user = "transmission";
-          group = "transmission";
+          group = "users";
           openFirewall = true;
           settings = {
             blocklist-enabled = true;
