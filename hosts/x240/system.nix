@@ -8,7 +8,7 @@
   ## Custom modules ##
   modules = {
     bootloader = "grub";
-    windowManager = "";
+    windowManager = null;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
