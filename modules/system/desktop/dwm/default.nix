@@ -8,7 +8,7 @@ in
 {
   options.modules.windowManager = mkOption {
       description = "Enable DWM";
-      type = types.enum [ "dwm" ];
+      type = types.enum [ "dwm" "null" ];
       default = null;
   };
 
