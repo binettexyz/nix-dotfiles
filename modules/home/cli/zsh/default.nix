@@ -60,6 +60,8 @@ in
         dots = "/nix/persist/home/binette/.dotfiles";
         nix = "/etc/nixos";
         movies = "/media/nas/videos/movies";
+        tv = "/media/nas/videos/tv";
+        animes = "/media/nas/videos/animes";
       };
   
         # history settings
@@ -74,8 +76,9 @@ in
       shellAliases = {
           # Nixos related aliases.
         nixsh = "nix-shell -p";
-        nixbuild = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd; notify-send '❄️ NixOS' 'Rebuild complete!'";
-        nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Update complete!'";
+        nixswitch = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd; notify-send ' NixOS' 'Rebuild complete!'";
+        nixbuild = "pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd; notify-send ' NixOS' 'Building complete!'";
+        nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Flake update complete!'";
       };
   
       envExtra = ''
