@@ -30,7 +30,6 @@ in
   
         # mounts
       bindMounts = {
-        };        
         "/media/downloads/torrents" = {
           hostPath = "/media/downloads/torrents";
           isReadOnly = false;
@@ -77,5 +76,6 @@ in
         };
       };
     };
+  };
 
 }
