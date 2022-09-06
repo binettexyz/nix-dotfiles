@@ -103,6 +103,13 @@
   };
   swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];
 
+  environment.persistence."/nix/persist" = {
+    hideMounts = true;
+    directories = [
+      "/mounts"
+    ];
+  };
+
   ## Performance stuff ##
   powerManagement.cpuFreqGovernor = "powersave";
 

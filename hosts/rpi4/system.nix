@@ -10,7 +10,7 @@
   modules = {
     bootloader = "rpi4";
     services = {
-      tty-login-prompt.enable = false;
+      tty-login-prompt.enable = true;
     };
     profiles = {
       core = {
@@ -22,19 +22,6 @@
         virtmanager.enable = false;
         impermanence.enable = true;
       };
-    };
-    containers = {
-      bazarr.enable = true;
-      deluge.enable = false;
-      jackett.enable = true;
-      plex.enable = true;
-      radarr.enable = true;
-      sonarr.enable = true;
-      transmission.enable = true;
-    };
-    services = {
-      adGuardHome.enable = true;
-      miniflux.enable = true;
     };
   };
 
@@ -51,10 +38,6 @@
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     wireless.interfaces = [ "wlan0" ];
-    nat = {
-      enable = true;
-      externalInterface = "wlan0";
-    };
   };
 
     # kernel modules/packages
@@ -71,11 +54,6 @@
   };
 
   ## FileSystem ##
-  fileSystems."/nix/persist/media" = {
-    device = "/dev/disk/by-label/exthdd";
-    fsType = "ntfs";
-    options = [ "rw" "uid=1000" "gid=100" ];
-  };
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   ## Performance stuff ##
@@ -83,15 +61,7 @@
 
   ##  Impermanence ##
   environment.persistence."/nix/persist" = {
-    directories = [ "/media" "/home" ];
-  };
-
-  ## NFS ##
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-    /media  100.110.26.48(rw,insecure,no_subtree_check) 100.91.89.2(rw,insecure,no_subtree_check)
-    '';
+    directories = [ "/home" ];
   };
 
 }

@@ -71,6 +71,13 @@
   };
   swapDevices = [ ];
 
+  environment.persistence."/nix/persist" = {
+    hideMounts = true;
+    directories = [
+      "/mounts"
+    ];
+  };
+
   ## Performance stuff ##
   powerManagement.cpuFreqGovernor = "conservative";
   programs.gamemode.enable = true;

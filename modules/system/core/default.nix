@@ -416,7 +416,6 @@ in
           "/etc/nixos"
           "/var/lib"
           "/var/log"
-          "/mounts"
           "/root"
           "/srv"
         ];
