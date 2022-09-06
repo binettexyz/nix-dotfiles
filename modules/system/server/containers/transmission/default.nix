@@ -48,6 +48,11 @@ in
   
         system.stateVersion = "22.11";
         networking.hostName = "transmission";
+
+        users.groups.nas = {
+          name = "users";
+          members = [ "transmission" ];
+        };
   
         services.transmission = {
           enable = true;
