@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.modules.profiles.core;
+  cfg = config.modules.profiles.server;
 in
 {
   imports = [ ./containers ];

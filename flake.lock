@@ -337,11 +337,11 @@
     "st": {
       "flake": false,
       "locked": {
-        "lastModified": 1662344395,
-        "narHash": "sha256-puTcTGE7nb2HopATCB6S5I7WiQK/XUHkYnkCzxL+uWc=",
+        "lastModified": 1662431481,
+        "narHash": "sha256-VNJLxaQhcNGdriYtMc4e7ZFCVo1uQeIVsn+DaN3biOw=",
         "owner": "binettexyz",
         "repo": "st",
-        "rev": "aea9b415eb41215e3d30a614afcdd730253eb576",
+        "rev": "0a4d30417dd05c2123fe1b761a83677998e99523",
         "type": "github"
       },
       "original": {
