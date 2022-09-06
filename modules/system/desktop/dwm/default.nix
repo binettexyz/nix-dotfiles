@@ -14,7 +14,7 @@ in
 
   config = mkIf (cfg == "dwm") {
       # enable suckless window manager
-    services.xserver.windowManager.dwm.enable =true;
+    services.xserver.windowManager.dwm.enable = true;
     environment.systemPackages = with pkgs; [ dwm-head ];
 };
 
