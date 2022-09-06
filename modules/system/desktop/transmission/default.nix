@@ -30,8 +30,8 @@ in
   
         # mounts
       bindMounts = {
-        "/home/binette/downloads/torrents" = {
-          hostPath = "/home/binette/downloads/torrents";
+        "/var/lib/transmission" = {
+          hostPath = "/var/lib/transmission";
           isReadOnly = false;
         };
       };
@@ -51,30 +51,30 @@ in
   
         services.transmission = {
           enable = true;
+          home = "/var/lib/transmission";
           user = "transmission";
           group = "transmission";
           openFirewall = true;
           settings = {
-            download-dir = "/home/binette/downloads/torrents";
             blocklist-enabled = true;
             blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
-            encryption = 1;
             incomplete-dir-enabled = true;
-            incomplete-dir = "/home/binette/downloads/torrents/.incomplete";
+            watch-dir-enabled = true;
+            encryption = 1;
             message-level = 1;
             peer-port = 50778;
             peer-port-random-high = 65535;
             peer-port-random-low = 49152;
             peer-port-random-on-start = true;
+            rpc-enable = true;
             rpc-bind-address = "0.0.0.0";
             rpc-port = 9091;
-            rpc-enable = true;
             rpc-authentication-required = false;
             rpc-username = "binette";
             rpc-password = "cd";
+            rpc-whitelist-enabled = false;
             umask = 18;
             utp-enabled = true;
-            rpc-whitelist-enabled = false;
           };
         };
       };
