@@ -60,7 +60,7 @@ in
         services.sonarr = {
           enable = true;
           user = "sonarr";
-          group = "sonarr";
+          group = "users";
           openFirewall = true;
         };
   
