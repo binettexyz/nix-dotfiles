@@ -2,12 +2,12 @@
 with lib;
 
 let
-  cfg = config.modules.services.adguardhome;
+  cfg = config.modules.services.adGuardHome;
 in
 {
-  options.modules.services.adguardhome = {
+  options.modules.services.adGuardHome = {
     enable = mkOption {
-      description = "Enable adguardhome service";
+      description = "Enable AdGuardHome service";
       type = types.bool;
       default = false;
     };
