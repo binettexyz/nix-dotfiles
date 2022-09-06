@@ -6,7 +6,7 @@
     ./plex
     ./radarr
     ./sonarr
-#    ./transmission
+    ./transmission
   ];
 
 }
