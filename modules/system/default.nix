@@ -6,7 +6,7 @@
     ./laptop
     ./services
     ./desktop
-#    ./server
+    ./server
     ./gaming
   ];
 }
