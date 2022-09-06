@@ -9,6 +9,7 @@
   modules = {
     bootloader = "grub";
     windowManager = "dwm";
+    transmission.enable = true;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
