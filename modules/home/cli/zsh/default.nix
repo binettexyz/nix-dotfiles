@@ -56,6 +56,7 @@ in
         pics = "$HOME/pictures";
         dl = "$HOME/downloads";
         git = "$HOME/.git";
+        repos = "$HOME/.git/repos";
         dots = "/nix/persist/home/binette/.dotfiles";
         nix = "/etc/nixos";
       };

@@ -5,6 +5,8 @@ let
   cfg = config.modules.profiles.core;
 in
 {
+  imports = [ ./containers ];
+
   options.modules.profiles.server = {
     enable = mkOption {
       description = "Enable server options";
@@ -14,7 +16,6 @@ in
   };
 
   config = mkIf (cfg.enable) {
-    imports = [ ./containers ];
 
     modules = {
       containers = {
