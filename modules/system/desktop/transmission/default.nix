@@ -2,10 +2,10 @@
 with lib;
 
 let
-  cfg = config.modules.containers.transmission;
+  cfg = config.modules.transmission;
 in
 {
-  options.modules.containers.transmission = {
+  options.modules.transmission = {
     enable = mkOption {
       description = "Enable transmission services";
       type = types.bool;
@@ -30,8 +30,8 @@ in
   
         # mounts
       bindMounts = {
-        "/media/downloads/torrents" = {
-          hostPath = "/media/downloads/torrents";
+        "/home/binette/downloads/torrents" = {
+          hostPath = "/home/binette/downloads/torrents";
           isReadOnly = false;
         };
       };
@@ -55,12 +55,12 @@ in
           group = "transmission";
           openFirewall = true;
           settings = {
-            download-dir = "/media/downloads/torrents";
+            download-dir = "/home/binette/downloads/torrents";
             blocklist-enabled = true;
             blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
             encryption = 1;
-            incomplete-dir = "/media/downloads/torrents/.incomplete";
             incomplete-dir-enabled = true;
+            incomplete-dir = "/home/binette/downloads/torrents/.incomplete";
             message-level = 1;
             peer-port = 50778;
             peer-port-random-high = 65535;
@@ -69,7 +69,7 @@ in
             rpc-bind-address = "0.0.0.0";
             rpc-port = 9091;
             rpc-enable = true;
-            rpc-authentication-required = true;
+            rpc-authentication-required = false;
             rpc-username = "binette";
             rpc-password = "cd";
             umask = 18;
