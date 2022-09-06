@@ -59,6 +59,7 @@ in
         repos = "$HOME/.git/repos";
         dots = "/nix/persist/home/binette/.dotfiles";
         nix = "/etc/nixos";
+        movies = "/media/nas/videos/movies";
       };
   
         # history settings

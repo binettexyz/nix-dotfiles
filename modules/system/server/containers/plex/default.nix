@@ -49,20 +49,12 @@ in
   			}
   		];
   
-      config = { config, pkgs, ... }:
-      let
-  
-        unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
-          config = config.nixpkgs.config;
-        };
-  
-      in {
-  
+      config = { config, pkgs, ... }: {
         system.stateVersion = "22.11";
         networking.hostName = "plex";
   
         nixpkgs.config.allowUnfree = true;
-        environment.systemPackages = with pkgs; [ unstable.plex ];
+        environment.systemPackages = with pkgs; [ plex ];
   
         services.plex = {
           enable = true;
