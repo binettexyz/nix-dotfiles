@@ -8,7 +8,7 @@ in
 {
   options.modules.windowManager = mkOption {
       description = "Enable DWM";
-      type = types.enum [ "dwm" "null" ];
+      type = with types; nullOr (enum [ "dwm" ]);
       default = null;
   };
 
@@ -16,6 +16,6 @@ in
       # enable suckless window manager
     services.xserver.windowManager.dwm.enable = true;
     environment.systemPackages = with pkgs; [ dwm-head ];
-};
+  };
 
 }
