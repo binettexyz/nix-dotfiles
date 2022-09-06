@@ -47,6 +47,7 @@
         ".cache/qutebrowser"
 
         ".config/BraveSoftware"
+        ".config/coc"
         ".config/dunst"
         ".config/git"
         ".config/lf"
@@ -56,6 +57,7 @@
         ".config/nixpkgs"
         ".config/qutebrowser"
         ".config/shell"
+        ".config/tremc"
         ".config/x11"
 
         ".local/bin"

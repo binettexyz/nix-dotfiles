@@ -7,6 +7,7 @@
     ./radarr
     ./sonarr
     ./transmission
+    ./jellyfin
   ];
 
 }

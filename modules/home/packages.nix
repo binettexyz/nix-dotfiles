@@ -50,6 +50,8 @@ in {
         pulsemixer
         pamixer
         pamixer
+          # transmission
+        tremc
           # logitech device manager
 #        solaar
     
