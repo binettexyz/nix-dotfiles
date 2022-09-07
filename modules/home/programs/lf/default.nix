@@ -163,9 +163,10 @@ in
   #    imagemagick
   #    poppler
   #    wkhtmltopdf
-  
-  
     ];
+
+    home.file.".config/lf/cleaner".source = ./etc/cleaner;
+    home.file.".config/lf/preview".source = ./etc/preview;
   };
 
 }

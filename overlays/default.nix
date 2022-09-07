@@ -26,6 +26,7 @@
           sha256 = "sha256:1lsx32v085g50rg933is3ww20yysri4mh96sz3mw372iqxzwscrz";
         };
       });
+      Anime4k = prev.callPackage ../modules/pkgs/anime4k { };
     })
   ];
 }
