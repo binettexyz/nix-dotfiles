@@ -61,8 +61,8 @@ in
         vd-lavc-dr = "yes";
 
           # Enable HW decoder; "false" for software decoding
-          # "auto" "vaapi" "nvdec-copy"
-        hwdec = "nvdec-copy";
+          # "auto" "vaapi" "nvdec-copy" "vdpau"
+        hwdec = "vaapi";
 
         /* ---Audio--- */
 
@@ -134,7 +134,7 @@ in
         /* ---Misc--- */
         hr-seek-framedrop = "no";
         force-seekable = "";
-        no-input-default-bindings = "";
+        #no-input-default-bindings = "";
         no-taskbar-progress = "";
         reset-on-next-file = "pause";
         quiet = "";
