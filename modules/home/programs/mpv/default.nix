@@ -45,45 +45,44 @@ in
 
         /* --General-- */
 
-          # Audio
-        volume = 100;
-        volume-max = 100;
-
-          # Video
+          # Default profile
+          # Can cause performance problems with some GPU drivers and GPUs.
         profile = "gpu-hq";
+          # Uses GPU-accelerated video output by default
         vo = "gpu";
 
-        #gpu-api = "vulkan";
+        /* ===== REMOVE THE ABOVE FIVE LINES AND RESAVE IF YOU ENCOUNTER PLAYBACK ISSUES AFTER ===== */
+
+          # Volkan settings
+        gpu-api = "vulkan";
         vulkan-async-compute = "yes";
         vulkan-async-transfer = "yes";
         vulkan-queue-count = 1;
         vd-lavc-dr = "yes";
 
-          # https://gist.github.com/igv/
-          # https://gist.github.com/agyild/
-          # scaler / shader
-        gpu-shader-cache-dir = "./shaders/cache";
-#        glsl-shader=
-        glsl-shader = [ 
-          "./shaders/FSR.glsl"
-          "./shaders/SSimDownscaler.glsl"
-#          "./shaders/SSimSuperRes.glsl"
-        ];
-        
-
-
-#        hwdec = "auto";
-#        hwdec = "false";
+          # Enable HW decoder; "false" for software decoding
+          # "auto" "vaapi" "nvdec-copy"
         hwdec = "nvdec-copy";
-        #icc-profile-auto = "";
-        dither-depth = false; # to test
 
-          # Languages
+        /* ---Audio--- */
+
+          # Set default audio volume to 70%
+        volume = 70;
+        volume-max = 100;
+
+        /* ---Languages--- */
+
         alang = "ja,jp,jpn,en,eng";
         slang = "en,eng";
 
-          # osc
-        osd-font = "sans-serif"; # Sets a custom font
+        /* ---Screenshot--- */
+
+        screenshot-directory = "~/pictures/screenshots";
+        screenshot-template = "%F-%P";
+        screenshot-format = "png"; # to test
+        screenshot-sw = true; # to test
+
+        /* ---UI--- */
 
           # osc
         no-osc = "";
@@ -91,18 +90,21 @@ in
         osd-font-size = 16;
         osd-border-size = 2;
 
-        /* Window */
-        #no-border = "";
-        border = false;  # to test
-        #keep-open = "";
-        keep-open = true;  # to test
+          # Hide the window title bar
+        no-border = "";
+          # Color log messages on terminal
+        msg-color = "yes";
+          # displays a progress bar on the terminal
+        term-osd-bar = "yes";
+          # autohide the curser after 1s
+        cursor-autohide = 1000;
+        keep-open = "";
         force-window = "immediate";
-        #force-seekable = true;  # to test
-        cursor-autohide = 100;  # to test
         autofit = "50%x50%";
         geometry = "90%:5%";
 
-        /* Subtitle */ # to test
+        /* ---Subtitles--- */
+
         demuxer-mkv-subtitle-preroll = true;
         sub-font-size = 52;
         sub-blur = 0.2;
@@ -112,36 +114,43 @@ in
         sub-shadow-color = "0.0/0.0/0.0/0.25";
         sub-shadow-offset = 0;
 
-        /* Scaling */ # to test
-        #correct-downscaling = true;
-        linear-downscaling = true;
-        linear-upscaling = true;
-        sigmoid-upscaling = true;
-        scale-antiring = 0.7;
-        dscale-antiring = 0.7;
-        cscale-antiring = 0.7;
+        /* ---Scaling--- */
+#        linear-downscaling = true;
+#        linear-upscaling = true;
+#        sigmoid-upscaling = true;
+#        scale-antiring = 0.7;
+#        dscale-antiring = 0.7;
+#        cscale-antiring = 0.7;
 
-          # Motion Interpolation
+          # https://gist.github.com/igv/
+          # https://gist.github.com/agyild/
+          # scaler / shader
+        gpu-shader-cache-dir = "./shaders/cache";
+        #glsl-shader="~~/shaders/SSimSuperRes.glsl"
+        glsl-shader = [ "./shaders/FSR.glsl" "./shaders/SSimDownscaler.glsl" ];
+
+        scale = "ewa_lanczossharp";
+        dscale = "lanczos";
+        linear-downscaling = "no";
+
+        /* ---Motion Interpolation--- */
         video-sync = "display-resample";
         interpolation = true;
         tscale = "oversample"; # smoothmotion
 
-          # screenshot
-        screenshot-directory = "~/pictures/screenshots";
-        screenshot-template = "%F-%P";
-        #screenshot-jpeg-quality = 95;
-        screenshot-format = "png"; # to test
-        screenshot-sw = true; # to test
-
-       # save-position-on-quit = "yes"; # Saves the seekbar position on exit
+        /* ---Misc--- */
+        hr-seek-framedrop = "no";
+        force-seekable = "";
+        no-input-default-bindings = "";
+        no-taskbar-progress = "";
+        reset-on-next-file = "pause";
+        msg-level = "input=error,demux=error";
+        #quiet = "";
       };
 
       profiles = {
       };
-      scripts = with pkgs.mpvScripts; [ ];
     };
-
-    home.file.".config/mpv/shaders".source = ./etc/shaders;
   };
 
 }
