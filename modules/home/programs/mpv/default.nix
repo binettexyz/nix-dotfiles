@@ -140,6 +140,8 @@ in
       };
       scripts = with pkgs.mpvScripts; [ ];
     };
+
+    home.file.".config/mpv/shaders".source = ./etc/shaders;
   };
 
 }
