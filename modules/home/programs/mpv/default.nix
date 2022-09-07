@@ -115,19 +115,12 @@ in
         sub-shadow-offset = 0;
 
         /* ---Scaling--- */
-#        linear-downscaling = true;
-#        linear-upscaling = true;
-#        sigmoid-upscaling = true;
-#        scale-antiring = 0.7;
-#        dscale-antiring = 0.7;
-#        cscale-antiring = 0.7;
-
           # https://gist.github.com/igv/
           # https://gist.github.com/agyild/
           # scaler / shader
-        gpu-shader-cache-dir = "./shaders/cache";
+        gpu-shader-cache-dir = "~~/shaders/cache";
         #glsl-shader="~~/shaders/SSimSuperRes.glsl"
-        glsl-shader = [ "./shaders/FSR.glsl" "./shaders/SSimDownscaler.glsl" ];
+        glsl-shader = [ "~~/shaders/FSR.glsl" "~~/shaders/SSimDownscaler.glsl" ];
 
         scale = "ewa_lanczossharp";
         dscale = "lanczos";
@@ -144,13 +137,68 @@ in
         no-input-default-bindings = "";
         no-taskbar-progress = "";
         reset-on-next-file = "pause";
-        msg-level = "input=error,demux=error";
-        #quiet = "";
+        quiet = "";
       };
 
       profiles = {
+
+        /* ---File Type Profiles--- */
+
+          # GIF Files
+        "extension.gif" = {
+          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
+          profile-desc = "gif";
+          cache = "no";
+          no-pause = "";
+          loop-file = "yes";
+        };
+
+          # WebM Files
+        "extension.webm" = {
+          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
+          profile-desc = "webm";
+          no-pause = "";
+          loop-file = "yes";
+        };
+
+        /* ---Protocol Specific Configuration--- */
+
+        "full-hd60" = { # 1080p @ 60fps (progressive ATSC)
+          profile-desc = "full-hd60";
+          profile-cond = "((width ==1920 and height ==1080) and not p['video-frame-info/interlaced'] and p['estimated-vf-fps']>=31)";
+            # apply all luma and chroma upscaling and downscaling settings
+          interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
+            # no deinterlacer required because progressive
+        };
+
+        "full-hd30" = { # 1080p @ 24-30fps (NextGen TV/ATSC 3.0, progressive Blu-ray)
+          profile-desc = "full-hd30";
+          profile-cond = "((width ==1920 and height ==1080) and not p['video-frame-info/interlaced'] and p['estimated-vf-fps']<31)";
+            # apply all luma and chroma upscaling and downscaling settings
+            # apply motion interpolation
+            # no deinterlacer required because progressive
+        };
+
+        "full-hd-interlaced" = { # 1080i @ 24-30fps (HDTV, interlaced Blu-rays)
+          profile-desc = "full-hd-interlaced";
+          profile-cond = "((width ==1920 and height ==1080) and p['video-frame-info/interlaced'] and p['estimated-vf-fps']<31)";
+            # apply all luma and chroma upscaling and downscaling settings
+            # apply motion interpolation
+          vf = "bwdif"; # apply FFMPEG's bwdif deinterlacer
+        };
+
+        "hd" = { # 720p @ 60 fps (HDTV, Blu-ray - progressive)
+          profile-desc = "hd";
+          profile-cond = "(width ==1280 and height ==720)";
+            # apply all luma and chroma upscaling and downscaling settings
+          interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
+            # no deinterlacer required because progressive
+        };
       };
     };
+
+    home.file.".config/mpv/shaders".source = ./etc/shaders;
+
   };
 
 }
