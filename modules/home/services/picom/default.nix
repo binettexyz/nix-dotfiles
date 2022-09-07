@@ -26,6 +26,7 @@ in
         "100:class_g = 'Navigator'"
         "100:class_g = 'Dunst'"
         "100:class_g = 'librewolf'"
+        "100:class_g = 'mpv'"
       ];
 
       /* Fading */
@@ -74,6 +75,7 @@ in
           blur-background-exclude = [
             "class_g = 'slop'"
             "class_g = 'librewolf'"
+            "100:class_g = 'mpv'"
           ];
         };
 

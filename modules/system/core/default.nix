@@ -380,8 +380,7 @@ in
         networks = {
             # home
           "Hal" = {
-            priority = 1;
-  	          # psk = "2954Jardin";
+            priority = 2;
 	          pskRaw = "af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26";
           };
         };
