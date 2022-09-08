@@ -1,6 +1,6 @@
 { pkgs, lib, system, nixpkgs-unstable, ... }:
 let
-  overlay-unstable = self: super: {
+  unstable = self: super: {
     unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
@@ -10,7 +10,7 @@ let
 in {
 
   nixpkgs.overlays = [
-    overlay-unstable
+    unstable
     (final: prev: {
 #      dwm = prev.dwm.overrideAttrs (old: {
 #        src = builtins.fetchTarball {
