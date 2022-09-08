@@ -19,7 +19,7 @@
       core = {
         enable = true;
         bluetooth.enable = true;
-        wifi.enable = true;
+        wifi.enable = false;
         print.enable = true;
         ssd.enable = true;
         virtmanager.enable = false;
