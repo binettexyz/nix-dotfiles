@@ -15,7 +15,7 @@ in
 
   config = mkIf (cfg.enable) {
     networking.nat.internalInterfaces = [ "ve-plex" ];
-    networking.firewall.allowedTCPPorts = [ 32400 80 443 ];
+    networking.firewall.allowedTCPPorts = [ 32400 ];
   
     containers.plex = {
       autoStart = true;
@@ -54,7 +54,7 @@ in
         services.plex = {
           enable = true;
           user = "plex";
-          group = "users";
+          group = "plex";
           openFirewall = true;
         };
   
