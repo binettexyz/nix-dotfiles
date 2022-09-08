@@ -46,6 +46,7 @@ in
   
         services.jellyfin= {
           enable = true;
+          package = pkgs.unstable.jellyfin;
           user = "jellyfin";
           group = "jellyfin";
           openFirewall = true;
