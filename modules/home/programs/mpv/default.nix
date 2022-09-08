@@ -125,13 +125,15 @@ in
         sub-shadow-offset = 0;
 
         /* ---Scaling--- */
+
+        gpu-shader-cache-dir = "~~/cache";
+
           # https://gist.github.com/igv/
           # https://gist.github.com/agyild/
           # scaler / shader
-#        gpu-shader-cache-dir = "~~/cache";
-#        #glsl-shader="~~/shaders/SSimSuperRes.glsl"
+        #glsl-shader="~~/shaders/SSimSuperRes.glsl"
 #        glsl-shader = [ "~~/shaders/FSR.glsl" "~~/shaders/SSimDownscaler.glsl" ];
-#
+
 #        scale = "ewa_lanczossharp";
 #        dscale = "lanczos";
 #        linear-downscaling = "no";
@@ -172,36 +174,15 @@ in
         tscale = "oversample"; # smoothmotion
 
         /* ---Misc--- */
-#        hr-seek-framedrop = "no";
-#        force-seekable = "";
+        hr-seek-framedrop = "no";
+        force-seekable = "";
         #no-input-default-bindings = "";
         no-taskbar-progress = "";
         reset-on-next-file = "pause";
-#        quiet = "";
+        #quiet = "";
       };
 
       profiles = {
-
-        /* ---File Type Profiles--- */
-
-          # GIF Files
-        "extension.gif" = {
-          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
-          profile-desc = "gif";
-          cache = "no";
-          no-pause = "";
-          loop-file = "yes";
-        };
-
-          # WebM Files
-        "extension.webm" = {
-          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
-          profile-desc = "webm";
-          no-pause = "";
-          loop-file = "yes";
-        };
-
-        /* ---Protocol Specific Configuration--- */
 
          "4k60" = {
             profile-desc = "4k60";
@@ -218,17 +199,17 @@ in
           };
 
 
-#          "4k30" = {  # 2160p @ 24-30fps (3840x2160 UHDTV)
-#            profile-cond = "((width ==3840 and height ==2160) and p['estimated-vf-fps']<31)";
-#            #deband = "yes"; # necessary to avoid blue screen with KrigBilateral.glsl
-#            deband = "no"; # turn off debanding because presume wide color gamut
-#            #UHD videos are already 4K so no luma upscaling is needed
-#            #UHD videos are YUV420 so chroma upscaling is still needed
-#            glsl-shaders-clr = "";
-#            glsl-shaders = "~/.config/mpv/shaders/KrigBilateral.glsl"; # enable if your hardware can support it
-#              # apply motion interpolation
-#              # no deinterlacer required because progressive
-#          };
+          "4k30" = {  # 2160p @ 24-30fps (3840x2160 UHDTV)
+            profile-cond = "((width ==3840 and height ==2160) and p['estimated-vf-fps']<31)";
+            #deband = "yes"; # necessary to avoid blue screen with KrigBilateral.glsl
+            deband = "no"; # turn off debanding because presume wide color gamut
+            #UHD videos are already 4K so no luma upscaling is needed
+            #UHD videos are YUV420 so chroma upscaling is still needed
+            glsl-shaders-clr = "";
+            glsl-shaders = "~/.config/mpv/shaders/KrigBilateral.glsl"; # enable if your hardware can support it
+              # apply motion interpolation
+              # no deinterlacer required because progressive
+          };
 
         "full-hd60" = { # 1080p @ 60fps (progressive ATSC)
           profile-desc = "full-hd60";
@@ -261,6 +242,27 @@ in
           interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
             # no deinterlacer required because progressive
         };
+
+        /* ---File Type Profiles--- */
+
+          # GIF Files
+        "extension.gif" = {
+          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
+          profile-desc = "gif";
+          cache = "no";
+          no-pause = "";
+          loop-file = "yes";
+        };
+
+          # WebM Files
+        "extension.webm" = {
+          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
+          profile-desc = "webm";
+          no-pause = "";
+          loop-file = "yes";
+        };
+
+        /* ---Protocol Specific Configuration--- */
 
         "protocol.http" = {
           hls-bitrate = "max"; # use max quality for HLS streams
