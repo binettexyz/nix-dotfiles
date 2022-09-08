@@ -19,14 +19,9 @@ in
   
     containers.plex = {
       autoStart = true;
-        # starts fresh every time it is updated or reloaded
-  #    ephemeral = true;
   
         # networking & port forwarding
       privateNetwork = false;
-  #    hostBridge = "br0";
-  #    hostAddress = "192.168.100.12";
-  #    localAddress = "192.168.100.22";
   
         # mounts
       bindMounts = {
@@ -59,7 +54,7 @@ in
         services.plex = {
           enable = true;
           user = "plex";
-          group = "plex";
+          group = "users";
           openFirewall = true;
         };
   
