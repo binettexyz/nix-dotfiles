@@ -381,15 +381,15 @@ in
             # home
           "Hal" = {
             priority = 0;
-            authProtocols = "WPA-PSK";
-	          pskRaw = "af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26";
+            auth = ''
+	            psk=af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26
+            '';
           };
             # home (Extender)
           "Hal_EXT" = {
             priority = 0;
-	          pskRaw = "723f7b995aae04f46f4cebfab286b31c8db116015f0a26fe20bc4695d4c01af9";
-            authProtocols = "WPA-PSK";
             auth = ''
+	            psk=723f7b995aae04f46f4cebfab286b31c8db116015f0a26fe20bc4695d4c01af9
               proto=RSN
               pairwise=CCMP
               auth_alg=OPEN
