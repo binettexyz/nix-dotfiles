@@ -8,7 +8,7 @@
 
   modules = {
     packages.enable = false;
-    impermanence.enable = true;
+    impermanence.enable = false;
 
     cli = {
       git.enable = true;
