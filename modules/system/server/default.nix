@@ -50,7 +50,8 @@ in
     fileSystems."/nix/persist/media" = {
       device = "/dev/disk/by-label/exthdd";
       fsType = "ntfs";
-      options = [ "rw" "uid=1000" "gid=100" ];
+      options = [ "rw" "uid=1000" "gid=100" "x-systemd.automount" "noauto" ];
+      
     };
   
     environment.persistence."/nix/persist" = {
