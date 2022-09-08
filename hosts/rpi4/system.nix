@@ -13,6 +13,7 @@
       tty-login-prompt.enable = true;
     };
     profiles = {
+      server.enable = true;
       core = {
         enable = true;
         bluetooth.enable = false;
@@ -57,7 +58,7 @@
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   ## Performance stuff ##
-  powerManagement.cpuFreqGovernor = lib.mkForce "powersaver";
+  powerManagement.cpuFreqGovernor = lib.mkForce "conservative";
 
   ##  Impermanence ##
   environment.persistence."/nix/persist" = {

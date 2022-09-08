@@ -7,7 +7,7 @@ in
 {
   options.modules.cli.xresources = mkOption {
       description = "Add xresources theme";
-      type = types.enum [ "gruvbox" "jmbi" ];
+      type = with types; nullOr (enum [ "gruvbox" "jmbi" ]);
       default = "gruvbox";
   };
 
