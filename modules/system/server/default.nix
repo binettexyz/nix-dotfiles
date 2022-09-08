@@ -22,8 +22,8 @@ in
         bazarr.enable = true;
         deluge.enable = false;
         jackett.enable = true;
-        plex.enable = false;
-        jellyfin.enable = false;
+        plex.enable = true;
+        jellyfin.enable = true;
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
