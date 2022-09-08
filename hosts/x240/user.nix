@@ -40,7 +40,7 @@
 
     services = {
       dunst.enable = true;
-      flameshot.enable = true;
+      flameshot.enable = false;
       picom.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;

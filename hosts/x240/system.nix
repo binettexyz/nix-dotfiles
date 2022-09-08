@@ -18,9 +18,9 @@
       server.enable = true;
       core = {
         enable = true;
-        bluetooth.enable = true;
+        bluetooth.enable = false;
         wifi.enable = false;
-        print.enable = true;
+        print.enable =false;
         ssd.enable = true;
         virtmanager.enable = false;
         impermanence.enable = true;
