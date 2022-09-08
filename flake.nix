@@ -95,6 +95,9 @@
       t440p = mkSystem inputs.nixpkgs "x86_64-linux" "t440p";
       rpi4 = mkSystem inputs.nixpkgs "aarch64" "rpi4";
     };
+
+    packages."x86_64-linux"."anime4k" = import ./modules/pkgs/anime4k { inherit (nixpkgs.legacyPackages."x86_64-linux") stdenvNoCC unzip fetchurl; };
   }; 
+
 }
 

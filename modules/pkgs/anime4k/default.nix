@@ -4,7 +4,7 @@
 ,
 }:
 stdenvNoCC.mkDerivation rec {
-  pname = "Anime4k";
+  pname = "anime4k";
   version = "4.0.1";
 
   src = fetchurl {

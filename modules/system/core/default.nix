@@ -229,7 +229,7 @@ in
       networking = {
         enableIPv6 = false;
         useDHCP = lib.mkDefault false;
-        networkmanager.enable = false;
+        networkmanager.enable = true;
         nameservers = [ "94.140.14.14" "94.140.15.15" ];
         firewall = {
           enable = lib.mkForce true;

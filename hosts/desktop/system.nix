@@ -19,7 +19,7 @@
       core = {
         enable = true;
         bluetooth.enable = true;
-        wifi.enable = true;
+        wifi.enable = false;
         print.enable = true;
         ssd.enable = true;
         virtmanager.enable = false;
@@ -64,8 +64,8 @@
       fsType = "ext4";
     };
     "/mounts/nas" = {
-#      device = "100.110.26.48:/media";
-      device = "100.71.254.90:/media";
+      device = "100.110.26.48:/media";
+#      device = "100.71.254.90:/media";
       fsType = "nfs";
         # don't freeze system if mount point not available on boot
       options = [ "x-systemd.automount" "noauto" ];
