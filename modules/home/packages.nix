@@ -40,6 +40,7 @@ in {
           # media
         nsxiv
         playerctl
+        jellyfin-media-player
           # text
         zathura
         mupdf
@@ -52,6 +53,7 @@ in {
         pamixer
           # transmission
         tremc
+
           # logitech device manager
 #        solaar
     

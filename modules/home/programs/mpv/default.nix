@@ -83,7 +83,7 @@ in
         /* ---Languages--- */
 
         alang = "ja,jp,jpn,en,eng";
-        slang = "en,eng";
+        slang = "en,eng,enUS";
 
         /* ---Screenshot--- */
 
@@ -95,10 +95,10 @@ in
         /* ---UI--- */
 
           # osc
-        no-osc = "";
-        no-osd-bar = "";
-        osd-font-size = 16;
-        osd-border-size = 2;
+#        no-osc = "";
+#        no-osd-bar = "";
+#        osd-font-size = 16;
+#        osd-border-size = 2;
 
           # Hide the window title bar
         no-border = "";
