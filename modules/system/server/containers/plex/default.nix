@@ -5,6 +5,8 @@ let
   cfg = config.modules.containers.plex;
 in
 {
+
+
   options.modules.containers.plex = {
     enable = mkOption {
       description = "Enable plex services";
@@ -14,6 +16,8 @@ in
   };
 
   config = mkIf (cfg.enable) {
+
+
     networking.nat.internalInterfaces = [ "ve-plex" ];
     networking.firewall.allowedTCPPorts = [ 32400 ];
   
@@ -57,6 +61,7 @@ in
           group = "plex";
           openFirewall = true;
         };
+
   
         systemd.tmpfiles.rules = [
           "d /var/lib/plex 700 plex plex -"
