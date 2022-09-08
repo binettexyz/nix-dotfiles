@@ -3,17 +3,18 @@
 
 {
   imports = [
-    (inputs.impermanence + "/home-manager.nix")
+    ../../modules/home/default.nix 
   ];
 
   modules = {
     packages.enable = false;
+    impermanence.enable = true;
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = false;
-      xdg.enable = true;
+      xdg.enable = false;
       xresources = null;
       zsh.enable = true;
     };
