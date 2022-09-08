@@ -9,7 +9,7 @@ in
 {
   options.modules.programs.slstatus = mkOption {
       description = "Enable slstatus bar";
-      type = types.enum [ "desktop" "laptop" ];
+      type = with types; nullOr (enum [ "desktop" "laptop" ]);
       default = null;
   };
 
