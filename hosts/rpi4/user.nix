@@ -21,6 +21,7 @@
 
     programs = {
      lf.enable = true;
+     qutebrowser.enable = true;
     };
   };
 
