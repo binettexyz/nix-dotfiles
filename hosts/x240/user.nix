@@ -7,6 +7,7 @@
   ];
 
   modules = {
+    impermanence.enable = true;
     packages = {
       enable = true;
       gaming.enable = false;
@@ -49,7 +50,7 @@
 
   home.packages = with pkgs; [ zoom-us ];
 
-  home.file.".config/x11/xprofile".text = ''
+  home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
 
       ### screen ###
@@ -75,6 +76,8 @@
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+    ssh-agent dwm
   '';
 
 }

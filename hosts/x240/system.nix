@@ -15,7 +15,7 @@
     };
     profiles = {
       laptop.enable = true;
-      server.enable = true;
+      server.enable = false;
       core = {
         enable = true;
         bluetooth.enable = false;
