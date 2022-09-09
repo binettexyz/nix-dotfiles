@@ -23,12 +23,12 @@ in {
           allowOther = true;
           directories = [
             ".cache/BraveSoftware"
-#            ".cache/Jellyfin Media Player"
+            ".cache/Jellyfin Media Player"
             ".cache/librewolf"
             ".cache/qutebrowser"
       
             ".config/BraveSoftware"
-#            ".config/jellyfin.org"
+            ".config/jellyfin.org"
             ".config/mutt"
 #            ".config/nixpkgs"
             ".config/shell"
@@ -38,8 +38,8 @@ in {
             ".local/share/applications"
             ".local/share/cargo"
             ".local/share/gnupg"
-#            ".local/share/jellyfinmediaplayer"
-#            ".local/share/Jellyfin Media Player"
+            ".local/share/jellyfinmediaplayer"
+            ".local/share/Jellyfin Media Player"
             ".local/share/password-store"
             ".local/share/Ripcord"
             ".local/share/xorg"
