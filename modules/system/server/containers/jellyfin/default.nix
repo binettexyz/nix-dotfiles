@@ -40,9 +40,16 @@ in
   			}
   		];
   
-      config = { config, pkgs, ... }: {
+      config = { config, pkgs, ... }:
+      let
+        unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
+          config = config.nixpkgs.config;
+        };
+      in {
         system.stateVersion = "22.11";
         networking.hostName = "jellyfin";
+
+        environment.systemPackages = [ pkgs.unstable.jellyfin ];
   
         services.jellyfin= {
           enable = true;
