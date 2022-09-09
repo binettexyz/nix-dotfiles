@@ -23,7 +23,7 @@ in
         deluge.enable = false;
         jackett.enable = true;
         plex.enable = false;
-        jellyfin.enable = false;
+        jellyfin.enable = true;
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
