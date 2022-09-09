@@ -49,7 +49,14 @@ in
 
         "r" = "async screenshot";
         "Shift+r" = "async screenshot video";
+
+          # Pro tip: Use `BACKSPACE` to stop fast-forwarding immediately.
+        ")" = "script-binding fastforward/speedup"; # Make playback faster
+        "(" = "script-binding fastforward/slowdown"; # Reduce speed
+
       } // anime4kInputs;
+
+      scripts = with pkgs.mpvScripts; [ sponsorblock ];
 
       config = {
 
@@ -88,7 +95,7 @@ in
         /* ---Screenshot--- */
 
         screenshot-directory = "~/pictures/screenshots";
-        #screenshot-template = "%F-%P";
+        screenshot-template = "%F-%P";
         screenshot-format = "png"; # to test
         screenshot-sw = true; # to test
 
@@ -281,6 +288,9 @@ in
     };
 
     home.file.".config/mpv/shaders".source = ./etc/shaders;
+    home.file.".config/mpv/scripts".source = ./etc/scripts;
+    home.file.".config/mpv/script-opts".source = ./etc/script-opts;
+    home.file.".config/mpv/binary".source = ./etc/binary;
 
   };
 

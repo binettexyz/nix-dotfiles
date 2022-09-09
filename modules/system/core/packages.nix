@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
         # sys
       # TODO: pwgen cryptsetup
+      python3Full
       perl
       bat # cat clone with syntax highlighting
       cron
