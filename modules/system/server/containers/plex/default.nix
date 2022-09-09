@@ -3,9 +3,6 @@ with lib;
 
 let
   cfg = config.modules.containers.plex;
-  unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
-    config = config.nixpkgs.config;
-  };
 in
 {
 
@@ -51,7 +48,12 @@ in
   			}
   		];
   
-      config = { config, pkgs, ... }: {
+      config = { config, pkgs, ... }:
+      let
+        unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
+          config = config.nixpkgs.config;
+        };
+      in {
         system.stateVersion = "22.11";
         networking.hostName = "plex";
   
