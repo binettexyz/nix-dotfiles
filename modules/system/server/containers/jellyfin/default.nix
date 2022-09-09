@@ -49,7 +49,7 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "jellyfin";
 
-        environment.systemPackages = [ pkgs.unstable.jellyfin ];
+        environment.systemPackages = with pkgs; [ unstable.jellyfin ];
   
         services.jellyfin= {
           enable = true;
