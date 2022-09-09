@@ -28,6 +28,8 @@ in
         "100:class_g = 'librewolf'"
         "100:class_g = 'mpv'"
         "100:class_g = 'brave-browser'"
+        "100:class_g = 'jellyfinmediaplayer'"
+        "100:class_g = 'discord'"
       ];
 
       /* Fading */
@@ -78,6 +80,8 @@ in
             "class_g = 'librewolf'"
             "class_g = 'mpv'"
             "class_g = 'brave-browser'"
+            "class_g = 'jellyfinmediaplayer'"
+            "class_g = 'discord'"
           ];
         };
 
