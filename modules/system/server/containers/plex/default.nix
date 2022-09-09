@@ -3,6 +3,9 @@ with lib;
 
 let
   cfg = config.modules.containers.plex;
+  unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz") {
+    config = config.nixpkgs.config;
+  };
 in
 {
 
@@ -53,6 +56,7 @@ in
         networking.hostName = "plex";
   
         nixpkgs.config.allowUnfree = true;
+        environment.systemPackages = [ pkgs.unstable.plex ];
   
         services.plex = {
           enable = true;
