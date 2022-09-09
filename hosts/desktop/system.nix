@@ -37,7 +37,7 @@
 
   ## Networking ##
   networking = {
-    hostName = "desktop";
+#    hostName = "desktop";
     interfaces.wlo1.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
     wireless = {

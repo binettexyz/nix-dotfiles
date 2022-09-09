@@ -88,7 +88,7 @@ in
         /* ---Screenshot--- */
 
         screenshot-directory = "~/pictures/screenshots";
-        screenshot-template = "%F-%P";
+        #screenshot-template = "%F-%P";
         screenshot-format = "png"; # to test
         screenshot-sw = true; # to test
 

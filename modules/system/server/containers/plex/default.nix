@@ -53,7 +53,6 @@ in
         networking.hostName = "plex";
   
         nixpkgs.config.allowUnfree = true;
-        environment.systemPackages = with pkgs; [ unstable.plex ];
   
         services.plex = {
           enable = true;

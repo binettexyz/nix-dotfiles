@@ -4,8 +4,7 @@
   /* --- System's Inputs--- */
 
   inputs = {
-#    nixpkgs.url = "github:NixOS/nixpkgs/master";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
 
@@ -53,13 +52,6 @@
     system = "x86_64-linux"; # current system
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     lib = nixpkgs.lib;
-    overlay-unstable = self: super: {
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-        config.allowBroken = true;
-      };
-    };
 
       # Credit: https://github.com/sioodmy/dotfiles/blob/main/flake.nix
     mkSystem = pkgs: system: hostname:
@@ -92,10 +84,10 @@
 
     nixosConfigurations = {
         #                               Architecture   Hostname
-      desktop = mkSystem inputs.nixpkgs "x86_64-linux" "desktop";
-      x240 = mkSystem inputs.nixpkgs "x86_64-linux" "x240";
-      t440p = mkSystem inputs.nixpkgs "x86_64-linux" "t440p";
-      rpi4 = mkSystem inputs.nixpkgs "aarch64-linux" "rpi4";
+      desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "desktop";
+      x240 = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "x240";
+      t440p = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "t440p";
+      rpi4 = mkSystem inputs.nixpkgs-unstable "aarch64-linux" "rpi4";
     };
 
     #packages."x86_64-linux"."anime4k" = import ./modules/pkgs/anime4k { inherit (nixpkgs.legacyPackages."x86_64-linux") stdenvNoCC unzip fetchurl; };

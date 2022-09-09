@@ -9,6 +9,7 @@
   ## Custom modules ##
   modules = {
     bootloader = "rpi4";
+    windowManager = "dwm";
     services = {
       tty-login-prompt.enable = true;
     };

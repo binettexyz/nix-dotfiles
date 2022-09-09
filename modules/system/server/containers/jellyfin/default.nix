@@ -43,7 +43,6 @@ in
       config = { config, pkgs, ... }: {
         system.stateVersion = "22.11";
         networking.hostName = "jellyfin";
-        environment.systemPackages = with pkgs; [ unstable.jellyfin ];
   
         services.jellyfin= {
           enable = true;
