@@ -56,7 +56,7 @@ in
 
       } // anime4kInputs;
 
-      scripts = with pkgs.mpvScripts; [ sponsorblock ];
+#      scripts = with pkgs.mpvScripts; [ sponsorblock ];
 
       config = {
 
@@ -186,7 +186,7 @@ in
         #no-input-default-bindings = "";
         no-taskbar-progress = "";
         reset-on-next-file = "pause";
-        #quiet = "";
+        quiet = "";
       };
 
       profiles = {

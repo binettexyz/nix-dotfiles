@@ -33,6 +33,9 @@ in
         "privacy.clearOnShutdown.cookies" = false;
       };
     };
+
+    home.packages = with pkgs; [ ff2mpv ];
+
   };
 
 }

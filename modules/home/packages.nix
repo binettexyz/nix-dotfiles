@@ -40,7 +40,8 @@ in {
           # media
         nsxiv
         playerctl
-        jellyfin-media-player
+        jellyfin-mpv-shim
+        trackma
           # text
         zathura
         mupdf

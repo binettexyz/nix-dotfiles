@@ -11,6 +11,7 @@ in
       type = types.bool;
       default = false;
     };
+  };
 
     config = mkIf (cfg.enable) {
       hardware.nvidia.modesetting.enable = true;
@@ -24,6 +25,6 @@ in
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
     };
-  };
 
 }
+
