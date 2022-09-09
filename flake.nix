@@ -41,10 +41,8 @@
     nixpkgs,
     nixpkgs-unstable,
     nixos-hardware,
-#    nur,
     home-manager,
     impermanence,
-    dwm,
     powercord-overlay,
     ...
   }@inputs: let
