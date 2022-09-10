@@ -6,7 +6,6 @@
   ];
 
   modules = {
-    impermanence.enable = true;
     packages = {
       enable = true;
       gaming.enable = true;
@@ -25,7 +24,7 @@
      chromium.enable = true;
      dmenu.enable = true;
      lf.enable = true;
-     librewolf.enable = false;
+     librewolf.enable = true;
      mpv.enable = true;
 #     mutt.enable = true;
      newsboat.enable = true;
