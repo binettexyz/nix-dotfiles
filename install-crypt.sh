@@ -21,17 +21,17 @@ cryptsetup luksFormat $PART_TWO
 cryptsetup open --type luks $PART_TWO lvm
 
   # Create two logical volumes
-pvcreate /dev/mapper/lvm
-vgcreate vg /dev/mapper/lvm
+pvcreate ${dev}2
+vgcreate vg ${dev}2
 
 if [ "$swap" == "on" ] then;
-    lvcreate -L 16G -n swap vg
+    lvcreate -L 16G vg -n swap
     mkswap -L swap /dev/vg/swap
     swapon /dev/vg/swap
 else
 fi
 
-lvcreate -l 100%FREE -n nix vg
+lvcreate -l 100% vg -n nix
 
   # Format the partitions
 mkfs.vfat -n boot ${dev}1
