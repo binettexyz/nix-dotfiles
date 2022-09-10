@@ -41,6 +41,7 @@ in {
         nsxiv
         playerctl
         jellyfin-mpv-shim
+        jellyfin-media-player
         trackma
           # text
         zathura

@@ -9,7 +9,6 @@
 
   modules = {
     packages.enable = false;
-    impermanence.enable = false;
 
     cli = {
       git.enable = true;
@@ -26,20 +25,20 @@
     };
   };
 
-  home.persistence = {
-    "/nix/persist/home/binette" = {
-      removePrefixDirectory = false;
-      allowOther = true;
-      directories = [
-        ".zplug"
-        ".local/share/xorg"
-        ".ssh"
-        ".gnupg"
-      ];
-      files = [
-        ".local/share/history"
-      ];
-    };
-  };
+#  home.persistence = {
+#    "/nix/persist/home/binette" = {
+#      removePrefixDirectory = false;
+#      allowOther = true;
+#      directories = [
+#        ".zplug"
+#        ".local/share/xorg"
+#        ".ssh"
+#        ".gnupg"
+#      ];
+#      files = [
+#        ".local/share/history"
+#      ];
+#    };
+#  };
 
 }
