@@ -68,11 +68,11 @@
 
   ## Networking ##
   networking = {
-    hostName = "x240";
-    interfaces.wlan0.useDHCP = true;
+    hostName = "t440p";
+    interfaces.wlp3s0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
     wireless = {
-      interfaces =  [ "wlan0" ];
+      interfaces =  [ "wlp3s0" ];
     };
   };
 
@@ -84,7 +84,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [];
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sr_mod" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ "i915" "acpi_call" ];
     };
   };
@@ -102,7 +102,7 @@
       options = [ "x-systemd.automount" "noauto" ];
     };
   };
-  swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
@@ -112,7 +112,7 @@
   };
 
   ## Performance stuff ##
-  powerManagement.cpuFreqGovernor = "powersave";
+  powerManagement.cpuFreqGovernor = "performance";
 
   ## Screen resolution ##
   services.xserver = {
@@ -121,11 +121,11 @@
         output = "eDP1";
         primary = true;
         monitorConfig = ''
-          Modeline "1368x768_60.11"   85.50  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
-          Option "PreferredMode" "1366x768_60.11"
+          Modeline "1366x768_60.00"   85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+          Option "PreferredMode" "1366x768_60.00"
           Option "Position" "0 0"
-          DisplaySize 276 156
         '';
+          #DisplaySize 276 156
       }
     ];
   };

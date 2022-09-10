@@ -4,8 +4,6 @@
   home.stateVersion = "22.05";
   imports = [
     ./packages.nix
-    ./persistence.nix
-
 
     ./cli/git
     ./cli/neovim

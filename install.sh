@@ -3,7 +3,7 @@ set -e
 
 # Replace with your device
 dev=/dev/sdx
-swap=on
+crypt=off
 
   ### Partitioning ###
 
@@ -14,6 +14,12 @@ parted -s ${dev} mkpart primary ext4 501MiB 100%
 parted -s ${dev} set 1 boot on
 parted -s ${dev} name 1 boot
 parted -s ${dev} name 1 nix
+
+if [ $crypt == "off" ]; then
+      # Setup the encrypted LUKS partition and open it:
+    cryptsetup luksFormat ${dev}2
+    cryptsetup open --type luks ${dev}2 lvm
+fi
 
   # Create two logical volumes
 pvcreate ${dev}2

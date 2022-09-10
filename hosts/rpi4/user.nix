@@ -4,6 +4,7 @@
 {
   imports = [
     ../../modules/home/default.nix 
+    (inputs.impermanence + "/home-manager.nix")
   ];
 
   modules = {
@@ -22,6 +23,22 @@
     programs = {
      lf.enable = true;
      qutebrowser.enable = true;
+    };
+  };
+
+  home.persistence = {
+    "/nix/persist/home/binette" = {
+      removePrefixDirectory = false;
+      allowOther = true;
+      directories = [
+        ".zplug"
+        ".local/share/xorg"
+        ".ssh"
+        ".gnupg"
+      ];
+      files = [
+        ".local/share/history"
+      ];
     };
   };
 

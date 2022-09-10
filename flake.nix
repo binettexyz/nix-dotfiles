@@ -81,11 +81,15 @@
     /* ---Defining Systems--- */
 
     nixosConfigurations = {
-        #                               Architecture   Hostname
-      desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "desktop";
-      x240 = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "x240";
-      t440p = mkSystem inputs.nixpkgs-unstable "x86_64-linux" "t440p";
-      rpi4 = mkSystem inputs.nixpkgs-unstable "aarch64-linux" "rpi4";
+                                              /* Architecture    Hostname */
+        # Workstation
+      desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux"  "desktop";
+        # Portable Laptop
+      x240 = mkSystem inputs.nixpkgs-unstable    "x86_64-linux"  "x240";
+        # Desktop Laptop
+      t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
+        # Server
+      rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
     };
 
     #packages."x86_64-linux"."anime4k" = import ./modules/pkgs/anime4k { inherit (nixpkgs.legacyPackages."x86_64-linux") stdenvNoCC unzip fetchurl; };

@@ -102,7 +102,7 @@
       options = [ "x-systemd.automount" "noauto" ];
     };
   };
-  swapDevices = [{ device = "/dev/disk/by-uuid/a0c6bce5-ed75-4258-824a-0b08941e4100"; }];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
