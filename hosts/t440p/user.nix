@@ -7,19 +7,18 @@
   ];
 
   modules = {
+    impermanence.enable = true;
     packages = {
       enable = true;
       gaming.enable = false;
     };
-#    desktop = {
-#      lockscreen.enable = false;
-#      xresources.enable = true;
 
     cli = {
       git.enable = true;
       neovim.enable = true;
       tmux.enable = true;
-#     xdg.enable = true;
+      xdg.enable = true;
+      xresources = "gruvbox";
       zsh.enable = true;
     };
 
@@ -27,7 +26,6 @@
       chromium.enable = true;
 #      discocss.enable = true;
       dmenu.enable = true;
-      dunst.enable = true;
       librewolf.enable = true;
       lf.enable = true;
       mpv.enable = true;
@@ -36,14 +34,15 @@
 #      nnn.enable = true;
 #      powercord.enable = true;
       qutebrowser.enable = true;
-      slstatus.enable = true;
+      slstatus = "laptop";
       st.enable = true;
 #      zathura.enable = true;
     };
 
     services = {
+      dunst.enable = true;
+      flameshot.enable = false;
       picom.enable = true;
-#      redshift.enable = true;
 #      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
@@ -51,11 +50,11 @@
 
   home.packages = with pkgs; [ zoom-us ];
 
-  home.file.".config/x11/xprofile".text = ''
+  home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
 
       ### screen ###
-    xrandr --output eDP1 --gamma 0.6 --set "Broadcast RGB" "Full"
+    xrandr --output eDP1 --gamma 1 --set "Broadcast RGB" "Full"
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
@@ -66,16 +65,19 @@
     redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
-     xrandr --dpi 96
+    xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
-    hsetroot & # -fill $HOME/.config/wall.png &
+    picom --experimental-backend &
+    hsetroot -fill $HOME/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+    ssh-agent dwm
   '';
 
 }
