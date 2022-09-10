@@ -3,6 +3,7 @@ set -e
 
 # Replace with your device
 dev=/dev/sdx
+swap=on
 
   ### Partitioning ###
 
@@ -14,9 +15,22 @@ parted -s ${dev} set 1 boot on
 parted -s ${dev} name 1 boot
 parted -s ${dev} name 1 nix
 
+  # Create two logical volumes
+pvcreate /dev/mapper/lvm
+vgcreate vg /dev/mapper/lvm
+
+if [ "$swap" == "on" ] then;
+    lvcreate -L 16G -n swap vg
+    mkswap -L swap /dev/vg/swap
+    swapon /dev/vg/swap
+else
+fi
+
+lvcreate -l 100%FREE -n nix vg
+
   # Format the partitions
 mkfs.vfat -n boot ${dev}1
-mkfs.ext4 -L nix ${dev}2
+mkfs.ext4 -L nix /dev/vg/nix
 
 
   ### Installing NixOS ###
@@ -25,7 +39,7 @@ mkfs.ext4 -L nix ${dev}2
 mount -t tmpfs none /mnt
 mkdir -p /mnt/{boot,home,nix,etc/{nixos,ssh},srv,tmp,var/{lib,log}}
 mount ${dev}1 /mnt/boot
-mount ${dev}2 /mnt/nix
+mount /dev/vg/nix /mnt/nix
   # Uncomment if it's a fresh install
 mkdir -p /mnt/nix/persist/{root,home,srv,nix/{nixos,ssh},var/{lib,log}}
 

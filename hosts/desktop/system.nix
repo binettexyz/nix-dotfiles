@@ -72,7 +72,7 @@
     };
   };
   swapDevices = [ ];
-#  swapDevices = [ { device = "/swapfile"; size = 8192; } ];
+#  swapDevices = [ { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; } ];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
