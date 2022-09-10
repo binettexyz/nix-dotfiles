@@ -91,10 +91,6 @@
   
   ## FileSystem ##
   fileSystems = {
-    "/nix/persist/home" = {
-      device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
     "/mounts/nas" = {
       device = "100.71.254.90:/media";
       fsType = "nfs";
@@ -108,6 +104,7 @@
     hideMounts = true;
     directories = [
       "/mounts"
+      "home"
     ];
   };
 
