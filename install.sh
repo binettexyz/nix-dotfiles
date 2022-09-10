@@ -2,20 +2,20 @@
 set -e
 
 # Replace with your device
-dev=/dev/sdx
+dev=$1
 crypt=off
 
   ### Partitioning ###
 
   # create partitions
 parted    ${dev} mklabel gpt
-parted -s ${dev} mkpart primary fat32 1MiB 501GiB
-parted -s ${dev} mkpart primary ext4 501MiB 100%
+parted -s ${dev} mkpart primary fat32 1MiB 513MiB
+parted -s ${dev} mkpart primary ext4 513MiB 100%
 parted -s ${dev} set 1 boot on
 parted -s ${dev} name 1 boot
 parted -s ${dev} name 1 nix
 
-if [ $crypt == "off" ]; then
+if [ $crypt == "on" ]; then
       # Setup the encrypted LUKS partition and open it:
     cryptsetup luksFormat ${dev}2
     cryptsetup open --type luks ${dev}2 lvm
@@ -41,7 +41,7 @@ swapon /dev/lvm/swap
 mount -t tmpfs none /mnt
 mkdir -p /mnt/{boot,home,nix,etc/{nixos,ssh},var/{lib,log},srv,tmp}
 mount ${dev}1 /mnt/boot
-mount /dev/vg/nix /mnt/nix
+mount /dev/lvm/nix /mnt/nix
   # Uncomment if it's a fresh install
 mkdir -p /mnt/nix/persist/{home,media,mounts,nix/{nixos,ssh},var/{lib,log},root,srv}
 
@@ -67,4 +67,4 @@ cp -R /home/root/nix-dotfiles/* /mnt/nix/persist/etc/nixos/.
   # Install NixOS
 export TMPDIR=/mnt/tmp
 
-nixos-install
+#nixos-install
