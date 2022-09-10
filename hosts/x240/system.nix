@@ -104,7 +104,7 @@
     hideMounts = true;
     directories = [
       "/mounts"
-      "home"
+      "/home"
     ];
   };
 
