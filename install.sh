@@ -43,18 +43,18 @@ mkdir -p /mnt/{boot,home,nix,etc/{nixos,ssh},var/{lib,log},srv,tmp}
 mount ${dev}1 /mnt/boot
 mount /dev/lvm/nix /mnt/nix
   # Uncomment if it's a fresh install
-mkdir -p /mnt/nix/persist/{home,media,mounts,nix/{nixos,ssh},var/{lib,log},root,srv}
+mkdir -p /mnt/nix/persist/{home,media,mounts,nix,etc/{nixos,ssh},var/{lib,log},root,srv}
 
-mount -o bind /mnt/nix/persist/etc/nixos /mnt/etc/nix
+mount -o bind /mnt/nix/persist/etc/nixos /mnt/etc/nixos
 mount -o bind /mnt/nix/persist/var/log /mnt/var/log
 
-  # Configure WPA_Supplicant for WIFI
-echo "
-network={
-        ssid="Hal"
-        psk=af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26
-}" >> /etc/wpa_supplicant
-systemctl start wpa_supplicant
+#  # Configure WPA_Supplicant for WIFI
+#echo "
+#network={
+#        ssid="Hal"
+#        psk=af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26
+#}" >> /etc/wpa_supplicant
+#systemctl start wpa_supplicant
 
   # Updating nix-channel
 nix-channel --add "https://github.com/NixOS/nixpkgs/archive/master.tar.gz" nixos
