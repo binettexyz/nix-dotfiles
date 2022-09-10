@@ -7,7 +7,6 @@
   ];
 
   modules = {
-    impermanence.enable = true;
     packages = {
       enable = true;
       gaming.enable = false;

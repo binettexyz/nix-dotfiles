@@ -112,7 +112,7 @@
   };
 
   ## Performance stuff ##
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = lib.mkForce "performance";
 
   ## Screen resolution ##
   services.xserver = {
