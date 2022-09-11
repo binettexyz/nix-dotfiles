@@ -16,6 +16,7 @@ in
   config = mkIf (cfg.enable) {
     programs.qutebrowser = {
       enable = true;
+
   
       enableDefaultBindings = true;
       keyBindings = {
@@ -41,7 +42,25 @@ in
   
       extraConfig = (builtins.readFile ./themes/gruvbox.py);
   
+      searchEngines = {
+        yt = "https://www.youtube.com/results?search_query={}";
+        am = "https://www.amazon.com/s?k={}";
+      };
+
       quickmarks = {
+        mal = "https://myanimelist.net/profile/Binette";
+        jack = "http://rpi4:9117/";
+        sonn = "http://rpi4:8989/";
+        trans = "http://rpi4:9091/";
+        lid = "http://rpi4:8686/";
+        rad = "http://rpi4:7878/";
+        git = "https://github.com/binettexyz";
+        yt = "https://www.youtube.com/?hl=fr&gl=CA";
+        red = "https://www.reddit.com/";
+        disc = "https://discord.com/login";
+        wf = "https://www.wallpaperflare.com/";
+        wa = "https://wallhaven.cc/";
+        translate = "https://www.deepl.com/translator";
       };
   
       searchEngines = {

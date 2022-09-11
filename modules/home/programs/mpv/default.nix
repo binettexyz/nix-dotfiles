@@ -56,7 +56,7 @@ in
 
       } // anime4kInputs;
 
-#      scripts = with pkgs.mpvScripts; [ sponsorblock ];
+      scripts = with pkgs.mpvScripts; [ sponsorblock ];
 
       config = {
 
@@ -105,7 +105,7 @@ in
         osc = "no"; # Disable default UI
         osd-bar = "no"; # Disable default seeking/volume indicators
         border = "no"; # Hide the window title bar
-#        osd-font-size = 13;
+        osd-font-size = 20;
 #        osd-border-size = 2;
 
           # Color log messages on terminal
@@ -114,7 +114,7 @@ in
         term-osd-bar = "yes";
           # autohide the curser after 1s
         cursor-autohide = 1000;
-        keep-open = "";
+#        keep-open = "";
         force-window = "immediate";
         autofit = "50%x50%";
         geometry = "90%:5%";
