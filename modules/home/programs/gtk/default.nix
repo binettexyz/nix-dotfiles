@@ -16,12 +16,12 @@ in
   config = mkIf (cfg.enable) {
     gtk = {
       enable = true;
-
       theme = {
-        package = pkgs.gruvbox-material-git;
-        #name = "";
+        package = pkgs.gruvbox-material-gtk;
+        name = "Gruvbox-Material-Dark";
       };
     };
+    home.packages = with pkgs; [ gtk-engine-murrine ];
   };
 
 }
