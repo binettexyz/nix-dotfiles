@@ -68,6 +68,10 @@
               users.binette = (./. + "/hosts/${hostname}/user.nix");
             };
             nixpkgs.overlays = [
+              (final: prev: {
+                gruvbox-material-gtk =
+                  prev.callPackage ./overlays/gtk-themes/gruvbox-material.nix { };
+              })
               powercord-overlay.overlay
 #              nur.overlay
             ];

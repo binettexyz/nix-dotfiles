@@ -15,6 +15,7 @@
     ./programs/chromium
 #    ./programs/discocss
     ./programs/dmenu
+    ./programs/gtk
     ./programs/librewolf
     ./programs/lf
     ./programs/mpv

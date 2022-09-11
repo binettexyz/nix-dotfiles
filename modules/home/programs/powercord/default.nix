@@ -18,7 +18,7 @@ in
       (discord-plugged.override {
         discord-canary = discord-canary.override {
           nss = pkgs.nss_latest;
-          withOpenASAR = true;
+#          withOpenASAR = true;
         };
 
         plugins = [

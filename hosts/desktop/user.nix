@@ -23,6 +23,7 @@
     programs = {
      chromium.enable = true;
      dmenu.enable = true;
+     gtk.enable = true;
      lf.enable = true;
      librewolf.enable = true;
      mpv.enable = true;
@@ -125,7 +126,6 @@
       ".config/pulse/daemon.conf"
       ".config/greenclip.toml"
       ".config/wall.png"
-      ".config/mimeapps.list"
 
       ".local/share/history"
 
