@@ -102,13 +102,12 @@ in
         /* ---UI--- */
 
           # osc
-        no-osc = "";
-        no-osd-bar = "";
-        osd-font-size = 16;
-        osd-border-size = 2;
+        osc = "no"; # Disable default UI
+        osd-bar = "no"; # Disable default seeking/volume indicators
+        border = "no"; # Hide the window title bar
+#        osd-font-size = 13;
+#        osd-border-size = 2;
 
-          # Hide the window title bar
-        no-border = "";
           # Color log messages on terminal
         msg-color = "yes";
           # displays a progress bar on the terminal
