@@ -37,7 +37,8 @@ in
     services.nfs.server = {
       enable = true;
       exports = ''
-        /media  100.91.89.2(rw,insecure,no_subtree_check) 100.95.71.37(rw,insecure,no_subtree_check)
+        /media 100.91.89.2(rw,insecure,no_subtree_check)
+        /media 100.95.71.37(rw,insecure,no_subtree_check)
       '';
     };
   
