@@ -29,7 +29,7 @@
       lf.enable = true;
       mpv.enable = true;
 #      mutt.enable = true;
-#      newsboat.enable = true;
+      newsboat.enable = true;
 #      nnn.enable = true;
 #      powercord.enable = true;
       qutebrowser.enable = true;
@@ -42,7 +42,7 @@
       dunst.enable = true;
       flameshot.enable = false;
       picom.enable = true;
-#      sxhkd.enable = true;
+      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
   };
@@ -59,6 +59,8 @@
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
     slstatus &				    # suckless status bar
     udiskie &				    # automount device daemon
+    sxhkd &
+    flameshot &
     greenclip daemon &
     transmission-daemon &
     redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
@@ -71,7 +73,7 @@
 
       ### Visual ###
     picom --experimental-backend &
-    hsetroot -fill $HOME/.config/wall.png &
+    hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
