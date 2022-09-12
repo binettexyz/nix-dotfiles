@@ -54,6 +54,90 @@ in
         ")" = "script-binding fastforward/speedup"; # Make playback faster
         "(" = "script-binding fastforward/slowdown"; # Reduce speed
 
+
+
+
+        "v" = "cycle deband";
+        "a" = "cycle audio";
+        "i" = "script-binding stats/display-stats-toggle";
+        "b" = "apply-profile basic; show-text 'Shaders cleared'"; 
+        "U" = "show-text 'Anime4k mode';script-message cycle-commands 'apply-profile ani4k' 'apply-profile ssim'";
+        "Y" = "show-text 'Sharp mode';script-message cycle-commands 'apply-profile sharp1' 'apply-profile sharp0'";
+        "F4" = "cycle-values video-aspect-override '16:9' '4:3' '2.35:1' '-1'";
+
+          #imageviewer#
+
+        "1 {image-viewer}" = "change-list script-opts append image_positioning-drag_to_pan_margin=200";
+        "2 {image-viewer}" = "change-list script-opts append ruler-exit_bindings=8";
+        "3 {image-viewer}" = "change-list script-opts append ruler-line_color=FF";
+        "4 {image-viewer}" = "change-list script-opts append ruler-scale=25";
+        "5 {image-viewer}" = "change-list script-opts append ruler-max_size=20,20";
+
+        "SPACE {image-viewer}" = "repeatable playlist-next";
+        "alt+SPACE {image-viewer}" = "repeatable playlist-prev";
+
+        "H {image-viewer}" = "repeatable playlist-prev";
+        "L {image-viewer}" = "repeatable playlist-next";
+
+          # mouse-centric bindings
+        "MBTN_RIGHT {image-viewer}" = "script-binding drag-to-pan";
+        "MBTN_LEFT {image-viewer}" = "script-binding pan-follows-cursor";
+        "MBTN_LEFT_DBL {image-viewer}" = "ignore";
+        "WHEEL_UP {image-viewer}" = "script-message cursor-centric-zoom 0.1";
+        "WHEEL_DOWN {image-viewer}" = "script-message cursor-centric-zoom -0.1";
+
+
+          # panning with the keyboard:
+          # pan-image takes the following arguments
+          # pan-image AXIS AMOUNT ZOOM_INVARIANT IMAGE_CONSTRAINED
+          #            ^            ^                  ^
+          #          x or y         |                  |
+          #                         |                  |
+          #   if yes, will pan by the same         if yes, stops panning if the image
+          #     amount regardless of zoom             would go outside of the window
+
+        "ctrl+down {image-viewer}" = "repeatable script-message pan-image y -0.1 yes yes";
+        "ctrl+up {image-viewer}" = "repeatable script-message pan-image y +0.1 yes yes";
+        "ctrl+right {image-viewer}" = "repeatable script-message pan-image x -0.1 yes yes";
+        "ctrl+left {image-viewer}" = "repeatable script-message pan-image x +0.1 yes yes";
+
+          # now with more precision
+        "alt+down {image-viewer}" = "repeatable script-message pan-image y -0.01 yes yes";
+        "alt+up {image-viewer}" = "repeatable script-message pan-image y +0.01 yes yes";
+        "alt+right {image-viewer}" = "repeatable script-message pan-image x -0.01 yes yes";
+        "alt+left {image-viewer}" = "repeatable script-message pan-image x +0.01 yes yes";
+
+          # reset the image
+        "ctrl+0 {image-viewer}" = "no-osd set video-pan-x 0; no-osd set video-pan-y 0; no-osd set video-zoom 0";
+
+        "+ {image-viewer}" = "add video-zoom 0.5";
+        "- {image-viewer}" = "add video-zoom -0.5; script-message reset-pan-if-visible";
+        "= {image-viewer}" = "no-osd set video-zoom 0; script-message reset-pan-if-visible";
+        
+        "e {image-viewer}" = "script-message equalizer-toggle";
+        "alt+e {image-viewer}" = "script-message equalizer-reset";
+        
+        "h {image-viewer}" = "no-osd vf toggle hflip; show-text 'Horizontal flip'";
+        "v {image-viewer}" = "no-osd vf toggle vflip; show-text 'Vertical flip'";
+        
+        "r {image-viewer}" = "script-message rotate-video 90; show-text 'Clockwise rotation'";
+        "R {image-viewer}" = "script-message rotate-video -90; show-text 'Counter-clockwise rotation'";
+        "alt+r {image-viewer}" = "no-osd set video-rotate 0; show-text 'Reset rotation'";
+        
+        "d {image-viewer}" = "script-message ruler";
+        
+          # Toggling between pixel-exact reproduction and interpolation
+        "a {image-viewer}" = "cycle-values scale nearest ewa_lanczossharp";
+        
+          # Screenshot of the window output
+        "S {image-viewer}" = "screenshot window";
+        "s {image-viewer}" = "script-message status-line-toggle ";
+        
+          # ADVANCED: you can define bindings that belong to a "section" (named "image-viewer" here) like so:
+          #alt+SPACE {image-viewer} repeatable playlist-prev
+          #SPACE     {image-viewer} repeatable playlist-next
+          # to load them conditionally with a command. See scripts-opts/image_viewer.conf for how you can do this
+
       } // anime4kInputs;
 
       scripts = with pkgs.mpvScripts; [ sponsorblock ];
@@ -138,16 +222,6 @@ in
 
         /* ---Subtitles--- */
 
-#        demuxer-mkv-subtitle-preroll = true;
-#        sub-font-size = 52;
-#        sub-blur = 0.2;
-#        sub-color = "1.0/1.0/1.0/1.0";
-#        sub-margin-x = 100;
-#        sub-margin-y = 50;
-#        sub-shadow-color = "0.0/0.0/0.0/0.25";
-#        sub-shadow-offset = 0;
-
-        ub-ass-vsfilter-blur-compat = "yes";		# Backward compatibility for vsfilter fansubs
         sub-ass-scale-with-window = "no";		# May have undesired effects with signs being misplaced.
         sub-auto = "fuzzy";                          # external subs don't have to match the file name exactly to autoload
         #sub-gauss = "0.6";				# Some settings fixing VOB/PGS subtitles (creating blur & changing yellow subs to gray)
@@ -174,152 +248,218 @@ in
         sub-shadow-color = "0.0/0.0/0.0/0.25";
         sub-shadow-offset = 0;
 
-        /* ---Scaling--- */
-
-        gpu-shader-cache-dir = "~~/cache";
-
-          # https://gist.github.com/igv/
-          # https://gist.github.com/agyild/
-          # scaler / shader
-        #glsl-shader="~~/shaders/SSimSuperRes.glsl"
-#        glsl-shader = [ "~~/shaders/FSR.glsl" "~~/shaders/SSimDownscaler.glsl" ];
-
-#        scale = "ewa_lanczossharp";
-#        dscale = "lanczos";
-#        linear-downscaling = "no";
-
-         /* --------------------- */
-
-#        #correct-downscaling = true;
-#        linear-downscaling = true;
-#        linear-upscaling = true;
-#        sigmoid-upscaling = true;
-#        scale-antiring = 0.7;
-#        dscale-antiring = 0.7;
-#        cscale-antiring = 0.7;
-
-          /* --------------------- */
-
-          # Chroma subsampling means that chroma information is encoded at lower resolution than luma
-          # In MPV, chroma is upscaled to luma resolution (video size) and then the converted RGB is upscaled to target resolution (screen size)
-          # For detailed analysis of upscaler/downscaler quality, see https://artoriuz.github.io/blog/mpv_upscaling.html
-
-        glsl-shaders-clr = "";
-          # luma upscaling
-          # note: any FSRCNNX above FSRCNNX_x2_8-0-4-1 is not worth the additional computional overhead
-        glsl-shaders = "~/.config/mpv/shaders/FSRCNNX_x2_8-0-4-1.glsl";
-        scale = "ewa_lanczos";
-          # luma downscaling
-          # note: ssimdownscaler is tuned for mitchell and downscaling=no
-        glsl-shaders-append = [ "~/.config/mpv/shaders/SSimDownscaler.glsl" "~/.config/mpv/shaders/KrigBilateral.glsl" ];
-        dscale = "mitchell";
-        linear-downscaling = "no";
-          # chroma upscaling and downscaling
-        cscale = "mitchell"; # ignored with gpu-next
-        sigmoid-upscaling = "yes";
-
         /* ---Motion Interpolation--- */
+
         video-sync = "display-resample";
         interpolation = true;
         tscale = "oversample"; # smoothmotion
+        
+        blend-subtitles = "no";
+
+        /* ---Debanding--- */
+
+        deband = "yes";
+        deband-iterations = "2";
+        deband-threshold = "34";
+        deband-range = "16";
+        deband-grain = "48";
+        dither-depth = "auto";
+
+        /* ---Video Profiles--- */
+
+        dither = "fruit";
+        scale = "ewa_lanczos";
+        cscale = "lanczos";
+        dscale = "mitchell";
+        scale-antiring = 0;
+        cscale-antiring = 0;
+        correct-downscaling = "yes";
+        linear-downscaling = "no";
+        sigmoid-upscaling = "yes";
+
+        /* ---Scaling--- */
 
       };
 
       profiles = {
 
-         "4k60" = {
-            profile-desc = "4k60";
-            profile-cond = "((width ==3840 and height ==2160) and p['estimated-vf-fps']>=31)";
-#            deband = "yes"; # necessary to avoid blue screen with KrigBilateral.glsl
-            deband = "no"; # turn off debanding because presume wide color gamut
-#            interpolation = "no"; # turn off interpolation because presume 60fps 
-              # UHD videos are already 4K so no luma upscaling is needed
-              # UHD videos are YUV420 so chroma upscaling is still needed
+          #Anime4k
+        "ani4k" = {
+          vo = "gpu";
+          scale = "mitchell";
+          glsl-shaders-clr = "";
+          glsl-shaders = [
+            "~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl"
+            "~~/shaders/Anime4K_Deblur_DoG.glsl"
+            "~~/shaders/Anime4K_Thin_HQ.glsl"
+            "~~/shaders/Anime4K_Darken_HQ.glsl"
+            "~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_UL.glsl"
+            "~~/shaders/Anime4K_Clamp_Highlights.glsl"
+          ];
+        };
+
+            #SSIM
+          "ssim" = {
+            vo = "gpu-next";
+            scale = "lanczos";
             glsl-shaders-clr = "";
-            glsl-shaders = "~/.config/mpv/shaders/KrigBilateral.glsl"; # enable if your hardware can support it
-            interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
-            # no deinterlacer required because progressive
+            glsl-shaders-append = [
+              "~~/shaders/adaptive-sharpen4k.glsl"
+              "~~/shaders/SSimSuperRes.glsl"
+              "~~/shaders/SSimDownscaler.glsl"
+            ];
+            deband-grain = 60;
           };
 
-
-          "4k30" = {  # 2160p @ 24-30fps (3840x2160 UHDTV)
-            profile-cond = "((width ==3840 and height ==2160) and p['estimated-vf-fps']<31)";
-            #deband = "yes"; # necessary to avoid blue screen with KrigBilateral.glsl
-            deband = "no"; # turn off debanding because presume wide color gamut
-            #UHD videos are already 4K so no luma upscaling is needed
-            #UHD videos are YUV420 so chroma upscaling is still needed
+            #AUDIO PLAYER OSC#
+          "audio" = {
             glsl-shaders-clr = "";
-            glsl-shaders = "~/.config/mpv/shaders/KrigBilateral.glsl"; # enable if your hardware can support it
-              # apply motion interpolation
-              # no deinterlacer required because progressive
+            scale = "lanczos";
+            glsl-shaders-append = [
+              "~~/shaders/SSimSuperRes.glsl"
+              "~~/shaders/SSimDownscaler.glsl"
+            ];
           };
 
-        "full-hd60" = { # 1080p @ 60fps (progressive ATSC)
-          profile-desc = "full-hd60";
-          profile-cond = "((width ==1920 and height ==1080) and not p['video-frame-info/interlaced'] and p['estimated-vf-fps']>=31)";
-            # apply all luma and chroma upscaling and downscaling settings
-          interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
-            # no deinterlacer required because progressive
-        };
+            "extension.mkv" = {
+              profile = "mkv";
+            };
 
-        "full-hd30" = { # 1080p @ 24-30fps (NextGen TV/ATSC 3.0, progressive Blu-ray)
-          profile-desc = "full-hd30";
-          profile-cond = "((width ==1920 and height ==1080) and not p['video-frame-info/interlaced'] and p['estimated-vf-fps']<31)";
-            # apply all luma and chroma upscaling and downscaling settings
-            # apply motion interpolation
-            # no deinterlacer required because progressive
-        };
+            "low-res video" = {
+              profile-desc = "cond:(get('height', math.huge) < 720) and (get('estimated-frame-count', math.huge) > 2)";
+              scale = "lanczos";
+              glsl-shaders-append = "~~/shaders/adaptive-sharpen.glsl";
+              deband-grain = 60;
+            };
 
-        "full-hd-interlaced" = { # 1080i @ 24-30fps (HDTV, interlaced Blu-rays)
-          profile-desc = "full-hd-interlaced";
-          profile-cond = "((width ==1920 and height ==1080) and p['video-frame-info/interlaced'] and p['estimated-vf-fps']<31)";
-            # apply all luma and chroma upscaling and downscaling settings
-            # apply motion interpolation
-          vf = "bwdif"; # apply FFMPEG's bwdif deinterlacer
-        };
+            "720p video" = {
+              profile-desc = "cond:(get('height', math.huge) < 721) and (get('height', math.huge) > 719) and (get('estimated-frame-count', math.huge) > 2)";
+              scale = "lanczos";
+              glsl-shaders-append = "~~/shaders/SSimSuperRes.glsl";
+              deband-grain = 100;
+            };
 
-        "hd" = { # 720p @ 60 fps (HDTV, Blu-ray - progressive)
-          profile-desc = "hd";
-          profile-cond = "(width ==1280 and height ==720)";
-            # apply all luma and chroma upscaling and downscaling settings
-          interpolation = "no"; # no motion interpolation required because 60fps is hardware ceiling
-            # no deinterlacer required because progressive
-        };
+            "hi-res video" = {
+              profile-desc = "cond:get('height', math.huge) > 720 and (get('estimated-frame-count', math.huge) > 2) or (get('estimated-frame-count', math.huge) ~= 0)";
+              scale = "lanczos";
+              glsl-shaders = [
+                "~~/shaders/adaptive-sharpen4k.glsl"
+                "~~/shaders/SSimSuperRes.glsl"
+              ];
+            };
 
-        /* ---File Type Profiles--- */
+            "mkv" = {
+              cache = "yes";
+              demuxer-max-bytes = "2000MiB";
+            };
 
-          # GIF Files
-        "extension.gif" = {
-          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
-          profile-desc = "gif";
-          cache = "no";
-          no-pause = "";
-          loop-file = "yes";
-        };
+              #image shaders#
 
-          # WebM Files
-        "extension.webm" = {
-          profile-restore = "copy-equal"; # Sets the profile restore method to "copy if equal"
-          profile-desc = "webm";
-          no-pause = "";
-          loop-file = "yes";
-        };
+            "hi-res-image" = {
+              profile-desc = "cond:(get('current-window-scale', math.huge) <= 1) and (get('estimated-frame-count', math.huge) == 1 or get('estimated-frame-count', math.huge) == 0)";
+              dscale = "lanczos";
+              dscale-blur = "0.8";
+              glsl-shaders-clr = "";
+              glsl-shaders = [
+                "~~/shaders/SSimDownscaler.glsl"
+                "~~/shaders/KrigBilateral.glsl"
+              ];
+            };
 
-        /* ---Protocol Specific Configuration--- */
+            "low-res-image" = {
+              profile-desc = "cond:(get('current-window-scale', math.huge) > 1) and (get('estimated-frame-count', math.huge) == 1 or get('estimated-frame-count', math.huge) == 0)";
+              scale = "mitchell";
+              fbo-format = "rgba16hf";
+              glsl-shaders-clr = "";
+              glsl-shaders-append = [
+                "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl"
+                "~~/shaders/KrigBilateral.glsl"
+                "~~/shaders/SSimDownscaler.glsl"
+              ];
+            };
 
-        "protocol.http" = {
-          hls-bitrate = "max"; # use max quality for HLS streams
-          cache = "yes";
-          no-cache-pause = ""; # don't pause when the cache runs low
-        };
+            "basic" = {
+              glsl-shaders-clr = "";			#binded to button b in input config to clear shaders-for testing only
+              scale = "ewa_lanczossharp";
+            };
 
-        "protocol.https" = {
-          profile = "protocol.http";
-        };
+              #Sharpen image
 
-        "protocol.ytdl" = {
-          profile = "protocol.http";
-        };
+            "sharp1" = {
+              glsl-shaders-clr = "";
+              scale = "lanczos";
+              glsl-shaders-append = [
+                "~~/shaders/adaptive-sharpen8k.glsl"
+                "~~/shaders/SSimSuperRes.glsl"
+                "~~/shaders/SSimDownscaler.glsl"
+              ];
+                deband-grain = 60;
+            };
+            
+            "sharp0" = {
+              glsl-shaders-clr = "";
+              scale = "lanczos";
+              dscale = "lanczos";
+              glsl-shaders-append = [
+                "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl"
+                "~~/shaders/KrigBilateral.glsl"
+                "~~/shaders/SSimDownscaler.glsl"
+              ];
+            };
+
+            "protocol.file" = {
+              network-timeout = 0;
+              force-window = "yes";
+              cache = "yes";
+              demuxer-max-bytes = "2000MiB";
+              demuxer-readahead-secs = 300;
+              force-seekable = "yes";
+            };
+            "protocol-network" = {
+              network-timeout = 5;
+              #force-window = "immediate";
+              hls-bitrate = "max";
+              cache = "yes";
+              demuxer-max-bytes = "2000MiB";
+              demuxer-readahead-secs = "300";
+            };
+
+            "protocol.http" = {
+              profile = "protocol-network";
+            };
+
+            "protocol.https" = {
+              profile = "protocol-network";
+            };
+
+            "protocol.ytdl" = {
+              profile = "protocol.network";
+            };
+
+            "image" = {
+              profile-cond = "image";
+              "--icc-profile-auto" = "no";
+              #background = "0.1"; # dark grey background instead of pure black
+              mute = "yes";
+              osc = "no";		# the osc is mostly useful for videos
+              sub-auto = "no";				# don't try to autoload subtitles or audio files
+              audio-file-auto = "no";			# get rid of the useless V: 00:00:00 / 00:00:00 line
+              image-display-duration = "inf";	# don't slideshow by default
+              loop-file = "inf";				# loop files in case of webms or gifs
+              loop-playlist = "inf";			# and loop the whole playlist
+              window-dragging = "no";			# you need this if you plan to use drag-to-pan or pan-follows-cursor with MOUSE_LEFT
+              deband = "no";
+            };
+
+            "extension.png" = {
+              video-aspect-override = "no";
+            };
+            "extension.jpg" = {
+              video-aspect-override = "no";
+            };
+            "extension.jpeg" = {
+              profile = "extension.jpg";
+            };
       };
     };
 
