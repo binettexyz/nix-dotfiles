@@ -60,7 +60,7 @@ in
 
       config = {
 
-        /* --General-- */
+        /* ---Renderer--- */
 
           # Default profile
           # Can cause performance problems with some GPU drivers and GPUs.
@@ -81,23 +81,38 @@ in
           # "auto" "vaapi" "nvdec-copy" "vdpau"
         hwdec = "nvdec-copy";
 
+        /* --General-- */
+
+        hr-seek-framedrop = "no";
+        force-seekable = "";
+        #no-input-default-bindings = "";
+        no-taskbar-progress = "";
+        reset-on-next-file = "pause";
+        quiet = "";
+
         /* ---Audio--- */
 
-          # Set default audio volume to 70%
-        volume = 70;
-        volume-max = 100;
+        volume = 80;
+        volume-max = "150"; # maximum volume in %, everything above 100 results in amplification
+        audio-stream-silence = ""; # fix audio popping on random seek
+        audio-file-auto = "fuzzy"; # external audio doesn't has to match the file name exactly to autoload
+        audio-pitch-correction = "yes"; # automatically insert scaletempo when playing with higher speed
 
         /* ---Languages--- */
 
-        alang = "ja,jp,jpn,en,eng";
+        alang = "ja,jp,jpn,en,eng,enUS,en-us";
         slang = "en,eng,enUS";
 
         /* ---Screenshot--- */
 
         screenshot-directory = "~/pictures/screenshots";
-        screenshot-template = "%F-%P";
-        screenshot-format = "png"; # to test
-        screenshot-sw = true; # to test
+        #screenshot-template = "%F-%P";
+        screenshot-template = "~/pictures/screenshots/-%F-T%wH.%wM.%wS.%wT-F%{estimated-frame-number}";
+        screenshot-format = "png";
+        screenshot-png-compression = 4;		# Range is 0 to 10. 0 being no compression. compute-time to size is log so 4 is best
+        screenshot-tag-colorspace = "yes";
+        screenshot-high-bit-depth = "yes";		# Same output bitdepth as the video
+#        screenshot-sw = true; # to test
 
         /* ---UI--- */
 
@@ -105,11 +120,13 @@ in
         osc = "no"; # Disable default UI
         osd-bar = "no"; # Disable default seeking/volume indicators
         border = "no"; # Hide the window title bar
+        osd-font = "sans-serif"; # Set a font for OSC
         osd-font-size = 20;
 #        osd-border-size = 2;
 
           # Color log messages on terminal
         msg-color = "yes";
+        msg-module = "yes";
           # displays a progress bar on the terminal
         term-osd-bar = "yes";
           # autohide the curser after 1s
@@ -121,10 +138,37 @@ in
 
         /* ---Subtitles--- */
 
-        demuxer-mkv-subtitle-preroll = true;
-        sub-font-size = 52;
-        sub-blur = 0.2;
-        sub-color = "1.0/1.0/1.0/1.0";
+#        demuxer-mkv-subtitle-preroll = true;
+#        sub-font-size = 52;
+#        sub-blur = 0.2;
+#        sub-color = "1.0/1.0/1.0/1.0";
+#        sub-margin-x = 100;
+#        sub-margin-y = 50;
+#        sub-shadow-color = "0.0/0.0/0.0/0.25";
+#        sub-shadow-offset = 0;
+
+        ub-ass-vsfilter-blur-compat = "yes";		# Backward compatibility for vsfilter fansubs
+        sub-ass-scale-with-window = "no";		# May have undesired effects with signs being misplaced.
+        sub-auto = "fuzzy";                          # external subs don't have to match the file name exactly to autoload
+        #sub-gauss = "0.6";				# Some settings fixing VOB/PGS subtitles (creating blur & changing yellow subs to gray)
+        demuxer-mkv-subtitle-preroll = "yes";       	# try to correctly show embedded subs when seeking
+        embeddedfonts = "yes";			# use embedded fonts for SSA/ASS subs
+        sub-fix-timing = "no";                      	# do not try to fix gaps (which might make it worse in some cases). Enable if there are scenebleeds.
+        sub-file-paths-append = [ # search for external subs in these relative subdirectories
+          "ass"
+          "srt"
+          "sub"
+          "subs"
+          "subtitles"
+        ];
+        
+          # Subs - Forced 
+        sub-font = "Open Sans SemiBold";
+        sub-font-size = "46";
+        sub-blur = "0.3";
+        sub-border-color = "0.0/0.0/0.0/0.8";
+        sub-border-size = "3.2";
+        sub-color = "0.9/0.9/0.9/1.0";
         sub-margin-x = 100;
         sub-margin-y = 50;
         sub-shadow-color = "0.0/0.0/0.0/0.25";
@@ -179,13 +223,6 @@ in
         interpolation = true;
         tscale = "oversample"; # smoothmotion
 
-        /* ---Misc--- */
-        hr-seek-framedrop = "no";
-        force-seekable = "";
-        #no-input-default-bindings = "";
-        no-taskbar-progress = "";
-        reset-on-next-file = "pause";
-        quiet = "";
       };
 
       profiles = {
