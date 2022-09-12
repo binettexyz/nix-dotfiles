@@ -71,7 +71,7 @@
 
       ### Visual ###
     picom --experimental-backends &
-    hsetroot -fill $HOME/.config/wall.png &
+    hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"

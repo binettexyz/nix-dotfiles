@@ -30,7 +30,7 @@ in
         /* ---SUPER + ALT + KEY--- */
 
           # browser
-        "super + alt + b" = "librewolf";
+        "super + alt + b" = "brave";
           # Chat services
         "super + alt + r" = "ripcord";
         "super + alt + d" = "discordcanary";
@@ -41,6 +41,8 @@ in
 
         /* ---SUPER + SHIFT + KEY--- */
 
+          # System fonctions
+        "super + Q" = "sysact";
           # tmux
         "super + shift + Return" = "$TERMINAL -e 'tmux attach || tmux'";
 
@@ -52,8 +54,6 @@ in
 
           # Screenshot tools
         "control + alt + f" = "flameshot gui";
-          # system fonctions
-        "control + alt + q" = "sysact";
           # password
         "control + alt + p" = "dmenu-passmenu";
           # clipboard manager
