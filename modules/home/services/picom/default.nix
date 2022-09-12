@@ -26,6 +26,7 @@ in
         "100:class_g = 'Navigator'"
         "100:class_g = 'Dunst'"
         "100:class_g = 'librewolf'"
+        "100:class_g = 'Minecraft*'"
         "100:class_g = 'mpv'"
         "100:class_g = 'brave-browser'"
         "100:class_g = 'Jellyfin Media Player'"
@@ -76,10 +77,10 @@ in
             # Use fixed blur strength rather than adjusting according to window opacity
           background-fixed = true;
           blur-background-exclude = [
-            "class_g = 'slop'"
             "class_g = 'librewolf'"
             "class_g = 'mpv'"
             "class_g = 'brave-browser'"
+            "class_g = 'Minecraft*'"
             "class_g = 'Jellyfin Media Player'"
             "class_g = 'discord'"
           ];
