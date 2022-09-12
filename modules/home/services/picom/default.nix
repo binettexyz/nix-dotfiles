@@ -23,11 +23,11 @@ in
       activeOpacity = 0.7; # (0.0 - 1.0 )
       inactiveOpacity = 0.6; # (0.0 - 1.0 )
       opacityRules = [
-        "100:class_g = 'Navigator'"
         "100:class_g = 'Dunst'"
         "100:class_g = 'librewolf'"
+        "100:class_g = 'Brave-browser'"
         "100:class_g = 'mpv'"
-        "100:class_g = 'brave-browser'"
+        "100:class_g = 'Minecraft*'"
         "100:class_g = 'Jellyfin Media Player'"
         "100:class_g = 'discord'"
       ];
@@ -76,10 +76,10 @@ in
             # Use fixed blur strength rather than adjusting according to window opacity
           background-fixed = true;
           blur-background-exclude = [
-            "class_g = 'slop'"
             "class_g = 'librewolf'"
             "class_g = 'mpv'"
-            "class_g = 'brave-browser'"
+            "class_g = 'Brave-browser'"
+            "class_g = 'Minecraft*'"
             "class_g = 'Jellyfin Media Player'"
             "class_g = 'discord'"
           ];
