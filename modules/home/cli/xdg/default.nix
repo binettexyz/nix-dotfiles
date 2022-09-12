@@ -34,7 +34,7 @@ in
           "application/postscript" = [ "pdf.desktop" ];
           "application/rss+xml" = [ "rss.desktop" ];
 
-          "image/png" = [ "img.desktop" ];
+          "image/png" = [ browser ];
           "image/jpeg" = [ "img.desktop" ];
           "image/gif" = [ "img.desktop" ];
           "inode/directory" = [ "file.desktop" ];

@@ -338,11 +338,11 @@ in
 
 
         # don't install documentation i don't use
-      documentation.enable = lib.mkDefault true; # documentation of packages
-      documentation.nixos.enable = lib.mkDefault true; # nixos documentation
-      documentation.man.enable = lib.mkDefault true; # manual pages and the man command
-      documentation.info.enable = lib.mkDefault false; # info pages and the info command
-      documentation.doc.enable = lib.mkDefault false; # documentation distributed in packages' /share/doc
+      documentation.enable = true; # documentation of packages
+      documentation.nixos.enable = true; # nixos documentation
+      documentation.man.enable = true; # manual pages and the man command
+      documentation.info.enable = false; # info pages and the info command
+      documentation.doc.enable = false; # documentation distributed in packages' /share/doc
 
       system.stateVersion = "22.05";
     })

@@ -41,7 +41,7 @@
       dunst.enable = true;
       flameshot.enable = true;
       picom.enable = true;
-#      sxhkd.enable = true;
+      sxhkd.enable = true;
 #      udiskie.enable = true;
     };
   };
@@ -58,9 +58,10 @@
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
     slstatus &				    # suckless status bar
     udiskie &				    # automount device daemon
+    sxhkd &
+    flameshot &
     greenclip daemon &
     nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
-#    transmission-daemon &
 
       ### Settings ###
 #    xrandr --dpi 96
@@ -89,8 +90,6 @@
       
       ".config/BraveSoftware"
       ".config/jellyfin.org"
-      ".config/mutt"
-#      ".config/nixpkgs"
       ".config/shell"
       ".config/tremc"
       ".config/discordcanary"
@@ -125,7 +124,6 @@
       ".config/.nvidia-settings-rc"
       ".config/pulse/daemon.conf"
       ".config/greenclip.toml"
-      ".config/wall.png"
 
       ".local/share/history"
 
