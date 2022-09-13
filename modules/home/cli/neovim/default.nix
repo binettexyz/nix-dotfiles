@@ -21,22 +21,37 @@ in
       vimdiffAlias = true;
 
       plugins = with pkgs.vimPlugins; [
-        gruvbox-material
-#        vim-nix
-        vifm-vim
         vimwiki
         vimagit
-        rainbow
-        nvim-web-devicons
-        # auto-pairs # or coc-pairs
+        vim-latex-live-preview
+        vim-speeddating 
+        vim-polyglot
+
+        # UI & Themes
         nerdtree
+        vim-nerdtree-syntax-highlight
+        gruvbox-material
         vim-airline
         colorizer
-        vim-latex-live-preview
+        #nvim-web-devicons
+
+          # Language servers
+        vim-nix
+
+          # Code formatting
+        neoformat
+
+          # Quality of life
+        #indentLine
+        vim-illuminate
+        # auto-pairs # or coc-pairs
+        quick-scope
+        rainbow
         vim-orgmode
-        vim-polyglot
+        telescope-nvim
+        vim-clap
   
-        # coc
+          # coc
         coc-clangd
         coc-python
         coc-prettier

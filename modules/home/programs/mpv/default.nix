@@ -124,7 +124,7 @@ in
         # ---Screenshot--- #
       ''  
         screenshot-directory=~/pictures/screenshots
-        screenshot-template=%F-%P
+        screenshot-template="%f-%wH.%wM.%wS.%wT-#%#00n"
         screenshot-format=png
         screenshot-png-compression=4		# Range is 0 to 10. 0 being no compression. compute-time to size is log so 4 is best
         screenshot-tag-colorspace=yes
