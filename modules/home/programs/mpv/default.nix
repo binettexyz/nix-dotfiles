@@ -11,6 +11,7 @@ let
     "CTRL+4" = ''no-osd change-list glsl-shaders set "${anime4k}/Anime4K_Clamp_Highlights.glsl:${anime4k}/Anime4K_Restore_CNN_VL.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${anime4k}/Anime4K_Restore_CNN_M.glsl:${anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
     "CTRL+5" = ''no-osd change-list glsl-shaders set "${anime4k}/Anime4K_Clamp_Highlights.glsl:${anime4k}/Anime4K_Restore_CNN_Soft_VL.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${anime4k}/Anime4K_Restore_CNN_Soft_M.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
     "CTRL+6" = ''no-osd change-list glsl-shaders set "${anime4k}/Anime4K_Clamp_Highlights.glsl:${anime4k}/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:${anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${anime4k}/Anime4K_Restore_CNN_M.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
+    "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
   };
 in
 {
@@ -67,8 +68,7 @@ in
     home.file.".config/mpv/mpv.conf".text = lib.strings.concatStringsSep "\n" [
           # ---Renderer--- #
       ''
-          # Default profile
-        # Can cause performance problems with some GPU drivers and GPUs.
+        # Default profile
         # This is what profile=gpu-hq do:
         # scale=spline36
         # cscale=spline36
@@ -124,8 +124,7 @@ in
         # ---Screenshot--- #
       ''  
         screenshot-directory=~/pictures/screenshots
-        #screenshot-template=%F-%P
-        screenshot-template=~/pictures/screenshots/-%F-T%wH.%wM.%wS.%wT-F%{estimated-frame-number}
+        screenshot-template=%F-%P
         screenshot-format=png
         screenshot-png-compression=4		# Range is 0 to 10. 0 being no compression. compute-time to size is log so 4 is best
         screenshot-tag-colorspace=yes
@@ -250,7 +249,7 @@ in
         interpolation=no # no motion interpolation required because 60fps is hardware ceiling
         # no deinterlacer required because progressive
         
-         # 2160p @ 24-30fps (3840x2160 UHDTV)
+        # 2160p @ 24-30fps (3840x2160 UHDTV)
         [4k30]
         profile-cond=((width ==3840 and height ==2160) and p['estimated-vf-fps']<31)
         #deband = "yes"; # necessary to avoid blue screen with KrigBilateral.glsl
