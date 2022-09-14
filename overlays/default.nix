@@ -1,19 +1,27 @@
-{ pkgs, lib, nixpkgs, nixpkgs-unstable, system, ... }: {
+{ pkgs, lib, nixpkgs, nixpkgs-unstable, system, ... }:
+let
 
-  nixpkgs.overlays =
-  let
-
-    overlay-unstable = self: super: {
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-        config.allowBroken = true;
-      };
+  overlay-stable = self: super: {
+    unstable = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+      config.allowBroken = true;
     };
+  };
 
-  in
-[
+  overlay-unstable = self: super: {
+    unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+      config.allowBroken = true;
+    };
+  };
 
+in {
+
+
+  nixpkgs.overlays = [
+    overlay-stable
     overlay-unstable
     (final: prev: {
       st = prev.st.overrideAttrs (old: {

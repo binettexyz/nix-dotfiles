@@ -16,7 +16,7 @@
       binutils
       killall
       yt-dlp
-      unstable.htop
+      htop
       fzf
         # pass
 #      pinentry

@@ -9,8 +9,8 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     impermanence.url = "github:nix-community/impermanence";
@@ -88,15 +88,15 @@
     /* ---Defining Systems--- */
 
     nixosConfigurations = {
-                                     /* Architecture    Hostname */
+                                              /* Architecture    Hostname */
         # Workstation
-      desktop = mkSystem inputs.nixpkgs "x86_64-linux"  "desktop";
+      desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux"  "desktop";
         # Portable Laptop
-      x240 = mkSystem inputs.nixpkgs    "x86_64-linux"  "x240";
+      x240 = mkSystem inputs.nixpkgs-unstable    "x86_64-linux"  "x240";
         # Desktop Laptop
-      t440p = mkSystem inputs.nixpkgs   "x86_64-linux"  "t440p";
+      t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
         # Server
-      rpi4 = mkSystem inputs.nixpkgs    "aarch64-linux" "rpi4";
+      rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
 
 
     };

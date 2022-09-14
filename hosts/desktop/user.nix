@@ -25,7 +25,7 @@
      dmenu.enable = true;
      gtk.enable = true;
      lf.enable = true;
-#     librewolf.enable = true;
+     librewolf.enable = true;
      mpv.enable = true;
 #     mutt.enable = true;
      newsboat.enable = true;
@@ -40,13 +40,13 @@
     services = {
       dunst.enable = true;
       flameshot.enable = true;
-#      picom.enable = true;
+      picom.enable = true;
       sxhkd.enable = true;
 #      udiskie.enable = true;
     };
   };
 
-  home.packages = with pkgs; [ /*tidal-hifi*/ ];
+  home.packages = with pkgs; [ tidal-hifi ];
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
