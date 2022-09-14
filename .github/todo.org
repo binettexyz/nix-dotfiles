@@ -1,2 +1,3 @@
-* TODO:
-[] neovim config
+* TODO
+[ ] neovim config
+[ ] make multi-user config

@@ -60,7 +60,6 @@
           (./. + "/hosts/${hostname}/system.nix")
           ./modules/system/adblock.nix
           (import ./overlays { inherit pkgs lib nixpkgs system nixpkgs-unstable; })
-#          ./overlays
           home-manager.nixosModules.home-manager {
             home-manager = {
               useUserPackages = true;
