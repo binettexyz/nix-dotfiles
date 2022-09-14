@@ -97,7 +97,6 @@ in
           };
         };
       };
-
   
       extraConfig = lib.strings.concatStringsSep "\n" [
         ''
@@ -138,10 +137,6 @@ in
             " Save file as sudo on files that require root permission
           cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
     
-            " Run xrdb whenever Xdefaults or Xresources are updated.
-          autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-          autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
-
             " Check file in shellcheck:
     	    map <leader>s :!clear && shellcheck -x %<CR>
     
