@@ -59,7 +59,7 @@
           { networking.hostName = hostname; }
           (./. + "/hosts/${hostname}/system.nix")
           ./modules/system/adblock.nix
-          ./overlays
+          (import ./overlays { inherit pkgs lib nixpkgs system nixpkgs-unstable; })
           home-manager.nixosModules.home-manager {
             home-manager = {
               useUserPackages = true;
@@ -76,7 +76,9 @@
 #              nur.overlay
             ];
           }
+
         ];
+
         specialArgs = { inherit inputs; };
       };
 
@@ -94,9 +96,9 @@
       t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
         # Server
       rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
-    };
 
-    #packages."x86_64-linux"."anime4k" = import ./modules/pkgs/anime4k { inherit (nixpkgs.legacyPackages."x86_64-linux") stdenvNoCC unzip fetchurl; };
+
+    };
   }; 
 
 }

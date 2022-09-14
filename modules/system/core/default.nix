@@ -142,7 +142,7 @@ in
 
       programs.ssh = {
         extraConfig = ''
-          Host github.com
+          Host *
             IdentitiesOnly yes
             AddKeysToAgent yes
             IdentityFile ~/.ssh/id_ed25519

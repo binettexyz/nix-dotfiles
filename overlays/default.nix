@@ -1,6 +1,19 @@
-{ pkgs, lib, nixpkgs-unstable, ... }: {
+{ pkgs, lib, nixpkgs, nixpkgs-unstable, system, ... }: {
 
-  nixpkgs.overlays = [
+  nixpkgs.overlays =
+  let
+
+    overlay-unstable = self: super: {
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+        config.allowBroken = true;
+      };
+    };
+
+  in [
+
+    overlay-unstable
     (final: prev: {
       st = prev.st.overrideAttrs (old: {
         buildInputs = old.buildInputs ++ [ prev.harfbuzz ];
@@ -12,5 +25,6 @@
       anime4k = prev.callPackage ../modules/pkgs/anime4k { };
 #      dwm-head = prev.callPackage /home/binette/.git/repos/dwm {};
     })
+
   ];
 }
