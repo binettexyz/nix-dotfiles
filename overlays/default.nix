@@ -11,7 +11,8 @@
       };
     };
 
-  in [
+  in
+[
 
     overlay-unstable
     (final: prev: {

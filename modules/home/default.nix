@@ -16,7 +16,7 @@
 #    ./programs/discocss
     ./programs/dmenu
     ./programs/gtk
-    ./programs/librewolf
+#    ./programs/librewolf # home-manager/master
     ./programs/lf
     ./programs/mpv
 #    ./programs/mutt
@@ -29,7 +29,7 @@
 #    ./programs/zathura
 
     ./services/dunst
-    ./services/picom
+#    ./services/picom
     ./services/flameshot
     ./services/sxhkd
 #    ./services/syncthing

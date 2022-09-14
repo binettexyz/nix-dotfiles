@@ -4,12 +4,12 @@
   /* --- System's Inputs--- */
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,6 +60,7 @@
           (./. + "/hosts/${hostname}/system.nix")
           ./modules/system/adblock.nix
           (import ./overlays { inherit pkgs lib nixpkgs system nixpkgs-unstable; })
+#          ./overlays
           home-manager.nixosModules.home-manager {
             home-manager = {
               useUserPackages = true;
@@ -87,15 +88,15 @@
     /* ---Defining Systems--- */
 
     nixosConfigurations = {
-                                              /* Architecture    Hostname */
+                                     /* Architecture    Hostname */
         # Workstation
-      desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux"  "desktop";
+      desktop = mkSystem inputs.nixpkgs "x86_64-linux"  "desktop";
         # Portable Laptop
       x240 = mkSystem inputs.nixpkgs    "x86_64-linux"  "x240";
         # Desktop Laptop
-      t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
+      t440p = mkSystem inputs.nixpkgs   "x86_64-linux"  "t440p";
         # Server
-      rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
+      rpi4 = mkSystem inputs.nixpkgs    "aarch64-linux" "rpi4";
 
 
     };
