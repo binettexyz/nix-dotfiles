@@ -91,7 +91,7 @@
         # Workstation
       desktop = mkSystem inputs.nixpkgs-unstable "x86_64-linux"  "desktop";
         # Portable Laptop
-      x240 = mkSystem inputs.nixpkgs-unstable    "x86_64-linux"  "x240";
+      x240 = mkSystem inputs.nixpkgs    "x86_64-linux"  "x240";
         # Desktop Laptop
       t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
         # Server
