@@ -18,4 +18,6 @@ in
     services.gvfs.enable = lib.mkForce false;
   };
 
+  #home.file.".config/mpv/mpv.conf".text = lib.strings.concatStringsSep "\n" [
+
 }

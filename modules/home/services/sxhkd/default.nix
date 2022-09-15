@@ -80,5 +80,7 @@ in
     };
   };
 
+  home.file.".config/sxhkd/action".source = ./action;
+
 }
 
