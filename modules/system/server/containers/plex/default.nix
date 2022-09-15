@@ -50,13 +50,19 @@ in
   
       config = { config, pkgs, ... }:
       let
-        import = [ /etc/nixos/overlays ];
+        overlay-stable = self: super: {
+          stable = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            config.allowBroken = true;
+          };
+        };
       in {
 
         system.stateVersion = "22.11";
         networking.hostName = "plex";
 
-        nixpkgs.overlays = [  ];
+        nixpkgs.overlays = [ overlay-stable ];
   
         nixpkgs.config.allowUnfree = true;
         environment.systemPackages = with pkgs; [ stable.plex ];
