@@ -2,7 +2,7 @@
 let
 
   overlay-stable = self: super: {
-    unstable = import nixpkgs {
+    stable = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       config.allowBroken = true;
