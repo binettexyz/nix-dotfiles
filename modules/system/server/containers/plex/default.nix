@@ -52,6 +52,8 @@ in
 
         system.stateVersion = "22.11";
         networking.hostName = "plex";
+
+        nixpkgs.overlays = [ nixpkgs-stable ];
   
         nixpkgs.config.allowUnfree = true;
         environment.systemPackages = with pkgs; [ stable.plex ];
