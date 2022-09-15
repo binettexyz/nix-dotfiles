@@ -78,9 +78,10 @@ in
         "XF86XK_Display" = "dmenu-display";
       };
     };
-  };
 
   home.file.".config/sxhkd/action".source = ./action;
+
+  };
 
 }
 
