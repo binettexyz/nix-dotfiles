@@ -4,7 +4,7 @@
   /* --- System's Inputs--- */
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
 
