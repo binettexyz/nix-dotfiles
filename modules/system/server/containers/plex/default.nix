@@ -48,12 +48,15 @@ in
   			}
   		];
   
-      config = { config, pkgs, ... }: {
+      config = { config, pkgs, ... }:
+      let
+        import = [ /etc/nixos/overlays ];
+      in {
 
         system.stateVersion = "22.11";
         networking.hostName = "plex";
 
-        nixpkgs.overlays = [ (import /etc/nixos/overlays) ];
+        nixpkgs.overlays = [  ];
   
         nixpkgs.config.allowUnfree = true;
         environment.systemPackages = with pkgs; [ stable.plex ];
