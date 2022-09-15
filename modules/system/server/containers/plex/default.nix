@@ -48,24 +48,13 @@ in
   			}
   		];
   
-      config = { config, pkgs, ... }:
-      let
-        overlay-stable = self: super: {
-          stable = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            config.allowBroken = true;
-          };
-        };
-      in {
+      config = { config, pkgs, ... }: {
 
         system.stateVersion = "22.11";
         networking.hostName = "plex";
 
-        nixpkgs.overlays = [ overlay-stable ];
-  
         nixpkgs.config.allowUnfree = true;
-        environment.systemPackages = with pkgs; [ stable.plex ];
+        environment.systemPackages = with pkgs; [ plex ];
   
         services.plex = {
           enable = true;

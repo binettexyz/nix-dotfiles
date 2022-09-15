@@ -95,7 +95,7 @@
         # Desktop Laptop
       t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
         # Server
-      rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
+      rpi4 = mkSystem inputs.nixpkgs             "aarch64-linux" "rpi4";
 
 
     };
