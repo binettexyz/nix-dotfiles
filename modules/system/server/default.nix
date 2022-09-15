@@ -22,7 +22,7 @@ in
         bazarr.enable = true;
         deluge.enable = false;
         jackett.enable = true;
-        plex.enable = true;
+        plex.enable = false;
         jellyfin.enable = true;
         radarr.enable = true;
         sonarr.enable = true;
