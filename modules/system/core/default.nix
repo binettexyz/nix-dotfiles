@@ -152,16 +152,16 @@ in
       services.openssh = {
         enable = true;
         startWhenNeeded = true;
-        passwordAuthentication = false;
-#        allowSFTP = false; # Don't set this if you need sftp
+#        passwordAuthentication = false;
+        allowSFTP = true;
         kbdInteractiveAuthentication = false;
         forwardX11 = false;
         extraConfig = ''
           AllowTcpForwarding yes
           AllowAgentForwarding no
           AllowStreamLocalForwarding no
-          AuthenticationMethods publickey
         '';
+          #AuthenticationMethods publickey
       };
 
       services.tailscale.enable = true;
