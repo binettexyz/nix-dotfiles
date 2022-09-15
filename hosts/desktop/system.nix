@@ -49,7 +49,7 @@
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
-    kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelPackages =  pkgs.linuxPackages_zen;
     kernelParams = [ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
