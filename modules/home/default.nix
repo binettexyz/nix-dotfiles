@@ -25,7 +25,6 @@
     ./programs/powercord
     ./programs/qutebrowser
     ./programs/slstatus
-    ./programs/st
 #    ./programs/zathura
 
     ./services/dunst

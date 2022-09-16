@@ -16,7 +16,10 @@
       neovim.enable = true;
       tmux.enable = true;
       xdg.enable = true;
-      xresources = "gruvbox";
+      xresources = {
+        enable = true;
+        theme = "gruvbox";
+      };
       zsh.enable = true;
     };
 
@@ -33,7 +36,6 @@
      powercord.enable = true;
      qutebrowser.enable = true;
      slstatus = "desktop";
-     st.enable = true;
 #     zathura.enable = true;
     };
 

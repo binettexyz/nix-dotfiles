@@ -3,6 +3,7 @@
   imports = [
     ./dwm
     ./transmission
+    ./terminal
   ];
 
 }
