@@ -9,7 +9,6 @@
   modules = {
     bootloader = "grub";
     windowManager = "dwm";
-    terminal = "xterm";
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;

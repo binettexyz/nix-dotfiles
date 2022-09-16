@@ -38,6 +38,7 @@
       qutebrowser.enable = true;
       slstatus = "laptop";
       st.enable = true;
+      terminal = "xterm";
 #      zathura.enable = true;
     };
 

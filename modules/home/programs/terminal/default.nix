@@ -2,11 +2,11 @@
 with lib;
 
 let
-  cfg = config.modules.terminal;
+  cfg = config.programs.terminal;
   st-head = pkgs.callPackage (inputs.st + "/default.nix") {};
 in
 {
-  options.modules.terminal = mkOption {
+  options.modules.programs.terminal = mkOption {
       description = "Choose terminal emulator";
       type = with types; nullOr (enum [ "st" "xterm" ]);
       default = "xterm";
@@ -17,7 +17,7 @@ in
       home.packages = with pkgs; [ st-head ];
     })
     (mkIf (cfg == "xterm") {
-      environment.systemPackages = with pkgs; [ xterm ];
+      home.packages = with pkgs; [ xterm ];
     })
   ];
 

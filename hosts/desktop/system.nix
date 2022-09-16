@@ -9,7 +9,6 @@
   modules = {
     bootloader = "grub";
     windowManager = "dwm";
-    terminal = "xterm";
     transmission.enable = true;
     services = {
       greenclip.enable = true;
