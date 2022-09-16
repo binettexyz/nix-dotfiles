@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.programs.terminal;
+  cfg = config.modules.programs.terminal;
   st-head = pkgs.callPackage (inputs.st + "/default.nix") {};
 in
 {

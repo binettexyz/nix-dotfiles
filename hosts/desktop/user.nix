@@ -36,7 +36,7 @@
      powercord.enable = true;
      qutebrowser.enable = true;
      slstatus = "desktop";
-     terminal = "xterm";
+     terminal = "st";
 #     zathura.enable = true;
     };
 
