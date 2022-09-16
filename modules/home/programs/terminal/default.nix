@@ -8,8 +8,8 @@ in
 {
   options.modules.programs.terminal = mkOption {
       description = "Choose terminal emulator";
-      type = with types; nullOr (enum [ "st" "xterm" ]);
-      default = "xterm";
+      type = types.enum [ "st" "xterm" ];
+      default = "st";
     };
 
   config = mkMerge [
@@ -17,7 +17,7 @@ in
       home.packages = with pkgs; [ st-head ];
     })
     (mkIf (cfg == "xterm") {
-      home.packages = with pkgs; [ xterm ];
+#      home.packages = with pkgs; [ xterm ];
     })
   ];
 
