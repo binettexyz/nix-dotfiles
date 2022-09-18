@@ -31,6 +31,7 @@
     ./services/dunst
     ./services/picom
     ./services/flameshot
+    ./services/ssh
     ./services/sxhkd
 #    ./services/syncthing
 #    ./services/udiskie

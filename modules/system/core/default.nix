@@ -140,22 +140,15 @@ in
       };
       environment.systemPackages = with pkgs; [ faba-mono-icons ];
 
-#      programs.ssh = {
-#        extraConfig = ''
-#          Host *
-#            IdentitiesOnly yes
-#            AddKeysToAgent yes
-#            IdentityFile ~/.ssh/id_ed25519
-#        '';
-#      };
-
       services.openssh = {
         enable = true;
-        startWhenNeeded = true;
-        passwordAuthentication = false;
         allowSFTP = true;
-        kbdInteractiveAuthentication = false;
         forwardX11 = false;
+        kbdInteractiveAuthentication = false;
+        passwordAuthentication = false;
+        permitRootLogin = "no";
+        ports = [ 704 ];
+        startWhenNeeded = true;
         extraConfig = ''
           AllowTcpForwarding yes
           AllowAgentForwarding no
@@ -233,10 +226,11 @@ in
         networkmanager.enable = false;
         nameservers = [ "94.140.14.14" "94.140.15.15" ];
         firewall = {
-          enable = lib.mkForce true;
+          enable = true;
           allowedTCPPorts = [
             2049 # NFSv4
           ];
+          allowPing = false;
             # tailscale
           checkReversePath = "loose";
           trustedInterfaces = [ "tailscale0" ];
