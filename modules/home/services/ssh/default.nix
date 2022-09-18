@@ -20,7 +20,7 @@ in
       matchBlocks = {
         "github.com" = {
           hostname = "github.com";
-          identityFile = "${config.home.homeDirectory}/.ssh/id-ed25519";
+          identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
         };
         "nas" = {
           hostname = "100.71.254.90";
