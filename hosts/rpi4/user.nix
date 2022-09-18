@@ -15,7 +15,10 @@
       neovim.enable = true;
       tmux.enable = false;
       xdg.enable = false;
-      xresources = false;
+      xresources = {
+        enable = false;
+        theme = null;
+      };
       zsh.enable = true;
     };
 
