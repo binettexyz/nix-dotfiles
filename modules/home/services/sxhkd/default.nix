@@ -26,7 +26,6 @@ in
           # terminal emulator
         "super + Return" = "$TERMINAL";
 
-
         /* ---SUPER + ALT + KEY--- */
 
           # browser

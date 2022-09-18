@@ -140,19 +140,19 @@ in
       };
       environment.systemPackages = with pkgs; [ faba-mono-icons ];
 
-      programs.ssh = {
-        extraConfig = ''
-          Host *
-            IdentitiesOnly yes
-            AddKeysToAgent yes
-            IdentityFile ~/.ssh/id_ed25519
-        '';
-      };
+#      programs.ssh = {
+#        extraConfig = ''
+#          Host *
+#            IdentitiesOnly yes
+#            AddKeysToAgent yes
+#            IdentityFile ~/.ssh/id_ed25519
+#        '';
+#      };
 
       services.openssh = {
         enable = true;
         startWhenNeeded = true;
-#        passwordAuthentication = false;
+        passwordAuthentication = false;
         allowSFTP = true;
         kbdInteractiveAuthentication = false;
         forwardX11 = false;
@@ -160,8 +160,8 @@ in
           AllowTcpForwarding yes
           AllowAgentForwarding no
           AllowStreamLocalForwarding no
+          AuthenticationMethods publickey
         '';
-          #AuthenticationMethods publickey
       };
 
       services.tailscale.enable = true;

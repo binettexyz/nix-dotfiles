@@ -120,6 +120,8 @@ in
     	    map <C-j> <C-w>j
     	    map <C-k> <C-w>k
     	    map <C-l> <C-w>l
+
+          autocmd BufWritePost $XDG_CONFIG_HOME/x11/xresources silent exec "!xrdb $XDG_CONFIG_HOME/x11/xresources"
         ''
           # Plugins config
         ''    
