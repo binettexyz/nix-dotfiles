@@ -26,7 +26,7 @@
     programs = {
      chromium.enable = true;
      dmenu.enable = true;
-     gtk.enable = true;
+     gtk.enable = false;
      lf.enable = true;
      librewolf.enable = true;
      mpv.enable = true;

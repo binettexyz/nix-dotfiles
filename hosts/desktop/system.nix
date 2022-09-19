@@ -9,7 +9,7 @@
   modules = {
     bootloader = "grub";
     windowManager = "dwm";
-    transmission.enable = true;
+    transmission.enable = false;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
@@ -39,6 +39,17 @@
   networking = {
     interfaces.wlo1.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
+#    bridges = {
+#      br0 = { interfaces = [ "wlo1" ]; };
+#    };
+#    interfaces = {
+#      br0 = {
+#        useDHCP = true;
+#        ipv4.addresses = [
+#          { address = "10.0.0.18"; prefixLength = 24; }
+#        ];
+#      };
+#    };
     wireless = {
       interfaces = [ "wlo1" ];
     };
