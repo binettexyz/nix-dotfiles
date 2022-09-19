@@ -212,6 +212,11 @@ in
           extraGroups = [ "wheel" "binette" "users" "audio" "video" "storage" "libvirtd" ];
           hashedPassword =
             "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPxsgVkgA8fBxOOsL8WmqGa1hAzYgl7YNz/OvLiDq5fO binette@desktop"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3Fo8FZrrTYGqIH84r67dkmSIxcOD3DhJrIJe6ndJ0z binette@t440p"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKWeBglzVFzHXfNq/T+Hu31ukZ3iN6I5UXBpxIN7MRAP binette@x240"
+          ];
         };
         users.root = {
           hashedPassword =

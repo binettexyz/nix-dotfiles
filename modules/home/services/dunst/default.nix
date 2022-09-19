@@ -75,7 +75,7 @@ in
           max_icon_size = "40";
           sticky_history = "yes";
           history_length = 20;
-          dmenu = "/usr/bin/dmenu -p dunst:";
+          dmenu = "${pkgs.dmenu} -p dunst:";
           browser = "librewolf -new-tab";
 
             # Always run rule-defined scripts, even if the notification is suppressed
