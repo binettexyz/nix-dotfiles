@@ -20,13 +20,13 @@ in
     containers.transmission = {
       autoStart = true;
         # starts fresh every time it is updated or reloaded
-  #    ephemeral = true;
+#      ephemeral = true;
   
         # networking & port forwarding
       privateNetwork = false;
-  #    hostBridge = "br0";
-  #    hostAddress = "192.168.100.10";
-  #    localAddress = "192.168.100.20";
+#      hostBridge = "br0";
+#      hostAddress = "10.0.0.17";
+#      localAddress = "10.0.0.18";
   
         # mounts
       bindMounts = {
@@ -53,13 +53,13 @@ in
           enable = true;
           home = "/var/lib/transmission";
           user = "transmission";
-          group = "transmission";
+          group = "users";
           openFirewall = true;
           settings = {
             blocklist-enabled = true;
             blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
             incomplete-dir-enabled = true;
-            watch-dir-enabled = true;
+            watch-dir-enabled = false;
             encryption = 1;
             message-level = 1;
             peer-port = 50778;
@@ -69,7 +69,7 @@ in
             rpc-enable = true;
             rpc-bind-address = "0.0.0.0";
             rpc-port = 9091;
-            rpc-authentication-required = false;
+            rpc-authentication-required = true;
             rpc-username = "binette";
             rpc-password = "cd";
             rpc-whitelist-enabled = false;
