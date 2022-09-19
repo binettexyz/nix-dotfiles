@@ -30,7 +30,7 @@
       dmenu.enable = true;
       librewolf.enable = true;
       lf.enable = true;
-      mpv.enable = true;
+      mpv.enable = false; # TODO: make config for laptop
 #      mutt.enable = true;
 #      newsboat.enable = true;
 #      nnn.enable = true;
