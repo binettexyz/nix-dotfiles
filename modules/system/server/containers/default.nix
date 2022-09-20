@@ -8,6 +8,8 @@
     ./sonarr
     ./transmission
     ./jellyfin
+    ./minecraft
+    ./grafana
   ];
 
 }

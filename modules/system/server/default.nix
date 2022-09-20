@@ -27,10 +27,12 @@ in
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
+        minecraft-server.enable = true;
       };
       services = {
         adGuardHome.enable = true;
         miniflux.enable = false;
+        grafana.enable = true;
       };
     };
   
@@ -42,9 +44,14 @@ in
       '';
     };
   
-    networking.nat = {
-      enable = true;
-      externalInterface = "wlan0";
+    networking = {
+      firewall.allowedTCPPorts = [
+        3000 # grafana
+      ];
+      nat = {
+        enable = true;
+        externalInterface = "wlan0";
+      };
     };
   
     ## FileSystem ##
