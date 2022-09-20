@@ -3,7 +3,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ../../modules/system/server/containers/adguardhome
+#    ../../modules/system/server/containers/adguardhome
   ];
 
   ## Custom modules ##
@@ -11,7 +11,7 @@
     bootloader = "grub";
     windowManager = "dwm";
     transmission.enable = false;
-    containers.adGuardHome.enable = true;
+#    containers.adGuardHome.enable = true;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
