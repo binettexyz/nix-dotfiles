@@ -29,11 +29,12 @@ in
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
-        minecraft-server.enable = false;
+        minecraft-server.enable = true;
         home-assistant.enable = false;
       };
       services = {
         miniflux.enable = false;
+        adGuardHome.enable = true;
       };
     };
   
