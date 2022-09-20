@@ -29,7 +29,7 @@ in
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
-        minecraft-server.enable = true;
+        minecraft-server.enable = false;
         home-assistant.enable = false;
       };
       services = {
