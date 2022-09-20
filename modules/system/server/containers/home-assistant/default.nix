@@ -47,7 +47,14 @@ in
 
         services.home-assistant = {
           enable = true;
-        }
+          openFirewall = true;
+          configDir = "/var/lib/hass";
+
+          config = {
+            http.server_port = 8123;
+            http.server_host = "127.0.0.1";
+          };
+        };
 
       };
     };
