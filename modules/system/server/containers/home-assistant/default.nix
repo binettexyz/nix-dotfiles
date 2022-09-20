@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.modules.containers.adGuardHome;
+  cfg = config.modules.containers.home-assistant;
 in
 {
   options.modules.containers.adGuardHome = {
@@ -27,7 +27,7 @@ in
         # mounts
       bindMounts = {
         "/var/lib/AdGuardHome" = {
-				  hostPath = "/nix/persist/var/lib/AdGuardHome";
+				  hostPath = "/nix/persists/var/lib/AdGuardHome";
 				  isReadOnly = false;
 			  };
       };
