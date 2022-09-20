@@ -15,7 +15,7 @@ in
 
   config = mkIf (cfg.enable) { 
 
-    networking.nat.internalInterfaces = [ "ve-minecraft" ];
+    networking.nat.internalInterfaces = [ "ve-adguardhome" ];
     networking.firewall.allowedTCPPorts = [ 3000 ];
   
     containers.adguardhome = {
@@ -43,7 +43,7 @@ in
       config = { config, pkgs, ... }: {
 
         system.stateVersion = "22.11";
-        networking.hostName = "adhuardhome";
+        networking.hostName = "adguardhome";
 #        nixpkgs.config.allowUnfree = true;
 
         services.adguardhome = {
