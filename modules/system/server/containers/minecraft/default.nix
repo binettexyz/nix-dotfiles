@@ -58,7 +58,7 @@ in
       
           serverProperties = {
             motd = "Nixos Minecraft Server";
-            level-name = "Binette's servival";
+            level-name = "test";
             server-port = 25565;
             difficulaty = 2;
             hardcore = true;
