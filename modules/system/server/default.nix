@@ -46,9 +46,6 @@ in
     };
   
     networking = {
-      firewall.allowedTCPPorts = [
-        3000 # grafana
-      ];
       nat = {
         enable = true;
         externalInterface = "wlan0";

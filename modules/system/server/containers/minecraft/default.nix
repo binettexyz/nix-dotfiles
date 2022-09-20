@@ -45,6 +45,7 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "minecraft-server";
         nixpkgs.config.allowUnfree = true;
+        networking.firewall.allowedTCPPorts = [ 25565 ];
 
         services.minecraft-server = {
           enable = true;
@@ -52,7 +53,7 @@ in
           eula = true;
           dataDir = "/var/lib/minecraft";
           openFirewall = true;
-          package = pkgs.minecraft-server;
+          #package = pkgs.minecraft-server;
       
           jvmOpts = "-Xmx1024M -Xms1024M";
       
@@ -68,7 +69,7 @@ in
             enable-rcon = true;
             allow-flight = false;
             online-mode = true;
-            server-ip = "";
+            server-ip = "127.0.0.1";
             view-distance = 16;
             simulation-distance = 10;
           };

@@ -44,6 +44,7 @@ in
 
         system.stateVersion = "22.11";
         networking.hostName = "adguardhome";
+        networking.firewall.allowedTCPPorts = [ 3000 ];
 
         services.adguardhome = {
           enable = true;
