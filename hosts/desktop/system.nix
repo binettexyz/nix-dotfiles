@@ -3,6 +3,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
+    ../../modules/system/server/containers/minecraft/systemd.nix
   ];
 
   ## Custom modules ##

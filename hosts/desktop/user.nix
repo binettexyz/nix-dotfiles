@@ -105,6 +105,7 @@
       ".local/share/gnupg"
       ".local/share/jellyfinmediaplayer"
       ".local/share/Jellyfin Media Player"
+      ".local/share/minecraft"
       ".local/share/password-store"
       ".local/share/xorg"
       ".local/share/zoxide"
