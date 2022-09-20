@@ -235,6 +235,7 @@ in
           allowedTCPPorts = [
             2049 # NFSv4
           ];
+          allowedUDPPorts = [ config.services.tailscale.port ];
           allowPing = false;
             # tailscale
           checkReversePath = "loose";

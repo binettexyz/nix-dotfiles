@@ -5,9 +5,9 @@ let
   cfg = config.modules.containers.home-assistant;
 in
 {
-  options.modules.containers.adGuardHome = {
+  options.modules.containers.home-assistant = {
     enable = mkOption {
-      description = "Enable AdGuardHome service";
+      description = "Enable home-assistant service";
       type = types.bool;
       default = false;
     };
@@ -15,10 +15,10 @@ in
 
   config = mkIf (cfg.enable) { 
 
-    networking.nat.internalInterfaces = [ "ve-adguardhome" ];
-    networking.firewall.allowedTCPPorts = [ 3000 ];
+    networking.nat.internalInterfaces = [ "ve-hass" ];
+    networking.firewall.allowedTCPPorts = [ 8123 ];
   
-    containers.adguardhome = {
+    containers.hass = {
       autoStart = true;
   
         # networking & port forwarding
@@ -26,16 +26,16 @@ in
   
         # mounts
       bindMounts = {
-        "/var/lib/AdGuardHome" = {
-				  hostPath = "/nix/persists/var/lib/AdGuardHome";
+        "/var/lib/hass" = {
+				  hostPath = "/nix/persists/var/lib/hass";
 				  isReadOnly = false;
 			  };
       };
   
       forwardPorts = [
   			{
-  				containerPort = 3000;
-  				hostPort = 3000;
+  				containerPort = 8123;
+  				hostPort = 8123;
   				protocol = "tcp";
   			}
   		];
@@ -43,16 +43,8 @@ in
       config = { config, pkgs, ... }: {
 
         system.stateVersion = "22.11";
-        networking.hostName = "adguardhome";
-#        nixpkgs.config.allowUnfree = true;
+        networking.hostName = "hass";
 
-        services.adguardhome = {
-          enable = true;
-          host = "127.0.0.1";
-          port = 3000;
-          settings = {
-          };
-        };
       };
     };
   };
