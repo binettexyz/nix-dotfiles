@@ -1,6 +1,5 @@
 {
   imports = [
-    ./adGuardHome
     ./greenclip
     ./miniflux
   ];

@@ -10,6 +10,7 @@
     ./jellyfin
     ./minecraft
     ./grafana
+    ./adguardhome
   ];
 
 }

@@ -19,6 +19,7 @@ in
 
     modules = {
       containers = {
+        adGuardHome.enable = true;
         bazarr.enable = true;
         deluge.enable = false;
         grafana.enable = true;
@@ -31,7 +32,6 @@ in
         minecraft-server.enable = true;
       };
       services = {
-        adGuardHome.enable = true;
         miniflux.enable = false;
       };
     };
