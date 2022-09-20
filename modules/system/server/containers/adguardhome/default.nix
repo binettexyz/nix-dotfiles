@@ -16,7 +16,7 @@ in
   config = mkIf (cfg.enable) { 
 
     networking.nat.internalInterfaces = [ "ve-adguardhome" ];
-    networking.firewall.allowedTCPPorts = [ 3000 ];
+    networking.firewall.allowedTCPPorts = [ 3000 53 ];
   
     containers.adguardhome = {
       autoStart = true;
@@ -38,6 +38,16 @@ in
   				hostPort = 3000;
   				protocol = "tcp";
   			}
+        {
+				  containerPort = 53;
+				  hostPort = 53;
+				  protocol = "tcp";
+			  }
+			  {
+				  containerPort = 53;
+				  hostPort = 53;
+				  protocol = "udp";
+			  }
   		];
   
       config = { config, pkgs, ... }: {
@@ -48,8 +58,8 @@ in
 
         services.adguardhome = {
           enable = true;
-#          host = "127.0.0.1";
-#          port = 3000;
+          host = "127.0.0.1";
+          port = 3000;
 #          settings = {
 #          };
         };

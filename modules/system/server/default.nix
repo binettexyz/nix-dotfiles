@@ -19,7 +19,7 @@ in
 
     modules = {
       containers = {
-        adGuardHome.enable = true;
+        adGuardHome.enable = false;
         bazarr.enable = true;
         deluge.enable = false;
         grafana.enable = false;
@@ -29,7 +29,7 @@ in
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
-        minecraft-server.enable = true;
+        minecraft-server.enable = false;
         home-assistant.enable = false;
       };
       services = {
