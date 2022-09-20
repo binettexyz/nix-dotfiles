@@ -30,7 +30,7 @@ in
         sonarr.enable = true;
         transmission.enable = true;
         minecraft-server.enable = true;
-        home-assistant.enable = true;
+        home-assistant.enable = false;
       };
       services = {
         miniflux.enable = false;
