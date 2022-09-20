@@ -37,7 +37,7 @@ in
 
         services.grafana = {
           enable = true;
-          port = 3000;
+          port = 9000;
           addr = "127.0.0.1";
         };
       };
