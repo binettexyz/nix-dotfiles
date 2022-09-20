@@ -21,6 +21,7 @@ in
       containers = {
         bazarr.enable = true;
         deluge.enable = false;
+        grafana.enable = true;
         jackett.enable = true;
         plex.enable = false;
         jellyfin.enable = true;
@@ -32,7 +33,6 @@ in
       services = {
         adGuardHome.enable = true;
         miniflux.enable = false;
-        grafana.enable = true;
       };
     };
   
