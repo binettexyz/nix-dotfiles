@@ -10,7 +10,7 @@
     ./jellyfin
     ./minecraft
     ./grafana
-    ./adguardhome
+#    ./adguardhome
     ./home-assistant
   ];
 
