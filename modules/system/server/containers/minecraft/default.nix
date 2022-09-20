@@ -18,7 +18,7 @@ in
     networking.firewall.allowedTCPPorts = [ 25565 ];
   
     containers.minecraft-server = {
-      autoStart = false;
+      autoStart = true;
   
         # networking & port forwarding
       privateNetwork = false;
