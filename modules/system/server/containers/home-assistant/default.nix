@@ -45,6 +45,10 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "hass";
 
+        services.home-assistant = {
+          enable = true;
+        }
+
       };
     };
   };
