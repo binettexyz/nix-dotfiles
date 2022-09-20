@@ -11,6 +11,7 @@
     ./minecraft
     ./grafana
     ./adguardhome
+    ./home-assistant
   ];
 
 }
