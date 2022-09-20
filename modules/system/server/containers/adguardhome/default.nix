@@ -44,14 +44,13 @@ in
 
         system.stateVersion = "22.11";
         networking.hostName = "adguardhome";
-#        nixpkgs.config.allowUnfree = true;
 
         services.adguardhome = {
           enable = true;
-          host = "127.0.0.1";
-          port = 3000;
-          settings = {
-          };
+#          host = "127.0.0.1";
+#          port = 3000;
+#          settings = {
+#          };
         };
       };
     };

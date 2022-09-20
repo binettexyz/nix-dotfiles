@@ -25,8 +25,8 @@ in
   
         # mounts
       bindMounts = {
-        "/var/lib/minecraft/vanilla" = {
-          hostPath = "/nix/persist/home/binette/.local/share/minecraft/server/vanilla";
+        "/var/lib/minecraft" = {
+          hostPath = "/nix/persist/home/binette/.local/share/minecraft";
           isReadOnly = false;
         };
   
@@ -50,7 +50,7 @@ in
           enable = true;
           declarative = true;
           eula = true;
-          dataDir = "/var/lib/minecraft/vanilla";
+          dataDir = "/var/lib/minecraft";
           openFirewall = true;
           package = pkgs.minecraft-server;
       
