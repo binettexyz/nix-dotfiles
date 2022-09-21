@@ -24,6 +24,8 @@ in
         enable = true;
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
+
+      environment.systemPackages = with pkgs; [ jdk papermc ];
     };
 
 }

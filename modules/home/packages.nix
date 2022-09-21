@@ -79,7 +79,6 @@ in {
     (mkIf cfg.gaming.enable {
       home.packages = with pkgs; [
         polymc # minecraft client
-        jdk
         mangohud # afterburner like
         runescape runelite
         zeroad

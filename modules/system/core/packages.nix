@@ -18,6 +18,7 @@
       yt-dlp
       htop
       fzf
+      jq
         # pass
 #      pinentry
 #      pinentry-qt

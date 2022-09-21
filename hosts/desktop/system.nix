@@ -3,7 +3,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ../../modules/system/server/containers/minecraft/systemd.nix
+    ../../modules/system/server/containers/minecraft/default.nix
 #    ../../modules/system/server/containers/adguardhome
   ];
 
@@ -93,6 +93,14 @@
       "/mounts"
     ];
   };
+
+  environment.persistence."/nix/persist/home/binette/.local/share" = {
+    hideMounts = true;
+    directories = [
+      { directory = "/opt"; user = "binette"; group = "binette"; mode = "u=rwx,g=rx,o="; }
+    ];
+  };
+
 
   ## Performance stuff ##
   powerManagement.cpuFreqGovernor = "conservative";
