@@ -74,12 +74,12 @@ in {
 #        urlview
 #        mpop
           #rcon
-#       mcrcon
       ];
     })
     (mkIf cfg.gaming.enable {
       home.packages = with pkgs; [
         polymc # minecraft client
+        jdk
         mangohud # afterburner like
         runescape runelite
         zeroad

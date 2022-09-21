@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  MEM = "1024";
+  SHUTDOWN_DELAY = "5";
+  POST_SHUTDOWN_DELAY = "10";
+  JARFILE = "server.jar";
+in
+  {
 
   systemd.services."mcServer@" = {
     wantedBy = [ "multi-user.target" ];
@@ -9,17 +16,17 @@
     };
 
     serviceConfig = {
-      WorkingDirectory = "/opt/minecraft/server/%i";
+      WorkingDirectory = "/home/binette/.local/share/minecraft/server/%i";
         # Set default memory values
       Environment = ''"MEM=1024" "SHUTDOWN_DELAY=5" "POST_SHUTDOWN_DELAY=10" "JARFILE=server.jar"'';
         # Change memory values in environment file
-      EnvironmentFile = "-/opt/minecraft/server/%i/server.conf";
+      EnvironmentFile = "-/home/binette/.local/share/minecraft/server/%i/server.conf";
 
         # Users Database is not available for within the unit, only root and steve is available, everybody else is nobody
       PrivateUsers = true;
 
-      User = "steve";
-      Group = "minecraft";
+      User = "binette";
+      Group = "binette";
 
         # Read only mapping of /usr /boot and /etc
       ProtectSystem = "full";
@@ -44,18 +51,18 @@
       #KillSignal = "SIGCONT";
 
         # Uncomment this to fix screen on RHEL 8
-      ExecStartPre = "+/bin/sh -c 'chmod 777 /run/screens'";
+      ExecStartPre = "+/bin/sh -c 'chmod 777 /etc/profiles/per-user/binette/bin/screen'";
 
-      ExecStart = "/usr/bin/screen -DmS mc-%i /usr/bin/java -Xmx${MEM} -Xms${MEM} -jar ${JARFILE} nogui";
+      ExecStart = "/etc/profiles/per-user/binette/bin/screen -DmS mc-%i /etc/profiles/per-user/binette/bin/java -Xmx${MEM} -Xms${MEM} -jar ${JARFILE} nogui";
 
-      ExecReload = '' /usr/bin/screen -p 0 -S mc-%i -X eval 'stuff "reload"\\015' '';
+      ExecReload = '' /etc/profiles/per-user/binette/bin/screen -p 0 -S mc-%i -X eval 'stuff "reload"\\015' '';
 
       ExecStop = [
-        '' /usr/bin/screen -p 0 -S mc-%i -X eval 'stuff "say SERVER SHUTTING DOWN. Saving map..."\\015' ''
-        '' /bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}' ''
-        '' /usr/bin/screen -p 0 -S mc-%i -X eval 'stuff "save-all"\\015' ''
-        '' /usr/bin/screen -p 0 -S mc-%i -X eval 'stuff "stop"\\015' ''
-        '' /bin/sh -c '/bin/sleep ${POST_SHUTDOWN_DELAY}' ''
+        '' /etc/profiles/per-user/binette/bin/screen -p 0 -S mc-%i -X eval 'stuff "say SERVER SHUTTING DOWN. Saving map..."\\015' ''
+        '' /bin/sh -c '/run/current-system/sw/bin/sleep ${SHUTDOWN_DELAY}' ''
+        '' /etc/profiles/per-user/binette/bin/screen -p 0 -S mc-%i -X eval 'stuff "save-all"\\015' ''
+        '' /etc/profiles/per-user/binette/bin/screen -p 0 -S mc-%i -X eval 'stuff "stop"\\015' ''
+        '' /bin/sh -c '/run/current-system/sw/bin/sleep ${POST_SHUTDOWN_DELAY}' ''
       ];
 
       Restart = "on-failure";

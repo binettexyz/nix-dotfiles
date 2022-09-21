@@ -28,7 +28,7 @@
      dmenu.enable = true;
      gtk.enable = false;
      lf.enable = true;
-     librewolf.enable = true;
+     librewolf.enable = false;
      mpv.enable = true;
 #     mutt.enable = true;
      newsboat.enable = true;
@@ -49,7 +49,7 @@
     };
   };
 
-  home.packages = with pkgs; [ tidal-hifi ];
+  home.packages = with pkgs; [ mcrcon tidal-hifi ];
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
