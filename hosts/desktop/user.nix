@@ -43,7 +43,7 @@
     services = {
       dunst.enable = true;
       flameshot.enable = true;
-      picom.enable = true;
+      picom.enable = false;
       sxhkd.enable = true;
 #      udiskie.enable = true;
     };
@@ -73,7 +73,7 @@
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
-    picom --experimental-backends &
+#    picom --experimental-backends &
     hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
