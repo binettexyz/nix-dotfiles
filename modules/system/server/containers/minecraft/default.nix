@@ -48,7 +48,7 @@ in
       config = { config, pkgs, ... }:
       let
         MIN_MEM = "512M";
-        MAX_MEM = "1024M";
+        MAX_MEM = "3072M";
         PORT = "25575";
         IP = "localhost";
         #IP = "100.71.254.90";
