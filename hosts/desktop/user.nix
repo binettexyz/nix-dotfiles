@@ -107,6 +107,7 @@
       ".local/share/Jellyfin Media Player"
       ".local/share/minecraft"
       ".local/share/password-store"
+      ".local/share/PolyMC"
       ".local/share/xorg"
       ".local/share/zoxide"
       ".local/share/qutebrowser"

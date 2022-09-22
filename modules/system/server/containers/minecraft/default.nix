@@ -130,6 +130,64 @@ in
               # eula.txt managed by NixOS Configuration
               eula=true
             '';
+            propertiesFile = builtins.toFile "server.properties" ''
+              difficulty=normal
+              hardcore=false
+              enable-jmx-monitoring=false
+              rcon.port=25575
+              level-seed=
+              gamemode=survival
+              enable-command-block=false
+              enable-query=false
+              generator-settings={}
+              enforce-secure-profile=true
+              level-name=world
+              motd=NixOS Minecraft Server
+              query.port=25565
+              pvp=true
+              generate-structures=true
+              max-chained-neighbor-updates=1000000
+              network-compression-threshold=256
+              max-tick-time=60000
+              require-resource-pack=false
+              use-native-transport=true
+              max-players=5
+              online-mode=true
+              enable-status=true
+              allow-flight=true
+              broadcast-rcon-to-ops=true
+              view-distance=16
+              server-ip=
+              resource-pack-prompt=
+              allow-nether=true
+              server-port=25565
+              enable-rcon=true
+              sync-chunk-writes=true
+              op-permission-level=4
+              prevent-proxy-connections=false
+              hide-online-players=false
+              resource-pack=
+              entity-broadcast-range-percentage=100
+              simulation-distance=10
+              rcon.password=cd
+              player-idle-timeout=0
+              debug=false
+              force-gamemode=false
+              rate-limit=0
+              white-list=false
+              broadcast-console-to-ops=true
+              spawn-npcs=true
+              previews-chat=false
+              spawn-animals=true
+              function-permission-level=2
+              level-type=minecraft\:normal
+              text-filtering-config=
+              spawn-monsters=true
+              enforce-whitelist=false
+              spawn-protection=16
+              resource-pack-sha1=
+              max-world-size=29999984
+            '';
             API = "https://papermc.io/api/v2/projects/paper";
             VER = "1.19.2";
             BUILDS_JSON = "$(${pkgs.curl}/bin/curl -s ${API}/versions/${VER})";
@@ -138,7 +196,13 @@ in
           in
             ''
               ln -sf ${eulaFile} eula.txt
-            
+              
+              if [ -e "server-properties" ]; then
+                exit 1
+              else
+                cp ${propertiesFile} server.properties
+              fi
+
               if [ -e "${PFILE}" ]; then
                 echo "latest file exists: "${PFILE}""
               else

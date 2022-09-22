@@ -3,7 +3,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ../../modules/system/server/containers/minecraft
 #    ../../modules/system/server/containers/adguardhome
   ];
 
@@ -13,7 +12,6 @@
     windowManager = "dwm";
     transmission.enable = false;
 #    containers.adGuardHome.enable = true;
-    containers.mcServer.enable = true;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
