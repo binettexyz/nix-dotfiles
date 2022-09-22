@@ -106,11 +106,19 @@
   };
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
-  environment.persistence."/nix/persist" = {
-    hideMounts = true;
-    directories = [
-      "/mounts"
-    ];
+  environment.persistence = {
+    "/nix/persist" = {
+      hideMounts = true;
+      directories = [
+        "/mounts"
+      ];
+    };
+    "/nix/persist/home/binette/.local/share" = {
+      hideMounts = true;
+      directories = [
+        "/opt"
+      ];
+    };
   };
 
   ## Performance stuff ##
