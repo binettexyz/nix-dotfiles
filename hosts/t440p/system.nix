@@ -14,6 +14,7 @@
       greenclip.enable = true;
       tty-login-prompt.enable = true;
     };
+    containers.mcServer.enable = true;
     profiles = {
       laptop.enable = true;
       server.enable = false;
