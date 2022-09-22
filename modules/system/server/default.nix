@@ -67,6 +67,13 @@ in
         "/media"
       ];
     };
+
+    environment.persistence."/nix/persist/home/binette/.local/share" = {
+      hideMounts = true;
+      directories = [
+        { directory = "/opt"; user = "binette"; group = "binette"; mode = "u=rwx,g=rx,o="; }
+      ];
+    };
   };
 
 }
