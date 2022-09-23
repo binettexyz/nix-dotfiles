@@ -25,7 +25,7 @@ in
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
 
-      environment.systemPackages = with pkgs; [ jdk papermc ];
+      environment.systemPackages = with pkgs; [ jdk ];
     };
 
 }
