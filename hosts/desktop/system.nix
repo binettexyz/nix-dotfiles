@@ -4,6 +4,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
 #    ../../modules/system/server/containers/adguardhome
+    ../../modules/system/server/containers/minecraft
   ];
 
   ## Custom modules ##
@@ -16,6 +17,7 @@
       greenclip.enable = true;
       tty-login-prompt.enable = true;
     };
+    containers.mcServer.enable = true;
     profiles = {
       gaming.enable = true;
       core = {
@@ -86,11 +88,19 @@
   swapDevices = [ ];
 #  swapDevices = [ { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; } ];
 
-  environment.persistence."/nix/persist" = {
-    hideMounts = true;
-    directories = [
-      "/mounts"
-    ];
+  environment.persistence = {
+    "/nix/persist" = {
+      hideMounts = true;
+      directories = [
+        "/mounts"
+      ];
+    };
+    "/nix/persist/home/binette/.local/share" = {
+      hideMounts = true;
+      directories = [
+        "/opt"
+      ];
+    };
   };
 
   ## Performance stuff ##

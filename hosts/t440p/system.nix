@@ -3,7 +3,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ../../modules/system/server/containers/minecraft
   ];
 
   ## Custom modules ##
@@ -14,7 +13,6 @@
       greenclip.enable = true;
       tty-login-prompt.enable = true;
     };
-    containers.mcServer.enable = true;
     profiles = {
       laptop.enable = true;
       server.enable = false;
@@ -111,12 +109,6 @@
       hideMounts = true;
       directories = [
         "/mounts"
-      ];
-    };
-    "/nix/persist/home/binette/.local/share" = {
-      hideMounts = true;
-      directories = [
-        "/opt"
       ];
     };
   };
