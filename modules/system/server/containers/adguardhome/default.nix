@@ -59,12 +59,11 @@ in
 
         system.stateVersion = "22.11";
         networking.hostName = "adguardhome";
-        networking.firewall.allowedTCPPorts = [ 3000 ];
 
         services.adguardhome = {
-          enable = true;
-#          host = "127.0.0.1";
-#          port = 3000;
+          openFirewall = true;
+          host = "127.0.0.1";
+          port = 3000;
 #          settings = {
 #          };
         };
