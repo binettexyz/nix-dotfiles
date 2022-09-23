@@ -3,7 +3,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ../../modules/system/server/containers/minecraft
   ];
 
   ## Custom modules ##
@@ -15,7 +14,6 @@
       greenclip.enable = true;
       tty-login-prompt.enable = true;
     };
-    containers.mcServer.enable = true;
     profiles = {
       gaming.enable = true;
       core = {
@@ -31,8 +29,18 @@
   };
 
   ## hardware ##
+
     # GPU
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware = {
+    nvidia = {
+      modesetting.enable = true;
+        # Enable experimental NVIDIA power management via systemd
+      powerManagement.enable = true;
+    };
+    opengl.extraPackages = with pkgs; [ vaapiVdpau ];
+  };
+
     # CPU
   nix.settings.max-jobs = 16; # ryzen 7 5800x
   hardware.cpu.amd.updateMicrocode = true;

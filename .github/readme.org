@@ -1,9 +1,25 @@
 #+TITLE: ❄️ NixOS Setup
 #+AUTHOR: Binette
 
-* Partitioning/Setup
+* Dotfiles
+This repository also includes my
+[`home-manager`](https://github.com/nix-community/home-manager/) configuration.
+It is used to configure home in NixOS systems (using `home-manager` as a NixOS
+module) but it should also work in standalone mode.
+* Installation
+#+begin_src sh
+$ nix-shell -p nixFlakes git lf
+$ sudo git clone https://github.com/binettexyz/nix-dotfiles/ /mnt/etc/nixos
+#+end_src
+
+** Partitioning/Setup
 The partitioning setup will be based on these projects:
 
 - [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
 - [[https://github.com/nix-community/impermanence][Impermanence]]
+
+** NixOS
+#+begin_src sh
+$ sudo nixos-install --flake /mnt/etc/nixos#hostname
+#+end_src
 

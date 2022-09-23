@@ -6,7 +6,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    #nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
+    nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";

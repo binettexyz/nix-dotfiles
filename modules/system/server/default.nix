@@ -34,7 +34,6 @@ in
       };
       services = {
         miniflux.enable = false;
-        adGuardHome.enable = false;
       };
     };
   

@@ -5,6 +5,9 @@ let
   cfg = config.modules.profiles.gaming;
 in
 {
+
+  imports = [ ../server/containers/minecraft ];
+
   options.modules.profiles.gaming = {
     enable = mkOption {
       description = "Enable gaming options";
@@ -14,7 +17,7 @@ in
   };
 
     config = mkIf (cfg.enable) {
-      hardware.nvidia.modesetting.enable = true;
+
       programs.steam.enable = true;
       hardware.steam-hardware.enable = true;
 
@@ -24,6 +27,8 @@ in
         enable = true;
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
+
+      modules.containers.mcServer.enable = true;
 
       environment.systemPackages = with pkgs; [ jdk ];
     };
