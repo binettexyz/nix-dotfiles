@@ -30,6 +30,10 @@ in
 				  hostPath = "/nix/persist/var/lib/AdGuardHome";
 				  isReadOnly = false;
 			  };
+        "/var/lib/private/AdGuardHome" = {
+				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
+				  isReadOnly = false;
+			  };
       };
   
       forwardPorts = [
