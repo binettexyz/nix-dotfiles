@@ -17,7 +17,6 @@ in
 
     networking.nat.internalInterfaces = [ "ve-adguardhome" ];
     networking.firewall.allowedTCPPorts = [ 3000 53 ];
-    networking.firewall.allowedUDPPorts = [ 3000 53 ];
   
     containers.adguardhome = {
       autoStart = true;
@@ -40,9 +39,9 @@ in
   				protocol = "tcp";
   			}
   			{
-  				containerPort = 3000;
-  				hostPort = 3000;
-  				protocol = "udp";
+  				containerPort = 80;
+  				hostPort = 80;
+  				protocol = "tcp";
   			}
         {
 				  containerPort = 53;
@@ -61,7 +60,6 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "adguardhome";
         networking.firewall.allowedTCPPorts = [ 3000 ];
-        networking.firewall.allowedUDPPorts = [ 3000 ];
 
         services.adguardhome = {
           enable = true;
