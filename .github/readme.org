@@ -1,11 +1,6 @@
 #+TITLE: ❄️ NixOS Setup
 #+AUTHOR: Binette
 
-* Dotfiles
-This repository also includes my
-[`home-manager`](https://github.com/nix-community/home-manager/) configuration.
-It is used to configure home in NixOS systems (using `home-manager` as a NixOS
-module) but it should also work in standalone mode.
 * Installation
 #+begin_src sh
 $ nix-shell -p nixFlakes git lf
