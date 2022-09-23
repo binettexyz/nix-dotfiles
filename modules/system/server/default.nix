@@ -19,7 +19,7 @@ in
 
     modules = {
       containers = {
-        adGuardHome.enable = true;
+        adGuardHome.enable = false;
         bazarr.enable = true;
         deluge.enable = false;
         grafana.enable = false;
