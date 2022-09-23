@@ -25,16 +25,16 @@ in
       privateNetwork = false;
   
         # mounts
-      bindMounts = {
-        "/var/lib/AdGuardHome" = {
-				  hostPath = "/nix/persist/var/lib/AdGuardHome";
-				  isReadOnly = false;
-			  };
-        "/var/lib/private/AdGuardHome" = {
-				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
-				  isReadOnly = false;
-			  };
-      };
+#      bindMounts = {
+#        "/var/lib/AdGuardHome" = {
+#				  hostPath = "/nix/persist/var/lib/AdGuardHome";
+#				  isReadOnly = false;
+#			  };
+#        "/var/lib/private/AdGuardHome" = {
+#				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
+#				  isReadOnly = false;
+#			  };
+#      };
   
       forwardPorts = [
   			{

@@ -19,7 +19,7 @@ in
 
     modules = {
       containers = {
-        adGuardHome.enable = false; # TODO
+        adGuardHome.enable = true; # TODO
         bazarr.enable = true;
         deluge.enable = false;
         grafana.enable = false;
@@ -34,7 +34,7 @@ in
       };
       services = {
         miniflux.enable = false;
-        adGuardHome.enable = true;
+        adGuardHome.enable = false;
       };
     };
   
