@@ -61,6 +61,7 @@ in
         networking.hostName = "adguardhome";
 
         services.adguardhome = {
+          enable = true;
           openFirewall = true;
           host = "127.0.0.1";
           port = 3000;
