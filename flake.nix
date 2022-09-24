@@ -53,7 +53,6 @@
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     lib = nixpkgs.lib;
 
-      # Credit: https://github.com/sioodmy/dotfiles/blob/main/flake.nix
     mkSystem = pkgs: system: hostname:
       pkgs.lib.nixosSystem {
         system = system;

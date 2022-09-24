@@ -1,6 +1,7 @@
 #+TITLE: ❄️ NixOS Setup
 #+AUTHOR: Binette
 
+* 
 ** Disclaimer
 Don't look at my commits.
 
@@ -21,8 +22,7 @@ $ ./home/nixos/nix-dotfiles/install.sh
 
 ** Credits
 The partitioning setup will be based on these projects:
-
 - [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
 - [[https://github.com/nix-community/impermanence][Impermanence]]
 
-
+Thanks to [[https://github.com/sioodmy/dotfiles/blob/main/flake.nix][ sioodmy]] for the flake template.
