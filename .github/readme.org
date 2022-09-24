@@ -6,6 +6,7 @@ Don't look at my commits.
 
 * Dotfiles
 This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
+
 This setup use my [[https://github.com/binettexyz/dwm][dwm config]] as a tiling window manager.
 
 * Installation
@@ -22,6 +23,7 @@ $ ./home/nixos/nix-dotfiles/install.sh
 
 * Credits
 Thanks to [[https://github.com/sioodmy/dotfiles/blob/main/flake.nix][ sioodmy]] for the flake template.
+
 The partitioning setup is based on these projects:
 - [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
 - [[https://github.com/nix-community/impermanence][Impermanence]]
