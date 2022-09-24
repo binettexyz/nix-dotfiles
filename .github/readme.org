@@ -1,15 +1,15 @@
-#+TITLE: ❄️ NixOS Setup
 #+AUTHOR: Binette
 
-* Disclaimer
+* ❄️ NixOS Setup
+** Disclaimer
 Don't look at my commits.
 
-* Dotfiles
+** Dotfiles
 This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
 
 This setup use my [[https://github.com/binettexyz/dwm][dwm config]] as a tiling window manager.
 
-* Installation
+** Installation
 #+begin_src sh
   # Install nixFlake to install the system with Flake directly
 $ nix-shell -p nixFlakes git
@@ -20,8 +20,28 @@ $ vim /home/nixos/nix-dotfiles/install.sh
   # Execute the setup script
 $ ./home/nixos/nix-dotfiles/install.sh
 #+end_src
+*** Home Manager (standalone)
+Start by installing Nix:
 
-* Credits
+#+begin_src sh
+$ sh <(curl -L https://nixos.org/nix/install) --daemon
+#+end_src
+
+To build the Home Manager standalone and activate its configuration, run:
+
+#+begin_src
+$ nix run '.#homeActivations/<hostname>'
+#+end_src
+
+** Testing
+You can build a VM to test NixOS configurations with safety running the
+command below:
+
+#+begin_src
+$ nix run '.#nixosVMs/<hostname>'
+#+end_src
+
+** Credits
 Thanks to [[https://github.com/sioodmy/dotfiles/blob/main/flake.nix][ sioodmy]] for the flake template.
 
 The partitioning setup is based on these projects:

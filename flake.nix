@@ -7,15 +7,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    #nixos-hardware = { url = "github:NixOS/nixos-hardware"; flake = false; };
+    impermanence.url = "github:nix-community/impermanence";
     nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    impermanence.url = "github:nix-community/impermanence";
 
       # Suckless
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
@@ -83,6 +82,26 @@
         specialArgs = { inherit inputs; };
       };
 
+#      # TODO: To test
+#    mkHome = pkgs: system:
+#      home-manager.lib.homeManagerConfiguration rec {
+#        system = system;
+#        pkgs = pkgs {
+#          inherit system;
+#        };        
+##        username = "binette";
+##        homeDirectory = "/home/binette";
+#        home-manager.users.binette = "/home/binette/.config/nixpkgs/home.nix";
+#        nixpkgs.overlays = [
+#          (final: prev: {
+#            gruvbox-material-gtk =
+#              prev.callPackage ./overlays/gtk-themes/gruvbox-material.nix { };
+#          })
+#            powercord-overlay.overlay
+##            nur.overlay
+#        ];
+#      };
+
   in {
 
     /* ---Defining Systems--- */
@@ -97,9 +116,13 @@
       t440p = mkSystem inputs.nixpkgs-unstable   "x86_64-linux"  "t440p";
         # Server
       rpi4 = mkSystem inputs.nixpkgs-unstable    "aarch64-linux" "rpi4";
-
-
     };
+
+#    homeConfigurations = {
+#                                          /* Architecture */
+#      linux = mkHome inputs.nixpkgs-unstable "x86_64-linux";
+#    };
+
   }; 
 
 }
