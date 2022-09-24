@@ -1,20 +1,28 @@
 #+TITLE: ❄️ NixOS Setup
 #+AUTHOR: Binette
 
-* Installation
+** Disclaimer
+Don't look at my commits.
+
+** Dotfiles
+This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
+
+** Installation
 #+begin_src sh
-$ nix-shell -p nixFlakes git lf
-$ sudo git clone https://github.com/binettexyz/nix-dotfiles/ /mnt/etc/nixos
+  # Install nixFlake to install the system with Flake directly
+$ nix-shell -p nixFlakes git
+$ sudo su
+$ git clone https://github.com/binettexyz/nix-dotfiles /home/nixos
+  # edit script for your system
+$ vim /home/nixos/nix-dotfiles/install.sh
+  # Execute the setup script
+$ ./home/nixos/nix-dotfiles/install.sh
 #+end_src
 
-** Partitioning/Setup
+** Credits
 The partitioning setup will be based on these projects:
 
 - [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
 - [[https://github.com/nix-community/impermanence][Impermanence]]
 
-** NixOS
-#+begin_src sh
-$ sudo nixos-install --flake /mnt/etc/nixos#hostname
-#+end_src
 

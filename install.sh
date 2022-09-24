@@ -55,7 +55,9 @@ mount -o bind /mnt/nix/persist/etc/nixos /mnt/etc/nixos
 mount -o bind /mnt/nix/persist/var/log /mnt/var/log
 
   # Copying NixOS Configs where it's supposed to be
-cp -R /home/nixos/nix-dotfiles/* /mnt/nix/persist/etc/nixos/.
+cp -R /home/nixos/nix-dotfiles/ /mnt/nix/persist/etc/nixos/
 
   # Set tmpfile into /mnt to prevent "not enough space" error
 export TMPDIR=/mnt/tmp
+
+nixos-install --flake /mnt/etc/nixos#.
