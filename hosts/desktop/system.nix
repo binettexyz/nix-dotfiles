@@ -3,7 +3,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
-    ./docker.nix
+    ../../modules/system/desktop/transmission
   ];
 
   ## Custom modules ##
@@ -61,9 +61,9 @@
 #        ];
 #      };
 #    };
-    wireless = {
-      interfaces = [ "wlo1" ];
-    };
+#    wireless = {
+#      interfaces = [ "wlo1" ];
+#    };
   };
 
   ## Kernel modules/packages ##

@@ -23,7 +23,7 @@ in
 #      ephemeral = true;
   
         # networking & port forwarding
-      privateNetwork = false;
+      privateNetwork = true;
 #      hostBridge = "br0";
 #      hostAddress = "10.0.0.17";
 #      localAddress = "10.0.0.18";

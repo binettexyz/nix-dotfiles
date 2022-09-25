@@ -88,7 +88,7 @@
     directories = [
       ".cache/BraveSoftware"
       ".cache/Jellyfin Media Player"
-      ".cache/librewolf"
+#      ".cache/librewolf"
       ".cache/qutebrowser"
       
       ".config/BraveSoftware"
@@ -108,12 +108,13 @@
       ".local/share/minecraft"
       ".local/share/password-store"
       ".local/share/PolyMC"
+      ".local/share/Steam"
       ".local/share/xorg"
       ".local/share/zoxide"
       ".local/share/qutebrowser"
 
       ".git"
-      ".librewolf"
+#      ".librewolf"
       ".ssh"
       ".steam"
       ".gnupg"

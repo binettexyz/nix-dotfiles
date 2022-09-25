@@ -19,15 +19,15 @@ in
 
     modules = {
       containers = {
-        adGuardHome.enable = true; # TODO
-        bazarr.enable = true;
+        adGuardHome.enable = true;
+        bazarr.enable = false;
         deluge.enable = false;
         grafana.enable = false;
-        jackett.enable = true;
+        jackett.enable = false;
         plex.enable = false;
-        jellyfin.enable = true;
-        radarr.enable = true;
-        sonarr.enable = true;
+        jellyfin.enable = false;
+        radarr.enable = false;
+        sonarr.enable = false;
         transmission.enable = true;
         mcServer.enable = true;
         home-assistant.enable = false;
