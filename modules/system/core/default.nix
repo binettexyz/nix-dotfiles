@@ -210,7 +210,7 @@ in
           createHome = true;
           home = "/home/binette";
           group = "binette";
-          extraGroups = [ "wheel" "binette" "users" "audio" "video" "storage" "libvirtd" ];
+          extraGroups = [ "wheel" "binette" "users" "audio" "video" "docker" ];
           hashedPassword =
             "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
           openssh.authorizedKeys.keys = [
@@ -230,7 +230,7 @@ in
         enableIPv6 = false;
         useDHCP = lib.mkDefault false;
         networkmanager.enable = false;
-        nameservers = [ "94.140.14.14" "94.140.15.15" ];
+        nameservers = [ "100.71.254.90" ];
         firewall = {
           enable = true;
           allowedTCPPorts = [
@@ -337,6 +337,17 @@ in
         "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
       };
 
+        # Docker
+
+      virtualisation.docker = {
+        enable = true;
+        enableOnBoot = true;
+        enableNvidia = lib.mkDefault false;
+        autoPrune.enable = true;
+      };
+  
+      virtualisation.oci-containers.backend = "docker";
+
 
         # don't install documentation i don't use
       documentation.enable = true; # documentation of packages
@@ -415,8 +426,6 @@ in
     (mkIf cfg.virtmanager.enable {
       virtualisation.libvirtd.enable = true;
       programs.dconf.enable = true;
-
-      users.users.binette.extraGroups = [ "libvirtd" ];
 
       environment.systemPackages = with pkgs; [ virt-manager ];
     })
