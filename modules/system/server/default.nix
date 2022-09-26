@@ -24,7 +24,7 @@ in
         deluge.enable = false;
         grafana.enable = false;
         jackett.enable = true;
-        plex.enable = false;
+        plex.enable = true;
         jellyfin.enable = false;
         radarr.enable = true;
         sonarr.enable = true;
