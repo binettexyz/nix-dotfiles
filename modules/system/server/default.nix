@@ -23,11 +23,11 @@ in
         bazarr.enable = false;
         deluge.enable = false;
         grafana.enable = false;
-        jackett.enable = false;
+        jackett.enable = true;
         plex.enable = false;
         jellyfin.enable = false;
-        radarr.enable = false;
-        sonarr.enable = false;
+        radarr.enable = true;
+        sonarr.enable = true;
         transmission.enable = true;
         mcServer.enable = true;
         home-assistant.enable = false;
