@@ -338,14 +338,14 @@ in
       };
 
         # Docker
-#      virtualisation.docker = {
-#        enable = true;
-#        enableOnBoot = true;
-#        enableNvidia = lib.mkDefault false;
-#        autoPrune.enable = true;
-#      };
-#  
-#      virtualisation.oci-containers.backend = "docker";
+      virtualisation.docker = {
+        enable = true;
+        enableOnBoot = true;
+        enableNvidia = lib.mkDefault false;
+        autoPrune.enable = true;
+      };
+  
+      virtualisation.oci-containers.backend = "docker";
 
 
         # don't install documentation i don't use

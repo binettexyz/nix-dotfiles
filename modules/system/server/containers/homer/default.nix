@@ -3,44 +3,97 @@ let
   port = "8080";
 
   configFile = builtins.toFile "homer-config" (builtins.toJSON {
-    title = "home@home";
+    title = "server@home";
     subtitle = "Self hosted services";
     logo = "logo.png";
+
     header = true;
     footer = false;
-    defaults = {
-      layout = "list";
-      colorTheme = "dark";
-    };
-    links = [
-      { name = "Logout"; url = "https://auth.h.jackrose.co.nz/logout"; }
+    columns = 4;
+    connectivityCheck = true;
+
+    defaults = { layout = "columns"; colorTheme = "auto"; };
+    links = null;
+
+    theme = "default";
+#    colors = [
+#      {
+#        light = {
+#          highlight-primary = "#323946";
+#          highlight-secondary = "#323946";
+#          highlight-hover = "#323946";
+#          background = "#2E3440";
+#          card-background = "#323946";
+#          text = "#81A1C1";
+#          text-header = "#81A1C1";
+#          text-title = "#D8DEE9";
+#          text-subtitle = "#ECEFF4";
+#          status-offline = "#BF616A";
+#          status-online = "#A3BE8C";
+#        };
+#      }
+#      {
+#        dark = {
+#          highlight-primary = "#323946";
+#          highlight-secondary = "#323946";
+#          highlight-hover = "#323946";
+#          background = "#2E3440";
+#          card-background = "#323946";
+#          text = "#81A1C1";
+#          text-header = "#81A1C1";
+#          text-title = "#D8DEE9";
+#          text-subtitle = "#ECEFF4";
+#          status-offline = "#BF616A";
+#          status-online = "#A3BE8C";
+#        };
+#      }
+#    ];
+        services = [
+      {
+        name = "Media";
+        icon = "fas fa-photo-video";
+        items = [
+          { name = "Radarr"; url = ""; }
+          { name = "Sonarr"; url = ""; }
+          { name = "Jellyfin"; url = ""; }
+          { name = "OpenBooks"; url = ""; }
+          { name = "Deluge"; url = ""; }
+          { name = "Transmission"; url = ""; }
+        ];
+      }
+      {
+        name = "Services";
+        icon = "fas fa-stream";
+        items = [
+          { name = "Nextcloud"; url = ""; }
+          { name = "Photoprism"; url = ""; }
+          { name = "Bitwarden"; url = ""; }
+        ];
+      }
+      {
+        name = "System";
+        icon = "fas fa-cog";
+        items = [
+          { name = "Jackett"; url = ""; }
+          { name = "AdGuardHome"; url = ""; }
+        ];
+      }
+      {
+        name = "Home Automation";
+        icon = "fas fa-home";
+        items = [
+          { name = "Home Assistant"; url = ""; }
+        ];
+      }
     ];
-    services = [
-      {
-        name = "Applications";
-        items = [
-          { name = "Nextcloud"; subtitle = "File sync and hosting"; url = "https://nextcloud.h.jackrose.co.nz"; }
-          { name = "Jellyfin"; subtitle = "Movies and TV"; url = "https://jellyfin.h.jackrose.co.nz"; }
-          { name = "Photoprism"; subtitle = "Photos"; url = "https://photoprism.h.jackrose.co.nz"; }
-        ];
-      }
-      {
-        name = "*arr";
-        items = [
-          { name = "Radarr"; subtitle = "Movies"; url = "https://radarr.h.jackrose.co.nz"; }
-          { name = "Sonarr"; subtitle = "TV shows"; url = "https://sonarr.h.jackrose.co.nz"; }
-          { name = "Prowlarr"; subtitle = "Trackers"; url = "https://prowlarr.h.jackrose.co.nz"; }
-        ];
-      }
-      {
-        name = "Admin";
-        items = [
-          { name = "Traefik dashboard"; subtitle = "Reverse proxy config"; url = "https://traefik.h.jackrose.co.nz"; }
-          { name = "Netdata"; subtitle = "OS stats"; url = "https://netdata.h.jackrose.co.nz"; }
-          { name = "Authelia"; subtitle = "Just a login page"; url = "https://auth.h.jackrose.co.nz"; }
-        ];
-      }
-    ];
+#    message = [
+#      {
+#        style = "is-danger";
+#        title = "DuckDuckGo Search Box";
+#        icon = "fa fa-exclamation-triangle";
+#        content = ''<iframe src="https://duckduckgo.com/search.html?prefill=Search DuckDuckGo&focus=yes&kz=1&kac=1&kn=1&kp=-2&k1=-1" style="overflow:hidden;margin:0;padding:0;width:calc(100% - 100px);height:60px;" frameborder="0"></iframe>'';
+#      }
+#    ];
   });
 in
 {

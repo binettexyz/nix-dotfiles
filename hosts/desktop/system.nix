@@ -4,6 +4,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
     ../../modules/system/desktop/transmission
+    ../../modules/system/server/containers/homer
   ];
 
   ## Custom modules ##
