@@ -20,12 +20,9 @@ in
     modules = {
       containers = {
         adGuardHome.enable = true;
-        bazarr.enable = false;
         deluge.enable = false;
-        grafana.enable = true;
         jackett.enable = true;
-        plex.enable = false;
-        jellyfin.enable = false;
+        jellyfin.enable = true;
         radarr.enable = true;
         sonarr.enable = true;
         transmission.enable = true;
