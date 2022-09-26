@@ -15,9 +15,9 @@ in
 
   config = mkIf (cfg.enable) {
     networking.nat.internalInterfaces = [ "ve-grafana" ];
-    networking.firewall.allowedTCPPorts = [ 3001 ];
+    networking.firewall.allowedTCPPorts = [ 9000 ];
   
-    containers.minecraft-server = {
+    containers.grafana = {
       autoStart = true;
   
         # networking & port forwarding
@@ -25,19 +25,19 @@ in
   
       forwardPorts = [
   			{
-  				containerPort = 3000;
-  				hostPort = 3001;
+  				containerPort = 9000;
+  				hostPort = 9000;
   				protocol = "tcp";
   			}
   		];
   
       config = { config, pkgs, ... }: {
 
-        networking.firewall.allowedTCPPorts = [ 3000 ];
+        networking.firewall.allowedTCPPorts = [ 9000 ];
 
         services.grafana = {
           enable = true;
-#          port = 9000;
+          port = 9000;
 #          addr = "127.0.0.1";
         };
       };
