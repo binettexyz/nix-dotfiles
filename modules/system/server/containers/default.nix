@@ -3,7 +3,7 @@
     ./bazarr
     ./deluge
     ./jackett
-    ./plex/docker.nix
+    ./plex
     ./radarr
     ./sonarr
     ./transmission

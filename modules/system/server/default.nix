@@ -22,9 +22,9 @@ in
         adGuardHome.enable = true;
         bazarr.enable = false;
         deluge.enable = false;
-        grafana.enable = false;
+        grafana.enable = true;
         jackett.enable = true;
-        plex.enable = true;
+        plex.enable = false;
         jellyfin.enable = false;
         radarr.enable = true;
         sonarr.enable = true;
