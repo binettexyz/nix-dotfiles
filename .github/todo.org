@@ -1,3 +1,4 @@
 * TODO
-[ ] neovim config
-[ ] make multi-user config
+  - [ ] neovim config
+  - [ ] make multi-user config
+  - [ ] Setups secrets

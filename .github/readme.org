@@ -7,9 +7,6 @@ Don't look at my commits.
 ** Dotfiles
 This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
 
-** Todo-list
-  - [-] Setup Secrets
-
 ** Installation
 #+begin_src sh
   # Install nixFlake to install the system with Flake directly
