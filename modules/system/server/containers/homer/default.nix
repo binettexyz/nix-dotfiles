@@ -224,50 +224,16 @@ in
     networking.nat.internalInterfaces = [ "ve-homer" ];
     networking.firewall.allowedTCPPorts = [ 8080 ];
   
-    containers.homer = {
+    virtualisation.oci-containers.containers.homer = {
       autoStart = true;
-  
-        # networking & port forwarding
-      privateNetwork = false;
-  
-        # mounts
-#      bindMounts = {
-#        "/var/lib/AdGuardHome" = {
-#				  hostPath = "/nix/persist/var/lib/AdGuardHome";
-#				  isReadOnly = false;
-#			  };
-#        "/var/lib/private/AdGuardHome" = {
-#				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
-#				  isReadOnly = false;
-#			  };
-#      };
-  
-      forwardPorts = [
-  			{
-  				containerPort = 8080;
-  				hostPort = 8080;
-  				protocol = "tcp";
-  			}
-  		];
-  
-      config = { config, pkgs, ... }: {
-
-        system.stateVersion = "22.11";
-        networking.hostName = "homer";
-
-        virtualisation.oci-containers.containers.homer = {
-          autoStart = true;
-          image = "b4bz/homer";
-          ports = [
-            "8080:8080"
-          ];
-          volumes = [
-            "${configFile}:/www/assets/config.yml"
-            "${cssFile}:/www/assets/custom.css"
-          ];
-        };
-      };
+      image = "b4bz/homer";
+      ports = [
+        "8080:8080"
+      ];
+      volumes = [
+        "${configFile}:/www/assets/config.yml"
+        "${cssFile}:/www/assets/custom.css"
+      ];
     };
   };
-
 }
