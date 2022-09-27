@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let
 #  sonarrAPI = builtins.readFile /home/binette/documents/sonarrAPI;
