@@ -21,6 +21,7 @@ in
       containers = {
         adGuardHome.enable = true;
         deluge.enable = false;
+        homer.enable = true;
         jackett.enable = true;
         jellyfin.enable = true;
         radarr.enable = true;

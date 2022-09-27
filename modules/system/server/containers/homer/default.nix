@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
+with lib;
 let
-
 #  sonarrAPI = builtins.readFile /home/binette/documents/sonarrAPI;
 #  radarrAPI = builtins.readFile /home/binette/documents/radarrAPI;
-
+  cfg = config.modules.containers.adGuardHome;
   configFile = builtins.toFile "config.yml" ''
     # Homepage configuration
     # See https://fontawesome.com/v5/search for icons options
@@ -77,11 +77,11 @@ let
             target: "_blank"
             type: Ping
           - name: "OpenBooks"
-            url: "http://100.71.254.90:"
+            url: "http://"
             target: "_blank"
             type: Ping
           - name: "Deluge"
-            url: "http://100.71.254.90:"
+            url: "http://"
             target: "_blank"
             type: Ping
           - name: "Transmission"
@@ -125,11 +125,6 @@ let
             target: "_blank"
             type: Ping
     
-    message:
-        style: "is-danger"
-        title: "DuckDuckGo Search Box"
-        icon: "fa fa-exclamation-triangle"
-        content: "<iframe src='https://duckduckgo.com/search.html?prefill=Search DuckDuckGo&focus=yes&kz=1&kac=1&kn=1&kp=-2&k1=-1' style='overflow:hidden;margin:0;padding:0;width:calc(100% - 100px);height:60px;' frameborder='0'></iframe>"
   '';
 
   cssFile = builtins.toFile "custom.css" ''
@@ -216,15 +211,63 @@ let
 in
 {
 
-  virtualisation.oci-containers.containers.homer = {
-    autoStart = true;
-    image = "b4bz/homer";
-    ports = [
-      "8080:8080"
-    ];
-    volumes = [
-      "${configFile}:/www/assets/config.yml"
-      "${cssFile}:/www/assets/custom.css"
-    ];
+  options.modules.containers.homer = {
+    enable = mkOption {
+      description = "Enable Homer dashboard";
+      type = types.bool;
+      default = false;
+    };
   };
+
+  config = mkIf (cfg.enable) { 
+
+    networking.nat.internalInterfaces = [ "ve-homer" ];
+    networking.firewall.allowedTCPPorts = [ 8080 ];
+  
+    containers.homer = {
+      autoStart = true;
+  
+        # networking & port forwarding
+      privateNetwork = false;
+  
+        # mounts
+#      bindMounts = {
+#        "/var/lib/AdGuardHome" = {
+#				  hostPath = "/nix/persist/var/lib/AdGuardHome";
+#				  isReadOnly = false;
+#			  };
+#        "/var/lib/private/AdGuardHome" = {
+#				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
+#				  isReadOnly = false;
+#			  };
+#      };
+  
+      forwardPorts = [
+  			{
+  				containerPort = 8080;
+  				hostPort = 8080;
+  				protocol = "tcp";
+  			}
+  		];
+  
+      config = { config, pkgs, ... }: {
+
+        system.stateVersion = "22.11";
+        networking.hostName = "homer";
+
+        virtualisation.oci-containers.containers.homer = {
+          autoStart = true;
+          image = "b4bz/homer";
+          ports = [
+            "8080:8080"
+          ];
+          volumes = [
+            "${configFile}:/www/assets/config.yml"
+            "${cssFile}:/www/assets/custom.css"
+          ];
+        };
+      };
+    };
+  };
+
 }
