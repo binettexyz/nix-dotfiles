@@ -337,17 +337,6 @@ in
         "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
       };
 
-        # Docker
-      virtualisation.docker = {
-        enable = true;
-        enableOnBoot = true;
-        enableNvidia = lib.mkDefault false;
-        autoPrune.enable = true;
-      };
-  
-      virtualisation.oci-containers.backend = "docker";
-
-
         # don't install documentation i don't use
       documentation.enable = true; # documentation of packages
       documentation.nixos.enable = true; # nixos documentation

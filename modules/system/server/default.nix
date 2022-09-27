@@ -49,6 +49,16 @@ in
         externalInterface = "wlan0";
       };
     };
+
+        # Docker
+    virtualisation.docker = {
+      enable = true;
+      enableOnBoot = true;
+      enableNvidia = lib.mkDefault false;
+      autoPrune.enable = true;
+    };
+  
+    virtualisation.oci-containers.backend = "docker";
   
     ## FileSystem ##
     fileSystems."/nix/persist/media" = {
