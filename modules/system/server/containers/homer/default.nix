@@ -109,7 +109,7 @@ let
             target: "_blank"
             type: Ping
           - name: "Bitwarden"
-            logo: "assets/logo/bitwraden.png"
+            logo: "assets/logo/bitwarden.png"
             url: "http://"
             target: "_blank"
             type: Ping
