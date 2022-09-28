@@ -70,7 +70,7 @@ let
           - name: "Sonarr"
             logo: "assets/logo/sonarr.png"
             url: "http://100.71.254.90:8989"
-            target: "_blank"
+#            target: "_blank"
 #            type: "Sonarr"
 #            apikey: ""
             type: Ping
