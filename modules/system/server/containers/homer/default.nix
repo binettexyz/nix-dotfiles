@@ -233,6 +233,7 @@ in
       volumes = [
         "${configFile}:/www/assets/config.yml"
         "${cssFile}:/www/assets/custom.css"
+        "./etc:/www/assets/logo"
       ];
     };
   };
