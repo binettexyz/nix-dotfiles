@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+with lib;
 let
   cfg = config.modules.containers.openbooks;
 in
