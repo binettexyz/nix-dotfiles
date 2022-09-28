@@ -81,7 +81,7 @@ let
             type: Ping
           - name: "OpenBooks"
 #            logo: "assets/logo/.png"
-            url: "http://"
+            url: "http://100.71.254.90:8081"
             target: "_blank"
             type: Ping
           - name: "Deluge"
@@ -108,9 +108,9 @@ let
             url: "http://"
             target: "_blank"
             type: Ping
-          - name: "Bitwarden"
+          - name: "Vaultwarden"
             logo: "assets/logo/bitwarden.png"
-            url: "http://"
+            url: "http://100.71.254.90:3011"
             target: "_blank"
             type: Ping
     
