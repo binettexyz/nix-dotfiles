@@ -48,18 +48,13 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "vaultwarden";
 
-	      services.nginx.enable = true;
-	      services.nginx.virtualHosts."jonathanbinette.xyz" = {
-		      locations."/vw/".proxyPass = "http://localhost:3011";
-	      };
-
         services.vaultwarden = {
           enable = true;
           config = {
             webVaultEnabled = true;
             websocketEnabled = true;
             signupsVerify = false;
-            domain = "jonathanbinette.xyz";
+            domain = "127.0.0.1";
             websocketAddress = "127.0.0.1";
             rocketAddress = "127.0.0.1";
             rocketPort = 3011;
