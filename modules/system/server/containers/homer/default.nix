@@ -10,7 +10,7 @@ let
     
     title: "server@home"
     subtitle: "Self Hosted Services"
-    logo: "logo.png"
+    logo: "assets/logo/gruvbox_nwixowos.png"
     
     header: true # Set to false to hide the header
     footer: false
