@@ -28,12 +28,12 @@ in
       privateNetwork = false;
   
         # mounts
-      bindMounts = {
-        "${cfg.backupDir}" = {
-				  hostPath = "/nix/persist/srv/private/vaultwarden";
-				  isReadOnly = false;
-			  };
-      };
+#      bindMounts = {
+#        "${cfg.backupDir}" = {
+#				  hostPath = "/nix/persist/srv/private/vaultwarden";
+#				  isReadOnly = false;
+#			  };
+#      };
   
       forwardPorts = [
         {
@@ -60,13 +60,13 @@ in
             logFile = "/var/log/bitwarden_rs.log";
             showPasswordHint = false;
           };
-          inherit (cfg) backupDir;
+#          inherit (cfg) backupDir;
         };
     
-        system.activationScripts.initVaultwarden = ''
-          mkdir -p "${cfg.backupDir}"
-          chown "${config.users.users.vaultwarden.name}" "${cfg.backupDir}"
-        '';
+#        system.activationScripts.initVaultwarden = ''
+#          mkdir -p "${cfg.backupDir}"
+#          chown "${config.users.users.vaultwarden.name}" "${cfg.backupDir}"
+#        '';
     
         networking.firewall = {
           allowedTCPPorts = [ cfg.openPorts ];
