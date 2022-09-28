@@ -61,21 +61,21 @@ let
         icon: "fas fa-photo-video"
         items:
           - name: "Radarr"
-            logo: "logo/radarr.png"
+            logo: "assets/logo/radarr.png"
             url: "http://100.71.254.90:7878"
             target: "_blank"
 #            type: "Radarr"
 #            apikey: ""
             type: Ping
           - name: "Sonarr"
-            logo: "logo/sonarr.png"
+            logo: "assets/logo/sonarr.png"
             url: "http://100.71.254.90:8989"
             target: "_blank"
 #            type: "Sonarr"
 #            apikey: ""
             type: Ping
           - name: "Jellyfin"
-            logo: "logo/jellyfin.png"
+            logo: "assets/logo/jellyfin.png"
             url: "http://100.71.254.90:8096"
             target: "_blank"
             type: Ping
@@ -88,7 +88,7 @@ let
             target: "_blank"
             type: Ping
           - name: "Transmission"
-            logo: "logo/transmission.png"
+            logo: "assets/logo/transmission.png"
             url: "http://100.71.254.90:9091"
             target: "_blank"
             type: Ping
