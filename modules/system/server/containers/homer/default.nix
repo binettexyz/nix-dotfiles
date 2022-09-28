@@ -63,36 +63,30 @@ let
           - name: "Radarr"
             logo: "assets/logo/radarr.png"
             url: "http://100.71.254.90:7878"
-            target: "_blank"
 #            type: "Radarr"
 #            apikey: ""
             type: Ping
           - name: "Sonarr"
             logo: "assets/logo/sonarr.png"
             url: "http://100.71.254.90:8989"
-#            target: "_blank"
 #            type: "Sonarr"
 #            apikey: ""
             type: Ping
           - name: "Jellyfin"
             logo: "assets/logo/jellyfin.png"
             url: "http://100.71.254.90:8096"
-            target: "_blank"
             type: Ping
           - name: "OpenBooks"
 #            logo: "assets/logo/.png"
             url: "http://100.71.254.90:8081"
-            target: "_blank"
             type: Ping
           - name: "Deluge"
             logo: "assets/logo/deluge.png"
             url: "http://"
-            target: "_blank"
             type: Ping
           - name: "Transmission"
             logo: "assets/logo/transmission.png"
             url: "http://100.71.254.90:9091"
-            target: "_blank"
             type: Ping
     
       - name: "Services"
@@ -101,17 +95,14 @@ let
           - name: "Nextcloud"
             logo: "assets/logo/nextcloud.png"
             url: "http://"
-            target: "_blank"
             type: Ping
           - name: "Photoprism"
             logo: "assets/logo/photoprism.png"
             url: "http://"
-            target: "_blank"
             type: Ping
           - name: "Vaultwarden"
             logo: "assets/logo/bitwarden.png"
             url: "http://100.71.254.90:3011"
-            target: "_blank"
             type: Ping
     
       - name: "System"
@@ -120,12 +111,10 @@ let
           - name: "Jackett"
             logo: "assets/logo/jackett.png"
             url: "http://100.71.254.90:9117"
-            target: "_blank"
             type: Ping
           - name: "AdGuardHome"
             logo: "assets/logo/adguardhome.png"
             url: "http://100.71.254.90:80"
-            target: "_blank"
             type: Ping
     
       - name: "Home Automation"
@@ -134,7 +123,6 @@ let
           - name: "Home Assistant"
             logo: "assets/logo/home-assistant.png"
             url: "http://"
-            target: "_blank"
             type: Ping
     
   '';
