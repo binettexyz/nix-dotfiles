@@ -28,12 +28,12 @@ in
       privateNetwork = false;
   
         # mounts
-#      bindMounts = {
-#        "${cfg.backupDir}" = {
-#				  hostPath = "/nix/persist/srv/private/vaultwarden";
-#				  isReadOnly = false;
-#			  };
-#      };
+      bindMounts = {
+        "${cfg.backupDir}" = {
+				  hostPath = "/nix/persist/srv/private/vaultwarden";
+				  isReadOnly = false;
+			  };
+      };
   
       forwardPorts = [
         {
@@ -48,19 +48,25 @@ in
         system.stateVersion = "22.11";
         networking.hostName = "vaultwarden";
 
+	      services.nginx.enable = true;
+	      services.nginx.virtualHosts."jonathanbinette.xyz" = {
+		      locations."/vw/".proxyPass = "http://localhost:3011";
+	      };
+
         services.vaultwarden = {
           enable = true;
           config = {
             webVaultEnabled = true;
             websocketEnabled = true;
-            signupsVerify = true;
+            signupsVerify = false;
+            domain = "jonathanbinette.xyz";
             websocketAddress = "127.0.0.1";
             rocketAddress = "127.0.0.1";
             rocketPort = 3011;
             logFile = "/var/log/bitwarden_rs.log";
             showPasswordHint = false;
           };
-#          inherit (cfg) backupDir;
+          inherit (cfg) backupDir;
         };
     
 #        system.activationScripts.initVaultwarden = ''
