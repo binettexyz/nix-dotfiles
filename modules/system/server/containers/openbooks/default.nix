@@ -22,7 +22,7 @@ in
       autoStart = true;
       image = "evanbuss/openbooks";
       ports = [
-        "8080:8081"
+        "8081:8081"
       ];
 #      volumes = [
 #      ];
