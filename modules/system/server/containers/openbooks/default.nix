@@ -1,12 +1,12 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.modules.containers.adGuardHome;
+  cfg = config.modules.containers.openbooks;
 in
 {
 
-  options.modules.containers.homer = {
+  options.modules.containers.openbooks = {
     enable = mkOption {
-      description = "Enable Homer dashboard";
+      description = "Enable openbooks services";
       type = types.bool;
       default = false;
     };
@@ -14,19 +14,16 @@ in
 
   config = mkIf (cfg.enable) { 
 
-    networking.nat.internalInterfaces = [ "ve-homer" ];
-    networking.firewall.allowedTCPPorts = [ 8080 ];
+    networking.nat.internalInterfaces = [ "ve-openbooks" ];
+    networking.firewall.allowedTCPPorts = [ 8081 ];
   
-    virtualisation.oci-containers.containers.homer = {
+    virtualisation.oci-containers.containers.openbooks = {
       autoStart = true;
-      image = "b4bz/homer";
+      image = "evanbuss/openbooks";
       ports = [
-        "8080:8080"
+        "8080:8081"
       ];
       volumes = [
-        "${configFile}:/www/assets/config.yml"
-        "${cssFile}:/www/assets/custom.css"
-        "./etc:/www/assets/logo"
       ];
     };
   };

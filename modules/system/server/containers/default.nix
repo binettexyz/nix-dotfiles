@@ -8,6 +8,7 @@
     ./transmission
     ./jellyfin
     ./minecraft
+    ./openbooks
     ./adguardhome
     ./home-assistant
   ];
