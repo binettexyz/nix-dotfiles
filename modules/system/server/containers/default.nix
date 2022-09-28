@@ -11,6 +11,7 @@
     ./openbooks
     ./adguardhome
     ./home-assistant
+    ./vaultwarden
   ];
 
 }

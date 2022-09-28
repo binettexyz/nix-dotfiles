@@ -29,6 +29,8 @@ in
         transmission.enable = true;
         mcServer.enable = true;
         home-assistant.enable = false;
+        openbooks.enable = true;
+        vaultwarden.enable = true;
       };
       services = {
         miniflux.enable = false;
