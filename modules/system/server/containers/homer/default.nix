@@ -3,7 +3,7 @@ with lib;
 let
 #  sonarrAPI = builtins.readFile /home/binette/documents/sonarrAPI;
 #  radarrAPI = builtins.readFile /home/binette/documents/radarrAPI;
-  cfg = config.modules.containers.adGuardHome;
+  cfg = config.modules.containers.homer;
   configFile = builtins.toFile "config.yml" ''
     # Homepage configuration
     # See https://fontawesome.com/v5/search for icons options
