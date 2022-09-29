@@ -253,8 +253,6 @@ in
           enable = true;
           extraRules = [{ users = [ "binette" ]; noPass = true; keepEnv = true; }];
         };
-        acme.acceptTerms = true;
-        acme.defaults.email = "jonathan_89@live.ca";
       };
 
       boot.blacklistedKernelModules = [
