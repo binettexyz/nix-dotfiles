@@ -23,6 +23,9 @@ in
 
     services.nginx.enable = true;
     services.nginx.virtualHosts."vault.lan" = {
+		serverName = "vault.lan";
+		enableACME = true;
+		forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:3011";
 #        proxyWebsockets = true;
