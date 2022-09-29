@@ -21,14 +21,12 @@ in
     networking.nat.internalInterfaces = [ "ve-vaultwarden" ];
     networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
 
-    services.nginx.enable = true;
     services.nginx.virtualHosts."vault.lan" = {
 		serverName = "vault.lan";
 		enableACME = true;
 		forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:3011";
-#        proxyWebsockets = true;
       };
     };
   
@@ -64,7 +62,7 @@ in
             webVaultEnabled = true;
             websocketEnabled = true;
             signupsVerify = false;
-            websocketAddress = "0.0.0.0";
+            websocketAddress = "127.0.0.1";
             rocketAddress = "127.0.0.1";
             rocketPort = 3011;
             logFile = "/var/log/bitwarden_rs.log";

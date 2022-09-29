@@ -29,7 +29,10 @@ in
           hostPath = "/media/videos";
           isReadOnly = false;
         };
-  
+        "/var/lib/jellyfin" = {
+          hostPath = "/nix/persist/var/lib/jellyfin";
+          isReadOnly = false;
+        };
       };
   
       forwardPorts = [
