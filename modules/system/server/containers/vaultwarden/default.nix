@@ -23,10 +23,9 @@ in
 
     services.nginx.enable = true;
     services.nginx.virtualHosts."vault.lan" = {
-    listen = [ { port = 80; } ];
       locations."/" = {
-        proxyPass = "http://127.0.0.1:3011";
-        proxyWebsockets = true;
+        proxyPass = "http://localhost:3011";
+#        proxyWebsockets = true;
       };
     };
   
