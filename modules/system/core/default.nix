@@ -253,7 +253,7 @@ in
           enable = true;
           extraRules = [{ users = [ "binette" ]; noPass = true; keepEnv = true; }];
         };
-        security.acme.acceptTerms = true;
+        acme.acceptTerms = true;
       };
 
       boot.blacklistedKernelModules = [
