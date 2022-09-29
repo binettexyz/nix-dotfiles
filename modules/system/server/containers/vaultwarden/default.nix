@@ -21,6 +21,7 @@ in
     networking.nat.internalInterfaces = [ "ve-vaultwarden" ];
     networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
 
+    services.nginx.enable = true;
     services.nginx.virtualHosts."rpi4:3011" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:3011";
