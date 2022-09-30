@@ -82,8 +82,9 @@ in
           openFirewall = true;
           host = "127.0.0.1";
           port = 3000;
+            # TODO: delete config and uncomment these lines
 #          settings = {
-#            bind_host = "100.71.254.90";
+#            bind_host = "0.0.0.0";
 #            bind_port = cfg.openPorts;
 #            dns = {
 #              rewrites = {
