@@ -10,10 +10,10 @@ in
 
   options.modules.containers.dashy = {
     enable = mkEnableOption "dashy";
-#    openPorts = mkOption {
-#      type = types.port;
-#      default = 8080;
-#    };
+    openPorts = mkOption {
+      type = types.port;
+      default = 8081;
+    };
   };
 
   config = mkIf (cfg.enable) { 
