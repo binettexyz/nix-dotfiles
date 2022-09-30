@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.modules.containers.vaultwarden;
+  vaultPort = toString cfg.openPorts;
 in
 {
   options.modules.containers.vaultwarden = {
@@ -21,13 +22,12 @@ in
     networking.nat.internalInterfaces = [ "ve-vaultwarden" ];
     networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
 
+    services.nginx.enable = true;
     services.nginx.virtualHosts."vault.box" = {
-		  serverName = "vault.box";
-      proxyWebsockets = true;
-#		   enableACME = true;
+#      enableACME = true;
 #		   forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:${cfg.openPorts}";
+        proxyPass = "http://localhost:${vaultPort}";
       };
     };
   
@@ -63,8 +63,8 @@ in
             webVaultEnabled = true;
             websocketEnabled = true;
             signupsVerify = false;
-            websocketAddress = "127.0.0.1";
-            rocketAddress = "127.0.0.1";
+#            websocketAddress = "127.0.0.1";
+            rocketAddress = "0.0.0.0";
             rocketPort = 3011;
             logFile = "/var/log/bitwarden_rs.log";
             showPasswordHint = false;

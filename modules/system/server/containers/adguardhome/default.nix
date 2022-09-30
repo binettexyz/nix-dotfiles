@@ -3,6 +3,7 @@ with lib;
 
 let
   cfg = config.modules.containers.adGuardHome;
+  adguardPort = toString cfg.openPorts;
 in
 {
   options.modules.containers.adGuardHome = {
@@ -11,13 +12,25 @@ in
       type = types.bool;
       default = false;
     };
+    openPorts = mkOption {
+      type = types.port;
+      default = 8001;
+    };
   };
 
   config = mkIf (cfg.enable) { 
 
     networking.nat.internalInterfaces = [ "ve-adguardhome" ];
-    networking.firewall.allowedTCPPorts = [ 3000 53 ];
-  
+    networking.firewall.allowedTCPPorts = [ 8001 3000 53 ];
+
+  # TODO not working 
+#    services.nginx.enable = true;
+#    services.nginx.virtualHosts."adguard.box" = {
+#        locations."/" = {
+#          proxyPass = "http://100.71.254.90:${adguardPort}";
+#        };
+#    };
+
     containers.adguardhome = {
       autoStart = true;
   
@@ -37,16 +50,16 @@ in
 #      };
   
       forwardPorts = [
-  			{
-  				containerPort = 3000;
-  				hostPort = 3000;
-  				protocol = "tcp";
-  			}
-  			{
-  				containerPort = 80;
-  				hostPort = 80;
-  				protocol = "tcp";
-  			}
+        {
+				  containerPort = 3000;
+				  hostPort = 3000;
+				  protocol = "tcp";
+			  }
+        {
+				  containerPort = 8001;
+				  hostPort = 8001;
+				  protocol = "tcp";
+			  }
         {
 				  containerPort = 53;
 				  hostPort = 53;
@@ -70,6 +83,14 @@ in
           host = "127.0.0.1";
           port = 3000;
 #          settings = {
+#            bind_host = "100.71.254.90";
+#            bind_port = cfg.openPorts;
+#            dns = {
+#              rewrites = {
+#                domain = "'*.box'";
+#                answer = "100.71.254.90";
+#              };
+#            };
 #          };
         };
       };
