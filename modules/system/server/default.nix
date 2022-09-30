@@ -52,8 +52,6 @@ in
       };
     };
 
-    services.nginx.enable = true;
-
         # Docker
     virtualisation.docker = {
       enable = true;
