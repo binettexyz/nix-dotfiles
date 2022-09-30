@@ -62,7 +62,7 @@ in
             webVaultEnabled = true;
             websocketEnabled = true;
             signupsVerify = false;
-            websocketAddress = "127.0.0.1";
+            websocketAddress = "0.0.0.0";
             rocketAddress = "127.0.0.1";
             rocketPort = 3011;
             logFile = "/var/log/bitwarden_rs.log";
