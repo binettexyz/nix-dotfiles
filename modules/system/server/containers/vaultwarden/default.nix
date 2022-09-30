@@ -24,8 +24,6 @@ in
 
     services.nginx.enable = true;
     services.nginx.virtualHosts."vault.box" = {
-#      enableACME = true;
-#		   forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:${vaultPort}";
       };
@@ -33,10 +31,8 @@ in
   
     containers.vaultwarden = {
       autoStart = true;
-        # networking & port forwarding
       privateNetwork = false;
   
-        # mounts
       bindMounts = {
         "${cfg.backupDir}" = {
 				  hostPath = "/nix/persist/srv/private/vaultwarden";
@@ -80,6 +76,7 @@ in
         networking.firewall = {
           allowedTCPPorts = [ cfg.openPorts ];
         };
+
       };
     };
   };

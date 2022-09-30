@@ -21,15 +21,14 @@ in
   config = mkIf (cfg.enable) { 
 
     networking.nat.internalInterfaces = [ "ve-adguardhome" ];
-    networking.firewall.allowedTCPPorts = [ 8001 3000 53 ];
+    networking.firewall.allowedTCPPorts = [ cfg.openPorts 3000 53 ];
 
-  # TODO not working 
-#    services.nginx.enable = true;
-#    services.nginx.virtualHosts."adguard.box" = {
-#        locations."/" = {
-#          proxyPass = "http://100.71.254.90:${adguardPort}";
-#        };
-#    };
+    services.nginx.enable = true;
+    services.nginx.virtualHosts."adguard.box" = {
+      locations."/" = {
+        proxyPass = "http://100.71.254.90:${adguardPort}";
+      };
+    };
 
     containers.adguardhome = {
       autoStart = true;

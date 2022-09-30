@@ -4,6 +4,7 @@ let
 #  sonarrAPI = builtins.readFile /home/binette/documents/sonarrAPI;
 #  radarrAPI = builtins.readFile /home/binette/documents/radarrAPI;
   cfg = config.modules.containers.homer;
+  homePort = toString cfg.openPorts;
   configFile = builtins.toFile "config.yml" ''
     # Homepage configuration
     # See https://fontawesome.com/v5/search for icons options
@@ -102,7 +103,7 @@ let
             type: Ping
           - name: "Vaultwarden"
             logo: "assets/logo/bitwarden.png"
-            url: "http://100.71.254.90:3011"
+            url: "http://home.box"
             type: Ping
     
       - name: "System"
@@ -114,7 +115,7 @@ let
             type: Ping
           - name: "AdGuardHome"
             logo: "assets/logo/adguardhome.png"
-            url: "http://100.71.254.90:80"
+            url: "http://adguard.box"
             type: Ping
     
       - name: "Home Automation"
@@ -217,12 +218,23 @@ in
       type = types.bool;
       default = false;
     };
+    openPorts = mkOption {
+      type = types.port;
+      default = 8080;
+    };
   };
 
   config = mkIf (cfg.enable) { 
 
     networking.nat.internalInterfaces = [ "ve-homer" ];
     networking.firewall.allowedTCPPorts = [ 8080 ];
+
+    services.nginx.enable = true;
+    services.nginx.virtualHosts."home.box" = {
+      locations."/" = {
+        proxyPass = "http://localhost:${homePort}";
+      };
+    };
 
     virtualisation.oci-containers.containers.homer = {
       autoStart = true;

@@ -52,6 +52,8 @@ in
       };
     };
 
+#TODO    services.dnsmasq.enable = true;
+
         # Docker
     virtualisation.docker = {
       enable = true;
