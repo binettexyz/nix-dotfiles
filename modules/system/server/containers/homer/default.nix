@@ -224,14 +224,14 @@ in
     networking.nat.internalInterfaces = [ "ve-homer" ];
     networking.firewall.allowedTCPPorts = [ 8080 ];
 
-    services.nginx.virtualHosts."home.box" = {
-		serverName = "home.box";
+#    services.nginx.virtualHosts."home.box" = {
+#		serverName = "home.box";
 #		enableACME = true;
 #		forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:8080";
-      };
-    };
+#      locations."/" = {
+#        proxyPass = "http://localhost:8080";
+#      };
+#    };
   
     virtualisation.oci-containers.containers.homer = {
       autoStart = true;

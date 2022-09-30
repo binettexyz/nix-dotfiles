@@ -22,7 +22,7 @@ in
     networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
 
     services.nginx.virtualHosts."vault.box" = {
-		serverName = "vault.box";
+#		serverName = "vault.box";
 #		enableACME = true;
 #		forceSSL = true;
       locations."/" = {
