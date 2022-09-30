@@ -12,6 +12,7 @@
     ./adguardhome
     ./home-assistant
     ./vaultwarden
+    ./dashy
   ];
 
 }

@@ -31,6 +31,7 @@ in
         home-assistant.enable = false;
         openbooks.enable = true;
         vaultwarden.enable = true;
+        dashy.enable = true;
       };
       services = {
         miniflux.enable = false;

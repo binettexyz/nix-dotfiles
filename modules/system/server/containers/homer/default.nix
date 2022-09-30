@@ -103,7 +103,7 @@ let
             type: Ping
           - name: "Vaultwarden"
             logo: "assets/logo/bitwarden.png"
-            url: "http://home.box"
+            url: "http://vault.box"
             type: Ping
     
       - name: "System"

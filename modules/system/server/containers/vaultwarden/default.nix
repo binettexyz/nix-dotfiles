@@ -28,7 +28,7 @@ in
         proxyPass = "http://localhost:${vaultPort}";
       };
     };
-  
+
     containers.vaultwarden = {
       autoStart = true;
       privateNetwork = false;
