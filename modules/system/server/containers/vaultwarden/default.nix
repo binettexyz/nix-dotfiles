@@ -23,8 +23,9 @@ in
 
     services.nginx.virtualHosts."vault.box" = {
 		  serverName = "vault.box";
-#		enableACME = true;
-#		forceSSL = true;
+      proxyWebsockets = true;
+#		   enableACME = true;
+#		   forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:${cfg.openPorts}";
       };
