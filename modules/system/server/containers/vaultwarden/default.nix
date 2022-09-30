@@ -21,7 +21,7 @@ in
     networking.nat.internalInterfaces = [ "ve-vaultwarden" ];
     networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
 
-    services.nginx.virtualHosts."vault.box" = {
+    services.nginx.virtualHosts."vault.lan" = {
 #		serverName = "vault.box";
 #		enableACME = true;
 #		forceSSL = true;
