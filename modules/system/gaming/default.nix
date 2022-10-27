@@ -6,31 +6,63 @@ let
 in
 {
 
-  imports = [ ../server/containers/minecraft ];
+  imports = [
+    ../server/containers/minecraft
+    ./lutris/default.nix
+    ./steam/default.nix
+    ./legendary/default.nix
+    ./osu
+    ];
 
   options.modules.profiles.gaming = {
-    enable = mkOption {
-      description = "Enable gaming options";
-      type = types.bool;
-      default = false;
-    };
+    enable = mkEnableOption "gaming";
   };
 
     config = mkIf (cfg.enable) {
 
-      programs.steam.enable = true;
-      hardware.steam-hardware.enable = true;
-
-        # enable flatpack
-      services.flatpak.enable = true;
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      modules = {
+        containers.mcServer.enable = true;
+        profiles.gaming = {
+          launchers = {
+            legendary.enable = true;
+            lutris.enable = true;
+#            steam.enable = true;
+          };
+          games = {
+#            osu.enable = true; # take too much time to compile and crash
+          };
+        };
       };
 
-      modules.containers.mcServer.enable = true;
+      hardware.xpadneo.enable = true;
 
-      environment.systemPackages = with pkgs; [ jdk ];
+      programs.gamemode = {
+        enable = true;
+        enableRenice = true;
+        settings = {
+          general = {
+            softrealtime = "auto";
+            renice = 10;
+          };
+          custom = {
+            start = "${pkgs.libnotify}/bin/notify-send 'Gamemode started'";
+            end = "${pkgs.libnotify}/bin/notify-send 'Gamemode ended'";
+          };
+        };
+      };
+
+      nix.settings = {
+        substituters = [ "https://nix-gaming.cachix.org" ];
+        trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+      };
+
+      environment.systemPackages = with pkgs; [
+        inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+        winetricks
+        protontricks
+#        gamemode
+        jdk # minecraft java
+      ];
     };
 
 }

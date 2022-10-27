@@ -4,7 +4,12 @@ let
 #  sonarrAPI = builtins.readFile /home/binette/documents/sonarrAPI;
 #  radarrAPI = builtins.readFile /home/binette/documents/radarrAPI;
   cfg = config.modules.containers.homer;
-  homePort = toString cfg.openPorts;
+  localAddress = "172.17.0.2";
+  homerLogoDir = "/etc/nixos/modules/system/server/containers/homer/logo";
+  ports.homer = 8080;
+  mkLocalProxy = port: {
+    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+  };
   configFile = builtins.toFile "config.yml" ''
     # Homepage configuration
     # See https://fontawesome.com/v5/search for icons options
@@ -63,31 +68,23 @@ let
         items:
           - name: "Radarr"
             logo: "assets/logo/radarr.png"
-            url: "http://100.71.254.90:7878"
+            url: "http://radarr.box"
 #            type: "Radarr"
 #            apikey: ""
             type: Ping
           - name: "Sonarr"
             logo: "assets/logo/sonarr.png"
-            url: "http://100.71.254.90:8989"
+            url: "http://sonarr.box"
 #            type: "Sonarr"
 #            apikey: ""
             type: Ping
           - name: "Jellyfin"
             logo: "assets/logo/jellyfin.png"
-            url: "http://100.71.254.90:8096"
-            type: Ping
-          - name: "OpenBooks"
-#            logo: "assets/logo/.png"
-            url: "http://100.71.254.90:8081"
-            type: Ping
-          - name: "Deluge"
-            logo: "assets/logo/deluge.png"
-            url: "http://"
+            url: "http://jellyfin.box"
             type: Ping
           - name: "Transmission"
             logo: "assets/logo/transmission.png"
-            url: "http://100.71.254.90:9091"
+            url: "http://trans.box"
             type: Ping
     
       - name: "Services"
@@ -95,11 +92,11 @@ let
         items:
           - name: "Nextcloud"
             logo: "assets/logo/nextcloud.png"
-            url: "http://"
+            url: "http://nextcloud.box"
             type: Ping
           - name: "Photoprism"
             logo: "assets/logo/photoprism.png"
-            url: "http://"
+            url: "http://photoprism.box"
             type: Ping
           - name: "Vaultwarden"
             logo: "assets/logo/bitwarden.png"
@@ -111,7 +108,7 @@ let
         items:
           - name: "Jackett"
             logo: "assets/logo/jackett.png"
-            url: "http://100.71.254.90:9117"
+            url: "http://jackett.box"
             type: Ping
           - name: "AdGuardHome"
             logo: "assets/logo/adguardhome.png"
@@ -123,7 +120,7 @@ let
         items:
           - name: "Home Assistant"
             logo: "assets/logo/home-assistant.png"
-            url: "http://"
+            url: "http://hass.box"
             type: Ping
     
   '';
@@ -213,39 +210,24 @@ in
 {
 
   options.modules.containers.homer = {
-    enable = mkOption {
-      description = "Enable Homer dashboard";
-      type = types.bool;
-      default = false;
-    };
-    openPorts = mkOption {
-      type = types.port;
-      default = 8080;
-    };
+    enable = mkEnableOption "homer";
   };
 
   config = mkIf (cfg.enable) { 
-
-    networking.nat.internalInterfaces = [ "ve-homer" ];
-    networking.firewall.allowedTCPPorts = [ 8080 ];
-
-    services.nginx.enable = true;
-    services.nginx.virtualHosts."home.box" = {
-      locations."/" = {
-        proxyPass = "http://localhost:${homePort}";
-      };
+    services.nginx.virtualHosts = {
+      "home.box" = mkLocalProxy ports.homer;
     };
 
     virtualisation.oci-containers.containers.homer = {
       autoStart = true;
       image = "b4bz/homer";
-      ports = [
-        "8080:8080"
-      ];
+#      ports = [
+#        "${openPort}:${openPort}"
+#      ];
       volumes = [
         "${configFile}:/www/assets/config.yml"
         "${cssFile}:/www/assets/custom.css"
-        "/etc/nixos/modules/system/server/containers/homer/etc/logo:/www/assets/logo"
+        "${homerLogoDir}:/www/assets/logo"
       ];
     };
   };

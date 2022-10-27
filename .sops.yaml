@@ -1,0 +1,31 @@
+keys:
+  # Hosts
+  - &hosts:
+    - &desktop age1kjzv2r2xd4hzysv7kcwjkfvahsyq7h95w2kakqa7qlyzuafhpdhszvu5ge
+    - &rpi4 age1c93mx7eu7z0xw5kae4mgvj6s2k2p97z63uegwexu9ugzp2hcwqqswwvm22
+    - &t440p age1jrjxtjjzn02jt9sna8hrj45erkzguxh0jn3x66dp0ymq9k2rjptswe9mnz
+    - &x240 age1x56evsurej4n4cvkslujanghm2edrld5c2ngh7lt8apmyv2jvfzq3z62gm
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+    - age:
+      - *desktop
+      - *rpi4
+      - *t440p
+      - *x240
+  - path_regex: modules/system/server/[^/]+\.yaml$
+    key_groups:
+    - age:
+      - *desktop
+      - *rpi4
+      - *t440p
+      - *x240
+  - path_regex: hosts/desktop/[^/]+\.yaml$
+    key_groups:
+    - age:
+      - *desktop
+      - *rpi4
+      - *t440p
+      - *x240
+

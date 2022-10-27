@@ -7,7 +7,6 @@ in
 {
   options.modules.containers.mcServer = {
     enable = mkOption {
-      description = "Enable minecraft server";
       type = types.bool;
       default = false;
     };

@@ -25,15 +25,19 @@
 
     programs = {
      chromium.enable = true;
+     discord.enable = true;
      dmenu.enable = true;
      gtk.enable = false;
      lf.enable = true;
      librewolf.enable = false;
-     mpv.enable = true;
+     mpv = {
+       enable = true;
+       desktopConfig.enable = true;
+     };
 #     mutt.enable = true;
      newsboat.enable = true;
 #     nnn.enable = true;
-     powercord.enable = true;
+#     powercord.enable = true;
      qutebrowser.enable = true;
      slstatus = "desktop";
      terminal = "st";
@@ -71,6 +75,7 @@
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
+    xbanish &             # remove mouse when using keyboard
 
       ### Visual ###
 #    picom --experimental-backends &
@@ -88,23 +93,29 @@
     directories = [
       ".cache/BraveSoftware"
       ".cache/Jellyfin Media Player"
+      ".cache/lutris"
 #      ".cache/librewolf"
       ".cache/qutebrowser"
       
       ".config/BraveSoftware"
       ".config/jellyfin.org"
+      ".config/lutris"
       ".config/shell"
       ".config/tremc"
-      ".config/discordcanary"
-      ".config/powercord"
+#      ".config/discordcanary"
+      ".config/discord"
+#      ".config/powercord"
+      ".config/sops"
       ".config/tidal-hifi"
       
       ".local/bin"
       ".local/share/applications"
       ".local/share/cargo"
+      ".local/share/games"
       ".local/share/gnupg"
       ".local/share/jellyfinmediaplayer"
       ".local/share/Jellyfin Media Player"
+      ".local/share/lutris"
       ".local/share/minecraft"
       ".local/share/password-store"
       ".local/share/PolyMC"

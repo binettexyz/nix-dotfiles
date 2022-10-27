@@ -19,6 +19,7 @@ in
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      withPython3 = true;
 
       plugins = with pkgs.vimPlugins; [
         vimwiki
@@ -26,6 +27,7 @@ in
         vim-latex-live-preview
         vim-speeddating 
         vim-polyglot
+        vimsence
 
         # UI & Themes
         nerdtree
@@ -133,6 +135,16 @@ in
             else
               let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
             endif
+
+            " vimsence
+          let g:vimsence_client_id = '439476230543245312'
+          let g:vimsence_small_text = 'NeoVim'
+          let g:vimsence_small_image = 'neovim'
+          let g:vimsence_editing_details = 'Editing: {}'
+          let g:vimsence_editing_state = 'Working on: {}'
+          let g:vimsence_file_explorer_text = 'In NERDTree'
+          let g:vimsence_file_explorer_details = 'Looking for files'
+"          let g:vimsence_custom_icons = {'filetype': 'iconname'}
         ''
           # Custom Fontions
         ''    
@@ -152,6 +164,7 @@ in
           autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
           autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
           autocmd BufRead,BufNewFile *.tex set filetype=tex
+          autocmd BufRead,BufNewFile *.nix set filetype=nix
 
         ''
           # Gruvbox-Material Theme

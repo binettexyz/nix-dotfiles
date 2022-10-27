@@ -7,7 +7,6 @@ in
 {
   options.modules.containers.home-assistant = {
     enable = mkOption {
-      description = "Enable home-assistant service";
       type = types.bool;
       default = false;
     };

@@ -72,7 +72,7 @@ in
         PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
         EDITOR = "nvim";
         TERMINAL = "st";
-        BROWSER = "librewolf";
+        BROWSER = "brave";
       };
 
         # Nix settings, auto cleanup and enable flakes
@@ -83,12 +83,12 @@ in
           options = "--delete-older-than 4d";
         };
         extraOptions = ''
-          experimental-features = nix-command flakes
           keep-outputs = true
           keep-derivations = true
 
         '';
         settings = {
+          experimental-features = [ "nix-command" "flakes" ];
           auto-optimise-store = true;
           allowed-users = [ "binette" ];
         };
@@ -167,9 +167,9 @@ in
         cleanTmpDir = true;
 
           # Silent boot
-#        initrd.verbose = false;
-#        consoleLogLevel = 0;
-#        kernelParams = [ "quiet" "udev.log_level=3"];
+        initrd.verbose = false;
+        consoleLogLevel = 0;
+        kernelParams = [ "quiet" "udev.log_level=3"];
 
         loader = {
           timeout = 1;
@@ -210,7 +210,7 @@ in
           createHome = true;
           home = "/home/binette";
           group = "binette";
-          extraGroups = [ "wheel" "binette" "users" "audio" "video" /*"docker"*/ ];
+          extraGroups = [ "wheel" "binette" "users" "audio" "video" "docker" ];
           hashedPassword =
             "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
           openssh.authorizedKeys.keys = [
@@ -230,13 +230,21 @@ in
         enableIPv6 = false;
         useDHCP = lib.mkDefault false;
         networkmanager.enable = false;
-        nameservers = [ "100.71.254.90" ];
+        nameservers = [
+#          "100.71.254.90" # adguardhome dns using tailscale.
+#          "9.9.9.9"
+        ];
         firewall = {
           enable = true;
           allowedTCPPorts = [
             2049 # NFSv4
+            53 # dns
           ];
-          allowedUDPPorts = [ config.services.tailscale.port ];
+          allowedUDPPorts = [
+            config.services.tailscale.port
+#            51820 # wireguard
+            53 # dns
+          ];
           allowPing = false;
             # tailscale
           checkReversePath = "loose";
@@ -253,6 +261,8 @@ in
           enable = true;
           extraRules = [{ users = [ "binette" ]; noPass = true; keepEnv = true; }];
         };
+        acme.acceptTerms = true;
+        acme.defaults.email = "binettexyz@proton.me";
       };
 
       boot.blacklistedKernelModules = [
@@ -328,6 +338,9 @@ in
         };
       };
 
+        # Sops-nix password encryption
+      sops.defaultSopsFile = ../../../secrets/common.yaml;
+      sops.age.sshKeyPaths = [ "/home/binette/.ssh/id_ed25519" ];
 
       environment.etc = {
         "machine-id".source = "/nix/persist/etc/machine-id";
@@ -392,6 +405,17 @@ in
             auth = ''
 	            psk=723f7b995aae04f46f4cebfab286b31c8db116015f0a26fe20bc4695d4c01af9
               proto=RSN
+              pairwise=CCMP
+              auth_alg=OPEN
+            '';
+          };
+            # CHST (work)
+          "Loisirs" = {
+            priority = 1;
+            auth = ''
+              psk=ca62593afdd9ec7cac04d7730061da25616f3f883aca43a4245675947acd24fb
+              proto=RSN
+              key_mgmt=WPA-PSK
               pairwise=CCMP
               auth_alg=OPEN
             '';

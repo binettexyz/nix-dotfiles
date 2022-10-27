@@ -1,18 +1,14 @@
 {
   imports = [
-    ./deluge
     ./homer
-    ./jackett
-    ./radarr
-    ./sonarr
-    ./transmission
-    ./jellyfin
     ./minecraft
-    ./openbooks
     ./adguardhome
     ./home-assistant
     ./vaultwarden
-    ./dashy
+#    ./nextcloud
+#    ./nextcloud/docker.nix
+#    ./portainer
+    ./mediarr
   ];
 
 }

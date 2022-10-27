@@ -28,20 +28,21 @@
     };
   };
 
-#  home.persistence = {
-#    "/nix/persist/home/binette" = {
-#      removePrefixDirectory = false;
-#      allowOther = true;
-#      directories = [
+  home.persistence = {
+    "/nix/persist/home/binette" = {
+      removePrefixDirectory = false;
+      allowOther = true;
+      directories = [
+#        ".config/sops"
 #        ".zplug"
 #        ".local/share/xorg"
 #        ".ssh"
 #        ".gnupg"
-#      ];
+      ];
 #      files = [
 #        ".local/share/history"
 #      ];
-#    };
-#  };
+    };
+  };
 
 }

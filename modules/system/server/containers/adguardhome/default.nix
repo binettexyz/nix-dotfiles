@@ -3,96 +3,106 @@ with lib;
 
 let
   cfg = config.modules.containers.adGuardHome;
-  adguardPort = toString cfg.openPorts;
+  hostAddress = "10.0.0.11";
+  localAddress = "10.0.1.11";
+  serverIp = "100.71.254.90";
+  adguardDir = "/nix/persist/srv/container-service-data/adguardhome";
+  unboundDir = "/nix/persist/srv/container-service-data/unbound";
+  ports = {
+    adguard = 3000;
+    adguardDNS = 53;
+    unbound = 52;
+  };
+  mkLocalProxy = port: {
+    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+  };
 in
 {
   options.modules.containers.adGuardHome = {
-    enable = mkOption {
-      description = "Enable AdGuardHome service";
-      type = types.bool;
-      default = false;
-    };
-    openPorts = mkOption {
-      type = types.port;
-      default = 8001;
-    };
+    enable = mkEnableOption "AdGuardHome";
   };
 
   config = mkIf (cfg.enable) { 
-
-    networking.nat.internalInterfaces = [ "ve-adguardhome" ];
-    networking.firewall.allowedTCPPorts = [ cfg.openPorts 3000 53 ];
-
-    services.nginx.enable = true;
-    services.nginx.virtualHosts."adguard.box" = {
-      locations."/" = {
-        proxyPass = "http://100.71.254.90:${adguardPort}";
-      };
+    services.nginx.virtualHosts = {
+      "adguard.box" = mkLocalProxy ports.adguard;
     };
+
+    systemd.tmpfiles.rules = [
+      "d ${adguardDir} - - - -"
+    ];
 
     containers.adguardhome = {
       autoStart = true;
-  
-        # networking & port forwarding
-      privateNetwork = false;
-  
-        # mounts
-#      bindMounts = {
-#        "/var/lib/AdGuardHome" = {
-#				  hostPath = "/nix/persist/var/lib/AdGuardHome";
-#				  isReadOnly = false;
-#			  };
-#        "/var/lib/private/AdGuardHome" = {
-#				  hostPath = "/nix/persist/var/lib/private/AdGuardHome";
-#				  isReadOnly = false;
-#			  };
-#      };
-  
-      forwardPorts = [
-        {
-				  containerPort = 3000;
-				  hostPort = 3000;
-				  protocol = "tcp";
-			  }
-        {
-				  containerPort = 8001;
-				  hostPort = 8001;
-				  protocol = "tcp";
-			  }
-        {
-				  containerPort = 53;
-				  hostPort = 53;
-				  protocol = "tcp";
-			  }
-			  {
-				  containerPort = 53;
-				  hostPort = 53;
-				  protocol = "udp";
-			  }
-  		];
-  
-      config = { config, pkgs, ... }: {
+      ephemeral = true;
 
-        system.stateVersion = "22.11";
-        networking.hostName = "adguardhome";
+      privateNetwork = true;
+      inherit localAddress hostAddress;
+  
+      bindMounts = {
+        "/var/lib/private/AdGuardHome" = { hostPath = adguardDir; isReadOnly = false; };
+        "/var/lib/unbound" = { hostPath = unboundDir; isReadOnly = false; };
+      };
+
+      forwardPorts = [
+# 			 { containerPort = ports.adguard; hostPort = ports.adguard; protocol = "tcp"; }
+ 			  { containerPort = ports.adguardDNS; hostPort = ports.adguardDNS; protocol = "tcp"; }
+ 			  { containerPort = ports.adguardDNS; hostPort = ports.adguardDNS; protocol = "udp"; }
+      ];
+
+      config = { config, pkgs, ... }: {
+      networking.firewall.enable = false;
+
+        services.unbound = {
+				  enable = true;
+  				settings.server = {
+  					interface = [ "127.0.0.1" ];
+  					port = ports.unbound;
+  					do-ip4 = true;
+  					do-ip6 = false;
+  					do-udp = true;
+  					do-tcp = true;
+  
+  					prefetch = true;
+#  					num-threads = 1;
+  					so-rcvbuf = "1m";
+  				};
+  			};
 
         services.adguardhome = {
           enable = true;
-          openFirewall = true;
-          host = "127.0.0.1";
-          port = 3000;
-            # TODO: delete config and uncomment these lines
-#          settings = {
-#            bind_host = "0.0.0.0";
-#            bind_port = cfg.openPorts;
-#            dns = {
-#              rewrites = {
-#                domain = "'*.box'";
-#                answer = "100.71.254.90";
-#              };
-#            };
-#          };
+          openFirewall = false;
+          host = "0.0.0.0";
+          port = ports.adguard;
+          settings = {
+            bind_host = "0.0.0.0";
+            bind_port = ports.adguard;
+            dns = {
+              bind_host = "0.0.0.0";
+              port = ports.adguardDNS;
+              bootstrap_dns = "9.9.9.9";
+              upstream_dns = [
+                "127.0.0.1:52"
+              ];
+  						trusted_proxies = [ "127.0.0.1" ];
+              enable_dnssec = true;
+              fastest_addr = true;
+              rewrites = [
+                { domain = "adguard.box"; answer = serverIp; }
+                { domain = "hass.box"; answer = serverIp; }
+                { domain = "home.box"; answer = serverIp; }
+                { domain = "jellyfin.box"; answer = serverIp; }
+                { domain = "nextcloud.box"; answer = serverIp; }
+                { domain = "vault.box"; answer = serverIp; }
+                { domain = "sonarr.box"; answer = serverIp; }
+                { domain = "radarr.box"; answer = serverIp; }
+                { domain = "jackett.box"; answer = serverIp; }
+                { domain = "trans.box"; answer = serverIp; }
+              ];
+            };
+          };
         };
+
+        system.stateVersion = "22.11";
       };
     };
   };

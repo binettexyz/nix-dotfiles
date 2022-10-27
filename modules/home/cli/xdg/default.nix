@@ -28,7 +28,7 @@ in
         enable = true;
         defaultApplications =
         let
-          browser = "librewolf.desktop";
+          browser = "brave.desktop";
         in {
           "application/pdf" = [ "pdf.desktop" ];
           "application/postscript" = [ "pdf.desktop" ];

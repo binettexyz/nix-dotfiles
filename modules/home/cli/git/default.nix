@@ -17,7 +17,7 @@ in
     programs.git = {
       enable = true;
       userName = "binettexyz";
-      userEmail = "46168797+binettexyz@users.noreply.github.com";
+      userEmail = "binettexyz@proton.me";
       aliases = {
       };
     };

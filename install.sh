@@ -9,7 +9,7 @@ crypt=off
 home=off
 
   # Cloning NixOS Config
-git clone https://github.com/binettexyz/nix-dotfiles
+git clone https://codeberg.org/binettexyz/nix-dotfiles
 
   ### Partitioning ###
 

@@ -78,11 +78,12 @@ in {
     })
     (mkIf cfg.gaming.enable {
       home.packages = with pkgs; [
-        polymc # minecraft client
+        prismlauncher
+        grapejuice
         mangohud # afterburner like
-        runescape runelite
-        zeroad
-        yuzu-mainline
+#        runescape runelite
+#        zeroad
+#        yuzu-mainline
           # retroarch with specific cores
         (retroarch.override {
           cores = [

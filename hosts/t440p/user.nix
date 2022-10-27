@@ -97,6 +97,7 @@
         ".config/BraveSoftware"
         ".config/jellyfin.org"
         ".config/shell"
+        ".config/sops"
   
         ".local/bin"
         ".local/share/applications"

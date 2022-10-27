@@ -1,9 +1,6 @@
 #+AUTHOR: Binette
 
 * ❄️ NixOS Setup
-** Disclaimer
-Don't look at my commits.
-
 ** Dotfiles
 This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
 

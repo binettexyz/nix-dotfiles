@@ -14,6 +14,7 @@
 
     ./programs/chromium
 #    ./programs/discocss
+    ./programs/discord
     ./programs/dmenu
     ./programs/gtk
     ./programs/librewolf

@@ -2,56 +2,46 @@
 with lib;
 let
   cfg = config.modules.containers.vaultwarden;
-  vaultPort = toString cfg.openPorts;
+  localAddress = "10.0.0.16";
+  hostAddress = "10.0.1.16";
+  backupDir = "/nix/persist/srv/private/vaultwarden";
+  ports.vaultwarden = 3011;
+  mkLocalProxy = port: {
+    locations."/".proxyPass = "http://localhost:" + toString(port);
+#    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+  };
 in
 {
   options.modules.containers.vaultwarden = {
     enable = mkEnableOption "vaultwarden";
-    backupDir = mkOption {
-      type = types.path;
-      default = "/nix/persist/srv/private/vaultwarden";
-    };
-    openPorts = mkOption {
-      type = types.port;
-      default = 3011;
-    };
   };
 
   config = mkIf cfg.enable {
-
-    networking.nat.internalInterfaces = [ "ve-vaultwarden" ];
-    networking.firewall.allowedTCPPorts = [ cfg.openPorts ];
-
-    services.nginx.enable = true;
-    services.nginx.virtualHosts."vault.box" = {
-      locations."/" = {
-        proxyPass = "http://localhost:${vaultPort}";
-      };
+    services.nginx.virtualHosts = {
+      "vault.box" = mkLocalProxy ports.vaultwarden;
     };
 
     containers.vaultwarden = {
       autoStart = true;
+      ephemeral = true;
+
       privateNetwork = false;
+      inherit localAddress hostAddress;
   
-      bindMounts = {
-        "${cfg.backupDir}" = {
-				  hostPath = "/nix/persist/srv/private/vaultwarden";
-				  isReadOnly = false;
-			  };
-      };
+      bindMounts = { "${backupDir}" = { hostPath = "/nix/persist/srv/private/vaultwardenBackup"; isReadOnly = false; }; };
   
       forwardPorts = [
         {
-          containerPort = cfg.openPorts;
-          hostPort = cfg.openPorts;
+          containerPort = ports.vaultwarden;
+          hostPort = ports.vaultwarden;
           protocol = "tcp";
         }
   		];
   
       config = { config, pkgs, ... }: {
-
-        system.stateVersion = "22.11";
-        networking.hostName = "vaultwarden";
+        networking.firewall = {
+          allowedTCPPorts = [ ports.vaultwarden ];
+        };
 
         services.vaultwarden = {
           enable = true;
@@ -59,24 +49,22 @@ in
             webVaultEnabled = true;
             websocketEnabled = true;
             signupsVerify = false;
-#            websocketAddress = "127.0.0.1";
+            websocketAddress = "0.0.0.0";
             rocketAddress = "0.0.0.0";
-            rocketPort = 3011;
+            rocketPort = ports.vaultwarden;
             logFile = "/var/log/bitwarden_rs.log";
             showPasswordHint = false;
           };
-          inherit (cfg) backupDir;
+          inherit backupDir;
         };
     
-#        system.activationScripts.initVaultwarden = ''
-#          mkdir -p "${cfg.backupDir}"
-#          chown "${config.users.users.vaultwarden.name}" "${cfg.backupDir}"
-#        '';
+        system.activationScripts.initVaultwarden = ''
+          mkdir -p "${backupDir}"
+          chown vaultwarden "${backupDir}"
+        '';
     
-        networking.firewall = {
-          allowedTCPPorts = [ cfg.openPorts ];
-        };
 
+        system.stateVersion = "22.11";
       };
     };
   };

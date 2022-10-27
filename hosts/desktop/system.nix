@@ -50,19 +50,27 @@
   networking = {
     interfaces.wlo1.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
-#    bridges = {
-#      br0 = { interfaces = [ "wlo1" ]; };
-#    };
-#    interfaces = {
-#      br0 = {
-#        useDHCP = true;
-#        ipv4.addresses = [
-#          { address = "10.0.0.18"; prefixLength = 24; }
-#        ];
-#      };
-#    };
-#    wireless = {
-#      interfaces = [ "wlo1" ];
+#    wireguard.interfaces.wg0 = {
+#      ips = [ "10.100.0.2/24" ];
+#      listenPort = 51820;
+#      privateKeyFile = "/nix/persist/srv/private/wireguard/private";
+#      postSetup = ''
+#        ip route add 10.0.0.103 via 10.0.0.1 dev wlo1
+#      '';
+#
+#      # This undoes the above command
+#      postShutdown = ''
+#        ip route del 10.0.0.103 via 10.0.0.1 dev wlo1
+#      '';
+#      peers = [
+#        {
+#          publicKey = "Z1MGweKDq5jSSp+rzoRzw+5hH+Br89jRIg8ijVDdFz0=";
+#          allowedIPs = [ "0.0.0.0/0" ];
+#          endpoint = "10.0.0.103:51820"; # ToDo: route to endpoint not automatically configured https://wiki.archlinux.org/index.php/WireGuard#Loop_routing https://discourse.nixos.org/t/solved-minimal-firewall-setup-for-wireguard-client/7577
+#            # Send keepalives every 25 seconds. Important to keep NAT tables alive.
+#          persistentKeepalive = 25;
+#        }
+#      ];
 #    };
   };
 
@@ -70,8 +78,9 @@
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
-    kernelPackages =  pkgs.linuxPackages_zen;
-    kernelParams = [ ];
+#    kernelPackages =  pkgs.linuxPackages_zen;
+    kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelParams = [ "mitigations=off" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
@@ -128,6 +137,6 @@
     }];
   };
 
-nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
 }

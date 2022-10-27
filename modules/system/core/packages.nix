@@ -17,8 +17,10 @@
       killall
       yt-dlp
       htop
+      bottom
       fzf
       jq
+      nix-tree
         # pass
 #      pinentry
 #      pinentry-qt
