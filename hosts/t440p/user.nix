@@ -25,16 +25,18 @@
     };
 
     programs = {
-      chromium.enable = true;
+#      chromium.enable = true;
 #      discocss.enable = true;
       dmenu.enable = true;
       librewolf.enable = true;
       lf.enable = true;
-      mpv.enable = false; # TODO: make config for laptop
+      mpv = {
+        enable = true;
+        laptopConfig.enable = true;
+      };
 #      mutt.enable = true;
 #      newsboat.enable = true;
 #      nnn.enable = true;
-      powercord.enable = false;
       qutebrowser.enable = true;
       slstatus = "laptop";
       terminal = "st";
@@ -43,8 +45,6 @@
 
     services = {
       dunst.enable = true;
-      flameshot.enable = false;
-      picom.enable = true;
       sxhkd.enable = true;
 #      udiskie.enable = true;
     };
@@ -66,16 +66,17 @@
     flameshot &
     greenclip daemon &
     transmission-daemon &
-    redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
+    #redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
     xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
+    xbanish &
 
       ### Visual ###
-    picom --experimental-backend &
+    #picom --experimental-backend &
     hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 

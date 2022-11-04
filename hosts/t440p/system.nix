@@ -47,7 +47,7 @@
     # CPU
   nix.settings.max-jobs = 4;
   hardware.cpu.intel.updateMicrocode = true;
-  services.throttled.enable = false;
+  services.throttled.enable = true;
 
     # Trackpad
   services.xserver.libinput.enable = true;
@@ -68,7 +68,6 @@
 
   ## Networking ##
   networking = {
-    hostName = "t440p";
     interfaces.wlp3s0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
     wireless = {
@@ -82,7 +81,7 @@
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [];
+    kernelParams = [ "mitigations=off" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sr_mod" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ "i915" "acpi_call" ];
