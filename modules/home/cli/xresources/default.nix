@@ -76,10 +76,12 @@ in
     (mkIf (cfg.theme == "gruvbox") {
       xresources.extraConfig = ''
           *.font: monospace:size=14
-          *background: #282828
+          ! #282828
+          *background: #000000
           *foreground: #ebdbb2
           ! Black + DarkGrey
-          *color0:  #282828
+          ! #282828
+          *color0:  #000000
           *color8:  #928374
           ! DarkRed + Red
           *color1:  #cc241d

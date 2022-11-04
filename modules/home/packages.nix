@@ -53,7 +53,6 @@ in {
           # audio mixer
         pulsemixer
         pamixer
-        pamixer
           # transmission
         tremc
 

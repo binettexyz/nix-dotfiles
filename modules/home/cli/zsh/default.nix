@@ -80,7 +80,7 @@ in
         nixbuild = "pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd; notify-send ' NixOS' 'Building complete!'";
         nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd; notify-send ' NixOS' 'Test config applied!'";
         nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Flake update complete!'";
-        nixq = "nix-store  -q --requisites /run/current-system/sw";
+        nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
 
         sudo = "doas su";
 
