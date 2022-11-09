@@ -24,12 +24,12 @@
     };
 
     programs = {
-     chromium.enable = true;
+#     chromium.enable = true;
      discord.enable = true;
      dmenu.enable = true;
      gtk.enable = false;
      lf.enable = true;
-     librewolf.enable = false;
+     librewolf.enable = true;
      mpv = {
        enable = true;
        desktopConfig.enable = true;
@@ -37,7 +37,6 @@
 #     mutt.enable = true;
      newsboat.enable = true;
 #     nnn.enable = true;
-#     powercord.enable = true;
      qutebrowser.enable = true;
      slstatus = "desktop";
      terminal = "st";
@@ -79,7 +78,7 @@
 
       ### Visual ###
 #    picom --experimental-backends &
-    hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
+    hsetroot & # -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
@@ -91,15 +90,16 @@
     removePrefixDirectory = false;
     allowOther = true;
     directories = [
-      ".cache/BraveSoftware"
+#      ".cache/BraveSoftware"
       ".cache/Jellyfin Media Player"
       ".cache/lutris"
-#      ".cache/librewolf"
+      ".cache/librewolf"
       ".cache/qutebrowser"
       
-      ".config/BraveSoftware"
+#      ".config/BraveSoftware"
       ".config/jellyfin.org"
       ".config/lutris"
+      ".config/retroarch"
       ".config/shell"
       ".config/tremc"
 #      ".config/discordcanary"
@@ -125,7 +125,7 @@
       ".local/share/qutebrowser"
 
       ".git"
-#      ".librewolf"
+      ".librewolf"
       ".ssh"
       ".steam"
       ".gnupg"

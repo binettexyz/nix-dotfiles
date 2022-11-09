@@ -80,7 +80,7 @@
     kernelModules = [ "kvm-amd" "nvidia" ];
 #    kernelPackages =  pkgs.linuxPackages_zen;
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ /*"mitigations=off"*/ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
@@ -94,7 +94,6 @@
       fsType = "ext4";
     };
     "/mounts/nas" = {
-#      device = "100.110.26.48:/media";
       device = "100.71.254.90:/media";
       fsType = "nfs";
         # don't freeze system if mount point not available on boot
@@ -124,18 +123,18 @@
   programs.gamemode.enable = true;
 
   ## Screen resolution ##
-  services.xserver = {
-    xrandrHeads = [{
-      output = "DisplayPort-0";
-      primary = true;
-      monitorConfig = ''
-          # 2560x1440 164.90 Hz (CVT) hsync: 261.86 kHz; pclk: 938.50 MHz
-        Modeline "2560x1440_165.00"  938.50  2560 2792 3072 3584  1440 1443 1448 1588 -hsync +vsync
-        Option "PreferredMode" "2560x1440_165.00"
-        Option "Position" "0 0"
-      '';
-    }];
-  };
+#  services.xserver = {
+#    xrandrHeads = [{
+#      output = "DP-2";
+#      primary = true;
+#      monitorConfig = ''
+#          # 2560x1440 164.90 Hz (CVT) hsync: 261.86 kHz; pclk: 938.50 MHz
+#        Modeline "2560x1440_165.00"  938.50  2560 2792 3072 3584  1440 1443 1448 1588 -hsync +vsync
+#        Option "PreferredMode" "2560x1440_165.00"
+#        Option "Position" "0 0"
+#      '';
+#    }];
+#  };
 
   nixpkgs.config.allowUnfree = true;
 
