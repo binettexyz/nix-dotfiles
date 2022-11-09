@@ -47,7 +47,7 @@ in {
         #emacs
         zathura
         mupdf
-        #texlive.combined.scheme-full
+#        texlive.combined.scheme-full
           # rss
         newsboat
           # audio mixer
