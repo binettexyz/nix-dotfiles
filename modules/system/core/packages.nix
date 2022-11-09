@@ -16,8 +16,9 @@
       binutils
       killall
       yt-dlp
-      htop
-      bottom
+#      htop
+#      bottom
+      gotop
       fzf
       jq
       nix-tree

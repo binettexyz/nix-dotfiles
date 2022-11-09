@@ -24,9 +24,9 @@ in
         containers.mcServer.enable = true;
         profiles.gaming = {
           launchers = {
-            legendary.enable = true;
-            lutris.enable = true;
-#            steam.enable = true;
+#            legendary.enable = true;
+#            lutris.enable = true;
+            steam.enable = true;
           };
           games = {
 #            osu.enable = true; # take too much time to compile and crash
@@ -57,9 +57,9 @@ in
       };
 
       environment.systemPackages = with pkgs; [
-        inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
-        winetricks
-        protontricks
+#        inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+#        winetricks
+#        protontricks
 #        gamemode
         jdk # minecraft java
       ];
