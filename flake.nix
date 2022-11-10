@@ -19,6 +19,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
     sops-nix.url = "github:Mic92/sops-nix";
+    plasma-manager.url = "github:pjones/plasma-manager";
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
@@ -42,6 +43,7 @@
     home.inputs.nixpkgs.follows = "unstable";
     nix-gaming.inputs.nixpkgs.follows = "unstable";
     sops-nix.inputs.nixpkgs.follows = "unstable";
+    plasma-manager.inputs = { nixpkgs.follows = "unstable"; home.follows = "home"; };
   };
 
   /* ---System's Output--- */
@@ -51,6 +53,7 @@
     nixpkgs,
     unstable,
     nixos-hardware,
+    plasma-manager,
     home,
     impermanence,
 #    powercord-overlay,
