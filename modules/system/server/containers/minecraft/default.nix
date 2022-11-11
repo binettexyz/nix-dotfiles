@@ -3,65 +3,58 @@ with lib;
 
 let
   cfg = config.modules.containers.mcServer;
+  hostAddress = "10.0.0.17";
+  localAddress = "10.0.1.17";
+  serverDataDir = "/opt/minecraft/server";
+  ports = {
+    server = 25565;
+    rcon = 25575;
+  };
+  mkLocalProxy = port: {
+    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+  };
 in
 {
   options.modules.containers.mcServer = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkEnableOption "minecraft server";
   };
 
   config = mkIf (cfg.enable) {
-    networking.nat.internalInterfaces = [ "ve-mcServer" ];
-    networking.firewall.allowedTCPPorts = [ 25565 25575 ];
+    services.nginx.virtualHosts = {
+      "minecraft.box" = mkLocalProxy ports.server;
+    };
   
+    /* ---Main container--- */
     containers.mcserver = {
+      ephemeral = false;
       autoStart = true;
   
-        # networking & port forwarding
       privateNetwork = false;
+      inherit localAddress hostAddress;
   
-        # mounts
-      bindMounts = {
-        "/opt/minecraft/server" = {
-          hostPath = "/opt/minecraft/server";
-          isReadOnly = false;
-        };
-  
-      };
-  
-      forwardPorts = [
-  			{
-  				containerPort = 25565;
-  				hostPort = 25565;
-  				protocol = "tcp";
-  			}
-        {
-  				containerPort = 25575;
-  				hostPort = 25575;
-  				protocol = "tcp";
-  			}
-  		];
+      bindMounts."/opt/minecraft/server" = { hostPath = serverDataDir; isReadOnly = false; };
   
       config = { config, pkgs, ... }:
       let
         MIN_MEM = "512M";
         MAX_MEM = "3072M";
-        PORT = "25575";
+        RCONPORT = "25575";
         IP = "localhost";
         #IP = "100.71.254.90";
         PASSWD = "cd";
         DELAY = "5";
         JARFILE = "server.jar";
-
       in { 
 
-        system.stateVersion = "22.11";
-        networking.hostName = "mcserver";
-
-        environment.systemPackages = with pkgs; [ killall jdk curl wget jq lf ];
-
+#        networking.firewall.enable = false;
+        networking.firewall = {
+          allowedTCPPorts = [
+            ports.server
+            ports.rcon
+            80
+            53
+          ];
+        };
 
         users = {
           allowNoPasswordLogin = true;
@@ -94,7 +87,6 @@ in
             Group = "minecraft";
             Nice = 5; # Lower priority than most other things that run on the server
       
-      
             ProtectHome = true;
             ProtectSystem = "strict"; # Makes /usr /boot /etc /dev /proc /sys read-only
             ProtectControlGroups = true;
@@ -117,8 +109,8 @@ in
             SuccessExitStatus = "0 1";
       
             ExecStart = "${pkgs.jdk}/bin/java -Xms${MIN_MEM} -Xmx${MAX_MEM} -jar ${JARFILE} nogui";
-            ExecReload = ''${pkgs.mcrcon}/bin/mcrcon -H ${IP} -P ${PORT} -p ${PASSWD} -w ${DELAY} "say Server reload in 5 seconds..." reload'';
-            ExecStop = ''${pkgs.mcrcon}/bin/mcrcon -H ${IP} -P ${PORT} -p ${PASSWD} -w ${DELAY} "say Server is shutting down.." save-all stop'';
+            ExecReload = ''${pkgs.mcrcon}/bin/mcrcon -H ${IP} -P ${RCONPORT} -p ${PASSWD} -w ${DELAY} "say Server reload in 5 seconds..." reload'';
+            ExecStop = ''${pkgs.mcrcon}/bin/mcrcon -H ${IP} -P ${RCONPORT} -p ${PASSWD} -w ${DELAY} "say Server is shutting down.." save-all stop'';
       
             Restart = "on-failure";
             RestartSec = "60s";
@@ -216,6 +208,10 @@ in
               fi       
             '';
         };
+
+        environment.systemPackages = with pkgs; [ killall jdk curl wget jq lf ];
+
+        system.stateVersion = "22.11";
       };
     };
   };
