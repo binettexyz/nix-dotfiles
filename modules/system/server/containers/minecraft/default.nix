@@ -79,7 +79,7 @@ in
 
         systemd.services."mcServer@" = {
           wantedBy = [ "multi-user.target" ];
-          after    = [ "network.target" ];
+          after    = [ "network-online.target" ];
       
           unitConfig = {
             Description = "Minecraft Server %i";
