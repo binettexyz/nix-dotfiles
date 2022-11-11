@@ -43,7 +43,7 @@
     home.inputs.nixpkgs.follows = "unstable";
     nix-gaming.inputs.nixpkgs.follows = "unstable";
     sops-nix.inputs.nixpkgs.follows = "unstable";
-    plasma-manager.inputs = { nixpkgs.follows = "unstable"; home.follows = "home"; };
+    plasma-manager.inputs = { nixpkgs.follows = "unstable"; home-manager.follows = "home"; };
   };
 
   /* ---System's Output--- */
