@@ -392,26 +392,25 @@ in
         enable = true;
         userControlled.enable = true;
         networks = {
-            # home
-          "Hal" = {
+          "EBOX-2153" = {
             priority = 0;
             auth = ''
-	            psk=af8dca01536bdf1b08911c118df5971defa78264c21a376fbc41e92f628b6a26
+	            psk=0e6a94029151fb40f2fbb513dd2534b7e7ebdc91edb13419762f0f4f0590f198
             '';
           };
-            # home (Extender)
-          "Hal_EXT" = {
-            priority = 0;
-            auth = ''
-	            psk=723f7b995aae04f46f4cebfab286b31c8db116015f0a26fe20bc4695d4c01af9
-              proto=RSN
-              pairwise=CCMP
-              auth_alg=OPEN
-            '';
-          };
-            # CHST (work)
+            # (Extender exemple)
+#          "ssid" = {
+#            priority = 1;
+#            auth = ''
+#	            psk=0000
+#              proto=RSN
+#              pairwise=CCMP
+#              auth_alg=OPEN
+#            '';
+#          };
+            # CHSLD (work)
           "Loisirs" = {
-            priority = 1;
+            priority = 2;
             auth = ''
               psk=ca62593afdd9ec7cac04d7730061da25616f3f883aca43a4245675947acd24fb
               proto=RSN
