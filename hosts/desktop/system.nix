@@ -49,6 +49,7 @@
   ## Networking ##
   networking = {
     interfaces.wlo1.useDHCP = true;
+    interfaces.enp34s0.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
 #    wireguard.interfaces.wg0 = {
 #      ips = [ "10.100.0.2/24" ];
