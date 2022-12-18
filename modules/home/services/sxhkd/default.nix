@@ -33,7 +33,7 @@ in
         "super + alt + b" = "librewolf";
           # Chat services
         "super + alt + r" = "ripcord";
-        "super + alt + d" = "discordcanary";
+        "super + alt + d" = "discord";
           # file manager
         "super + alt + f" = "lfrun";
           # rss viewer
