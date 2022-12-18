@@ -179,37 +179,19 @@ in
               resource-pack-sha1=
               max-world-size=29999984
             '';
-            API = "https://papermc.io/api/v2/projects/paper";
-            VER = "1.19.2";
-            BUILDS_JSON = "$(${pkgs.curl}/bin/curl -s ${API}/versions/${VER})";
-            LATEST = ''$(echo "${BUILDS_JSON}" | ${pkgs.jq}/bin/jq '.builds[-1]')'';
-            PFILE = "paper-${VER}-${LATEST}.jar";
           in
             ''
               ln -sf ${eulaFile} eula.txt
               
-              if [ -e "server-properties" ]; then
+              if [ -e "server.properties" ]; then
                 exit 1
               else
                 cp ${propertiesFile} server.properties
               fi
-
-              if [ -e "${PFILE}" ]; then
-                echo "latest file exists: "${PFILE}""
-              else
-                ${pkgs.wget}/bin/wget "${API}/versions/${VER}/builds/${LATEST}/downloads/${PFILE}"
-                if [ -e "${PFILE}" ]; then
-                  echo "update paper server: ${PFILE}"
-                  rm -vf server.jar
-                  ln -sv "${PFILE}" server.jar
-                else
-                  echo "fail to download jar file"
-                fi
-              fi       
             '';
         };
 
-        environment.systemPackages = with pkgs; [ killall jdk curl wget jq lf ];
+        environment.systemPackages = with pkgs; [ killall jdk lf ];
 
         system.stateVersion = "22.11";
       };
