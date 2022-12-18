@@ -396,7 +396,7 @@ in
           "EBOX-2153-5G" = {
             priority = 0;
             auth = ''
-	            psk=0e6a94029151fb40f2fbb513dd2534b7e7ebdc91edb13419762f0f4f0590f198
+	            psk=c44e2f5c7b748c884049cff130ca93a888598868703f6160f7f45c9e3da5e74e
 	            proto=RSN
             	key_mgmt=WPA-PSK
             	pairwise=CCMP
