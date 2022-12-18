@@ -392,22 +392,17 @@ in
         enable = true;
         userControlled.enable = true;
         networks = {
-          "EBOX-2153" = {
+            # Home
+          "EBOX-2153-5G" = {
             priority = 0;
             auth = ''
 	            psk=0e6a94029151fb40f2fbb513dd2534b7e7ebdc91edb13419762f0f4f0590f198
+	            proto=RSN
+            	key_mgmt=WPA-PSK
+            	pairwise=CCMP
+            	auth_alg=OPEN
             '';
           };
-            # (Extender exemple)
-#          "ssid" = {
-#            priority = 1;
-#            auth = ''
-#	            psk=0000
-#              proto=RSN
-#              pairwise=CCMP
-#              auth_alg=OPEN
-#            '';
-#          };
             # CHSLD (work)
           "Loisirs" = {
             priority = 2;
