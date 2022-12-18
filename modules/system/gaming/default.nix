@@ -7,7 +7,7 @@ in
 {
 
   imports = [
-    ../server/containers/minecraft
+    ./minecraft-server
     ./lutris/default.nix
     ./steam/default.nix
     ./legendary/default.nix
@@ -23,6 +23,7 @@ in
       modules = {
         containers.mcServer.enable = true;
         profiles.gaming = {
+          mcServer.enable = true;
           launchers = {
 #            legendary.enable = true;
 #            lutris.enable = true;
