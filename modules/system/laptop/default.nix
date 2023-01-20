@@ -83,7 +83,7 @@ in
 
       services.logind = {
           # Specifies what to do when the laptop lid is closed and the system is on external power.
-        lidSwitchExternalPower = services.logind.lidSwitch;
+        lidSwitchExternalPower = config.services.logind.lidSwitch;
           # Specifies what to be done when the laptop lid is closed and another screen is added.
         lidSwitchDocked = "ignore";
           # Specifies what to be done when the laptop lid is closed. 
