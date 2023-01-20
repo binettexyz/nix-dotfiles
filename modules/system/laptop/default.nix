@@ -5,6 +5,10 @@ let
   cfg = config.modules.profiles.laptop;
 in
 {
+  imports = [
+    ./battery
+  ];
+
   options.modules.profiles.laptop = {
     enable = mkOption {
       description = "Whether to enable laptop settings. Also tags laptop for user settings";
@@ -23,6 +27,9 @@ in
 
   config = mkIf (cfg.enable) (mkMerge [
     ({
+
+      laptop.onLowBattery.enable = true;
+
       powerManagement.cpuFreqGovernor = "powersave";
 
       services = {
@@ -72,6 +79,18 @@ in
 #          acpi
           brightnessctl
         ];
+      };
+
+      services.logind = {
+          # Specifies what to do when the laptop lid is closed and the system is on external power.
+        lidSwitchExternalPower = services.logind.lidSwitch;
+          # Specifies what to be done when the laptop lid is closed and another screen is added.
+        lidSwitchDocked = "ignore";
+          # Specifies what to be done when the laptop lid is closed. 
+        lidSwitch = "ignore";
+        extraConfig = ''
+          HandleSuspendKey=ignore
+        '';
       };
     })
     (mkIf cfg.fprint.enable {
