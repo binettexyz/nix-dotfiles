@@ -2,6 +2,7 @@
 
   imports = [
     ./dwm
+    ./kde
     ./transmission
   ];
 

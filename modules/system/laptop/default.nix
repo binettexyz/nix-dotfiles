@@ -29,7 +29,7 @@ in
         thermald.enable = true;
         auto-cpufreq.enable = true;
         tlp = {
-          enable = true;
+          enable = if config.services.xserver.desktopManager.plasma5.enable then false else true;
           settings = {
               # Operation mode when no power supply can be detected: AC, BAT.
             "TLP_DEFAULT_MODE" = "BAT";

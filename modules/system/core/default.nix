@@ -151,6 +151,7 @@ in
         ports = [ 704 ];
         startWhenNeeded = true;
         extraConfig = ''
+          UsePam no
           AllowTcpForwarding yes
           AllowAgentForwarding no
           AllowStreamLocalForwarding no
@@ -181,7 +182,7 @@ in
         enable = true;
         layout = "us";
           # enable startx
-        displayManager.startx.enable = true;
+        displayManager.startx.enable = lib.mkDefault true;
           # disable xterm
         desktopManager.xterm.enable = false;
       };

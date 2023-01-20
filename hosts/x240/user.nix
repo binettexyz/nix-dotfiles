@@ -30,7 +30,10 @@
       dmenu.enable = true;
       librewolf.enable = true;
       lf.enable = true;
-      mpv.enable = false; # TODO: make config for laptop
+      mpv = {
+        enable = true;
+        laptopConfig.enable = true;
+      };
 #      mutt.enable = true;
       newsboat.enable = true;
 #      nnn.enable = true;
@@ -76,7 +79,7 @@
 
       ### Visual ###
     picom --experimental-backend &
-    hsetroot -fill /etc/nixos/.github/assets/wallpaper.png &
+    hsetroot & # -fill /etc/nixos/.github/assets/wallpaper.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"

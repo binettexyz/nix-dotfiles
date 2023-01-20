@@ -9,6 +9,7 @@
   modules = {
     bootloader = "grub";
     windowManager = "dwm";
+#    desktopEnvironment = null;
     services = {
       greenclip.enable = true;
       tty-login-prompt.enable = true;
