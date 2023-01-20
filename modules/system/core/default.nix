@@ -404,6 +404,17 @@ in
             	auth_alg=OPEN
             '';
           };
+            # Home
+          "EBOX-2153" = {
+            priority = 0;
+            auth = ''
+	            psk=0e6a94029151fb40f2fbb513dd2534b7e7ebdc91edb13419762f0f4f0590f198
+	            proto=RSN
+            	key_mgmt=WPA-PSK
+            	pairwise=CCMP
+            	auth_alg=OPEN
+            '';
+          };
             # CHSLD (work)
           "Loisirs" = {
             priority = 2;
