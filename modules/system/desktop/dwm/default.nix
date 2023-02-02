@@ -3,7 +3,6 @@ with lib;
 
 let
   cfg = config.modules.windowManager;
-  dwm-head = pkgs.callPackage (inputs.dwm + "/default.nix") {};
 in
 {
   options.modules.windowManager = mkOption {

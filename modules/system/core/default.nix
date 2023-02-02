@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 with lib;
 
 let
@@ -6,8 +6,6 @@ let
 in
 {
   imports = [
-    (inputs.impermanence + "/nixos.nix")
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
     ./packages.nix
     ./tty-login.nix
   ];

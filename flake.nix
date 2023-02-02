@@ -2,10 +2,9 @@
   description = "Binette's NixOS Configuration";
 
   /* --- System's Inputs--- */
-
   inputs = {
     /* --- Default Nixpkgs --- */
-#    nixpkgs.follows = "master";
+    nixpkgs.follows = "master";
 
     /* --- Nixpkgs branches --- */
     master.url = "github:NixOS/nixpkgs/master";
@@ -47,72 +46,52 @@
   };
 
   /* ---System's Output--- */
-
   outputs = {
     self,
     nixpkgs,
     unstable,
     nixos-hardware,
-    plasma-manager,
-    home,
-    impermanence,
-#    powercord-overlay,
-    sops-nix,
     ...
-  }@inputs: let
-
+  }@inputs:
+  let
+    mkSystem = import ./lib/mkSystem.nix;
     system = "x86_64-linux"; # current system
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     lib = nixpkgs.lib;
-
-    mkSystem = pkgs: system: hostname:
-      pkgs.lib.nixosSystem {
-        system = system;
-        modules = [
-          { networking.hostName = hostname; }
-          (./. + "/hosts/${hostname}/system.nix")
-          ./modules/system/adblock.nix
-          (import ./overlays { inherit pkgs lib nixpkgs system unstable; })
-          sops-nix.nixosModules.sops
-          home.nixosModules.home-manager {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.binette = (./. + "/hosts/${hostname}/user.nix");
-            };
-            nixpkgs.overlays = [
-              (final: prev: {
-                gruvbox-material-gtk =
-                  prev.callPackage ./overlays/gtk-themes/gruvbox-material.nix { };
-             })
-#              powercord-overlay.overlay
-#              nur.overlay
-            ];
-          }
-
-        ];
-
-        specialArgs = { inherit inputs; };
+  in
+    {
+      /* ---Defining Systems--- */
+      nixosConfigurations = {
+          # Main Desktop
+        desktop = mkSystem "desktop" {
+          inherit inputs unstable lib;
+          system = "x86_64-linux";
+          nixpkgs = inputs.unstable;
+          modules = [ ];
+        };
+          # Lenovo Thinkpad x240
+        x240 = mkSystem "x240" {
+          inherit inputs unstable lib;
+          system = "x86_64-linux";
+          nixpkgs = inputs.unstable;
+          modules = [ ];
+        };
+          # Lenovo Thinkpad t440p
+        t440p = mkSystem "t440p" {
+          inherit inputs unstable lib;
+          system = "x86_64-linux";
+          nixpkgs = inputs.unstable;
+          modules = [ ];
+        };
+          # Raspberry Pi 4
+        rpi4 = mkSystem "rpi4" {
+          inherit inputs unstable lib;
+          system = "aarch64-linux";
+          nixpkgs = inputs.unstable;
+          modules = [ ];
+        };
       };
-
-  in {
-
-    /* ---Defining Systems--- */
-
-    nixosConfigurations = {
-                                              /* Architecture    Hostname */
-        # Workstation
-      desktop = mkSystem inputs.unstable "x86_64-linux"  "desktop";
-        # Portable Laptop
-      x240 = mkSystem inputs.unstable    "x86_64-linux"  "x240";
-        # Desktop Laptop
-      t440p = mkSystem inputs.unstable   "x86_64-linux"  "t440p";
-        # Server
-      rpi4 = mkSystem inputs.unstable    "aarch64-linux" "rpi4";
-    };
-
-  }; 
+    }; 
 
 }
 
