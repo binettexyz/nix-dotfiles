@@ -3,6 +3,7 @@ set -e
 
 # Replace with your device
 dev=$1
+host=$2
 lvm=lvm
 
 crypt=off
@@ -60,4 +61,4 @@ cp -R /home/nixos/nix-dotfiles/ /mnt/nix/persist/etc/nixos/
   # Set tmpfile into /mnt to prevent "not enough space" error
 export TMPDIR=/mnt/tmp
 
-nixos-install --flake /mnt/etc/nixos#.
+nixos-install --flake /mnt/etc/nixos#$host

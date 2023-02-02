@@ -56,6 +56,7 @@
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
+    # vim: ft=sh
 
       ### screen ###
     xrandr --output DP-2 --gamma 1 # --set "Broadcast RGB" "Full"

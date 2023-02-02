@@ -149,7 +149,7 @@ in
           # Custom Fontions
         ''    
             " Save file as sudo on files that require root permission
-          cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+          command! W execute 'w !doas tee % > /dev/null' <bar> edit!
     
             " Check file in shellcheck:
     	    map <leader>s :!clear && shellcheck -x %<CR>
