@@ -14,10 +14,11 @@ nixpkgs.lib.nixosSystem {
 
   specialArgs = inputs // {
     inherit system;
-    hostname = hostname;
+    #hostname = hostname;
   };
 
   modules = [
+    { networking.hostName = hostname; }
     (./.. + "/hosts/${hostname}/system.nix")
     ../modules/system/adblock.nix
     (import ../overlays { inherit inputs lib nixpkgs system unstable; }) 
