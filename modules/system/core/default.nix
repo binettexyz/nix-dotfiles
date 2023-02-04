@@ -143,11 +143,13 @@ in
         enable = true;
         allowSFTP = true;
         forwardX11 = false;
-        kbdInteractiveAuthentication = false;
-        passwordAuthentication = false;
-        permitRootLogin = "no";
         ports = [ 704 ];
         startWhenNeeded = true;
+        settings = {
+          permitRootLogin = "no";
+          passwordAuthentication = false;
+          kbdInteractiveAuthentication = false;
+        };
         extraConfig = ''
           UsePam no
           AllowTcpForwarding yes
