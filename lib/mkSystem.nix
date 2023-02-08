@@ -19,7 +19,8 @@ nixpkgs.lib.nixosSystem {
 
   modules = [
     { networking.hostName = hostname; }
-    (./.. + "/hosts/${hostname}/system.nix")
+    (./.. + "/hosts/${hostname}/config.nix")
+    (./.. + "/hosts/${hostname}/hardware.nix")
     ../modules/system/adblock.nix
     (import ../overlays { inherit inputs lib nixpkgs system unstable; }) 
 

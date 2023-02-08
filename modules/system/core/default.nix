@@ -52,14 +52,6 @@ in
       type = types.bool;
       default = false;
     };
-
-
-    impermanence.enable = mkOption {
-      description = "Enable impermanence";
-      type = types.bool;
-      default = true;
-    };
-
   };
 
   config = mkIf (cfg.enable) (mkMerge [
@@ -322,23 +314,6 @@ in
         # Needed by home-manager's impermanence
       programs.fuse.userAllowOther = true;
 
-        # File Systems
-      fileSystems = {
-        "/" = { 
-          device = "none";
-          fsType = "tmpfs";
-          options = [ "defaults" "size=2G" "mode=755" ];
-        };
-        "/boot" = {
-          device = "/dev/disk/by-label/boot";
-          fsType = "vfat";
-        };
-        "/nix" = {
-          device = "/dev/disk/by-label/nix";
-          fsType = "ext4";
-        };
-      };
-
         # Sops-nix password encryption
       sops.defaultSopsFile = ../../../secrets/common.yaml;
       sops.age.sshKeyPaths = [ "/home/binette/.ssh/id_ed25519" ];
@@ -446,20 +421,6 @@ in
       programs.dconf.enable = true;
 
       environment.systemPackages = with pkgs; [ virt-manager ];
-    })
-
-    (mkIf cfg.impermanence.enable {
-        # Impermanence
-      environment.persistence."/nix/persist" = {
-        hideMounts = true;
-        directories = [
-          "/etc/nixos"
-          "/var/lib"
-          "/var/log"
-          "/root"
-          "/srv"
-        ];
-      };
     })
   ]);
 
