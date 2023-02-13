@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }: {
 
   imports = [
-    ../../modules/home/default.nix 
+    ../../home-manager/default.nix 
     (inputs.impermanence + "/home-manager.nix")
   ];
 
@@ -119,7 +119,7 @@
       ".local/share/lutris"
       ".local/share/minecraft"
       ".local/share/password-store"
-      ".local/share/PolyMC"
+      ".local/share/PrismLauncher"
       ".local/share/Steam"
       ".local/share/xorg"
       ".local/share/zoxide"

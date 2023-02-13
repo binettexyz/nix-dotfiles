@@ -4,7 +4,7 @@
     imports = [ 
 #      ../../modules/default.nix
       ./hardware.nix
-      ../../modules/system/default.nix
+      ../../nixos/default.nix
 #      ../../nixos/system/default.nix
     ];
 

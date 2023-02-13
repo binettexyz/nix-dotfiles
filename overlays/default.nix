@@ -1,4 +1,4 @@
-{ lib, nixpkgs, unstable, system, inputs, ... }:
+{ inputs, lib, nixpkgs, unstable, pkgs, system, ... }:
 let
 
   overlay-stable = self: super: {
@@ -24,8 +24,7 @@ in {
     overlay-stable
     overlay-unstable
     (final: prev: {
-      anime4k = prev.callPackage ../modules/pkgs/anime4k { };
-      dwm-head = prev.callPackage (inputs.dwm + "/default.nix") {};
+      anime4k = prev.callPackage ../packages/anime4k { };
     })
     (self: super: {
       discord-canary-openasar = super.discord.override { 
