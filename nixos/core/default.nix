@@ -134,13 +134,13 @@ in
       services.openssh = {
         enable = true;
         allowSFTP = true;
-        forwardX11 = false;
         ports = [ 704 ];
         startWhenNeeded = true;
         settings = {
-          permitRootLogin = "no";
-          passwordAuthentication = false;
+          forwardX11 = false;
           kbdInteractiveAuthentication = false;
+          passwordAuthentication = false;
+          permitRootLogin = "no";
         };
         extraConfig = ''
           UsePam no

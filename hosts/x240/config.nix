@@ -1,12 +1,8 @@
-{ config, flake, lib, pkgs, system, ... }: 
-  {
+{ config, flake, lib, pkgs, system, ... }: {
 
-    imports = [ 
-#      ../../modules/default.nix
-      ./hardware.nix
-      ../../modules/system/default.nix
-#    ../../nixos/system/default.nix
-    ];
+  imports = [ 
+    ../../nixos/default.nix
+  ];
 
   ## Custom modules ##
   modules = {

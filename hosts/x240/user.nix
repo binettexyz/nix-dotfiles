@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/home/default.nix 
+    ../../home-manager/default.nix 
     (inputs.impermanence + "/home-manager.nix")
   ];
 
