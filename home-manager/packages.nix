@@ -28,8 +28,8 @@ in {
         xorg.xev
         xorg.xmodmap
         xdotool
-        maim
-        slop
+        stable.maim
+        stable.slop
         xclip
         hsetroot
         udiskie

@@ -137,10 +137,10 @@ in
         ports = [ 704 ];
         startWhenNeeded = true;
         settings = {
-          forwardX11 = false;
           kbdInteractiveAuthentication = false;
           passwordAuthentication = false;
           permitRootLogin = "no";
+          X11Forwarding = false;
         };
         extraConfig = ''
           UsePam no
