@@ -68,5 +68,19 @@
     '';
   }];
 
+  services.xserver.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      tapping = true;
+      disableWhileTyping = true;
+      middleEmulation = true;
+    };
+    mouse = {
+      accelProfile = "flat";
+      #accelSpeed = "1";
+    };
+  };
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
