@@ -1,9 +1,0 @@
-{
-
-  imports = [
-    ./dwm
-    ./kde
-    ./transmission
-  ];
-
-}

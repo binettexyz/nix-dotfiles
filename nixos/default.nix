@@ -1,12 +1,15 @@
-{ pkgs, config, lib, ... }:
-{
+{ ... }: {
+
   imports = [
-    ./boot
-    ./core
+    ./audio.nix
+    ./desktop.nix
+    ./dev.nix
+    ./fonts.nix
+    ./home.nix
     ./laptop
-    ./services
-    ./desktop
-    ./server
-    ./gaming
+    ./minimal.nix
+    ./pc.nix
+    ./xserver.nix
   ];
+
 }

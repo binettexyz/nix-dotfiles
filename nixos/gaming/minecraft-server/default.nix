@@ -2,7 +2,6 @@
 with lib;
 
 let
-  cfg = config.modules.profiles.gaming.mcServer;
   serverDataDir = "/opt/minecraft/server";
   ports = {
     server = 25565;
@@ -17,11 +16,10 @@ let
   JARFILE = "server.jar";
 in
 {
-  options.modules.profiles.gaming.mcServer = {
-    enable = mkEnableOption "minecraft server";
-  };
+  options.gaming.mcServer.enable =
+    pkgs.lib.mkDefaultOption "minecraft server";
 
-  config = mkIf (cfg.enable) {
+  config = mkIf config.gaming.mcServer.enable {
     networking.firewall = {
       allowedTCPPorts = [
         ports.server

@@ -67,7 +67,7 @@
           { networking.hostName = hostname; }
           (./. + "/hosts/${hostname}/config.nix")
           (./. + "/hosts/${hostname}/hardware.nix")
-          ./nixos/adblock.nix
+          ./shared/adblock.nix
           (import ./overlays { inherit inputs lib nixpkgs system pkgs unstable; }) 
       
           inputs.sops-nix.nixosModules.sops
@@ -81,10 +81,6 @@
               users.binette = (./. + "/hosts/${hostname}/user.nix");
             };
             nixpkgs.overlays = [
-              (final: prev: {
-                gruvbox-material-gtk =
-                prev.callPackage ./overlays/gtk-themes/gruvbox-material.nix { };
-              })
       #        powercord-overlay.overlay
       #        nur.overlay
             ];

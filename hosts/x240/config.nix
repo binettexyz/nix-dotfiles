@@ -7,31 +7,12 @@
   ## Custom modules ##
   modules = {
     bootloader = "grub";
-    windowManager = "dwm";
-#    desktopEnvironment = null;
-    services = {
-      greenclip.enable = true;
-      tty-login-prompt.enable = true;
-    };
-    profiles = {
-      laptop.enable = true;
-      server.enable = false;
-      core = {
-        enable = true;
-        bluetooth.enable = false;
-        wifi.enable = true;
-        print.enable =false;
-        ssd.enable = true;
-        virtmanager.enable = false;
-      };
+    device = {
+      type = "laptop";
+      netDevices = [ "enp0s25" "wlan0" ];
     };
   };
 
-#    device = {
-#      type = "laptop";
-#      netDevices = [ "" ];
-#    };
-  
     ## Hardware ##
       # IGPU
     services.xserver.videoDrivers = [ "intel" ];
@@ -53,9 +34,8 @@
       interfaces.wlan0.useDHCP = true;
       interfaces.enp0s25.useDHCP = true;
       wireless = {
-        interfaces =  [ "wlan0" ];
-      };
     };
+  };
 
       # Trackpoint
     hardware.trackpoint = {
@@ -69,7 +49,5 @@
     hardware.cpu.amd.updateMicrocode = true;
     services.throttled.enable = false;
     
-    networking.hostName = "x240";
-
     nixpkgs.config.allowUnfree = true;
 }

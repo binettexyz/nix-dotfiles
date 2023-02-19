@@ -2,56 +2,9 @@
 
 {
   imports = [
-    ../../home-manager/default.nix 
+    ../../home-manager/laptop.nix 
     (inputs.impermanence + "/home-manager.nix")
   ];
-
-  modules = {
-    packages = {
-      enable = true;
-      gaming.enable = false;
-    };
-
-    cli = {
-      git.enable = true;
-      neovim.enable = true;
-      tmux.enable = true;
-      xdg.enable = true;
-      xresources = {
-        enable = true;
-        theme = "gruvbox";
-      };
-      zsh.enable = true;
-    };
-
-    programs = {
-      chromium.enable = true;
-#      discocss.enable = true;
-      dmenu.enable = true;
-      librewolf.enable = true;
-      lf.enable = true;
-      mpv = {
-        enable = true;
-        laptopConfig.enable = true;
-      };
-#      mutt.enable = true;
-      newsboat.enable = true;
-#      nnn.enable = true;
-#      powercord.enable = true;
-      qutebrowser.enable = true;
-      slstatus = "laptop";
-      terminal = "st";
-#      zathura.enable = true;
-    };
-
-    services = {
-      dunst.enable = true;
-      flameshot.enable = false;
-      picom.enable = true;
-      sxhkd.enable = true;
-#      udiskie.enable = true;
-    };
-  };
 
   home.packages = with pkgs; [ zoom-us ];
 
