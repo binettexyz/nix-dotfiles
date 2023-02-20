@@ -1,58 +1,9 @@
 { config, pkgs, lib, inputs, ... }: {
 
   imports = [
-    ../../home-manager/default.nix 
+    ../../home-manager/desktop.nix
     (inputs.impermanence + "/home-manager.nix")
   ];
-
-  modules = {
-    packages = {
-      enable = true;
-      gaming.enable = true;
-    };
-
-    cli = {
-      git.enable = true;
-      neovim.enable = true;
-      tmux.enable = true;
-      xdg.enable = true;
-      xresources = {
-        enable = true;
-        theme = "gruvbox";
-      };
-      zsh.enable = true;
-    };
-
-    programs = {
-#     chromium.enable = true;
-     discord.enable = true;
-     dmenu.enable = true;
-     gtk.enable = false;
-     lf.enable = true;
-     librewolf.enable = true;
-     mpv = {
-       enable = true;
-       desktopConfig.enable = true;
-     };
-#     mutt.enable = true;
-     newsboat.enable = true;
-#     nnn.enable = true;
-     qutebrowser.enable = true;
-     slstatus = "desktop";
-     terminal = "st";
-#     zathura.enable = true;
-    };
-
-    services = {
-      dunst.enable = true;
-      flameshot.enable = true;
-      picom.enable = false;
-      sxhkd.enable = true;
-#      udiskie.enable = true;
-    };
-  };
-
-  home.packages = with pkgs; [ mcrcon tidal-hifi ];
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
