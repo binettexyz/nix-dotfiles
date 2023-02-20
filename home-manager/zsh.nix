@@ -21,8 +21,6 @@ with lib;
   
         setopt interactive_comments
   
-        source "$HOME/.config/shell/aliasrc"
-  
           # Use lf to switch directories and bind it to ctrl-o
         lfcd () {
           tmp="$(mktemp)"
@@ -65,10 +63,10 @@ with lib;
       shellAliases = {
           # Nixos related aliases.
         nixsh = "nix-shell -p";
-        nixswitch = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd; notify-send ' NixOS' 'Rebuild complete!'";
-        nixbuild = "pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd; notify-send ' NixOS' 'Building complete!'";
-        nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd; notify-send ' NixOS' 'Test config applied!'";
-        nixup = "pushd /etc/nixos; doas nix flake update; popd; notify-send '❄️ NixOS' 'Flake update complete!'";
+        nixswitch = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
+        nixbuild = "pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd";
+        nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
+        nixup = "pushd /etc/nixos; doas nix flake update; popd";
         nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
 
         sudo = "doas su";
@@ -82,6 +80,46 @@ with lib;
 
           # Custom packages script
         lf = "lfrun";
+        pwgen = "pwgen -1yn 12 10";
+        ncdu = "${pkgs.dua}/bin/dua interactive";
+
+          # clipboard
+	      c = "xclip";
+	      cm = "xclip -selection clipboard";
+	      v = "xclip -o";
+
+          # confirm before overwriting something
+	      cp = "cp -riv";
+	      mv = "mv -iv";
+	      rm = "rm -rifv";
+	      mkdir = "mkdir -pv";
+
+          # colorize
+	      ls = "exa -al --color=always --group-directories-first";
+      	cat = "bat --paging=never --style=plain";
+        tree = "exa --tree --icons";
+        ip = "ip --color=auto";
+
+          # Adding flags
+        df = "df -h";
+        free = "free -m";
+        jctl = "journalctl -p 3 -xb";
+
+          # git
+	      addup = "git add -u";
+	      addall = "git add .";
+	      branch = "git branch";
+	      checkout = "git checkout";
+	      clone = "git clone";
+	      commit = "git commit -m";
+	      fetch = "git fetch";
+	      pull = "git pull origin";
+	      push = "git push origin";
+	      status = "git status";
+	      tag = "git tag";
+	      newtag = "git tag -a";
+	      subadd = "git submodule add";
+	      subup = "git submodule update --remote --merge";
 
           # fetch computer specs
         pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
@@ -95,7 +133,7 @@ with lib;
         [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
           # doas not required for some system commands
-        for command in mount umount eject su shutdown poweroff reboot ; do
+        for command in mount umount eject su shutdown systemctl poweroff reboot ; do
 	        alias $command="doas $command"
         done; unset command
 

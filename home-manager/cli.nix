@@ -40,11 +40,6 @@
     zip
   ];
 
-  programs.zsh.shellAliases = {
-     # For muscle memory...
-    ncdu = "${pkgs.dua}/bin/dua interactive";
-  };
-
   xresources.path = "/home/binette/.config/x11/xresources";
   xresources.properties = {
       #Xft related stuff
