@@ -1,17 +1,17 @@
-{ config, flake, lib, modulesPath, pkgs, system, ... }:
+{ config, inputs, lib, modulesPath, pkgs, system, ... }:
 
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    #inputs.hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
   ];
 
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
-#    kernelPackages =  pkgs.linuxPackages_zen;
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ /*"mitigations=off"*/ ];
+    kernelParams = [ "mitigations=off" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
@@ -81,5 +81,5 @@
     }];
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave" /*"conservative"*/ ;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";
 }
