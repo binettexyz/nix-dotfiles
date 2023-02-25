@@ -3,6 +3,8 @@
 
     imports = [ 
       ../../nixos/default.nix
+#      ../../nixos/gaming
+#      ../../nixos/libvirt
     ];
 
   ## Custom modules ##
