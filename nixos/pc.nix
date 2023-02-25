@@ -25,9 +25,11 @@ in
     greenclip.enable = true;
     gvfs.enable = true;
   };
-
-  hardware = {
-    opengl.enable = true; # Enable opengl
+    # Enable opengl
+  hardware.opengl = {
+    enable = true; 
+    driSupport32Bit = true;
+    driSupport = true;
   };
 
   services.journald.extraConfig = ''
