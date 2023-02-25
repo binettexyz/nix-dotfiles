@@ -1,10 +1,11 @@
 { flake, pkgs, lib, config, ... }:
 
-let
-  nvidia-offload = lib.findFirst (p: lib.isDerivation p && p.name == "nvidia-offload")
-    null
-    config.environment.systemPackages;
-in
+#let
+  #TODO: nvidia offload is ussed for double gpu setup
+#  nvidia-offload = lib.findFirst (p: lib.isDerivation p && p.name == "nvidia-offload")
+#    null
+#    config.environment.systemPackages;
+#in
 {
   
   imports = [ ./minecraft-server ];
@@ -19,6 +20,7 @@ in
 
     environment = {
       systemPackages = with pkgs; [
+        steam
         piper # GTK frontend for ratbagd mouse config daemon
         #(lutris.override { lutris-unwrapped = lutris-unwrapped.override {
           #wine = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
@@ -33,12 +35,13 @@ in
         gnome.zenity
         amdvlk # Vulkan drivers (probably already installed)
         dxvk
-        wineWowPackages.stable # 32-bit and 64-bit wineWowPackages
+        wineWowPackages.staging
+        winetricks
       ];
   
-      # Use nvidia-offload script in gamemode
-      variables.GAMEMODERUNEXEC = lib.mkIf (nvidia-offload != null)
-        "${nvidia-offload}/bin/nvidia-offload";
+#      # Use nvidia-offload script in gamemode
+#      variables.GAMEMODERUNEXEC = lib.mkIf (nvidia-offload != null)
+#        "${nvidia-offload}/bin/nvidia-offload";
     };
   
     /* --Gamemode-- */
@@ -60,9 +63,24 @@ in
     /* --Steam-- */
     programs.steam = {
       enable = true;
-      remotePlay.openFirewall = true;
     };
     hardware.steam-hardware.enable = true;
+    home-manager.sharedModules =
+      let
+        version = "GE-Proton7-49";
+        proton-ge = fetchTarball {
+          url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+          sha256 = "sha256:1wwxh0yk78wprfi1h9n7jf072699vj631dl928n10d61p3r90x82";
+        };
+      in [
+        ({ config, lib, pkgs, ... }: {
+          home.activation.proton-ge-custom = ''
+            if [ ! -d "$HOME/.steam/root/compatibilitytools.d/${version}" ]; then
+              cp -rsv ${proton-ge} "$HOME/.steam/root/compatibilitytools.d/${version}"
+            fi
+          '';
+        })
+      ];
   
     /* --Osu!-- */
     hardware = {
