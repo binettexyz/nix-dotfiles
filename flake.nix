@@ -8,7 +8,7 @@
 
     /* --- Nixpkgs branches --- */
     master.url = "github:NixOS/nixpkgs/master";
-    stable.url = "github:NixOS/nixpkgs/21.11";
+    stable.url = "github:NixOS/nixpkgs/22.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     /* --- Others --- */
