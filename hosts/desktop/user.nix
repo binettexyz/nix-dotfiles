@@ -43,13 +43,13 @@
     allowOther = true;
     directories = [
 #      ".cache/BraveSoftware"
-      ".cache/Jellyfin Media Player"
+#      ".cache/Jellyfin Media Player"
       ".cache/lutris"
       ".cache/librewolf"
       ".cache/qutebrowser"
       
 #      ".config/BraveSoftware"
-      ".config/jellyfin.org"
+#      ".config/jellyfin.org"
       ".config/lutris"
       ".config/retroarch"
       ".config/shell"
@@ -65,10 +65,9 @@
       ".local/share/cargo"
       ".local/share/games"
       ".local/share/gnupg"
-      ".local/share/jellyfinmediaplayer"
-      ".local/share/Jellyfin Media Player"
+#      ".local/share/jellyfinmediaplayer"
+#      ".local/share/Jellyfin Media Player"
       ".local/share/lutris"
-      ".local/share/minecraft"
       ".local/share/password-store"
       ".local/share/PrismLauncher"
       ".local/share/Steam"
