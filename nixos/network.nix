@@ -32,21 +32,10 @@
       userControlled.enable = true;
       networks = {
           # Home
-        "EBOX-2153-5G" = {
+        "BELL248" = {
           priority = 0;
           auth = ''
-           psk=c44e2f5c7b748c884049cff130ca93a888598868703f6160f7f45c9e3da5e74e
-           proto=RSN
-          	key_mgmt=WPA-PSK
-          	pairwise=CCMP
-          	auth_alg=OPEN
-          '';
-        };
-          # Home
-        "EBOX-2153" = {
-          priority = 0;
-          auth = ''
-           psk=0e6a94029151fb40f2fbb513dd2534b7e7ebdc91edb13419762f0f4f0590f198
+           psk=9f41abf6a150bbf3eb7ca1bb6fb9a5fff55e788ce8ad3db634d4336746257e45
            proto=RSN
           	key_mgmt=WPA-PSK
           	pairwise=CCMP
