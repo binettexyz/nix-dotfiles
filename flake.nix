@@ -19,6 +19,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     sops-nix.url = "github:Mic92/sops-nix";
     plasma-manager.url = "github:pjones/plasma-manager";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
@@ -51,6 +52,7 @@
     nixpkgs,
     unstable,
     nixos-hardware,
+    nix-colors,
     ...
   }@inputs:
   let
@@ -62,7 +64,7 @@
     mkSystem = pkgs: system: hostname:
       pkgs.lib.nixosSystem {
         system = system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs nix-colors; };
         modules = [
           { networking.hostName = hostname; }
           (./. + "/hosts/${hostname}/config.nix")
@@ -77,7 +79,7 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = { inherit inputs nix-colors; };
               users.binette = (./. + "/hosts/${hostname}/user.nix");
             };
             nixpkgs.overlays = [

@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-      atool # archive tool
+    atool # archive tool
     bat
     bc # command line calculator
     binutils
@@ -45,7 +45,7 @@
       #Xft related stuff
     "Xft.antialias" = 1;
     "Xft.hinting" = 1;
-#        "Xft.dpi" = 96;
+#    "Xft.dpi" = 96;
     "Xft.rgba" = "rgb";
     "Xft.lcdfilter" = "lcddefault";
       # Stuff
@@ -57,63 +57,39 @@
     "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
     "xterm*faceSize" = 14;
         
-          # Gruvbox-Material
-#    "xtermcolor0" = "#171717";
-#    "xtermcolor1" = "#cc241d";
-#    "xtermcolor2" = "#98971a";
-#    "xtermcolor3" = "#d79921";
-#    "xtermcolor4" = "#458588";
-#    "xtermcolor5" = "#de6809";
-#    "xtermcolor6" = "#689d6a";
-#    "xtermcolor7" = "#bdae93";
-#    "xtermcolor8" = "#253340";
-#    "xtermcolor9" = "#fb4934";
-#    "xtermcolor10" ="#b8bb26";
-#    "xtermcolor11" ="#fabd2f";
-#    "xtermcolor12" ="#83a598";
-#    "xtermcolor13" ="#fe8019";
-#    "xtermcolor14" ="#8ec07c";
-#    "xtermcolor15" ="#ebdbb2";
-#    "xtermbackground" = "#171717";
-#    "xtermforeground" = "#ebdbb2";
-#    "xtermhighlightColor" = "#405055";
-    
       # Backspace and escape fix
     "xterm.vt100.metaSendsEscape" = true;
     "xterm.vt100.backarrowKey" = false;
     "xtermttyModes" = "erase ^?";
-    
+
+    /* --- Xresources --- */
+    "*.font" = "monospace:size=14";
+    "*background" = "#${config.colorScheme.colors.base00}";
+    "*foreground" = "#${config.colorScheme.colors.base0F}";
+      # Black + DarkGrey
+    "*color0"  = "#${config.colorScheme.colors.base00}";
+    "*color8" = "#${config.colorScheme.colors.base08}";
+      # DarkRed + Red
+    "*color1" = "#${config.colorScheme.colors.base01}";
+    "*color9" = "#${config.colorScheme.colors.base09}";
+      # DarkGreen + Green
+    "*color2" = "#${config.colorScheme.colors.base02}";
+    "*color10" = "#${config.colorScheme.colors.base0A}";
+      # DarkYellow + Yellow
+    "*color3" = "#${config.colorScheme.colors.base03}";
+    "*color11" = "#${config.colorScheme.colors.base0B}";
+      # DarkBlue + Blue
+    "*color4" = "#${config.colorScheme.colors.base04}";
+    "*color12" = "#${config.colorScheme.colors.base0C}";
+      # DarkMagenta + Magenta
+    "*color5" = "#${config.colorScheme.colors.base05}";
+    "*color13" = "#${config.colorScheme.colors.base0D}";
+      # DarkCyan + Cyan
+    "*color6" = "#${config.colorScheme.colors.base06}";
+    "*color14" = "#${config.colorScheme.colors.base0E}";
+      # LightGrey + White
+    "*color7" = "#${config.colorScheme.colors.base07}";
+    "*color15" = "#${config.colorScheme.colors.base0F}";
   };
-  xresources.extraConfig = ''
-    *.font: monospace:size=14
-    ! #282828
-    *background: #000000
-    *foreground: #ebdbb2
-    ! Black + DarkGrey
-    ! #282828
-    *color0:  #000000
-    *color8:  #928374
-    ! DarkRed + Red
-    *color1:  #cc241d
-    *color9:  #fb4934
-    ! DarkGreen + Green
-    *color2:  #98971a
-    *color10: #b8bb26
-    ! DarkYellow + Yellow
-    *color3:  #d79921
-    *color11: #fabd2f
-    ! DarkBlue + Blue
-    *color4:  #458588
-    *color12: #83a598
-    ! DarkMagenta + Magenta
-    *color5:  #b16286
-    *color13: #d3869b
-    ! DarkCyan + Cyan
-    *color6:  #689d6a
-    *color14: #8ec07c
-    ! LightGrey + White
-    *color7:  #a89984
-    *color15: #ebdbb2
-  '';
 
 }

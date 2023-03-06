@@ -10,44 +10,57 @@ with lib;
       vimdiffAlias = true;
       withPython3 = true;
 
-      plugins = with pkgs.vimPlugins; [
-        vimwiki
-        vimagit
-        vim-latex-live-preview
-        vim-speeddating 
-        vim-polyglot
-        vimsence
-
-        # UI & Themes
-        nerdtree
-        vim-nerdtree-syntax-highlight
-        gruvbox-material
-        vim-airline
-        colorizer
-        #nvim-web-devicons
-
-          # Language servers
-        vim-nix
-
-          # Code formatting
-        neoformat
-
-          # Quality of life
-        #indentLine
-        vim-illuminate
-        # auto-pairs # or coc-pairs
-        quick-scope
-        rainbow
-        vim-orgmode
-        telescope-nvim
-        vim-clap
+      plugins = with pkgs.vimPlugins;
+        let
+          vim-gruvbit = pkgs.vimUtils.buildVimPlugin {
+            name = "vim-gruvbit";
+            src = pkgs.fetchFromGitHub {
+              owner = "habamax";
+              repo = "vim-gruvbit";
+              rev = "9c9336abbd08fbc2ddf9b4f60f6502dea37e3443";
+              sha256 = "sha256-b2b55Fa4Pwq5nvp9aPCOpCgdoiIxALEjKkRoLfrt/64=";
+            };
+          };
+        in [
+          vimwiki
+          vimagit
+          vim-latex-live-preview
+          vim-speeddating 
+          vim-polyglot
+          vimsence
   
-          # coc
-        coc-clangd
-        coc-python
-        coc-prettier
-        coc-pairs
-      ];
+          # UI & Themes
+          nerdtree
+          vim-nerdtree-syntax-highlight
+          gruvbox-material
+          #vim-gruvbit
+          #vim-airline
+          lightline-vim
+          colorizer
+          #nvim-web-devicons
+  
+            # Language servers
+          vim-nix
+  
+            # Code formatting
+          neoformat
+  
+            # Quality of life
+          #indentLine
+          vim-illuminate
+          # auto-pairs # or coc-pairs
+          quick-scope
+          rainbow
+          vim-orgmode
+          telescope-nvim
+          vim-clap
+    
+            # coc
+          coc-clangd
+          coc-python
+          coc-prettier
+          coc-pairs
+        ];
 
       coc = {
         enable = true;
@@ -158,12 +171,24 @@ with lib;
         ''
           # Gruvbox-Material Theme
         ''  
-          " Gruvbox-Material
             " Available values: 'hard', 'medium'(default), 'soft'
-          let g:gruvbox_material_background = 'medium'
-          let g:gruvbox_material_transparent_background = 1
+          let g:gruvbox_material_background = 'hard'
+          "let g:gruvbox_material_transparent_background = 1
           colorscheme gruvbox-material
         ''
+          # Gruvbit Theme
+#        ''
+#          func! s:gruvbit_setup() abort
+#              hi Comment gui=italic cterm=italic
+#              hi Statement gui=bold cterm=bold
+#          endfunc
+#
+#          augroup colorscheme_change | au!
+#              au ColorScheme gruvbit call s:gruvbit_setup()
+#          augroup END
+#
+#          colorscheme gruvbit
+#        ''
           # Visual
         ''
           set title
