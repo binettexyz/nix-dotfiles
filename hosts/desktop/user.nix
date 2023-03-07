@@ -6,30 +6,7 @@
     nix-colors.homeManagerModule
   ];
 
-  #TODO: catppuccin colorscheme with pitch black background
-  colorScheme = {
-    slug = "Gruvbox-Material";
-    name = "Gruvbox-Material";
-    author = "https://github.com/sainnhe/gruvbox-material";
-    colors = {
-      base00 = "#000000";
-      base01 = "#ea6962";
-      base02 = "#a9b665";
-      base03 = "#e78a4e";
-      base04 = "#7daea3";
-      base05 = "#d3869b";
-      base06 = "#89b482";
-      base07 = "#d4be98";
-      base08 = "#000000";
-      base09 = "#ea6962";
-      base0A = "#a9b665";
-      base0B = "#e78a4e";
-      base0C = "#7daea3";
-      base0D = "#d3869b";
-      base0E = "#89b482";
-      base0F = "#d4be98";
-    };
-  };
+  colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh

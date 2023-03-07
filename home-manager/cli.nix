@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: {
 
-{
   home.packages = with pkgs; [
     atool # archive tool
     bat
@@ -42,21 +41,20 @@
 
   xresources.path = "/home/binette/.config/x11/xresources";
   xresources.properties = {
-      #Xft related stuff
+    /* --- Xft --- */
     "Xft.antialias" = 1;
     "Xft.hinting" = 1;
 #    "Xft.dpi" = 96;
     "Xft.rgba" = "rgb";
     "Xft.lcdfilter" = "lcddefault";
-      # Stuff
+
+    /* --- Xterm --- */
     "xterm.termName" = "xterm-256color";
     "xterm.vt100.locale" = false;
     "xterm.vt100.utf8" = true;
-    
       # Font
     "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
     "xterm*faceSize" = 14;
-        
       # Backspace and escape fix
     "xterm.vt100.metaSendsEscape" = true;
     "xterm.vt100.backarrowKey" = false;
@@ -64,32 +62,32 @@
 
     /* --- Xresources --- */
     "*.font" = "monospace:size=14";
-    "*background" = "#${config.colorScheme.colors.base00}";
-    "*foreground" = "#${config.colorScheme.colors.base0F}";
+    "*background" = "#${config.colorScheme.colors.black}";
+    "*foreground" = "#${config.colorScheme.colors.white}";
       # Black + DarkGrey
-    "*color0"  = "#${config.colorScheme.colors.base00}";
-    "*color8" = "#${config.colorScheme.colors.base08}";
+    "*color0"  = "#${config.colorScheme.colors.black}";
+    "*color8" = "#${config.colorScheme.colors.blackBright}";
       # DarkRed + Red
-    "*color1" = "#${config.colorScheme.colors.base01}";
-    "*color9" = "#${config.colorScheme.colors.base09}";
+    "*color1" = "#${config.colorScheme.colors.red}";
+    "*color9" = "#${config.colorScheme.colors.redBright}";
       # DarkGreen + Green
-    "*color2" = "#${config.colorScheme.colors.base02}";
-    "*color10" = "#${config.colorScheme.colors.base0A}";
+    "*color2" = "#${config.colorScheme.colors.green}";
+    "*color10" = "#${config.colorScheme.colors.greenBright}";
       # DarkYellow + Yellow
-    "*color3" = "#${config.colorScheme.colors.base03}";
-    "*color11" = "#${config.colorScheme.colors.base0B}";
+    "*color3" = "#${config.colorScheme.colors.yellow}";
+    "*color11" = "#${config.colorScheme.colors.yellowBright}";
       # DarkBlue + Blue
-    "*color4" = "#${config.colorScheme.colors.base04}";
-    "*color12" = "#${config.colorScheme.colors.base0C}";
+    "*color4" = "#${config.colorScheme.colors.blue}";
+    "*color12" = "#${config.colorScheme.colors.blueBright}";
       # DarkMagenta + Magenta
-    "*color5" = "#${config.colorScheme.colors.base05}";
-    "*color13" = "#${config.colorScheme.colors.base0D}";
+    "*color5" = "#${config.colorScheme.colors.magenta}";
+    "*color13" = "#${config.colorScheme.colors.magentaBright}";
       # DarkCyan + Cyan
-    "*color6" = "#${config.colorScheme.colors.base06}";
-    "*color14" = "#${config.colorScheme.colors.base0E}";
+    "*color6" = "#${config.colorScheme.colors.cyan}";
+    "*color14" = "#${config.colorScheme.colors.cyanBright}";
       # LightGrey + White
-    "*color7" = "#${config.colorScheme.colors.base07}";
-    "*color15" = "#${config.colorScheme.colors.base0F}";
+    "*color7" = "#${config.colorScheme.colors.white}";
+    "*color15" = "#${config.colorScheme.colors.whiteBright}";
   };
 
 }
