@@ -62,32 +62,33 @@
 
     /* --- Xresources --- */
     "*.font" = "monospace:size=14";
-    "*background" = "#${config.colorScheme.colors.black}";
-    "*foreground" = "#${config.colorScheme.colors.white}";
+    "*.background" = "#${config.colorScheme.colors.background}";
+    "*.foreground" = "#${config.colorScheme.colors.foreground}";
+    "*.cursorColor" = "#${config.colorScheme.colors.cursorColor}";
       # Black + DarkGrey
-    "*color0"  = "#${config.colorScheme.colors.black}";
-    "*color8" = "#${config.colorScheme.colors.blackBright}";
+    "*.color0"  = "#${config.colorScheme.colors.black}";
+    "*.color8" = "#${config.colorScheme.colors.blackBright}";
       # DarkRed + Red
-    "*color1" = "#${config.colorScheme.colors.red}";
-    "*color9" = "#${config.colorScheme.colors.redBright}";
+    "*.color1" = "#${config.colorScheme.colors.red}";
+    "*.color9" = "#${config.colorScheme.colors.redBright}";
       # DarkGreen + Green
-    "*color2" = "#${config.colorScheme.colors.green}";
-    "*color10" = "#${config.colorScheme.colors.greenBright}";
+    "*.color2" = "#${config.colorScheme.colors.green}";
+    "*.color10" = "#${config.colorScheme.colors.greenBright}";
       # DarkYellow + Yellow
-    "*color3" = "#${config.colorScheme.colors.yellow}";
-    "*color11" = "#${config.colorScheme.colors.yellowBright}";
+    "*.color3" = "#${config.colorScheme.colors.yellow}";
+    "*.color11" = "#${config.colorScheme.colors.yellowBright}";
       # DarkBlue + Blue
-    "*color4" = "#${config.colorScheme.colors.blue}";
-    "*color12" = "#${config.colorScheme.colors.blueBright}";
+    "*.color4" = "#${config.colorScheme.colors.blue}";
+    "*.color12" = "#${config.colorScheme.colors.blueBright}";
       # DarkMagenta + Magenta
-    "*color5" = "#${config.colorScheme.colors.magenta}";
-    "*color13" = "#${config.colorScheme.colors.magentaBright}";
+    "*.color5" = "#${config.colorScheme.colors.magenta}";
+    "*.color13" = "#${config.colorScheme.colors.magentaBright}";
       # DarkCyan + Cyan
-    "*color6" = "#${config.colorScheme.colors.cyan}";
-    "*color14" = "#${config.colorScheme.colors.cyanBright}";
+    "*.color6" = "#${config.colorScheme.colors.cyan}";
+    "*.color14" = "#${config.colorScheme.colors.cyanBright}";
       # LightGrey + White
-    "*color7" = "#${config.colorScheme.colors.white}";
-    "*color15" = "#${config.colorScheme.colors.whiteBright}";
+    "*.color7" = "#${config.colorScheme.colors.white}";
+    "*.color15" = "#${config.colorScheme.colors.whiteBright}";
   };
 
 }
