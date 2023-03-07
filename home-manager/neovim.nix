@@ -50,7 +50,7 @@ with lib;
           vim-illuminate
           # auto-pairs # or coc-pairs
           quick-scope
-          rainbow
+          # rainbow #FIXME: broke nix syntax highlight
           vim-orgmode
           telescope-nvim
           vim-clap
