@@ -10,32 +10,29 @@ with lib;
       userName = "Jonathan Binette";
       userEmail = "binettexyz@proton.me";
 
-    delta = {
-      enable = true;
-      options = {
-        features = "line-numbers decorations";
-        syntax-theme = "ansi";
-#        plus-style = ''syntax "#003800"'';
-#        minus-style = ''syntax "#3f0001"'';
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-style = "bold yellow ul";
-          file-decoration-style = "none";
-          hunk-header-decoration-style = "cyan box ul";
+      delta = {
+        enable = true;
+        options = {
+          features = "line-numbers decorations";
+          syntax-theme = "ansi";
+          #plus-style = ''syntax "#003800"'';
+          #minus-style = ''syntax "#3f0001"'';
+          decorations = {
+            commit-decoration-style = "bold yellow box ul";
+            file-style = "bold yellow ul";
+            file-decoration-style = "none";
+            hunk-header-decoration-style = "cyan box ul";
+          };
+          delta = {
+            navigate = true;
+          };
+          line-numbers = {
+            line-numbers-left-style = "cyan";
+            line-numbers-right-style = "cyan";
+            line-numbers-minus-style = 124;
+            line-numbers-plus-style = 28;
+          };
         };
-        delta = {
-          navigate = true;
-        };
-        line-numbers = {
-          line-numbers-left-style = "cyan";
-          line-numbers-right-style = "cyan";
-          line-numbers-minus-style = 124;
-          line-numbers-plus-style = 28;
-        };
-      };
-    };
-
-      aliases = {
       };
 
       ignores = [
@@ -62,6 +59,23 @@ with lib;
           default = "simple";
         };
         rebase = { autoStash = true; };
+      };
+
+      aliases = {
+        co = "checkout";
+        fuck = "commit --amend -m";
+        c = "commit -m";
+        ca = "commit -am";
+        forgot = "commit --amend --no-edit";
+        graph = "log --all --decorate --graph --oneline";
+        addup = "add -u";
+        addall = "add .";
+        l = "log";
+        r = "rebase";
+        s = "status --short";
+        ss = "status";
+        d = "diff";
+        br = "branch";
       };
     };
 

@@ -63,11 +63,13 @@ with lib;
       shellAliases = {
           # Nixos related aliases.
         nixsh = "nix-shell -p";
-        nixswitch = "pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
-        nixbuild = "pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd";
-        nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
-        nixup = "pushd /etc/nixos; doas nix flake update; popd";
+        nixswitch = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
+        nixbuild = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd";
+        nixtest = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
+        nixup = "doas nix-store --verify; pushd /etc/nixos; doas nix flake update; popd";
         nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
+        cleanup = "doas nix-collect-garbage --delete-older-than 7d";
+        bloat = "nix path-info -Sh /run/current-system";
 
         sudo = "doas su";
 
@@ -82,11 +84,12 @@ with lib;
         lf = "lfrun";
         pwgen = "pwgen -1yn 12 10";
         ncdu = "${pkgs.dua}/bin/dua interactive";
+        xterm = "${pkgs.xterm}/bin/xterm -e zsh";
 
           # clipboard
-	      c = "xclip";
-	      cm = "xclip -selection clipboard";
-	      v = "xclip -o";
+	      c = "${pkgs.xclip}/bin/xclip";
+	      cm = "${pkgs.xclip}/bin/xclip -selection clipboard";
+	      v = "${pkgs.xclip}/bin/xclip -o";
 
           # confirm before overwriting something
 	      cp = "cp -riv";
@@ -95,9 +98,10 @@ with lib;
 	      mkdir = "mkdir -pv";
 
           # colorize
-	      ls = "exa -al --color=always --group-directories-first";
-      	cat = "bat --paging=never --style=plain";
-        tree = "exa --tree --icons";
+	      ls = "${pkgs.exa}/bin/exa -hal --color=always --group-directories-first -s extension";
+      	cat = "${pkgs.bat}/bin/bat --paging=never --style=plain";
+        tree = "${pkgs.exa}/bin/exa --tree --icons";
+        diff = "diff --color=auto";
         ip = "ip --color=auto";
 
           # Adding flags
@@ -106,20 +110,20 @@ with lib;
         jctl = "journalctl -p 3 -xb";
 
           # git
-	      addup = "git add -u";
-	      addall = "git add .";
-	      branch = "git branch";
-	      checkout = "git checkout";
-	      clone = "git clone";
-	      commit = "git commit -m";
-	      fetch = "git fetch";
-	      pull = "git pull origin";
-	      push = "git push origin";
-	      status = "git status";
-	      tag = "git tag";
-	      newtag = "git tag -a";
-	      subadd = "git submodule add";
-	      subup = "git submodule update --remote --merge";
+#	      addup = "git add -u";
+#	      addall = "git add .";
+#	      branch = "git branch";
+#	      checkout = "git checkout";
+#	      clone = "git clone";
+#	      commit = "git commit -m";
+#	      fetch = "git fetch";
+#	      pull = "git pull origin";
+#	      push = "git push origin";
+#	      status = "git status";
+#	      tag = "git tag";
+#	      newtag = "git tag -a";
+#	      subadd = "git submodule add";
+#	      subup = "git submodule update --remote --merge";
 
           # fetch computer specs
         pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
@@ -173,6 +177,16 @@ with lib;
             repo = "zsh-nix-shell";
             rev = "af6f8a266ea1875b9a3e86e14796cadbe1cfbf08";
             sha256 = "sha256-BjgMhILEL/qdgfno4LR64LSB8n9pC9R+gG7IQWwgyfQ=";
+          };
+        }
+        {
+          name = "zsh-autopair";
+          file = "zsh-autopair.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "hlissner";
+            repo = "zsh-autopair";
+            rev = "396c38a7468458ba29011f2ad4112e4fd35f78e6";
+            sha256 = "sha256-PXHxPxFeoYXYMOC29YQKDdMnqTO0toyA7eJTSCV6PGE=";
           };
         }
       ];
