@@ -20,6 +20,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     plasma-manager.url = "github:pjones/plasma-manager";
     nix-colors.url = "github:misterio77/nix-colors";
+    helix.url = "github:SoraTenshi/helix/experimental-22.12";
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
@@ -56,7 +57,6 @@
     ...
   }@inputs:
   let
-    #mkSystem = import ./lib/mkSystem.nix;
     system = "x86_64-linux"; # current system
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     lib = nixpkgs.lib;
@@ -97,6 +97,18 @@
       x240 = mkSystem inputs.unstable    "x86_64-linux"  "x240";
       t440p = mkSystem inputs.unstable   "x86_64-linux"  "t440p";
       rpi4 = mkSystem inputs.unstable    "aarch64-linux" "rpi4";
+    };
+
+      # sd card image for raspberry pi
+    images = {
+      rpi4 =
+        (self.nixosConfigurations.rpi4.extendModules {
+          modules = ["${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"];
+        })
+        .config
+        .system
+        .build
+        .sdImage;
     };
   }; 
 
