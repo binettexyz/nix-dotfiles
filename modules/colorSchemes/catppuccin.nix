@@ -1,25 +1,25 @@
 {
-  name = "Catppuccin - Frappe";
+  name = "Catppuccin - Mocha";
   author = "https://github.com/catppuccin/xresources";
   colors = {
-    background = "#303446";
-    foreground = "#C6D0F5";
-    cursorColor = "#d4be98";
-    black = "#51576D";
-    red = "#E78284";
-    green = "#A6D189";
-    yellow = "#E5C890";
-    blue = "#8CAAEE";
-    magenta = "#F4B8E4";
-    cyan = "#81C8BE";
-    white = "#B5BFE2";
-    blackBright = "#626880";
-    redBright = "#E78284";
-    greenBright = "#A6D189";
-    yellowBright = "#E5C890";
-    blueBright = "#8CAAEE";
-    magentaBright = "#F4B8E4";
-    cyanBright = "#81C8BE";
-    whiteBright = "#A5ADCE";
+    background = "#1e1e2e";
+    foreground = "#cdd6f4";
+    cursorColor = "#cdd6f4";
+    black = "#54575a";
+    red = "#f38ba8";
+    green = "#a6e3a1";
+    yellow = "#f9e2af";
+    blue = "#89b4fa";
+    magenta = "#f5c2e7";
+    cyan = "#94e2d5";
+    white = "#bac2de";
+    blackBright = "#585b70";
+    redBright = "#f38ba8";
+    greenBright = "#a6e3a1";
+    yellowBright = "#f9e2af";
+    blueBright = "#89b4fa";
+    magentaBright = "#f5c2e7";
+    cyanBright = "#94e2d5";
+    whiteBright = "#a6adc8";
   };
 }
