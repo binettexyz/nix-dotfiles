@@ -5,8 +5,8 @@
   i18n = {
     defaultLocale = lib.mkDefault "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_CTYPE = lib.mkDefault "pt_BR.UTF-8"; # Fix ç in us-intl.
-      LC_TIME = lib.mkDefault "pt_BR.UTF-8";
+      LC_CTYPE = lib.mkDefault "en_US.UTF-8"; # Fix ç in us-intl.
+      LC_TIME = lib.mkDefault "en_CA.UTF-8";
     };
   };
     # Set TTY font and keyboard layout.
