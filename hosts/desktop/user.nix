@@ -1,12 +1,21 @@
-{ config, pkgs, lib, inputs, nix-colors, ... }: {
+{ config, pkgs, lib, inputs, nix-colors, ... }:
+let
+
+  wallpaper = builtins.fetchurl {
+    url = "https://w.wallhaven.cc/full/28/wallhaven-28v3mm.jpg";
+    sha256 = "1ikipzd4qq985kidgpmrrd21y9c3bh6dlx6y7c4vvlfki73d3azw";
+  };
+
+in {
 
   imports = [
     ../../home-manager/desktop.nix
     (inputs.impermanence + "/home-manager.nix")
     nix-colors.homeManagerModule
+    ../../home-manager/helix.nix
   ];
 
-  colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
+  colorScheme = import ../../modules/colorSchemes/catppuccin.nix;
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
@@ -17,7 +26,8 @@
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
-    slstatus &				    # suckless status bar
+
+    desktop-bar.sh &    # dwm status bar
     udiskie &				    # automount device daemon
     sxhkd &
     flameshot &
@@ -33,7 +43,7 @@
 
       ### Visual ###
 #    picom --experimental-backends &
-    hsetroot & # -fill /etc/nixos/.github/assets/wallpaper.png &
+    hsetroot -fill ${wallpaper} &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
