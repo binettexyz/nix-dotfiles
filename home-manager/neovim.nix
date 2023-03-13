@@ -27,15 +27,87 @@ with lib;
           vim-latex-live-preview
           vim-speeddating 
           vim-polyglot
-          vimsence
+          {
+            plugin = vimsence;
+            type = "viml";
+            config = ''
+              let g:vimsence_client_id = '439476230543245312'
+              let g:vimsence_small_text = 'NeoVim'
+              let g:vimsence_small_image = 'neovim'
+              let g:vimsence_editing_details = 'Editing: {}'
+              let g:vimsence_editing_state = 'Working on: {}'
+              let g:vimsence_file_explorer_text = 'In NERDTree'
+              let g:vimsence_file_explorer_details = 'Looking for files'
+              "let g:vimsence_custom_icons = {'filetype': 'iconname'}
+            '';
+          }
   
           # UI & Themes
-          nerdtree
           vim-nerdtree-syntax-highlight
-          gruvbox-material
-          #vim-gruvbit
+          {
+            plugin = nerdtree;
+            type = "viml";
+            config = ''
+        	    "map <leader>n :NERDTreeToggle<CR>
+    	        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+              if has('nvim')
+                let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+              else
+                let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
+              endif
+            '';
+          }
+          {
+            plugin = gruvbox-material;
+            type = "viml";
+            config = ''
+              " Available values: 'hard', 'medium'(default), 'soft'
+            let g:gruvbox_material_background = 'hard'
+            "let g:gruvbox_material_transparent_background = 1
+            '';
+          }
+          {
+            plugin = vim-gruvbit;
+            type = "viml";
+            config = ''
+              func! s:gruvbit_setup() abort
+                  hi Comment gui=italic cterm=italic
+                  hi Statement gui=bold cterm=bold
+              endfunc
+
+              augroup colorscheme_change | au!
+                  au ColorScheme gruvbit call s:gruvbit_setup()
+              augroup END
+            '';
+          }
+          {
+            plugin = catppuccin-nvim;
+            type = "lua";
+            config = ''
+              require("catppuccin").setup({
+                flavor = "mocha",
+                background = {
+                  dark = "mocha",
+                },
+                term_colors = true,
+                color_overrides = {
+                  mocha = {
+                    base = "#000000",
+                    mantle = "#000000",
+                    crust = "#000000",
+                  },
+                },
+              })
+              -- vim.cmd.colorscheme "catppuccin"
+            '';
+          }
           #vim-airline
-          lightline-vim
+          #lightline-vim
+          { plugin = feline-nvim;
+            type = "lua";
+            config = ''
+            '';
+          }
           colorizer
           #nvim-web-devicons
   
@@ -50,7 +122,13 @@ with lib;
           vim-illuminate
           # auto-pairs # or coc-pairs
           quick-scope
-          # rainbow #FIXME: broke nix syntax highlight
+          /*{
+            plugin = rainbow; #FIXME: broke nix syntax highlight
+            type = "viml";
+            config = ''
+              let g:rainbow_active = 1
+            '';
+          }*/
           vim-orgmode
           telescope-nvim
           vim-clap
@@ -101,7 +179,7 @@ with lib;
           };
         };
       };
-  
+
       extraConfig = lib.strings.concatStringsSep "\n" [
         ''
           let mapleader =","
@@ -127,27 +205,6 @@ with lib;
 
           autocmd BufWritePost $XDG_CONFIG_HOME/x11/xresources silent exec "!xrdb $XDG_CONFIG_HOME/x11/xresources"
         ''
-          # Plugins config
-        ''    
-            " Nerd tree
-        	map <leader>n :NERDTreeToggle<CR>
-    	    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-            if has('nvim')
-              let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-            else
-              let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-            endif
-
-            " vimsence
-          let g:vimsence_client_id = '439476230543245312'
-          let g:vimsence_small_text = 'NeoVim'
-          let g:vimsence_small_image = 'neovim'
-          let g:vimsence_editing_details = 'Editing: {}'
-          let g:vimsence_editing_state = 'Working on: {}'
-          let g:vimsence_file_explorer_text = 'In NERDTree'
-          let g:vimsence_file_explorer_details = 'Looking for files'
-"          let g:vimsence_custom_icons = {'filetype': 'iconname'}
-        ''
           # Custom Fontions
         ''    
             " Save file as sudo on files that require root permission
@@ -168,29 +225,20 @@ with lib;
           autocmd BufRead,BufNewFile *.tex set filetype=tex
           autocmd BufRead,BufNewFile *.nix set filetype=nix
 
+        	    map <leader>n :NERDTreeToggle<CR>
+"    	        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"              if has('nvim')
+"                let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+"              else
+"                let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
+"              endif
+
+
         ''
-          # Gruvbox-Material Theme
-        ''  
-            " Available values: 'hard', 'medium'(default), 'soft'
-          let g:gruvbox_material_background = 'hard'
-          "let g:gruvbox_material_transparent_background = 1
-          colorscheme gruvbox-material
-        ''
-          # Gruvbit Theme
-#        ''
-#          func! s:gruvbit_setup() abort
-#              hi Comment gui=italic cterm=italic
-#              hi Statement gui=bold cterm=bold
-#          endfunc
-#
-#          augroup colorscheme_change | au!
-#              au ColorScheme gruvbit call s:gruvbit_setup()
-#          augroup END
-#
-#          colorscheme gruvbit
-#        ''
           # Visual
         ''
+          colorscheme gruvbox-material
+          "colorscheme gruvbit
           set title
           set termguicolors
           set background=dark
@@ -202,7 +250,6 @@ with lib;
           set noshowmode
           set noshowcmd
           filetype plugin on
-          let g:rainbow_active = 1
 
           highlight Normal ctermbg=none guibg=NONE
           highlight NonText ctermbg=none guibg=NONE
