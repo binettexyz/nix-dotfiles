@@ -25,8 +25,6 @@
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
     st = { url = "github:binettexyz/st"; flake = false; };
-    slstatus-laptop = { url = "github:binettexyz/slstatus"; flake = false; };
-    slstatus-desktop = { url = "github:binettexyz/slstatus/desktop"; flake = false; };
     dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
 
     /* --- Discord stuff --- */
