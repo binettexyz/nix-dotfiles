@@ -2,7 +2,7 @@
   name = "Catppuccin - Mocha";
   author = "https://github.com/catppuccin/xresources";
   colors = {
-    background = "#1e1e2e";
+    background = "#181825";
     foreground = "#cdd6f4";
     cursorColor = "#cdd6f4";
     black = "#54575a";

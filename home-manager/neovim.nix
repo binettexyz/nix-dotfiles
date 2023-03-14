@@ -44,19 +44,7 @@ with lib;
   
           # UI & Themes
           vim-nerdtree-syntax-highlight
-          {
-            plugin = nerdtree;
-            type = "viml";
-            config = ''
-        	    "map <leader>n :NERDTreeToggle<CR>
-    	        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-              if has('nvim')
-                let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-              else
-                let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-              endif
-            '';
-          }
+          nerdtree
           {
             plugin = gruvbox-material;
             type = "viml";
@@ -86,28 +74,22 @@ with lib;
             config = ''
               require("catppuccin").setup({
                 flavor = "mocha",
-                background = {
-                  dark = "mocha",
-                },
+                background = { dark = "mocha", },
+                transparent_background = true,
+           			color_overrides = {
+				          mocha = {
+					          base = "#181825",
+					          mantle = "#181825",
+					          crust = "#181825",
+				          },
+			          },
                 term_colors = true,
-                color_overrides = {
-                  mocha = {
-                    base = "#000000",
-                    mantle = "#000000",
-                    crust = "#000000",
-                  },
-                },
               })
-              -- vim.cmd.colorscheme "catppuccin"
+              vim.cmd.colorscheme "catppuccin"
             '';
           }
           #vim-airline
-          #lightline-vim
-          { plugin = feline-nvim;
-            type = "lua";
-            config = ''
-            '';
-          }
+          lightline-vim
           colorizer
           #nvim-web-devicons
   
@@ -205,6 +187,16 @@ with lib;
 
           autocmd BufWritePost $XDG_CONFIG_HOME/x11/xresources silent exec "!xrdb $XDG_CONFIG_HOME/x11/xresources"
         ''
+          # Plugins config
+        ''
+          map <leader>n :NERDTreeToggle<CR>
+    	    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+          if has('nvim')
+            let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+          else
+            let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
+          endif
+        ''
           # Custom Fontions
         ''    
             " Save file as sudo on files that require root permission
@@ -225,20 +217,12 @@ with lib;
           autocmd BufRead,BufNewFile *.tex set filetype=tex
           autocmd BufRead,BufNewFile *.nix set filetype=nix
 
-        	    map <leader>n :NERDTreeToggle<CR>
-"    	        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"              if has('nvim')
-"                let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-"              else
-"                let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-"              endif
 
 
         ''
           # Visual
         ''
-          colorscheme gruvbox-material
-          "colorscheme gruvbit
+          "colorscheme gruvbox-material
           set title
           set termguicolors
           set background=dark
