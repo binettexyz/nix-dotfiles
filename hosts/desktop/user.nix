@@ -12,7 +12,6 @@ in {
     ../../home-manager/desktop.nix
     (inputs.impermanence + "/home-manager.nix")
     nix-colors.homeManagerModule
-    ../../home-manager/helix.nix
   ];
 
   colorScheme = import ../../modules/colorSchemes/catppuccin.nix;
@@ -26,10 +25,7 @@ in {
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
-
-    desktop-bar.sh &    # dwm status bar
     udiskie &				    # automount device daemon
-    sxhkd &
     flameshot &
     greenclip daemon &
     nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
@@ -38,11 +34,10 @@ in {
 #    xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
-    unclutter &				    # remove mouse when idle
-    xbanish &             # remove mouse when using keyboard
 
       ### Visual ###
-#    picom --experimental-backends &
+    desktop-bar &       # dwm status bar
+    picom --experimental-backends &
     hsetroot -fill ${wallpaper} &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
