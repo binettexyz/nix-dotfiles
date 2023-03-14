@@ -12,7 +12,8 @@
       noto-fonts-emoji
       material-design-icons
       material-icons
-      fira-code
+      fantasque-sans-mono
+      jetbrains-mono
         #FIXME: Nerd fonts make icons small and cant be bigger if increasing icon size. 
 #      (nerdfonts.override {
 #        fonts = [
@@ -29,18 +30,11 @@
       enable = true;
       includeUserConf = true;
       cache32Bit = true;
-        #TODO: Find better font instead of nerdfonts.
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-#        serif = [ "JetBrainsMono Nerd Font Mono" ];
-#        sansSerif = [ "JetBrainsMono Nerd Font Mono" ];
-        monospace = [
-          "FiraCode"
-          #"FiraCode Nerd Font Mono"
-          #"Iosevka Term"
-          #"FantasqueSansMono Nerd Font Mono"
-          #"mononoki Nerd Font Mono"
-        ];
+        serif = [ "JetBrains Mono" ];
+        sansSerif = [ "JetBrains Mono" ];
+        monospace = [ "Fantasque Sans Mono" ];
       };
     };
   };
