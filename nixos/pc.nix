@@ -24,6 +24,13 @@ in
       # Enable clipboard manager
     greenclip.enable = true;
     gvfs.enable = true;
+    unclutter-xfixes = {
+      enable = true;
+      extraOptions = [
+        "start-hiden"
+      ];
+    };
+    xbanish.enable = true;
   };
     # Enable opengl
   hardware.opengl = {
