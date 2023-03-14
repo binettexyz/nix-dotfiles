@@ -74,7 +74,6 @@ with lib;
             config = ''
               require("catppuccin").setup({
                 flavor = "mocha",
-                background = { dark = "mocha", },
                 transparent_background = true,
            			color_overrides = {
 				          mocha = {
@@ -83,7 +82,6 @@ with lib;
 					          crust = "#181825",
 				          },
 			          },
-                term_colors = true,
               })
               vim.cmd.colorscheme "catppuccin"
             '';
