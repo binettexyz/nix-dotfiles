@@ -44,7 +44,18 @@ with lib;
   
           # UI & Themes
           vim-nerdtree-syntax-highlight
-          nerdtree
+          {
+            plugin = nerdtree;
+            type = "viml";
+            config = ''
+    	        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+              if has('nvim')
+                let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+              else
+                let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
+              endif
+            '';
+          }
           {
             plugin = gruvbox-material;
             type = "viml";
@@ -82,12 +93,21 @@ with lib;
 					          crust = "#181825",
 				          },
 			          },
+                integrations = {
+                  coc_nvim = true,
+                },
               })
               vim.cmd.colorscheme "catppuccin"
             '';
           }
           #vim-airline
-          lightline-vim
+          {
+            plugin = lightline-vim;
+            type = "viml";
+            config = ''
+              let g:lightline = {'colorscheme': 'catppuccin'}
+            '';
+          }
           colorizer
           #nvim-web-devicons
   
@@ -188,12 +208,6 @@ with lib;
           # Plugins config
         ''
           map <leader>n :NERDTreeToggle<CR>
-    	    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-          if has('nvim')
-            let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-          else
-            let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-          endif
         ''
           # Custom Fontions
         ''    
