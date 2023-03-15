@@ -21,6 +21,8 @@ with lib;
       inactiveOpacity = 0.6; # (0.0 - 1.0 )
       opacityRules = [
         "100:class_g = 'Dunst'"
+        "100:class_g = 'nsxiv'"
+        "100:class_g = 'qutebrowser'"
         "100:class_g = 'dwm'"
         "100:class_g = 'St'"
         "100:class_g = 'librewolf'"
