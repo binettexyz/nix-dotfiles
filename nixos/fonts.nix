@@ -14,16 +14,6 @@
       material-icons
       fantasque-sans-mono
       jetbrains-mono
-        #FIXME: Nerd fonts make icons small and cant be bigger if increasing icon size. 
-#      (nerdfonts.override {
-#        fonts = [
-#          "Iosevka"
-#          "FiraCode"
-#          "JetBrainsMono"
-#          "Mononoki"
-#          "FantasqueSansMono"
-#        ];
-#      })
     ];
 
     fontconfig = {
