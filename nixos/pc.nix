@@ -54,68 +54,70 @@ in
 
 
   /* --- Transmission Container --- */
-  networking.nat.internalInterfaces = [ "ve-transmission" ];
-  networking.firewall.allowedTCPPorts = [ 9091 ];
-
-  containers.transmission = {
-    autoStart = true;
-    ephemeral = true;
-  
-      # networking & port forwarding
-    privateNetwork = true;
-    hostAddress = "10.0.0.17";
-    localAddress = "10.0.0.18";
-  
-      # mounts
-    bindMounts = {
-      "/var/lib/transmission" = {
-        hostPath = "/var/lib/transmission";
-        isReadOnly = false;
+  containers.transmission =
+    let
+      downloadDir = "/var/lib/nixos-containers/transmission/var/lib/transmission/Downloads";
+      downloadIncompleteDir = "/var/lib/nixos-containers/transmission/var/lib/transmission/.incomplete";
+      ports.transmission = 9091;
+    in {
+      autoStart = true;
+      ephemeral = true;
+    
+        # networking & port forwarding
+      privateNetwork = true;
+      hostAddress = "10.0.0.17";
+      localAddress = "10.0.0.18";
+    
+        # mounts
+      bindMounts = {
+        "/home/downloads/torrents" = { hostPath = downloadDir; isReadOnly = false; };
+        "/home/downloads/torrents/.incomplete" = { hostPath = downloadIncompleteDir; isReadOnly = false; };
       };
-    };
+    
+      #TODO: make local dns rule
+      forwardPorts = [
+  			{
+  				containerPort = ports.transmission;
+  				hostPort = ports.transmission;
+  				protocol = "tcp";
+  			}
+  		];
   
-    forwardPorts = [
-			{
-				containerPort = 9091;
-				hostPort = 9091;
-				protocol = "tcp";
-			}
-		];
-
-    config = { config, pkgs, ... }: {
-
-      system.stateVersion = "22.11";
-      networking.hostName = "transmission";
-
-      services.transmission = {
-        enable = true;
-        home = "/var/lib/transmission";
-        user = "transmission";
-        group = "users";
-        openFirewall = true;
-        settings = {
-          blocklist-enabled = true;
-          blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
-          incomplete-dir-enabled = true;
-          watch-dir-enabled = false;
-          encryption = 1;
-          message-level = 1;
-          peer-port = 50778;
-          peer-port-random-high = 65535;
-          peer-port-random-low = 49152;
-          peer-port-random-on-start = true;
-          rpc-enable = true;
-          rpc-bind-address = "0.0.0.0";
-          rpc-port = 9091;
-          rpc-authentication-required = true;
-          rpc-username = "binette";
-          rpc-password = "cd";
-          rpc-whitelist-enabled = false;
-          umask = 18;
-          utp-enabled = true;
+      config = { config, pkgs, ... }: {
+  
+        networking.firewall.allowedTCPPorts = [ 9091 ];
+  
+        services.transmission = {
+          enable = true;
+          home = "/var/lib/transmission";
+          user = "transmission";
+          group = "users";
+          openFirewall = true;
+          settings = {
+            blocklist-enabled = true;
+            blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
+            incomplete-dir-enabled = true;
+            watch-dir-enabled = false;
+            encryption = 1;
+            message-level = 1;
+            peer-port = 50778;
+            peer-port-random-high = 65535;
+            peer-port-random-low = 49152;
+            peer-port-random-on-start = true;
+            rpc-enable = true;
+            rpc-bind-address = "0.0.0.0";
+            rpc-port = ports.transmission;
+            rpc-authentication-required = true;
+            rpc-username = "binette";
+            rpc-password = "cd";
+            rpc-whitelist-enabled = false;
+            umask = 18;
+            utp-enabled = true;
+          };
         };
+  
+        system.stateVersion = "22.11";
       };
-    };
   };
 
 }
