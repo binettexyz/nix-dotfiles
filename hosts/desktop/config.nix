@@ -3,7 +3,7 @@
 
     imports = [ 
       ../../nixos/default.nix
-#      ../../nixos/gaming
+      ../../nixos/gaming
 #      ../../nixos/libvirt
     ];
 
@@ -20,12 +20,12 @@
       # GPU
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
+      opengl.extraPackages = with pkgs; [ vaapiVdpau ];
       nvidia = {
         modesetting.enable = true;
           # Enable experimental NVIDIA power management via systemd
         powerManagement.enable = true;
       };
-      opengl.extraPackages = with pkgs; [ vaapiVdpau ];
     };
   
     ## Networking ##
