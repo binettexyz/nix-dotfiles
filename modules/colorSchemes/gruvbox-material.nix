@@ -2,13 +2,13 @@
   name = "Gruvbox Material";
   author = "https://github.com/sainnhe/gruvbox-material";
   colors = {
-    background = "#000000";
+    background = "#141617";
     foreground = "#d4be98";
-    cursorColor = "#d4be98";
-    black = "#000000";
+    cursorColor = "#ddc7a1";
+    black = "#1d2021";
     red = "#ea6962";
     green = "#a9b665";
-    yellow = "#e78a4e";
+    yellow = "#d8a657";
     blue = "#7daea3";
     magenta = "#d3869b";
     cyan = "#89b482";
@@ -16,7 +16,7 @@
     blackBright = "#928374";
     redBright = "#ea6962";
     greenBright = "#a9b665";
-    yellowBright = "#e78a4e";
+    yellowBright = "#d8a657";
     blueBright = "#7daea3";
     magentaBright = "#d3869b";
     cyanBright = "#89b482";
