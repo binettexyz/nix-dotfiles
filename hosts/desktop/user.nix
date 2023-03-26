@@ -1,12 +1,4 @@
-{ config, pkgs, lib, inputs, nix-colors, ... }:
-let
-
-  wallpaper = builtins.fetchurl {
-    url = "https://w.wallhaven.cc/full/28/wallhaven-28v3mm.jpg";
-    sha256 = "1ikipzd4qq985kidgpmrrd21y9c3bh6dlx6y7c4vvlfki73d3azw";
-  };
-
-in {
+{ config, pkgs, lib, inputs, nix-colors, ... }: {
 
   imports = [
     ../../home-manager/desktop.nix
@@ -14,7 +6,7 @@ in {
     nix-colors.homeManagerModule
   ];
 
-  colorScheme = import ../../modules/colorSchemes/catppuccin.nix;
+  colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
@@ -39,7 +31,7 @@ in {
       ### Visual ###
     desktop-bar &       # dwm status bar
     picom --experimental-backends &
-    hsetroot -fill ${pkgs.wallpapers.snowy-mountain} &
+    hsetroot -fill ~/.config/wall.png &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
