@@ -4,8 +4,30 @@ lua << EOF
 -- General
 ----------------------------------
 
--- Enable mouse control
-vim.opt.mouse = "a"
+-- Visual
+vim.opt.background = "dark"
+vim.opt.fillchars = {eob = ' '} -- Also prevent '~' from showing on blank lines
+vim.opt.matchtime = 3
+--vim.opt.ruler = false
+vim.opt.number = true           -- Relative line numbers
+vim.opt.relativenumber = true
+vim.opt.showcmd = false
+vim.opt.showmode = false
+vim.opt.showmatch = true        -- Show matching parenthesis
+vim.opt.signcolumn = "yes"      -- Always show the signcolumn
+vim.opt.termguicolors = true
+vim.opt.textwidth = 0
+vim.opt.title = true            -- Make terminal title same as the file
+vim.opt.wrap = true             -- Enable line wrap
+vim.opt.wrapmargin = 0
+
+-- Grep
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.wrapscan = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.inccommand = "split"
 
 -- Make sure swap and backup files are created
 vim.opt.backup = true
@@ -13,56 +35,29 @@ vim.opt.swapfile = true
 vim.opt.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
 vim.opt.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup"
 
--- Show column guideline to keep code within 80 lines
-vim.opt.textwidth = 0
-vim.opt.wrapmargin = 0
-vim.opt.wrap = true
-
--- Make terminal title same as the file you're editing
-vim.opt.title = true
-
 -- Indent
 vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 1
 vim.opt.expandtab = true
---vim.opt.smartindent = true
+vim.opt.smartindent = true
 
--- Relative line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
-
--- Autocomplete interface
+-- Autocomplete
 vim.opt.wildmenu = true
+vim.opt.wildmode = {'list', 'longest'}
+vim.opt.infercase = true
 
--- Show matching parenthesis
-vim.opt.showmatch = true
+-- Other
+vim.opt.backspace = {'indent', 'eol', 'start'}
+vim.opt.encoding = "utf-8"
+vim.opt.hidden = true
+vim.opt.mouse = "a" -- Enable mouse control
+vim.opt.shortmess = vim.o.shortmess .. "c" -- Ignores all the 'hit-enter' prompts
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.clipboard:append { "unnamed", "unnamedplus" } -- Use clipboard register
 
--- Ignores all the 'hit-enter' prompts
--- -c prevents messages being given for ins-completion
-vim.opt.shortmess = vim.o.shortmess .. "c"
 
--- Use clipboard register
-vim.opt.clipboard:append { "unnamed", "unnamedplus" }
-
--- Always show the signcolumn, otherwise it would shift the text each time
--- diagnostics appear/become resolved
-vim.opt.signcolumn = "yes"
-
--- Change decorative characters
--- Also prevent '~' from showing on blank lines
-vim.opt.fillchars = {
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft  = '┫',
-  vertright = '┣',
-  verthoriz = '╋',
-  fold = ' ',
-  eob = ' ',
-  msgsep = '‾'
-}
 
 ----------------------------------
 -- Keybindings
@@ -70,6 +65,9 @@ vim.opt.fillchars = {
 
 -- Set leader key to space
 vim.g.mapleader = ","
+
+-- Perform dot commands over visual blocks
+vim.cmd('vnoremap . :normal .<CR>')
 
 -- Reload neovim config
 vim.keymap.set("n", "<leader><S-BS>", ":so ~/.config/nvim/init.lua<CR>", { desc="Reload config" })
@@ -85,14 +83,14 @@ vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>oe", ":setlocal spell! spelllang=en_us<CR>", { desc="Spell-check english" })
 vim.keymap.set("n", "<leader>of", ":setlocal spell! spelllang=fr<CR>", { desc="Spell-check french" })
 
---TODO Split naviguation
---vim.keymap.set("n", "<C-h> <C-w>h")
---vim.keymap.set("n", "<C-j> <C-w>j")
---vim.keymap.set("n", "<C-k> <C-w>k")
---vim.keymap.set("n", "<C-l> <C-w>l")
+-- Split naviguation
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 ----------------------------------
--- Appearance
+-- Colorscheme
 ----------------------------------
 
 local ok, _ = pcall(vim.cmd, 'colorscheme <COLOURSCHEME>')

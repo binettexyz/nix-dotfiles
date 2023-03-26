@@ -5,7 +5,7 @@
     ../modules/device.nix
     ./cli.nix
     ./git.nix
-    ./neovim.nix
+    ./neovim
     ./ssh.nix
     ./tmux.nix
     ./zsh.nix
