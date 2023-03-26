@@ -77,6 +77,7 @@ in {
 #      ".local/share/jellyfinmediaplayer"
 #      ".local/share/Jellyfin Media Player"
       ".local/share/lutris"
+      ".local/share/nvim"
       ".local/share/password-store"
       ".local/share/PrismLauncher"
       ".local/share/Steam"
