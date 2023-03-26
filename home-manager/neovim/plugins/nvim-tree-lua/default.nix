@@ -15,7 +15,7 @@
       }
 
       # Install devicons to improve appearance
-      #nvim-web-devicons
+      nvim-web-devicons
     ];
   };
 }

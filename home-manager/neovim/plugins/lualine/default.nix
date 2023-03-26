@@ -4,21 +4,28 @@
   # Configure neovim
   programs.neovim = {
 
-    # Install lualine
-    plugins = with pkgs.vimPlugins; [{
-      plugin = lualine-nvim;
-      type = "lua";
-      config = ''
-        ----------------------------------
-        -- lualine
-        ----------------------------------
+    # Install plugins related to lualine
+    plugins = with pkgs.vimPlugins; [
 
-        require('lualine').setup {
-          options = {
-            theme = "catppuccin"
+      # Install lualine
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = ''
+          ----------------------------------
+          -- lualine
+          ----------------------------------
+
+          require('lualine').setup {
+            options = {
+              theme = "gruvbox-material"
+            }
           }
-        }
-      '';
-    }];
+        '';
+      }
+
+      # Install devicons to improve appearance
+      nvim-web-devicons
+    ];
   };
 }

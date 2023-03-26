@@ -22,9 +22,10 @@ with lib;
         ];
 
       extraConfig = builtins.replaceStrings
-        ["<COLOURSCHEME>"] ["catppuccin"]
+        ["<COLOURSCHEME>"] ["gruvbox-material"]
         (builtins.readFile ./config.vim);
 
+        # TODO: convert theses to lua.
 #      extraConfig = lib.strings.concatStringsSep "\n" [
 #        ''
 #            " Disables automatic commenting on newline:
@@ -51,7 +52,10 @@ with lib;
 
         ./plugins/catppuccin-nvim
 
+        # TODO: replace coc by nvim native lsp
         ./plugins/coc-nvim
+
+        ./plugins/gruvbox-material
         
         ./plugins/lualine
 
