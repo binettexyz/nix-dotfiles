@@ -56,7 +56,7 @@ with lib;
           }}
         '';
   
-        setwallpaper = '' %cp "$f" ~/.config/wall.png && hsetroot -full "$f" '';
+        setwallpaper = '' %cp "$f" ~/.config/wall.png && hsetroot -fill "$f" '';
   
         extract = ''
           ''${{
