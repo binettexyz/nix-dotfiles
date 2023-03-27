@@ -71,7 +71,7 @@
           (import ./overlays { inherit inputs lib nixpkgs system pkgs unstable; }) 
 
           inputs.sops-nix.nixosModules.sops
-          inputs.nix-gaming.nixosModules.pipewireLowLatency
+          #inputs.nix-gaming.nixosModules.pipewireLowLatency
           inputs.impermanence.nixosModules.impermanence 
           inputs.home.nixosModules.home-manager {
             home-manager = {

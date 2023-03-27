@@ -12,13 +12,18 @@
 #    nixos-cleanup
   ];
 
-  programs.git = {
+  programs = {
       # Without git we may be unable to build this config
-    enable = true;
-    config = {
-        # Avoid git log spam while building this config
-      init.defaultBranch = "master";
+    git = {
+      enable = true;
+      config = {
+          # Avoid git log spam while building this config
+        init.defaultBranch = "master";
+      };
     };
+      # This will cause the zsh shell to lack
+      # the basic nix directories in its PATH
+    zsh.enable = true;
   };
 
   system.stateVersion = "22.05"; # Did you read the comment?

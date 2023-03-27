@@ -29,9 +29,6 @@
       # Get rid of defaults packages
     environment.defaultPackages = [ ];
 
-      # Enable Font/DPI configuration optimized for HiDPI displays
-    hardware.video.hidpi.enable = true;
-    
       # Increase file handler limit
 #    security.pam.loginLimits = [{
 #      domain = "*";
