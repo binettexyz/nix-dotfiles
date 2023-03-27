@@ -4,16 +4,17 @@
 , fetchurl
 }:
 { name
-, id
+, theme
+, id ? "gruvbox"
 , sha256
-, ext ? "jpg"
+, ext ? "png"
 }:
 
 stdenvNoCC.mkDerivation {
   name = "wallpaper-${name}.${ext}";
   src = fetchurl {
     inherit sha256;
-    url = "https://i.imgur.com/${id}.${ext}";
+    url = "https://raw.githubusercontent.com/binettexyz/wallpapers/master/${theme}/${id}.${ext}";
   };
   dontUnpack = true;
 
@@ -24,7 +25,7 @@ stdenvNoCC.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "https://imgur.com/${id}";
+    description = "https://github.com/binettexyz/wallpapers";
     platforms = platforms.all;
     license = licenses.unfree;
   };
