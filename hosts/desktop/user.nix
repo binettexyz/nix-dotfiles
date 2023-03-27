@@ -31,7 +31,7 @@
       ### Visual ###
     desktop-bar &       # dwm status bar
     picom --experimental-backends &
-    hsetroot -fill ~/.config/wall.png &
+    hsetroot -fill ${pkgs.wallpapers.gruvbox} &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
