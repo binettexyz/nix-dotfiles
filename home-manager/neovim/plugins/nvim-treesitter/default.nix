@@ -9,7 +9,7 @@
 
         # Install nvim-treesitter
       {
-        plugin = nvim-treesitter.withAllGrammars;
+        plugin = nvim-treesitter;
         type = "lua";
         config = builtins.readFile ./config.lua;
       }

@@ -8,7 +8,7 @@ require('nvim-treesitter.configs').setup({
   ensure_installed = all,
 
   -- Automatically install missing parsers when entering buffer
-  auto_install = false,
+  auto_install = true,
 
   -- Change install location for parsers
   parser_install_dir = "~/.local/share/nvim/nvim-treesitter",
