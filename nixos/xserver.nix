@@ -32,7 +32,8 @@
         middleEmulation = true;
       };
       mouse = {
-        accelProfile = "flat";
+        leftHanded = true; #FIXME: for some reason my mouse botton got inverted...
+        accelProfile = "adaptive";
         #accelSpeed = "1";
       };
     };

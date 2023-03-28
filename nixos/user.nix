@@ -4,7 +4,8 @@ let
 in
 {
   users = {
-    defaultUserShell = lib.mkForce pkgs.zsh;
+      # FIXME: if set to pkgs.zsh, error saying that programs.zsh.enable is not true, which is not true...
+    defaultUserShell = lib.mkForce "/run/current-system/sw/bin/zsh";
     mutableUsers = false;
     groups.${username}.gid = 1000;
     users.${username} = {
