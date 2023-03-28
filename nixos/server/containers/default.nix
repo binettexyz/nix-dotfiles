@@ -1,14 +1,16 @@
 {
   imports = [
-    ./homer
-    ./minecraft
     ./adguardhome
+    ./homer
     ./home-assistant
-    ./vaultwarden
+    #TODO: ./invidious
+    ./mediarr
+    ./minecraft
+    #TODO: ./miniflux
 #    ./nextcloud
 #    ./nextcloud/docker.nix
 #    ./portainer
-    ./mediarr
+    ./vaultwarden
   ];
 
 }

@@ -79,7 +79,7 @@ in
             dns = {
               bind_host = "0.0.0.0";
               port = ports.adguardDNS;
-              bootstrap_dns = "9.9.9.9";
+              bootstrap_dns = [ "9.9.9.9" ];
               upstream_dns = [
                 "127.0.0.1:52"
               ];

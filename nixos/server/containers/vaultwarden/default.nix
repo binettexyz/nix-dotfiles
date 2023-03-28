@@ -23,7 +23,7 @@ in
 
     containers.vaultwarden = {
       autoStart = true;
-      ephemeral = true;
+      ephemeral = false;
 
       privateNetwork = false;
       inherit localAddress hostAddress;

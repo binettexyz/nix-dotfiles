@@ -3,7 +3,7 @@ with lib;
 
 let
   cfg = config.modules.containers.nextcloud;
-  localAddress = "";
+  localAddress = "172.17.0.4";
   ports.nextcloud = 8383;
   mkLocalProxy = port: {
     locations."/".proxyPass = "http://${localAddress}";
@@ -21,7 +21,7 @@ in
     };
 
     virtualisation.oci-containers.containers = {
-      portainer = {
+      nextcloud = {
         image = "nextcloud:latest";
         autoStart = true;
 #        ports = [

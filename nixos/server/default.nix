@@ -1,17 +1,21 @@
 { inputs, pkgs, config, lib, ... }:
 with lib;
 
+let
+  cfg = config.modules.profiles.server;
+in
 {
-  imports = [
-    ../minimal.nix
-    ./containers ];
+  imports = [ ./containers ];
 
-
-  options.nixos.server.enable = lib.mkEnableOption "laptop config" // {
-    default = (config.modules.device.type == "server");
+  options.modules.profiles.server = {
+    enable = mkOption {
+      description = "Enable server options";
+      type = types.bool;
+      default = false;
+    };
   };
 
-  config = lib.mkIf config.nixos.server.enable {
+  config = mkIf (cfg.enable) {
 
     modules = {
       containers = {
@@ -20,8 +24,11 @@ with lib;
         homer.enable = true;
         mcServer.enable = true;
 #        nextcloud.enable = true;
-        servarr.enable = true;
+        mediarr.enable = true;
         vaultwarden.enable = true;
+      };
+      services = {
+        miniflux.enable = false;
       };
     };
   
@@ -71,14 +78,6 @@ with lib;
 #        };
 #      };
     };
-
-#    services.caddy = {
-#      enable = true;
-#      globalConfig = ''
-#        servers :443 {
-#        }
-#      '';
-#    };
 
     services.nginx.enable = true;
 

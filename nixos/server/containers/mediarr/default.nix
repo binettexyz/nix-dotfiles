@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.modules.containers.servarr;
+  cfg = config.modules.containers.mediarr;
 #  privateKeyFile = [
 #    config.sops.secrets.apiKey.sonarr.path;
 #    config.sops.secrets.apiKey.radarr.path;
@@ -26,8 +26,8 @@ let
   };
 in
 {
-  options.modules.containers.servarr = {
-    enable = mkEnableOption "servarr";
+  options.modules.containers.mediarr = {
+    enable = mkEnableOption "mediarr";
   };
 
   config = mkIf (cfg.enable) {
@@ -55,7 +55,6 @@ in
       inherit localAddress hostAddress;
   
       bindMounts = {
-  #      "${privateKeyFile}" = { hostPath = privateKeyFile; isReadOnly = true; };
         "/media/videos/movies" = { hostPath = mediaDir + "/movies"; isReadOnly = false; };
         "/media/videos/tv" = { hostPath = mediaDir + "/tv"; isReadOnly = false; };
         "/media/videos/animes" = { hostPath = mediaDir + "/animes"; isReadOnly = false; };
@@ -67,9 +66,8 @@ in
       };
 
       config = { pkgs, ... }: {
-#        networking.firewall.enable = false;
+        networking.firewall.enable = false;
         systemd.tmpfiles.rules = [
-#          "d /media/videos/movies 777 radarr media -"
           "d ${builtins.toString mediaDir + "/movies"} 777 radarr media -"
           "d ${builtins.toString mediaDir + "/tv"} 777 sonarr media -"
           "d ${builtins.toString mediaDir + "/animes"} 777 sonarr media -"
@@ -145,6 +143,16 @@ in
             rpc-password = "cd";
             umask = 18;
             utp-enabled = true;
+          };
+        };
+
+        virtualisation.oci-containers.containers = {
+          flaresolverr = {
+            image = "flaresolverr:latest";
+            autoStart = true;
+            ports = [
+              "8191:8191"
+            ];
           };
         };
 
