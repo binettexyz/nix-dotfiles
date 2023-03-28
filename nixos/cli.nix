@@ -8,18 +8,6 @@
     ];
   };
 
-  /* ---Enable programs that need special configuration.--- */
-  programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      withRuby = false;
-      withNodeJs = false;
-    };
-  };
-
   /* ---Set environment variables--- */
   environment.variables = {
     NIXOS_CONFIG_DIR = "/etc/nixos";
