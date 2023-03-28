@@ -9,6 +9,8 @@ with lib;
       vimAlias = true;
       vimdiffAlias = true;
       withPython3 = true;
+      withRuby = false;
+      withNodeJs = false;
 
       plugins = with pkgs.vimPlugins; [
             # Language servers
