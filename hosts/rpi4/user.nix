@@ -1,32 +1,10 @@
-
 { config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
-    ../../modules/home/default.nix 
+    ../../home-manager/server.nix 
     (inputs.impermanence + "/home-manager.nix")
   ];
-
-  modules = {
-    packages.enable = false;
-
-    cli = {
-      git.enable = true;
-      neovim.enable = true;
-      tmux.enable = false;
-      xdg.enable = false;
-      xresources = {
-        enable = false;
-        theme = null;
-      };
-      zsh.enable = true;
-    };
-
-    programs = {
-     lf.enable = true;
-     qutebrowser.enable = true;
-    };
-  };
 
   home.persistence = {
     "/nix/persist/home/binette" = {

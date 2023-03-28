@@ -1,21 +1,14 @@
 { inputs, pkgs, config, lib, ... }:
 with lib;
 
-let
-  cfg = config.modules.profiles.server;
-in
 {
-  imports = [ ./containers ];
-
-  options.modules.profiles.server = {
-    enable = mkOption {
-      description = "Enable server options";
-      type = types.bool;
-      default = false;
-    };
+  options.nixos.server.enable = lib.mkEnableOption "server config" // {
+    default = (config.modules.device.type == "server");
   };
 
-  config = mkIf (cfg.enable) {
+  imports = [ ./containers ];
+
+  config = lib.mkIf config.nixos.server.enable {
 
     modules = {
       containers = {
@@ -84,14 +77,15 @@ in
 #TODO    services.dnsmasq.enable = true;
 
         # Docker
-    virtualisation.docker = {
+    virtualisation.podman = {
       enable = true;
       enableOnBoot = true;
+      dockerCompat = true;
       enableNvidia = lib.mkDefault false;
       autoPrune.enable = true;
     };
   
-    virtualisation.oci-containers.backend = "docker";
+    virtualisation.oci-containers.backend = "podman";
   
     ## FileSystem ##
     fileSystems."/nix/persist/media" = {
