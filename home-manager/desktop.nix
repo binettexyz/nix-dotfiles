@@ -17,6 +17,7 @@ with lib;
 
       home.packages = with pkgs; [
         (calibre.override { unrarSupport = true; })
+        discord
         easyeffects
         gimp
         inkscape
@@ -25,10 +26,9 @@ with lib;
         pinta
         solaar
         tidal-hifi
-    #    texlive.combined.scheme-full
-        (unstable.discord.override { withOpenASAR = true; nss = nss_latest; })
+        texlive.combined.scheme-basic
       ];
-      })
+    })
       (mkIf config.gaming.enable {
         home.packages = with pkgs; [
           prismlauncher
