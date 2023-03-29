@@ -19,6 +19,7 @@
     playerctl
     pulsemixer
     stable.slop
+    texlive.combined.scheme-basic
     trackma-qt
     tremc
     udiskie

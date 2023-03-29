@@ -1,4 +1,4 @@
-{ super, config, lib, pkgs, ... }:
+{ super, inputs, config, lib, pkgs, ... }:
 with lib;
 {
 
@@ -26,7 +26,6 @@ with lib;
         pinta
         solaar
         tidal-hifi
-        texlive.combined.scheme-basic
       ];
     })
       (mkIf config.gaming.enable {
