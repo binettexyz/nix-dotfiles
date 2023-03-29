@@ -65,10 +65,11 @@ with lib;
         nixsh = "nix-shell -p";
         nixswitch = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
         nixbuild = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd";
-        nixtest = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
-        nixup = "doas nix-store --verify; pushd /etc/nixos; doas nix flake update; popd";
+        nixrb = "pushd /etc/nixos; doas nixos-rebuild switch --rollback; popd";
+        nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
+        nixup = "pushd /etc/nixos; doas nix flake update; popd";
         nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
-        cleanup = "doas nix-collect-garbage --delete-older-than 7d";
+        cleanup = "doas nix-collect-garbage -d";
         bloat = "nix path-info -Sh /run/current-system";
 
         sudo = "doas su";
