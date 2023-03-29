@@ -33,7 +33,7 @@ in {
       );
     })
     (self: super: {
-      discord-canary-openasar = super.discord.override { 
+      discord = super.discord.override { 
         /*nss = pkgs.nss_latest;*/ withOpenASAR = true; };
     })
   ];
