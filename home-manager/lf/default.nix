@@ -143,7 +143,7 @@ with lib;
     home.packages = with pkgs; [
       ueberzug # Image preview
       ffmpeg # for video file thumbnails
-      ghostscript # pdf preview
+      #ghostscript # pdf preview # FIXME: error with texlive 
       file # Shows the type of file
       chafa
   #    mediainfo
