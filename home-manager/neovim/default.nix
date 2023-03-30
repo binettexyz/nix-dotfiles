@@ -48,6 +48,9 @@ with lib;
 #          autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 #          autocmd BufRead,BufNewFile *.tex set filetype=tex
 #          autocmd BufRead,BufNewFile *.nix set filetype=nix
+
+#" Runs a script that cleans out tex build files whenever I close out of a .tex file.
+#	autocmd VimLeave *.tex !texclear %
     };
 
       imports = [
@@ -68,6 +71,8 @@ with lib;
         ./plugins/orgmode
 
         ./plugins/vimsence
+
+        #FIXME: ./plugins/vimtex
 
       ];
 

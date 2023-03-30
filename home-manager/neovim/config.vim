@@ -15,6 +15,7 @@ vim.opt.showcmd = false
 vim.opt.showmode = false
 vim.opt.showmatch = true        -- Show matching parenthesis
 vim.opt.signcolumn = "yes"      -- Always show the signcolumn
+vim.opt.syntax = "on"
 vim.opt.termguicolors = true
 vim.opt.textwidth = 0
 vim.opt.title = true            -- Make terminal title same as the file
@@ -44,7 +45,7 @@ vim.opt.smartindent = true
 
 -- Autocomplete
 vim.opt.wildmenu = true
-vim.opt.wildmode = {'list', 'longest'}
+vim.opt.wildmode = {'longest', 'list', "full"}
 vim.opt.infercase = true
 
 -- Other
@@ -71,6 +72,12 @@ vim.cmd('vnoremap . :normal .<CR>')
 
 -- Reload neovim config
 vim.keymap.set("n", "<leader><S-BS>", ":so ~/.config/nvim/init.lua<CR>", { desc="Reload config" })
+
+-- Compile document, be it groff/LaTeX/markdown/etc
+vim.keymap.set("n", "<leader>c", ":w! | !compiler '%:p'<CR>", { desc="Compile document, be it groff/LaTeX/markdown/etc" })
+
+-- Open corresponding .pdf/.html or preview
+vim.keymap.set("n", "<leader>p", ":!opout '%:p'<CR>", { desc="Open corresponding .pdf/.html or preview" })
 
 -- Keep cursor in middle of screen when half-page-jumping
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc="Half-page up" })
