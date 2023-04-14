@@ -24,7 +24,6 @@
 
       ### Settings ###
 #    xrandr --dpi 96
-    wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 100%+
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
 
