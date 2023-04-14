@@ -70,6 +70,8 @@ with lib;
 
         ./plugins/orgmode
 
+        ./plugins/vim-latex-live-preview
+
         ./plugins/vimsence
 
         #FIXME: ./plugins/vimtex
