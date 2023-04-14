@@ -11,14 +11,14 @@
     gammastep
     hsetroot
     libreoffice-fresh
-    stable.maim
+    #stable.maim
     mupdf
     newsboat
     nsxiv
     pamixer
     playerctl
     pulsemixer
-    stable.slop
+    #stable.slop
     texlive.combined.scheme-full
     trackma-qt
     tremc
