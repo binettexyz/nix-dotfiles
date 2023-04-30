@@ -4,16 +4,15 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.common-cpu-amd
-    #inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
   ];
 
   boot = {
-    extraModulePackages = [ "nvme" "xhci_pci" "usbhid" "sdhci_pci" ];
+    extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=off" "nomodeset" ];
     initrd = {
-      availableKernelModules = [ ];
+      availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "sdhci_pci" ];
       kernelModules = [ ];
     };
   };
@@ -48,5 +47,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 }

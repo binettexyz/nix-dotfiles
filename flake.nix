@@ -92,10 +92,11 @@
 
     /* ---Defining Systems--- */
     nixosConfigurations = {
-      desktop = mkSystem inputs.unstable "x86_64-linux"  "desktop";
-      x240 = mkSystem inputs.unstable    "x86_64-linux"  "x240";
-      t440p = mkSystem inputs.unstable   "x86_64-linux"  "t440p";
-      rpi4 = mkSystem inputs.unstable    "aarch64-linux" "rpi4";
+      desktop = mkSystem inputs.unstable   "x86_64-linux"   "desktop";
+      steamdeck = mkSystem inputs.unstable "x86_64-linux"   "steamdeck";
+      x240 = mkSystem inputs.unstable      "x86_64-linux"   "x240";
+      t440p = mkSystem inputs.unstable     "x86_64-linux"   "t440p";
+      rpi4 = mkSystem inputs.unstable      "aarch64-linux"  "rpi4";
     };
 
       # sd card image for raspberry pi
