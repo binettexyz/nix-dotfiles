@@ -21,6 +21,7 @@
     plasma-manager.url = "github:pjones/plasma-manager";
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:SoraTenshi/helix/experimental-22.12";
+    jovian-nixos = { url = "github:Jovian-Experiments/Jovian-NixOS/development"; flake = false; };
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
