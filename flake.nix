@@ -56,51 +56,80 @@
     ...
   }@inputs:
   let
-    system = "x86_64-linux"; # current system
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     lib = nixpkgs.lib;
 
-    mkSystem = pkgs: system: hostname:
-      pkgs.lib.nixosSystem {
-        system = system;
+    mkSystem = { name, pkgs ? "inputs.unstable", system ? "x86_64-linux", extraMods ? [], extraOverlays ? [] }: ( lib.nixosSystem {
+      inherit system;
         specialArgs = { inherit inputs nix-colors; };
         modules = [
-          { networking.hostName = hostname; }
-          (./. + "/hosts/${hostname}/config.nix")
-          (./. + "/hosts/${hostname}/hardware.nix")
+          ./hosts/${name}/config.nix
           ./shared/adblock.nix
+          { networking.hostName = name; }
           (import ./overlays { inherit inputs lib nixpkgs system pkgs unstable; }) 
 
-          inputs.sops-nix.nixosModules.sops
-          #inputs.nix-gaming.nixosModules.pipewireLowLatency
-          inputs.impermanence.nixosModules.impermanence 
-          "${inputs.jovian}/modules"
           inputs.home.nixosModules.home-manager {
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
               extraSpecialArgs = { inherit inputs nix-colors; };
-              users.binette = (./. + "/hosts/${hostname}/user.nix");
+              users.binette = (./. + "/hosts/${name}/user.nix");
             };
-            nixpkgs.overlays = [
-              #powercord-overlay.overlay
-              #nur.overlay
-            ];
+            nixpkgs.overlays = [ /* powercord-overlay.overlay nur.overlay */ ];
           }
-        ];
-      };
+        ] ++ extraMods;
+      });
   in {
 
     /* ---Defining Systems--- */
-    nixosConfigurations = {
-      desktop = mkSystem inputs.unstable   "x86_64-linux"   "desktop";
-      steamdeck = mkSystem inputs.unstable "x86_64-linux"   "steamdeck";
-      x240 = mkSystem inputs.unstable      "x86_64-linux"   "x240";
-      t440p = mkSystem inputs.unstable     "x86_64-linux"   "t440p";
-      rpi4 = mkSystem inputs.unstable      "aarch64-linux"  "rpi4";
+    nixosConfigurations.desktop = mkSystem {
+      name = "desktop";
+      extraMods = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.impermanence.nixosModules.impermanence 
+        #inputs.nix-gaming.nixosModules.pipewireLowLatency 
+      ];
+      extraOverlays = [];
     };
 
-      # sd card image for raspberry pi
+    nixosConfigurations.steamdeck = mkSystem { 
+      name = "decky";
+      extraMods = [
+        "${inputs.jovian}/modules"
+        inputs.sops-nix.nixosModules.sops
+        #inputs.nix-gaming.nixosModules.pipewireLowLatency 
+      ];
+      extraOverlays = [];
+      pkgs = "stable";
+    };
+
+    nixosConfigurations.x240 = mkSystem {
+      name = "x240";
+      extraMods = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.impermanence.nixosModules.impermanence 
+      ];
+      extraOverlays = [];
+    };
+
+    nixosConfigurations.t440p = mkSystem {
+      name = "t440p";
+      extraMods = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.impermanence.nixosModules.impermanence
+      ];
+      extraOverlays = [];
+    };
+
+    nixosConfigurations.rpi4 = mkSystem {
+      name = "rpi4";
+      extraMods = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.impermanence.nixosModules.impermanence
+      ];
+      extraOverlays = [];
+      system = "aarch64-linux";
+    };
+
     images = {
       rpi4 =
         (self.nixosConfigurations.rpi4.extendModules {
