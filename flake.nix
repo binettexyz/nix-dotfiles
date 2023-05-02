@@ -91,15 +91,13 @@
       extraOverlays = [];
     };
 
-    nixosConfigurations.steamdeck = mkSystem { 
+    nixosConfigurations.decky = mkSystem { 
       name = "decky";
       extraMods = [
         "${inputs.jovian}/modules"
         inputs.sops-nix.nixosModules.sops
-        #inputs.nix-gaming.nixosModules.pipewireLowLatency 
       ];
       extraOverlays = [];
-      pkgs = "stable";
     };
 
     nixosConfigurations.x240 = mkSystem {

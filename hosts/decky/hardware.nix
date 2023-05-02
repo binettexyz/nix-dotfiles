@@ -3,14 +3,13 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    #inputs.nixos-hardware.nixosModules.common-cpu-amd
   ];
 
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
-    kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" "nomodeset" ];
+    kernelParams = [ "nomodeset" ];
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "sdhci_pci" ];
       kernelModules = [ ];
@@ -27,6 +26,12 @@
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
+#    "/sdcard" = {
+#      device = "/dev/disk/by-label/---";
+#      fsType = "ext4";
+#      # It's okay if it's missing, automounted on access
+#      options = [ "nofail" "x-systemd.automount" ];
+#    };
   };
 
   swapDevices = [ /*{ device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }*/ ];
@@ -48,5 +53,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";
 }
