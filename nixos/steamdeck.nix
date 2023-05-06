@@ -15,8 +15,12 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.defaultSession = "steam-wayland";
-#  services.xserver.displayManager.autoLogin.enable = true;
-#  services.xserver.displayManager.autoLogin.user = "binette";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "binette";
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  #hardware.opengl.mesaPackage = pkgs.mesa_22;
 
   systemd.services.gamescope-switcher = {
     wantedBy = [ "graphical.target" ];

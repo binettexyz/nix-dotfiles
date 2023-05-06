@@ -98,6 +98,7 @@
         inputs.sops-nix.nixosModules.sops
       ];
       extraOverlays = [];
+      pkgs = "inputs.master";
     };
 
     nixosConfigurations.x240 = mkSystem {
