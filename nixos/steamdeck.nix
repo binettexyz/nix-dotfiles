@@ -4,23 +4,25 @@
 
   jovian = {
     steam.enable = true;
-    devices.steamdeck = { enable = true; };
+    devices.steamdeck.enable = true;
   };
 
   networking.networkmanager.enable = lib.mkForce true;
   networking.wireless.enable = lib.mkForce false;
 
       # Enable the Plasma 5 Desktop Environment.
-  services.xserver.enable = true;
+#  services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.defaultSession = "steam-wayland";
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "binette";
+#  services.xserver.displayManager.defaultSession = "steam-wayland";
+#  services.xserver.displayManager.autoLogin.enable = true;
+#  services.xserver.displayManager.autoLogin.user = "binette";
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+#  services.xserver.videoDrivers = [ "amdgpu" ];
 
   #hardware.opengl.mesaPackage = pkgs.mesa_22;
+
+  programs.steam.enable = true;
 
   systemd.services.gamescope-switcher = {
     wantedBy = [ "graphical.target" ];
