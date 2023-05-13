@@ -26,7 +26,9 @@ in {
     (final: prev: {
       anime4k = prev.callPackage ../packages/anime4k.nix { };
       wallpapers = prev.callPackage ../packages/wallpapers { };
-      #st = prev.st.overrideAttrs (old: { src = inputs.st + "/default.nix" ;});
+      dmenu = prev.callPackage (inputs.dmenu + "/default.nix") {};
+      dwm = prev.callPackage (inputs.dwm + "/default.nix") {};
+      st = prev.callPackage (inputs.st + "/default.nix") {};
         # namespaces
       lib = prev.lib.extend (finalLib: prevLib:
         (import ../modules/mkDefaultOption.nix { inherit (prev) lib; })
@@ -34,7 +36,7 @@ in {
     })
     (self: super: {
       discord = super.discord.override { 
-        /*nss = pkgs.nss_latest;*/ withOpenASAR = true; };
+        nss = pkgs.nss_latest; withOpenASAR = true; };
     })
   ];
 }

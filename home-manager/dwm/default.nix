@@ -1,10 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
-let
-  dmenu = pkgs.callPackage (inputs.dmenu + "/default.nix") {};
-  dwm = pkgs.callPackage (inputs.dwm + "/default.nix") {};
-  st = pkgs.callPackage (inputs.st + "/default.nix") {};
-in
-{
+{ config, pkgs, lib, ... }: {
 
   imports = [
     ./dunst.nix

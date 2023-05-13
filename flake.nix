@@ -56,90 +56,63 @@
     ...
   }@inputs:
   let
+    mkSystem = import ./lib/mkSystem.nix;
     lib = nixpkgs.lib;
-
-    mkSystem = { name, pkgs ? "inputs.unstable", system ? "x86_64-linux", extraMods ? [], extraOverlays ? [] }: ( lib.nixosSystem {
-      inherit system;
-        specialArgs = { inherit inputs nix-colors; };
-        modules = [
-          ./hosts/${name}/config.nix
-          ./shared/adblock.nix
-          { networking.hostName = name; }
-          (import ./overlays { inherit inputs lib nixpkgs system pkgs unstable; }) 
-
-          inputs.home.nixosModules.home-manager {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              extraSpecialArgs = { inherit inputs nix-colors; };
-              users.binette = (./. + "/hosts/${name}/user.nix");
-            };
-            nixpkgs.overlays = [ /* powercord-overlay.overlay nur.overlay */ ];
-          }
-        ] ++ extraMods;
-      });
-  in {
-
-    /* ---Defining Systems--- */
-    nixosConfigurations.desktop = mkSystem {
-      name = "desktop";
-      extraMods = [
-        inputs.sops-nix.nixosModules.sops
-        inputs.impermanence.nixosModules.impermanence 
-        #inputs.nix-gaming.nixosModules.pipewireLowLatency 
-      ];
-      extraOverlays = [];
-    };
-
-    nixosConfigurations.decky = mkSystem { 
-      name = "decky";
-      extraMods = [
-        "${inputs.jovian}/modules"
-        inputs.sops-nix.nixosModules.sops
-      ];
-      extraOverlays = [];
-      pkgs = "inputs.master";
-    };
-
-    nixosConfigurations.x240 = mkSystem {
-      name = "x240";
-      extraMods = [
-        inputs.sops-nix.nixosModules.sops
-        inputs.impermanence.nixosModules.impermanence 
-      ];
-      extraOverlays = [];
-    };
-
-    nixosConfigurations.t440p = mkSystem {
-      name = "t440p";
-      extraMods = [
-        inputs.sops-nix.nixosModules.sops
-        inputs.impermanence.nixosModules.impermanence
-      ];
-      extraOverlays = [];
-    };
-
-    nixosConfigurations.rpi4 = mkSystem {
-      name = "rpi4";
-      extraMods = [
-        inputs.sops-nix.nixosModules.sops
-        inputs.impermanence.nixosModules.impermanence
-      ];
-      extraOverlays = [];
-      system = "aarch64-linux";
-    };
-
-    images = {
-      rpi4 =
-        (self.nixosConfigurations.rpi4.extendModules {
-          modules = ["${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"];
-        })
-        .config
-        .system
-        .build
-        .sdImage;
-    };
-  }; 
+  in
+    {
+      /* ---Defining Systems--- */
+      nixosConfigurations = {
+          # Main Desktop
+        desktop = mkSystem "desktop" {
+          inherit inputs unstable lib nix-colors;
+          extraMods = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence 
+            # inputs.nix-gaming.nixosModules.pipewireLowLatency 
+          ];
+          extraOverlays = [];
+        };
+          # Steamdeck
+        decky = mkSystem "decky" {
+          inherit inputs unstable lib;
+          nixpkgs = inputs.stable;
+          extraMods = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence 
+            # inputs.nix-gaming.nixosModules.pipewireLowLatency 
+          ];
+          extraOverlays = [];
+        };
+          # Lenovo Thinkpad x240
+        x240 = mkSystem "x240" {
+          inherit inputs unstable lib;
+          extraMods = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence 
+          ];
+          extraOverlays = [];
+        };
+          # Lenovo Thinkpad t440p
+        t440p = mkSystem "t440p" {
+          inherit inputs unstable lib;
+          extraMods = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence 
+          ];
+          extraOverlays = [];
+        };
+          # Raspberry Pi 4
+        rpi4 = mkSystem "rpi4" {
+          inherit inputs unstable lib;
+          system = "aarch64-linux";
+          extraMods = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence 
+          ];
+          extraOverlays = [];
+        };
+      };
+    }; 
 
 }
 
