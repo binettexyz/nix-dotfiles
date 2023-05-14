@@ -1,5 +1,7 @@
-{ inputs, lib, nixpkgs, unstable, pkgs, system, ... }:
+{ flake, lib, nixpkgs, unstable, pkgs, system, ... }:
 let
+
+  inherit (flake) inputs;
 
   overlay-stable = self: super: {
     stable = import nixpkgs {
@@ -26,6 +28,7 @@ in {
     (final: prev: {
       anime4k = prev.callPackage ../packages/anime4k.nix { };
       wallpapers = prev.callPackage ../packages/wallpapers { };
+      autorandr = prev.autorandr.overrideAttrs (_: { src = inputs.autorandr; });
       dmenu = prev.callPackage (inputs.dmenu + "/default.nix") {};
       dwm = prev.callPackage (inputs.dwm + "/default.nix") {};
       st = prev.callPackage (inputs.st + "/default.nix") {};

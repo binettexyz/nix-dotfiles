@@ -1,15 +1,15 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, flake, ... }:
 
 {
   imports = [
+    ../shared/adblock.nix
 #    ../cachix.nix
-#    ../overlays
   ];
 
   # Add some Nix related packages
   environment.systemPackages = with pkgs; [
-#    cachix
-#    nixos-cleanup
+    nixos-cleanup
+    nom-rebuild
   ];
 
     # Without git we may be unable to build this config
@@ -23,8 +23,14 @@
 
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  nix = import ../shared/nix.nix { inherit pkgs inputs; };
+  nix = import ../shared/nix.nix { inherit pkgs flake; };
 
-  # Enable unfree packages
+    # Enable unfree packages
   nixpkgs.config.allowUnfree = true;
+
+    # Change build dir to /var/tmp
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
+
 }

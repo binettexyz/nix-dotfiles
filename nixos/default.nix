@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, lib, pkgs, flake, ... }: {
 
   imports = [
     ./audio.nix

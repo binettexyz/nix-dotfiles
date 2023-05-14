@@ -1,9 +1,12 @@
-{ config, pkgs, lib, inputs, nix-colors, ... }: {
+{ config, pkgs, flake, ... }:
+let
+  inherit (flake) inputs;
+in {
 
   imports = [
     ../../home-manager/desktop.nix
-    (inputs.impermanence + "/home-manager.nix")
-    nix-colors.homeManagerModule
+    (flake.inputs.impermanence + "/home-manager.nix")
+    flake.inputs.nix-colors.homeManagerModule
   ];
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
@@ -37,6 +40,48 @@
 
     ssh-agent dwm
   '';
+
+  xresources.properties =
+    let
+      fontSize = 16;
+    in {
+    /* --- Xterm --- */
+      # Font
+    "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
+    "xterm*faceSize" = fontSize;
+
+    /* --- Xresources --- */
+      # Font
+    "*.font" = "monospace:size=${toString fontSize}";
+
+    "*.background" = "#${config.colorScheme.colors.background}";
+    "*.foreground" = "#${config.colorScheme.colors.foreground}";
+    "*.cursorColor" = "#${config.colorScheme.colors.cursorColor}";
+      # Black + DarkGrey
+    "*.color0"  = "#${config.colorScheme.colors.black}";
+    "*.color8" = "#${config.colorScheme.colors.blackBright}";
+      # DarkRed + Red
+    "*.color1" = "#${config.colorScheme.colors.red}";
+    "*.color9" = "#${config.colorScheme.colors.redBright}";
+      # DarkGreen + Green
+    "*.color2" = "#${config.colorScheme.colors.green}";
+    "*.color10" = "#${config.colorScheme.colors.greenBright}";
+      # DarkYellow + Yellow
+    "*.color3" = "#${config.colorScheme.colors.yellow}";
+    "*.color11" = "#${config.colorScheme.colors.yellowBright}";
+      # DarkBlue + Blue
+    "*.color4" = "#${config.colorScheme.colors.blue}";
+    "*.color12" = "#${config.colorScheme.colors.blueBright}";
+      # DarkMagenta + Magenta
+    "*.color5" = "#${config.colorScheme.colors.magenta}";
+    "*.color13" = "#${config.colorScheme.colors.magentaBright}";
+      # DarkCyan + Cyan
+    "*.color6" = "#${config.colorScheme.colors.cyan}";
+    "*.color14" = "#${config.colorScheme.colors.cyanBright}";
+      # LightGrey + White
+    "*.color7" = "#${config.colorScheme.colors.white}";
+    "*.color15" = "#${config.colorScheme.colors.whiteBright}";
+  };
 
   home.persistence."/nix/persist/home/binette" = {
     removePrefixDirectory = false;

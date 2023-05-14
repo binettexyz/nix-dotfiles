@@ -22,6 +22,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:SoraTenshi/helix/experimental-22.12";
     jovian = { url = "github:Jovian-Experiments/Jovian-NixOS/development"; flake = false; };
+    autorandr = { url = "github:phillipberndt/autorandr"; flake = false; };
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
@@ -56,63 +57,49 @@
     ...
   }@inputs:
   let
-    mkSystem = import ./lib/mkSystem.nix;
-    lib = nixpkgs.lib;
+    inherit (import ./lib/attrsets.nix { inherit (nixpkgs) lib; }) recursiveMergeAttrs;
+    inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
   in
-    {
+    (recursiveMergeAttrs [
+      /* ---Template--- */
+      {
+        templates = {
+          default = self.outputs.templates.new-host;
+          new-host = {
+            path = ./templates/new-host;
+            description = "Create a new host";
+          };
+        };
+      }
+
       /* ---Defining Systems--- */
-      nixosConfigurations = {
-          # Main Desktop
-        desktop = mkSystem "desktop" {
-          inherit inputs unstable lib nix-colors;
-          extraMods = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence 
-            # inputs.nix-gaming.nixosModules.pipewireLowLatency 
-          ];
-          extraOverlays = [];
-        };
-          # Steamdeck
-        decky = mkSystem "decky" {
-          inherit inputs unstable lib;
-          nixpkgs = inputs.stable;
-          extraMods = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence 
-            # inputs.nix-gaming.nixosModules.pipewireLowLatency 
-          ];
-          extraOverlays = [];
-        };
-          # Lenovo Thinkpad x240
-        x240 = mkSystem "x240" {
-          inherit inputs unstable lib;
-          extraMods = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence 
-          ];
-          extraOverlays = [];
-        };
-          # Lenovo Thinkpad t440p
-        t440p = mkSystem "t440p" {
-          inherit inputs unstable lib;
-          extraMods = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence 
-          ];
-          extraOverlays = [];
-        };
-          # Raspberry Pi 4
-        rpi4 = mkSystem "rpi4" {
-          inherit inputs unstable lib;
-          system = "aarch64-linux";
-          extraMods = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence 
-          ];
-          extraOverlays = [];
-        };
-      };
-    }; 
+        # Main Desktop
+      (mkNixOSConfig { hostname = "desktop"; })
+        # Lenovo Thinkpad x240
+      (mkNixOSConfig { hostname = "x240"; })
+        # Lenovo Thinkpad t440p
+      (mkNixOSConfig { hostname = "t440p"; })
+        # Raspberry Pi 4
+      (mkNixOSConfig { hostname = "rpi4"; system = "aarch64-linux"; })
+
+      /* ---Defining Home-Manager--- */
+      (mkHomeConfig { hostname = "desktop"; })
+      (mkHomeConfig {
+        hostname = "minimal";
+        configuration = ./home-manager/minimal.nix;
+      })
+      (mkHomeConfig {
+        hostname = "laptop";
+        configuration = ./home-manager/laptop.nix;
+      })
+      (mkHomeConfig {
+        hostname = "server";
+        configuration = ./home-manager/server.nix;
+      })
+      (mkHomeConfig {
+        hostname = "steamdeck";
+        configuration = ./home-manager/steamdeck.nix;
+      })
+    ]);
 
 }
-

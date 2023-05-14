@@ -1,8 +1,15 @@
 { config, lib, pkgs, flake, system, ... }:
 let
+  inherit (flake) inputs;
   inherit (config.networking) hostName;
 in
-{
+  {
+
+    imports = [
+      ../modules/meta.nix
+      flake.inputs.home.nixosModules.home-manager
+    ];
+
   options.nixos.home = {
     enable = lib.mkEnableOption "home config" // { default = true; };
     username = lib.mkOption {

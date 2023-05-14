@@ -70,7 +70,7 @@ in
       home.file.".config/mpv/script-opts".source = ./etc/script-opts;
 
     })
-    (mkIf (config.modules.device.type == "desktop") {
+    (mkIf (config.device.type == "desktop") {
       programs.mpv.bindings = anime4kHighSpecs;
 
       home.file.".config/mpv/mpv.conf".source = ./mpv.conf ;

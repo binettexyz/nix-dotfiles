@@ -1,11 +1,14 @@
-{ config, inputs, lib, modulesPath, pkgs, system, ... }:
+{ config, flake, lib, modulesPath, pkgs, ... }:
 
-{
+let
+  inherit (flake) inputs;
+in {
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    flake.inputs.nixos-hardware.nixosModules.common-cpu-amd
+    flake.inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    flake.inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
 
   boot = {
@@ -55,6 +58,7 @@
         "/etc/nixos"
         "/var/lib"
         "/var/log"
+        "/var/tmp"
         "/mounts"
         "/root"
         "/srv"

@@ -1,4 +1,4 @@
-{ super, inputs, config, lib, pkgs, ... }:
+{ config, lib, pkgs, flake, ... }:
 with lib;
 {
 
@@ -10,7 +10,6 @@ with lib;
 
   config = (mkMerge [
     ({
-      modules.device.type = "desktop";
 
       home.packages = with pkgs; [
         (calibre.override { unrarSupport = true; })

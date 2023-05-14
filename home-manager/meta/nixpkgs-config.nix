@@ -1,0 +1,3 @@
+{
+  allowUnfreePredicate = _: true;
+}

@@ -5,6 +5,6 @@
     ./qutebrowser
   ];
 
-  modules.device.type = "laptop";
+  device.type = "laptop";
 
 }
