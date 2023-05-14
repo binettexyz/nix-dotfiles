@@ -1,9 +1,11 @@
 { pkgs, ... }: {
 
   imports = [
-    ./librewolf.nix
-    ./newsboat.nix
     ./dwm
+    ./librewolf.nix
+    ./minimal.nix
+    ./mpv
+    ./newsboat.nix
   ];
 
   home.packages = with pkgs; [

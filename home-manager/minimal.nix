@@ -1,10 +1,10 @@
 { pkgs, ... }:{
 
-  home.stateVersion = "22.05";
   imports = [
-    ../modules/device.nix
     ./cli.nix
     ./git.nix
+    ./lf
+    ./meta
     ./neovim
     ./ssh.nix
     ./tmux.nix

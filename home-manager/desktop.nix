@@ -3,12 +3,9 @@ with lib;
 {
 
   imports = [
-    ./minimal.nix
-    ./lf
-    ./mpv
-    ./newsboat.nix
     ./pc.nix
   ];
+
   options.gaming.enable = pkgs.lib.mkDefaultOption "gaming Packages";
 
   config = (mkMerge [
@@ -18,9 +15,9 @@ with lib;
       home.packages = with pkgs; [
         (calibre.override { unrarSupport = true; })
         discord
-        easyeffects
-        gimp
-        inkscape
+        #easyeffects
+        #gimp
+        #inkscape
         mcrcon
         #FIXME:overlay- open-browser
         pinta
@@ -30,29 +27,16 @@ with lib;
     })
       (mkIf config.gaming.enable {
         home.packages = with pkgs; [
-          prismlauncher
-          grapejuice
-          mangohud # afterburner like
+          #prismlauncher
+          #grapejuice
+          #mangohud # afterburner like
           #runescape runelite
           #zeroad
           #yuzu-mainline
-          #retroarchFull
-            # retroarch with specific cores
-          (retroarch.override {
-            cores = [
-              libretro.mgba
-              libretro.snes9x
-              libretro.mesen
-              libretro.parallel-n64
-              libretro.dolphin
-              libretro.pcsx2
-              libretro.ppsspp
-            ];
-          })
         ];
       })
     
-      (mkIf (config.modules.devices.type == "lsptop") {
+      (mkIf (config.modules.devices.type == "laptop") {
       })
         #inputs.nix-gaming.packages.${pkgs.system}.osu-stable
         #inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
