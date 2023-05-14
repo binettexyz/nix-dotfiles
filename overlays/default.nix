@@ -33,6 +33,14 @@ in {
       lib = prev.lib.extend (finalLib: prevLib:
         (import ../modules/mkDefaultOption.nix { inherit (prev) lib; })
       );
+
+      change-res = prev.callPackage ../packages/change-res { };
+
+      nix-cleanup = prev.callPackage ../packages/nix-cleanup { };
+
+      nixos-cleanup = prev.callPackage ../packages/nix-cleanup { isNixOS = true; };
+
+      nom-rebuild = prev.callPackage ../packages/nom-rebuild { };
     })
     (self: super: {
       discord = super.discord.override { 
