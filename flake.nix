@@ -61,16 +61,6 @@
     inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
   in
     (recursiveMergeAttrs [
-      /* ---Template--- */
-      {
-        templates = {
-          default = self.outputs.templates.new-host;
-          new-host = {
-            path = ./templates/new-host;
-            description = "Create a new host";
-          };
-        };
-      }
 
       /* ---Defining Systems--- */
         # Main Desktop
