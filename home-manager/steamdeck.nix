@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./gaming.nix
     ./minimal.nix
   ];
 
