@@ -12,12 +12,21 @@ with lib;
       enableAutosuggestions = true;
 #      enableSyntaxHighlighting = true;
       autocd = true;
+
+      sessionVariables = {
+        # Reduce time to wait for multi-key sequences
+        KEYTIMEOUT = 1;
+        # zsh-users config
+        ZSH_AUTOSUGGEST_USE_ASYNC = 1;
+        ZSH_HIGHLIGHT_HIGHLIGHTERS = [ "main" "brackets" "cursor" ];
+      };
   
         # .zshrc
       initExtra = ''
         autoload -U colors && colors
         setopt promptsubst
         PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[blue]%} %~%{$fg[magenta]%}]%{$reset_color%}$%b "
+        RPS1="%F{8}%*" # Set right prompt to show time
   
         setopt interactive_comments
   
@@ -61,6 +70,8 @@ with lib;
   
         # aliases
       shellAliases = {
+        copy = "${pkgs.xclip}/bin/xclip -selection c";
+        paste = "${pkgs.xclip}/bin/xclip -selection c -o";
           # Nixos related aliases.
         nixsh = "nix-shell -p";
         nixswitch = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
@@ -192,5 +203,6 @@ with lib;
         }
       ];
     };
+    programs.dircolors.enable = true;
 
 }

@@ -7,7 +7,7 @@ with lib;
     enable = true;
     settings = {
 #      "browser.quitShortcut.disabled" = true;
-      "browser.uidensity" = 1; # compact mode
+      "browser.uidensity" = 0; # compact mode
       "browser.startup.page" = 3; # restore session
       "browser.warnOnQuitShortcut" = false;
       "identity.fxaccounts.enabled" = true; # Firefox Sync

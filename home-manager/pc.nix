@@ -48,11 +48,6 @@
 #    rcon
   ];
 
-  programs.zsh.shellAliases = {
-    copy = "${pkgs.xclip}/bin/xclip -selection c";
-    paste = "${pkgs.xclip}/bin/xclip -selection c -o";
-  };
-
   services.udiskie = {
     enable = true;
     tray = "never";
@@ -91,5 +86,26 @@
       };
     };
   };
+
+  xresources.path = "/home/binette/.config/x11/xresources";
+  xresources.properties = {
+    /* --- Xft --- */
+    "Xft.antialias" = 1;
+    "Xft.hinting" = 1;
+#    "Xft.dpi" = 96;
+    "Xft.rgba" = "rgb";
+    "Xft.lcdfilter" = "lcddefault";
+
+    /* --- Xterm --- */
+    "xterm.termName" = "xterm-256color";
+    "xterm.vt100.locale" = false;
+    "xterm.vt100.utf8" = true;
+      # Backspace and escape fix
+    "xterm.vt100.metaSendsEscape" = true;
+    "xterm.vt100.backarrowKey" = false;
+    "xtermttyModes" = "erase ^?";
+  };
+
+
 
 }
