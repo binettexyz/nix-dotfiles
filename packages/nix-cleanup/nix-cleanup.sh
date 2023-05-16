@@ -72,7 +72,7 @@ cleanup() {
 }
 
 if [[ "$NIXOS" == 1 ]]; then
-    sudo bash -c "$(declare -f cleanup); cleanup $AUTO $NIXOS $OPTIMIZE"
+doas bash -c "$(declare -f cleanup); cleanup $AUTO $NIXOS $OPTIMIZE"
 else
     cleanup "$AUTO" "$NIXOS" "$OPTIMIZE"
 fi
