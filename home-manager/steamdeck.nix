@@ -4,6 +4,7 @@
   imports = [
     ./gaming.nix
     ./minimal.nix
+    ./librewolf.nix
   ];
 
   home.packages = with pkgs; [
