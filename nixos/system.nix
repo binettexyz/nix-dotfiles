@@ -40,23 +40,6 @@
       # Enable firmware-linux-nonfree
     hardware.enableRedistributableFirmware = true;
 
-
-      # Nix auto cleanup and reduce disk
-    nix = {
-      gc = {
-        automatic = true;
-        dates = "daily";
-        options = "--delete-older-than 7d";
-      };
-      extraOptions = ''
-        keep-outputs = true
-        keep-derivations = true
-     '';
-        # Leave nix builds as a background task
-      daemonIOSchedClass = "idle";
-      daemonCPUSchedPolicy = "idle";
-    };
-
     services = {
         #TODO: Trim SSD weekly
 #      fstrim = {
