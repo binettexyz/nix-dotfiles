@@ -1,22 +1,12 @@
 { flake, pkgs, lib, config, ... }:
 
-#let
-  #TODO: nvidia offload is ussed for double gpu setup
-#  nvidia-offload = lib.findFirst (p: lib.isDerivation p && p.name == "nvidia-offload")
-#    null
-#    config.environment.systemPackages;
-#in
 {
   
   imports = [ ./minecraft-server ];
 
-  options.gaming.enable =
-    pkgs.lib.mkDefaultOption "Gaming config";
+  options.gaming.enable = pkgs.lib.mkDefaultOption "Gaming config";
 
   config = lib.mkIf config.gaming.enable {
-
-      # Fix: MESA-INTEL: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
-    #boot.kernelParams = [ "dev.i915.perf_stream_paranoid=0" ];
 
     environment = {
       systemPackages = with pkgs; [
@@ -38,10 +28,6 @@
         wineWowPackages.staging
         winetricks
       ];
-  
-#      # Use nvidia-offload script in gamemode
-#      variables.GAMEMODERUNEXEC = lib.mkIf (nvidia-offload != null)
-#        "${nvidia-offload}/bin/nvidia-offload";
     };
   
     /* --Gamemode-- */
@@ -61,9 +47,7 @@
     };
   
     /* --Steam-- */
-    programs.steam = {
-      enable = true;
-    };
+    programs.steam = { enable = true; };
     hardware.steam-hardware.enable = true;
     home-manager.sharedModules =
       let
@@ -81,15 +65,6 @@
           '';
         })
       ];
-  
-    /* --Osu!-- */
-    hardware = {
-      # Enable opentabletdriver (for osu!)
-      opentabletdriver = {
-        enable = true;
-        package = pkgs.opentabletdriver;
-      };
-    };
   
     /* ---League of Legends--- */
     boot.kernel.sysctl = { "abi.vsyscall32" = 0; }; # anti-cheat requirement
