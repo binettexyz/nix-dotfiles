@@ -17,10 +17,10 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = false;
-    documents = "$HOME/documents";
-    download = "$HOME/downloads";
-    pictures = "$HOME/pictures";
-    videos = "$HOME/videos";
+    documents = "$HOME/Documents";
+    download = "$HOME/Downloads";
+    pictures = "$HOME/Pictures";
+    videos = "$HOME/Videos";
   };
 
 }

@@ -128,10 +128,10 @@ in {
       ".gnupg"
       ".zplug"
 
-      "documents"
-      "pictures"
-      "videos"
-      "downloads"
+      "Documents"
+      "Pictures"
+      "Videos"
+      "Downloads"
     ];
 
     files = [
