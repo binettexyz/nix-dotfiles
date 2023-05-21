@@ -1,13 +1,20 @@
 #+AUTHOR: Binette
 
 * ❄️ NixOS Setup
+
 ** Dotfiles
 This repository also includes my dotfiles which is managed by [[https://github.com/nix-community/home-manager/][home-manager]]
 
 ** Installation
+
+*** Nixos
+The partitioning setup is based on these projects:
+- [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
+- [[https://github.com/nix-community/impermanence][Impermanence]]
+
 #+begin_src sh
   # Install nixFlake to install the system with Flake directly
-$ nix-shell -p nixFlakes git
+$ nix-shell -p git
 $ sudo su
 $ git clone https://github.com/binettexyz/nix-dotfiles /home/nixos
   # edit script for your system
@@ -16,9 +23,14 @@ $ vim /home/nixos/nix-dotfiles/install.sh
 $ ./home/nixos/nix-dotfiles/install.sh
 #+end_src
 
-** Credits
-Thanks to [[https://github.com/sioodmy/dotfiles/blob/main/flake.nix][ sioodmy]] for the flake template.
+*** Home-Manager (Standalone)
 
-The partitioning setup is based on these projects:
-- [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS ❄️: tmpfs as root]]
-- [[https://github.com/nix-community/impermanence][Impermanence]]
+#+begin_src sh
+    # Install Nix
+$ sh <(curl -L https://nixos.org/nix/install) --daemon
+    # Build the Home-Manager config and activate it
+$ nix run '.#homeActivations/<hostname>'
+#+end_src
+
+** Credits
+Thanks to [[https://github.com/thiagokokada/nix-configs/blob/master/flake.nix][thiagokokada]] for the flake template.
