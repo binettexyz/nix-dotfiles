@@ -27,7 +27,7 @@ with lib;
         setopt promptsubst
         PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[blue]%} %~%{$fg[magenta]%}]%{$reset_color%}$%b "
         RPS1="%F{8}%*" # Set right prompt to show time
-  
+
         setopt interactive_comments
   
           # Use lf to switch directories and bind it to ctrl-o
@@ -179,16 +179,6 @@ with lib;
             repo = "fast-syntax-highlighting";
             rev = "770bcd986620d6172097dc161178210855808ee0";
             sha256 = "sha256-T4k0pbT7aqLrIRIi2EM15LXCnpRFHzFilAYfRG6kbeY=";
-          };
-        }
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "af6f8a266ea1875b9a3e86e14796cadbe1cfbf08";
-            sha256 = "sha256-BjgMhILEL/qdgfno4LR64LSB8n9pC9R+gG7IQWwgyfQ=";
           };
         }
         {
