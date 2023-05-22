@@ -4,7 +4,7 @@
   /* --- System's Inputs--- */
   inputs = {
     /* --- Default Nixpkgs --- */
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     /* --- Nixpkgs branches --- */
     master.url = "github:NixOS/nixpkgs/master";
