@@ -58,7 +58,6 @@ in {
         "/etc/nixos"
         "/var/lib"
         "/var/log"
-        "/var/tmp"
         "/mounts"
         "/root"
         "/srv"
