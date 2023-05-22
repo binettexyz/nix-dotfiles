@@ -9,7 +9,7 @@
   # Add some Nix related packages
   environment.systemPackages = with pkgs; [
     nixos-cleanup
-    nom-rebuild
+    nix-rebuild
   ];
 
     # Without git we may be unable to build this config

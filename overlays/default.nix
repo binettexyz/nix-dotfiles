@@ -43,7 +43,7 @@ in {
 
       nixos-cleanup = prev.callPackage ../packages/nix-cleanup { isNixOS = true; };
 
-      nom-rebuild = prev.callPackage ../packages/nom-rebuild { };
+      nix-rebuild = prev.callPackage ../packages/nix-rebuild { };
     })
     (self: super: {
       discord = super.discord.override { 
