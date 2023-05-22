@@ -9,7 +9,6 @@
   ];
 
   home.packages = with pkgs; [
-    bitwarden
     gammastep
     hsetroot
     libreoffice-fresh
