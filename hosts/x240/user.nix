@@ -1,12 +1,15 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, flake, ... }:
+let
+  inherit (flake) inputs;
+in {
 
-{
   imports = [
     ../../home-manager/laptop.nix 
     (inputs.impermanence + "/home-manager.nix")
+    flake.inputs.nix-colors.homeManagerModule
   ];
 
-  home.packages = with pkgs; [ zoom-us ];
+  colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
   home.file.".config/x11/xinitrc".text = ''
     #!/bin/sh
@@ -16,9 +19,7 @@
 
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
-    slstatus &				    # suckless status bar
     udiskie &				    # automount device daemon
-    sxhkd &
     flameshot &
     greenclip daemon &
     transmission-daemon &
@@ -31,14 +32,57 @@
     unclutter &				    # remove mouse when idle
 
       ### Visual ###
+    laptop-bar &
     picom --experimental-backend &
-    hsetroot & # -fill /etc/nixos/.github/assets/wallpaper.png &
+    hsetroot -fill ${pkgs.wallpapers.gruvbox} &
     xrdb $HOME/.config/x11/xresources & xrdbpid=$!
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
     ssh-agent dwm
   '';
+
+    xresources.properties =
+    let
+      fontSize = 14;
+    in {
+    /* --- Xterm --- */
+      # Font
+    "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
+    "xterm*faceSize" = fontSize;
+
+    /* --- Xresources --- */
+      # Font
+    "*.font" = "monospace:size=${toString fontSize}";
+
+    "*.background" = "#${config.colorScheme.colors.background}";
+    "*.foreground" = "#${config.colorScheme.colors.foreground}";
+    "*.cursorColor" = "#${config.colorScheme.colors.cursorColor}";
+      # Black + DarkGrey
+    "*.color0"  = "#${config.colorScheme.colors.black}";
+    "*.color8" = "#${config.colorScheme.colors.blackBright}";
+      # DarkRed + Red
+    "*.color1" = "#${config.colorScheme.colors.red}";
+    "*.color9" = "#${config.colorScheme.colors.redBright}";
+      # DarkGreen + Green
+    "*.color2" = "#${config.colorScheme.colors.green}";
+    "*.color10" = "#${config.colorScheme.colors.greenBright}";
+      # DarkYellow + Yellow
+    "*.color3" = "#${config.colorScheme.colors.yellow}";
+    "*.color11" = "#${config.colorScheme.colors.yellowBright}";
+      # DarkBlue + Blue
+    "*.color4" = "#${config.colorScheme.colors.blue}";
+    "*.color12" = "#${config.colorScheme.colors.blueBright}";
+      # DarkMagenta + Magenta
+    "*.color5" = "#${config.colorScheme.colors.magenta}";
+    "*.color13" = "#${config.colorScheme.colors.magentaBright}";
+      # DarkCyan + Cyan
+    "*.color6" = "#${config.colorScheme.colors.cyan}";
+    "*.color14" = "#${config.colorScheme.colors.cyanBright}";
+      # LightGrey + White
+    "*.color7" = "#${config.colorScheme.colors.white}";
+    "*.color15" = "#${config.colorScheme.colors.whiteBright}";
+  };
 
 
 #  home.persistence = {

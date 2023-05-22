@@ -77,7 +77,7 @@
       middleEmulation = true;
     };
     mouse = {
-      accelProfile = "flat";
+      accelProfile = lib.mkForce "flat";
       #accelSpeed = "1";
     };
   };

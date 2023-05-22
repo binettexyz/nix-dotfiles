@@ -1,16 +1,17 @@
 { config, flake, lib, pkgs, system, ... }: {
 
   imports = [ 
+    ./hardware.nix
     ../../nixos/default.nix
+    flake.inputs.sops-nix.nixosModules.sops
+    flake.inputs.impermanence.nixosModules.impermanence 
   ];
 
   ## Custom modules ##
-  modules = {
-    bootloader = "grub";
-    device = {
-      type = "laptop";
-      netDevices = [ "enp0s25" "wlan0" ];
-    };
+  modules = { bootloader = "grub"; };
+  device = {
+    type = "laptop";
+    netDevices = [ "enp0s25" "wlan0" ];
   };
 
     ## Hardware ##
@@ -48,6 +49,7 @@
     nix.settings.max-jobs = 4; # ryzen 7 5800x
     hardware.cpu.amd.updateMicrocode = true;
     services.throttled.enable = false;
+
+    networking.hostName = "x240";
     
-    nixpkgs.config.allowUnfree = true;
 }
