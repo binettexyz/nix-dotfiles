@@ -8,7 +8,7 @@ with lib;
         General = {
           disabledTrayIcon = true;
           showStartupLaunchMessage = false;
-          savePath = "/home/binette/pictures/screenshots";
+          savePath = "/home/binette/Pictures/screenshots";
           savePathFixed = true;
           saveAsFileExtension = ".png";
           uiColor = "#458588";
