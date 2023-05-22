@@ -6,10 +6,13 @@
   config = lib.mkIf config.nixos.system.enable {
 
     boot = {
-        # Mount /tmp using tmpfs for performance
-      tmpOnTmpfs = lib.mkDefault true;
-        # If not using above, at least clean /tmp on each boot
-      cleanTmpDir = lib.mkDefault true;
+      tmp = {
+          # Mount /tmp using tmpfs for performance
+        useTmpfs = lib.mkDefault true;
+        tmpfsSize = "50%";
+          # If not using above, at least clean /tmp on each boot
+        cleanOnBoot = lib.mkDefault true;
+      };
         # Enable NTFS support
       supportedFilesystems = [ "ntfs" ];
       kernel.sysctl = {
