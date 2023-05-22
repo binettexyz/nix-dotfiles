@@ -43,7 +43,7 @@ in {
 
   xresources.properties =
     let
-      fontSize = 16;
+      fontSize = 14;
     in {
     /* --- Xterm --- */
       # Font
