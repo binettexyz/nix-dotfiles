@@ -88,6 +88,7 @@
       })
       (mkHomeConfig {
         hostname = "steamdeck";
+        username = "deck";
         configuration = ./home-manager/steamdeck.nix;
       })
     ]);
