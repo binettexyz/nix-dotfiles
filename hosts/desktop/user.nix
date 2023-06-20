@@ -26,7 +26,6 @@ in {
     nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
 
       ### Settings ###
-#    xrandr --dpi 96
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
 
@@ -38,13 +37,15 @@ in {
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
-    ssh-agent dwm
+    while :; do dwm && break; done
   '';
 
   xresources.properties =
     let
-      fontSize = 14;
+      fontSize = 12;
     in {
+    /* --- XFT --- */
+    "Xft.dpi" = 96;
     /* --- Xterm --- */
       # Font
     "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
