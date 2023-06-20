@@ -69,7 +69,7 @@ with lib;
         forgot = "commit --amend --no-edit";
         graph = "log --all --decorate --graph --oneline";
         addup = "add -u";
-        addall = "add .";
+        rev = "ls-remote";
         l = "log";
         r = "rebase";
         s = "status --short";
