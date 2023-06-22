@@ -1,31 +1,24 @@
-{ flake, lib, nixpkgs, unstable, pkgs, system, ... }:
+{ flake, lib, pkgs, system, ... }:
 let
 
   inherit (flake) inputs;
-
-  overlay-stable = self: super: {
-    stable = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      config.allowBroken = true;
-    };
-  };
-
-  overlay-unstable = self: super: {
-    unstable = import unstable {
-      inherit system;
-      config.allowUnfree = true;
-      config.allowBroken = true;
-    };
-  };
 
 in {
 
 
   nixpkgs.overlays = [
-    overlay-stable
-    overlay-unstable
     (final: prev: {
+      unstable = import flake.inputs.unstable {
+        inherit system;
+        config.allowUnfree = true;
+        config.allowBroken = true;
+      };
+      stable = import flake.inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        config.allowBroken = true;
+      };
+
       anime4k = prev.callPackage ../packages/anime4k.nix { };
       wallpapers = prev.callPackage ../packages/wallpapers { };
       autorandr = prev.autorandr.overrideAttrs (_: { src = inputs.autorandr; });
