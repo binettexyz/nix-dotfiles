@@ -11,21 +11,18 @@
   home.packages = with pkgs; [
     gammastep
     hsetroot
-    libreoffice-fresh
     #stable.maim
     mupdf
     newsboat
     nsxiv
     pamixer
-    playerctl
     pulsemixer
     #stable.slop
     texlive.combined.scheme-full
     trackma-qt
-    tremc
     udiskie
     xdotool
-    xdragon
+    xdragon # drag-n-drop tool
     xorg.xev
     xorg.xinit
     xorg.xmodmap
