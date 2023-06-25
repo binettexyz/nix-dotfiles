@@ -2,7 +2,13 @@
 
 {
   
-  imports = [ ./minecraft-server ];
+  imports = [
+    #./minecraft-server
+    #./leagueoflegends.nix
+    #./legendary.nix
+    ./lutris.nix
+    ./steam.nix
+  ];
 
   options.gaming.enable = pkgs.lib.mkDefaultOption "Gaming config";
 
@@ -10,23 +16,9 @@
 
     environment = {
       systemPackages = with pkgs; [
-        steam
         piper # GTK frontend for ratbagd mouse config daemon
-        #(lutris.override { lutris-unwrapped = lutris-unwrapped.override {
-          #wine = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
-        #};})
-        unstable.lutris
         jdk # Minecraft Java
-        steamPackages.steamcmd
-        steam-tui
-          # League of Legends
-        vulkan-tools
-        openssl
-        gnome.zenity
-        amdvlk # Vulkan drivers (probably already installed)
         dxvk
-        wineWowPackages.staging
-        winetricks
       ];
     };
   
@@ -45,30 +37,6 @@
         };
       };
     };
-  
-    /* --Steam-- */
-    programs.steam = { enable = true; };
-    hardware.steam-hardware.enable = true;
-    home-manager.sharedModules =
-      let
-        version = "GE-Proton7-49";
-        proton-ge = fetchTarball {
-          url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-          sha256 = "sha256:1wwxh0yk78wprfi1h9n7jf072699vj631dl928n10d61p3r90x82";
-        };
-      in [
-        ({ config, lib, pkgs, ... }: {
-          home.activation.proton-ge-custom = ''
-            if [ ! -d "$HOME/.steam/root/compatibilitytools.d/${version}" ]; then
-              cp -rsv ${proton-ge} "$HOME/.steam/root/compatibilitytools.d/${version}"
-            fi
-          '';
-        })
-      ];
-  
-    /* ---League of Legends--- */
-    boot.kernel.sysctl = { "abi.vsyscall32" = 0; }; # anti-cheat requirement
-    environment.sessionVariables = { QT_X11_NO_MITSHM = "1"; };
   
       # Driver for Xbox One/Series S/Series X controllers
     hardware.xpadneo.enable = true;
