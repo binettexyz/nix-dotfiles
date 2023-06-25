@@ -10,9 +10,9 @@ in
       allowSFTP = true;
       ports = [ 704 ];
       settings = {
-        kbdInteractiveAuthentication = false;
-        passwordAuthentication = false;
-        permitRootLogin = "no";
+        KbdInteractiveAuthentication = false;
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
         X11Forwarding = false;
       };
       extraConfig = ''
