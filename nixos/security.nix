@@ -6,6 +6,7 @@
     sudo.enable = false;
     doas = {
       enable = true;
+      wheelNeedsPassword = false;
       extraRules = [{ users = [ "binette" ]; noPass = true; keepEnv = true; }];
     };
     acme.acceptTerms = true;
