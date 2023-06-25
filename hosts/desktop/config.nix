@@ -9,11 +9,11 @@ in
     imports = [ 
         ./hardware.nix
         ../../nixos/default.nix
-        ../../nixos/gaming
+#        ../../nixos/gaming
 #        ../../nixos/libvirt
         flake.inputs.sops-nix.nixosModules.sops
         flake.inputs.impermanence.nixosModules.impermanence 
-        # flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
+        flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
     ];
 
     ## Custom modules ##
