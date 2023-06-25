@@ -37,7 +37,7 @@ in {
       device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
-    "/nix/persist/home" = {
+    "/home" = {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
