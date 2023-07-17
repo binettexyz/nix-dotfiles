@@ -15,7 +15,7 @@ in {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=off" "nvidia_drm.modeset=1" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];

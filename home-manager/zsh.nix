@@ -153,11 +153,11 @@ with lib;
 	        alias $command="doas $command"
         done; unset command
 
-        if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  	      . "$HOME/.config/shell/profile" && exec startx $HOME/.config/x11/xinitrc &> /dev/null;
-        else
-  	      . "$HOME/.config/shell/profile"
-        fi
+#        if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#  	      . "$HOME/.config/shell/profile" && exec startx $HOME/.config/x11/xinitrc &> /dev/null;
+#        else
+#  	      . "$HOME/.config/shell/profile"
+#        fi
         '';
   
       plugins = [

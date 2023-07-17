@@ -6,6 +6,7 @@
     ./dev.nix
     ./fonts.nix
     ./home.nix
+    ./kde
     ./laptop
     ./minimal.nix
     ./pc.nix

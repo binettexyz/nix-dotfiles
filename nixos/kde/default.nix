@@ -1,7 +1,7 @@
-{ pkgs, config, lib, inputs, ... }:
+{ config, flake, lib, pkgs, ... }:
 with lib;
-
 let
+  inherit (flake) inputs;
   cfg = config.modules.desktopEnvironment;
 in
   {
@@ -12,17 +12,17 @@ in
     };
 
     config = mkIf (cfg == "kde") {
-      services.xserver = {
-        displayManager = {
-          startx.enable = lib.mkForce false;
-          sddm.enable = true;
-        };
-        desktopManager.plasma5 = {
-          enable = true;
-          excludePackages = with pkgs.libsForQt5; [
-          ];
-        };
+      services.xserver.desktopManager.plasma5.enable = true;
+      services.xserver.displayManager = {
+        sx.enable = lib.mkForce false;
+        sddm.enable = true;
+        defaultSession = "plasmawayland";
       };
+      environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+        elisa
+        khelpcenter
+        oxygen
+      ];
     };
 
   }

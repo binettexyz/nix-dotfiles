@@ -9,7 +9,7 @@ in
     imports = [ 
         ./hardware.nix
         ../../nixos/default.nix
-#        ../../nixos/gaming
+        ../../nixos/gaming
 #        ../../nixos/libvirt
         flake.inputs.sops-nix.nixosModules.sops
         flake.inputs.impermanence.nixosModules.impermanence 
@@ -17,7 +17,10 @@ in
     ];
 
     ## Custom modules ##
-    modules = { bootloader = "grub"; };
+    modules = {
+        bootloader = "grub";
+        desktopEnvironment = "kde";
+    };
     device = {
         type = "desktop";
         gpu = "nvidia";
@@ -42,4 +45,5 @@ in
     nix.settings.max-jobs = 16; # ryzen 7 5800x
 
     networking.hostName = "desktop";
+
 }
