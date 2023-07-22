@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, super, ... }:
 with lib;
 
 {
@@ -141,24 +141,35 @@ with lib;
         pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
       };
   
-      envExtra = ''
-          # Use neovim for vim if present.
-        [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
-
-          # Use $XINITRC variable if file exists.
-        [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
-
-          # doas not required for some system commands
-        for command in mount umount eject su shutdown systemctl poweroff reboot ; do
-	        alias $command="doas $command"
-        done; unset command
-
-#        if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-#  	      . "$HOME/.config/shell/profile" && exec startx $HOME/.config/x11/xinitrc &> /dev/null;
-#        else
-#  	      . "$HOME/.config/shell/profile"
-#        fi
-        '';
+      envExtra = (mkMerge [(
+          ''
+                # Use neovim for vim if present.
+              [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
+        
+                # Use $XINITRC variable if file exists.
+              [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+        
+                # doas not required for some system commands
+              for command in mount umount eject su shutdown systemctl poweroff reboot ; do
+                    alias $command="doas $command"
+              done; unset command
+          ''
+      )
+      (mkIf super.services.xserver.displayManager.sddm.enable (
+          ''
+              . "$HOME/.config/shell/profile"
+          ''
+      ))
+      (mkIf (super.services.xserver.displayManager.sddm.enable == false) (
+          ''
+              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+                  . "$HOME/.config/shell/profile" && exec startx $HOME/.config/x11/xinitrc &> /dev/null;
+              else
+                  . "$HOME/.config/shell/profile"
+              fi
+          ''
+      ))
+    ]);
   
       plugins = [
           # to find sha256, keep it empty and the build error will find it for you

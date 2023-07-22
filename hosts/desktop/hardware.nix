@@ -15,7 +15,7 @@ in {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" "nvidia_drm.modeset=1" ];
+    kernelParams = [ "mitigations=off" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
@@ -39,6 +39,14 @@ in {
     };
     "/home" = {
       device = "/dev/disk/by-label/home";
+      fsType = "ext4";
+    };
+    "/home/games" = {
+      device = "/dev/disk/by-label/games";
+      fsType = "ext4";
+    };
+    "/home/ssd" = {
+      device = "/dev/disk/by-label/Games";
       fsType = "ext4";
     };
     "/mounts/nas" = {

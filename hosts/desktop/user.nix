@@ -21,6 +21,7 @@ in {
       xsetroot -cursor_name left_ptr &	    # change cursor name
       nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
       xrdb $HOME/.config/x11/xresources & xrdbpid=$!
+      hsetroot -fill ${pkgs.wallpapers.gruvbox} &
       [ -n "$xrdbpid" ] && wait "$xrdbpid"
   
     '';
@@ -49,7 +50,6 @@ in {
         ### Visual ###
       desktop-bar &       # dwm status bar
       picom --experimental-backends &
-      hsetroot -fill ${pkgs.wallpapers.gruvbox} &
 
       if [ -f "$HOME/.config/x11/xprofile" ]; then
   	          . "$HOME/.config/x11/xprofile"
