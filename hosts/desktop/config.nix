@@ -10,7 +10,7 @@ in
         ./hardware.nix
         ../../nixos/default.nix
         ../../nixos/gaming
-#        ../../nixos/libvirt
+        #../../nixos/libvirt
         flake.inputs.sops-nix.nixosModules.sops
         flake.inputs.impermanence.nixosModules.impermanence 
         flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
@@ -29,10 +29,13 @@ in
   
       # GPU
     hardware.nvidia = {
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
+          # Use the open source version of the kernel module
+        open = true;
+          # Needed for most wayland compositor
         modesetting.enable = true;
-        #package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
           # Enable experimental NVIDIA power management via systemd
-        powerManagement.enable = true;
+        #powerManagement.enable = true;
     };
   
     ## Networking ##
