@@ -1,9 +1,13 @@
-{ config, pkgs, lib, inputs, nix-colors, ... }: {
+{ config, flake, pkgs, ... }:
+
+let
+  inherit (flake) inputs;
+in {
 
   imports = [
     ../../home-manager/desktop.nix
-#    (inputs.impermanence + "/home-manager.nix")
-    nix-colors.homeManagerModule
+#    (flake.inputs.impermanence + "/home-manager.nix")
+    flake.inputs.nix-colors.homeManagerModule
   ];
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;

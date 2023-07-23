@@ -1,9 +1,12 @@
-{ config, inputs, lib, modulesPath, pkgs, system, ... }:
+{ config, flake, lib, modulesPath, pkgs, ... }:
 
-{
+let
+  inherit (flake) inputs;
+in {
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    #inputs.nixos-hardware.nixosModules.common-cpu-amd
+    #flake.inputs.nixos-hardware.nixosModules.common-cpu-amd
   ];
 
   boot = {
@@ -54,4 +57,5 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 #  powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";
+
 }

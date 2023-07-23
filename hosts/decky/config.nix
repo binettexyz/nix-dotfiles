@@ -1,16 +1,22 @@
-{ config, flake, lib, pkgs, system, ... }: {
+{ config, flake, pkgs, ... }:
 
-    imports = [
-      ./hardware.nix
-      ../../nixos/steamdeck.nix
-    ];
+let
+  inherit (flake) inputs;
+in {
 
-    ## Networking ##
-    networking = {
-        interfaces.wlo1.useDHCP = true;
-        #interfaces.---.useDHCP = true;
-        #interfaces.tailscale0.useDHCP = true;
-    };
+  imports = [
+    ./hardware.nix
+    ../../nixos/steamdeck.nix
+  ];
 
-    nix.settings.max-jobs = 8;
+   ## Networking ##
+  networking = {
+    interfaces.wlo1.useDHCP = true;
+    #interfaces.---.useDHCP = true;
+    #interfaces.tailscale0.useDHCP = true;
+  };
+
+  nix.settings.max-jobs = 8;
+
 }
+
