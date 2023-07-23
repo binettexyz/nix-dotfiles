@@ -37,6 +37,11 @@
         };
       };
     };
+
+      # Flatpak
+    services.flatpak.enable = true;
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
   
       # Driver for Xbox One/Series S/Series X controllers
     hardware.xpadneo.enable = true;
