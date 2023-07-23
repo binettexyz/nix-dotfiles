@@ -32,6 +32,7 @@ with lib;
         "100:class_g = 'Minecraft*'"
         "100:class_g = 'Jellyfin Media Player'"
         "100:class_g = 'discord'"
+        "100:class_g = 'tidal-hifi'"
       ];
 
       /* Fading */
