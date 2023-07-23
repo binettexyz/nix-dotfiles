@@ -12,9 +12,9 @@ in
       uid = 1000;
       isNormalUser = true;
       createHome = true;
-#      home = "/home/binette";
-      group = "binette";
-      extraGroups = [ "wheel" "binette" "users" "audio" "video" /*"docker"*/ ];
+      home = "/home/${username}";
+      group = "${username}";
+      extraGroups = [ "wheel" "${username}" "users" "audio" "video" /*"docker"*/ ];
       hashedPassword =
         "$6$89SIC2h2WeoZT651$26x4NJ1vmX9N/B54y7mc5pi2INtNO0GqQz75S37AMzDGoh/29d8gkdM1aw6i44p8zWvLQqhI0fohB3EWjL5pC/";
     };
