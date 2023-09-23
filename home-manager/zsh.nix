@@ -110,9 +110,9 @@ with lib;
 	      mkdir = "mkdir -pv";
 
           # colorize
-	      ls = "${pkgs.exa}/bin/exa -hal --color=always --group-directories-first -s extension";
+	      ls = "${pkgs.eza}/bin/eza -hal --color=always --group-directories-first -s extension";
       	cat = "${pkgs.bat}/bin/bat --paging=never --style=plain";
-        tree = "${pkgs.exa}/bin/exa --tree --icons";
+        tree = "${pkgs.eza}/bin/eza --tree --icons";
         diff = "diff --color=auto";
         ip = "ip --color=auto";
 

@@ -8,7 +8,7 @@
     cron
     #TODO cryptsetup
     curl
-    exa
+    eza
     fzf
     gcc
     gnumake
