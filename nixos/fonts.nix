@@ -3,10 +3,10 @@
   environment.systemPackages = with pkgs; [ faba-mono-icons ];
 
   fonts = {
-    enableDefaultFonts = true;
     fontDir.enable = true;
 
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       lmodern
       font-awesome
       noto-fonts-emoji
