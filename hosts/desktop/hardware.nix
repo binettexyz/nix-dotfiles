@@ -41,14 +41,14 @@ in {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/home/games" = {
-      device = "/dev/disk/by-label/games";
-      fsType = "ext4";
-    };
-    "/home/ssd" = {
-      device = "/dev/disk/by-label/Games";
-      fsType = "ext4";
-    };
+#    "/home/games" = {
+#      device = "/dev/disk/by-label/games";
+#      fsType = "ext4";
+#    };
+#    "/home/ssd" = {
+#      device = "/dev/disk/by-label/Games";
+#      fsType = "ext4";
+#    };
     "/mounts/nas" = {
       device = "100.71.254.90:/media";
       fsType = "nfs";
