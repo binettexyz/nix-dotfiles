@@ -24,6 +24,7 @@ in
         # Grub bootloader
           grub = {
             enable = true;
+            default = 4;
             device = "nodev";
             efiSupport = true;
             gfxmodeEfi = "1366x768";
