@@ -1,7 +1,7 @@
 {
   name = "Gruvbox Material";
   author = "https://github.com/sainnhe/gruvbox-material";
-  colors = {
+  palette = {
     background = "#141617";
     foreground = "#d4be98";
     cursorColor = "#ddc7a1";

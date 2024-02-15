@@ -16,13 +16,13 @@
   };
 
     # Set X11 keyboard layout.
-  services.xserver = {
+  services.xserver.xkb = {
     layout = lib.mkDefault "us";
       # us international layout with dead key on AltGR
       # https://zuttobenkyou.wordpress.com/2011/08/24/xorg-using-the-us-international-altgr-intl-variant-keyboard-layout/
-    xkbVariant = lib.mkDefault "altgr-intl";
-    # Remap Caps Lock to Esc
-    xkbOptions = lib.mkDefault "caps:escape";
+    variant = lib.mkDefault "altgr-intl";
+      # Remap Caps Lock to Esc
+    options = lib.mkDefault "caps:escape";
   };
 
     # Set your time zone.
