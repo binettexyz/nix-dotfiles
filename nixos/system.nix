@@ -91,7 +91,7 @@
         enable = lib.mkDefault true;
         enableRootSlice = true;
         enableSystemSlice = true;
-        enableUserSlice = true;
+        enableUserSlices = true;
       };
     };
 

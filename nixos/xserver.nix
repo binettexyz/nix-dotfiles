@@ -13,7 +13,7 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb.layout = "us";
 
       # Enable sx, a lightweight startx alternative
     displayManager.sx.enable = true;
