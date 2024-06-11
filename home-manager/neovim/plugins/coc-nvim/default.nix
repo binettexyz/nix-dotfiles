@@ -34,15 +34,15 @@ with lib;
         "suggest.noselect" = true;
         "suggest.enablePreview" = true;
         "suggest.enablePreselect" = false;
-        "languageserver" = {
-            # https://gitlab.com/jD91mZM2/nix-lsp
-          "nix" = {
-            "command" = "rnix-lsp";
-            "filetypes" = [
-              "nix"
-            ];
-          };
-        };
+#        "languageserver" = {
+#            # https://gitlab.com/jD91mZM2/nix-lsp
+#          "nix" = {
+#            "command" = "rnix-lsp";
+#            "filetypes" = [
+#              "nix"
+#            ];
+#          };
+#        };
       };
     };
 
