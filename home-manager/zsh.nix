@@ -9,7 +9,7 @@ with lib;
       dotDir = ".config/zsh";
   
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
 #      enableSyntaxHighlighting = true;
       autocd = true;
 
@@ -147,7 +147,7 @@ with lib;
               [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
         
                 # Use $XINITRC variable if file exists.
-              [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+              [ -f "$XINITRC" ] && alias sx="sx sh $XINITRC"
         
                 # doas not required for some system commands
               for command in mount umount eject su shutdown systemctl poweroff reboot ; do
@@ -155,15 +155,15 @@ with lib;
               done; unset command
           ''
       )
-      (mkIf super.services.xserver.displayManager.sddm.enable (
+      (mkIf super.services.displayManager.sddm.enable (
           ''
               . "$HOME/.config/shell/profile"
           ''
       ))
-      (mkIf (super.services.xserver.displayManager.sddm.enable == false) (
+      (mkIf (super.services.displayManager.sddm.enable == false) (
           ''
               if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-                  . "$HOME/.config/shell/profile" && exec startx $HOME/.config/x11/xinitrc &> /dev/null;
+                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
               else
                   . "$HOME/.config/shell/profile"
               fi

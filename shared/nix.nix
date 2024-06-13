@@ -32,10 +32,4 @@ in {
     keep-derivations = true
   '';
 
-  # Same as above, but for `nix shell nixpkgs#htop`
-  # FIXME: for non-free packages you need to use `nix shell --impure`
-  registry = {
-    nixpkgs.flake = inputs.stable;
-    nixpkgs-unstable.flake = inputs.unstable;
-  };
 }

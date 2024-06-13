@@ -72,7 +72,7 @@
       #DisplaySize 276 156
   }];
 
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     touchpad = {
       naturalScrolling = true;
@@ -81,7 +81,7 @@
       middleEmulation = true;
     };
     mouse = {
-      accelProfile = "flat";
+      accelProfile = lib.mkForce "flat";
       #accelSpeed = "1";
     };
   };

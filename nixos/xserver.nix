@@ -21,22 +21,23 @@
 #    displayManager.startx.enable = true;
       # Disable xterm
     desktopManager.xterm.enable = false;
+  };
 
-      # Enable libinput
-    libinput = {
-      enable = true;
-      touchpad = {
-        naturalScrolling = true;
-        tapping = true;
-        disableWhileTyping = true;
-        middleEmulation = true;
-      };
-      mouse = {
-        accelProfile = "adaptive";
-        #accelSpeed = "1";
-      };
+    # Enable libinput
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      tapping = true;
+      disableWhileTyping = true;
+      middleEmulation = true;
+    };
+    mouse = {
+      accelProfile = "adaptive";
+      #accelSpeed = "1";
     };
   };
+
 
     # tty login prompt
   console.earlySetup = true;
