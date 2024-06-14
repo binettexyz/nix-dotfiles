@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, flake, pkgs, ... }:
+let
+  inherit (flake.inputs.nix-gaming.nixosModules) pipewireLowLatency;
+in
+  {
+
+  imports = [ pipewireLowLatency ];
 
   options.nixos.audio.enable = pkgs.lib.mkDefaultOption "audio config";
 
