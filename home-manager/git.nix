@@ -53,12 +53,12 @@ with lib;
           conflictstyle = "zdiff3";
           tool = "nvim -d";
         };
-        pull = { rebase = true; };
+        #pull = { rebase = true; };
         push = {
           autoSetupRemote = true;
           default = "simple";
         };
-        rebase = { autoStash = true; };
+        #rebase = { autoStash = true; };
       };
 
       aliases = {
