@@ -6,6 +6,8 @@
     #inputs.hardware.nixosModules.common-cpu-intel
   ];
 
+
+  /* ---Kernel Stuff--- */
   boot = {
       # acpi_call makes tlp work for newer thinkpads
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
@@ -46,21 +48,47 @@
   };
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
-  environment.persistence = {
-    "/nix/persist" = {
-      hideMounts = true;
-      directories = [
-        "/etc/nixos"
-        "/var/lib"
-        "/var/log"
-#        "/home"
-        "/root"
-        "/srv"
-      ];
+  environment.persistence."/nix/persist" = {
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      "/var/lib"
+      "/var/log"
+#      "/home"
+      "/root"
+      "/srv"
+    ];
+  };
+
+
+  /* ---Graphic Card--- */ 
+  services.xserver.videoDrivers = [ "intel" ];
+  hardware.enableRedistributableFirmware = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-media-driver
+    ];
+  };
+
+
+  /* ---Network--- */
+  networking = {
+    hostName = [ "t440p" ];
+    interfaces.wlp3s0.useDHCP = true;
+    interfaces.enp0s25.useDHCP = true;
+    wireless = {
+      interfaces =  [ "wlp3s0" ];
     };
   };
 
-  ## Screen resolution ##
+
+  /* ---Screen Resolution--- */
   services.xserver.xrandrHeads = [{
     output = "eDP1";
     primary = true;
@@ -72,6 +100,9 @@
       #DisplaySize 276 156
   }];
 
+
+  /* ---Touchpad & Trackpoint--- */
+    # Touchpad
   services.libinput = {
     enable = true;
     touchpad = {
@@ -86,5 +117,18 @@
     };
   };
 
+    # Trackpoint
+  hardware.trackpoint = {
+    enable = true;
+    sensitivity = 300;
+    speed = 100;
+    emulateWheel = false;
+  };
+
+
+  /* ---CPU Stuff--- */
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nix.settings.max-jobs = 4; # CPU Treads
+  hardware.cpu.intel.updateMicrocode = true;
+  services.throttled.enable = true;
 }
