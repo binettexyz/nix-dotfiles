@@ -7,7 +7,7 @@
     ./meta.nix
     ./network.nix
     ./security.nix
-    ./server
+    #./server
     ./ssh.nix
     ./system.nix
     ./user.nix
