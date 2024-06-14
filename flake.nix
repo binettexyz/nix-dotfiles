@@ -23,6 +23,7 @@
     helix.url = "github:SoraTenshi/helix/experimental-22.12";
     jovian = { url = "github:Jovian-Experiments/Jovian-NixOS/development"; flake = false; };
     autorandr = { url = "github:phillipberndt/autorandr"; flake = false; };
+    nixvim.url = "github:nix-community/nixvim";
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
