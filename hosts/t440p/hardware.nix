@@ -3,7 +3,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    #inputs.hardware.nixosModules.common-cpu-intel
+    #flake.inputs.hardware.nixosModules.common-cpu-intel
+    flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
   ];
 
 
