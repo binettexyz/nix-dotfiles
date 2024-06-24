@@ -19,6 +19,7 @@
         piper # GTK frontend for ratbagd mouse config daemon
         jdk # Minecraft Java
         dxvk
+        heroic # Heroic luncher for gog and epic games
       ];
     };
   
