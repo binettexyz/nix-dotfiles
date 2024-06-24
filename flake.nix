@@ -4,7 +4,7 @@
   /* --- System's Inputs--- */
   inputs = {
     /* --- Default Nixpkgs --- */
-    nixpkgs.follows = "unstable";
+    nixpkgs.follows = "stable";
 
     /* --- Nixpkgs branches --- */
     master.url = "github:NixOS/nixpkgs/master";
@@ -13,7 +13,7 @@
 
     /* --- Others --- */
     flake-utils.url = "github:numtide/flake-utils";
-    home.url = "github:nix-community/home-manager/master";
+    home.url = "github:nix-community/home-manager/release-24.05";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -42,10 +42,10 @@
     #disc-gruvbox = { url = "github:binettexyz/discord-gruvbox"; flake = false; };
 
     /* --- Minimize duplicate instances of inputs --- */
-    home.inputs.nixpkgs.follows = "unstable";
-    nix-gaming.inputs.nixpkgs.follows = "unstable";
-    sops-nix.inputs.nixpkgs.follows = "unstable";
-    plasma-manager.inputs = { nixpkgs.follows = "unstable"; home-manager.follows = "home"; };
+    home.inputs.nixpkgs.follows = "stable";
+    nix-gaming.inputs.nixpkgs.follows = "stable";
+    sops-nix.inputs.nixpkgs.follows = "stable";
+    plasma-manager.inputs = { nixpkgs.follows = "stable"; home-manager.follows = "home"; };
   };
 
   /* ---System's Output--- */
@@ -53,6 +53,7 @@
     self,
     nixpkgs,
     unstable,
+    stable,
     nixos-hardware,
     nix-colors,
     ...

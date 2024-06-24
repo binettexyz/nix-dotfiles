@@ -1,4 +1,4 @@
-{ flake-utils, home, nixpkgs, nix-colors, unstable, self, ... }@inputs:
+{ flake-utils, home, nixpkgs, nix-colors, unstable, self, stable, ... }@inputs:
 let
   inherit (flake-utils.lib) mkApp;
 in {
@@ -7,7 +7,7 @@ in {
 mkNixOSConfig =
   { hostname
   , system ? "x86_64-linux"
-  , nixosSystem ? unstable.lib.nixosSystem
+  , nixosSystem ? stable.lib.nixosSystem
   , extraMods ? [ ]
   , extraOverlays ? [ ]
   }:
