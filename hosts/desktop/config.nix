@@ -26,13 +26,20 @@ in {
 
   ## GPU ##
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
       # Use the open source version of the kernel module
-    open = true;
+    open = false;
       # Needed for most wayland compositor
     modesetting.enable = true;
       # Enable experimental NVIDIA power management via systemd
-    #powerManagement.enable = true;
+    powerManagement.enable = false;
+    powerManagement.fingrained = false;
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   ## Networking ##
