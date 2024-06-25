@@ -12,13 +12,13 @@ in
     };
 
     config = mkIf (cfg == "kde") {
-      services.xserver.desktopManager.plasma5.enable = true;
+      services.xserver.desktopManager.plasma6.enable = true;
       services.xserver.displayManager = {
         sx.enable = lib.mkForce false;
-        defaultSession = "plasmawayland";
+        defaultSession = "plasma";
       };
       services.displayManager.sddm.enable = true;
-      environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+      environment.plasma6.excludePackages = with pkgs.libsForQt5; [
         elisa
         khelpcenter
         oxygen

@@ -17,7 +17,7 @@ in {
   ## Custom modules ##
   modules = {
     bootloader = "grub";
-    desktopEnvironment = null;
+    desktopEnvironment = "kde";
   };
   device = {
     type = "desktop";
