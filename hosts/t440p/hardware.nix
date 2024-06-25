@@ -4,7 +4,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     #flake.inputs.hardware.nixosModules.common-cpu-intel
-    flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
   ];
 
 

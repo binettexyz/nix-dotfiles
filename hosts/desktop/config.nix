@@ -11,7 +11,6 @@ in {
     #../../nixos/libvirt
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence 
-    flake.inputs.nix-gaming.nixosModules.pipewireLowLatency 
   ];
 
   ## Custom modules ##

@@ -1,7 +1,8 @@
 { config, lib, flake, pkgs, ... }: {
 
-  options.nixos.audio.enable = pkgs.lib.mkDefaultOption "audio config";
+  imports = [ flake.inputs.nix-gaming.nixosModules.pipewireLowLatency ];
 
+  options.nixos.audio.enable = pkgs.lib.mkDefaultOption "audio config";
   config = lib.mkIf config.nixos.audio.enable {
 
       # This allows PipeWire to run with realtime privileges (i.e: less cracks)
