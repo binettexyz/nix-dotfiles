@@ -33,7 +33,7 @@ in {
     modesetting.enable = true;
       # Enable experimental NVIDIA power management via systemd
     powerManagement.enable = false;
-    powerManagement.fingrained = false;
+    powerManagement.finegrained = false;
   };
 
   hardware.opengl = {
