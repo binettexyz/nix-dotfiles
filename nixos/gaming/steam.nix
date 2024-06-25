@@ -1,4 +1,6 @@
-{ config, pkgs, lib, ... }: {
+{ config, flake, pkgs, lib, ... }: {
+
+  imports = [ flake.inputs.nix-gaming.nixosModules.platformOptimizations ];
 
   options.gaming.steam.enable = pkgs.lib.mkDefaultOption "Steam game launcher.";
 
@@ -10,18 +12,13 @@
       enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      platformOptimizations.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
-
-      # Enable terminal interaction
-      steam
-      steamPackages.steamcmd
-      steam-tui
-
       # Allow downloading of GE-Proton and other versions
       protonup-qt
-
     ];
 
 #    home-manager.sharedModules =

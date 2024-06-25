@@ -6,7 +6,7 @@
     #./minecraft-server
     #./leagueoflegends.nix
     #./legendary.nix
-    ./lutris.nix
+    #./lutris.nix
     ./steam.nix
   ];
 
