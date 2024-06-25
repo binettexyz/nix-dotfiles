@@ -12,12 +12,12 @@ in
     };
 
     config = mkIf (cfg == "kde") {
-      services.xserver.desktopManager.plasma6.enable = true;
-      services.xserver.displayManager = {
-        sx.enable = lib.mkForce false;
+      services.xserver.displayManager.sx.enable = lib.mkForce false;
+      services.desktopManager.plasma6.enable = true;
+      services.displayManager = {
+        sddm.enable = true;
         defaultSession = "plasma";
       };
-      services.displayManager.sddm.enable = true;
       environment.plasma6.excludePackages = with pkgs.libsForQt5; [
         elisa
         khelpcenter
