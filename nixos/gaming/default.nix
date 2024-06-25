@@ -4,9 +4,7 @@
   
   imports = [
     #./minecraft-server
-    #./leagueoflegends.nix
-    #./legendary.nix
-    #./lutris.nix
+    ./games.nix
     ./steam.nix
   ];
 
