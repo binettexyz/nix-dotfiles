@@ -43,6 +43,8 @@
   
       # Driver for Xbox One/Series S/Series X controllers
     hardware.xpadneo.enable = true;
+      # Driver for Xbox One/Series S/Series X accessories
+    hardware.xone.enable = true;
   
       # Enable ratbagd (i.e.: piper) for Logitech devices
     services.ratbagd.enable = true;
