@@ -15,11 +15,15 @@
       allowedTCPPorts = [
         2049 # NFSv4
         53 # dns
+        80
+        443
       ];
       allowedUDPPorts = [
         config.services.tailscale.port
 #        51820 # wireguard
         53 # dns
+        80
+        443
       ];
       allowPing = false;
         # tailscale

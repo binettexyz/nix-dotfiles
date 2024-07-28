@@ -1,8 +1,9 @@
 { config, flake, lib, modulesPath, pkgs, system, ... }: {
 
   imports = [
-    (inputs.nixos-hardware + "/raspberry-pi/4")
+    (flake.inputs.nixos-hardware + "/raspberry-pi/4")
     (modulesPath + "/installer/scan/not-detected.nix")
+    flake.inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
     # kernel modules/packages
@@ -33,10 +34,10 @@
       device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
-    "/nix/persist/home" = {
-      device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
+#    "/nix/persist/home" = {
+#      device = "/dev/disk/by-label/home";
+#      fsType = "ext4";
+#    };
   };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];

@@ -65,7 +65,7 @@
       timesyncd.enable = lib.mkDefault true;
 
         # Enable smartd for SMART reporting
-      smartd.enable = true;
+# FIXME:      smartd.enable = true;
 
         # Set I/O scheduler
         # kyber is set for NVMe, since scheduler doesn't make much sense on it

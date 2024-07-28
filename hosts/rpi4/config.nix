@@ -2,6 +2,7 @@
 
   imports = [
     ../../nixos/server
+    ../../nixos/minimal.nix
   ];
 
   ## Custom modules ##
