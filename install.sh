@@ -9,9 +9,6 @@ lvm=lvm
 crypt=off
 home=off
 
-  # Cloning NixOS Config
-git clone https://codeberg.org/binettexyz/nix-dotfiles
-
   ### Partitioning ###
 
   # create partitions
@@ -20,7 +17,7 @@ parted -s ${dev} mkpart primary fat32 1MiB 513MiB
 parted -s ${dev} mkpart primary ext4 513MiB 100%
 parted -s ${dev} set 1 boot on
 parted -s ${dev} name 1 boot
-parted -s ${dev} name 1 nix
+parted -s ${dev} name 2 nix
 
 if [ $crypt == "on" ]; then
       # Setup the encrypted LUKS partition and open it:
@@ -61,4 +58,4 @@ cp -R /home/nixos/nix-dotfiles/ /mnt/nix/persist/etc/nixos/
   # Set tmpfile into /mnt to prevent "not enough space" error
 export TMPDIR=/mnt/tmp
 
-nixos-install --flake /mnt/etc/nixos#$host
+nixos-install --flake /mnt/etc/nixos#$host --no-passwd
