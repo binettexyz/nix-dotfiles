@@ -7,7 +7,7 @@ in {
     ../../home-manager/laptop.nix 
     (inputs.impermanence + "/home-manager.nix")
     flake.inputs.nix-colors.homeManagerModule
-    flake.inputs.nixvim.homeManagerModules.nixvim
+#    flake.inputs.nixvim.homeManagerModules.nixvim
   ];
 
 
