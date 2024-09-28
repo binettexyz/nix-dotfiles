@@ -26,7 +26,7 @@ in {
     redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
-    xrandr --dpi 96 &
+    #xrandr --dpi 96 &
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
@@ -39,13 +39,16 @@ in {
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
-    ssh-agent dwm
+    #ssh-agent dwm
+    while:; do dwm && break; done
   '';
 
     xresources.properties =
     let
-      fontSize = 14;
+      fontSize = 12;
     in {
+    /* --- XFT --- */
+    "Xft.dpi" = 85;
     /* --- Xterm --- */
       # Font
     "xterm*faceName" = "FantasqueSansMono Nerd Font Mono";
