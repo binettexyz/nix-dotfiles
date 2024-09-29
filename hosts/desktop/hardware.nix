@@ -41,14 +41,6 @@ in {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/home/devices/hddGames" = {
-      device = "/dev/disk/by-label/hddGames";
-      fsType = "ext4";
-    };
-    "/home/devices/ssdGames" = {
-      device = "/dev/disk/by-label/ssdGames";
-      fsType = "ext4";
-    };
     "/mounts/nas" = {
       device = "100.71.254.90:/media";
       fsType = "nfs";
