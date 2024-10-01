@@ -64,7 +64,7 @@ with lib;
       history = {
         save = 1000;
         size = 1000;
-        path = "/nix/persist/home/binette/.cache/zsh/history";
+        path = "/home/binette/.cache/zsh/history";
         expireDuplicatesFirst = true;
       };
   
