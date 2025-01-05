@@ -8,12 +8,12 @@
 
     /* --- Nixpkgs branches --- */
     master.url = "github:NixOS/nixpkgs/master";
-    stable.url = "github:NixOS/nixpkgs/24.05";
+    stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     /* --- Others --- */
     flake-utils.url = "github:numtide/flake-utils";
-    home.url = "github:nix-community/home-manager/release-24.05";
+    home.url = "github:nix-community/home-manager/release-24.11";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
