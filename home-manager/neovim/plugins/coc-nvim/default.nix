@@ -49,7 +49,6 @@ with lib;
     # Install plugins related to coc plugin
     plugins = with pkgs.vimPlugins; [
       coc-clangd
-      coc-python
       coc-prettier
       coc-pairs
     ];

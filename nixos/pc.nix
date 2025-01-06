@@ -33,10 +33,9 @@ in
     xbanish.enable = true;
   };
     # Enable opengl
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true; 
-    driSupport32Bit = true;
-    driSupport = true;
+    enable32Bit = true;
   };
 
   services.journald.extraConfig = ''

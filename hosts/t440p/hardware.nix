@@ -13,7 +13,7 @@
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sr_mod" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ "i915" "acpi_call" ];
@@ -62,19 +62,14 @@
 
 
   /* ---Graphic Card--- */ 
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
   hardware.enableRedistributableFirmware = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-      intel-media-driver
-    ];
-  };
+  hardware.graphics.extraPackages = with pkgs; [
+    vaapiIntel
+    vaapiVdpau
+    libvdpau-va-gl
+    intel-media-driver
+  ];
 
 
   /* ---Network--- */

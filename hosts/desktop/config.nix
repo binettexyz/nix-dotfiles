@@ -36,12 +36,6 @@ in {
     powerManagement.finegrained = false;
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   ## Networking ##
   networking = {
     interfaces.wlo1.useDHCP = true;
