@@ -1,0 +1,6 @@
+1. Fix mpv package error from latest version of nixos.
+2. Add Steamdeck configuration.
+3. Configure nixvim.
+4. Clean up nixos config.
+5. Fix and update server.
+6. Setup home server with tailscale/domain.
