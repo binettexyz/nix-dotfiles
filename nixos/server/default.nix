@@ -3,7 +3,7 @@ with lib;
 
 {
   options.nixos.server.enable = lib.mkEnableOption "server config" // {
-    default = (config.modules.device.type == "server");
+    default = (config.device.type == "server");
   };
 
   imports = [ ./containers ];
@@ -20,9 +20,9 @@ with lib;
         mediarr.enable = true;
         vaultwarden.enable = true;
       };
-      services = {
-        miniflux.enable = false;
-      };
+#      services = {
+#        miniflux.enable = false;
+#      };
     };
   
     services.nfs.server = {
@@ -79,7 +79,6 @@ with lib;
         # Docker
     virtualisation.podman = {
       enable = true;
-      enableOnBoot = true;
       dockerCompat = true;
       enableNvidia = lib.mkDefault false;
       autoPrune.enable = true;
