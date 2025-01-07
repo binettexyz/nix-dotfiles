@@ -10,7 +10,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "steamdeck"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
