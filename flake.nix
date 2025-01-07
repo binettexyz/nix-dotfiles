@@ -67,6 +67,8 @@
       /* ---Defining Systems--- */
         # Main Desktop
       (mkNixOSConfig { hostname = "desktop"; })
+        # Desktop Server
+      (mkNixOSConfig { hostname = "desktop-server"; })
         # Lenovo Thinkpad x240
       (mkNixOSConfig { hostname = "x240"; })
         # Lenovo Thinkpad t440p
