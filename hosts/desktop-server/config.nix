@@ -23,16 +23,16 @@ in {
   };
 
   ## GPU ##
-#  hardware.nvidia = {
-#    package = config.boot.kernelPackages.nvidiaPackages.stable;
-#      # Use the open source version of the kernel module
-#    open = false;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # Use the open source version of the kernel module
+    open = false;
 #      # Needed for most wayland compositor
 #    modesetting.enable = true;
 #      # Enable experimental NVIDIA power management via systemd
 #    powerManagement.enable = false;
 #    powerManagement.finegrained = false;
-#  };
+  };
 
   ## Networking ##
   networking = {
@@ -42,6 +42,6 @@ in {
   };
   
   nix.settings.max-jobs = 16; # ryzen 7 5800x
-  networking.hostName = "desktop";
+  networking.hostName = "desktop-server";
 
 }
