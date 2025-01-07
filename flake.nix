@@ -69,6 +69,11 @@
       (mkNixOSConfig { hostname = "desktop"; })
         # Desktop Server
       (mkNixOSConfig { hostname = "desktop-server"; })
+        # Steamdeck
+      (mkNixOSConfig {
+        hostname = "steamdeck";
+        nixosSystem = unstable.lib.nixosSystem;
+      })
         # Lenovo Thinkpad x240
       (mkNixOSConfig { hostname = "x240"; })
         # Lenovo Thinkpad t440p
