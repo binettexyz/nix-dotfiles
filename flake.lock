@@ -394,20 +394,20 @@
     "home": {
       "inputs": {
         "nixpkgs": [
-          "unstable"
+          "stable"
         ]
       },
       "locked": {
-        "lastModified": 1717931644,
-        "narHash": "sha256-Sz8Wh9cAiD5FhL8UWvZxBfnvxETSCVZlqWSYWaCPyu0=",
+        "lastModified": 1735344290,
+        "narHash": "sha256-oJDtWPH1oJT34RJK1FSWjwX4qcGOBRkcNQPD0EbSfNM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3d65009effd77cb0d6e7520b68b039836a7606cf",
+        "rev": "613691f285dad87694c2ba1c9e6298d04736292d",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "master",
+        "ref": "release-24.11",
         "repo": "home-manager",
         "type": "github"
       }
@@ -552,7 +552,7 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nixpkgs": [
-          "unstable"
+          "stable"
         ]
       },
       "locked": {
@@ -708,7 +708,7 @@
           "home"
         ],
         "nixpkgs": [
-          "unstable"
+          "stable"
         ]
       },
       "locked": {
@@ -740,7 +740,7 @@
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
-          "unstable"
+          "stable"
         ],
         "nixvim": "nixvim",
         "plasma-manager": "plasma-manager",
@@ -775,7 +775,7 @@
     "sops-nix": {
       "inputs": {
         "nixpkgs": [
-          "unstable"
+          "stable"
         ],
         "nixpkgs-stable": "nixpkgs-stable"
       },
@@ -811,16 +811,16 @@
     },
     "stable": {
       "locked": {
-        "lastModified": 1669833724,
-        "narHash": "sha256-/HEZNyGbnQecrgJnfE8d0WC5c1xuPSD2LUpB6YXlg4c=",
+        "lastModified": 1735922141,
+        "narHash": "sha256-vk0xwGZSlvZ/596yxOtsk4gxsIx2VemzdjiU8zhjgWw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4d2b37a84fad1091b9de401eb450aae66f1a741e",
+        "rev": "d29ab98cd4a70a387b8ceea3e930b3340d41ac5a",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "22.11",
+        "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
       }
