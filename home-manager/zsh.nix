@@ -153,22 +153,24 @@ with lib;
               for command in mount umount eject su shutdown systemctl poweroff reboot ; do
                     alias $command="doas $command"
               done; unset command
-          ''
-      )
-      (mkIf super.services.displayManager.sddm.enable (
-          ''
+
               . "$HOME/.config/shell/profile"
           ''
-      ))
-      (mkIf (super.services.displayManager.sddm.enable == false) (
-          ''
-              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
-              else
-                  . "$HOME/.config/shell/profile"
-              fi
-          ''
-      ))
+      )
+#TODO fix      (mkIf super.services.displayManager.sddm.enable (
+#          ''
+#              . "$HOME/.config/shell/profile"
+#          ''
+#      ))
+#      (mkIf (super.services.displayManager.sddm.enable == false) (
+#          ''
+#              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
+#              else
+#                  . "$HOME/.config/shell/profile"
+#              fi
+#          ''
+#      ))
     ]);
   
       plugins = [
