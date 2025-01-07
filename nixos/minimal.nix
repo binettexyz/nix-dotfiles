@@ -3,6 +3,7 @@
   imports = [
     ./bootloader.nix
     ./cli.nix
+    ./home.nix
     ./locale.nix
     ./meta.nix
     ./network.nix
