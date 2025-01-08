@@ -74,14 +74,11 @@ with lib;
         paste = "${pkgs.xclip}/bin/xclip -selection c -o";
           # Nixos related aliases.
         nixsh = "nix-shell -p";
-        nixswitch = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild switch --flake .#; popd";
-        nixbuild = "doas nix-store --verify; pushd /etc/nixos; doas nixos-rebuild build --flake .#; popd";
-        nixrb = "pushd /etc/nixos; doas nixos-rebuild switch --rollback; popd";
-        nixtest = "pushd /etc/nixos; doas nixos-rebuild test --flake .#; popd";
         nixup = "pushd /etc/nixos; doas nix flake update; popd";
         nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
         cleanup = "doas nix-collect-garbage -d";
         bloat = "nix path-info -Sh /run/current-system";
+        nixhost = "pushd /etc/nixos; doas nixos-rebuild switch --flake .# --build-host desktop-server";
 
         sudo = "doas su";
 
@@ -154,23 +151,22 @@ with lib;
                     alias $command="doas $command"
               done; unset command
 
-              . "$HOME/.config/shell/profile"
           ''
       )
-#TODO fix      (mkIf super.services.displayManager.sddm.enable (
-#          ''
-#              . "$HOME/.config/shell/profile"
-#          ''
-#      ))
-#      (mkIf (super.services.displayManager.sddm.enable == false) (
-#          ''
-#              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-#                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
-#              else
-#                  . "$HOME/.config/shell/profile"
-#              fi
-#          ''
-#      ))
+      (mkIf super.services.displayManager.sddm.enable (
+          ''
+              . "$HOME/.config/shell/profile"
+          ''
+      ))
+      (mkIf (super.services.displayManager.sddm.enable == false) (
+          ''
+              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
+              else
+                  . "$HOME/.config/shell/profile"
+              fi
+          ''
+      ))
     ]);
   
       plugins = [
