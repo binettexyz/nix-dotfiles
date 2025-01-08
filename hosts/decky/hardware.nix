@@ -1,61 +1,35 @@
-{ config, flake, lib, modulesPath, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 
-let
-  inherit (flake) inputs;
-in {
+{
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    #flake.inputs.nixos-hardware.nixosModules.common-cpu-amd
-  ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
-  boot = {
-    extraModulePackages = [ ];
-    kernelModules = [ "kvm-amd" ];
-    kernelParams = [ ];
-    initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "uas" "sd_mod" "sdhci_pci" ];
-      kernelModules = [ ];
-    };
-  };
-
-  /* ---FileSystem--- */
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/nixos";
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/624c5da1-186b-45b5-a251-aee85e877e8c";
       fsType = "ext4";
     };
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
+
+  fileSystems."/mnt/games" =
+    { device = "/dev/disk/by-uuid/6d183b34-2f6d-4dab-a1af-6bbcdb16bd2c";
       fsType = "vfat";
     };
-#    "/sdcard" = {
-#      device = "/dev/disk/by-label/---";
-#      fsType = "ext4";
-#      # It's okay if it's missing, automounted on access
-#      options = [ "nofail" "x-systemd.automount" ];
-#    };
-  };
 
-  swapDevices = [ /*{ device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }*/ ];
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/08A8-B7DF";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
 
-  /* ---Screen resolution--- */
-#  services.xserver = {
-#    xrandrHeads = [{
-#      output = "default";
-#      primary = true;
-#      monitorConfig = ''
-#          # 1280x800 59.81 Hz (CVT 1.02MA) hsync: 49.70 kHz; pclk: 83.50 MHz
-#        Modeline "1280x800_60.00"   83.50  1280 1352 1480 1680  800 803 809 831 -hsync +vsync
-#        Option "PreferredMode" "1280x800_60.00"
-#        Option "Position" "0 0"
-#      '';
-#    }];
-#  };
+  swapDevices = [ ];
+
+  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-#  powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";
-
-}
