@@ -21,7 +21,7 @@
     plasma-manager.url = "github:pjones/plasma-manager";
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:SoraTenshi/helix/experimental-22.12";
-    jovian = { url = "github:Jovian-Experiments/Jovian-NixOS/development"; flake = false; };
+    jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     autorandr = { url = "github:phillipberndt/autorandr"; flake = false; };
     nixvim.url = "github:nix-community/nixvim";
 
@@ -72,6 +72,7 @@
         # Steamdeck
       (mkNixOSConfig {
         hostname = "steamdeck";
+        system = "x86_64-linux";
         nixosSystem = unstable.lib.nixosSystem;
       })
         # Lenovo Thinkpad x240
@@ -94,11 +95,6 @@
       (mkHomeConfig {
         hostname = "server";
         configuration = ./home-manager/server.nix;
-      })
-      (mkHomeConfig {
-        hostname = "steamdeck";
-        username = "deck";
-        configuration = ./home-manager/steamdeck.nix;
       })
     ]);
 
