@@ -10,10 +10,10 @@
     programs.steam = {
       enable = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
-      gamescopeSession.enable = true;
+#      gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
+#      localNetworkGameTransfers.openFirewall = true;
       platformOptimizations.enable = true;
     };
 

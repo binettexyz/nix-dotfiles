@@ -1,18 +1,14 @@
 { config, flake, lib, pkgs, system, ... }:
 
 {
-  imports =
-    [
-      ./hardware.nix
-      flake.inputs.jovian-nixos.nixosModules.jovian
-    ];
+  imports = [
+    ./hardware.nix
+    flake.inputs.jovian-nixos.nixosModules.jovian
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "decky"; # Define your hostname.
-  networking.networkmanager.enable = true;
 
   jovian.steam = {
     enable = true;
@@ -51,6 +47,7 @@
   };
 
   services.xserver.enable = true;
+#  services.xserver.videoDrivers = [ "amdgpu" ];
 
   services.xserver.desktopManager.gnome.enable = true;
 
@@ -76,8 +73,6 @@
     extraGroups = [ "networkmanager" "wheel" "users" ];
   };
 
-  programs.firefox.enable = true;
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -92,3 +87,5 @@
 
   system.stateVersion = "24.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ]
+
+}
