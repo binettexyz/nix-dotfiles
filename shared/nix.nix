@@ -4,7 +4,12 @@ let
 in {
 
   # Enable Flakes
-  settings = import ./nix-conf.nix;
+  settings = {
+    sandbox = true;
+    auto-optimise-store = true;
+    trusted-users = [ "root" "@wheel" ];
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
     # Nix auto cleanup and reduce disk
   gc = {
