@@ -30,7 +30,7 @@
       #Temporary fileSystem
     "/mnt/games" = {
       device = "/dev/disk/by-uuid/6d183b34-2f6d-4dab-a1af-6bbcdb16bd2c";
-      fsType = "vfat";
+      fsType = "ext4";
     };
   };
   swapDevices = [ ];
@@ -49,6 +49,6 @@
   nix.settings.max-jobs = 8; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
 }

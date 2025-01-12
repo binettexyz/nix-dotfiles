@@ -4,7 +4,6 @@
   
   imports = [
     #./minecraft-server
-    ./games.nix
     ./steam.nix
   ];
 
@@ -53,13 +52,13 @@
     in {
       firewall.allowedTCPPorts = [
         ports.factorio
-        ports.minedustry
+        ports.mindustry
         #ports.minecraft
         ports.noita
       ];
       firewall.allowedUDPPorts = [
         ports.factorio
-        ports.minedustry
+        ports.mindustry
         #ports.minecraft
         ports.noita
       ];

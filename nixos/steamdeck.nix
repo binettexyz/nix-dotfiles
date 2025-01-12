@@ -6,11 +6,11 @@ in
     imports = [
       ./audio.nix
       ./bootloader.nix
+      ./desktopEnvironment.nix
       ./gaming
-      ./home.nix
+      #./home.nix
       ./locale.nix
       ./meta.nix
-      ./network.nix
       ./security.nix
       ./ssh.nix
       ./system.nix
@@ -22,7 +22,7 @@ in
     jovian.steam = {
       enable = true;
       user = "binette";
-      desktopSession = "gnome";
+      desktopSession = "plasma";
       autoStart = true;
     };
   
@@ -43,12 +43,12 @@ in
   
     /* ---User--- */
     users.users.${username}.group = lib.mkforce "decky";
+    users.groups.decky = {};
   
     /* ---Xserver--- */
     services.xserver.enable = true;
     services.xserver.xkb.layout = "us";
-  
-  
+    
     /* ---Remove some settings I dont want--- */
     boot.kernel.sysctl = lib.mkForce {};
     services.logind.extraConfig = lib.mkForce "";
