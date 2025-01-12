@@ -1,16 +1,27 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.modules.bootloader;
-in
-{
+  cfg = config.modules.bootloader.default;
+in {
 
-  options.modules.bootloader = mkOption {
+  /* ---Bootloader Modules--- */
+  options.modules.bootloader = {
+    default = mkOption {
       description = "Enable bootloader";
       type = types.enum [ "grub" "systemd" "rpi4" ];
-      default = "grub";
+      default = "grub";    
+    };
+    asRemovable = mkOption{
+      description = "Enable efiInstallAsRemovable option.";
+      default = false;
+    };
+    useOSProber = mkOption {
+      description = "Enable OS-Prober.";
+      default = false;
+    };
   };
 
+  /* ---Configuration--- */
   config = mkMerge [
     (mkIf (cfg == "grub") {
       boot = {
@@ -18,17 +29,18 @@ in
         loader = {
           timeout = 1;
           efi = {
-            canTouchEfiVariables = lib.mkDefault true;
+            canTouchEfiVariables = if config.modules.bootloader.asRemovable then false else true;
             efiSysMountPoint = "/boot";
           };
         # Grub bootloader
           grub = {
             enable = true;
-            default = 4;
+            default = 1;
             device = "nodev";
+            efiInstallAsRemovable = config.modules.bootloader.asRemovable;
             efiSupport = true;
-            gfxmodeEfi = "1366x768";
-            useOSProber = true;
+            gfxmodeEfi = "1280x800";
+            useOSProber = config.modules.bootloader.useOSProber;
             backgroundColor = lib.mkDefault "#000000";
             splashImage = null;
             splashMode = "normal";

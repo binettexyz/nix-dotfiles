@@ -7,7 +7,7 @@
 
       # This allows PipeWire to run with realtime privileges (i.e: less cracks)
     security.rtkit.enable = true;
-    hardware.pulseaudio.enable = lib.mkDefault false;
+    services.pulseaudio.enable = lib.mkDefault false;
 
     services.pipewire = {
       enable = lib.mkDefault true;

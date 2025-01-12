@@ -8,7 +8,13 @@
   ];
 
   #---Custom modules---#
-  modules = { bootloader = "grub"; };
+  modules = {
+    bootloader = {
+      default = "grub";
+      asRemovable = false;
+      useOSProber = false;
+    };
+  };
   device = {
     type = "laptop";
     netDevices = [ "enp0s25" "wlan0" ];

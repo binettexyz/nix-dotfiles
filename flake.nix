@@ -71,7 +71,7 @@
       (mkNixOSConfig { hostname = "desktop-server"; })
         # Steamdeck
       (mkNixOSConfig {
-        hostname = "steamdeck";
+        hostname = "decky";
         system = "x86_64-linux";
         nixosSystem = unstable.lib.nixosSystem;
       })

@@ -14,7 +14,8 @@
     PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
     EDITOR = "nvim";
     TERMINAL = "st";
-    BROWSER = "librewolf";
+    BROWSER = "qutebrowser";
+    SUDO = "doas";
   };
 
 
