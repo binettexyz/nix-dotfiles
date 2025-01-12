@@ -1,3 +1,0 @@
-* Steam Deck config
-
-  For some reason, wayland doesn't work properly on the system, making it slow and unusable.
