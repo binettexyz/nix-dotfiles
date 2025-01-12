@@ -42,7 +42,7 @@ in
     ];
   
     /* ---User--- */
-    users.users.${username}.group = lib.mkforce "decky";
+    users.users.${username}.group = lib.mkForce "decky";
     users.groups.decky = {};
   
     /* ---Xserver--- */
