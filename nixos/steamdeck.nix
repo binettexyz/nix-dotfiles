@@ -11,6 +11,7 @@ in
       #./home.nix
       ./locale.nix
       ./meta.nix
+      ./network.nix
       ./security.nix
       ./ssh.nix
       ./system.nix

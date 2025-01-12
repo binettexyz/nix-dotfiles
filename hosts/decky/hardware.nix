@@ -38,7 +38,7 @@
   /* ---Networking--- */
   networking = {
     hostName = "decky";
-    useDHCP = lib.mkDefault true;
+    useDHCP = lib.mkForce true;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
   };
