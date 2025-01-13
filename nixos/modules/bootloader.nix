@@ -35,7 +35,7 @@ in {
         # Grub bootloader
           grub = {
             enable = true;
-            default = 1;
+            default = 0;
             device = "nodev";
             efiInstallAsRemovable = config.modules.bootloader.asRemovable;
             efiSupport = true;
