@@ -18,10 +18,7 @@ in {
     asRemovable = true;
     useOSProber = false;
   };
-  modules.system.desktopEnvironment = {
-    default = "plasma";
-    steamdeck.enable = true;
-  };
+  modules.system.desktopEnvironment.default = "plasma";
   device = {
     gpu = "amd";
     netDevices = [ "wlo1" ];
