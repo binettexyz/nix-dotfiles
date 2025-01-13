@@ -13,7 +13,7 @@ in {
   ];
 
   /* ---Custom modules--- */
-  modules = {
+  modules.system = {
     bootloader = {
       default = "grub";
       asRemovable = true;
@@ -25,7 +25,6 @@ in {
     };
   };
   device = {
-    type = "gaming-handheld";
     gpu = "amd";
     netDevices = [ "wlo1" ];
   };
@@ -35,5 +34,8 @@ in {
     interfaces.wlo1.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
   };
+
+  /* ---Stuff I Dont Want--- */
+  services.timesyncd.enable = lib.mkForce false;
 }
 

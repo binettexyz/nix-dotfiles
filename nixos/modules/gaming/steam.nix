@@ -1,10 +1,16 @@
-{ config, flake, pkgs, lib, ... }: {
+{ config, flake, pkgs, lib, ... }:
+with lib;
+
+{
 
   imports = [ flake.inputs.nix-gaming.nixosModules.platformOptimizations ];
 
-  options.gaming.steam.enable = pkgs.lib.mkDefaultOption "Steam game launcher.";
+  options.modules.gaming.steam.enable = mkOption {
+    description = "Steam game launcher.";
+    default = false;
+  };
 
-  config = lib.mkIf config.gaming.steam.enable {
+  config = lib.mkIf config.modules.gaming.steam.enable {
     hardware.steam-hardware.enable = true;
 
     programs.steam = {

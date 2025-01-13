@@ -2,28 +2,28 @@
 with lib;
 
 {
-  options.nixos.server.enable = lib.mkEnableOption "server config" // {
+  options.server.enable = lib.mkEnableOption "server config" // {
     default = (config.device.type == "server");
   };
 
-  imports = [ ./containers ];
+  #imports = [ ./containers ];
 
-  config = lib.mkIf config.nixos.server.enable {
+  config = lib.mkIf config.server.enable {
 
-    modules = {
-      containers = {
-        adGuardHome.enable = true;
+#    modules = {
+#      containers = {
+#        adGuardHome.enable = true;
 #        home-assistant.enable = true;
-        homer.enable = true;
-        mcServer.enable = true;
+#        homer.enable = true;
+#        mcServer.enable = true;
 #        nextcloud.enable = true;
-        mediarr.enable = true;
-        vaultwarden.enable = true;
-      };
+#        mediarr.enable = true;
+#        vaultwarden.enable = true;
+#      };
 #      services = {
 #        miniflux.enable = false;
 #      };
-    };
+#    };
   
     services.nfs.server = {
       enable = true;

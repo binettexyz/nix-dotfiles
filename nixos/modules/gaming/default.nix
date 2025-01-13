@@ -1,15 +1,18 @@
 { flake, pkgs, lib, config, ... }:
+with lib;
 
 {
   
   imports = [
-    #./minecraft-server
     ./steam.nix
   ];
 
-  options.gaming.enable = pkgs.lib.mkDefaultOption "Gaming config";
+  options.modules.gaming.enable = mkOption {
+    description = "Gaming config";
+    default = false;
+  };
 
-  config = lib.mkIf config.gaming.enable {
+  config = lib.mkIf config.modules.gaming.enable {
 
     /* --Gamemode-- */
     programs.gamemode = {

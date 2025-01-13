@@ -5,12 +5,12 @@ with lib; {
     type = mkOption {
       type = types.enum [ "desktop" "gaming-handheld" "laptop" "server" "vm" ];
       description = "Type of device";
-      default = "desktop";
+      default = "";
     };
     gpu = mkOption {
       type = types.enum [ "amd" "nvidia" ];
       description = "Type of graphic cards";
-      default = "nvidia";
+      default = "";
     };
     ssd.enable = mkOption {
       description = "type of hard drive";
