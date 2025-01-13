@@ -6,23 +6,21 @@ in {
 
   imports = [
     ./hardware.nix
-    ../../nixos/steamdeck.nix
+    ../../nixos/gaming-handheld.nix
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
     flake.inputs.jovian-nixos.nixosModules.jovian
   ];
 
   /* ---Custom modules--- */
-  modules.system = {
-    bootloader = {
-      default = "grub";
-      asRemovable = true;
-      useOSProber = false;
-    };
-    desktopEnvironment = {
-      default = "kde";
-      steamdeck.enable = true;
-    };
+  modules.bootloader = {
+    default = "grub";
+    asRemovable = true;
+    useOSProber = false;
+  };
+  modules.system.desktopEnvironment = {
+    default = "plasma";
+    steamdeck.enable = true;
   };
   device = {
     gpu = "amd";
@@ -37,5 +35,7 @@ in {
 
   /* ---Stuff I Dont Want--- */
   services.timesyncd.enable = lib.mkForce false;
+
+  environment.systemPackages = with pkgs; [ zsh ];
 }
 

@@ -1,16 +1,14 @@
 { config, flake, lib, pkgs, system, ... }:
 let
   inherit (config.meta) username;
-  inherit (config.modules.system.desktopEnvironment) default;
-  default = desktopEnvironment;
 in {
 
-  config = lib.mkIf config.device == "gaming-handheld" {
+  config = lib.mkIf (config.device.type == "gaming-handheld") {
     /* ---Jovian-NixOS--- */
     jovian.steam = {
       enable = true;
       user = username;
-      desktopSession = desktopEnvironment;
+      desktopSession = config.modules.system.desktopEnvironment.default;
       autoStart = true;
     };
   

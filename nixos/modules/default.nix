@@ -9,6 +9,7 @@
     ./fonts.nix
     ./gaming
     ./home.nix
+    ./jovian-nixos.nix
     ./laptop
     ./locale.nix
     ./meta.nix

@@ -9,7 +9,7 @@ in
     options.modules.system.desktopEnvironment = {
       default = mkOption {
         description = "Enable Desktop Environment";
-        type = with types; nullOr (enum [ "kde" "gnome" "gamescope-wayland" ]);
+        type = with types; nullOr (enum [ "plasma" "gnome" "gamescope-wayland" ]);
         default = null;
       };
       jovian-nixos.enable = mkOption {
@@ -20,7 +20,7 @@ in
 
     /* ---Configuration--- */
     config = mkMerge [
-      (mkIf (cfg == "kde") {
+      (mkIf (cfg == "plasma") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.desktopManager.plasma6.enable = true;
         services.displayManager = {

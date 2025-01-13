@@ -1,5 +1,7 @@
 { ... }: {
 
+  imports = [ ./modules ];
+
   device.type = "gaming-handheld";
   modules.gaming = {
     enable = true;
