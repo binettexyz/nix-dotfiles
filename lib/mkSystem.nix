@@ -16,6 +16,7 @@ mkNixOSConfig =
       inherit system;
       modules = [
         ../hosts/${hostname}/config.nix
+        ../modules
         ../overlays
       ] ++ extraMods;
       specialArgs = { inherit system; flake = self; };

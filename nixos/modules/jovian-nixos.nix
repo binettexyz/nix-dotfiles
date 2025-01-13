@@ -1,29 +1,16 @@
 { config, flake, lib, pkgs, system, ... }:
 let
   inherit (config.meta) username;
-in
-  {
-    imports = [
-      ./audio.nix
-      ./bootloader.nix
-      ./desktopEnvironment.nix
-      ./gaming
-      #./home.nix
-      ./locale.nix
-      ./meta.nix
-      ./network.nix
-      ./security.nix
-      ./ssh.nix
-      ./system.nix
-      ./user.nix
-      ../modules
-    ];
-  
+  inherit (config.modules.system.desktopEnvironment) default;
+  default = desktopEnvironment;
+in {
+
+  config = lib.mkIf config.device == "gaming-handheld" {
     /* ---Jovian-NixOS--- */
     jovian.steam = {
       enable = true;
-      user = "binette";
-      desktopSession = "plasma";
+      user = username;
+      desktopSession = desktopEnvironment;
       autoStart = true;
     };
   
@@ -34,17 +21,13 @@ in
   
     jovian.decky-loader = {
       enable = true;
-      user = "binette";
+      user = username;
     };
   
     environment.systemPackages = with pkgs; [
       jupiter-dock-updater-bin
       steamdeck-firmware
     ];
-  
-    /* ---User--- */
-    users.users.${username}.group = lib.mkForce "decky";
-    users.groups.decky = {};
   
     /* ---Xserver--- */
     services.xserver.enable = true;
@@ -55,4 +38,6 @@ in
     services.logind.extraConfig = lib.mkForce "";
     services.udev.extraRules = lib.mkForce "";
     systemd.oomd.enable = lib.mkForce false;
-  }
+  };
+
+}

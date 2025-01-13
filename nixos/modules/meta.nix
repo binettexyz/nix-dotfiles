@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../shared/adblock.nix
+    ../../shared/adblock.nix
 #    ../cachix.nix
   ];
 
@@ -23,7 +23,7 @@
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  nix = import ../shared/nix.nix { inherit pkgs flake; };
+  nix = import ../../shared/nix.nix { inherit pkgs flake; };
 
     # Enable unfree packages
   nixpkgs.config.allowUnfree = true;

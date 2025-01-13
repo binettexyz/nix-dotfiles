@@ -2,15 +2,16 @@
 let
   inherit (flake) inputs;
   inherit (config.networking) hostName;
-in
-  {
+  cfg = config.modules.system.home.enable;
+in {
 
-    imports = [
-      ../modules/meta.nix
-      flake.inputs.home.nixosModules.home-manager
-    ];
+  /* ---Import Modules/Config--- */
+  imports = [
+    ../modules/meta.nix
+    flake.inputs.home.nixosModules.home-manager
+  ];
 
-  options.nixos.home = {
+  options.modules.system.home = {
     enable = lib.mkEnableOption "home config" // { default = true; };
     username = lib.mkOption {
       description = "Main username";
@@ -19,10 +20,10 @@ in
     };
   };
 
-  config = lib.mkIf config.nixos.home.enable {
+  config = lib.mkIf config.modules.system.home.enable {
     home-manager = {
       useUserPackages = true;
-      users.${config.nixos.home.username} = ../hosts/${hostName}/user.nix;
+      users.${config.modules.system.home.username} = ../../hosts/${hostName}/user.nix;
       extraSpecialArgs = {
         inherit flake system;
         super = config;

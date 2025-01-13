@@ -11,7 +11,7 @@ in {
       type = types.enum [ "grub" "systemd" "rpi4" ];
       default = "grub";    
     };
-    asRemovable = mkOption{
+    asRemovable = mkOption {
       description = "Enable efiInstallAsRemovable option.";
       default = false;
     };

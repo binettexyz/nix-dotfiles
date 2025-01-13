@@ -1,13 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.nixos.laptop.enable = lib.mkEnableOption "laptop config" // {
-    default = (config.device.type == "laptop");
-  };
 
   imports = [ ./battery.nix ];
 
-  config = lib.mkIf config.nixos.laptop.enable {
+  config = lib.mkIf (config.device.type == "laptop") {
     laptop.onLowBattery.enable = true;
 
     # Configure hibernation
@@ -54,7 +51,7 @@
       thermald.enable = true;
       auto-cpufreq.enable = true;
       tlp = {
-        enable = if config.services.xserver.desktopManager.plasma5.enable then false else true;
+        enable = if config.services.desktopManager.plasma6.enable then false else true;
         settings = {
           # Operation mode when no power supply can be detected: AC, BAT.
           "TLP_DEFAULT_MODE" = "BAT";
