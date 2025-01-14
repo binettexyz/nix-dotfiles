@@ -1,8 +1,6 @@
 { config, flake, lib, pkgs, ... }: {
 
-  imports = [
-    ./modules
-  ];
+  imports = [ ./modules ];
 
   device.type = "laptop";
   modules.system = {

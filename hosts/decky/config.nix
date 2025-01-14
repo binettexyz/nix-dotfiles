@@ -9,7 +9,6 @@ in {
     ../../nixos/gaming-handheld.nix
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
-    flake.inputs.jovian-nixos.nixosModules.jovian
   ];
 
   /* ---Custom modules--- */

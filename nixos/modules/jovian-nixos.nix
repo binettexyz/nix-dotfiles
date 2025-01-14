@@ -3,6 +3,10 @@ let
   inherit (config.meta) username;
 in {
 
+  imports = [
+    flake.inputs.jovian-nixos.nixosModules.jovian
+  ];
+
   config = lib.mkIf (config.device.type == "gaming-handheld") {
     /* ---Jovian-NixOS--- */
     jovian.steam = {
