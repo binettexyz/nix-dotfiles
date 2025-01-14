@@ -6,6 +6,7 @@
     ../../home-manager/git.nix
     ../../home-manager/ssh.nix
     ../../home-manager/zsh.nix
+    ../../home-manager/lf
     ../../home-manager/gaming.nix
     ../../home-manager/librewolf.nix
   ];
