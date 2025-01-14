@@ -78,7 +78,10 @@
         # Lenovo Thinkpad x240
       (mkNixOSConfig { hostname = "x240"; })
         # Lenovo Thinkpad t440p
-      (mkNixOSConfig { hostname = "t440p"; })
+      (mkNixOSConfig {
+        hostname = "t440p";
+        nixosSystem = unstable.lib.nixosSystem;
+      })
         # Raspberry Pi 4
       (mkNixOSConfig { hostname = "rpi4"; system = "aarch64-linux"; })
 

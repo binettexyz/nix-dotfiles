@@ -22,9 +22,8 @@ in {
         font-awesome
         noto-fonts-emoji
         material-design-icons
-        (nerdfonts.override {
-          fonts = [ "FantasqueSansMono" "JetBrainsMono" ];
-        })
+        nerd-fonts.fantasque-sans-mono
+        nerd-fonts.jetbrains-mono
       ];
   
       fontconfig = {
