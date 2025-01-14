@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
 
-  config = lib.mkIf (config.device == "laptop") {
+  config = lib.mkIf (config.device.type == "laptop") {
       # Configure the virtual console keymap from the xserver keyboard settings
       #FIXME: make font huge
     #console.useXkbConfig = true;
