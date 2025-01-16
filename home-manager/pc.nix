@@ -4,7 +4,7 @@
     ./dwm
     ./librewolf.nix
     ./minimal.nix
-    #./mpv
+    ./mpv
     ./newsboat.nix
   ];
 
