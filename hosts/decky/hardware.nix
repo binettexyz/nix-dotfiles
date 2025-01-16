@@ -19,19 +19,24 @@
   /* ---FileSystem--- */
   fileSystems = {
     "/" = { 
-      device = "/dev/disk/by-uuid/624c5da1-186b-45b5-a251-aee85e877e8c";
-      fsType = "ext4";
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
     };
     "/boot" = { 
-      device = "/dev/disk/by-uuid/08A8-B7DF";
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
       #Temporary fileSystem
-    "/mnt/games" = {
-      device = "/dev/disk/by-uuid/6d183b34-2f6d-4dab-a1af-6bbcdb16bd2c";
+    "/home" = {
+      device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+    }
   };
   swapDevices = [ ];
 
