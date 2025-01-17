@@ -36,9 +36,21 @@
     "/nix" = {
       device = "/dev/disk/by-label/nix";
       fsType = "ext4";
-    }
+    };
   };
   swapDevices = [ ];
+
+  environment.persistence."/nix/persist" = {
+    hideMounts  = true;
+    directories = [
+      "/etc/NetworkManager"
+      "/etc/nixos"
+      "/var/log"
+      "/var/lib"
+      "/root"
+      "/srv"
+    ];
+  };
 
   /* ---Networking--- */
   networking = {
