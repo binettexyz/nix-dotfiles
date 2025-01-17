@@ -16,12 +16,17 @@
 
   /* ---Services--- */
     # Remote gaming using moonlight/sunshine.
-  services.sunshine = {
-    enable = true;
-    capSysAdmin = true;
-    openFirewall = true;
-    autoStart = lib.mkDefault false;
+  services = {
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+      openFirewall = true;
+      autoStart = lib.mkDefault false;
+    };
   };
+
+  /* ---System Configuration--- */
+  services.logind.powerKey = "suspend";
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.
