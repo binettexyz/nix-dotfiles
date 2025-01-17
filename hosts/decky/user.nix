@@ -11,8 +11,4 @@
     ../../home-manager/librewolf.nix
   ];
 
-  home.packages = with pkgs; [
-    zsh
-    discord
-  ];
 }

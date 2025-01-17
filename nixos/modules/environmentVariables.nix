@@ -3,10 +3,8 @@ with lib;
 
 {
 
+    environment.localBinInPath = true;
     environment.variables = {
-      # PATH
-      #TODO PATH = [ "~/.local/bin" "~/.local/bin/*" ];
-  
       # Default Programs:
       EDITOR = "nvim";
       VISUAL = "nvim";
