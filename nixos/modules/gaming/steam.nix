@@ -15,13 +15,19 @@ with lib;
 
     programs.steam = {
       enable = true;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
-#      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-#      localNetworkGameTransfers.openFirewall = true;
+        # Runs steam with https://github.com/Supreeeme/extest
+        # Without this, steam input on wayland sessions doesn't draw a visible cursor.
+      extest.enable = true;
         # Modules from nix-gaming.
       platformOptimizations.enable = true;
+      protontricks.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraPackages = with pkgs; [ gamescope mangohud ];
+      package = pkgs.steam.override {
+        extraEnv.MANGOHUD = true;
+      };
     };
 
     environment.systemPackages = with pkgs; [
