@@ -68,7 +68,7 @@ $ cd /etc/nixos
   # Edit config to fit your system
 $ vim hosts/<host>/hardware.nix
   # Here, you want to mount /tmp where there's more space (like in your home directory)
-$  mount -o bind /tmp <another /tmp directory>
+$ mount -o bind /tmp <another /tmp directory>
 $ nixos-install --flake .#<host> --no-root-passwd
 #+end_src
 
