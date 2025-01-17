@@ -20,6 +20,7 @@ with lib;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
 #      localNetworkGameTransfers.openFirewall = true;
+        # Modules from nix-gaming.
       platformOptimizations.enable = true;
     };
 
