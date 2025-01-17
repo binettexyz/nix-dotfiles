@@ -4,6 +4,7 @@ with lib;
 {
   
   imports = [
+    ./jovian-nixos.nix
     ./steam.nix
   ];
 
