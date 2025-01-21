@@ -76,5 +76,19 @@ $ nixos-install --flake .#<host> --no-root-passwd
 - If you're using grub instead of systemd-boot, make sure to set =canTouchEfiVariables = false= and =efiInstallAsRemovable = true;= or else there wont be any boot option in bios. \\
 - Since the steamdeck isn't powerfull, compiling the kernel will take a lot of time, you should build the system remotely and install it locally.
 
+** Steps to do
+
+*** Steamdeck
+Make sure, once nixos is installed, to see if bluetooth is working.
+#+begin_src sh
+lsmod | grep btusb
+#+end_src
+
+If nothing's in the output, launch this command:
+
+#+begin_src sh
+doas modprobe btsusb
+#+end_src
+
 ** Credits
 Thanks to [[https://github.com/thiagokokada/nix-configs/blob/master/flake.nix][thiagokokada]] for the flake template.
