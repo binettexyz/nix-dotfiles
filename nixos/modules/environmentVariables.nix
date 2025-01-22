@@ -14,7 +14,10 @@ with lib;
       SUDO = "doas";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
       SHELL = "zsh";
+
+      # Themes
       BAT_THEME = "ansi";
+      LS_COLORS = "lf";
   
       # Default Home Directories:
       XDG_CONFIG_HOME = "$HOME/.config";
