@@ -59,6 +59,10 @@ with lib;
           default = "simple";
         };
         #rebase = { autoStash = true; };
+        safe.directory = [
+          "/etc/nixos"
+          "/nix/persist/etc/nixos"
+        ];
       };
 
       aliases = {
