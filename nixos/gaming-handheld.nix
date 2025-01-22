@@ -26,7 +26,7 @@
   };
 
   /* ---System Configuration--- */
-  services.logind.powerKey = "suspend";
+  services.logind.powerKey = "ignore";
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.
