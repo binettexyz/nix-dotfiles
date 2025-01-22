@@ -1,8 +1,6 @@
 { config, flake, lib, modulesPath, pkgs, ... }:
 
-let
-  inherit (flake) inputs;
-in {
+{
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -14,8 +12,8 @@ in {
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" "nvidia" ];
-    kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" "nvidia_drm.modeset=1"  ];
+    #kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelParams = [ "nvidia_drm.modeset=1"  ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
@@ -41,12 +39,6 @@ in {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/mounts/nas" = {
-      device = "100.71.254.90:/media";
-      fsType = "nfs";
-        # don't freeze system if mount point not available on boot
-      options = [ "x-systemd.automount" "noauto" ];
-    };
   };
 
   swapDevices = [ /*{ device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }*/ ];
@@ -59,17 +51,22 @@ in {
         "/var/lib"
         "/var/log"
         "/mounts"
+        "/media"
         "/root"
         "/srv"
       ];
     };
-    "/nix/persist/home/binette/.local/share" = {
-      hideMounts = true;
-      directories = [
-        "/opt"
-      ];
-    };
   };
 
+  /* ---Network--- */
+  networking = {
+    hostName = "desktop-server";
+    interfaces.wlo1.useDHCP = true;
+    interfaces.enp34s0.useDHCP = true;
+    interfaces.tailscale0.useDHCP = true;
+  };
+
+  /* ---CPU Stuff--- */
   powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";
+  nix.settings.max-jobs = 16;
 }

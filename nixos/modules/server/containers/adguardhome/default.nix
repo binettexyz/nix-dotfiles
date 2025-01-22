@@ -2,10 +2,10 @@
 with lib;
 
 let
-  cfg = config.modules.containers.adGuardHome;
+  cfg = config.modules.server.containers.adGuardHome.enable;
   hostAddress = "10.0.0.11";
   localAddress = "10.0.1.11";
-  serverIp = "100.71.254.90";
+  serverIp = "100.69.22.72";
   adguardDir = "/nix/persist/srv/container-service-data/adguardhome";
   unboundDir = "/nix/persist/srv/container-service-data/unbound";
   ports = {
@@ -18,11 +18,12 @@ let
   };
 in
 {
-  options.modules.containers.adGuardHome = {
-    enable = mkEnableOption "AdGuardHome";
+  options.modules.server.containers.adGuardHome.enable = mkOption {
+    description = "Enable AdGuard Home";
+    default = false;
   };
 
-  config = mkIf (cfg.enable) { 
+  config = mkIf config.modules.server.containers.adGuardHome.enable { 
     services.nginx.virtualHosts = {
       "adguard.box" = mkLocalProxy ports.adguard;
     };
@@ -74,8 +75,6 @@ in
           host = "0.0.0.0";
           port = ports.adguard;
           settings = {
-            bind_host = "0.0.0.0";
-            bind_port = ports.adguard;
             dns = {
               bind_host = "0.0.0.0";
               port = ports.adguardDNS;

@@ -68,7 +68,10 @@
         # Main Desktop
       (mkNixOSConfig { hostname = "desktop"; })
         # Desktop Server
-      (mkNixOSConfig { hostname = "desktop-server"; })
+      (mkNixOSConfig {
+        hostname = "desktop-server";
+        nixosSystem = unstable.lib.nixosSystem;
+      })
         # Steamdeck
       (mkNixOSConfig {
         hostname = "decky";
