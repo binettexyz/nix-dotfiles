@@ -60,6 +60,11 @@
     networkmanager.enable = lib.mkForce true;
   };
 
+  /* ---Bluetooth--- */
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.enableAllFirmware = true;
+
   /* ---CPU Stuff--- */
     # Dont know yet what the default value is.
   #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
