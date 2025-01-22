@@ -7,21 +7,20 @@
     useDHCP = lib.mkDefault false;
     networkmanager.enable = lib.mkDefault false;
     nameservers = [
-#      "100.71.254.90" # adguardhome dns using tailscale.
+      "100.69.22.72" # adguardhome dns using tailscale.
 #      "9.9.9.9"
     ];
     firewall = {
       enable = true;
       allowedTCPPorts = [
         2049 # NFSv4
-#        53 # dns
+        53 # dns
 #        80
 #        443
       ];
       allowedUDPPorts = [
         config.services.tailscale.port
-#        51820 # wireguard
-#        53 # dns
+        53 # dns
 #        80
 #        443
       ];
