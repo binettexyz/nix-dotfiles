@@ -48,6 +48,8 @@ in
 # 			 { containerPort = ports.adguard; hostPort = ports.adguard; protocol = "tcp"; }
  			  { containerPort = ports.adguardDNS; hostPort = ports.adguardDNS; protocol = "tcp"; }
  			  { containerPort = ports.adguardDNS; hostPort = ports.adguardDNS; protocol = "udp"; }
+ 			  { containerPort = ports.adguard; hostPort = ports.adguard; protocol = "tcp"; }
+ 			  { containerPort = ports.adguard; hostPort = ports.adguard; protocol = "udp"; }
       ];
 
       config = { config, pkgs, ... }: {

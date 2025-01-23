@@ -61,10 +61,37 @@
   /* ---Network--- */
   networking = {
     hostName = "desktop-server";
-    interfaces.wlo1.useDHCP = true;
-    interfaces.enp34s0.useDHCP = true;
-    interfaces.tailscale0.useDHCP = true;
+    interfaces = {
+      tailscale0.useDHCP = true;
+      enp34s0 = {
+#        name = "eth0";
+        useDHCP = true;
+      };
+      wlo1 = {
+        useDHCP = true;
+#        name = "wlan0";
+#        ipv4.addresses = [{
+#          address = "192.168.1.2";
+#          prefixLength = 24;
+#        }];
+      };
+#      "br0" = {
+#        name = "br0";
+#        ipv4.addresses = [{
+#          address = "192.168.1.4";
+#          prefixLength = 24;
+#        }];
+#      };
+    };
+#    bridges."br0".interfaces = [ "wlo1" ];
+
+    nat = {
+      enable = true;
+#      internalInterfaces = [ "ve-+" ];
+#      externalInterface = "br0";
+    };
   };
+#  services.resolved.enable = true;
 
   /* ---CPU Stuff--- */
   powerManagement.cpuFreqGovernor = lib.mkDefault "conservative";

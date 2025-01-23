@@ -15,14 +15,7 @@ with lib;
       '';
     };
 
-    networking = {
-      nat = {
-        enable = true;
-        externalInterface = "eth0";
-      };
-    };
-
-    services.nginx.enable = true;
+#    services.nginx.enable = true;
 
 #TODO    services.dnsmasq.enable = true;
 
