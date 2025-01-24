@@ -37,7 +37,7 @@ in {
       ];
 
       bindMounts = {
-        ${datadir} = { hostPath = "/nix/persist/srv/container-service-data/nextcloud"; isReadOnly = false; };
+        ${datadir} = { hostPath = "/media/nextcloud"; isReadOnly = false; };
         ${adminpassFile} = { hostPath = adminpassFile; isReadOnly = true; };
       };
 
@@ -51,7 +51,6 @@ in {
           config = {
             adminuser = "binette";
             inherit adminpassFile;
-            #adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
             dbtype = "sqlite";
           };
           settings.trusted_domains = [
