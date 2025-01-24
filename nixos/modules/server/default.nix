@@ -15,14 +15,7 @@ with lib;
       '';
     };
 
-    networking = {
-      nat = {
-        enable = true;
-        externalInterface = "eth0";
-      };
-    };
-
-    services.nginx.enable = true;
+#    services.nginx.enable = true;
 
 #TODO    services.dnsmasq.enable = true;
 
@@ -35,21 +28,6 @@ with lib;
     };
   
     virtualisation.oci-containers.backend = "podman";
-  
-    ## FileSystem ##
-    fileSystems."/nix/persist/media" = {
-      device = "/dev/disk/by-label/exthdd";
-      fsType = "ntfs-3g";
-      options = [ "rw" "uid=1000" "gid=1000" "x-systemd.automount" "noauto" ];
-      
-    };
-  
-    environment.persistence."/nix/persist/home/binette/.local/share" = {
-      hideMounts = true;
-      directories = [
-        { directory = "/opt"; user = "binette"; group = "binette"; mode = "u=rwx,g=rx,o="; }
-      ];
-    };
   };
 
 }

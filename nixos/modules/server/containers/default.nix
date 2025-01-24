@@ -7,7 +7,7 @@
 #    ./mediarr
 #    ./minecraft
     #TODO: ./miniflux
-#    ./nextcloud
+    ./nextcloud
 #    ./nextcloud/docker.nix
 #    ./portainer
 #    ./vaultwarden
