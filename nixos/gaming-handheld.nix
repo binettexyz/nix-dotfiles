@@ -26,11 +26,11 @@
   };
 
   /* ---System Configuration--- */
-  services.logind.powerKey = "ignore";
+  services.logind.powerKey = lib.mkForce "ignore";
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.
-  boot.kernel.sysctl."vm.swappiness" = 1;
+  boot.kernel.sysctl."vm.swappiness" = lib.mkForce 1;
     # Determines how aggressive memory compaction is done in the background.
   boot.kernel.sysctl."vm.compaction_proactiveness" = 0;
     # Determines the number of times that the page lock can be stolen from under a waiter before "fair" behavior kicks in.

@@ -32,16 +32,11 @@ in {
       jupiter-dock-updater-bin # 'jupiter-dock-updater'.
       steamdeck-firmware # Gives us 'jupiter-biosupdate' and 'jupiter-controller-update'.
     ];
-  
+
+
     /* ---Xserver--- */
     services.xserver.enable = true;
     services.xserver.xkb.layout = "us";
-    
-    /* ---Remove some settings I dont want--- */
-    boot.kernel.sysctl = lib.mkForce {};
-    services.logind.extraConfig = lib.mkForce "";
-    services.udev.extraRules = lib.mkForce "";
-    systemd.oomd.enable = lib.mkForce false;
   };
 
 }
