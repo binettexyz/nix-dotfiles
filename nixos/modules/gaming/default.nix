@@ -37,12 +37,9 @@ with lib;
     /* ---Drivers--- */
     hardware.xpadneo.enable = true; # Xbox One Controller
     hardware.xone.enable = false; # Xbox One Accessories (USB dongle)
-    services.ratbagd.enable = true; # Use with piper
 
     /* ---Packages--- */
     environment.systemPackages = with pkgs; [
-      # Tools
-      piper # GTK frontend for ratbagd mouse config daemon
       jdk # Minecraft Java
       dxvk
     ];
@@ -52,18 +49,18 @@ with lib;
       ports.mindustry = 6567;
       ports.factorio = 6566;
       ports.noita = 5123;
-      #ports.minecraft = 0;
+      ports.minecraft = 25565;
     in {
       firewall.allowedTCPPorts = [
         ports.factorio
         ports.mindustry
-        #ports.minecraft
+        ports.minecraft
         ports.noita
       ];
       firewall.allowedUDPPorts = [
         ports.factorio
         ports.mindustry
-        #ports.minecraft
+        ports.minecraft
         ports.noita
       ];
     };
