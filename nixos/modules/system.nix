@@ -50,9 +50,7 @@
     '';
 
       # Suspend when power key is pressed
-    logind.extraConfig = ''
-      HandlePowerKey=suspend-then-hibernate
-    '';
+    logind.powerKey = lib.mkDefault "suspend";
 
       # Enable NTP
     timesyncd.enable = lib.mkDefault true;
