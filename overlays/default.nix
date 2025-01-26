@@ -20,6 +20,7 @@ in {
       };
 
       anime4k = prev.callPackage ../packages/anime4k.nix { };
+      freedoom = prev.callPackage ../packages/freedoom.nix { };
       wallpapers = prev.callPackage ../packages/wallpapers { };
       autorandr = prev.autorandr.overrideAttrs (_: { src = inputs.autorandr; });
       dmenu = prev.callPackage (inputs.dmenu + "/default.nix") {};
