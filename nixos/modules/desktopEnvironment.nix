@@ -31,6 +31,7 @@ in
           elisa
           khelpcenter
           oxygen
+          discover
         ];
       })
       (mkIf (cfg == "gnome") {
