@@ -63,6 +63,7 @@ in
           gnome-disks
           file-roller
           gnome-tour
+          ark
         ];
       })
     ];
