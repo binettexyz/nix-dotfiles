@@ -12,9 +12,8 @@
     # Launcher/Tools
     heroic # Launcher for epic/gog/amazon
     discord
-    ripcord
-    flake.inputs.nix-gaming.packages.${pkgs.system}.mo2installer
     protonup-qt # Download proton-ge.
+    r2modman
 
     # Emulation
     # TODO: Add emulators
