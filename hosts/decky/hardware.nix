@@ -61,8 +61,23 @@
   };
 
   /* ---Bluetooth--- */
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  # Enable experimental settings or else theres no bluetooth on boot.
+  # https://discourse.nixos.org/t/bluetooth-not-working/27812
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Name = "Decky";
+        ControllerMode = "dual";
+        Experimental = "true";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
+  };
+
   hardware.enableAllFirmware = true;
 
   /* ---CPU Stuff--- */
