@@ -32,7 +32,7 @@ in {
       privateNetwork = false;
       inherit localAddress hostAddress;
       forwardPorts = [
-        { containerPort = 80; hostPort = 80; }
+        { containerPort = 80; hostPort = ports.nextcloud; }
         { containerPort = 442; hostPort = 442; }
       ];
 
@@ -57,37 +57,15 @@ in {
             "100.69.22.72"
           ];
           extraApps = {
-#             calendar = pkgs.fetchNextcloudApp {
-#              name = "calendar";
-#              sha256 = "sha256-c+iiz/pRs7fw2+DneSODWENRnZPZ2BDRa6dOjicABMY=";
-#              url = "https://github.com/nextcloud/calendar/archive/refs/tags/v3.3.2.tar.gz";
-#              version = "3.3.2";
-#            };
-#            news = pkgs.fetchNextcloudApp {
-#              name = "news";
-#              sha256 = "sha256-jmrocdJmRpau0zV8UtLyvrlX/k7O6zlZ8G9zry8ibEw=";
-#              url = "https://github.com/nextcloud/news/releases/download/18.1.0/news.tar.gz";
-#              version = "18.1.0";
-#            };
-#            deck = pkgs.fetchNextcloudApp {
-#              name = "deck";
-#              sha256 = "sha256-qIM6NvOP/1LlIqeQlImmrG6kPHbrF2O1E0yAQCJNDh4=";
-#              url = "https://github.com/nextcloud/deck/releases/download/v1.7.0/deck.tar.gz";
-#              version = "1.7.0";
-#            };
-#            bookmarks = pkgs.fetchNextcloudApp {
-#              name = "bookmarks";
-#              sha256 = "sha256-v3Ug4zdmjWGsFTf6epI4fis6f8rQ43WD65Dy/Ife4kI=";
-#              url = "https://github.com/nextcloud/bookmarks/releases/download/v10.5.1/bookmarks-10.5.1.tar.gz";
-#              version = "10.5.1";
-#            };
+            inherit (pkgs.nextcloud30Packages.apps) news contacts calendar tasks mail bookmarks notes;
           };
+          extraAppsEnable = true;
         };
   
         networking = {
           firewall = {
             enable = true;
-            allowedTCPPorts = [ 80 442 ];
+            allowedTCPPorts = [ ports.nextcloud 442 ];
           };
           useHostResolvConf = lib.mkForce false;
         };
