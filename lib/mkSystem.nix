@@ -7,7 +7,7 @@ in {
 mkNixOSConfig =
   { hostname
   , system ? "x86_64-linux"
-  , nixosSystem ? stable.lib.nixosSystem
+  , nixosSystem ? unstable.lib.nixosSystem
   , extraMods ? [ ]
   , extraOverlays ? [ ]
   }:
