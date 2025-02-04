@@ -65,26 +65,16 @@
     (recursiveMergeAttrs [
 
       /* ---Defining Systems--- */
-        # Main Desktop
+        # Desktop
       (mkNixOSConfig { hostname = "desktop"; })
         # Desktop Server
-      (mkNixOSConfig {
-        hostname = "desktop-server";
-        nixosSystem = unstable.lib.nixosSystem;
-      })
+      (mkNixOSConfig { hostname = "desktop-server"; })
         # Steamdeck
-      (mkNixOSConfig {
-        hostname = "decky";
-        system = "x86_64-linux";
-        nixosSystem = unstable.lib.nixosSystem;
-      })
+      (mkNixOSConfig { hostname = "decky"; system = "x86_64-linux"; })
         # Lenovo Thinkpad x240
       (mkNixOSConfig { hostname = "x240"; })
         # Lenovo Thinkpad t440p
-      (mkNixOSConfig {
-        hostname = "t440p";
-        nixosSystem = unstable.lib.nixosSystem;
-      })
+      (mkNixOSConfig { hostname = "t440p"; })
         # Raspberry Pi 4
       (mkNixOSConfig { hostname = "rpi4"; system = "aarch64-linux"; })
 
