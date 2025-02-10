@@ -56,9 +56,19 @@
             auth_alg=OPEN
           '';
         };
+          # Mobile Hotspot
+        "bin-hotspot" = {
+          priority = 3;
+          auth = ''
+            psk=82dd0b712d8928c6cc5f019c16cd0feab6271cf4e3505781914a5bb6cb41b63e
+            proto=RSN
+            key_mgmt=WPA-PSK
+            pairwise=CCMP
+            auth_alg=OPEN
+          '';
+        };
       };
     };
   };
-
 
 }
