@@ -32,7 +32,10 @@ in
           khelpcenter
           oxygen
           discover
+          ark
         ];
+
+        environment.systemPackages = with pkgs; [ ark ];
       })
       (mkIf (cfg == "gnome") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
@@ -63,7 +66,6 @@ in
           gnome-disks
           file-roller
           gnome-tour
-          ark
         ];
       })
     ];
