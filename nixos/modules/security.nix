@@ -44,7 +44,7 @@
     "squashfs"
     "udf"
 #    "bluetooth"
-    "btusb"
+#    "btusb"
 #    "uvcvideo" # webcam
     "hpfs"
     "jfs"
