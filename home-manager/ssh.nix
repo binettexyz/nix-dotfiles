@@ -11,6 +11,11 @@ with lib;
           user = "${config.home.username}";
           port = 704;
         };
+        "decky" = {
+          hostname = "100.102.251.119";
+          user = "${config.home.username}";
+          port = 704;
+        };
       };
     };
 
