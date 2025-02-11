@@ -55,7 +55,7 @@
     ];
   };
 
-  /* ---Graphic Card--- */
+  /* ---Video Driver--- */
   services.xserver.videoDrivers = [ "modesetting" ];
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.extraPackages = with pkgs; [
@@ -65,14 +65,12 @@
     intel-media-driver
   ];
 
-   /* ---Network--- */
+   /* ---Networking--- */
   networking = {
     hostName = "x240";
     interfaces.wlan0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
-    wireless = {
-      interfaces = [ "wlan0" ];
-    };
+    wireless.interfaces = [ "wlan0" ];
   };
 
   /* ---Screen resolution--- */
@@ -88,8 +86,7 @@
   }];
 
   /* ---Touchpad & Trackpoint--- */
-    # Touchpad
-  services.libinput = {
+  services.libinput = { # Touchpad
     enable = true;
     touchpad = {
       naturalScrolling = true;
@@ -103,14 +100,14 @@
     };
   };
 
-    # Trackpoint
-  hardware.trackpoint = {
+  hardware.trackpoint = { # Trackpoint
     enable = true;
     sensitivity = 300;
     speed = 100;
     emulateWheel = false;
   };
 
+  /* ---CPU Stuff--- */
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   nix.settings.max-jobs = 4; # CPU Treads
   hardware.cpu.amd.updateMicrocode = true;
