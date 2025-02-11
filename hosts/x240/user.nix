@@ -20,13 +20,10 @@ in {
       ### app ###
     pidof -s dunst || setsid -f dunst &	    # dunst for notifications
     udiskie &				    # automount device daemon
-    flameshot &
     greenclip daemon &
-    transmission-daemon &
-    redshift -l 45.35:-73.30 -t 6500:3800 &   # blue filter
 
       ### Settings ###
-    #xrandr --dpi 96 &
+    xrandr --dpi 96 &
     xsetroot -cursor_name left_ptr &	    # change cursor name
     remaps &				    # remaps capslock with esc
     unclutter &				    # remove mouse when idle
@@ -39,8 +36,8 @@ in {
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
-    #ssh-agent dwm
-    while:; do dwm && break; done
+    ssh-agent dwm
+    #while:; do dwm && break; done
   '';
 
     xresources.properties =
