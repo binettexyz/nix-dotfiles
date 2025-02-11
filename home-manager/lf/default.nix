@@ -156,5 +156,6 @@ with lib;
 
     home.file.".config/lf/cleaner".source = ./etc/cleaner;
     home.file.".config/lf/preview".source = ./etc/preview;
+    home.file.".local/bin/lfrun".source = ./etc/lfrun;
 
 }
