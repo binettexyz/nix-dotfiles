@@ -6,7 +6,7 @@ with lib;
   programs.librewolf = {
     enable = true;
     settings = {
-#      "browser.quitShortcut.disabled" = true;
+      "browser.quitShortcut.disabled" = true;
       "browser.uidensity" = 0; # compact mode
       "browser.startup.page" = 3; # restore session
       "browser.warnOnQuitShortcut" = false;
@@ -17,7 +17,7 @@ with lib;
       "security.OCSP.require" = false;
       "network.dns.disableIPv6" = true;
       "privacy.resistFingerprinting" = true;
-      "privacy.resistFingerprinting.letterboxing" = true;
+      "privacy.resistFingerprinting.letterboxing" = false;
       "privacy.clearOnShutdown.history" = true;
       "privacy.clearOnShutdown.downloads" = true;
       "privacy.clearOnShutdown.cookies" = false;
