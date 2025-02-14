@@ -2,10 +2,10 @@
 
 let
   baseUrl = "https://raw.githubusercontent.com/StevenBlack/hosts";
-  commit = "c8ed1f1f0bbd59eb5e152406541e9813feed4873";
+  commit = "master";
   hostsFile = pkgs.fetchurl {
-    url = "${baseUrl}/${commit}/alternates/fakenews-gambling/hosts";
-    sha256 = "bjloQC25uOH3K+5XVTrKvu5mOZDtKipcU8k1Mn8Os7U=";
+    url = "${baseUrl}/${commit}/alternates/fakenews-gambling-porn-social/hosts";
+    sha256 = "sha256-KXZg59t3fCHtqExy4nWKQCLZUE+LvStYYZB+BKulnh0=";
   };
   hostsContent = lib.readFile hostsFile;
 in {
