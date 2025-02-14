@@ -1,8 +1,8 @@
 { lib, ... }: {
 
   imports = [
-    ./pc.nix
-    ./qutebrowser
+    ./modules/pc.nix
+    ./modules/qutebrowser
   ];
 
   device.type = "laptop";

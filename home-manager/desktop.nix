@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }: {
 
   imports = [
-    ./gaming.nix
-    ./pc.nix
+    ./modules/gaming.nix
+    ./modules/pc.nix
   ];
 
   home.packages = with pkgs; [

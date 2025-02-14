@@ -3,9 +3,9 @@
 {
   # Import overlays
   imports = [
-    ../../overlays
-    ../../modules/device.nix
-    ../../modules/meta.nix
+    ../../../overlays
+    ../../../modules/device.nix
+    ../../../modules/meta.nix
   ];
 
   # Add some Nix related packages
@@ -23,7 +23,7 @@
   # sudo echo "trusted-users = @wheel" >> /etc/nix/nix.conf
   nix = {
     package = lib.mkDefault pkgs.nix;
-    settings = import ../../shared/nix-conf.nix;
+    settings = import ../../../shared/nix-conf.nix;
   };
 
   # Set custom nixpkgs config (e.g.: allowUnfree), both for this

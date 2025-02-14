@@ -13,7 +13,7 @@
     heroic # Launcher for epic/gog/amazon
     discord
     protonup-qt # Download proton-ge.
-    r2modman
+    r2modman # Mods manager
 
     # Emulation
     # TODO: Add emulators
