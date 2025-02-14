@@ -4,7 +4,7 @@ let
 in {
 
   imports = [
-    ../../home-manager/laptop.nix 
+    ../../home-manager/laptop.nix
     (inputs.impermanence + "/home-manager.nix")
     flake.inputs.nix-colors.homeManagerModule
   ];

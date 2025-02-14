@@ -3,7 +3,6 @@
   imports = [
     ./dwm
     ./librewolf.nix
-    ./minimal.nix
     ./mpv
     ./newsboat.nix
   ];
