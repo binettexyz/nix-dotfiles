@@ -1,12 +1,14 @@
 { inputs, pkgs, config, lib, ... }:
 with lib;
-
-{
+let
+  name = "nixbuilder";
+in {
 
   imports = [ ./containers ];
 
   config = lib.mkIf (config.device.type == "server") {
 
+    /* ---Network File System--- */
     services.nfs.server = {
       enable = true;
       exports = ''
@@ -15,19 +17,38 @@ with lib;
       '';
     };
 
-#    services.nginx.enable = true;
-
-#TODO    services.dnsmasq.enable = true;
-
-        # Docker
-    virtualisation.podman = {
-      enable = true;
-      dockerCompat = true;
-      enableNvidia = lib.mkDefault false;
-      autoPrune.enable = true;
+    /* ---Docker Container--- */
+    virtualisation = {
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        enableNvidia = lib.mkDefault false;
+        autoPrune.enable = true;
+      };
+      oci-containers.backend = "podman";
     };
-  
-    virtualisation.oci-containers.backend = "podman";
-  };
 
+    /* ---Builder User--- */
+    users = {
+      groups.${name} = {};
+      users.${name} = {
+        useDefaultShell = true;
+        #shell = "/run/current-system/sw/bin/nologin";
+        isNormalUser = true;
+        createHome = true;
+        home = "/home/${name}";
+        group = "${name}";
+        extraGroups = [ "${name}" ];
+      };
+    };
+    security.doas.extraRules = [
+      {
+        users = [ "nixbuilder" ];
+        noPass = true;
+        cmd = "nixos-rebuild";
+      }
+    ];
+    nix.settings.trusted-users = [ "${name}" ];
+
+  };
 }
