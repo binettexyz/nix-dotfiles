@@ -6,9 +6,8 @@ with lib;
     programs.ssh = {
       enable = true;
       matchBlocks = {
-        "desktop-server" = {
+        "server" = {
           hostname = "100.69.22.72";
-          user = "${config.home.username}";
           port = 704;
         };
         "decky" = {

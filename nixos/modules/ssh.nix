@@ -9,6 +9,7 @@ in
       startWhenNeeded = true;
       allowSFTP = true;
       ports = [ 704 ];
+      authorizedKeysInHomedir = true;
       settings = {
         KbdInteractiveAuthentication = false;
         PasswordAuthentication = false;
@@ -21,6 +22,8 @@ in
         AllowAgentForwarding no
         AllowStreamLocalForwarding no
         AuthenticationMethods publickey
+        Match Address 100.67.150.87
+              PermitrootLogin yes
       '';
     };
   
