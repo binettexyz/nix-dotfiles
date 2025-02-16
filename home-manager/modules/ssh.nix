@@ -6,6 +6,13 @@ with lib;
     programs.ssh = {
       enable = true;
       matchBlocks = {
+        "builder" = {
+          user = "nixbuilder";
+          hostname = "100.69.22.72";
+          port = 704;
+          identitiesOnly = true;
+          identityFile = [ "/root/.ssh/nixbuilder" ];
+        };
         "server" = {
           hostname = "100.69.22.72";
           port = 704;
