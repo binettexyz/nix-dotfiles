@@ -55,33 +55,33 @@ in {
       # Font
     "*.font" = "monospace:size=${toString fontSize}";
 
-    "*.background" = "#${config.colorScheme.colors.background}";
-    "*.foreground" = "#${config.colorScheme.colors.foreground}";
-    "*.cursorColor" = "#${config.colorScheme.colors.cursorColor}";
+    "*.background" = "#${config.colorScheme.palette.background}";
+    "*.foreground" = "#${config.colorScheme.palette.foreground}";
+    "*.cursorColor" = "#${config.colorScheme.palette.cursorColor}";
       # Black + DarkGrey
-    "*.color0"  = "#${config.colorScheme.colors.black}";
-    "*.color8" = "#${config.colorScheme.colors.blackBright}";
+    "*.color0"  = "#${config.colorScheme.palette.black}";
+    "*.color8" = "#${config.colorScheme.palette.blackBright}";
       # DarkRed + Red
-    "*.color1" = "#${config.colorScheme.colors.red}";
-    "*.color9" = "#${config.colorScheme.colors.redBright}";
+    "*.color1" = "#${config.colorScheme.palette.red}";
+    "*.color9" = "#${config.colorScheme.palette.redBright}";
       # DarkGreen + Green
-    "*.color2" = "#${config.colorScheme.colors.green}";
-    "*.color10" = "#${config.colorScheme.colors.greenBright}";
+    "*.color2" = "#${config.colorScheme.palette.green}";
+    "*.color10" = "#${config.colorScheme.palette.greenBright}";
       # DarkYellow + Yellow
-    "*.color3" = "#${config.colorScheme.colors.yellow}";
-    "*.color11" = "#${config.colorScheme.colors.yellowBright}";
+    "*.color3" = "#${config.colorScheme.palette.yellow}";
+    "*.color11" = "#${config.colorScheme.palette.yellowBright}";
       # DarkBlue + Blue
-    "*.color4" = "#${config.colorScheme.colors.blue}";
-    "*.color12" = "#${config.colorScheme.colors.blueBright}";
+    "*.color4" = "#${config.colorScheme.palette.blue}";
+    "*.color12" = "#${config.colorScheme.palette.blueBright}";
       # DarkMagenta + Magenta
-    "*.color5" = "#${config.colorScheme.colors.magenta}";
-    "*.color13" = "#${config.colorScheme.colors.magentaBright}";
+    "*.color5" = "#${config.colorScheme.palette.magenta}";
+    "*.color13" = "#${config.colorScheme.palette.magentaBright}";
       # DarkCyan + Cyan
-    "*.color6" = "#${config.colorScheme.colors.cyan}";
-    "*.color14" = "#${config.colorScheme.colors.cyanBright}";
+    "*.color6" = "#${config.colorScheme.palette.cyan}";
+    "*.color14" = "#${config.colorScheme.palette.cyanBright}";
       # LightGrey + White
-    "*.color7" = "#${config.colorScheme.colors.white}";
-    "*.color15" = "#${config.colorScheme.colors.whiteBright}";
+    "*.color7" = "#${config.colorScheme.palette.white}";
+    "*.color15" = "#${config.colorScheme.palette.whiteBright}";
   };
 
 
