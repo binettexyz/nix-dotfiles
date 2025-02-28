@@ -45,8 +45,12 @@
     };
     "/nix/persist/mounts/temp" = {
       device = "/dev/disk/by-label/exthdd";
-      fsType = "ntfs-3g";
+      fsType = "ntfs";
       options = [ "rw" "uid=1000" "gid=1000" "x-systemd.automount" "noauto" ];
+    };
+    "/tmp" = {
+      device = "/media/tmp";
+      options = [ "bind" ];
     };
   };
 
