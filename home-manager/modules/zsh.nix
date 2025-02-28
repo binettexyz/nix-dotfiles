@@ -80,8 +80,6 @@ with lib;
         bloat = "nix path-info -Sh /run/current-system";
         nixhost = "pushd /etc/nixos; doas nixos-rebuild switch --flake .# --build-host desktop-server";
 
-        sudo = "doas su";
-
           # Naviguation
         ".." = "cd ..";
         "..." = "cd ../..";
