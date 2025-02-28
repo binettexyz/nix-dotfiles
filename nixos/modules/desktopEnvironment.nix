@@ -35,7 +35,7 @@ in
           ark
         ];
 
-        environment.systemPackages = with pkgs; [ ark ];
+        environment.systemPackages = with pkgs; [ kdePackages.ark ];
       })
       (mkIf (cfg == "gnome") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
