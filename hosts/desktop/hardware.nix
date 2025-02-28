@@ -13,7 +13,7 @@ in {
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
-    #kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelPackages =  pkgs.linuxPackages_xanmod;
     kernelParams = [ "mitigations=off" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
@@ -88,6 +88,6 @@ in {
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistribuableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 }

@@ -29,11 +29,6 @@ with lib;
       };
     };
 
-    /* ---Flatpak--- */
-    services.flatpak.enable = true;
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
-  
     /* ---Drivers--- */
     hardware.xpadneo.enable = true; # Xbox One Controller
     hardware.xone.enable = false; # Xbox One Accessories (USB dongle)
