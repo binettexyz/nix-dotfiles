@@ -1,25 +1,19 @@
 { config, options, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.modules.containers.vaultwarden;
+  cfg = config.modules.server.containers.vaultwarden.enable;
   localAddress = "10.0.0.16";
   hostAddress = "10.0.1.16";
   backupDir = "/nix/persist/srv/private/vaultwarden";
-  ports.vaultwarden = 3011;
-  mkLocalProxy = port: {
-    locations."/".proxyPass = "http://localhost:" + toString(port);
-#    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
-  };
+  ports.vaultwarden = 8222;
 in
 {
-  options.modules.containers.vaultwarden = {
-    enable = mkEnableOption "vaultwarden";
+  options.modules.server.containers.vaultwarden.enable = mkOption {
+    description = "Enable vaultwarden passwd manager";
+    default = false;
   };
 
-  config = mkIf cfg.enable {
-    services.nginx.virtualHosts = {
-      "vault.box" = mkLocalProxy ports.vaultwarden;
-    };
+  config = lib.mkIf config.modules.server.containers.vaultwarden.enable {
 
     containers.vaultwarden = {
       autoStart = true;
@@ -36,11 +30,17 @@ in
           hostPort = ports.vaultwarden;
           protocol = "tcp";
         }
+        {
+          containerPort = ports.vaultwarden;
+          hostPort = ports.vaultwarden;
+          protocol = "udp";
+        }
   		];
   
       config = { config, pkgs, ... }: {
         networking.firewall = {
           allowedTCPPorts = [ ports.vaultwarden ];
+          allowedUDPPorts = [ ports.vaultwarden ];
         };
 
         services.vaultwarden = {
@@ -52,7 +52,6 @@ in
             websocketAddress = "0.0.0.0";
             rocketAddress = "0.0.0.0";
             rocketPort = ports.vaultwarden;
-            logFile = "/var/log/bitwarden_rs.log";
             showPasswordHint = false;
           };
           inherit backupDir;
