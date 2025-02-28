@@ -10,7 +10,7 @@
     ./nextcloud
 #    ./nextcloud/docker.nix
 #    ./portainer
-#    ./vaultwarden
+    ./vaultwarden
   ];
 
 }
