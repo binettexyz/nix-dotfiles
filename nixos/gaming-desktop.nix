@@ -3,18 +3,16 @@
   imports = [ ./modules ];
 
   /* ---Custom Modules--- */
-  device.type = "gaming-handheld";
+  device.type = "gaming-desktop";
   modules.gaming = {
     enable = true;
     steam.enable = true;
   };
   modules.system = {
     audio.enable = true;
-    desktopEnvironment.jovian-nixos.enable = true;
+    desktopEnvironment = { default = "plasma"; };
     home.enable = true;
   };
-
-  jovian.devices.steamdeck.enable = lib.mkForce false;
 
   /* ---Services--- */
     # Remote gaming using moonlight/sunshine.

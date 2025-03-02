@@ -6,7 +6,7 @@ in {
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    flake.inputs.nixos-hardware.nixosModules.common-cpu-amd
+      # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
     flake.inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
   ];
 
@@ -40,12 +40,12 @@ in {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/mounts/nas" = {
-      device = "100.71.254.90:/media";
-      fsType = "nfs";
+#    "/mounts/nas" = {
+#      device = "100.71.254.90:/media";
+#      fsType = "nfs";
         # don't freeze system if mount point not available on boot
-      options = [ "x-systemd.automount" "noauto" ];
-    };
+#      options = [ "x-systemd.automount" "noauto" ];
+#    };
   };
 
   swapDevices = [ /*{ device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }*/ ];
@@ -64,20 +64,6 @@ in {
     };
   };
 
-  /* ---Screen resolution--- */
-#  services.xserver = {
-#    xrandrHeads = [{
-#      output = "DP-2";
-#      primary = true;
-#      monitorConfig = ''
-#          # 2560x1440 164.90 Hz (CVT) hsync: 261.86 kHz; pclk: 938.50 MHz
-#        Modeline "2560x1440_165.00"  938.50  2560 2792 3072 3584  1440 1443 1448 1588 -hsync +vsync
-#        Option "PreferredMode" "2560x1440_165.00"
-#        Option "Position" "0 0"
-#      '';
-#    }];
-#  };
-
   /* ---Networking--- */
   networking = {
     hostName = "desktop";
@@ -86,7 +72,23 @@ in {
     networkmanager.enable = lib.mkForce true;
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  /* ---Bluetooth--- */
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  /* ---Video Driver--- */
+  services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+    # Enable loading amdgpu kernelModule in stage 1.
+    # Can fix lower resolution in boot screen during initramfs phase
+  hardware.amdgpu.initrd.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  /* ---Processor--- */
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

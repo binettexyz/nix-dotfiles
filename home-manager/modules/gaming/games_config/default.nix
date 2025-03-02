@@ -1,4 +1,4 @@
 {...}: {
 
-  imports = [ ./gzdoom.nix ];
+  imports = [ ./mangohud.nix ./gzdoom.nix ];
 }
