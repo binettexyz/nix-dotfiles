@@ -23,8 +23,8 @@ in
       (mkIf (cfg == "plasma") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.desktopManager.plasma6.enable = true;
-        services.displayManager = {
-          sddm.enable = if config.modules.system.desktopEnvironment.jovian-nixos.enable then false else true;
+        services.xserver.displayManager = {
+          lightdm.enable = if config.modules.system.desktopEnvironment.jovian-nixos.enable then false else true;
           defaultSession = "plasma";
         };
         environment.plasma6.excludePackages = with pkgs.libsForQt5; [
@@ -37,6 +37,7 @@ in
 
         environment.systemPackages = with pkgs; [ kdePackages.ark ];
       })
+
       (mkIf (cfg == "gnome") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.xserver.desktopManager.gnome.enable = true;
@@ -44,7 +45,7 @@ in
           gdm.enable = if config.modules.system.desktopEnvironment.jovian-nixos.enable then false else true;
           defaultSession = "gnome";
         };
-        environment.gnome.excludePackages = with pkgs.libsForQt5; [
+        environment.gnome.excludePackages = with pkgs; [
           baobab
           epiphany
           gnome-text-editor
