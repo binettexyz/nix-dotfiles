@@ -16,7 +16,7 @@
 
   ## Networking ##
   networking = {
-    hostName = "rpi4";
+    hostName = "kageyami";
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     wireless.interfaces = [ "wlan0" ];

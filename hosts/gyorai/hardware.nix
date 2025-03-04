@@ -54,7 +54,7 @@
 
   /* ---Networking--- */
   networking = {
-    hostName = "decky";
+    hostName = "gyorai";
     useDHCP = lib.mkForce true;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
@@ -68,7 +68,7 @@
     powerOnBoot = true;
     settings = {
       General = {
-        Name = "Decky";
+        Name = "gyorai";
         ControllerMode = "dual";
         Experimental = "true";
       };

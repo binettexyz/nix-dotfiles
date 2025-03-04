@@ -40,12 +40,12 @@ in {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/home/devices/hddGames" = {
-      device = "/dev/disk/by-label/hddGames";
+    "/home/games/ssd" = {
+      device = "/dev/disk/by-label/ssdGames";
       fsType = "ext4";
     };
-    "/home/devices/ssdGames" = {
-      device = "/dev/disk/by-label/ssdGames";
+    "/home/games/hdd" = {
+      device = "/dev/disk/by-label/hddGames";
       fsType = "ext4";
     };
 #    "/mounts/nas" = {
@@ -74,7 +74,7 @@ in {
 
   /* ---Networking--- */
   networking = {
-    hostName = "desktop";
+    hostName = "seiryu";
     useDHCP = lib.mkForce false;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
@@ -97,6 +97,7 @@ in {
   };
 
   /* ---Processor--- */
+  #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

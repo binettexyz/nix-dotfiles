@@ -74,7 +74,7 @@
 
   /* ---Network--- */
   networking = {
-    hostName = "t440p";
+    hostName = "kokoro";
     interfaces.wlp3s0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
     wireless = {
