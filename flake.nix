@@ -65,18 +65,14 @@
     (recursiveMergeAttrs [
 
       /* ---Defining Systems--- */
-        # Desktop
-      (mkNixOSConfig { hostname = "desktop"; })
-        # Desktop Server
-      (mkNixOSConfig { hostname = "desktop-server"; })
-        # Steamdeck
-      (mkNixOSConfig { hostname = "decky"; system = "x86_64-linux"; })
-        # Lenovo Thinkpad x240
-      (mkNixOSConfig { hostname = "x240"; })
-        # Lenovo Thinkpad t440p
-      (mkNixOSConfig { hostname = "t440p"; })
-        # Raspberry Pi 4
-      (mkNixOSConfig { hostname = "rpi4"; system = "aarch64-linux"; })
+        # Desktop (Azure Dragon)
+      (mkNixOSConfig { hostname = "seiryu"; })
+        # Steamdeck (Torpedo)
+      (mkNixOSConfig { hostname = "gyorai"; system = "x86_64-linux"; })
+        # Lenovo Thinkpad t440p (Heart/Spirit)
+      (mkNixOSConfig { hostname = "kokoro"; })
+        # Raspberry Pi 4 (Shadow Darkness)
+      (mkNixOSConfig { hostname = "kageyami"; system = "aarch64-linux"; })
 
       /* ---Defining Home-Manager--- */
       (mkHomeConfig { hostname = "desktop"; })
