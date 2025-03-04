@@ -26,7 +26,7 @@
   };
 
   /* ---System Configuration--- */
-  services.logind.powerKey = lib.mkForce "ignore";
+  services.logind.powerKey = lib.mkForce "suspend";
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.

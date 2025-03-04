@@ -14,17 +14,6 @@
     home.enable = true;
   };
 
-  /* ---Services--- */
-    # Remote gaming using moonlight/sunshine.
-  services = {
-    sunshine = {
-      enable = true;
-      capSysAdmin = true;
-      openFirewall = true;
-      autoStart = lib.mkDefault false;
-    };
-  };
-
   /* ---System Configuration--- */
   services.logind.powerKey = lib.mkForce "ignore";
 
