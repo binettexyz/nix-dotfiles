@@ -13,7 +13,7 @@
 
     /* --- Others --- */
     flake-utils.url = "github:numtide/flake-utils";
-    home.url = "github:nix-community/home-manager/release-24.11";
+    home.url = "github:nix-community/home-manager/master";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
