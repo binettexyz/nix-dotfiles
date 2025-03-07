@@ -2,7 +2,7 @@
 with lib;
 let
   inherit (flake) inputs;
-  cfg = config.modules.system.desktopEnvironment.default;
+  cfg = config.modules.system.desktopEnvironment;
 in
   {
     /* ---Desktop Environment Module--- */
@@ -20,13 +20,11 @@ in
 
     /* ---Configuration--- */
     config = mkMerge [
-      (mkIf (cfg == "plasma") {
+      (mkIf (cfg.default == "plasma") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.desktopManager.plasma6.enable = true;
-        services.xserver.displayManager = {
-          lightdm.enable = if config.modules.system.desktopEnvironment.jovian-nixos.enable then false else true;
-          defaultSession = "plasma";
-        };
+        services.displayManager.defaultSession = "plasma";
+        services.xserver.displayManager.lightdm.enable = if cfg.jovian-nixos.enable then false else true;
         environment.plasma6.excludePackages = with pkgs.libsForQt5; [
           elisa
           khelpcenter
@@ -38,7 +36,7 @@ in
         environment.systemPackages = with pkgs; [ kdePackages.ark ];
       })
 
-      (mkIf (cfg == "gnome") {
+      (mkIf (cfg.default == "gnome") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.xserver.desktopManager.gnome.enable = true;
         services.xserver.displayManager = {
