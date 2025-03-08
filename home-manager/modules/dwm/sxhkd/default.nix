@@ -1,7 +1,11 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, super, ... }:
 with lib;
 
-{
+let
+  cfg = super.services.xserver.windowManager.dwm;
+in {
+
+  config = lib.mkIf cfg.enable {
     services.sxhkd = {
       enable = true;
 
@@ -67,7 +71,8 @@ with lib;
       };
     };
 
-  home.file.".config/sxhkd/action".source = ./action;
+    home.file.".config/sxhkd/action".source = ./action;
+  };
 
 }
 

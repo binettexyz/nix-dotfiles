@@ -1,25 +1,29 @@
 { pkgs, config, lib, ... }:
 with lib;
 
-{
+let
+  cfg = config.modules.hm.browser.qutebrowser;
+in {
 
+  options.modules.hm.browser.qutebrowser.enable = mkOption {
+    description = "Enable qutebrowser";
+    default = false;
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.qutebrowser = {
       enable = true;
 
-  
       enableDefaultBindings = true;
       keyBindings = {
         normal = {
           ",v" = "hint links spawn mpv {hint-url}";
           ",V" = "spawn mpv {hint-url}";
           ",y" = "hint links spawn st -e yt-dlp {hint-url}";
-  
-  
           "<Ctrl-l>" = "set-cmd-text -s :open";
-  
-  #        "zl" = "spawn --userscript qute-pass";
-  #        "zul" = "spawn --userscript qute-pass --username-only";
-  #        "zpl" = "spawn --userscript qute-pass --password-only";
+#          "zl" = "spawn --userscript qute-pass";
+#          "zul" = "spawn --userscript qute-pass --username-only";
+#          "zpl" = "spawn --userscript qute-pass --password-only";
         };
       };
   
@@ -92,7 +96,6 @@ with lib;
               "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
               "https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext&_=223428"
               "https://pgl.yoyo.org/adservers/serverlist.php?showintro=0;hostformat=hosts"
-
               "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-adblock-filters/adblock.txt"
               "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/adblock_social_filters/adblock_social_list.txt"
               "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/cookies_filters/adblock_cookies.txt"
@@ -101,7 +104,6 @@ with lib;
               "https://raw.githubusercontent.com/FiltersHeroes/KAD/master/KAD.txt"
               "https://alleblock.pl/alleblock/alleblock.txt"
               "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock.txt"
-  
               "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt"
               "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
               "https://fanboy.co.nz/r/fanboy-ultimate.txt"
@@ -151,5 +153,6 @@ with lib;
         };
       };
     };
+  };
 
 }

@@ -1,16 +1,19 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, super, ... }:
+let
+  cfg = super.services.xserver.windowManager.dwm;
+in {
 
   imports = [
     ./dunst.nix
     ./flameshot.nix
-    #./picom.nix
+    ./picom.nix
     ./sxhkd
   ];
 
-  home.packages = with pkgs; [
-    dmenu
-    dwm
-    st
+  home.packages = lib.mkIf cfg.enable [
+    pkgs.dmenu
+    pkgs.dwm
+    pkgs.st
   ];
 
 }

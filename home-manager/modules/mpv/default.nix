@@ -2,6 +2,7 @@
 with lib;
 
 let
+  cfg = config.modules.hm.mpv;
   anime4k = pkgs.anime4k;
   anime4kHighSpecs = {
     "CTRL+1" = ''no-osd change-list glsl-shaders set "${anime4k}/Anime4K_Clamp_Highlights.glsl:${anime4k}/Anime4K_Restore_CNN_VL.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
@@ -24,7 +25,18 @@ let
 in
 {
 
-  config = (mkMerge [
+  options.modules.hm.mpv = {
+    enable = mkOption {
+      description = "Enable mpv";
+      default = false;
+    };
+    lowSpec = mkOption {
+      description = "If computer has low spec, disable certain feature";
+      default = false;
+    };
+  };
+
+  config = lib.mkIf cfg.enable (mkMerge [
     ({
       programs.mpv = {
         enable = true;
@@ -70,13 +82,13 @@ in
       home.file.".config/mpv/script-opts".source = ./etc/script-opts;
 
     })
-    (mkIf (config.device.type == "desktop") {
+    (lib.mkIf (cfg.lowSpec == false) {
       programs.mpv.bindings = anime4kHighSpecs;
 
       home.file.".config/mpv/mpv.conf".source = ./mpv.conf ;
     })
 
-    (mkIf (config.modules.device.type == "laptop") {
+    (mkIf (cfg.lowSpec == true) {
     })
   ]);
   

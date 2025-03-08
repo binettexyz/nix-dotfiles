@@ -1,12 +1,8 @@
 { config, lib, pkgs, ... }: {
 
   home.packages = with pkgs; [
-    atool # archive tool
     bat
-    #binutils
-    #coreutils
     cron
-    #TODO cryptsetup
     curl
     eza
     fzf
@@ -21,7 +17,6 @@
     ouch #easily compressing and decompressing files and directories
 #   pinentry pinentry-qt pass
     pwgen
-    python3
     rsync # replace scp
     unzip
     wget

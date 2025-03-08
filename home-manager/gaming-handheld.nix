@@ -1,14 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./modules/meta
-    ./modules/git.nix
-    ./modules/ssh.nix
-    ./modules/zsh.nix
-    ./modules/gaming
-    ./modules/librewolf.nix
-  ];
+  imports = [ ./modules ];
+
+  modules.hm = {
+    gaming.enable = true;
+    browser = { librewolf.enable = true; };
+  };
 
   home.packages = with pkgs; [
       # TODO: Setup emulations 

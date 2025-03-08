@@ -1,7 +1,11 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, super, ... }:
 with lib;
 
-{
+let
+  cfg = super.services.xserver.windowManager.dwm;
+in {
+
+  config = lib.mkIf cfg.enable {
     services.flameshot = {
       enable = true;
       settings = {
@@ -21,5 +25,6 @@ with lib;
         };
       };
     };
+  };
 
 }

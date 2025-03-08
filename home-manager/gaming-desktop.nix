@@ -1,16 +1,16 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./modules/meta
-    ./modules/neovim
-    ./modules/git.nix
-    ./modules/ssh.nix
-    ./modules/zsh.nix
-    ./modules/lf
-    ./modules/gaming
-    ./modules/librewolf.nix
-  ];
+  imports = [ ./modules ];
+
+  modules.hm = {
+    gaming.enable = true;
+    browser = { librewolf.enable = true; };
+    mpv = {
+      enable = true;
+      lowSpec = false;
+    };
+  };
 
   home.packages = with pkgs; [
     discord

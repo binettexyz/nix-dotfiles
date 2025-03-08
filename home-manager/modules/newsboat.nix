@@ -4,9 +4,15 @@ with lib;
 let
   browser = "${pkgs.firefox}/bin/librewolf";
   mpv = "${pkgs.mpv}/bin/mpv";
-in
-{
+  cfg = config.modules.hm.newsboat;
+in {
 
+  options.modules.hm.newsboat.enable = mkOption {
+    description = "Enable newsboat";
+    default = false;
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.newsboat = {
       enable = true;
 
@@ -92,6 +98,7 @@ in
         { title = "NixOS Home-Manager"; url = "https://github.com/nix-community/home-manager/commits.atom"; }
       ]; 
     };
+  };
 
 }
 
