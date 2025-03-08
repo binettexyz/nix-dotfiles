@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     discord
+    libreoffice
   ];
 
 }

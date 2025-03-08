@@ -13,6 +13,8 @@
     protonup-qt # Download proton-ge.
     r2modman # Mods manager
     moonlight-qt
+    lutris
+    wineWowPackages.waylandFull
   ];
 
 }

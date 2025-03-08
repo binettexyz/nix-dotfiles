@@ -30,6 +30,7 @@
     # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
     # Instead, bind it into home. See "host/seiryu/hardware.nix".
   boot.tmp.useTmpfs = lib.mkForce false;
+  hardware.xpadneo.enable = lib.mkForce false; # Xbox One Controller
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.
