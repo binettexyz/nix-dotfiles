@@ -15,23 +15,12 @@
   };
 
   /* ---Services--- */
-    # Remote gaming using moonlight/sunshine.
-  services = {
-    sunshine = {
-      enable = true;
-      capSysAdmin = true;
-      openFirewall = true;
-      autoStart = lib.mkDefault false;
-    };
-  };
-
 
   /* ---System Configuration--- */
   services.logind.powerKey = lib.mkForce "suspend";
     # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
     # Instead, bind it into home. See "host/seiryu/hardware.nix".
   boot.tmp.useTmpfs = lib.mkForce false;
-  hardware.xpadneo.enable = lib.mkForce false; # Causing issue with ps5 controller.
     # Enable plymouth
   boot.plymouth.enable = lib.mkForce true;
   boot.kernelParams = [ "splash" ];

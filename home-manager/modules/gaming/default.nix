@@ -12,9 +12,9 @@
     heroic # Launcher for epic/gog/amazon
     protonup-qt # Download proton-ge.
     r2modman # Mods manager
-    moonlight-qt
     lutris
     wineWowPackages.waylandFull
+    parsec-bin
   ];
 
 }
