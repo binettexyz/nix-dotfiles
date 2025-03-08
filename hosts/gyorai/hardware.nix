@@ -7,7 +7,6 @@
 
   /* ---Kernel Stuff--- */
   boot = {
-    #kernelPackages = ;
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ "mitigations=off" ];
     extraModulePackages = [ ];
@@ -28,14 +27,17 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-      #Temporary fileSystem
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+    };
     "/home" = {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
+    "/tmp" = {
+      device = "/home/binette/.cache/tmp";
+      options = [ "bind" ];
     };
   };
   swapDevices = [ ];
