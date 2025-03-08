@@ -8,7 +8,8 @@
   /* ---Kernel Stuff--- */
   boot = {
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=off" "nowatchdog" ];
+    kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];

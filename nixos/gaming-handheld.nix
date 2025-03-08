@@ -19,6 +19,9 @@
     # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
     # Instead, bind it into home. See "host/gyorai/hardware.nix".
   boot.tmp.useTmpfs = lib.mkForce false;
+    # Enable plymouth
+  boot.plymouth.enable = lib.mkForce true;
+  boot.kernelParams = [ "splash" ];
 
   /* ---Performance tweaks based on CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.

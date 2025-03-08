@@ -13,13 +13,18 @@
     kernel.sysctl = {
         # Enable Magic keys
       "kernel.sysrq" = 1;
-       # Reduce swap preference
+        # Reduce swap preference
       "vm.swappiness" = 10;
     };
     /* --Silent boot-- */
     initrd.verbose = false;
     consoleLogLevel = 0;
-    kernelParams = [ "quiet" "udev.log_level=3" "console=tty1" ];
+    kernelParams = [
+      "quiet"
+      "vt.global_cursor_default=0"
+      "udev.log_level=3"
+      "console=tty1"
+    ];
   };
      # Some misc packages
   environment.systemPackages = with pkgs; [ ];

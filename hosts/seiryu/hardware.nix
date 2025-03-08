@@ -14,7 +14,8 @@ in {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=off" "nowatchdog" ];
+    kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
