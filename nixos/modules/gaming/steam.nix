@@ -23,12 +23,14 @@ with lib;
       protontricks.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      extraPackages = with pkgs; [ gamemode mangohud ];
+      #extraPackages = with pkgs; [ gamemode mangohud ];
     };
 
     environment.systemPackages = with pkgs; [
         # Allow downloading of GE-Proton and other versions
       protonup-qt
+      gamemode
+      mangohud
     ];
   };
 

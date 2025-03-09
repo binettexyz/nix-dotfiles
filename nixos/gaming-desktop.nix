@@ -14,18 +14,13 @@
     home.enable = true;
   };
 
-  /* ---Services--- */
-
   /* ---System Configuration--- */
   services.logind.powerKey = lib.mkForce "suspend";
     # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
     # Instead, bind it into home. See "host/seiryu/hardware.nix".
   boot.tmp.useTmpfs = lib.mkForce false;
-    # Enable plymouth
-  boot.plymouth.enable = lib.mkForce true;
-  boot.kernelParams = [ "splash" ];
 
-  /* ---Performance tweaks based on CryoUtilities--- */
+  /* ---Performance Tweaks Based On CryoUtilities--- */
     # Determines how aggressively the kernel swaps out memory.
   boot.kernel.sysctl."vm.swappiness" = lib.mkForce 1;
     # Determines how aggressive memory compaction is done in the background.

@@ -39,6 +39,15 @@ with lib;
       dxvk
     ];
 
+    /* ---System Configuration--- */
+      # Enable plymouth.
+    boot.plymouth.enable = true;
+    boot.kernelParams = [ "splash" ]; # Needed for plymouth.
+
+    /* ---Game's Related Configuration--- */
+      # Needed for some **legit** games to run with lutris/wine.
+    boot.kernelParams = [ "clearcpuid=512" ];
+
     /* ---Games Related Networking--- */
     networking = let
       ports.mindustry = 6567;
