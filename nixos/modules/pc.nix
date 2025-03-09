@@ -5,7 +5,7 @@ in
   with config.users.users.${username};
 {
 
-  config = lib.mkIf (config.device.type == "laptop") {
+  config = lib.mkIf (config.device.type == "workstation") {
       # enable suckless window manager
     services.xserver.windowManager.dwm.enable = true;
   

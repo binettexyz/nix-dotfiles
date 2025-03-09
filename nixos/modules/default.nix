@@ -5,7 +5,6 @@
     ./bootloader.nix
     ./environmentVariables.nix
     ./desktopEnvironment.nix
-    #./dev.nix
     ./fonts.nix
     ./gaming
     ./home.nix

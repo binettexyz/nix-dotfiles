@@ -3,7 +3,10 @@
   imports = [ ./modules ];
 
   /* ---Custom Modules--- */
-  device.type = "gaming-handheld";
+  device = {
+    type = "gaming-handheld";
+    hasBattery = true;
+  };
   modules.gaming = {
     enable = true;
     steam.enable = true;

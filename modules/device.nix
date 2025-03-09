@@ -7,6 +7,10 @@ with lib; {
       description = "Type of device";
       default = "";
     };
+    hasBattery = mkOption {
+      description = "Device has battery";
+      default = false;
+    };
     gpu = mkOption {
       type = types.enum [ "amd" "nvidia" ];
       description = "Type of graphic cards";
