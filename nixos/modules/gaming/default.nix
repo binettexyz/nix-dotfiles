@@ -42,11 +42,11 @@ with lib;
     /* ---System Configuration--- */
       # Enable plymouth.
     boot.plymouth.enable = true;
-    boot.kernelParams = [ "splash" ]; # Needed for plymouth.
-
-    /* ---Game's Related Configuration--- */
-      # Needed for some **legit** games to run with lutris/wine.
-    boot.kernelParams = [ "clearcpuid=512" ];
+    boot.kernelParams = [
+        # Needed for some **legit** games to run with lutris/wine.
+      "clearcpuid=512"
+      "splash" # Needed for plymouth.
+    ];
 
     /* ---Games Related Networking--- */
     networking = let
