@@ -6,7 +6,7 @@
     ./environmentVariables.nix
     ./desktopEnvironment.nix
     ./fonts.nix
-    ./gaming
+    ./gaming.nix
     ./home.nix
     ./laptop
     ./locale.nix

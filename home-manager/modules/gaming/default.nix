@@ -28,6 +28,8 @@ in {
       lutris
       wineWowPackages.waylandFull
       parsec-bin
+      jdk
+      dxvk
     ];
   };
 

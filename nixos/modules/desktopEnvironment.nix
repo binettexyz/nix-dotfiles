@@ -6,25 +6,19 @@ let
 in
   {
     /* ---Desktop Environment Module--- */
-    options.modules.system.desktopEnvironment = {
-      default = mkOption {
-        description = "Enable Desktop Environment";
-        type = with types; nullOr (enum [ "plasma" "gnome" "gamescope-wayland" ]);
-        default = null;
-      };
-      jovian-nixos.enable = mkOption {
-        description = "Enable Jovian-NixOS features.";
-        default = false;
-      };
+    options.modules.system.desktopEnvironment = mkOption {
+      description = "Enable Desktop Environment";
+      type = with types; nullOr (enum [ "plasma" "gnome" "gamescope-wayland" ]);
+      default = null;
     };
 
     /* ---Configuration--- */
     config = mkMerge [
-      (mkIf (cfg.default == "plasma") {
+      (mkIf (cfg == "plasma") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.desktopManager.plasma6.enable = true;
         services.displayManager.defaultSession = "plasma";
-        services.xserver.displayManager.lightdm.enable = if cfg.jovian-nixos.enable then false else true;
+        services.xserver.displayManager.lightdm.enable = if config.jovian.steam.enable then false else true;
         environment.plasma6.excludePackages = with pkgs.libsForQt5; [
           elisa
           khelpcenter
@@ -36,11 +30,11 @@ in
         environment.systemPackages = with pkgs; [ kdePackages.ark ];
       })
 
-      (mkIf (cfg.default == "gnome") {
+      (mkIf (cfg == "gnome") {
         services.xserver.displayManager.sx.enable = lib.mkForce false;
         services.xserver.desktopManager.gnome.enable = true;
         services.xserver.displayManager = {
-          gdm.enable = if config.modules.system.desktopEnvironment.jovian-nixos.enable then false else true;
+          gdm.enable = if config.jovian.steam.enable then false else true;
           defaultSession = "gnome";
         };
         environment.gnome.excludePackages = with pkgs; [

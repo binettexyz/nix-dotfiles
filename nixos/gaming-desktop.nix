@@ -7,10 +7,11 @@
   modules.gaming = {
     enable = true;
     steam.enable = true;
+    openPorts = true;
   };
   modules.system = {
     audio.enable = true;
-    desktopEnvironment = { default = "plasma"; };
+    desktopEnvironment = "plasma";
     home.enable = true;
   };
 

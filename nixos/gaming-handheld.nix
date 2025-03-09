@@ -13,7 +13,6 @@
   };
   modules.system = {
     audio.enable = true;
-    desktopEnvironment.jovian-nixos.enable = true;
     home.enable = true;
   };
 
