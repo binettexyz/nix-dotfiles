@@ -21,7 +21,6 @@
     consoleLogLevel = 0;
     kernelParams = [
       "quiet"
-      "vt.global_cursor_default=0"
       "udev.log_level=3"
       "console=tty1"
     ];
