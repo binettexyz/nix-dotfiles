@@ -66,15 +66,11 @@ in {
     (mkIf config.modules.gaming.steam.enable {
       programs.steam = {
         enable = true;
-          # Runs steam with https://github.com/Supreeeme/extest
-          # Without this, steam input on wayland sessions doesn't draw a visible cursor.
-        extest.enable = true;
-          # Modules from nix-gaming.
+          # Option from nix-gaming.
         platformOptimizations.enable = true;
         protontricks.enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
-        #extraPackages = with pkgs; [ gamemode mangohud ];
       };
 
       hardware.steam-hardware.enable = true;
