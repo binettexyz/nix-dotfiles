@@ -50,7 +50,8 @@ in {
       fsType = "ext4";
     };
     "/tmp" = {
-      device = "/home/binette/.cache/tmp";
+      #device = "/home/binette/.cache/tmp";
+      device = "/nix/persist/tmp";
       options = [ "bind" ];
     };
 #    "/mounts/nas" = {
@@ -81,8 +82,6 @@ in {
   networking = {
     hostName = "seiryu";
     useDHCP = lib.mkForce false;
-    wireless.enable = lib.mkForce false;
-    networkmanager.enable = lib.mkForce true;
   };
 
   /* ---Bluetooth--- */
