@@ -12,12 +12,17 @@
     nix-rebuild
   ];
 
-    # Without git we may be unable to build this config
-  programs.git = {
-    enable = true;
-    config = {
-        # Avoid git log spam while building this config
-      init.defaultBranch = "master";
+  programs = {
+    git = { # Without git, cant build this config.
+      enable = true;
+      config = {
+          # Avoid git log spam while building this config
+        init.defaultBranch = "master";
+      };
+    };
+    nh = { # Alternative to nixos-rebuild.
+      enable = true;
+      flake = "/etc/nixos";
     };
   };
 

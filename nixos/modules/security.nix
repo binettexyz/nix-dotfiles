@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   security = {
       # prevent replacing the running kernel image
@@ -12,6 +12,8 @@
     acme.acceptTerms = true;
     acme.defaults.email = "binettexyz@proton.me";
   };
+
+  environment.systemPackages = with pkgs; [ doas-sudo-shim ];
 
    boot.blacklistedKernelModules = [
       # Obscure network protocols
