@@ -37,7 +37,7 @@
       fsType = "ext4";
     };
     "/tmp" = {
-      device = "/home/binette/.cache/tmp";
+      device = "/nix/persist/tmp";
       options = [ "bind" ];
     };
   };
