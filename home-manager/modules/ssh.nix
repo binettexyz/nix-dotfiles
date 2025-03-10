@@ -6,18 +6,16 @@ with lib;
     programs.ssh = {
       enable = true;
       matchBlocks = {
-        "builder" = {
-          user = "nixbuilder";
-          hostname = "100.69.22.72";
+        "seiryu" = {
+          user = "${config.home.username}";
+          hostname = "100.78.201.86";
           port = 704;
-          identitiesOnly = true;
-          identityFile = [ "/root/.ssh/nixbuilder" ];
         };
-        "server" = {
+        "kageyami" = {
           hostname = "100.69.22.72";
           port = 704;
         };
-        "decky" = {
+        "gyorai" = {
           hostname = "100.102.251.119";
           user = "${config.home.username}";
           port = 704;
