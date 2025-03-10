@@ -19,6 +19,10 @@ in {
       description = "Enable Steam.";
       default = false;
     };
+    device.isSteamdeck = mkOption {
+      description = "If device is a steamdeck";
+      default = false;
+    };
     openPorts = mkOption {
       description = "Open firewall ports for selected games";
       default = false;
@@ -60,8 +64,6 @@ in {
     })
   
     (mkIf config.modules.gaming.steam.enable {
-      hardware.steam-hardware.enable = true;
-  
       programs.steam = {
         enable = true;
           # Runs steam with https://github.com/Supreeeme/extest
@@ -74,6 +76,8 @@ in {
         dedicatedServer.openFirewall = true;
         #extraPackages = with pkgs; [ gamemode mangohud ];
       };
+
+      hardware.steam-hardware.enable = true;
   
       environment.systemPackages = with pkgs; [
           # Allow downloading of GE-Proton and other versions
@@ -88,15 +92,15 @@ in {
       jovian.steam = {
         enable = true;
         user = username;
-          # Steamdeck's desktop mode. Need to force disable "services.xserver.displayManager".
+          # Gamescope's desktop mode. Need to force disable "services.xserver.displayManager".
         desktopSession = config.modules.system.desktopEnvironment;
           # Boot straight into gamemode.
         autoStart = true;
       };
     
       jovian.devices.steamdeck = {
-        enable = true;
-        autoUpdate = true; # Auto update firmware/bios. Can be manually be done if disabled with the tools in systemPackages bellow.
+        enable = config.modules.gaming.device.isSteamdeck;
+        autoUpdate = config.modules.gaming.device.isSteamdeck; # Auto update firmware/bios. Can be manually be done if disabled with the tools in systemPackages bellow.
       };
     
       jovian.decky-loader = { # Requires enabling CEF remote debugging in dev mode settings.

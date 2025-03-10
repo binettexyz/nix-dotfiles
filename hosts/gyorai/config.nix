@@ -12,12 +12,15 @@ in {
   ];
 
   /* ---Custom modules--- */
-  modules.bootloader = {
-    default = "grub";
-    asRemovable = true;
-    useOSProber = false;
+  modules = {
+    bootloader = {
+      default = "grub";
+      asRemovable = true;
+      useOSProber = false;
+    };
+    system.desktopEnvironment = "plasma";
+    gaming.device.isSteamdeck = true;
   };
-  modules.system.desktopEnvironment.default = "plasma";
   device = {
     gpu = "amd";
     netDevices = [ "wlo1" ];
