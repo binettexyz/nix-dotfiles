@@ -27,7 +27,6 @@ in {
       r2modman # Mods manager
       lutris
       wineWowPackages.waylandFull
-      parsec-bin
       jdk
       dxvk
     ];
