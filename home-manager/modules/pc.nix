@@ -9,15 +9,14 @@ in {
     home.packages = with pkgs; [
       gammastep
       hsetroot
-      #stable.maim
+      maim
       mupdf
       newsboat
       nsxiv
       pamixer
       pulsemixer
-      #stable.slop
+      slop
       texlive.combined.scheme-full
-      trackma-qt
       udiskie
       xdotool
       xdragon # drag-n-drop tool
@@ -27,8 +26,6 @@ in {
       xorg.xdpyinfo
       xorg.xkill
       zathura
-      #TODO unclutter-xfixes
-      #TODO xbanish # Hides the mouse when using the keyboard
     ];
 
     services.udiskie = {
