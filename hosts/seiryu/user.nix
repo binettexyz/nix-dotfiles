@@ -18,13 +18,11 @@ in {
       #!/bin/sh
       # vim: ft=sh
   
-      remaps &				    # remaps capslock with esc
-      xsetroot -cursor_name left_ptr &	    # change cursor name
-      nvidia-settings --config=~/.config/.nvidia-settings-rc --load-config-only
+      remaps &
+      xsetroot -cursor_name left_ptr &
       xrdb $HOME/.config/x11/xresources & xrdbpid=$!
       hsetroot -fill ${pkgs.wallpapers.gruvbox} &
       [ -n "$xrdbpid" ] && wait "$xrdbpid"
-  
     '';
   };
 
@@ -39,17 +37,14 @@ in {
       #!/bin/sh
       # vim: ft=sh
   
-        ### screen ###
       xrandr --output DP-2 --gamma 1 # --set "Broadcast RGB" "Full"
   
-        ### app ###
-      pidof -s dunst || setsid -f dunst &	    # dunst for notifications
-      udiskie &				    # automount device daemon
+      pidof -s dunst || setsid -f dunst &
+      udiskie &
       flameshot &
       greenclip daemon &
   
-        ### Visual ###
-      desktop-bar &       # dwm status bar
+      desktop-bar &
       picom --experimental-backends &
 
       if [ -f "$HOME/.config/x11/xprofile" ]; then
