@@ -4,7 +4,3 @@
 - Fix and update server.
 
 - Setup home server with tailscale/domain.
-
-- Cleanup home-manager config.
-
-- Setup colmena for remote build on steamdeck.
