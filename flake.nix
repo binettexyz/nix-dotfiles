@@ -24,6 +24,7 @@
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     autorandr = { url = "github:phillipberndt/autorandr"; flake = false; };
     nixvim.url = "github:nix-community/nixvim";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     /* --- Suckless Software --- */
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
