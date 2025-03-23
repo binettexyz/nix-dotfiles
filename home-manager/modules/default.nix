@@ -3,8 +3,9 @@
   imports = [
     ./chromium.nix
     ./cli.nix
-    ./dwm
-    ./gaming
+    ./windowManager/dwm
+#    ./windowManager/qtile
+#    ./gaming
     ./git.nix
     ./lf
     ./librewolf.nix
