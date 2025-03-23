@@ -4,8 +4,8 @@
     ./chromium.nix
     ./cli.nix
     ./windowManager/dwm
-#    ./windowManager/qtile
-#    ./gaming
+    ./windowManager/qtile
+    ./gaming
     ./git.nix
     ./lf
     ./librewolf.nix
