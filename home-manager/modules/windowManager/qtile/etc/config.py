@@ -24,8 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-from libqtile import bar, layout, qtile, widget
+import os, subprocess
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
@@ -216,7 +216,7 @@ def init_bar_widgets(primary=True):
             foreground="#e78a4e",
             format='󰃭 %a %d %B  <span foreground="#ea6962">󱑎 %I:%M</span> '),
         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-        # widget.StatusNotifier(),
+        widget.StatusNotifier(),
         #widget.Systray(),
     ]
     if primary:
@@ -239,7 +239,16 @@ screens = [
         wallpaper=wallpaper_path + "gruvbox/001.png",
         wallpaper_mode="fill"
     ),
-    #Screen(),
+    Screen(
+        top=bar.Bar(
+            widgets=init_bar_widgets(primary=False),
+            size=24,
+            margin=[5, 5, 0, 5],
+            background='#141617'
+        ),
+        wallpaper=wallpaper_path + "gruvbox/001.png",
+        wallpaper_mode="fill"
+    ),
 ]
 
 # Drag floating layouts.
@@ -280,6 +289,12 @@ wl_input_rules = None
 # xcursor theme (string or None) and size (integer) for Wayland backend
 wl_xcursor_theme = None
 wl_xcursor_size = 24
+
+
+#@hook.subscribe.startup_once
+#def start_once():
+#    home = os.path.expanduser("~")
+#    subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
