@@ -290,12 +290,6 @@ wl_input_rules = None
 wl_xcursor_theme = None
 wl_xcursor_size = 24
 
-
-#@hook.subscribe.startup_once
-#def start_once():
-#    home = os.path.expanduser("~")
-#    subprocess.call([home + "/.config/qtile/autostart.sh"])
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
