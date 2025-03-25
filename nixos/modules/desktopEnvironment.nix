@@ -8,7 +8,7 @@ in
     /* ---Desktop Environment Module--- */
     options.modules.system.desktopEnvironment = mkOption {
       description = "Enable Desktop Environment";
-      type = with types; nullOr (enum [ "plasma" "gnome" "gamescope-wayland" ]);
+      type = with types; nullOr (enum [ "dwm" "gamescope-wayland" "gnome" "plasma" "qtile" ]);
       default = null;
     };
 
@@ -60,6 +60,43 @@ in
           file-roller
           gnome-tour
         ];
+      })
+
+      (mkIf (cfg == "dwm") {
+        services.xserver.windowManager.dwm.enable = true;
+
+        services = {
+          greenclip.enable = true;
+          unclutter-xfixes = {
+            enable = true;
+            extraOptions = [
+              "start-hidden"
+            ];
+          };
+          xbanish.enable = true;
+          irqbalance.enable = true;
+          dbus.implementation = "broker";
+        };
+
+          # Needed for Flatpak.
+        xdg.portal.enable = true;
+        xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+
+      })
+
+      (mkIf (cfg == "qtile") {
+        services.xserver.windowManager.qtile.enable = true;
+
+        services = {
+          irqbalance.enable = true;
+          dbus.implementation = "broker";
+        };
+
+        programs.foot.enable = true;
+
+          # Needed for Flatpak.
+        xdg.portal.enable = true;
+        xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
       })
     ];
   }
