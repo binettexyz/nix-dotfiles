@@ -11,7 +11,8 @@
   };
   modules.system = {
     audio.enable = true;
-    desktopEnvironment = "plasma";
+    customFonts.enable = true;
+    desktopEnvironment = "qtile";
     home.enable = true;
   };
 

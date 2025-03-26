@@ -12,48 +12,18 @@ in {
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
-  home.file.".config/x11/xprofile" = {
+  home.file.".local/bin/autostart/seiryu.sh" = {
     executable = true;
     text = ''
       #!/bin/sh
-      # vim: ft=sh
-  
+      # vimL ft=sh
+
+      # ---Settings--- #
+      wl-randr --output HDMI-A-2 --pos 0,0    --mode 1920x1080@179 \
+               --output HDMI-A-1 --pos 1920,0 --mode 3840x2160@120
       remaps &
-      xsetroot -cursor_name left_ptr &
-      xrdb $HOME/.config/x11/xresources & xrdbpid=$!
-      hsetroot -fill ${pkgs.wallpapers.gruvbox} &
+      xrdb $HOME/.Xresources & xrdbpid=&!
       [ -n "$xrdbpid" ] && wait "$xrdbpid"
-    '';
-  };
-
-  home.file.".xprofile" = {
-    executable = true;
-    text = ".config/x11/xprofile";
-  };
-
-  home.file.".config/x11/xinitrc" = {
-    executable = true;
-    text = ''
-      #!/bin/sh
-      # vim: ft=sh
-  
-      xrandr --output DP-2 --gamma 1 # --set "Broadcast RGB" "Full"
-  
-      pidof -s dunst || setsid -f dunst &
-      udiskie &
-      flameshot &
-      greenclip daemon &
-  
-      desktop-bar &
-      picom --experimental-backends &
-
-      if [ -f "$HOME/.config/x11/xprofile" ]; then
-  	          . "$HOME/.config/x11/xprofile"
-      else
-  	          . "$HOME/.xprofile"
-      fi
-
-      while :; do dwm && break; done
     '';
   };
 

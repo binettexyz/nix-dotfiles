@@ -7,24 +7,19 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      grim
+      slurp
       gammastep
       hsetroot
-      maim
       mupdf
       newsboat
       nsxiv
       pamixer
       pulsemixer
-      slop
       texlive.combined.scheme-full
       udiskie
       xdotool
       xdragon # drag-n-drop tool
-      xorg.xev
-      xorg.xinit
-      xorg.xmodmap
-      xorg.xdpyinfo
-      xorg.xkill
       zathura
     ];
 

@@ -158,11 +158,7 @@ with lib;
       ))
       (mkIf (super.services.displayManager.sddm.enable == false) (
           ''
-              if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-                  . "$HOME/.config/shell/profile" && exec sx sh $HOME/.config/x11/xinitrc &> /dev/null;
-              else
-                  . "$HOME/.config/shell/profile"
-              fi
+              [ "$(tty)" = "/dev/tty1" ] && [ "$(echo $XDG_SESSION_TYPE)" != "wayland" ] && qtile start -b wayland
           ''
       ))
     ]);
