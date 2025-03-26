@@ -275,6 +275,12 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
     ]
 )
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call(home)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
