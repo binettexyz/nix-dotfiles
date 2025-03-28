@@ -300,7 +300,7 @@ wl_input_rules = {
     ),
     "type:pointer": InputConfig(
         accel_profile="flat",
-        natural_scroll="True"
+        #natural_scroll="True"
     )
 }
 
