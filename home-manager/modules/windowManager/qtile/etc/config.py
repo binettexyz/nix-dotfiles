@@ -30,6 +30,7 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.backend.wayland import InputConfig
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -290,7 +291,18 @@ reconfigure_screens = True
 auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
+#wl_input_rules = None
+wl_input_rules = {
+    "type:keyboard": InputConfig(
+        kb_layout="us", kb_variant="altgr-intl",
+        kb_model="pc104", kb_options="caps:swapescape",
+        kb_repeat_rate=50, kb_repeat_delay=150
+    ),
+    "type:pointer": InputConfig(
+        accel_profile="flat",
+        natural_scroll="True"
+    )
+}
 
 # xcursor theme (string or None) and size (integer) for Wayland backend
 wl_xcursor_theme = None
