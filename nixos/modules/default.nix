@@ -12,13 +12,12 @@
     ./locale.nix
     ./meta.nix
     ./network.nix
-    ./pc.nix
     ./security.nix
     ./server
     ./ssh.nix
     ./system.nix
     ./user.nix
-    ./xserver.nix
+    #./xserver.nix
   ];
 
 }
