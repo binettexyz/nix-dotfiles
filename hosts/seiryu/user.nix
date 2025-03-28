@@ -12,21 +12,6 @@ in {
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
-  home.file.".local/bin/autostart/seiryu.sh" = {
-    executable = true;
-    text = ''
-      #!/bin/sh
-      # vimL ft=sh
-
-      # ---Settings--- #
-      wl-randr --output HDMI-A-2 --pos 0,0    --mode 1920x1080@179 \
-               --output HDMI-A-1 --pos 1920,0 --mode 3840x2160@120
-      remaps &
-      xrdb $HOME/.Xresources & xrdbpid=&!
-      [ -n "$xrdbpid" ] && wait "$xrdbpid"
-    '';
-  };
-
   xresources.properties =
     let
       fontSize = 12;
