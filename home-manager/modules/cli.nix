@@ -6,24 +6,25 @@
     curl
     eza
     fzf
-    gcc
-    gnumake
+#    gcc
+#    gnumake
     gnused
     htop
-    jq
     killall
     ncdu
-    nix-tree
+#    nix-tree
     ouch #easily compressing and decompressing files and directories
 #   pinentry pinentry-qt pass
-    pwgen
+#    pwgen # password generator
     rsync # replace scp
-    unzip
     wget
     yt-dlp
-    xclip
-    xcape
+
+    # Archive tools
+    atool
     zip
+    unzip
+    rar
   ];
 
 }

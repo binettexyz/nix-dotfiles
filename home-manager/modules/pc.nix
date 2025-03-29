@@ -1,25 +1,22 @@
-{ pkgs, lib, super, ... }: 
+{ config, pkgs, lib, super, ... }: 
 with lib;
 
-let
-  cfg = super.services.xserver.windowManager.dwm;
-in {
+{
 
-  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      grim
+      (mkIf (builtins.elem config.device.type == [ "workstation" "gaming-desktop" ] ) grim)
       slurp
-      gammastep
-      hsetroot
+      wl-clipboard
+      wlr-randr
+      vimiv-qt
+      waylock
+      rofi-wayland
       mupdf
       newsboat
-      nsxiv
       pamixer
       pulsemixer
-      texlive.combined.scheme-full
+      (mkIf (builtins.elem config.device.type == [ "workstation" "gaming-desktop" ]) texlive.combined.scheme-full)
       udiskie
-      xdotool
-      xdragon # drag-n-drop tool
       zathura
     ];
 
@@ -28,57 +25,38 @@ in {
       tray = "never";
     };
 
-    xdg = {
-        # Some applications like to overwrite this file, so let's just force it
-      configFile."mimeapps.list".force = true;
-      mimeApps = {
-        enable = true;
-        defaultApplications =
-        let
-          browser = "librewolf.desktop";
-        in {
-          "application/pdf" = [ "pdf.desktop" ];
-          "application/postscript" = [ "pdf.desktop" ];
-          "application/rss+xml" = [ "rss.desktop" ];
-  
-          "image/png" = [ browser ];
-          "image/jpeg" = [ "img.desktop" ];
-          "image/gif" = [ "img.desktop" ];
-          "inode/directory" = [ "file.desktop" ];
-  
-          "text/x-shellscript" = [ "text.desktop" ];
-          "text/plain" = [ "text.desktop" ];
-          "text/html" = [ "text.desktop" ];
-  
-          "video/x-matroska" = [ "video.desktop" ];
-  
-          "x-scheme-handler/magnet" = [ "torrent.desktop" ];
-          "x-scheme-handler/mailto" = [ "mail.desktop" ];
-          "x-scheme-handler/http" = [ browser ];
-          "x-scheme-handler/https " = [ browser ];
-          "x-scheme-handler/about" = [ browser ];
-          "x-scheme-handler/unknown" = [ browser ];
-        };
-      };
-    };
-  
-    xresources.path = "/home/binette/.config/x11/xresources";
-    xresources.properties = {
-      /* --- Xft --- */
-      "Xft.antialias" = 1;
-      "Xft.hinting" = 1;
-  #    "Xft.dpi" = 96;
-      "Xft.rgba" = "rgb";
-      "Xft.lcdfilter" = "lcddefault";
-  
-      /* --- Xterm --- */
-      "xterm.termName" = "xterm-256color";
-      "xterm.vt100.locale" = false;
-      "xterm.vt100.utf8" = true;
-        # Backspace and escape fix
-      "xterm.vt100.metaSendsEscape" = true;
-      "xterm.vt100.backarrowKey" = false;
-      "xtermttyModes" = "erase ^?";
-    };
-  };
+#    xdg = {
+#        # Some applications like to overwrite this file, so let's just force it
+#      configFile."mimeapps.list".force = true;
+#      mimeApps = {
+#        enable = true;
+#        defaultApplications =
+#        let
+#          browser = "librewolf.desktop";
+#        in {
+#          "application/pdf" = [ "pdf.desktop" ];
+#          "application/postscript" = [ "pdf.desktop" ];
+#          "application/rss+xml" = [ "rss.desktop" ];
+#  
+#          "image/png" = [ browser ];
+#          "image/jpeg" = [ "img.desktop" ];
+#          "image/gif" = [ "img.desktop" ];
+#          "inode/directory" = [ "file.desktop" ];
+#  
+#          "text/x-shellscript" = [ "text.desktop" ];
+#          "text/plain" = [ "text.desktop" ];
+#          "text/html" = [ "text.desktop" ];
+#  
+#          "video/x-matroska" = [ "video.desktop" ];
+#  
+#          "x-scheme-handler/magnet" = [ "torrent.desktop" ];
+#          "x-scheme-handler/mailto" = [ "mail.desktop" ];
+#          "x-scheme-handler/http" = [ browser ];
+#          "x-scheme-handler/https " = [ browser ];
+#          "x-scheme-handler/about" = [ browser ];
+#          "x-scheme-handler/unknown" = [ browser ];
+#        };
+#      };
+#    };
+
 }
