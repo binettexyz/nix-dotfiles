@@ -13,7 +13,7 @@
         hide-when-typing = "yes";
       };
       colors = {
-        alpha = "1.0";
+        alpha = "0.9";
         background = "${config.colorScheme.palette.background}";
         foreground = "${config.colorScheme.palette.foreground}";
         flash = "7f7f00";
