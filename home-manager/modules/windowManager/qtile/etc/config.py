@@ -34,7 +34,7 @@ from libqtile.backend.wayland import InputConfig
 
 mod = "mod4"
 terminal = guess_terminal()
-wallpaper_path = os.path.expanduser("~") + "/.git/repos/wallpapers/"
+wallpaper_path = os.path.expanduser("~") + "/Pictures/wallpapers/"
 has_battery = any(os.path.exists(f"/sys/class/power_supply/{bat}") for bat in os.listdir("/sys/class/power_supply/"))
 def get_network_status():
     # Check for LAN connection (Ethernet)
