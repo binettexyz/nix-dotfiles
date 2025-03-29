@@ -24,9 +24,18 @@ with lib;
         # .zshrc
       initExtra = ''
         autoload -U colors && colors
+        
+        autoload -Uz vcs_info
+        # Enable vcs_info for Git
+        zstyle ':vcs_info:*' enable git
+        zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f'  # Gruvbox Aqua for branch name
+
+        # Update vcs_info before each prompt
+        precmd() { vcs_info }
+        
         setopt promptsubst
-        PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[blue]%} %~%{$fg[magenta]%}]%{$reset_color%}$%b "
-        RPS1="%F{8}%*" # Set right prompt to show time
+        PROMPT='%B%F{5}[%F{6}%n%F{4} %~%F{5}]''${vcs_info_msg_0_}%f$%b '
+        RPS1='%F{3}%*%f'  # Yellow timestamp
 
         setopt interactive_comments
   
@@ -91,7 +100,6 @@ with lib;
         lf = "lfrun";
         pwgen = "pwgen -1yn 12 10";
         ncdu = "${pkgs.dua}/bin/dua interactive";
-        xterm = "${pkgs.xterm}/bin/xterm -e zsh";
 
           # clipboard
 	      c = "${pkgs.xclip}/bin/xclip";
@@ -136,32 +144,21 @@ with lib;
         pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
       };
   
-      envExtra = (mkMerge [(
-          ''
-                # Use neovim for vim if present.
-              [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
+      envExtra = ''
+          # Use neovim for vim if present.
+        [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
         
-                # Use $XINITRC variable if file exists.
-              [ -f "$XINITRC" ] && alias sx="sx sh $XINITRC"
+          # Use $XINITRC variable if file exists.
+        [ -f "$XINITRC" ] && alias sx="sx sh $XINITRC"
         
-                # doas not required for some system commands
-              for command in mount umount eject su shutdown systemctl poweroff reboot ; do
-                    alias $command="doas $command"
-              done; unset command
+          # doas not required for some system commands
+        for command in mount umount eject su shutdown systemctl poweroff reboot ; do
+              alias $command="doas $command"
+        done; unset command
+              
+        [ "$(tty)" = "/dev/tty1" ] && [ "$(echo $XDG_SESSION_TYPE)" != "wayland" ] && qtile start -b wayland
 
-          ''
-      )
-      (mkIf super.services.displayManager.sddm.enable (
-          ''
-              . "$HOME/.config/shell/profile"
-          ''
-      ))
-      (mkIf (super.services.displayManager.sddm.enable == false) (
-          ''
-              [ "$(tty)" = "/dev/tty1" ] && [ "$(echo $XDG_SESSION_TYPE)" != "wayland" ] && qtile start -b wayland
-          ''
-      ))
-    ]);
+      '';
   
       plugins = [
           # to find sha256, keep it empty and the build error will find it for you
