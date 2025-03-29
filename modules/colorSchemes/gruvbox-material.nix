@@ -1,5 +1,6 @@
 {
   name = "Gruvbox Material";
+  description = "Gruvbox Material Dark";
   author = "https://github.com/sainnhe/gruvbox-material";
   palette = {
     background = "#141617";
