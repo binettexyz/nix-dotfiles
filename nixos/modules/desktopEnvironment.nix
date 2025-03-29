@@ -78,8 +78,6 @@ in
           dbus.implementation = "broker";
         };
 
-        programs.foot.enable = true;
-
           # Needed for Flatpak.
         xdg.portal.enable = true;
         xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
