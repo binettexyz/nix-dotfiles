@@ -40,7 +40,8 @@ in {
 
     [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
-    ssh-agent dwm
+    #ssh-agent dwm
+    qtile start
   '';
 
   /* ---Xresources/Colorscheme--- */
@@ -94,6 +95,7 @@ in {
   
         #".config/BraveSoftware"
         #".config/jellyfin.org"
+        ".config/qtile"
         ".config/shell"
         ".config/sops"
   

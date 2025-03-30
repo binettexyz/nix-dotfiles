@@ -6,7 +6,7 @@
   modules.system = {
     audio.enable = true;
     customFonts.enable = true;
-    desktopEnvironment = { default = null; };
+    desktopEnvironment = "qtile";
     home.enable = true;
   };
 

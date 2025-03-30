@@ -3,7 +3,7 @@
 with lib; {
   options.device = {
     type = mkOption {
-      type = types.enum [ "workstation" "gaming-handheld" "gaming-desktop" "server" "vm" ];
+      type = types.enum [ "workstation" "gaming-handheld" "gaming-desktop" "laptop" "server" ];
       description = "Type of device";
       default = "";
     };
