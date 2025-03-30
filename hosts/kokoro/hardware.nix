@@ -83,19 +83,6 @@
   };
 
 
-  /* ---Screen Resolution--- */
-  services.xserver.xrandrHeads = [{
-    output = "eDP1";
-    primary = true;
-    monitorConfig = ''
-      Modeline "1366x768_60.00"   85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
-      Option "PreferredMode" "1366x768_60.00"
-      Option "Position" "0 0"
-    '';
-      #DisplaySize 276 156
-  }];
-
-
   /* ---Touchpad & Trackpoint--- */
     # Touchpad
   services.libinput = {
