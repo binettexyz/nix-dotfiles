@@ -1,23 +1,21 @@
 {...}: {
 
   imports = [
-    ./chromium.nix
-    ./cli.nix
-    ./windowManager/dwm
-    ./windowManager/qtile
-    ./gaming
-    ./git.nix
-    ./lf
-    ./librewolf.nix
+    ./dotfiles/chromium.nix
+    ./dotfiles/foot.nix
+    ./dotfiles/git.nix
+    ./dotfiles/lf
+    ./dotfiles/librewolf.nix
     ./meta
-    ./mpv
-    ./neovim
-    ./newsboat.nix
-    ./pc.nix
-    ./qutebrowser
-    ./ssh.nix
-    ./tmux.nix
-    ./zsh.nix
+    ./dotfiles/mpv
+    ./dotfiles/neovim
+    ./dotfiles/newsboat.nix
+    ./packages.nix
+    ./dotfiles/qtile
+    ./dotfiles/qutebrowser
+    ./dotfiles/ssh.nix
+    ./dotfiles/tmux.nix
+    ./dotfiles/zsh.nix
   ];
 
 }
