@@ -1,8 +1,8 @@
 { lib, ... }: {
 
     # Select internationalisation properties.
-  il8n.defaultLocale = lib.mkDefault "en_US.UTF-8";
-  il8n.extraLocaleSettings = {
+  i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
     LC_CTYPE = lib.mkDefault "en_US.UTF-8"; # Fix ç in us-intl.
     LC_TIME = lib.mkDefault "en_CA.UTF-8";
   };
