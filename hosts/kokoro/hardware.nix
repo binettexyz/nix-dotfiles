@@ -111,6 +111,6 @@
   /* ---CPU Stuff--- */
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   nix.settings.max-jobs = 4; # CPU Treads
-  hardware.cpu.intel.updateMicrocode = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   services.throttled.enable = true;
 }

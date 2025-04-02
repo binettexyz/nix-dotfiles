@@ -20,9 +20,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     plasma-manager.url = "github:pjones/plasma-manager";
     nix-colors.url = "github:misterio77/nix-colors";
-    helix.url = "github:SoraTenshi/helix/experimental-22.12";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
-    autorandr = { url = "github:phillipberndt/autorandr"; flake = false; };
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
@@ -30,17 +28,6 @@
     dwm = { url = "github:binettexyz/dwm"; flake = false; };
     st = { url = "github:binettexyz/st"; flake = false; };
     dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
-
-    /* --- Discord stuff --- */
-    #powercord-overlay.url = "github:LavaDesu/powercord-overlay";
-    #disc-betterReplies = { url = "github:cyyynthia/better-replies"; flake = false; };
-    #disc-doubleClickVC = { url = "github:discord-modifications/double-click-vc"; flake = false; };
-    #disc-muteNewGuild = { url = "github:RazerMoon/muteNewGuild"; flake = false; };
-    #disc-popoutFix = { url = "github:Nexure/PowerCord-Popout-Fix"; flake = false; };
-    #disc-screenshareCrack = { url = "github:discord-modifications/screenshare-crack"; flake = false; };
-    #disc-unindent = { url = "github:VenPlugs/Unindent"; flake = false; };
-    #disc-silentTyping = { url = "github:svby/powercord-silenttyping"; flake = false; };
-    #disc-gruvbox = { url = "github:binettexyz/discord-gruvbox"; flake = false; };
 
     /* --- Minimize duplicate instances of inputs --- */
     home.inputs.nixpkgs.follows = "stable";
