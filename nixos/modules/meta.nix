@@ -13,17 +13,14 @@
   ];
 
   programs = {
-    git = { # Without git, cant build this config.
-      enable = true;
-      config = {
-          # Avoid git log spam while building this config
-        init.defaultBranch = "master";
-      };
+    git.enable = true;
+    git.config = {
+        # Avoid git log spam while building this config
+      init.defaultBranch = "master";
     };
-    nh = { # Alternative to nixos-rebuild.
-      enable = true;
-      flake = "/etc/nixos";
-    };
+      # Alternative to nixos-rebuild.
+    nh.enable = true;
+    nh.flake = "/etc/nixos";
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?

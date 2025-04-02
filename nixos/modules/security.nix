@@ -17,47 +17,16 @@
 
    boot.blacklistedKernelModules = [
       # Obscure network protocols
-    "ax25"
-    "netrom"
-    "rose"
-      # Old or rare or insufficiently audited filesystems
-    "adfs"
-    "affs"
-    "bfs"
-    "befs"
-    "cramfs"
-    "efs"
-    "erofs"
-    "exofs"
-    "freevxfs"
-    "f2fs"
-    "vivid"
-    "gfs2"
-    "ksmbd"
-#    "nfsv4"
-#    "nfsv3"
-    "cifs"
-#    "nfs"
-    "cramfs"
-    "freevxfs"
-    "jffs2"
-    "hfs"
-    "hfsplus"
-    "squashfs"
-    "udf"
-#    "bluetooth"
-#    "btusb"
-#    "uvcvideo" # webcam
-    "hpfs"
-    "jfs"
-    "minix"
-    "nilfs2"
-    "omfs"
-    "uvcvideo"
-    "qnx4"
-    "qnx6"
-    "sysv"
-    "ufs"
+    "ax25" "netrom" "rose"
+      # Obscure/Legacy Filesystems
+    "adfs" "affs" "bfs" "befs" "efs" "erofs"
+    "exofs" "freevxfs" "f2fs" "vivid" "gfs2"
+    "cramfs" "jffs2" "hfs" "hfsplus" "hpfs"
+    "jfs" "minix" "nilfs2" "omfs" "qnx4"
+    "qnx6" "sysv" "ufs"
+    "ksmbd" # SMB server module
+    "cifs" # Windows share
+    "uvcvideo" # Webcam
   ];
 
 }

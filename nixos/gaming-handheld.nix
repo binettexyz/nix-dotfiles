@@ -12,7 +12,4 @@
     system.home.enable = true;
   };
 
-  /* ---System Configuration--- */
-  services.logind.powerKey = lib.mkForce "ignore";
-
 }

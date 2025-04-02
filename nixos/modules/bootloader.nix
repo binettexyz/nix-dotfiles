@@ -8,7 +8,7 @@ in {
   options.modules.bootloader = {
     default = mkOption {
       description = "Enable bootloader";
-      type = types.enum [ "grub" "systemd" "rpi4" ];
+      type = types.enum [ "grub" "rpi4" ];
       default = "grub";    
     };
     asRemovable = mkOption {
@@ -26,10 +26,8 @@ in {
     (mkIf (cfg == "grub") {
       boot.loader = {
         timeout = 1;
-        efi = {
-          canTouchEfiVariables = if config.modules.bootloader.asRemovable then false else true;
-          efiSysMountPoint = "/boot";
-        };
+        efi.canTouchEfiVariables = if config.modules.bootloader.asRemovable then false else true;
+        efi.efiSysMountPoint = "/boot";
         grub = {
           enable = true;
           default = 0;
@@ -56,8 +54,7 @@ in {
         };
       };
     })
-    (mkIf (cfg == "systemd") {
-    })
+
     (mkIf (cfg == "rpi4") {
       boot.loader = {
         efi.canTouchEfiVariables = lib.mkForce false;

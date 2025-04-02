@@ -25,10 +25,9 @@
       "console=tty1"
     ];
   };
-     # Some misc packages
-  environment.systemPackages = with pkgs; [ ];
     # Get rid of defaults packages
   environment.defaultPackages = [ ];
+
     # Increase file handler limit
 #    security.pam.loginLimits = [{
 #      domain = "*";
@@ -54,7 +53,7 @@
     '';
 
       # Suspend when power key is pressed
-    logind.powerKey = lib.mkDefault "suspend";
+    logind.powerKey = if (config.device.type == "gaming-handheld") then "ignore" else "suspend";
 
       # Enable NTP
     timesyncd.enable = lib.mkDefault true;
@@ -99,15 +98,6 @@
       # Needed by home-manager's impermanence
     programs.fuse.userAllowOther = true;
 
-      # Don't install documentation I don't use
-    documentation = {
-      enable = true; # documentation of packages
-      nixos.enable = true; # nixos documentation
-      man.enable = true; # manual pages and the man command
-      info.enable = false; # info pages and the info command
-      doc.enable = false; # documentation distributed in packages' /share/doc
-    };
-  
       # Sops-nix password encryption
     sops.defaultSopsFile = ../../../secrets/common.yaml;
     sops.age.sshKeyPaths = [ "/home/binette/.ssh/id_ed25519" ];

@@ -52,7 +52,6 @@ in {
   
 
       /* ---System Configuration--- */
-      services.logind.powerKey = lib.mkForce "suspend";
         # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
         # Instead, bind it into home. See "host/seiryu/hardware.nix".
       boot.tmp.useTmpfs = lib.mkForce false;

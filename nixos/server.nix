@@ -1,6 +1,4 @@
-{ config, flake, lib, pkgs, ... }:
-
-{
+{ config, flake, lib, pkgs, ... }: {
 
   imports = [ ./modules ];
 
