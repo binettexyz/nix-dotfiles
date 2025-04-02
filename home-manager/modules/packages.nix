@@ -33,14 +33,12 @@
     ])
 
     (lib.mkIf super.services.xserver.windowManager.qtile.enable [
-      (lib.mkIf (builtins.elem config.device.type == [ "workstation" "gaming-desktop" ]) [
-        discord
-        texlive.combined.scheme-full
-        grim
-        slurp
-        pamixer
-        pulsemixer
-      ])
+      discord
+      texlive.combined.scheme-full
+      grim
+      slurp
+      pamixer
+      pulsemixer
       wl-clipboard
       wlr-randr
       vimiv-qt
