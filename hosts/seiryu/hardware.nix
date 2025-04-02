@@ -14,7 +14,12 @@ in {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
     kernelPackages =  pkgs.linuxPackages_xanmod;
-    kernelParams = [ "mitigations=off" "nowatchdog" ];
+    kernelParams = [
+      "mitigations=off"
+      "nowatchdog"
+      "video=HDMI-A-1:1920x1080@179.981955"
+      "video=HDMI-A-2:3840x2160@120"
+    ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
@@ -91,13 +96,14 @@ in {
   };
 
   /* ---Video Driver--- */
-  services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
-    # Enable loading amdgpu kernelModule in stage 1.
-    # Can fix lower resolution in boot screen during initramfs phase
-  hardware.amdgpu.initrd.enable = true;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+      # Enable loading amdgpu kernelModule in stage 1.
+      # Can fix lower resolution in boot screen during initramfs phase
+    amdgpu.initrd.enable = true;
+    graphics.enable = true;
+    graphics.enable32Bit = true;
+    graphics.extraPackages = with pkgs; [ amdvlk ];
+    graphics.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 
   /* ---Processor--- */
