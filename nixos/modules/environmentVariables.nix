@@ -6,8 +6,8 @@ with lib;
     environment.localBinInPath = true;
     environment.variables = {
       # Default Programs:
-      EDITOR = "nvim";
-      VISUAL = "nvim";
+      EDITOR = "hx";
+      VISUAL = "hx";
       TERMINAL = if config.device == "laptop" then "st" else "konsole";
       BROWSER = if config.device == "laptop" then "qutebrowser" else "librefox";
       READER = if config.device == "laptop" then "zatura" else "";
