@@ -6,14 +6,23 @@
       main = {
         font = "monospace:size=10";
       };
+      cursor = {
+        style = "beam";
+        beam-thickness = 1;
+        color = "${config.colorScheme.palette.background} ${config.colorScheme.palette.foreground}";
+      };
       url = {
         launch = "xdg-open \${url}";
       };
       mouse = {
         hide-when-typing = "yes";
       };
+      key-bindings = {
+        #clipboard-copy = "Control+c XF86Copy";
+        #clipboard-paste = "Control+v XF86Paste";
+      };
       colors = {
-        alpha = "0.9";
+        alpha = "0.97";
         background = "${config.colorScheme.palette.background}";
         foreground = "${config.colorScheme.palette.foreground}";
         flash = "7f7f00";
