@@ -3,10 +3,10 @@
   imports = [
     ./meta
     ./packages.nix
-    #./pc.nix
     ./dotfiles/chromium.nix
     ./dotfiles/foot.nix
     ./dotfiles/git.nix
+    ./dotfiles/helix.nix
     ./dotfiles/lf
     ./dotfiles/librewolf.nix
     ./dotfiles/mpv
