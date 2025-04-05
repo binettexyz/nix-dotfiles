@@ -177,6 +177,15 @@ extension_defaults = widget_defaults.copy()
 
 def init_bar_widgets(primary=True):
     widgets = [
+        widget.Image(
+            filename="~/Downloads/NixOS-gruvbox-material.png",
+            scale=True,
+            margin=4,
+        ),
+        widget.Sep(
+            padding=4,
+            foreground="#d4be98"
+        ),
         widget.GroupBox(
             font="Material Design Icons",
             fontsize=15,
