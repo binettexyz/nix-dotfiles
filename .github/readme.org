@@ -1,9 +1,7 @@
 #+AUTHOR: Binette
-#+Title Binette's NixOS config
+#+TITLE: Binette's NixOS config
 
-* NixOS
-
-[Nixos-Config](https://github.com/binettexyz/nix-dotfiles/blob/master/.github/assets/screenshot.png)
+[[https://github.com/binettexyz/nix-dotfiles/blob/master/.github/assets/screenshot.png]]
 
 * ❄️ NixOS Setup
 
@@ -29,8 +27,7 @@ parted -s ${dev} name 1 boot
 pvcreate -ff ${dev}2
 vgcreate vg ${dev}2
 
-lvcreate -L 8G vg -n swap
-lvcreate -L 50G vg -n nix
+lvcreate -L 100G vg -n nix
 lvcreate -l 100%FREE vg -n home
 
   # Format the partitions
