@@ -2,8 +2,6 @@
 {
 
   imports = [
-    ./hardware.nix
-    ../../nixos/laptop.nix
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
   ];
@@ -15,7 +13,7 @@
       asRemovable = false;
       useOSProber = false;
     };
-    modules.system = {
+    system = {
       audio.enable = true;
       customFonts.enable = true;
       desktopEnvironment = "qtile";
