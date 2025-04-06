@@ -5,9 +5,7 @@
   ...
 }:
 let
-
   inherit (flake) inputs;
-
 in
 {
 
@@ -35,7 +33,7 @@ in
       st = prev.callPackage (inputs.st + "/default.nix") { };
       # namespaces
       lib = prev.lib.extend (
-        finalLib: prevLib: (import ../modules/mkDefaultOption.nix { inherit (prev) lib; })
+        finalLib: prevLib: (import ../lib/mkDefaultOption.nix { inherit (prev) lib; })
       );
 
       change-res = prev.callPackage ./packages/change-res { };
