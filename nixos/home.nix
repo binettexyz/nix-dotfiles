@@ -1,18 +1,28 @@
-{ config, lib, pkgs, flake, system, ... }:
+{
+  config,
+  lib,
+  flake,
+  system,
+  deviceType,
+  ...
+}:
 let
   inherit (flake) inputs;
   inherit (config.networking) hostName;
-  cfg = config.modules.system.home.enable;
-in {
+  cfg = config.modules.system.home;
+in
+{
 
-  /* ---Import Modules/Config--- */
+  # ---Import Modules/Config---
   imports = [
     ../modules/meta.nix
     flake.inputs.home.nixosModules.home-manager
   ];
 
   options.modules.system.home = {
-    enable = lib.mkEnableOption "home config" // { default = true; };
+    enable = lib.mkEnableOption "home config" // {
+      default = true;
+    };
     username = lib.mkOption {
       description = "Main username";
       type = lib.types.str;
@@ -20,13 +30,14 @@ in {
     };
   };
 
-  config = lib.mkIf config.modules.system.home.enable {
+  config = lib.mkIf cfg.enable {
     home-manager = {
       useUserPackages = true;
-      users.${config.modules.system.home.username} = ../../hosts/${hostName}/user.nix;
+      users.${config.modules.system.home.username} = ../hosts/${hostName}/user.nix;
       extraSpecialArgs = {
         inherit flake system;
         super = config;
+        deviceType = deviceType;
       };
     };
   };

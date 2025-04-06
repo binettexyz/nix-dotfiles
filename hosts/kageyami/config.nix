@@ -1,4 +1,5 @@
-{ config, flake, lib, pkgs, system, ... }: {
+{ lib, ... }:
+{
 
   imports = [
     ../../nixos/server
@@ -10,7 +11,18 @@
     bootloader = "rpi4";
     device = {
       type = "server";
-      netDevices = [  "eth0" "wlan0" ];
+      netDevices = [
+        "eth0"
+        "wlan0"
+      ];
+    };
+    server.containers = {
+      adGuardHome.enable = true;
+      nextcloud.enable = true;
+      vaultwarden.enable = false;
+    };
+    system = {
+      home.enable = true;
     };
   };
 
@@ -24,6 +36,6 @@
 
   nix.settings.max-jobs = 4;
   hardware.raspberry-pi."4".fkms-3d.enable = true;
+  boot.tmp.useTmpfs = lib.mkForce false;
 
 }
-

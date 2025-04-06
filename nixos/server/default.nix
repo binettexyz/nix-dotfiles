@@ -1,14 +1,19 @@
-{ inputs, pkgs, config, lib, ... }:
-with lib;
+{
+  config,
+  lib,
+  deviceType,
+  ...
+}:
 let
   name = "nixbuilder";
-in {
+in
+{
 
   imports = [ ./containers ];
 
-  config = lib.mkIf (config.device.type == "server") {
+  config = lib.mkIf (deviceType == "server") {
 
-    /* ---Network File System--- */
+    # ---Network File System---
     services.nfs.server = {
       enable = true;
       exports = ''
@@ -17,7 +22,7 @@ in {
       '';
     };
 
-    /* ---Docker Container--- */
+    # ---Docker Container---
     virtualisation = {
       podman = {
         enable = true;
@@ -28,9 +33,9 @@ in {
       oci-containers.backend = "podman";
     };
 
-    /* ---Builder User--- */
+    # ---Builder User---
     users = {
-      groups.${name} = {};
+      groups.${name} = { };
       users.${name} = {
         useDefaultShell = true;
         #shell = "/run/current-system/sw/bin/nologin";

@@ -1,19 +1,28 @@
-{ config, pkgs, flake, ... }:
+{ flake, ... }:
 let
   inherit (flake) inputs;
-in {
+in
+{
 
   imports = [
-    ../../home-manager/laptop.nix 
+    ../../home-manager
     (inputs.impermanence + "/home-manager.nix")
     flake.inputs.nix-colors.homeManagerModule
-#    flake.inputs.nixvim.homeManagerModules.nixvim
+    #    flake.inputs.nixvim.homeManagerModules.nixvim
   ];
-
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
 
-  /* ---Persistence--- */
+  modules.hm = {
+    browser.librewolf.enable = true;
+    browser.qutebrowser.enable = true;
+    mpv = {
+      enable = true;
+      lowSpec = true;
+    };
+  };
+
+  # ---Persistence---
   home.persistence."/nix/persist/home/binette" = {
     removePrefixDirectory = false;
     allowOther = true;

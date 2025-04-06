@@ -1,8 +1,14 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
-    ../../home-manager/server.nix 
+    ../../home-manager
     (inputs.impermanence + "/home-manager.nix")
   ];
 
@@ -11,15 +17,15 @@
       removePrefixDirectory = false;
       allowOther = true;
       directories = [
-#        ".config/sops"
-#        ".zplug"
-#        ".local/share/xorg"
-#        ".ssh"
-#        ".gnupg"
+        #        ".config/sops"
+        #        ".zplug"
+        #        ".local/share/xorg"
+        #        ".ssh"
+        #        ".gnupg"
       ];
-#      files = [
-#        ".local/share/history"
-#      ];
+      #      files = [
+      #        ".local/share/history"
+      #      ];
     };
   };
 

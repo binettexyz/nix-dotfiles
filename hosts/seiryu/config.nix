@@ -1,25 +1,34 @@
-{ config, flake, pkgs, ... }:
+{ flake, deviceType, ... }:
+{
 
-let
-  inherit (flake) inputs;
-in {
-
-  imports = [ 
-    ./hardware.nix
-    ../../nixos/gaming-desktop.nix
+  imports = [
     flake.inputs.sops-nix.nixosModules.sops
-    flake.inputs.impermanence.nixosModules.impermanence 
+    flake.inputs.impermanence.nixosModules.impermanence
   ];
 
   ## Custom modules ##
-  modules.bootloader = {
-    default = "grub";
-    asRemovable = false;
-    useOSProber = false;
+  modules = {
+    bootloader = {
+      default = "grub";
+      asRemovable = false;
+      useOSProber = false;
+    };
+    gaming = {
+      enable = true;
+      steam.enable = true;
+      openPorts = false;
+    };
+    system = {
+      audio.enable = true;
+      customFonts.enable = true;
+      desktopEnvironment = "qtile";
+      home.enable = true;
+    };
   };
-  device = {
-    gpu = "amd";
-    netDevices = [ "enp34s0" "wlo1" ];
+
+  device.storage = {
+    ssd = true;
+    hdd = true;
   };
 
   ## Networking ##
@@ -27,5 +36,5 @@ in {
     interfaces.wlo1.useDHCP = true;
     interfaces.enp34s0.useDHCP = true;
   };
-  
+
 }

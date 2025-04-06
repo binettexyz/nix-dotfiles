@@ -1,53 +1,64 @@
-{ config, pkgs, lib, ... }:
-
+{
+  config,
+  pkgs,
+  lib,
+  deviceType,
+  ...
+}:
 {
 
   imports = [ ./battery.nix ];
 
-  config = lib.mkIf (config.device.type == "laptop") {
+  config = lib.mkIf (deviceType == "laptop") {
     laptop.onLowBattery.enable = true;
 
     # Configure hibernation
-    boot.resumeDevice = lib.mkIf (config.swapDevices != [ ])
-      (lib.mkDefault (builtins.head config.swapDevices).device);
+    boot.resumeDevice = lib.mkIf (config.swapDevices != [ ]) (
+      lib.mkDefault (builtins.head config.swapDevices).device
+    );
 
     # Install laptop related packages
     environment.systemPackages = with pkgs; [
-      /*iw*/
+      # iw
       powertop
       acpid
-#     acpi
+      #     acpi
       brightnessctl
     ];
 
     # Configure special hardware in laptops
     hardware = {
       # Enable bluetooth
-      bluetooth = { enable = true; };
+      bluetooth = {
+        enable = true;
+      };
     };
 
-      # Enable laptop specific services
+    # Enable laptop specific services
     services = {
-        # Enable Blueman to manage Bluetooth
-      blueman = { enable = true; };
-        # For battery status reporting
-      upower = { enable = true; };
-        # Only suspend on lid closed when laptop is disconnected
+      # Enable Blueman to manage Bluetooth
+      blueman = {
+        enable = true;
+      };
+      # For battery status reporting
+      upower = {
+        enable = true;
+      };
+      # Only suspend on lid closed when laptop is disconnected
       logind = {
-          # For hibernate to work you need to set
-          # - `boot.resumeDevice` set to the swap partition/partition
-          #   containing swap file
-          # - If using swap file, also set
-          #  `boot.kernelParams = [ "resume_offset=XXX" ]`
-        lidSwitch = lib.mkDefault
-          (if (config.boot.resumeDevice != "")
-          then "suspend-then-hibernate"
-          else "suspend");
+        # For hibernate to work you need to set
+        # - `boot.resumeDevice` set to the swap partition/partition
+        #   containing swap file
+        # - If using swap file, also set
+        #  `boot.kernelParams = [ "resume_offset=XXX" ]`
+        lidSwitch = lib.mkDefault (
+          if (config.boot.resumeDevice != "") then "suspend-then-hibernate" else "suspend"
+        );
         lidSwitchDocked = lib.mkDefault "ignore";
         lidSwitchExternalPower = lib.mkDefault "lock";
       };
 
-        # Reduce power consumption
+      # Reduce power consumption
       thermald.enable = true;
       auto-cpufreq.enable = true;
       tlp = {
@@ -55,20 +66,20 @@
         settings = {
           # Operation mode when no power supply can be detected: AC, BAT.
           "TLP_DEFAULT_MODE" = "BAT";
-            # Operation mode select: 0=depend on power source, 1=always use TLP_DEFAULT_MODE
+          # Operation mode select: 0=depend on power source, 1=always use TLP_DEFAULT_MODE
           "TLP_PERSISTENT_DEFAULT" = 1;
-            # Disable too aggressive power-management autosuspend for USB receiver for wireless mouse
+          # Disable too aggressive power-management autosuspend for USB receiver for wireless mouse
           "USB_AUTOSUSPEND" = 0;
-            # Exclude audio devices from autosuspend mode
+          # Exclude audio devices from autosuspend mode
           "USB_EXCLUDE_AUDIO" = 0;
-            # Timeout (in seconds) for the audio power saving mode
-            # 1 is recommended with PulseAudio
-            # 10 may be required without PulseAudio.
-            # The value 0 disables power save.
-            # https://lists.freedesktop.org/archives/pulseaudio-discuss/2017-December/029154.html
+          # Timeout (in seconds) for the audio power saving mode
+          # 1 is recommended with PulseAudio
+          # 10 may be required without PulseAudio.
+          # The value 0 disables power save.
+          # https://lists.freedesktop.org/archives/pulseaudio-discuss/2017-December/029154.html
           "SOUND_POWER_SAVE_ON_AC" = 1;
           "SOUND_POWER_SAVE_ON_BAT" = 1;
-           "PCIE_ASPM_ON_AC" = "default";
+          "PCIE_ASPM_ON_AC" = "default";
           "PCIE_ASPM_ON_BAT" = "powersave";
           "START_CHARGE_THRESH_BAT0" = 45;
           "STOP_CHARGE_THRESH_BAT0" = 96;

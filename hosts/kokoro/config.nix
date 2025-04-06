@@ -1,10 +1,11 @@
-{ config, flake, lib, pkgs, system, ... }: {
+{ flake, ... }:
+{
 
   imports = [
     ./hardware.nix
     ../../nixos/laptop.nix
     flake.inputs.sops-nix.nixosModules.sops
-    flake.inputs.impermanence.nixosModules.impermanence 
+    flake.inputs.impermanence.nixosModules.impermanence
   ];
 
   #---Custom modules---#
@@ -14,8 +15,12 @@
       asRemovable = false;
       useOSProber = false;
     };
+    modules.system = {
+      audio.enable = true;
+      customFonts.enable = true;
+      desktopEnvironment = "qtile";
+      home.enable = true;
+    };
   };
-
-  device.netDevices = [ "enp0s25" "wlan0" ];
 
 }

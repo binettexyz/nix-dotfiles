@@ -1,8 +1,15 @@
-{ config, lib, flake, pkgs, ... }:
+{
+  config,
+  lib,
+  flake,
+  pkgs,
+  ...
+}:
 
 let
   inherit (flake) inputs;
-in {
+in
+{
 
   imports = [
     ./hardware.nix
@@ -11,30 +18,37 @@ in {
     flake.inputs.impermanence.nixosModules.impermanence
   ];
 
-  /* ---Custom modules--- */
+  # ---Custom modules---
   modules = {
     bootloader = {
       default = "grub";
       asRemovable = true;
       useOSProber = false;
     };
-    system.desktopEnvironment = "plasma";
-    gaming.device.isSteamdeck = true;
+    gaming = {
+      enable = true;
+      device.isSteamdeck = true;
+      steam.enable = true;
+    };
+    system = {
+      audio.enable = true;
+      desktopEnvironment = "plasma";
+      home.enable = true;
+    };
   };
   device = {
     gpu = "amd";
-    netDevices = [ "wlo1" ];
+    hasBattery = true;
   };
 
-  /* ---Networking--- */
+  # ---Networking---
   networking = {
     interfaces.wlo1.useDHCP = true;
     interfaces.tailscale0.useDHCP = true;
   };
 
-  /* ---Stuff I Dont Want--- */
+  # ---Stuff I Dont Want---
   services.timesyncd.enable = lib.mkForce false;
 
   environment.systemPackages = with pkgs; [ zsh ];
 }
-

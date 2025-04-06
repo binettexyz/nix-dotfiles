@@ -1,4 +1,5 @@
-{ config, lib, pkgs, flake, ... }: {
+{ ... }:
+{
 
   imports = [
     ./audio.nix
@@ -17,7 +18,6 @@
     ./ssh.nix
     ./system.nix
     ./user.nix
-    #./xserver.nix
   ];
 
 }

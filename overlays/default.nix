@@ -28,9 +28,6 @@ in
       autorandr = prev.autorandr.overrideAttrs (_: {
         src = inputs.autorandr;
       });
-      dmenu = prev.callPackage (inputs.dmenu + "/default.nix") { };
-      dwm = prev.callPackage (inputs.dwm + "/default.nix") { };
-      st = prev.callPackage (inputs.st + "/default.nix") { };
       # namespaces
       lib = prev.lib.extend (
         finalLib: prevLib: (import ../lib/mkDefaultOption.nix { inherit (prev) lib; })

@@ -1,17 +1,15 @@
 {
   lib,
   pkgs,
-  flake,
-  super,
   ...
 }:
 
 {
   # Import overlays
   imports = [
-    ../../../overlays
-    ../../../modules/device.nix
-    ../../../modules/meta.nix
+    ../../overlays
+    #   ../../../modules/device.nix
+    #   ../../../modules/meta.nix
   ];
 
   # Add some Nix related packages
@@ -45,6 +43,6 @@
   home.stateVersion = "22.11";
 
   # Inherit config from NixOS or homeConfigurations
-  device = super.device;
-  meta = super.meta;
+  #  device = super.device;
+  #  meta = super.meta;
 }

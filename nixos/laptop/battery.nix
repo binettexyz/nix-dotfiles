@@ -1,27 +1,36 @@
-{ config, lib, pkgs, ... }:
-with lib;
-
+{
+  config,
+  lib,
+  pkgs,
+  deviceType,
+  ...
+}:
 let
   cfg = config.laptop.onLowBattery;
-in {
+in
+{
 
   options.laptop.onLowBattery = {
-    enable = mkEnableOption "Perform action on low battery";
-    thresholdPercentage = mkOption {
+    enable = lib.mkEnableOption "Perform action on low battery";
+    thresholdPercentage = lib.mkOption {
       description = "Threshold battery percentage on which to perform the action";
       default = 8;
-      type = types.int;
+      type = lib.types.int;
     };
-    action = mkOption {
+    action = lib.mkOption {
       description = "Action to perform on low battery";
       default = "hibernate";
-      type = types.enum [ "hibernate" "suspend" "suspend-then-hibernate" ];
+      type = lib.types.enum [
+        "hibernate"
+        "suspend"
+        "suspend-then-hibernate"
+      ];
     };
   };
 
-  config = lib.mkIf (config.device.type == "laptop") {
+  config = lib.mkIf (deviceType == "laptop") {
     services.udev = lib.mkIf cfg.enable {
-      extraRules = concatStrings [
+      extraRules = lib.concatStrings [
         ''SUBSYSTEM=="power_supply", ''
         ''ATTR{status}=="Discharging", ''
         ''ATTR{capacity}=="[0-${toString cfg.thresholdPercentage}]", ''

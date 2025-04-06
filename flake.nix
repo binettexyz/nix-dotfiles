@@ -1,80 +1,80 @@
 {
   description = "Binette's NixOS Configuration";
 
-  /* --- System's Inputs--- */
+  # --- System's Inputs---
   inputs = {
-    /* --- Default Nixpkgs --- */
+    # --- Default Nixpkgs ---
     nixpkgs.follows = "stable";
 
-    /* --- Nixpkgs branches --- */
+    # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
     stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    /* --- Others --- */
+    # --- Others ---
     flake-utils.url = "github:numtide/flake-utils";
     home.url = "github:nix-community/home-manager/master";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
     sops-nix.url = "github:Mic92/sops-nix";
-    plasma-manager.url = "github:pjones/plasma-manager";
     nix-colors.url = "github:misterio77/nix-colors";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    /* --- Suckless Software --- */
-    dwm = { url = "github:binettexyz/dwm"; flake = false; };
-    st = { url = "github:binettexyz/st"; flake = false; };
-    dmenu = { url = "github:binettexyz/dmenu"; flake = false; };
-
-    /* --- Minimize duplicate instances of inputs --- */
+    # --- Minimize duplicate instances of inputs ---
     home.inputs.nixpkgs.follows = "stable";
     nix-gaming.inputs.nixpkgs.follows = "stable";
     sops-nix.inputs.nixpkgs.follows = "stable";
-    plasma-manager.inputs = { nixpkgs.follows = "stable"; home-manager.follows = "home"; };
   };
 
-  /* ---System's Output--- */
-  outputs = {
-    self,
-    nixpkgs,
-    unstable,
-    stable,
-    nixos-hardware,
-    nix-colors,
-    ...
-  }@inputs:
-  let
-    inherit (import ./lib/attrsets.nix { inherit (nixpkgs) lib; }) recursiveMergeAttrs;
-    inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
-  in
+  # ---System's Output---
+  outputs =
+    {
+      self,
+      nixpkgs,
+      unstable,
+      stable,
+      nixos-hardware,
+      nix-colors,
+      ...
+    }@inputs:
+    let
+      inherit (import ./lib/attrsets.nix { inherit (nixpkgs) lib; }) recursiveMergeAttrs;
+      inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
+    in
     (recursiveMergeAttrs [
 
-      /* ---Defining Systems--- */
-        # Desktop (Azure Dragon)
-      (mkNixOSConfig { hostname = "seiryu"; })
-        # Steamdeck (Torpedo)
-      (mkNixOSConfig { hostname = "gyorai"; system = "x86_64-linux"; })
-        # Lenovo Thinkpad t440p (Heart/Spirit)
-      (mkNixOSConfig { hostname = "kokoro"; })
-        # Raspberry Pi 4 (Shadow Darkness)
-      (mkNixOSConfig { hostname = "kageyami"; system = "aarch64-linux"; })
+      # ---Defining Systems---
+      # Gaming Desktop (Azure Dragon)
+      (mkNixOSConfig {
+        deviceType = "gaming-desktop";
+        hostname = "seiryu";
+        gpuType = "amdgpu";
+      })
+      # Steamdeck (Torpedo)
+      (mkNixOSConfig {
+        deviceType = "gaming-handheld";
+        hostname = "gyorai";
+        gpuType = "amdgpu";
+      })
+      # Lenovo Thinkpad t440p (Heart/Spirit)
+      (mkNixOSConfig {
+        deviceType = "laptop";
+        hostname = "kokoro";
+      })
+      # Raspberry Pi 4 (Shadow Darkness)
+      (mkNixOSConfig {
+        deviceType = "server";
+        hostname = "kageyami";
+        system = "aarch64-linux";
+      })
 
-      /* ---Defining Home-Manager--- */
-      (mkHomeConfig { hostname = "desktop"; })
+      # ---Defining Home-Manager---
       (mkHomeConfig {
-        hostname = "minimal";
-        configuration = ./home-manager/minimal.nix;
-      })
-      (mkHomeConfig {
-        hostname = "laptop";
-        configuration = ./home-manager/laptop.nix;
-      })
-      (mkHomeConfig {
-        hostname = "server";
-        configuration = ./home-manager/server.nix;
+        deviceType = "gaming-desktop";
+        hostname = "seiryu";
       })
     ]);
 
