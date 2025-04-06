@@ -1,10 +1,15 @@
-{ flake, lib, pkgs, system, ... }:
+{
+  flake,
+  pkgs,
+  system,
+  ...
+}:
 let
 
   inherit (flake) inputs;
 
-in {
-
+in
+{
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -19,29 +24,30 @@ in {
         config.allowBroken = true;
       };
 
-      anime4k = prev.callPackage ../packages/anime4k.nix { };
-      freedoom = prev.callPackage ../packages/freedoom.nix { };
-      wallpapers = prev.callPackage ../packages/wallpapers { };
-      autorandr = prev.autorandr.overrideAttrs (_: { src = inputs.autorandr; });
-      dmenu = prev.callPackage (inputs.dmenu + "/default.nix") {};
-      dwm = prev.callPackage (inputs.dwm + "/default.nix") {};
-      st = prev.callPackage (inputs.st + "/default.nix") {};
-        # namespaces
-      lib = prev.lib.extend (finalLib: prevLib:
-        (import ../modules/mkDefaultOption.nix { inherit (prev) lib; })
+      anime4k = prev.callPackage ./packages/anime4k.nix { };
+      freedoom = prev.callPackage ./packages/freedoom.nix { };
+      wallpapers = prev.callPackage ./packages/wallpapers { };
+      autorandr = prev.autorandr.overrideAttrs (_: {
+        src = inputs.autorandr;
+      });
+      dmenu = prev.callPackage (inputs.dmenu + "/default.nix") { };
+      dwm = prev.callPackage (inputs.dwm + "/default.nix") { };
+      st = prev.callPackage (inputs.st + "/default.nix") { };
+      # namespaces
+      lib = prev.lib.extend (
+        finalLib: prevLib: (import ../modules/mkDefaultOption.nix { inherit (prev) lib; })
       );
 
-      change-res = prev.callPackage ../packages/change-res { };
-
-      nix-cleanup = prev.callPackage ../packages/nix-cleanup { };
-
-      nixos-cleanup = prev.callPackage ../packages/nix-cleanup { isNixOS = true; };
-
-      nix-rebuild = prev.callPackage ../packages/nix-rebuild { };
+      change-res = prev.callPackage ./packages/change-res { };
+      nix-cleanup = prev.callPackage ./packages/nix-cleanup { };
+      nixos-cleanup = prev.callPackage ./packages/nix-cleanup { isNixOS = true; };
+      nix-rebuild = prev.callPackage ./packages/nix-rebuild { };
     })
     (self: super: {
-      discord = super.discord.override { 
-        nss = pkgs.nss_latest; withOpenASAR = true; };
+      discord = super.discord.override {
+        nss = pkgs.nss_latest;
+        withOpenASAR = true;
+      };
     })
   ];
 }

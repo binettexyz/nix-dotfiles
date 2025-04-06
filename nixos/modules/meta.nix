@@ -1,10 +1,8 @@
-{ config, pkgs, flake, ... }:
-
+{ pkgs, flake, ... }:
+let
+  inherit (flake) inputs;
+in
 {
-  imports = [
-    ../../shared/adblock.nix
-#    ../cachix.nix
-  ];
 
   # Add some Nix related packages
   environment.systemPackages = with pkgs; [
@@ -15,22 +13,50 @@
   programs = {
     git.enable = true;
     git.config = {
-        # Avoid git log spam while building this config
+      # Avoid git log spam while building this config
       init.defaultBranch = "master";
     };
-      # Alternative to nixos-rebuild.
+    # Alternative to nixos-rebuild.
     nh.enable = true;
     nh.flake = "/etc/nixos";
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  nix = {
+    settings = {
+      sandbox = true;
+      auto-optimise-store = true;
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
+    daemonIOSchedClass = "idle";
+    daemonCPUSchedPolicy = "idle";
+    nixPath = [
+      "nixpkgs=${inputs.unstable}"
+      "nixpkgs-unstable=${inputs.unstable}"
+    ];
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
 
-  nix = import ../../shared/nix.nix { inherit pkgs flake; };
-
-    # Enable unfree packages
+  # Enable unfree packages
   nixpkgs.config.allowUnfree = true;
 
-    # Change build dir to /var/tmp
+  # Change build dir to /var/tmp
   systemd.services.nix-daemon.environment.TMPDIR = "/tmp";
+
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }

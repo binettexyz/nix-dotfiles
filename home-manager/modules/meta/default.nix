@@ -1,4 +1,10 @@
-{ lib, pkgs, flake, super, ... }:
+{
+  lib,
+  pkgs,
+  flake,
+  super,
+  ...
+}:
 
 {
   # Import overlays
@@ -10,21 +16,18 @@
 
   # Add some Nix related packages
   home.packages = with pkgs; [
-#    hydra-check
-#    nix-cleanup
-#    nix-update
-#    nix-whereis
-#    nixpkgs-fmt
+    #    hydra-check
+    #    nix-cleanup
+    #    nix-update
+    #    nix-whereis
+    #    nixpkgs-fmt
   ];
 
   # To make cachix work you need add the current user as a trusted-user on Nix
   # sudo echo "trusted-users = $(whoami)" >> /etc/nix/nix.conf
   # Another option is to add a group by prefixing it by @, e.g.:
   # sudo echo "trusted-users = @wheel" >> /etc/nix/nix.conf
-  nix = {
-    package = lib.mkDefault pkgs.nix;
-    settings = import ../../../shared/nix-conf.nix;
-  };
+  nix.package = lib.mkDefault pkgs.nix;
 
   # Set custom nixpkgs config (e.g.: allowUnfree), both for this
   # config and for ad-hoc nix commands invocation
