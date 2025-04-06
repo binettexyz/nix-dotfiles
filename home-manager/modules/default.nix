@@ -1,9 +1,11 @@
-{...}: {
+{ ... }:
+{
 
   imports = [
     ./meta
     ./packages.nix
     ./dotfiles/chromium.nix
+    ./dotfiles/emacs
     ./dotfiles/foot.nix
     ./dotfiles/git.nix
     ./dotfiles/helix.nix
