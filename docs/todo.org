@@ -1,6 +1,8 @@
-* Todo list
-- Configure nixvim.
-
-- Fix and update server.
-
-- Setup home server with tailscale/domain.
+* TODO Nixos Config [0/7]
+  - [ ] Clean config.
+  - [ ] Fix standalone home-manager install in fake.nix.
+  - [ ] Update readme.org file.
+  - [ ] Write an installation guide in installation.org.
+  - [ ] Configure nixvim.
+  - [ ] Fix and update server.
+  - [ ] Setup home server with tailscale/domain.
