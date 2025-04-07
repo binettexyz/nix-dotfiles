@@ -56,6 +56,7 @@ in
 
       # ---Drivers---
       hardware.xpadneo.enable = true; # Xbox One Controller
+      #services.udev.packages = with pkgs; [ game-devices-udev-rules ];
 
       # ---System Configuration---
       # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
