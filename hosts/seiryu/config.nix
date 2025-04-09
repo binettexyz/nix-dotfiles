@@ -16,6 +16,7 @@
     gaming = {
       enable = true;
       steam.enable = true;
+      valveControllersRules = true;
       openPorts = false;
     };
     system = {
