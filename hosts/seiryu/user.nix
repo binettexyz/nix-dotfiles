@@ -15,6 +15,7 @@ in
 
   modules.hm = {
     gaming.enable = true;
+    gui.packages = true;
     browser.librewolf.enable = true;
     mpv = {
       enable = true;

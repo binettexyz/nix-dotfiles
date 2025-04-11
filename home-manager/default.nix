@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
 
   imports = [
@@ -21,5 +21,18 @@
     ./dotfiles/tools/ssh.nix
     ./dotfiles/tools/tmux.nix
   ];
+
+  options = {
+    modules.hm.gaming = {
+      enable = lib.mkOption {
+        description = "Enable gaming related configuration";
+        default = false;
+      };
+    };
+    modules.hm.gui.packages = lib.mkOption {
+      description = "Install gui packages";
+      default = false;
+    };
+  };
 
 }

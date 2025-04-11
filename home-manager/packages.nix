@@ -7,13 +7,6 @@
 }:
 {
 
-  options.modules.hm.gaming = {
-    enable = lib.mkOption {
-      description = "Enable gaming related configuration";
-      default = false;
-    };
-  };
-
   config.home.packages =
     with pkgs;
     lib.mkMerge [
@@ -39,10 +32,13 @@
         rar
       ])
 
-      (lib.mkIf super.services.xserver.windowManager.qtile.enable [
+      (lib.mkIf config.modules.hm.gui.packages [
         discord
         libreoffice
         texlive.combined.scheme-full
+      ])
+
+      (lib.mkIf super.services.xserver.windowManager.qtile.enable [
         grim
         slurp
         pamixer
