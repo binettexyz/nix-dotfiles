@@ -3,5 +3,15 @@
 
 [[https://github.com/binettexyz/nix-dotfiles/blob/master/docs/images/screenshot-desktop.png]]
 
+* About
+
+* Components
+| Linux Distribution | NixOS                        |
+| Window Manager     | Qtile                        |
+| Shell              | zsh                          |
+| File Manager       | lf                           |
+| Colorscheme        | Gruvbox Material             |
+| Text Editor        | Helix (Emacs in progress...) |
+
 * Credits
 Thanks to [[https://github.com/thiagokokada/nix-configs/blob/master/flake.nix][thiagokokada]] for the flake template.
