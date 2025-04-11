@@ -119,7 +119,15 @@ in
       };
       programs.gamescope = {
         enable = true;
-        capSysNice = true;
+        package = pkgs.stable.gamescope;
+        capSysNice = false;
+        args = [
+          "--rt"
+          "--force-grab-cursor"
+          "--expose-wayland"
+          "--nested-unfocused-refresh 30"
+        ];
+
       };
 
       hardware.steam-hardware.enable = true;
@@ -127,7 +135,6 @@ in
       environment.systemPackages = with pkgs; [
         # Allow downloading of GE-Proton and other versions
         protonup-qt
-        gamemode
         mangohud
       ];
     })
