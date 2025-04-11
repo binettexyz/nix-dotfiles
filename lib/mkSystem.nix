@@ -19,7 +19,7 @@ in
       hostname,
       gpuType ? "",
       system ? "x86_64-linux",
-      nixosSystem ? unstable.lib.nixosSystem,
+      nixosSystem ? nixpkgs.lib.nixosSystem,
       extraMods ? [ ],
       extraOverlays ? [ ],
     }:

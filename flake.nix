@@ -4,7 +4,7 @@
   # --- System's Inputs---
   inputs = {
     # --- Default Nixpkgs ---
-    nixpkgs.follows = "stable";
+    nixpkgs.follows = "unstable";
 
     # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
@@ -17,6 +17,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    plasma-manager.url = "github:nix-community/plasma-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
@@ -24,9 +25,11 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     # --- Minimize duplicate instances of inputs ---
-    home.inputs.nixpkgs.follows = "stable";
-    nix-gaming.inputs.nixpkgs.follows = "stable";
-    sops-nix.inputs.nixpkgs.follows = "stable";
+    home.inputs.nixpkgs.follows = "nixpkgs";
+    nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # ---System's Output---
