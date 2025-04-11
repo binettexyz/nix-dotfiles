@@ -22,7 +22,7 @@
     system = {
       audio.enable = true;
       customFonts.enable = true;
-      desktopEnvironment = "plasma";
+      desktopEnvironment = "qtile";
       home.enable = true;
     };
   };
