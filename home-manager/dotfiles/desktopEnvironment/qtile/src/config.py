@@ -150,18 +150,17 @@ layout_theme = {
 layouts = [
         layout.Floating(**layout_theme),
         layout.MonadTall(**layout_theme),
-        layout.MonadWide(**layout_theme),
         layout.Columns(**layout_theme),
 ]
 
 groups = [
-    Group("Dev", layout="columns", label='<span foreground="#d3869d">󰧚</span>'),
-    Group("Web", layout="columns", label='<span foreground="#7daea3">󰈹</span>'),
-    Group("Gaming", layout="floating", label='<span foreground="#89b482">󰊗</span>'),
-    Group("Comms", layout="columns", label='<span foreground="#a9b665">󰇮</span>'),
-    Group("Media", layout="columns", label='<span foreground="#d8a657">󰕧</span>'),
-    Group("Server", layout="columns", label='<span foreground="#e78a4e">󰣳</span>'),
-    Group("Hidden", layout="columns", label='<span foreground="#ea6962">󰈉</span>'),
+    Group("Dev", layout="monadtall", label='<span foreground="#d3869d">󰧚</span>'),
+    Group("Web", layout="monadtall", label='<span foreground="#7daea3">󰈹</span>', matches=[Match(wm_class=["librewolf", "qutebrowser"])]),
+    Group("Gaming", layout="monadtall", label='<span foreground="#89b482">󰊗</span>', matches=[Match(wm_class=["steam", "net.lutris.Lutris", "gamescope"])]),
+    Group("Comms", layout="monadtall", label='<span foreground="#a9b665">󰇮</span>', matches=[Match(wm_class="discord")]),
+    Group("Media", layout="monadtall", label='<span foreground="#d8a657">󰕧</span>', matches=[Match(wm_class=["mpv"])]),
+    Group("Server", layout="monadtall", label='<span foreground="#e78a4e">󰣳</span>'),
+    Group("Hidden", layout="monadtall", label='<span foreground="#ea6962">󰈉</span>'),
 ]
 
 # Allow MODKEY+[0 through 9] to bind to groups
