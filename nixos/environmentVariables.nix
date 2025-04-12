@@ -44,6 +44,22 @@ with lib;
     # Other Program Settings:
     MOZ_USE_XINPUT2 = "1";
     _JAVA_AWT_WM_NONREPARENTING = 1;
+
+    # Wayland
+    XDG_SESSION_TYPE = "wayland"; # Tell apps you're using Wayland
+    XDG_CURRENT_DESKTOP = "qtile"; # Required by xdg-desktop-portal for screen sharing
+    XDG_SEAT = "seat0"; # Some apps need this to use the correct seat
+
+    # Prefer Wayland-native backends if available
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    GDK_BACKEND = "wayland,x11";
+
+    # Some Electron apps can use Wayland with this
+    MOZ_ENABLE_WAYLAND = 1; # Firefox (GTK)
+    MOZ_WEBRENDER = 1; # Firefox rendering
+    OZONE_PLATFORM = "wayland"; # Electron/Chromium (Wayland support)
   };
 
 }
