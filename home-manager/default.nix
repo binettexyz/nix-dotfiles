@@ -7,6 +7,7 @@
     ./dotfiles/browsers/chromium.nix
     ./dotfiles/browsers/librewolf.nix
     ./dotfiles/browsers/qutebrowser
+    ./dotfiles/desktopEnvironment/hyprland
     ./dotfiles/desktopEnvironment/plasma-manager.nix
     ./dotfiles/desktopEnvironment/qtile
     ./dotfiles/media/mpv
