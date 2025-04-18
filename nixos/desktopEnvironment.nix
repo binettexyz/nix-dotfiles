@@ -88,8 +88,6 @@ in
         withUWSM = true;
       };
 
-      programs.waybar.enable = true;
-
       services.greetd.enable = true;
       services.greetd.settings = rec {
         initial_session = {
