@@ -43,7 +43,8 @@
       exec-once = [
         "emacs --daemon &"
         "steam &"
-        "discord &"
+        #"discord &"
+        "vesktop &"
         "librewolf &"
       ];
 
@@ -219,6 +220,7 @@
         "workspace 3 silent, class:^(.*lutris.*)$"
         "workspace 3 silent, class:gamescope"
         "workspace special:discord silent, class:discord"
+        "workspace special:discord silent, class:vesktop"
         "workspace 5 silent, class:$(.*mpv.*)$"
       ];
 

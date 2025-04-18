@@ -34,7 +34,8 @@
       ])
 
       (lib.mkIf config.modules.hm.gui.packages [
-        discord
+        #discord
+        vesktop
         libreoffice
         texlive.combined.scheme-full
       ])
