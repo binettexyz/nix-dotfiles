@@ -50,9 +50,9 @@
   };
 
   # Qt
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-  };
+  #  qt = {
+  #    enable = true;
+  #    platformTheme.name = "gtk";
+  #  };
 
 }
