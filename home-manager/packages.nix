@@ -30,6 +30,7 @@
         zip
         unzip
         rar
+        capitaine-cursors-themed
       ])
 
       (lib.mkIf config.modules.hm.gui.packages [
