@@ -1,3 +1,4 @@
+{ config, ... }:
 {
 
   wayland.windowManager.hyprland = {
@@ -22,6 +23,10 @@
         "OZONE_PLATFORM,wayland"
         "NIXOS_OZONE_WL,1"
         "SDL_VIDEODRIVER,wayland"
+        "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        "HYPRCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
+        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
       ];
 
       monitor = [
