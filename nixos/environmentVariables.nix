@@ -17,7 +17,7 @@ with lib;
     BROWSER = if config.device == "laptop" then "qutebrowser" else "librefox";
     READER = "zathura";
     SUDO = "doas";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    MANPAGER = "bat -l man -p";
     SHELL = "zsh";
 
     # Themes
