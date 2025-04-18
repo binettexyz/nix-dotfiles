@@ -1,4 +1,3 @@
-{ ... }:
 {
 
   wayland.windowManager.hyprland = {
@@ -123,12 +122,6 @@
         "$mod1, 1, workspace, 1"
         "$mod1, 2, workspace, 2"
         "$mod1, 3, workspace, 3"
-        "$mod1, 4, workspace, 4"
-        "$mod1, 5, workspace, 5"
-        "$mod1, 6, workspace, 6"
-        "$mod1, 7, workspace, 7"
-        "$mod1, Tab, workspace, +1"
-        "$mod1, grave, workspace, -1"
 
         # Move Focus
         "$mod1, H, movefocus, l"
@@ -146,10 +139,6 @@
         "$mod2, 1, movetoworkspacesilent, 1"
         "$mod2, 2, movetoworkspacesilent, 2"
         "$mod2, 3, movetoworkspacesilent, 3"
-        "$mod2, 4, movetoworkspacesilent, 4"
-        "$mod2, 5, movetoworkspacesilent, 5"
-        "$mod2, 6, movetoworkspacesilent, 6"
-        "$mod2, 7, movetoworkspacesilent, 7"
         "$mod2, Period, movewindow, mon: +1 silent"
         "$mod2, Comma, movewindow, mon: -1 silent"
 
@@ -163,6 +152,9 @@
         # Sratchpad
         "$mod1, S, togglespecialworkspace, scratchpad"
         "$mod2, S, movetoworkspacesilent, special:scratchpad"
+
+        "$mod1, C, togglespecialworkspace, discord"
+        "$mod2, C, movetoworkspacesilent, special:discord"
 
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
@@ -215,8 +207,12 @@
         "workspace 3 silent, class:^(.*steam.*)$"
         "workspace 3 silent, class:^(.*lutris.*)$"
         "workspace 3 silent, class:gamescope"
-        "workspace 4 silent, class:discord"
+        "workspace special:discord silent, class:discord"
         "workspace 5 silent, class:$(.*mpv.*)$"
+      ];
+
+      workspace = [
+        "special:scratchpad, on-created-empty:foot"
       ];
     };
   };
