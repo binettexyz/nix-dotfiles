@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  super,
+  osConfig,
   ...
 }:
 {
@@ -39,7 +39,7 @@
         texlive.combined.scheme-full
       ])
 
-      (lib.mkIf super.services.xserver.windowManager.qtile.enable [
+      (lib.mkIf osConfig.programs.hyprland.enable [
         grim
         slurp
         pamixer
