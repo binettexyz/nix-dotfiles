@@ -72,6 +72,20 @@ with lib;
       expireDuplicatesFirst = true;
     };
 
+    dirHashes = {
+      docs = "$HOME/documents";
+      vids = "$HOME/videos";
+      pics = "$HOME/pictures";
+      dl = "$HOME/downloads";
+      git = "$HOME/.git";
+      repos = "$HOME/.git/repos";
+      dots = "/nix/persist/home/binette/.dotfiles";
+      nix = "/etc/nixos";
+      movies = "/media/nas/videos/movies";
+      tv = "/media/nas/videos/tv";
+      animes = "/media/nas/videos/animes";
+    };
+
     envExtra = ''
         # Use neovim for vim if present.
       [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"

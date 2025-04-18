@@ -5,20 +5,6 @@
     ./zsh.nix
   ];
 
-  home.dirHashes = {
-    docs = "$HOME/documents";
-    vids = "$HOME/videos";
-    pics = "$HOME/pictures";
-    dl = "$HOME/downloads";
-    git = "$HOME/.git";
-    repos = "$HOME/.git/repos";
-    dots = "/nix/persist/home/binette/.dotfiles";
-    nix = "/etc/nixos";
-    movies = "/media/nas/videos/movies";
-    tv = "/media/nas/videos/tv";
-    animes = "/media/nas/videos/animes";
-  };
-
   home.shellAliases = {
     nixsh = "nix-shell -p";
     nixup = "pushd /etc/nixos; doas nix flake update; popd";
