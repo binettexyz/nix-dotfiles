@@ -1,18 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib;
-
+{ config, ... }:
 {
 
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
-    EDITOR = "emacsclient -t -a ''";
-    VISUAL = "emacsclient -c -a emacs";
+    EDITOR = "(emacsclient -c -a emacs)";
+    VISUAL = "(emacsclient -c -a emacs)";
     TERMINAL = "foot";
     BROWSER = if config.device == "laptop" then "qutebrowser" else "librefox";
     READER = "zathura";
@@ -31,8 +24,6 @@ with lib;
     INPUTRC = "$HOME/.config/shell/inputrc";
 
     # ~/ Clean-up:
-    XINITRC = "$HOME/.config/x11/xinitrc";
-    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority"; # This line will break some DMs.
     GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc-2.0";
     LESSHISTFILE = "-";
     ZDOTDIR = "$HOME/.config/zsh";
