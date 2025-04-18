@@ -1,11 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
 
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
-    EDITOR = "(emacsclient -c -a emacs)";
-    VISUAL = "(emacsclient -c -a emacs)";
+    EDITOR = "hx";
+    VISUAL = "hx";
     TERMINAL = "foot";
     BROWSER = if config.device == "laptop" then "qutebrowser" else "librefox";
     READER = "zathura";
