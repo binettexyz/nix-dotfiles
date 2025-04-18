@@ -37,6 +37,8 @@ in
       nix-cleanup = prev.callPackage ./packages/nix-cleanup { };
       nixos-cleanup = prev.callPackage ./packages/nix-cleanup { isNixOS = true; };
       nix-rebuild = prev.callPackage ./packages/nix-rebuild { };
+
+      gruvbox-material-gtk = prev.callPackage ./packages/gruvbox-material-gtk.nix { };
     })
     (self: super: {
       discord = super.discord.override {
