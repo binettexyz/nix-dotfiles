@@ -151,8 +151,7 @@
         clock = {
           format = "{:%A - %B %d, %Y - %R} ";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
-          tooltip = false;
+          tooltip = true;
         };
         bluetooth = {
           format = " {status}";
