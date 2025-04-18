@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-with lib;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
-let
-  cfg = config.modules.system.customFonts.enable;
-in {
-
-  options.modules.system.customFonts.enable = mkEnableOption {
+  options.modules.system.customFonts.enable = lib.mkEnableOption {
     description = "Enable custom fonts";
     default = false;
   };
@@ -15,7 +16,7 @@ in {
 
     fonts = {
       fontDir.enable = true;
-  
+
       enableDefaultPackages = true;
       packages = with pkgs; [
         lmodern
@@ -25,7 +26,7 @@ in {
         nerd-fonts.fantasque-sans-mono
         nerd-fonts.jetbrains-mono
       ];
-  
+
       fontconfig = {
         enable = true;
         includeUserConf = true;
