@@ -1,4 +1,10 @@
-{ config, ... }:
+{
+  config,
+  deviceType,
+  lib,
+  pkgs,
+  ...
+}:
 {
 
   wayland.windowManager.hyprland = {
@@ -220,6 +226,10 @@
         "special:scratchpad, on-created-empty:foot"
       ];
     };
+    plugins = [
+      pkgs.hyprlandPlugins.hyprsplit
+      (lib.mkIf (deviceType == "gaming-handheld") pkgs.hyprlandPlugins.hyprgrass)
+    ];
   };
 
 }
