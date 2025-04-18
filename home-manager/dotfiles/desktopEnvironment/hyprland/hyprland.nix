@@ -41,7 +41,7 @@
       ];
 
       exec-once = [
-        "$emacs &"
+        "emacs --daemon &"
         "steam &"
         "discord &"
         "librewolf &"
