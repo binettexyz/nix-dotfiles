@@ -6,3 +6,7 @@
   - [ ] Configure nixvim.
   - [ ] Fix and update server.
   - [ ] Setup home server with tailscale/domain.
+** Home-Manager [0/2]
+  - [ ] Updates packages config (mpv, etc.)
+  - [ ] Add file manager in emacs.
+  - [ ] Setup hyprland config for touchscreen (steamdeck)
