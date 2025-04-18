@@ -64,94 +64,12 @@ with lib;
       bindkey '^h' autosuggest-clear
     '';
 
-    # aliases directories
-    dirHashes = {
-      docs = "$HOME/documents";
-      vids = "$HOME/videos";
-      pics = "$HOME/pictures";
-      dl = "$HOME/downloads";
-      git = "$HOME/.git";
-      repos = "$HOME/.git/repos";
-      dots = "/nix/persist/home/binette/.dotfiles";
-      nix = "/etc/nixos";
-      movies = "/media/nas/videos/movies";
-      tv = "/media/nas/videos/tv";
-      animes = "/media/nas/videos/animes";
-    };
-
     # history settings
     history = {
       save = 1000;
       size = 1000;
       path = "/home/binette/.cache/zsh/history";
       expireDuplicatesFirst = true;
-    };
-
-    # aliases
-    shellAliases = {
-      copy = "${pkgs.xclip}/bin/xclip -selection c";
-      paste = "${pkgs.xclip}/bin/xclip -selection c -o";
-      # Nixos related aliases.
-      nixsh = "nix-shell -p";
-      nixup = "pushd /etc/nixos; doas nix flake update; popd";
-      nixq = "nix-store -q --requisites /run/current-system/sw | wc -l";
-      cleanup = "doas nix-collect-garbage -d";
-      bloat = "nix path-info -Sh /run/current-system";
-      nixhost = "pushd /etc/nixos; doas nixos-rebuild switch --flake .# --build-host desktop-server";
-
-      # Naviguation
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      ".3" = "cd ../../..";
-      ".4" = "cd ../../../..";
-      ".5" = "cd ../../../../..";
-
-      # Custom packages script
-      lf = "lfrun";
-      pwgen = "pwgen -1yn 12 10";
-      ncdu = "${pkgs.dua}/bin/dua interactive";
-
-      # clipboard
-      c = "${pkgs.xclip}/bin/xclip";
-      cm = "${pkgs.xclip}/bin/xclip -selection clipboard";
-      v = "${pkgs.xclip}/bin/xclip -o";
-
-      # confirm before overwriting something
-      cp = "cp -riv";
-      mv = "mv -iv";
-      rm = "rm -rifv";
-      mkdir = "mkdir -pv";
-
-      # colorize
-      ls = "${pkgs.eza}/bin/eza -hal --color=always --group-directories-first -s extension";
-      cat = "${pkgs.bat}/bin/bat --paging=never --style=plain";
-      tree = "${pkgs.eza}/bin/eza --tree --icons";
-      diff = "diff --color=auto";
-      ip = "ip --color=auto";
-
-      # Adding flags
-      df = "df -h";
-      free = "free -m";
-      jctl = "journalctl -p 3 -xb";
-
-      # git
-      #	      addup = "git add -u";
-      #	      addall = "git add .";
-      #	      branch = "git branch";
-      #	      checkout = "git checkout";
-      #	      clone = "git clone";
-      #	      commit = "git commit -m";
-      #	      fetch = "git fetch";
-      #	      pull = "git pull origin";
-      #	      push = "git push origin";
-      #	      status = "git status";
-      #	      tag = "git tag";
-      #	      newtag = "git tag -a";
-      #	      subadd = "git submodule add";
-      #	      subup = "git submodule update --remote --merge";
-
-      # fetch computer specs
-      pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
     };
 
     envExtra = ''

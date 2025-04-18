@@ -13,7 +13,7 @@
     ./dotfiles/desktopEnvironment/qtile
     ./dotfiles/media/mpv
     ./dotfiles/media/newsboat.nix
-    ./dotfiles/shells/zsh.nix
+    ./dotfiles/shells
     ./dotfiles/terminals/foot.nix
     ./dotfiles/textEditors/emacs
     ./dotfiles/textEditors/helix.nix
