@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, ... }:
 let
   cfg = config.colorScheme.palette;
-  hexToRgba = import ../../../../lib/hex2rgba.nix { inherit lib; };
 in
 {
 
@@ -20,12 +15,7 @@ in
     }
 
     window#waybar {
-      background: ${
-        hexToRgba {
-          hexColor = cfg.background;
-          opacity = 0.96;
-        }
-      };
+      background: alpha(#${cfg.background}, 0.96);
     }
 
     .modules-left {
