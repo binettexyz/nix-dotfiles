@@ -4,6 +4,7 @@
   imports = [
     ./meta
     ./packages.nix
+    ./pc.nix
     ./theme.nix
     ./dotfiles/browsers/chromium.nix
     ./dotfiles/browsers/librewolf.nix
