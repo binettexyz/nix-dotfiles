@@ -19,11 +19,21 @@
         hide-when-typing = "yes";
       };
       key-bindings = {
-        #clipboard-copy = "Control+c XF86Copy";
-        #clipboard-paste = "Control+v XF86Paste";
-        font-increase = "Control+plus Control+equal Control+KP_Add";
-        font-decrease = "Control+minus Control+KP_Subtract";
-        font-reset = "Control+0 Control+KP_0";
+        clipboard-copy = "Control+Shift+c XF86Copy";
+        clipboard-paste = "Control+Shift+v XF86Paste";
+        scrollback-up-line = "Alt+k";
+        scrollback-down-line = "Alt+j";
+        font-increase = "Alt+Shift+k";
+        font-decrease = "Alt+Shift+j";
+        font-reset = "Control+0";
+      };
+      search-bindings = {
+        # unbind keys
+        cancel = "Escape";
+      };
+      url-bindings = {
+        # unbind keys
+        cancel = "Escape";
       };
       colors = {
         alpha = "0.9";
