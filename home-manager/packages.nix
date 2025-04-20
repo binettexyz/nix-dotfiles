@@ -41,15 +41,17 @@
       ])
 
       (lib.mkIf osConfig.programs.hyprland.enable [
+        wf-recorder
         grim
         slurp
         pamixer
         pulsemixer
+        cliphist
         wl-clipboard
         wlr-randr
         vimiv-qt
         waylock
-        rofi-wayland
+        wofi
         mupdf
         newsboat
         udiskie
