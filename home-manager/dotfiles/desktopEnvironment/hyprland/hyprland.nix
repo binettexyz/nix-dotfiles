@@ -18,6 +18,7 @@
       "$terminal" = "foot";
       "$browser" = "librewolf";
       "$editor" = "emacsclient -c -a emacs";
+      "$menu" = "wofirun";
 
       env = [
         "QT_QPA_PLATFORM,wayland"
@@ -46,6 +47,7 @@
         #"discord &"
         "vesktop &"
         "librewolf &"
+        "wl-paste --watch cliphist store &"
       ];
 
       general = {
@@ -170,7 +172,7 @@
 
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
-        "$mod1, E, exec, $fileManager"
+        "$mod1, E, exec, $editor"
         "$mod1, D, exec, $menu"
 
         # Apps Launched with SUPER + ALT + KEY
@@ -179,8 +181,10 @@
 
         # Apps Launched with SUPER + SHIFT + KEY
         "$mod2, Q, exec, sysact"
+        "$mod2, P, exec, screenshot"
 
         # Apps Launched with CTRL + ALT + KEY
+        "$mod5, C, exec, clipboard"
       ];
 
       bindm = [
