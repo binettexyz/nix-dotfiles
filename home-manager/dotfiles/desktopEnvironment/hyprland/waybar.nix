@@ -56,6 +56,7 @@
         "custom/power" = {
           format = " ";
           tooltip = false;
+          on-click = "sysact";
         };
         "hyprland/workspaces" = {
           disable-scroll = true;
