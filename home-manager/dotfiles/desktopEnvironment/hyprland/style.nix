@@ -45,6 +45,7 @@ in
       margin-left: 0px;
       padding: 0px 0px 0px 0px;
     }
+    #custom-notification,
 
     #clock {
       background: #282828;
