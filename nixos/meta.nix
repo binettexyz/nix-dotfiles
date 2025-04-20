@@ -8,6 +8,10 @@ in
   environment.systemPackages = with pkgs; [
     nixos-cleanup
     nix-rebuild
+    screenshot
+    sysact
+    clipboard
+    wofirun
   ];
 
   programs = {

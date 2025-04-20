@@ -22,6 +22,10 @@ in
         config.allowBroken = true;
       };
 
+      clipboard = prev.callPackage ./packages/clipboard.nix { };
+      wofirun = prev.callPackage ./packages/wofirun.nix { };
+      screenshot = prev.callPackage ./packages/screenshot.nix { };
+      sysact = prev.callPackage ./packages/sysact.nix { };
       anime4k = prev.callPackage ./packages/anime4k.nix { };
       freedoom = prev.callPackage ./packages/freedoom.nix { };
       wallpapers = prev.callPackage ./packages/wallpapers { };
@@ -33,7 +37,6 @@ in
         finalLib: prevLib: (import ../lib/mkDefaultOption.nix { inherit (prev) lib; })
       );
 
-      change-res = prev.callPackage ./packages/change-res { };
       nix-cleanup = prev.callPackage ./packages/nix-cleanup { };
       nixos-cleanup = prev.callPackage ./packages/nix-cleanup { isNixOS = true; };
       nix-rebuild = prev.callPackage ./packages/nix-rebuild { };
