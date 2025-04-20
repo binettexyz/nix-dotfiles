@@ -8,7 +8,8 @@
       * {
         all: unset;
         font-size: 14px;
-        font-family: "Ubuntu Nerd Font";
+        font-weight: 600;
+        font-family: monospace;
         transition: 200ms;
       }
 
