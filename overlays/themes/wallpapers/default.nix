@@ -1,7 +1,11 @@
-{ callPackage, fetchurl, lib }:
+{
+  callPackage,
+  fetchurl,
+  lib,
+}:
 
 let
-  mkWallpaperGithub = callPackage (import ./mkWallpaperGithub.nix ) {};
+  mkWallpaperGithub = callPackage (import ./mkWallpaperGithub.nix) { };
 in
 {
   gruvbox = mkWallpaperGithub {

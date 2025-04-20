@@ -1,32 +1,55 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  /* ---Kernel Stuff--- */
+  # ---Kernel Stuff---
   boot = {
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "mitigations=off" "nowatchdog" ];
+    kernelParams = [
+      "mitigations=off"
+      "nowatchdog"
+    ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     extraModulePackages = [ ];
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "sdhci_pci"
+      ];
       kernelModules = [ ];
     };
   };
-  /* ---FileSystem--- */
+  # ---FileSystem---
   fileSystems = {
-    "/" = { 
+    "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
     };
-    "/boot" = { 
+    "/boot" = {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
     "/nix" = {
       device = "/dev/disk/by-label/nix";
@@ -44,7 +67,7 @@
   swapDevices = [ ];
 
   environment.persistence."/nix/persist" = {
-    hideMounts  = true;
+    hideMounts = true;
     directories = [
       "/etc/NetworkManager"
       "/etc/nixos"
@@ -55,7 +78,7 @@
     ];
   };
 
-  /* ---Networking--- */
+  # ---Networking---
   networking = {
     hostName = "gyorai";
     useDHCP = lib.mkForce true;
@@ -63,7 +86,7 @@
     networkmanager.enable = lib.mkForce true;
   };
 
-  /* ---Bluetooth--- */
+  # ---Bluetooth---
   # Enable experimental settings or else theres no bluetooth on boot.
   # https://discourse.nixos.org/t/bluetooth-not-working/27812
   hardware.bluetooth = {
@@ -83,8 +106,8 @@
 
   hardware.enableAllFirmware = true;
 
-  /* ---CPU Stuff--- */
-    # Dont know yet what the default value is.
+  # ---CPU Stuff---
+  # Dont know yet what the default value is.
   #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 8; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

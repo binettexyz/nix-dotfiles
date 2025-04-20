@@ -9,7 +9,7 @@ with lib;
     coc = {
       enable = true;
       pluginConfig = lib.strings.concatStringsSep "\n" [
-          # use <tab> for trigger completion and navigate to the next complete item:
+        # use <tab> for trigger completion and navigate to the next complete item:
         ''
           function! CheckBackspace() abort
             let col = col('.') - 1
@@ -21,28 +21,28 @@ with lib;
             \ CheckBackspace() ? "\<Tab>" :
             \ coc#refresh()
         ''
-          # Use <Tab> and <S-Tab> to naviguate the completion list:
+        # Use <Tab> and <S-Tab> to naviguate the completion list:
         ''
           inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
           inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
         ''
       ];
 
-        # https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
-        # ~/.config/nvim/coc-settings.json
+      # https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
+      # ~/.config/nvim/coc-settings.json
       settings = {
         "suggest.noselect" = true;
         "suggest.enablePreview" = true;
         "suggest.enablePreselect" = false;
-#        "languageserver" = {
-#            # https://gitlab.com/jD91mZM2/nix-lsp
-#          "nix" = {
-#            "command" = "rnix-lsp";
-#            "filetypes" = [
-#              "nix"
-#            ];
-#          };
-#        };
+        #        "languageserver" = {
+        #            # https://gitlab.com/jD91mZM2/nix-lsp
+        #          "nix" = {
+        #            "command" = "rnix-lsp";
+        #            "filetypes" = [
+        #              "nix"
+        #            ];
+        #          };
+        #        };
       };
     };
 

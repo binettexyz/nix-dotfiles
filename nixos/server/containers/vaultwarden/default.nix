@@ -1,4 +1,10 @@
-{ config, options, lib, pkgs, ... }:
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.server.containers.vaultwarden.enable;
@@ -21,9 +27,14 @@ in
 
       privateNetwork = false;
       inherit localAddress hostAddress;
-  
-      bindMounts = { "${backupDir}" = { hostPath = "/nix/persist/srv/private/vaultwardenBackup"; isReadOnly = false; }; };
-  
+
+      bindMounts = {
+        "${backupDir}" = {
+          hostPath = "/nix/persist/srv/private/vaultwardenBackup";
+          isReadOnly = false;
+        };
+      };
+
       forwardPorts = [
         {
           containerPort = ports.vaultwarden;
@@ -35,36 +46,37 @@ in
           hostPort = ports.vaultwarden;
           protocol = "udp";
         }
-  		];
-  
-      config = { config, pkgs, ... }: {
-        networking.firewall = {
-          allowedTCPPorts = [ ports.vaultwarden ];
-          allowedUDPPorts = [ ports.vaultwarden ];
-        };
+      ];
 
-        services.vaultwarden = {
-          enable = true;
-          config = {
-            webVaultEnabled = true;
-            websocketEnabled = true;
-            signupsVerify = false;
-            websocketAddress = "0.0.0.0";
-            rocketAddress = "0.0.0.0";
-            rocketPort = ports.vaultwarden;
-            showPasswordHint = false;
+      config =
+        { config, pkgs, ... }:
+        {
+          networking.firewall = {
+            allowedTCPPorts = [ ports.vaultwarden ];
+            allowedUDPPorts = [ ports.vaultwarden ];
           };
-          inherit backupDir;
-        };
-    
-        system.activationScripts.initVaultwarden = ''
-          mkdir -p "${backupDir}"
-          chown vaultwarden "${backupDir}"
-        '';
-    
 
-        system.stateVersion = "22.11";
-      };
+          services.vaultwarden = {
+            enable = true;
+            config = {
+              webVaultEnabled = true;
+              websocketEnabled = true;
+              signupsVerify = false;
+              websocketAddress = "0.0.0.0";
+              rocketAddress = "0.0.0.0";
+              rocketPort = ports.vaultwarden;
+              showPasswordHint = false;
+            };
+            inherit backupDir;
+          };
+
+          system.activationScripts.initVaultwarden = ''
+            mkdir -p "${backupDir}"
+            chown vaultwarden "${backupDir}"
+          '';
+
+          system.stateVersion = "22.11";
+        };
     };
   };
 

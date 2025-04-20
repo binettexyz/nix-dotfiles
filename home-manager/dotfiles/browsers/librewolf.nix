@@ -1,9 +1,15 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 
 let
   cfg = config.modules.hm.browser.librewolf;
-in {
+in
+{
 
   options.modules.hm.browser.librewolf.enable = mkOption {
     description = "Enable librewolf";

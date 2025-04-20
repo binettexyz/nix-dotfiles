@@ -1,9 +1,15 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 
 let
   cfg = config.modules.hm.browser.chromium;
-in {
+in
+{
 
   options.modules.hm.browser.chromium.enable = mkOption {
     description = "Enable chromium";
@@ -31,7 +37,7 @@ in {
         { id = "jinjaccalgkegednnccohejagnlnfdag"; } # Violent Monkey
         { id = "lcbjdhceifofjlpecfpeimnnphbcjgnc"; } # xBrowserSync
         {
-            # chromium web store
+          # chromium web store
           id = "ocaahdebbfolfmndjeplogmgcagdmblk";
           crxPath = builtins.fetchurl {
             name = "chromium-web-store.crx";

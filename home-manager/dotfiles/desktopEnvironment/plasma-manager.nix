@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.plasma = {
     enable = true;
     overrideConfig = true;
@@ -38,7 +39,7 @@
                 "applications:org.kde.konsole.desktop"
                 "applications:discord.desktop"
                 "applications:steam.desktop"
-                
+
               ];
               behavior = {
                 showTasks = {
@@ -89,7 +90,7 @@
     configFile = {
       kcminputrc."Libinput/1133/50503/Logitech USB Receiver" = {
         PointerAccelerationProfile = 1;
-        PointerAcceleration = -0.200;    
+        PointerAcceleration = -0.200;
       };
       kwinrc.Plugins.shakecursorEnabled = false;
     };
@@ -99,5 +100,5 @@
       "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
       "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
     };
-  }; 
+  };
 }

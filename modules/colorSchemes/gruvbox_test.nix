@@ -20,7 +20,7 @@
     bg_visual_blue = "#2e3b3b";
     bg_visual_yellow = "#473c29";
     bg_current_word = "#32302f";
-    
+
     fg0 = "#d4be98";
     fg1 = "#ddc7a1";
     red = "#ea6962";
@@ -33,7 +33,7 @@
     bg_red = "#ea6962";
     bg_green = "#a9b665";
     bg_yellow = "#d8a657";
-    
+
     grey0 = "#7c6f64";
     grey1 = "#928374";
     grey2 = "#a89984";

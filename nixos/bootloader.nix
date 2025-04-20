@@ -1,15 +1,24 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.bootloader.default;
-in {
+in
+{
 
-  /* ---Bootloader Modules--- */
+  # ---Bootloader Modules---
   options.modules.bootloader = {
     default = mkOption {
       description = "Enable bootloader";
-      type = types.enum [ "grub" "rpi4" ];
-      default = "grub";    
+      type = types.enum [
+        "grub"
+        "rpi4"
+      ];
+      default = "grub";
     };
     asRemovable = mkOption {
       description = "Enable efiInstallAsRemovable option.";
@@ -21,7 +30,7 @@ in {
     };
   };
 
-  /* ---Configuration--- */
+  # ---Configuration---
   config = mkMerge [
     (mkIf (cfg == "grub") {
       boot.loader = {
@@ -44,12 +53,12 @@ in {
             set menu_color_highlight=black/white
           '';
           extraEntries = ''
-            menuentry "Poweroff" {
-  	          halt
-           }
-  	        menuentry "Reboot" {
-             reboot
-            }
+                      menuentry "Poweroff" {
+            	          halt
+                     }
+            	        menuentry "Reboot" {
+                       reboot
+                      }
           '';
         };
       };

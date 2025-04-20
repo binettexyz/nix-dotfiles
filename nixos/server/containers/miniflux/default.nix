@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.containers.miniflux;
@@ -8,7 +13,7 @@ let
     miniflux = 8096;
   };
   mkLocalProxy = port: {
-    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+    locations."/".proxyPass = "http://${localAddress}:" + toString (port);
   };
 in
 {
@@ -21,29 +26,31 @@ in
       "miniflux.box" = mkLocalProxy ports.jellyfin;
     };
 
-#    systemd.tmpfiles.rules = [
-#      "d ${minifluxDataDir} - - - -"
-#    ];
-  
-    /*  ---Main container--- */
+    #    systemd.tmpfiles.rules = [
+    #      "d ${minifluxDataDir} - - - -"
+    #    ];
+
+    # ---Main container---
     containers.miniflux = {
       ephemeral = false;
       autoStart = true;
-  
+
       privateNetwork = false;
       inherit localAddress hostAddress;
-  
-#      bindMounts = {
-#        "" = { hostPath = minifluxDataDir; isReadOnly = false; };
-#      };
 
-      config = { pkgs, ... }: {
-#        networking.firewall.enable = false;
+      #      bindMounts = {
+      #        "" = { hostPath = minifluxDataDir; isReadOnly = false; };
+      #      };
 
-        networking.firewall.allowedTCPPorts = [ ports.miniflux ];
+      config =
+        { pkgs, ... }:
+        {
+          #        networking.firewall.enable = false;
 
-        system.stateVersion = "22.11";
-      };
+          networking.firewall.allowedTCPPorts = [ ports.miniflux ];
+
+          system.stateVersion = "22.11";
+        };
     };
   };
 }

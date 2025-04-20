@@ -1,9 +1,15 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 
 let
   cfg = config.modules.hm.browser.qutebrowser;
-in {
+in
+{
 
   options.modules.hm.browser.qutebrowser.enable = mkOption {
     description = "Enable qutebrowser";
@@ -21,20 +27,20 @@ in {
           ",V" = "spawn mpv {hint-url}";
           ",y" = "hint links spawn st -e yt-dlp {hint-url}";
           "<Ctrl-l>" = "set-cmd-text -s :open";
-#          "zl" = "spawn --userscript qute-pass";
-#          "zul" = "spawn --userscript qute-pass --username-only";
-#          "zpl" = "spawn --userscript qute-pass --password-only";
+          #          "zl" = "spawn --userscript qute-pass";
+          #          "zul" = "spawn --userscript qute-pass --username-only";
+          #          "zpl" = "spawn --userscript qute-pass --password-only";
         };
       };
-  
+
       aliases = {
         "q" = "quit";
         "w" = "session-save";
         "wq" = "quit--save";
       };
-  
+
       extraConfig = (builtins.readFile ./themes/gruvbox.py);
-  
+
       searchEngines = {
         yt = "https://www.youtube.com/results?search_query={}";
         am = "https://www.amazon.com/s?k={}";
@@ -55,10 +61,10 @@ in {
         wa = "https://wallhaven.cc/";
         translate = "https://www.deepl.com/translator";
       };
-  
+
       searchEngines = {
       };
-  
+
       loadAutoconfig = false;
       settings = {
         auto_save.session = true;
@@ -67,8 +73,8 @@ in {
           autoplay = false;
           blocking = {
             enabled = true;
-            method = "both"; # Brave’s ABP-style adblocker & host 
-            whitelist = [];
+            method = "both"; # Brave’s ABP-style adblocker & host
+            whitelist = [ ];
             hosts.lists = [
               "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
               "https://www.github.developerdan.com/hosts/lists/facebook-extended.txt"
@@ -127,7 +133,12 @@ in {
           position = "bottom";
           remove_finished = 5;
         };
-        editor.command = [ "st" "-e" "nvim" "{}" ];
+        editor.command = [
+          "st"
+          "-e"
+          "nvim"
+          "{}"
+        ];
         scrolling = {
           bar = "never";
           smooth = true;
@@ -135,7 +146,13 @@ in {
         session.default_name = "default";
         statusbar = {
           show = "in-mode";
-          widgets = [ "history" "url" "progress" "scroll" "tabs" ];
+          widgets = [
+            "history"
+            "url"
+            "progress"
+            "scroll"
+            "tabs"
+          ];
         };
         tabs = {
           show = "multiple";
@@ -146,7 +163,7 @@ in {
           last_close = "default-page";
           select_on_remove = "last-used";
         };
-  
+
         fonts = {
           default_family = "sans-serif";
           default_size = "12pt";

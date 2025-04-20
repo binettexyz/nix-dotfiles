@@ -1,4 +1,12 @@
-{ config, flake, lib, modulesPath, pkgs, system, ... }:
+{
+  config,
+  flake,
+  lib,
+  modulesPath,
+  pkgs,
+  system,
+  ...
+}:
 
 {
   imports = [
@@ -6,26 +14,41 @@
     #flake.inputs.hardware.nixosModules.common-cpu-intel
   ];
 
-
-  /* ---Kernel Stuff--- */
+  # ---Kernel Stuff---
   boot = {
-      # acpi_call makes tlp work for newer thinkpads
+    # acpi_call makes tlp work for newer thinkpads
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [];
+    kernelParams = [ ];
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sr_mod" "sd_mod" "rtsx_pci_sdmmc" ];
-      kernelModules = [ "i915" "acpi_call" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ehci_pci"
+        "ahci"
+        "usbhid"
+        "usb_storage"
+        "sr_mod"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
+      kernelModules = [
+        "i915"
+        "acpi_call"
+      ];
     };
   };
 
-  /* ---FileSystem--- */
+  # ---FileSystem---
   fileSystems = {
-    "/" = { 
+    "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
     };
     "/boot" = {
       device = "/dev/disk/by-label/boot";
@@ -42,11 +65,14 @@
     "/mounts/nas" = {
       device = "100.71.254.90:/media";
       fsType = "nfs";
-        # don't freeze system if mount point not available on boot
-      options = [ "x-systemd.automount" "noauto" ];
+      # don't freeze system if mount point not available on boot
+      options = [
+        "x-systemd.automount"
+        "noauto"
+      ];
     };
   };
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
@@ -54,14 +80,13 @@
       "/etc/nixos"
       "/var/lib"
       "/var/log"
-#      "/home"
+      #      "/home"
       "/root"
       "/srv"
     ];
   };
 
-
-  /* ---Graphic Card--- */ 
+  # ---Graphic Card---
   services.xserver.videoDrivers = [ "modesetting" ];
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.extraPackages = with pkgs; [
@@ -71,20 +96,18 @@
     intel-media-driver
   ];
 
-
-  /* ---Network--- */
+  # ---Network---
   networking = {
     hostName = "kokoro";
     interfaces.wlp3s0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
     wireless = {
-      interfaces =  [ "wlp3s0" ];
+      interfaces = [ "wlp3s0" ];
     };
   };
 
-
-  /* ---Touchpad & Trackpoint--- */
-    # Touchpad
+  # ---Touchpad & Trackpoint---
+  # Touchpad
   services.libinput = {
     enable = true;
     touchpad = {
@@ -99,7 +122,7 @@
     };
   };
 
-    # Trackpoint
+  # Trackpoint
   hardware.trackpoint = {
     enable = true;
     sensitivity = 300;
@@ -107,8 +130,7 @@
     emulateWheel = false;
   };
 
-
-  /* ---CPU Stuff--- */
+  # ---CPU Stuff---
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   nix.settings.max-jobs = 4; # CPU Treads
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.containers.invidious;
@@ -8,7 +13,7 @@ let
     invidious = 8096;
   };
   mkLocalProxy = port: {
-    locations."/".proxyPass = "http://${localAddress}:" + toString(port);
+    locations."/".proxyPass = "http://${localAddress}:" + toString (port);
   };
 in
 {
@@ -21,29 +26,31 @@ in
       "invidious.box" = mkLocalProxy ports.jellyfin;
     };
 
-#    systemd.tmpfiles.rules = [
-#      "d ${invidiousDataDir} - - - -"
-#    ];
-  
-    /*  ---Main container--- */
+    #    systemd.tmpfiles.rules = [
+    #      "d ${invidiousDataDir} - - - -"
+    #    ];
+
+    # ---Main container---
     containers.invidious = {
       ephemeral = false;
       autoStart = true;
-  
+
       privateNetwork = false;
       inherit localAddress hostAddress;
-  
-#      bindMounts = {
-#        "" = { hostPath = invidiousDataDir; isReadOnly = false; };
-#      };
 
-      config = { pkgs, ... }: {
-#        networking.firewall.enable = false;
+      #      bindMounts = {
+      #        "" = { hostPath = invidiousDataDir; isReadOnly = false; };
+      #      };
 
-        networking.firewall.allowedTCPPorts = [ ports.invidious ];
+      config =
+        { pkgs, ... }:
+        {
+          #        networking.firewall.enable = false;
 
-        system.stateVersion = "22.11";
-      };
+          networking.firewall.allowedTCPPorts = [ ports.invidious ];
+
+          system.stateVersion = "22.11";
+        };
     };
   };
 }

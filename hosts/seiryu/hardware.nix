@@ -1,19 +1,27 @@
-{ config, flake, lib, modulesPath, pkgs, ... }:
+{
+  config,
+  flake,
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}:
 
 let
   inherit (flake) inputs;
-in {
+in
+{
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-      # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
+    # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
     flake.inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
   ];
 
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
-    kernelPackages =  pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     kernelParams = [
       "mitigations=off"
       "nowatchdog"
@@ -22,17 +30,27 @@ in {
     ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" /*"nvme"*/ "usbhid" "usb_storage" "sd_mod" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci" # "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
       kernelModules = [ ];
     };
   };
 
-  /* ---FileSystem--- */
+  # ---FileSystem---
   fileSystems = {
-    "/" = { 
+    "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
     };
     "/boot" = {
       device = "/dev/disk/by-label/boot";
@@ -59,15 +77,18 @@ in {
       device = "/nix/persist/tmp";
       options = [ "bind" ];
     };
-#    "/mounts/nas" = {
-#      device = "100.71.254.90:/media";
-#      fsType = "nfs";
-        # don't freeze system if mount point not available on boot
-#      options = [ "x-systemd.automount" "noauto" ];
-#    };
+    #    "/mounts/nas" = {
+    #      device = "100.71.254.90:/media";
+    #      fsType = "nfs";
+    # don't freeze system if mount point not available on boot
+    #      options = [ "x-systemd.automount" "noauto" ];
+    #    };
   };
 
-  swapDevices = [ /*{ device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }*/ ];
+  swapDevices =
+    [
+      # { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }
+    ];
 
   environment.persistence = {
     "/nix/persist" = {
@@ -83,22 +104,22 @@ in {
     };
   };
 
-  /* ---Networking--- */
+  # ---Networking---
   networking = {
     hostName = "seiryu";
     useDHCP = lib.mkForce false;
   };
 
-  /* ---Bluetooth--- */
+  # ---Bluetooth---
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  /* ---Video Driver--- */
+  # ---Video Driver---
   hardware = {
-      # Enable loading amdgpu kernelModule in stage 1.
-      # Can fix lower resolution in boot screen during initramfs phase
+    # Enable loading amdgpu kernelModule in stage 1.
+    # Can fix lower resolution in boot screen during initramfs phase
     amdgpu.initrd.enable = true;
     graphics.enable = true;
     graphics.enable32Bit = true;
@@ -106,7 +127,7 @@ in {
     graphics.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 
-  /* ---Processor--- */
+  # ---Processor---
   #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

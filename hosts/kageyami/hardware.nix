@@ -1,4 +1,13 @@
-{ config, flake, lib, modulesPath, pkgs, system, ... }: {
+{
+  config,
+  flake,
+  lib,
+  modulesPath,
+  pkgs,
+  system,
+  ...
+}:
+{
 
   imports = [
     (flake.inputs.nixos-hardware + "/raspberry-pi/4")
@@ -6,11 +15,15 @@
     flake.inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-    # kernel modules/packages
+  # kernel modules/packages
   boot = {
     kernelPackages = pkgs.linuxPackages_rpi4;
-    initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
-      # ttyAMA0 is the serial console broken out to the GPIO
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "usbhid"
+      "usb_storage"
+    ];
+    # ttyAMA0 is the serial console broken out to the GPIO
     kernelParams = [
       "8250.nr_uarts=1"
       "console=ttyAMA0,115200"
@@ -19,12 +32,16 @@
     ];
   };
 
-  /* ---FileSystem--- */
+  # ---FileSystem---
   fileSystems = {
-    "/" = { 
+    "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=2G" "mode=755" ];
+      options = [
+        "defaults"
+        "size=2G"
+        "mode=755"
+      ];
     };
     "/boot" = {
       device = "/dev/disk/by-label/boot";
@@ -34,14 +51,13 @@
       device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
-#    "/nix/persist/home" = {
-#      device = "/dev/disk/by-label/home";
-#      fsType = "ext4";
-#    };
+    #    "/nix/persist/home" = {
+    #      device = "/dev/disk/by-label/home";
+    #      fsType = "ext4";
+    #    };
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
-
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   ##  Impermanence ##
   environment.persistence."/nix/persist" = {

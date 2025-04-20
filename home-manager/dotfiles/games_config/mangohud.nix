@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
 
   xdg.configFile."MangoHud/horizontal_minimal.conf".text = lib.mkIf config.modules.hm.gaming.enable ''
     fps

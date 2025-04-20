@@ -1,7 +1,7 @@
-{ stdenvNoCC
-, fetchurl
-, unzip
-,
+{
+  stdenvNoCC,
+  fetchurl,
+  unzip,
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "anime4k";
@@ -14,7 +14,10 @@ stdenvNoCC.mkDerivation rec {
 
   buildInputs = [ unzip ];
 
-  phases = [ "unpackPhase" "installPhase" ];
+  phases = [
+    "unpackPhase"
+    "installPhase"
+  ];
 
   unpackPhase = ''
     unzip $src

@@ -1,4 +1,8 @@
-{ stdenvNoCC, fetchurl, unzip, }:
+{
+  stdenvNoCC,
+  fetchurl,
+  unzip,
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "freedoom";
@@ -11,7 +15,10 @@ stdenvNoCC.mkDerivation rec {
 
   buildInputs = [ unzip ];
 
-  phases = [ "unpackPhase" "installPhase" ];
+  phases = [
+    "unpackPhase"
+    "installPhase"
+  ];
 
   unpackPhase = ''
     unzip $src
