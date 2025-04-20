@@ -4,9 +4,6 @@
   system,
   ...
 }:
-let
-  inherit (flake) inputs;
-in
 {
 
   nixpkgs.overlays = [
@@ -22,27 +19,27 @@ in
         config.allowBroken = true;
       };
 
-      clipboard = prev.callPackage ./packages/clipboard.nix { };
-      wofirun = prev.callPackage ./packages/wofirun.nix { };
-      screenshot = prev.callPackage ./packages/screenshot.nix { };
-      sysact = prev.callPackage ./packages/sysact.nix { };
-      anime4k = prev.callPackage ./packages/anime4k.nix { };
-      freedoom = prev.callPackage ./packages/freedoom.nix { };
-      wallpapers = prev.callPackage ./packages/wallpapers { };
-      autorandr = prev.autorandr.overrideAttrs (_: {
-        src = inputs.autorandr;
-      });
-      # namespaces
+      # --- Scripts---
+      clipboard = prev.callPackage ./scripts/clipboard.nix { };
+      wofirun = prev.callPackage ./scripts/wofirun.nix { };
+      screenshot = prev.callPackage ./scripts/screenshot.nix { };
+      sysact = prev.callPackage ./scripts/sysact.nix { };
+      # ---Tools---
+      anime4k = prev.callPackage ./tools/anime4k.nix { };
+      nix-cleanup = prev.callPackage ./tools/nix-cleanup { };
+      nixos-cleanup = prev.callPackage ./tools/nix-cleanup { isNixOS = true; };
+      nix-rebuild = prev.callPackage ./tools/nix-rebuild { };
+      # ---Games---
+      freedoom = prev.callPackage ./games/freedoom.nix { };
+      # ---Themes---
+      wallpapers = prev.callPackage ./themes/wallpapers { };
+      gruvbox-material-gtk = prev.callPackage ./themes/gruvbox-material-gtk.nix { };
+
       lib = prev.lib.extend (
         finalLib: prevLib: (import ../lib/mkDefaultOption.nix { inherit (prev) lib; })
       );
-
-      nix-cleanup = prev.callPackage ./packages/nix-cleanup { };
-      nixos-cleanup = prev.callPackage ./packages/nix-cleanup { isNixOS = true; };
-      nix-rebuild = prev.callPackage ./packages/nix-rebuild { };
-
-      gruvbox-material-gtk = prev.callPackage ./packages/gruvbox-material-gtk.nix { };
     })
+
     (self: super: {
       discord = super.discord.override {
         nss = pkgs.nss_latest;
