@@ -134,7 +134,6 @@
           format-ethernet = "{ipaddr}/{cidr} ";
           format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ";
-          on-click = "sh ~/scripts/rofi-wifi-menu/rofi-wifi-menu.sh";
           tooltip = false;
         };
         cpu = {
