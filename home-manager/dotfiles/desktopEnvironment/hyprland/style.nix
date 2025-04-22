@@ -1,9 +1,6 @@
-{ config, ... }:
-let
+{config, ...}: let
   cfg = config.colorScheme.palette;
-in
-{
-
+in {
   programs.waybar.style = ''
 
     * {
@@ -30,7 +27,7 @@ in
 
     .modules-center {
       color: #d4be98;
-      background: #282828;
+      /*background: #282828;*/
       border-radius: 4px;
       margin: 4px 0px 4px 0px;
       padding: 0px 0px 0px 8px;
@@ -45,11 +42,16 @@ in
       margin-left: 0px;
       padding: 0px 0px 0px 0px;
     }
-    #custom-notification,
+    #custom-notification {
+      background: #282828;
+      border-radius: 0px 4px 4px 0px;
+      padding: 0px 0px 0px 2px;
+    }
 
     #clock {
       background: #282828;
-      border-radius: 0px 4px 4px 0px;
+      border-radius: 4px 0px 0px 4px;
+      padding: 0px 2px 0px 4px;
     }
 
     #custom-nixos {
@@ -57,7 +59,7 @@ in
       color: #7daea3;
       background: #282828;
       border-radius: 4px;
-      padding: 0px 0px 0px 5px;
+      padding: 0px 0px 0px 4px;
       margin: 0px 4px 0px 0px;
     }
 
@@ -85,6 +87,14 @@ in
       border-radius: 0px 4px 4px 0px;
       border-left: 0px;
       padding: 0px 4px 0px 4px;
+    }
+
+    #tray {
+      background: #282828;
+      border-radius: 4px;
+      margin-right: 4px;
+      padding-right: 2px;
+      padding-left: 2px;
     }
 
     #workspaces {
@@ -134,10 +144,9 @@ in
       color: #ea6962;
       border-radius: 0px 4px 4px 0px;
       border-left: 0px;
-      padding: 0px 4px 0px 4px;
+      padding: 0px 2px 0px 4px;
       margin: 0px 4px 0px 0px;
     }
 
   '';
-
 }

@@ -1,5 +1,4 @@
-{ deviceType, ... }:
-{
+{deviceType, ...}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -9,7 +8,7 @@
         position = "top";
         margin = "8px, 8px, 0px, 8px";
         reload_style_on_change = true;
-        output = [ "HDMI-A-1" ];
+        output = ["HDMI-A-1"];
         #include = [ ~/.config/waybar/modules.json ];
         modules-left = [
           "custom/nixos"
@@ -26,18 +25,18 @@
         ];
         modules-right =
           [
+            "tray"
             "hyprland/workspaces"
           ]
           ++ (
-            if deviceType == "laptop" then
-              [
-                "custom/sep"
-                "battery"
-                "battery#bat2"
-                "custom/sep"
-              ]
-            else
-              [ ]
+            if deviceType == "laptop"
+            then [
+              "custom/sep"
+              "battery"
+              "battery#bat2"
+              "custom/sep"
+            ]
+            else []
           )
           ++ [
             "network"
@@ -64,7 +63,7 @@
         };
         "custom/notification" = {
           tooltip = false;
-          format = " {} {icon}  ";
+          format = "{} {icon} ";
           format-icons = {
             notification = "<span foreground='#ea6962'><sup></sup></span>";
             none = "";
@@ -81,6 +80,10 @@
           on-click = "swaync-client -t -sw";
           on-click-right = "swaync-client -d -sw";
           escape = true;
+        };
+        tray = {
+          "icon-size" = 21;
+          "spacing" = 10;
         };
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -174,7 +177,7 @@
           tooltip = false;
         };
         clock = {
-          format = "{:%A - %B %d, %Y - %R} ";
+          format = "{:%A - %B %d, %Y - %R}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           tooltip = true;
         };
