@@ -1,6 +1,4 @@
-{ lib, ... }:
-{
-
+{lib, ...}: {
   imports = [
     ./meta
     ./packages.nix
@@ -20,9 +18,9 @@
     ./dotfiles/textEditors/helix.nix
     ./dotfiles/textEditors/neovim
     ./dotfiles/tools/git.nix
-    ./dotfiles/tools/lf
     ./dotfiles/tools/ssh.nix
     ./dotfiles/tools/tmux.nix
+    ./dotfiles/tools/yazi.nix
   ];
 
   options = {
@@ -37,5 +35,4 @@
       default = false;
     };
   };
-
 }
