@@ -1,0 +1,30 @@
+#+TITLE: NixOS Note
+#+AUTHOR: Jonathan Binette
+
+* Custom Modules
+** Specific string in a list
+When settings a list as a custom modules, by default you won't be able to select a specific string.
+It can be done with lib.elem:
+#+begin_src nix
+#custom-module.nix
+{lib, ...}: {
+  options.device.type = lib.mkOption {
+    description = "Declare type of system";
+    type = lib.types.listOf lib.types.str;
+    default = null;
+  };
+}
+#+end_src
+
+#+begin_src nix
+#modules.nix
+{...}: {
+  device.type = [ "workstation" "gaming-desktop" ];
+
+  environment.systemPackages = if lib.elem "workstation" config.device.type
+  then [
+    pkgs.package
+  ]
+  else [];
+}
+#+end_src
