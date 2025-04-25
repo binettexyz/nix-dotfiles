@@ -2,6 +2,7 @@
   config,
   deviceType,
   lib,
+  osConfig,
   pkgs,
   ...
 }: {
@@ -34,10 +35,20 @@
         "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
       ];
 
-      monitor = [
-        "HDMI-A-1,1920x1080@179.981995,0x0,1"
-        "HDMI-A-2,disable"
-      ];
+      monitor = let
+        hdmi1 = lib.elemAt osConfig.device.videoOutput 0;
+        hdmi2 = lib.elemAt osConfig.device.videoOutput 1;
+      in
+        if deviceType == "gaming-desktop"
+        then [
+          "${hdmi1},1920x1080@179.981995,0x0,1"
+          "${hdmi2},disable"
+        ]
+        else if deviceType == "laptop"
+        then [
+          "${hdmi1},1280x720@60,0x0,1"
+        ]
+        else [];
 
       exec-once = [
         "emacs --daemon &"
