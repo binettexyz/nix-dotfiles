@@ -90,7 +90,10 @@
       };
 
       animations = {
-        enabled = true;
+        enabled =
+          if deviceRole == "laptop"
+          then false
+          else true;
         bezier = [
           "smoothIn, 0.25, 1, 0.5, 1"
           "pace, 0.46, 1, 0.29, 0.99"
