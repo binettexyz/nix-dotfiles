@@ -1,4 +1,9 @@
-{deviceType, ...}: {
+{
+  deviceRole,
+  lib,
+  osConfig,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -8,7 +13,7 @@
         position = "top";
         margin = "8px, 8px, 0px, 8px";
         reload_style_on_change = true;
-        output = ["HDMI-A-1"];
+        output = ["${lib.elemAt osConfig.device.videoOutput 0}"];
         #include = [ ~/.config/waybar/modules.json ];
         modules-left = [
           "custom/nixos"
@@ -29,7 +34,7 @@
             "hyprland/workspaces"
           ]
           ++ (
-            if deviceType == "laptop"
+            if deviceRole == "laptop"
             then [
               "custom/sep"
               "battery"
