@@ -1,24 +1,25 @@
-{ lib, ... }:
-with lib;
-{
-
+{lib, ...}: {
   options.device = {
-    hasBattery = mkOption {
+    hasBattery = lib.mkOption {
       description = "Device has battery";
       default = false;
     };
+    videoOutput = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "Video output for each screens";
+      default = null;
+    };
     storage = {
-      ssd = mkOption {
+      ssd = lib.mkOption {
         description = "If ssd is installed";
-        type = types.bool;
+        type = lib.types.bool;
         default = false;
       };
-      hdd = mkOption {
+      hdd = lib.mkOption {
         description = "If hdd is installed";
-        type = types.bool;
+        type = lib.types.bool;
         default = true;
       };
     };
   };
-
 }
