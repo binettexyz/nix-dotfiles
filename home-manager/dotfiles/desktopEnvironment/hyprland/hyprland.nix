@@ -51,7 +51,7 @@
         else [];
 
       exec-once = lib.mkMerge [
-        (lib.mkIf (deviceType == "gaming-desktop") [
+        (lib.mkIf (lib.elem "gaming-desktop" deviceType) [
           "steam &"
           "vesktop &"
         ])
