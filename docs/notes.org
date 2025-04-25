@@ -1,30 +1,56 @@
 #+TITLE: NixOS Note
 #+AUTHOR: Jonathan Binette
 
-* Custom Modules
+* Interpolation
+Take the value of this thing and plug it into the string here.
 ** Specific string in a list
-When settings a list as a custom modules, by default you won't be able to select a specific string.
+By default you won't be able to select a specific string in a list.
 It can be done with lib.elem:
 #+begin_src nix
 #custom-module.nix
 {lib, ...}: {
   options.device.type = lib.mkOption {
-    description = "Declare type of system";
     type = lib.types.listOf lib.types.str;
-    default = null;
+  };
+  
+  config = {
+    device.type = [ "workstation" "gaming-desktop" ];
   };
 }
 #+end_src
 
 #+begin_src nix
 #modules.nix
-{...}: {
-  device.type = [ "workstation" "gaming-desktop" ];
-
+{lib, ...}: {
   environment.systemPackages = if lib.elem "workstation" config.device.type
   then [
     pkgs.package
   ]
   else [];
+}
+#+end_src
+
+** String in a list by index
+Same thing as above, i can be done by index:
+#+begin_src nix
+#custom-modules.nix
+{lib, ...}: {
+  options.device.videoOutput = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+  };
+  config = {
+    device.videoOutput = ["HDMI-1" "HDMI-2"];
+  };
+}
+#+end_src
+
+#+begin_src nix
+{lib, ...}: {
+  video.outputs = [
+    # Takes the first string (HDMI-1)
+    "${lib.elemAt device.videoOutput 0},1920x1080@60"
+    # Takes the second string (HDMI-2)
+    "${lib.elemAt device.videoOutput 1},1920x1080@60"
+  ]; 
 }
 #+end_src
