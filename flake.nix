@@ -33,52 +33,51 @@
   };
 
   # ---System's Output---
-  outputs =
-    {
-      self,
-      nixpkgs,
-      unstable,
-      stable,
-      nixos-hardware,
-      nix-colors,
-      ...
-    }@inputs:
-    let
-      inherit (import ./lib/attrsets.nix { inherit (nixpkgs) lib; }) recursiveMergeAttrs;
-      inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
-    in
-    (recursiveMergeAttrs [
+  outputs = {
+    self,
+    nixpkgs,
+    unstable,
+    stable,
+    nixos-hardware,
+    nix-colors,
+    ...
+  } @ inputs: let
+    inherit (import ./lib/attrsets.nix {inherit (nixpkgs) lib;}) recursiveMergeAttrs;
+    inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
+  in (recursiveMergeAttrs [
+    # ---Defining Systems---
+    # Gaming Desktop (Azure Dragon)
+    (mkNixOSConfig {
+      deviceType = ["workstation" "gaming-desktop"];
+      deviceRole = "desktop";
+      hostname = "seiryu";
+      gpuType = "amdgpu";
+    })
+    # Steamdeck (Torpedo)
+    (mkNixOSConfig {
+      deviceType = "gaming-handheld";
+      deviceRole = null;
+      hostname = "gyorai";
+      gpuType = "amdgpu";
+    })
+    # Lenovo Thinkpad t440p (Heart/Spirit)
+    (mkNixOSConfig {
+      deviceType = ["workstation"];
+      deviceRole = "laptop";
+      hostname = "kokoro";
+    })
+    # Raspberry Pi 4 (Shadow Darkness)
+    (mkNixOSConfig {
+      deviceType = null;
+      deviceRole = "server";
+      hostname = "kageyami";
+      system = "aarch64-linux";
+    })
 
-      # ---Defining Systems---
-      # Gaming Desktop (Azure Dragon)
-      (mkNixOSConfig {
-        deviceType = "gaming-desktop";
-        hostname = "seiryu";
-        gpuType = "amdgpu";
-      })
-      # Steamdeck (Torpedo)
-      (mkNixOSConfig {
-        deviceType = "gaming-handheld";
-        hostname = "gyorai";
-        gpuType = "amdgpu";
-      })
-      # Lenovo Thinkpad t440p (Heart/Spirit)
-      (mkNixOSConfig {
-        deviceType = "laptop";
-        hostname = "kokoro";
-      })
-      # Raspberry Pi 4 (Shadow Darkness)
-      (mkNixOSConfig {
-        deviceType = "server";
-        hostname = "kageyami";
-        system = "aarch64-linux";
-      })
-
-      # ---Defining Home-Manager---
-      (mkHomeConfig {
-        deviceType = "gaming-desktop";
-        hostname = "seiryu";
-      })
-    ]);
-
+    # ---Defining Home-Manager---
+    (mkHomeConfig {
+      deviceType = "gaming-desktop";
+      hostname = "seiryu";
+    })
+  ]);
 }
