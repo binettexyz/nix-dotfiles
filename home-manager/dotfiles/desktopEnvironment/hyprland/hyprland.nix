@@ -1,6 +1,7 @@
 {
   config,
   deviceType,
+  deviceRole,
   lib,
   osConfig,
   pkgs,
@@ -36,27 +37,31 @@
       ];
 
       monitor = let
-        hdmi1 = lib.elemAt osConfig.device.videoOutput 0;
-        hdmi2 = lib.elemAt osConfig.device.videoOutput 1;
+        output = osConfig.device.videoOutput;
       in
-        if deviceType == "gaming-desktop"
+        if deviceRole == "desktop"
         then [
-          "${hdmi1},1920x1080@179.981995,0x0,1"
-          "${hdmi2},disable"
+          "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
+          "${lib.elemAt output 1},disable"
         ]
-        else if deviceType == "laptop"
+        else if deviceRole == "laptop"
         then [
-          "${hdmi1},1280x720@60,0x0,1"
+          "${lib.elemAt output 0},1280x720@60,0x0,1"
         ]
         else [];
 
-      exec-once = [
-        "emacs --daemon &"
-        "steam &"
-        #"discord &"
-        "vesktop &"
-        "librewolf &"
-        "wl-paste --watch cliphist store &"
+      exec-once = lib.mkMerge [
+        (lib.mkIf (deviceType == "gaming-desktop") [
+          "steam &"
+          "vesktop &"
+        ])
+        (lib.mkIf (lib.elem "workstation" deviceType) [
+          "emacs --daemon &"
+          "wl-paste --watch cliphist store &"
+        ])
+        (lib.mkIf (deviceRole == "desktop") [
+          "librewolf &"
+        ])
       ];
 
       general = {
