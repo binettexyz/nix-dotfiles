@@ -1,6 +1,4 @@
-{ flake, deviceType, ... }:
-{
-
+{flake, ...}: {
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
@@ -27,6 +25,7 @@
     };
   };
 
+  device.videoOutput = ["HDMI-A-1" "HDMI-A-2"];
   device.storage = {
     ssd = true;
     hdd = true;
@@ -37,5 +36,4 @@
     interfaces.wlo1.useDHCP = true;
     interfaces.enp34s0.useDHCP = true;
   };
-
 }
