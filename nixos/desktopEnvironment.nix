@@ -15,10 +15,10 @@ in {
     description = "Enable Desktop Environment";
     type = with types;
       nullOr (enum [
-        "gamescope"
+        "gamescope-wayland"
         "plasma"
         "qtile"
-        "hyprland"
+        "hyprland-uwsm"
       ]);
     default = null;
   };
@@ -83,7 +83,7 @@ in {
       };
     })
 
-    (mkIf (cfg == "hyprland") {
+    (mkIf (cfg == "hyprland-uwsm") {
       programs.hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -93,8 +93,14 @@ in {
       services.greetd.enable = true;
       services.greetd.settings = rec {
         initial_session = {
-          user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r";
+          user =
+            if config.jovian.steam.enable
+            then "root"
+            else username;
+          command =
+            if config.jovian.steam.enable
+            then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
+            else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r";
         };
         default_session = initial_session;
       };
