@@ -55,7 +55,7 @@
     })
     # Steamdeck (Torpedo)
     (mkNixOSConfig {
-      deviceType = null;
+      deviceType = [];
       deviceRole = "gaming-handheld";
       hostname = "gyorai";
       gpuType = "amdgpu";
