@@ -1,6 +1,9 @@
-{ lib, deviceType, ... }:
 {
-
+  lib,
+  deviceType,
+  deviceRole,
+  ...
+}: {
   boot = {
     tmp = {
       # Mount /tmp using tmpfs for performance
@@ -10,7 +13,7 @@
       cleanOnBoot = lib.mkDefault true;
     };
     # Enable NTFS support
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     kernel.sysctl = {
       # Enable Magic keys
       "kernel.sysrq" = 1;
@@ -27,7 +30,7 @@
     ];
   };
   # Get rid of defaults packages
-  environment.defaultPackages = [ ];
+  environment.defaultPackages = [];
 
   # Increase file handler limit
   #    security.pam.loginLimits = [{
@@ -54,7 +57,10 @@
     '';
 
     # Suspend when power key is pressed
-    logind.powerKey = if (deviceType == "gaming-handheld") then "ignore" else "suspend";
+    logind.powerKey =
+      if deviceRole == "gaming-handheld"
+      then "ignore"
+      else "suspend";
 
     # Enable NTP
     timesyncd.enable = lib.mkDefault true;
@@ -101,7 +107,7 @@
 
   # Sops-nix password encryption
   sops.defaultSopsFile = ../../../secrets/common.yaml;
-  sops.age.sshKeyPaths = [ "/home/binette/.ssh/id_ed25519" ];
+  sops.age.sshKeyPaths = ["/home/binette/.ssh/id_ed25519"];
 
   environment.etc = {
     "machine-id".source = "/nix/persist/etc/machine-id";
@@ -110,5 +116,4 @@
     "ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
     "ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
   };
-
 }

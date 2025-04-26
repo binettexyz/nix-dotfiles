@@ -5,18 +5,15 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   inherit (flake) inputs;
   inherit (config.meta) username;
   cfg = config.modules.system.desktopEnvironment;
-in
-{
+in {
   # ---Desktop Environment Module---
   options.modules.system.desktopEnvironment = mkOption {
     description = "Enable Desktop Environment";
-    type =
-      with types;
+    type = with types;
       nullOr (enum [
         "gamescope"
         "plasma"
@@ -29,14 +26,19 @@ in
   # ---Configuration---
   config = mkMerge [
     {
-
     }
     (mkIf (cfg == "plasma") {
       services.greetd.enable = true;
       services.greetd.settings = rec {
         initial_session = {
-          user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+          user =
+            if config.jovian.steam.enable
+            then "root"
+            else username;
+          command =
+            if config.jovian.steam.enable
+            then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
+            else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
         };
         default_session = initial_session;
       };
@@ -50,7 +52,7 @@ in
         ark
       ];
 
-      environment.systemPackages = with pkgs; [ kdePackages.ark ];
+      environment.systemPackages = with pkgs; [kdePackages.ark];
     })
 
     (mkIf (cfg == "qtile") {

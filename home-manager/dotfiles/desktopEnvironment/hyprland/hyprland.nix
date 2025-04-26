@@ -48,9 +48,17 @@
         then [
           "${lib.elemAt output 0},1280x720@60,0x0,1"
         ]
+        else if deviceRole == "gaming-handheld"
+        then [
+          "${lib.elemAt output 0},1280x800@60,0x0,1"
+          "${lib.elemAt output 1},1920x1080@60,1280x0,1"
+        ]
         else [];
 
       exec-once = lib.mkMerge [
+        [
+          "waybar &"
+        ]
         (lib.mkIf (lib.elem "gaming-desktop" deviceType) [
           "steam &"
           "vesktop &"
@@ -255,7 +263,7 @@
     };
     plugins = [
       pkgs.hyprlandPlugins.hyprsplit
-      (lib.mkIf (deviceType == "gaming-handheld") pkgs.hyprlandPlugins.hyprgrass)
+      (lib.mkIf (deviceRole == "gaming-handheld") pkgs.hyprlandPlugins.hyprgrass)
     ];
   };
 }

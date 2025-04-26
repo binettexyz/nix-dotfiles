@@ -1,19 +1,10 @@
 {
-  config,
   lib,
   flake,
   pkgs,
   ...
-}:
-
-let
-  inherit (flake) inputs;
-in
-{
-
+}: {
   imports = [
-    ./hardware.nix
-    ../../nixos/gaming-handheld.nix
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
   ];
@@ -36,10 +27,8 @@ in
       home.enable = true;
     };
   };
-  device = {
-    gpu = "amd";
-    hasBattery = true;
-  };
+  device.videoOutput = ["eDP-1" "DP-3"];
+  device.hasBattery = true;
 
   # ---Networking---
   networking = {
@@ -50,5 +39,5 @@ in
   # ---Stuff I Dont Want---
   services.timesyncd.enable = lib.mkForce false;
 
-  environment.systemPackages = with pkgs; [ zsh ];
+  environment.systemPackages = with pkgs; [zsh];
 }

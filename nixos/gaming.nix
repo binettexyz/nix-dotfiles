@@ -3,16 +3,12 @@
   pkgs,
   lib,
   config,
-  deviceType,
+  deviceRole,
   ...
 }:
-with lib;
-
-let
+with lib; let
   inherit (config.meta) username;
-in
-{
-
+in {
   imports = [
     flake.inputs.jovian-nixos.nixosModules.jovian
     flake.inputs.nix-gaming.nixosModules.platformOptimizations
@@ -43,7 +39,6 @@ in
 
   config = mkMerge [
     (mkIf config.modules.gaming.enable {
-
       # --Gamemode--
       programs.gamemode = {
         enable = true;
@@ -100,11 +95,10 @@ in
       };
 
       # ---Cache---
-      nix.settings.substituters = [ "https://nix-gaming.cachix.org" ];
+      nix.settings.substituters = ["https://nix-gaming.cachix.org"];
       nix.settings.trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
-
     })
 
     (mkIf config.modules.gaming.steam.enable {
@@ -127,7 +121,6 @@ in
           "--expose-wayland"
           "--nested-unfocused-refresh 30"
         ];
-
       };
 
       hardware.steam-hardware.enable = true;
@@ -140,7 +133,7 @@ in
     })
 
     # ---Jovian-NixOS---
-    (mkIf (deviceType == "gaming-handheld") {
+    (mkIf (deviceRole == "gaming-handheld") {
       jovian.steam = {
         enable = true;
         user = username;
@@ -162,7 +155,7 @@ in
       };
 
       # Steamdeck firmwate updater
-      environment.systemPackages = with pkgs; [ steamdeck-firmware ];
+      environment.systemPackages = with pkgs; [steamdeck-firmware];
     })
 
     (mkIf config.modules.gaming.valveControllersRules {
@@ -200,28 +193,25 @@ in
 
     # ---Games Related Networking---
     (mkIf config.modules.gaming.openPorts {
-      networking =
-        let
-          ports.mindustry = 6567;
-          ports.factorio = 6566;
-          ports.noita = 5123;
-          ports.minecraft = 25565;
-        in
-        {
-          firewall.allowedTCPPorts = [
-            ports.factorio
-            ports.mindustry
-            ports.minecraft
-            ports.noita
-          ];
-          firewall.allowedUDPPorts = [
-            ports.factorio
-            ports.mindustry
-            ports.minecraft
-            ports.noita
-          ];
-        };
+      networking = let
+        ports.mindustry = 6567;
+        ports.factorio = 6566;
+        ports.noita = 5123;
+        ports.minecraft = 25565;
+      in {
+        firewall.allowedTCPPorts = [
+          ports.factorio
+          ports.mindustry
+          ports.minecraft
+          ports.noita
+        ];
+        firewall.allowedUDPPorts = [
+          ports.factorio
+          ports.mindustry
+          ports.minecraft
+          ports.noita
+        ];
+      };
     })
   ];
-
 }
