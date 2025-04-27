@@ -50,8 +50,8 @@
         ]
         else if deviceRole == "gaming-handheld"
         then [
-          "${lib.elemAt output 0},1280x800@60,0x0,1"
-          "${lib.elemAt output 1},1920x1080@60,1280x0,1"
+          "${lib.elemAt output 0},800x1280@60,1920x0,1,transform,3"
+          "${lib.elemAt output 1},1920x1080@60,0x0,1"
         ]
         else [];
 
