@@ -20,7 +20,7 @@
     system = {
       audio.enable = true;
       customFonts.enable = true;
-      desktopEnvironment = "hyprland";
+      desktopEnvironment = "hyprland-uwsm";
       home.enable = true;
     };
   };
