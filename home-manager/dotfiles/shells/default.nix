@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   imports = [
     ./zsh.nix
   ];
@@ -47,6 +45,7 @@
     free = "free -m";
     jctl = "journalctl -p 3 -xb";
 
+    fm = "yazi";
     emacst = "${pkgs.emacs}/bin/emacsclient -nw ''";
     emacs = "${pkgs.emacs}/bin/emacsclient -c -a 'emacs'";
     em = "${pkgs.emacs}/bin/emacs -nw";
@@ -70,5 +69,4 @@
     # fetch computer specs
     pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
   };
-
 }
