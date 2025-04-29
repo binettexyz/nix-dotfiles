@@ -4,13 +4,10 @@
   pkgs,
   osConfig,
   ...
-}:
-{
-
-  config.home.packages =
-    with pkgs;
+}: {
+  config.home.packages = with pkgs;
     lib.mkMerge [
-      ([
+      [
         bat
         cron
         curl
@@ -31,7 +28,7 @@
         unzip
         rar
         capitaine-cursors-themed
-      ])
+      ]
 
       (lib.mkIf config.modules.hm.gui.packages [
         #discord
@@ -72,7 +69,7 @@
         wineWowPackages.waylandFull
         jdk
         dxvk
+        moondeck-buddy
       ])
     ];
-
 }
