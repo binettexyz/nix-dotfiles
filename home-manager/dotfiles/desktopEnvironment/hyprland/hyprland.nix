@@ -261,9 +261,13 @@
         "special:scratchpad, on-created-empty:foot"
       ];
     };
-    plugins = [
-      pkgs.hyprlandPlugins.hyprsplit
-      (lib.mkIf (deviceRole == "gaming-handheld") pkgs.hyprlandPlugins.hyprgrass)
+    plugins = lib.mkMerge [
+      [
+        pkgs.hyprlandPlugins.hyprsplit
+      ]
+      (lib.mkIf (deviceRole == "gaming-handheld") [
+        pkgs.hyprlandPlugins.hyprgrass
+      ])
     ];
   };
 }
