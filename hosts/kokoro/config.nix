@@ -1,6 +1,4 @@
-{ flake, ... }:
-{
-
+{flake, ...}: {
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
@@ -16,9 +14,10 @@
     system = {
       audio.enable = true;
       customFonts.enable = true;
-      desktopEnvironment = "qtile";
+      desktopEnvironment = "hyprland-uwsm";
       home.enable = true;
     };
   };
 
+  device.videoOutput = ["eDP-1"];
 }
