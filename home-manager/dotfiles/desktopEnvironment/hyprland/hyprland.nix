@@ -1,7 +1,8 @@
 {
   config,
   deviceType,
-  deviceRole,
+  deviceTags,
+  hostname,
   lib,
   osConfig,
   pkgs,
@@ -39,16 +40,16 @@
       monitor = let
         output = osConfig.device.videoOutput;
       in
-        if deviceRole == "desktop"
+        if hostname == "seiryu"
         then [
           "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
           "${lib.elemAt output 1},disable"
         ]
-        else if deviceRole == "laptop"
+        else if hostname == "kokoro"
         then [
           "${lib.elemAt output 0},1280x720@60,0x0,1"
         ]
-        else if deviceRole == "gaming-handheld"
+        else if hostname == "gyorai"
         then [
           "${lib.elemAt output 0},800x1280@60,1920x0,1,transform,3"
           "${lib.elemAt output 1},1920x1080@60,0x0,1"
@@ -59,15 +60,15 @@
         [
           "waybar &"
         ]
-        (lib.mkIf (lib.elem "gaming-desktop" deviceType) [
+        (lib.mkIf (lib.elem "gaming" deviceTags && lib.elem "highSpec" deviceTags) [
           "steam &"
           "vesktop &"
         ])
-        (lib.mkIf (lib.elem "workstation" deviceType) [
+        (lib.mkIf (lib.elem "workstation" deviceTags) [
           "emacs --daemon &"
           "wl-paste --watch cliphist store &"
         ])
-        (lib.mkIf (deviceRole == "desktop") [
+        (lib.mkIf (deviceType == "desktop") [
           "librewolf &"
         ])
       ];
@@ -99,7 +100,7 @@
 
       animations = {
         enabled =
-          if deviceRole == "laptop"
+          if deviceTags == "lowSpec"
           then false
           else true;
         bezier = [
@@ -265,7 +266,7 @@
       [
         pkgs.hyprlandPlugins.hyprsplit
       ]
-      (lib.mkIf (deviceRole == "gaming-handheld") [
+      (lib.mkIf (deviceTags == "touchscreen") [
         pkgs.hyprlandPlugins.hyprgrass
       ])
     ];

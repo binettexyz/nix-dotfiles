@@ -1,9 +1,9 @@
 {
+  deviceType,
   flake,
   pkgs,
   lib,
   config,
-  deviceRole,
   ...
 }:
 with lib; let
@@ -177,7 +177,7 @@ in {
     })
 
     # ---Jovian-NixOS---
-    (mkIf (deviceRole == "gaming-handheld") {
+    (mkIf (deviceType == "handheld") {
       jovian.steam = {
         enable = true;
         user = username;

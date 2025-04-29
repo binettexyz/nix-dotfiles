@@ -1,14 +1,14 @@
 {
   config,
+  hostname,
   lib,
   flake,
   system,
   deviceType,
-  deviceRole,
+  deviceTags,
   ...
 }: let
   inherit (flake) inputs;
-  inherit (config.networking) hostName;
   cfg = config.modules.system.home;
 in {
   # ---Import Modules/Config---
@@ -33,12 +33,13 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager = {
       useUserPackages = true;
-      users.${config.modules.system.home.username} = ../hosts/${hostName}/user.nix;
+      users.${config.modules.system.home.username} = ../hosts/${hostname}/user.nix;
       extraSpecialArgs = {
         inherit flake system;
         super = config;
         deviceType = deviceType;
-        deviceRole = deviceRole;
+        deviceTags = deviceTags;
+        hostname = hostname;
       };
     };
   };

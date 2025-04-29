@@ -1,13 +1,14 @@
-{ config, pkgs, ... }:
-{
-
+{deviceType, ...}: {
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
     EDITOR = "hx";
     VISUAL = "hx";
     TERMINAL = "foot";
-    BROWSER = if config.device == "laptop" then "qutebrowser" else "librefox";
+    BROWSER =
+      if deviceType == "laptop"
+      then "qutebrowser"
+      else "librefox";
     READER = "zathura";
     SUDO = "doas";
     MANPAGER = "bat -l man -p";
@@ -36,5 +37,4 @@
     MOZ_USE_XINPUT2 = "1";
     _JAVA_AWT_WM_NONREPARENTING = 1;
   };
-
 }

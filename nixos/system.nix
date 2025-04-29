@@ -58,7 +58,7 @@
 
     # Suspend when power key is pressed
     logind.powerKey =
-      if deviceRole == "gaming-handheld"
+      if deviceType == "handheld"
       then "ignore"
       else "suspend";
 

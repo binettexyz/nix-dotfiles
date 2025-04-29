@@ -12,7 +12,7 @@ in {
   # --Function to configure a nixosSystem--
   mkNixOSConfig = {
     deviceType,
-    deviceRole,
+    deviceTags ? [],
     hostname,
     gpuType ? "",
     system ? "x86_64-linux",
@@ -35,8 +35,9 @@ in {
         inherit system;
         flake = self;
         deviceType = deviceType;
-        deviceRole = deviceRole;
+        deviceTags = deviceTags;
         gpuType = gpuType;
+        hostname = hostname;
       };
     };
   };

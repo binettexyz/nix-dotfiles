@@ -1,5 +1,5 @@
 {
-  deviceRole,
+  deviceTags,
   lib,
   osConfig,
   ...
@@ -34,7 +34,7 @@
             "hyprland/workspaces"
           ]
           ++ (
-            if deviceRole == "laptop"
+            if deviceTags == "battery"
             then [
               "custom/sep"
               "battery"
