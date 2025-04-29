@@ -1,7 +1,7 @@
 {
   lib,
-  deviceType,
   deviceRole,
+  deviceType,
   ...
 }: {
   boot = {
@@ -71,7 +71,7 @@
     # Set I/O scheduler
     # kyber is set for NVMe, since scheduler doesn't make much sense on it
     # bfq for SATA SSDs/HDDs
-    udev.extraRules = lib.mkIf (deviceType == "laptop") ''
+    udev.extraRules = ''
       # set scheduler for NVMe
       ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="kyber"
       # set scheduler for SSD and eMMC

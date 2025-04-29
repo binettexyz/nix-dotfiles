@@ -2,18 +2,16 @@
   config,
   pkgs,
   lib,
-  deviceType,
+  deviceRole,
   ...
-}:
-{
+}: {
+  imports = [./battery.nix];
 
-  imports = [ ./battery.nix ];
-
-  config = lib.mkIf (deviceType == "laptop") {
+  config = lib.mkIf (deviceRole == "laptop") {
     laptop.onLowBattery.enable = true;
 
     # Configure hibernation
-    boot.resumeDevice = lib.mkIf (config.swapDevices != [ ]) (
+    boot.resumeDevice = lib.mkIf (config.swapDevices != []) (
       lib.mkDefault (builtins.head config.swapDevices).device
     );
 
@@ -52,7 +50,9 @@
         # - If using swap file, also set
         #  `boot.kernelParams = [ "resume_offset=XXX" ]`
         lidSwitch = lib.mkDefault (
-          if (config.boot.resumeDevice != "") then "suspend-then-hibernate" else "suspend"
+          if (config.boot.resumeDevice != "")
+          then "suspend-then-hibernate"
+          else "suspend"
         );
         lidSwitchDocked = lib.mkDefault "ignore";
         lidSwitchExternalPower = lib.mkDefault "lock";
@@ -62,7 +62,10 @@
       thermald.enable = true;
       auto-cpufreq.enable = true;
       tlp = {
-        enable = if config.services.desktopManager.plasma6.enable then false else true;
+        enable =
+          if config.services.desktopManager.plasma6.enable
+          then false
+          else true;
         settings = {
           # Operation mode when no power supply can be detected: AC, BAT.
           "TLP_DEFAULT_MODE" = "BAT";

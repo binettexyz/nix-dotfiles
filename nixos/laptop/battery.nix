@@ -2,14 +2,11 @@
   config,
   lib,
   pkgs,
-  deviceType,
+  deviceRole,
   ...
-}:
-let
+}: let
   cfg = config.laptop.onLowBattery;
-in
-{
-
+in {
   options.laptop.onLowBattery = {
     enable = lib.mkEnableOption "Perform action on low battery";
     thresholdPercentage = lib.mkOption {
@@ -28,7 +25,7 @@ in
     };
   };
 
-  config = lib.mkIf (deviceType == "laptop") {
+  config = lib.mkIf (deviceRole == "laptop") {
     services.udev = lib.mkIf cfg.enable {
       extraRules = lib.concatStrings [
         ''SUBSYSTEM=="power_supply", ''
@@ -38,5 +35,4 @@ in
       ];
     };
   };
-
 }
