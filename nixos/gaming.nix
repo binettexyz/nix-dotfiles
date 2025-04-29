@@ -53,6 +53,50 @@ in {
         };
       };
 
+      # ---Services---
+      services.sunshine = {
+        enable = true;
+        autoStart = false;
+        openFirewall = false;
+        capSysAdmin = true;
+        applications = {
+          env = {PATH = "$(PATH):$(HOME)/.local/bin";};
+          apps = [
+            {
+              name = "Desktop";
+              image-path = "desktop.png";
+            }
+            {
+              name = "Steam Big Picture";
+              output = "steam.txt";
+              detached = [
+                "${pkgs.util-linux}/bin/setsid ${pkgs.steam}/bin/steam steam://open/bigpicture"
+              ];
+              image-path = "steam.png";
+            }
+            {
+              name = "MoonDeckStream";
+              command = "${pkgs.moondeck-buddy}/bin/MoonDeckStream";
+              image-path = "steam.png";
+              auto-detach = "false";
+              wait-all = "false";
+            }
+          ];
+        };
+      };
+      systemd.user.services.moondeck-buddy = {
+        enable = true;
+        unitConfig = {
+          Description = "MoonDeckBuddy";
+          After = ["graphical-session.target"];
+        };
+        serviceConfig = {
+          ExecStart = "${pkgs.moondeck-buddy}/bin/MoonDeckBuddy";
+          Restart = "on-failure";
+        };
+        wantedBy = ["graphical-session.target"];
+      };
+
       # ---Drivers---
       hardware.xpadneo.enable = true; # Xbox One Controller
 
