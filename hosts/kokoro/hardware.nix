@@ -54,7 +54,7 @@
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
-    "/nix/persist/home" = {
+    "/home" = {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
