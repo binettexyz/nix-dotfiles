@@ -48,28 +48,27 @@
     # ---Defining Systems---
     # Gaming Desktop (Azure Dragon)
     (mkNixOSConfig {
-      deviceType = ["workstation" "gaming-desktop"];
-      deviceRole = "desktop";
-      hostname = "seiryu";
+      deviceType = "desktop";
+      deviceTags = ["workstation" "gaming" "highSpec"];
       gpuType = "amdgpu";
+      hostname = "seiryu";
     })
     # Steamdeck (Torpedo)
     (mkNixOSConfig {
-      deviceType = [];
-      deviceRole = "gaming-handheld";
-      hostname = "gyorai";
+      deviceType = "handheld";
+      deviceTags = ["battery" "gaming" "lowSpec" "steamdeck"];
       gpuType = "amdgpu";
+      hostname = "gyorai";
     })
     # Lenovo Thinkpad t440p (Heart/Spirit)
     (mkNixOSConfig {
-      deviceType = ["workstation"];
-      deviceRole = "laptop";
+      deviceType = "laptop";
+      deviceTags = ["workstation" "battery" "lowSpec"];
       hostname = "kokoro";
     })
     # Raspberry Pi 4 (Shadow Darkness)
     (mkNixOSConfig {
-      deviceType = null;
-      deviceRole = "server";
+      deviceType = "server";
       hostname = "kageyami";
       system = "aarch64-linux";
     })
