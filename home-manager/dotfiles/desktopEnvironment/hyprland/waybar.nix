@@ -13,7 +13,7 @@
         position = "top";
         margin = "8px, 8px, 0px, 8px";
         reload_style_on_change = true;
-        output = ["${lib.elemAt osConfig.device.videoOutput 0}"];
+        #output = ["${lib.elemAt osConfig.device.videoOutput 0}"];
         #include = [ ~/.config/waybar/modules.json ];
         modules-left = [
           "custom/nixos"
@@ -34,7 +34,7 @@
             "hyprland/workspaces"
           ]
           ++ (
-            if deviceTags == "battery"
+            if (lib.elem "battery" deviceTags)
             then [
               "custom/sep"
               "battery"

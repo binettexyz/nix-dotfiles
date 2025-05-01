@@ -100,7 +100,7 @@
 
       animations = {
         enabled =
-          if deviceTags == "lowSpec"
+          if (lib.elem "lowSpec" deviceTags)
           then false
           else true;
         bezier = [
@@ -252,6 +252,8 @@
         "workspace 2 silent, class:qutebrowser"
         "workspace 3 silent, class:^(.*steam.*)$"
         "workspace 3 silent, class:^(.*lutris.*)$"
+        "workspace 3 silent, class:^(.*prismlauncher.*)$"
+        "workspace 3 silent, class:^(.*Minecraft.*)$"
         "workspace 3 silent, class:gamescope"
         "workspace special:discord silent, class:discord"
         "workspace special:discord silent, class:vesktop"
@@ -266,7 +268,7 @@
       [
         pkgs.hyprlandPlugins.hyprsplit
       ]
-      (lib.mkIf (deviceTags == "touchscreen") [
+      (lib.mkIf (lib.elem "touchscreen" deviceTags) [
         pkgs.hyprlandPlugins.hyprgrass
       ])
     ];
