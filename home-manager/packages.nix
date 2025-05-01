@@ -1,5 +1,7 @@
 {
   config,
+  deviceType,
+  deviceTags,
   lib,
   pkgs,
   osConfig,
@@ -30,9 +32,7 @@
         capitaine-cursors-themed
       ]
 
-      (lib.mkIf config.modules.hm.gui.packages [
-        #discord
-        vesktop
+      (lib.mkIf (lib.elem "workstation" deviceTags) [
         libreoffice
         texlive.combined.scheme-full
       ])
@@ -55,8 +55,9 @@
         zathura
       ])
 
-      (lib.mkIf config.modules.hm.gaming.enable [
+      (lib.mkIf (lib.elem "gaming" deviceTags) [
         # Games
+        openmw
         prismlauncher
         gzdoom
         #zeroad
@@ -69,7 +70,13 @@
         wineWowPackages.waylandFull
         jdk
         dxvk
+      ])
+      (lib.mkIf (config.modules.hm.gaming.enable && deviceType == "desktop") [
         moondeck-buddy
+        vesktop
+      ])
+      (lib.mkIf (deviceType == "handheld" && lib.elem "gaming" deviceTags) [
+        # Emulation
       ])
     ];
 }
