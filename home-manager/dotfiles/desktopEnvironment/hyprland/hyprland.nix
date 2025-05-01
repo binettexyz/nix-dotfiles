@@ -7,7 +7,9 @@
   osConfig,
   pkgs,
   ...
-}: {
+}: let
+  output = osConfig.device.videoOutput;
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -37,9 +39,7 @@
         "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
       ];
 
-      monitor = let
-        output = osConfig.device.videoOutput;
-      in
+      monitor =
         if hostname == "seiryu"
         then [
           "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
@@ -144,6 +144,13 @@
         touchpad = {
           natural_scroll = true;
         };
+        touchdevice =
+          if hostname == "gyorai"
+          then {
+            output = "${lib.elemAt output 0}";
+            transform = 3;
+          }
+          else {};
       };
 
       gestures = {
@@ -151,6 +158,10 @@
       };
       cursor = {
         hide_on_key_press = true;
+        no_hardware_cursors =
+          if deviceType == "handheld"
+          then true
+          else false;
       };
 
       bind = [
