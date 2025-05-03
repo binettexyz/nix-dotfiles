@@ -50,8 +50,7 @@ in {
       enable = true;
       group = username;
       user = username;
-      dataDir = "/home/${username}/Documents"; # Default folder for new synced folders
-      configDir = "/home/${username}/Documents/.config/syncthing"; # Folder for Syncthing's settings and keys
+      configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
       overrideDevices = true; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
       settings = {
