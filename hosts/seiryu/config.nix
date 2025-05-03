@@ -41,7 +41,7 @@ in {
     "Notes" = {
       # Name of folder in Syncthing, also the folder ID
       path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
-      device = ["kokoro"];
+      devices = ["kokoro"];
     };
   };
   ## Networking ##
