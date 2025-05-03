@@ -51,8 +51,14 @@ in {
       group = username;
       user = username;
       configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
-      overrideDevices = false; # overrides any devices added or deleted through the WebUI
+      overrideDevices = true; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
+      settings = {
+        devices = {
+          "kokoro".id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
+          "seiryu".id = "BO5YFRS-FAJ5PNX-IM7L3F2-MYZNHYW-NLXUQEA-565PTSJ-HEITGFV-YBYANAA";
+        };
+      };
       #      gui = {
       #        user = username;
       #        password = "";
