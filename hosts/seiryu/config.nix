@@ -37,10 +37,16 @@ in {
     hdd = true;
   };
 
-  services.syncthing.settings.folders = {
-    "Notes" = {
-      # Name of folder in Syncthing, also the folder ID
-      path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
+  services.syncthing.settings = {
+    devices = {
+      "kokoro".id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
+    };
+    folders = {
+      "Notes" = {
+        # Name of folder in Syncthing, also the folder ID
+        path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
+        device = ["kokoro"];
+      };
     };
   };
   ## Networking ##
