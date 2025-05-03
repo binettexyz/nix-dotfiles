@@ -1,14 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  super,
-  ...
-}:
-with lib;
-
-{
-
+{...}: {
   programs.zsh = {
     enable = true;
     # zsh directory
@@ -16,7 +6,14 @@ with lib;
 
     enableCompletion = true;
     autosuggestion.enable = true;
-    #      enableSyntaxHighlighting = true;
+    #syntaxHighlighting = {
+    #enable = true;
+    #highlighters = [
+    #"main"
+    #"brackets"
+    #"cursor"
+    #];
+    #};
     autocd = true;
 
     sessionVariables = {
@@ -49,17 +46,6 @@ with lib;
 
       setopt interactive_comments
 
-        # Use lf to switch directories and bind it to ctrl-o
-      lfcd () {
-        tmp="$(mktemp)"
-        lf -last-dir-path="$tmp" "$@"
-        if [ -f "$tmp" ]; then
-           dir="$(cat "$tmp")"
-           rm -f "$tmp" >/dev/null
-           [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-        fi
-      }
-
       bindkey '^ ' autosuggest-accept
       bindkey '^h' autosuggest-clear
     '';
@@ -79,7 +65,6 @@ with lib;
       dl = "$HOME/downloads";
       git = "$HOME/.git";
       repos = "$HOME/.git/repos";
-      dots = "/nix/persist/home/binette/.dotfiles";
       nix = "/etc/nixos";
       movies = "/media/nas/videos/movies";
       tv = "/media/nas/videos/tv";
@@ -90,52 +75,25 @@ with lib;
         # Use neovim for vim if present.
       [ -x "$(command -v nvim)" ] && alias vim="nvim" e="nvim" vimdiff="nvim -d"
 
-        # Use $XINITRC variable if file exists.
-      [ -f "$XINITRC" ] && alias sx="sx sh $XINITRC"
-
         # doas not required for some system commands
       for command in mount umount eject su shutdown systemctl poweroff reboot ; do
             alias $command="doas $command"
       done; unset command
-            
+
         #Start wayland session on TTY 1 if nothing is already running.
       #[ "$(tty)" = "/dev/tty1" ] && [ "$(echo $XDG_SESSION_TYPE)" != "wayland" ] && qtile start -b wayland
 
     '';
 
-    plugins = [
-      # to find sha256, keep it empty and the build error will find it for you
-      {
-        name = "zsh-vi-mode";
-        src = pkgs.fetchFromGitHub {
-          owner = "jeffreytse";
-          repo = "zsh-vi-mode";
-          rev = "debe9c8ad191b68b143230eb7bee437caba9c74f";
-          sha256 = "sha256-rgC1lKyZluYHi4Fk8zUSgMM/UqrJ6QcwYGvaDyuWAxo=";
-        };
-      }
-      {
-        name = "Fast Syntax Highlighting";
-        file = "fast-syntax-highlighting.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "zdharma-continuum";
-          repo = "fast-syntax-highlighting";
-          rev = "770bcd986620d6172097dc161178210855808ee0";
-          sha256 = "sha256-T4k0pbT7aqLrIRIi2EM15LXCnpRFHzFilAYfRG6kbeY=";
-        };
-      }
-      {
-        name = "zsh-autopair";
-        file = "zsh-autopair.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "hlissner";
-          repo = "zsh-autopair";
-          rev = "396c38a7468458ba29011f2ad4112e4fd35f78e6";
-          sha256 = "sha256-PXHxPxFeoYXYMOC29YQKDdMnqTO0toyA7eJTSCV6PGE=";
-        };
-      }
-    ];
+    antidote = {
+      enable = true;
+      plugins = [
+        "jeffreytse/zsh-vi-mode"
+        "hlissner/zsh-autopair"
+        "zdharma-continuum/fast-syntax-highlighting"
+      ];
+    };
   };
-  programs.dircolors.enable = true;
 
+  programs.dircolors.enable = true;
 }
