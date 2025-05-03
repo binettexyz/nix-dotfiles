@@ -53,6 +53,10 @@ in {
       configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
       overrideDevices = false; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
+      #      gui = {
+      #        user = username;
+      #        password = "";
+      #      };
     };
 
     #TODO: Trim SSD weekly

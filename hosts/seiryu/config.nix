@@ -1,4 +1,10 @@
-{flake, ...}: {
+{
+  config,
+  flake,
+  ...
+}: let
+  inherit (config.meta) username;
+in {
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
@@ -31,6 +37,12 @@
     hdd = true;
   };
 
+  services.syncthing.settings.folders = {
+    "Notes" = {
+      # Name of folder in Syncthing, also the folder ID
+      path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
+    };
+  };
   ## Networking ##
   networking = {
     interfaces.wlo1.useDHCP = true;
