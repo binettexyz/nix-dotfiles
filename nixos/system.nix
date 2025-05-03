@@ -51,21 +51,8 @@ in {
       group = username;
       user = username;
       configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
-      overrideDevices = true; # overrides any devices added or deleted through the WebUI
+      overrideDevices = false; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
-      settings = {
-        devices = {
-          "seiryu" = {id = "44I2ZYQ-QLKB6OI-75TXSDL-AIDJKFR-2DZATQL-2DXEJAL-EKTF274-TF2DCAO";};
-          "kokoro" = {id = "GB4UDEE-VJCXPUD-5SSUUGE-IOIR2BK-ISYMLD3-OE3MB2Y-PO5L4CK-4SXCUQD";};
-        };
-        folders = {
-          "Notes" = {
-            # Name of folder in Syncthing, also the folder ID
-            path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
-            devices = ["seiryu" "kokoro"]; # Which devices to share the folder with
-          };
-        };
-      };
     };
 
     #TODO: Trim SSD weekly
