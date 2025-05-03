@@ -46,7 +46,7 @@
 
       setopt interactive_comments
 
-      bindkey '^ ' autosuggest-accept
+      bindkey '^@' autosuggest-accept
       bindkey '^h' autosuggest-clear
     '';
 
