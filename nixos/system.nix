@@ -57,6 +57,7 @@ in {
         devices = {
           "kokoro".id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
           "seiryu".id = "BO5YFRS-FAJ5PNX-IM7L3F2-MYZNHYW-NLXUQEA-565PTSJ-HEITGFV-YBYANAA";
+          "gyorai".id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
         };
       };
       #      gui = {
