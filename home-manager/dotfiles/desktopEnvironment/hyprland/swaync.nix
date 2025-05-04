@@ -1,8 +1,6 @@
-{ ... }:
-{
-
+{osConfig, ...}: {
   services.swaync = {
-    enable = true;
+    enable = osConfig.programs.hyprland.enable;
     #settings = {};
     style = ''
       * {

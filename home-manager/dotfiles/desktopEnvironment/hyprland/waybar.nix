@@ -5,7 +5,7 @@
   ...
 }: {
   programs.waybar = {
-    enable = true;
+    enable = osConfig.programs.hyprland.enable;
     systemd.enable = false;
     settings = {
       mainBar = {

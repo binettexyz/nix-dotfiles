@@ -1,7 +1,11 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.colorScheme.palette;
 in {
-  programs.waybar.style = ''
+  programs.waybar.style = lib.mkIf config.programs.waybar.enable ''
 
     * {
       font-family: monospace;

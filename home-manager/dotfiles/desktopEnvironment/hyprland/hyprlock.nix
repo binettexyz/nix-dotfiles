@@ -1,7 +1,5 @@
-{
-
+{osConfig, ...}: {
   programs.hyprlock = {
-    enable = true;
+    enable = osConfig.programs.hyprland.enable;
   };
-
 }

@@ -1,7 +1,10 @@
-{ pkgs, ... }:
 {
+  osConfig,
+  pkgs,
+  ...
+}: {
   programs.plasma = {
-    enable = true;
+    enable = osConfig.services.desktopManager.plasma6.enable;
     overrideConfig = true;
     workspace = {
       clickItemTo = "open";
@@ -39,7 +42,6 @@
                 "applications:org.kde.konsole.desktop"
                 "applications:discord.desktop"
                 "applications:steam.desktop"
-
               ];
               behavior = {
                 showTasks = {
@@ -71,7 +73,7 @@
             digitalClock.calendar = {
               firstDayOfWeek = "sunday";
               showWeekNumbers = true;
-              plugins = [ "holidaysevents" ];
+              plugins = ["holidaysevents"];
             };
           }
           "org.kde.plasma.showdesktop"

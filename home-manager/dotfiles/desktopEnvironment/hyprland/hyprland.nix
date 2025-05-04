@@ -11,7 +11,7 @@
   output = osConfig.device.videoOutput;
 in {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = osConfig.programs.hyprland.enable;
     settings = {
       "$mod1" = "SUPER";
       "$mod2" = "SUPERSHIFT";
