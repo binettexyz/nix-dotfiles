@@ -23,7 +23,7 @@
     };
     system = {
       audio.enable = true;
-      desktopEnvironment = "hyprland-uwsm";
+      desktopEnvironment = "plasma";
       home.enable = true;
     };
   };
