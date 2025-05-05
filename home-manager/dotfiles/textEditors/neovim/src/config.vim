@@ -20,6 +20,7 @@ vim.opt.termguicolors = true
 vim.opt.textwidth = 0
 vim.opt.title = true            -- Make terminal title same as the file
 vim.opt.wrap = true             -- Enable line wrap
+vim.opt.linebreak = true        -- Wrapped lines break at word boundaries
 vim.opt.wrapmargin = 0
 
 -- Grep
@@ -37,10 +38,10 @@ vim.opt.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
 vim.opt.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup"
 
 -- Indent
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
+vim.opt.tabstop = 2           -- display tabs as 2 spaces (if expandtab is off)
+vim.opt.shiftwidth = 2        -- auto-indent uses 2 spaces
+vim.opt.softtabstop = 2       -- <Tab> inserts 2 spaces
+vim.opt.expandtab = true      -- use spaces instead of tabs
 vim.opt.smartindent = true
 
 -- Autocomplete
@@ -96,6 +97,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- Goyo toggle
+vim.keymap.set("n", "<leader>z", ":Goyo<CR>", { desc = "Toggle Zen mode" })
+
 ----------------------------------
 -- Colorscheme
 ----------------------------------
@@ -112,5 +116,18 @@ end
 -- nvim-tree: Disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
+
+----------------------------------
+-- Filetype-specific
+----------------------------------
+
+-- Markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.textwidth = 80
+  end
+})
 
 EOF

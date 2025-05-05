@@ -1,13 +1,9 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }:
-with lib;
-
-{
-
+with lib; {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -28,7 +24,7 @@ with lib;
       telescope-nvim
     ];
 
-    extraConfig = builtins.replaceStrings [ "<COLOURSCHEME>" ] [ "gruvbox-material" ] (
+    extraConfig = builtins.replaceStrings ["<COLOURSCHEME>"] ["gruvbox-material"] (
       builtins.readFile ./src/config.vim
     );
 
@@ -59,31 +55,19 @@ with lib;
   };
 
   imports = [
-
-    ./src/plugins/catppuccin-nvim
-
     # TODO: replace coc by nvim native lsp
     ./src/plugins/coc-nvim
-
     ./src/plugins/gruvbox-material
-
     ./src/plugins/lualine
-
     ./src/plugins/nvim-tree-lua
-
     ./src/plugins/nvim-treesitter
-
-    ./src/plugins/orgmode
-
     ./src/plugins/vim-latex-live-preview
-
     ./src/plugins/vimsence
-
+    ./src/plugins/vimwiki
     #FIXME: ./src/plugins/vimtex
-
   ];
 
-  home.packages = with pkgs; [
-    # rnix-lsp
+  home.packages = [
+    # pkgs.rnix-lsp
   ];
 }
