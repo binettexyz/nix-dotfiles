@@ -15,6 +15,7 @@
         curl
         eza
         fzf
+        gcc
         gnused
         htop
         killall
