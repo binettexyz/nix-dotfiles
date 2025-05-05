@@ -2,21 +2,19 @@
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
-    EDITOR = "hx";
-    VISUAL = "hx";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     TERMINAL = "foot";
     BROWSER =
       if deviceType == "laptop"
       then "qutebrowser"
       else "librefox";
     READER = "zathura";
-    SUDO = "doas";
     MANPAGER = "bat -l man -p";
     SHELL = "zsh";
 
     # Themes
     BAT_THEME = "ansi";
-    LS_COLORS = "lf";
 
     # Default Home Directories:
     XDG_CONFIG_HOME = "$HOME/.config";
