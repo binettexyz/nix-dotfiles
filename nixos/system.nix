@@ -51,6 +51,7 @@ in {
       group = username;
       user = username;
       configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
+      dataDir = "/home/${username}/.syncthing";
       overrideDevices = true; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
       settings = {
