@@ -127,6 +127,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt.spell = true
     vim.opt.textwidth = 80
+    vim.opt_local.spelllang = { "en" }
   end
 })
 

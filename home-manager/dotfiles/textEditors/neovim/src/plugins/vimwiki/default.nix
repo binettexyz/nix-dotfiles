@@ -13,6 +13,7 @@
             }
           }
           vim.g.vimwiki_global_ext = 0
+          vim.g.vimwiki_table_mappings = 0
         '';
       }
     ];

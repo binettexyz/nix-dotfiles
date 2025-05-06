@@ -14,7 +14,6 @@
     ./dotfiles/media/newsboat.nix
     ./dotfiles/shells
     ./dotfiles/terminals/foot.nix
-    ./dotfiles/textEditors/emacs
     ./dotfiles/textEditors/helix.nix
     ./dotfiles/textEditors/neovim
     ./dotfiles/tools/git.nix

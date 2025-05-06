@@ -22,6 +22,7 @@ with lib; {
       auto-pairs
       quick-scope
       telescope-nvim
+      vim-table-mode
     ];
 
     extraConfig = builtins.replaceStrings ["<COLOURSCHEME>"] ["gruvbox-material"] (
