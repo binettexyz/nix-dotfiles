@@ -20,7 +20,7 @@ in {
       "$mod5" = "ALTCTRL";
       "$terminal" = "foot";
       "$browser" = "librewolf";
-      "$editor" = "emacsclient -c -a emacs";
+      "$editor" = "nvim";
       "$menu" = "wofirun";
 
       env = [
@@ -65,7 +65,6 @@ in {
           "vesktop &"
         ])
         (lib.mkIf (lib.elem "workstation" deviceTags) [
-          "emacs --daemon &"
           "wl-paste --watch cliphist store &"
         ])
         (lib.mkIf (deviceType == "desktop") [
