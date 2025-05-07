@@ -1,8 +1,9 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
 
   programs.foot = {
     enable = true;
+    package = pkgs.stable.foot;
     settings = {
       main = {
         font = "monospace:size=10";
@@ -21,10 +22,10 @@
       key-bindings = {
         clipboard-copy = "Control+Shift+c XF86Copy";
         clipboard-paste = "Control+Shift+v XF86Paste";
-        scrollback-up-line = "Alt+k";
-        scrollback-down-line = "Alt+j";
-        font-increase = "Alt+Shift+k";
-        font-decrease = "Alt+Shift+j";
+        scrollback-up-line = "Mod1+k";
+        scrollback-down-line = "Mod1+j";
+        font-increase = "Mod1+Shift+K";
+        font-decrease = "Mod1+Shift+j";
         font-reset = "Control+0";
       };
       search-bindings = {
