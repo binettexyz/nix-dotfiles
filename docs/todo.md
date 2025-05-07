@@ -1,4 +1,5 @@
-* TODO Nixos Config [0/1]
+# NixOS's TODO
+## Nixos Config
   - [ ] Clean config.
   - [ ] Fix standalone home-manager install in fake.nix.
   - [ ] Update readme.org file.
@@ -6,11 +7,9 @@
   - [ ] Configure nixvim.
   - [ ] Fix and update server.
   - [ ] Setup home server with tailscale/domain.
-** Home-Manager [0/4]
+  - [ ] Convert configs with idiomatics.
+## Home-Manager
   - [ ] Updates packages config (mpv, etc.)
-  - [ ] Add file manager in emacs.
-  - [ ] Setup hyprland config for touchscreen (steamdeck)
-  - [ ] Foot's bind is set with them being declared
-** TODO Scripts [2/2]
+## Scripts
   - [X] Make screenshot script for wayland (https://wiki.archlinux.org/title/Screen_capture#Wayland)
   - [X] Make rofi config/scripts
