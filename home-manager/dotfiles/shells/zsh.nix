@@ -6,14 +6,6 @@
 
     enableCompletion = true;
     autosuggestion.enable = true;
-    #syntaxHighlighting = {
-    #enable = true;
-    #highlighters = [
-    #"main"
-    #"brackets"
-    #"cursor"
-    #];
-    #};
     autocd = true;
 
     sessionVariables = {
@@ -30,21 +22,23 @@
 
     # .zshrc
     initExtra = ''
-      autoload -U colors && colors
-
-      autoload -Uz vcs_info
       # Enable vcs_info for Git
+      autoload -Uz vcs_info
       zstyle ':vcs_info:*' enable git
       zstyle ':vcs_info:git:*' formats '%F{3}(%b)%f'  # Gruvbox Aqua for branch name
+      precmd() { vcs_info } # Update vcs_info before each prompt
 
-      # Update vcs_info before each prompt
-      precmd() { vcs_info }
-
+      autoload -U colors && colors # Load colors
       setopt promptsubst
       PROMPT='%B%F{5}[%F{6}%n%F{4} %~%F{5}]''${vcs_info_msg_0_}%f$%b '
       RPS1='%F{3}%*%f'  # Yellow timestamp
-
+      stty stop undef		# Disable ctrl-s to freeze terminal.
       setopt interactive_comments
+
+      setopt inc_append_history # each command is immediately appended to your history file.
+
+      bindkey -v
+      export KEYTIMEOUT=1
 
       bindkey '^@' autosuggest-accept
       bindkey '^h' autosuggest-clear
@@ -52,8 +46,8 @@
 
     # history settings
     history = {
-      save = 1000;
-      size = 1000;
+      save = 10000000;
+      size = 10000000;
       path = "/home/binette/.cache/zsh/history";
       expireDuplicatesFirst = true;
     };
