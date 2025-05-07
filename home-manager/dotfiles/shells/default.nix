@@ -46,9 +46,6 @@
     jctl = "journalctl -p 3 -xb";
 
     fm = "yazi";
-    emacst = "${pkgs.emacs}/bin/emacsclient -nw ''";
-    emacs = "${pkgs.emacs}/bin/emacsclient -c -a 'emacs'";
-    em = "${pkgs.emacs}/bin/emacs -nw";
 
     # git
     addup = "git add -u";
