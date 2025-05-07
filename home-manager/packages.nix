@@ -58,10 +58,10 @@
 
       (lib.mkIf (lib.elem "gaming" deviceTags) [
         # Games
-        openmw
-        prismlauncher
-        gzdoom
-        #zeroad
+        #openmw # TES: Morrowind
+        #prismlauncher # Minecraft
+        #gzdoom # Doom
+        #zeroad # 0 a.d.
 
         # Launcher/Tools
         heroic
