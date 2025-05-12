@@ -1,8 +1,4 @@
-{ flake, ... }:
-let
-  inherit (flake) inputs;
-in
-{
+{ flake, ... }: {
 
   imports = [
     ../../home-manager

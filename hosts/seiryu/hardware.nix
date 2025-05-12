@@ -5,12 +5,7 @@
   modulesPath,
   pkgs,
   ...
-}:
-
-let
-  inherit (flake) inputs;
-in
-{
+}: {
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -53,7 +48,7 @@ in
       ];
     };
     "/boot" = {
-      device = "/dev/disk/by-label/boot";
+      device = "/dev/disk/by-uuid/852A-D1CD";
       fsType = "vfat";
     };
     "/nix" = {
@@ -72,11 +67,11 @@ in
       device = "/dev/disk/by-label/hddGames";
       fsType = "ext4";
     };
-    "/tmp" = {
-      #device = "/home/binette/.cache/tmp";
-      device = "/nix/persist/tmp";
-      options = [ "bind" ];
-    };
+    #"/tmp" = {
+    #  #device = "/home/binette/.cache/tmp";
+    #  device = "/nix/persist/tmp";
+    #  options = [ "bind" ];
+    #};
     #    "/mounts/nas" = {
     #      device = "100.71.254.90:/media";
     #      fsType = "nfs";
@@ -94,12 +89,10 @@ in
     "/nix/persist" = {
       hideMounts = true;
       directories = [
-        "/etc/NetworkManager"
         "/etc/nixos"
         "/var/lib"
         "/var/log"
         "/root"
-        "/srv"
       ];
     };
   };
@@ -123,8 +116,8 @@ in
     amdgpu.initrd.enable = true;
     graphics.enable = true;
     graphics.enable32Bit = true;
-    graphics.extraPackages = with pkgs; [ amdvlk ];
-    graphics.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+    graphics.extraPackages = [ pkgs.amdvlk ];
+    graphics.extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
 
   # ---Processor---
