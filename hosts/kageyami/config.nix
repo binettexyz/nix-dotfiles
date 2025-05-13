@@ -1,21 +1,14 @@
-{ lib, ... }:
+{ lib, flake, ... }:
 {
 
   imports = [
-    ../../nixos/server
-    ../../nixos/minimal.nix
+    flake.inputs.sops-nix.nixosModules.sops
+    flake.inputs.impermanence.nixosModules.impermanence
   ];
 
   ## Custom modules ##
   modules = {
-    bootloader = "rpi4";
-    device = {
-      type = "server";
-      netDevices = [
-        "eth0"
-        "wlan0"
-      ];
-    };
+    bootloader.default = "rpi4";
     server.containers = {
       adGuardHome.enable = true;
       nextcloud.enable = true;

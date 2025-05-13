@@ -35,17 +35,8 @@
   # ---FileSystem---
   fileSystems = {
     "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=2G"
-        "mode=755"
-      ];
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
     };
     "/nix" = {
       device = "/dev/disk/by-label/nix";
