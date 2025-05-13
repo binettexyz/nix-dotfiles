@@ -9,7 +9,7 @@
     createDirectories = false;
     desktop = "/home/${config.home.username}/desktop";
     documents = "/home/${config.home.username}/documents";
-    download = "/home/${config.home.username}/download";
+    download = "/home/${config.home.username}/downloads";
     pictures = "/home/${config.home.username}/pictures";
     videos = "/home/${config.home.username}/videos";
   };
