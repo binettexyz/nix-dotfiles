@@ -59,7 +59,7 @@
       (lib.mkIf (lib.elem "gaming" deviceTags) [
         # Games
         #openmw # TES: Morrowind
-        #prismlauncher # Minecraft
+        prismlauncher # Minecraft
         #gzdoom # Doom
         #zeroad # 0 a.d.
 
