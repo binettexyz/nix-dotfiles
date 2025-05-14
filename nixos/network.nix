@@ -35,7 +35,7 @@
       networks."BELL920" = {
         priority = 0;
         auth = ''
-          psk=9f41abf6a150bbf3eb7ca1bb6fb9a5fff55e788ce8ad3db634d4336746257e45
+          psk=612dd63c94323b70287c5785e4e53ecbec25d48ee3330b1b3d42eec0a9225a6b
           proto=RSN
           key_mgmt=WPA-PSK
           pairwise=CCMP
