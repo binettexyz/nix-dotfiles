@@ -32,14 +32,14 @@
     wireless = {
       enable = lib.mkDefault true;
       userControlled.enable = true;
-      networks."BELL248" = {
+      networks."BELL920" = {
         priority = 0;
         auth = ''
-                 psk=9f41abf6a150bbf3eb7ca1bb6fb9a5fff55e788ce8ad3db634d4336746257e45
-                 proto=RSN
-              	  key_mgmt=WPA-PSK
-              	  pairwise=CCMP
-          	      auth_alg=OPEN
+          psk=9f41abf6a150bbf3eb7ca1bb6fb9a5fff55e788ce8ad3db634d4336746257e45
+          proto=RSN
+          key_mgmt=WPA-PSK
+          pairwise=CCMP
+          auth_alg=OPEN
         '';
       };
     };
