@@ -1,23 +1,20 @@
-#+TITLE: NixOS Installation Guide
-#+AUTHOR: Jonathan Binette
+# NixOS Installation Guide
 
-* Installation
+## Installation
 The partitioning setup is based on these projects:
-- [[https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/][NixOS: tmpfs as root]]
-- [[https://github.com/nix-community/impermanence][Impermanence]]
+- [NixOS: tmpfs as root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/)
+- [Impermanence](https://github.com/nix-community/impermanence)
 
-** Partitionning
-Here we're gonna mount =/= as tmpfs so every time the computer start, the root directory will be wipe.\\
+### Partitioning
+Here we're gonna mount `/` as tmpfs so every time the computer start, the root directory will be wipe.  
 Only the mounted and impermanence directory gonna stay intact.
 
-#+begin_src sh
+```sh
 dev=/dev/sdx
   # create partitions
 parted    ${dev} mklabel gpt
 parted -s ${dev} mkpart primary fat32 1MiB 513MiB
 parted -s ${dev} mkpart primary ext4 513MiB 100%
-parted -s ${dev} set 1 boot on
-parted -s ${dev} name 1 boot
 
   # Create two logical volumes
 pvcreate -ff ${dev}2
@@ -41,25 +38,24 @@ mkdir -p /mnt/nix/persist/{home,nix,etc/{nixos,ssh},var/{lib,log},root,srv}
 
 mount -o bind /mnt/nix/persist/etc/nixos /mnt/etc/nixos
 mount -o bind /mnt/nix/persist/var/log /mnt/var/log
-#+end_src
+```
 
-** Building System
-*** Standard Computer
+### Building System
+#### Standard Computer
 On a standard computer, it's pretty much straightfoward:
 
-#+begin_src sh
+```sh
 $ git clone http://github.com/binettexyz/nix-dotfiles /etc/nixos/.
 $ cd /etc/nixos  
   # Edit config to fit your system
 $ vim hosts/<host>/hardware.nix
 $ nixos-install --flake .#<host> --no-root-passwd
+```
 
-#+end_src
-
-*** Steamdeck
+#### Steamdeck
 On a gaming handheld device, at least the steamdeck, there's an extra step:
 
-#+begin_src sh
+```sh
 $ git clone https://github.com/binettexyz/nix-dotfiles /etc/nixos/.
 $ cd /etc/nixos
   # Edit config to fit your system
@@ -67,7 +63,7 @@ $ vim hosts/<host>/hardware.nix
   # Here, you want to mount /tmp where there's more space (like in your home directory)
 $ mount -o bind /tmp <another /tmp directory>
 $ nixos-install --flake .#<host> --no-root-passwd
-#+end_src
+```
 
 - The reason we mount /tmp elsewhere is, if you build the config locally, you'll have a lack of space error when building the kernel. \\
 - If you're using grub instead of systemd-boot, make sure to set =canTouchEfiVariables = false= and =efiInstallAsRemovable = true;= or else there wont be any boot option in bios. \\
