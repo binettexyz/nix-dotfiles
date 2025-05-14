@@ -1,9 +1,8 @@
-{lib, ...}: {
+{deviceType, lib, ...}: {
   imports = [
     ./meta
     ./packages.nix
     ./pc.nix
-    ./theme.nix
     ./dotfiles/browsers/chromium.nix
     ./dotfiles/browsers/librewolf.nix
     ./dotfiles/browsers/qutebrowser
@@ -20,7 +19,7 @@
     ./dotfiles/tools/ssh.nix
     ./dotfiles/tools/tmux.nix
     ./dotfiles/tools/yazi.nix
-  ];
+  ] ++ lib.optional (deviceType != "server") ./theme.nix;
 
   options = {
     modules.hm.gaming = {
