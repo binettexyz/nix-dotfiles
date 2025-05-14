@@ -25,6 +25,11 @@ with lib;
         user = "${config.home.username}";
         port = 704;
       };
+      "kokoro" = {
+        hostname = "100.95.71.37";
+        user = "${config.home.username}";
+        port = 704;
+      };
     };
   };
 
