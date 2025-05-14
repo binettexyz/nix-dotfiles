@@ -15,14 +15,19 @@ in
   ];
 
   programs = {
-    git.enable = true;
-    git.config = {
-      # Avoid git log spam while building this config
-      init.defaultBranch = "master";
+    zsh.enable = true;
+    git = {
+      enable = true;
+      config = {
+        # Avoid git log spam while building this config
+        init.defaultBranch = "master";
+      };
     };
     # Alternative to nixos-rebuild.
-    nh.enable = true;
-    nh.flake = "/etc/nixos";
+    nh = {
+      enable = true;
+      flake = "/etc/nixos";
+    };
   };
 
   nix = {
