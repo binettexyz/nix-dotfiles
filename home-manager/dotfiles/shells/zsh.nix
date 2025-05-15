@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     # zsh directory
@@ -79,14 +79,38 @@
 
     '';
 
-    antidote = {
-      enable = true;
-      plugins = [
-        "jeffreytse/zsh-vi-mode"
-        "hlissner/zsh-autopair"
-        "zdharma-continuum/fast-syntax-highlighting"
-      ];
-    };
+    plugins = [
+      # to find sha256, keep it empty and the build error will find it for you
+      {
+        name = "zsh-vi-mode";
+        src = pkgs.fetchFromGitHub {
+          owner = "jeffreytse";
+          repo = "zsh-vi-mode";
+          rev = "f82c4c8f4b2bdd9c914653d8f21fbb32e7f2ea6c";
+          sha256 = "sha256-CkU0qd0ba9QsPaI3rYCgalbRR5kWYWIa0Kn7L07aNUI=";
+        };
+      }
+      {
+        name = "Fast Syntax Highlighting";
+        file = "fast-syntax-highlighting.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "fast-syntax-highlighting";
+          rev = "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9";
+          sha256 = "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=";
+        };
+      }
+      {
+        name = "zsh-autopair";
+        file = "zsh-autopair.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "hlissner";
+          repo = "zsh-autopair";
+          rev = "449a7c3d095bc8f3d78cf37b9549f8bb4c383f3d";
+          sha256 = "sha256-3zvOgIi+q7+sTXrT+r/4v98qjeiEL4Wh64rxBYnwJvQ=";
+        };
+      }
+    ];
   };
 
   programs.dircolors.enable = true;
