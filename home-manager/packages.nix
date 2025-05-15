@@ -29,9 +29,10 @@
         atool
         zip
         unzip
-        rar
         capitaine-cursors-themed
       ]
+
+      (lib.optional (deviceType != "server") [rar])
 
       (lib.mkIf (lib.elem "workstation" deviceTags) [
         libreoffice
