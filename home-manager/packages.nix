@@ -25,14 +25,8 @@
         wget
         yt-dlp
 
-        # Archive tools
-        atool
-        zip
-        unzip
         capitaine-cursors-themed
       ]
-
-      (lib.optional (deviceType != "server") [rar])
 
       (lib.mkIf (lib.elem "workstation" deviceTags) [
         libreoffice
