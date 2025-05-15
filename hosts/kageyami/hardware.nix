@@ -40,7 +40,7 @@
       fsType = "ext4";
     };
   };
-  swapDevices = [ { device = "/swapFile" size = 1024 * 8; } ];
+  swapDevices = [ { device = "/swapFile"; size = 1024 * 8; } ];
 
   # ---Networking---
   networking = {
