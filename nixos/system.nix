@@ -134,7 +134,7 @@ in {
     age = {
       # This will automatically import SSH keys as age keys
       sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
-      keyFile = "/var/lib/sops-nix/key.txt";
+      keyFile = "/home/${username}/sops/key.txt";
       # This will generate a new key if the key specified above does not exist
       generateKey = true;
     };
