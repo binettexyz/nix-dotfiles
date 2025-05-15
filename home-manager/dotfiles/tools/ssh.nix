@@ -17,7 +17,7 @@ with lib;
         port = 704;
       };
       "kageyami" = {
-        hostname = "100.69.22.72";
+        hostname = "100.110.153.50";
         port = 704;
       };
       "gyorai" = {
