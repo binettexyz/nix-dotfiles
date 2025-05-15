@@ -129,8 +129,15 @@ in {
   programs.fuse.userAllowOther = true;
 
   # Sops-nix password encryption
-  sops.defaultSopsFile = ../../../secrets/common.yaml;
-  sops.age.sshKeyPaths = ["/home/binette/.ssh/id_ed25519"];
+  sops = {
+    defaultSopsFile = ../secrets/secrets.yaml;
+    age = {
+      # This will automatically import SSH keys as age keys
+      sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      # This will generate a new key if the key specified above does not exist
+      generateKey = true;
+    };
 
   environment.etc = {
     "machine-id".source = "/nix/persist/etc/machine-id";
