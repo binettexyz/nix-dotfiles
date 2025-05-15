@@ -138,6 +138,7 @@ in {
       # This will generate a new key if the key specified above does not exist
       generateKey = true;
     };
+  };
 
   environment.etc = {
     "machine-id".source = "/nix/persist/etc/machine-id";
