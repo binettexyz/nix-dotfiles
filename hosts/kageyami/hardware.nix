@@ -9,13 +9,14 @@
 }:
 {
 
+  # ---Imports---
   imports = [
-    (flake.inputs.nixos-hardware + "/raspberry-pi/4")
+    #(flake.inputs.nixos-hardware + "/raspberry-pi/4")
     (modulesPath + "/installer/scan/not-detected.nix")
     flake.inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-  # kernel modules/packages
+  # ---kernel modules/packages---
   boot = {
     kernelPackages = pkgs.linuxPackages_rpi4;
     initrd.availableKernelModules = [
@@ -38,31 +39,19 @@
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
     };
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-    };
-    #    "/nix/persist/home" = {
-    #      device = "/dev/disk/by-label/home";
-    #      fsType = "ext4";
-    #    };
+  };
+  swapDevices = [ { device = "/swapFile" size = 1024 * 8; } ];
+
+  # ---Networking---
+  networking = {
+    hostName = "kageyami";
+    interfaces.eth0.useDHCP = true;
+    interfaces.wlan0.useDHCP = true;
+    wireless.interfaces = [ "wlan0" ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
-
-  ##  Impermanence ##
-  environment.persistence."/nix/persist" = {
-    hideMounts = true;
-    directories = [
-      "/etc/nixos"
-      "/home"
-      "/mounts"
-      "/root"
-      "/srv"
-      "/var/lib"
-      "/var/log"
-    ];
-  };
-
+  nix.settings.max-jobs = 4;
+  hardware.raspberry-pi."4".fkms-3d.enable = true;
+  boot.tmp.useTmpfs = lib.mkForce false;
   powerManagement.cpuFreqGovernor = lib.mkForce "conservative";
 }
