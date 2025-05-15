@@ -22,17 +22,15 @@ in
 
   config = lib.mkIf config.modules.server.containers.nextcloud.enable {
 
-    sops.secrets.nextcloud-adminPass = {
+    sops.secrets."server/containers/nextcloud-adminPass" = {
       mode = "777";
       format = "yaml";
-      sopsFile = ../../secrets.yaml;
     };
 
     # ---Main Container---
     containers.nextcloud =
       let
-        adminpassFile = config.sops.secrets.nextcloud-adminPass.path;
-        dbPass = config.sops.secrets.nextcloud-dbPass.path;
+        adminpassFile = config.sops.secrets."server/containers/nextcloud-adminPass".path;
         datadir = "/var/lib/nextcloud";
       in
       {
@@ -67,7 +65,7 @@ in
             system.stateVersion = "25.05";
             services.nextcloud = {
               enable = true;
-              package = pkgs.nextcloud30;
+              package = pkgs.nextcloud31;
               inherit datadir;
               hostName = "localhost";
               config = {
@@ -76,7 +74,7 @@ in
                 dbtype = "sqlite";
               };
               settings.trusted_domains = [
-                "100.69.22.72"
+                "100.110.153.50"
               ];
               extraApps = {
                 inherit (pkgs.nextcloud30Packages.apps)
