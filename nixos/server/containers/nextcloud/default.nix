@@ -10,11 +10,8 @@ with lib;
 let
   cfg = config.modules.server.containers.nextcloud.enable;
   hostAddress = "192.168.100.1";
-  localAddress = "192.168.100.10/24";
+  localAddress = "192.168.100.10";
   ports.nextcloud = 8181;
-  mkLocalProxy = port: {
-    locations."/".proxyPass = "http://${localAddress}:" + toString (port);
-  };
 in
 {
 
@@ -24,8 +21,10 @@ in
   };
 
   config = lib.mkIf config.modules.server.containers.nextcloud.enable {
-    services.nginx.virtualHosts = {
-      "nextcloud.box" = mkLocalProxy ports.nextcloud;
+    services.nginx.virtualHosts."cloud.jbinette.xyz" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${localAddress}";
     };
 
     sops.secrets."server/containers/nextcloud-adminPass" = {
@@ -44,16 +43,12 @@ in
         privateNetwork = true;
         hostBridge = "br0";
         inherit localAddress hostAddress;
-        forwardPorts = [
-          {
-            containerPort = 80;
-            hostPort = ports.nextcloud;
-          }
-          {
-            containerPort = 442;
-            hostPort = 442;
-          }
-        ];
+#        forwardPorts = [
+#          {
+#            containerPort = 80;
+#            hostPort = ports.nextcloud;
+#          }
+#        ];
 
         bindMounts = {
           ${datadir} = {
@@ -74,15 +69,24 @@ in
               enable = true;
               package = pkgs.nextcloud31;
               inherit datadir;
-              hostName = "localhost";
+              hostName = "cloud.jbinette.xyz";
+              https = true;
               config = {
                 adminuser = "binette";
                 inherit adminpassFile;
                 dbtype = "sqlite";
               };
-              settings.trusted_domains = [
-                "100.110.153.50"
-              ];
+              settings = {
+                trusted_proxies = [
+                  "127.0.0.1"
+                ];
+                trusted_domains = [
+                  "cloud.jbinette.xyz"
+                ];
+                overwriteprotocol = "https";
+                overwritehost = "cloud.jbinette.xyz";
+                overwrite.cli.url = "https://cloud.jbinette.xyz";
+              };
               extraApps = {
                 inherit (pkgs.nextcloud30Packages.apps)
                   news
@@ -101,9 +105,8 @@ in
               firewall = {
                 enable = true;
                 allowedTCPPorts = [
-                  ports.nextcloud
                   80
-                  442
+                  443
                 ];
               };
               useHostResolvConf = lib.mkForce false;
