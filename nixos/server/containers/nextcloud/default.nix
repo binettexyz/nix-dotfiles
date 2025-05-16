@@ -9,9 +9,12 @@ with lib;
 
 let
   cfg = config.modules.server.containers.nextcloud.enable;
-  hostAddress = "10.0.0.15";
-  localAddress = "10.0.1.15";
+  hostAddress = "192.168.100.1";
+  localAddress = "192.168.100.10/24";
   ports.nextcloud = 8181;
+  mkLocalProxy = port: {
+    locations."/".proxyPass = "http://${localAddress}:" + toString (port);
+  };
 in
 {
 
@@ -21,6 +24,9 @@ in
   };
 
   config = lib.mkIf config.modules.server.containers.nextcloud.enable {
+    services.nginx.virtualHosts = {
+      "nextcloud.box" = mkLocalProxy ports.nextcloud;
+    };
 
     sops.secrets."server/containers/nextcloud-adminPass" = {
       mode = "777";
@@ -35,7 +41,8 @@ in
       in
       {
         autoStart = true;
-        privateNetwork = false;
+        privateNetwork = true;
+        hostBridge = "br0";
         inherit localAddress hostAddress;
         forwardPorts = [
           {
@@ -95,6 +102,7 @@ in
                 enable = true;
                 allowedTCPPorts = [
                   ports.nextcloud
+                  80
                   442
                 ];
               };
