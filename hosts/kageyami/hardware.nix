@@ -39,6 +39,15 @@
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
     };
+    "/media" = {
+      device = "/dev/disk/by-label/media";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.device-timout=5s"
+      ];
+    };
   };
   swapDevices = [ { device = "/swapFile"; size = 1024 * 8; } ];
 
@@ -48,6 +57,8 @@
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     wireless.interfaces = [ "wlan0" ];
+    defaultGateway = "192.168.2.1";
+    nameservers = ["192.168.2.1"];
   };
 
   nix.settings.max-jobs = 4;
