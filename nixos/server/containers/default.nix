@@ -1,6 +1,5 @@
 {
   imports = [
-    ./adguardhome
         ./homer
     #    ./mediarr
     #    ./minecraft
