@@ -1,15 +1,11 @@
 {
   imports = [
     ./adguardhome
-    #    ./homer
-    #    ./home-assistant
-    #TODO: ./invidious
+        ./homer
     #    ./mediarr
     #    ./minecraft
     #TODO: ./miniflux
     ./nextcloud
-    #    ./nextcloud/docker.nix
-    #    ./portainer
     ./vaultwarden
   ];
 
