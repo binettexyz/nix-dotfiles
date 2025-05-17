@@ -9,7 +9,7 @@
     # ---DNS---
     enableIPv6 = lib.mkDefault false;
     useDHCP = lib.mkDefault false;
-    nameservers = [ "100.69.22.72" ]; # adguardhome
+    #nameservers = [ "100.110.153.50" ]; # adguardhome
 
     # ---Firewall---
     firewall = {
@@ -17,11 +17,11 @@
       allowPing = false;
       allowedTCPPorts = [
         2049 # NFSv4
-        53 # dns
+        #53 # dns
       ];
       allowedUDPPorts = [
         config.services.tailscale.port
-        53 # dns
+        #53 # dns
       ];
       # tailscale
       checkReversePath = "loose";
