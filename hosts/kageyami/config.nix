@@ -10,9 +10,9 @@
   modules = {
     bootloader.default = "rpi4";
     server.containers = {
-#      adGuardHome.enable = true;
+      homer.enable = true;
       nextcloud.enable = true;
-#      vaultwarden.enable = false;
+      vaultwarden.enable = false;
     };
     system = {
       home.enable = true;
