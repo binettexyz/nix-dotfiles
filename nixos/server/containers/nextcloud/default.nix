@@ -60,6 +60,9 @@ in
             system.stateVersion = "25.05";
             networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+            networking.useHostResolvConf = lib.mkForce false;
+            services.resolved.enable = true;
+
             services.nextcloud = {
               enable = true;
               package = pkgs.nextcloud31;
@@ -95,12 +98,9 @@ in
               };
               extraAppsEnable = true;
             };
-            useHostResolvConf = lib.mkForce false;
-        };
-          services.resolved.enable = true;
+          };
       };
-    };
-
   };
+
 
 }
