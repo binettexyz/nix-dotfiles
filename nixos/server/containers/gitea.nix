@@ -3,7 +3,7 @@ let
   cfg = config.modules.server.containers.gitea;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.14";
-  ports.gitea = 3001;
+  ports.gitea = 3000;
 in {
 
   options.modules.server.containers.gitea.enable = lib.mkOption {
@@ -19,17 +19,23 @@ in {
         proxyPass = "http://${localAddress}:" + toString (ports.gitea);
         proxyWebsockets = true;
       };
-      locations."= /" = {
-        extraConfig = ''
-          return 302 /explore;
-        '';
-      };
+      extraConfig = ''
+        client_max_body_size 512M;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+      '';
     };
 
     sops.secrets."server/containers/gitea-password" = {
       mode = "0400";
       format = "yaml";
     };
+
+    networking.firewall.allowedTCPPorts = [ 2222 ];
   
     containers.gitea =
     let
@@ -50,11 +56,18 @@ in {
           isReadOnly = true;
         };
       };
+      forwardPorts = [
+        {
+          containerPort = 2222;
+          hostPort = 2222;
+          protocol = "tcp";
+        }
+      ];
 
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
 
-        networking.firewall.allowedTCPPorts = [ 3001 ];
+        networking.firewall.allowedTCPPorts = [ ports.gitea 2222 22 ];
 
         systemd.tmpfiles.rules = [
           "d /var/lib/gitea 0750 gitea gitea -"
@@ -93,8 +106,12 @@ in {
             server = {
               DOMAIN = "git.jbinette.xyz";
               ROOT_URL = "https://git.jbinette.xyz";
-              HTTP_PORT = 3001;
+              HTTP_PORT = ports.gitea;
               HTTP_ADDR = "0.0.0.0";
+              START_SSH_SERVER = true;
+              SSH_PORT = 2222;
+              SSH_LISTEN_PORT = 2222;
+              SSH_DOMAIN = "git.jbinette.xyz";
             };
             service = {
               DISABLE_REGISTRATION = true;
