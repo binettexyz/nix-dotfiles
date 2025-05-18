@@ -10,9 +10,8 @@
   modules = {
     bootloader.default = "rpi4";
     server.containers = {
-      homer.enable = true;
       nextcloud.enable = true;
-      vaultwarden.enable = false;
+      gitea.enable = true;
     };
     system = {
       home.enable = true;

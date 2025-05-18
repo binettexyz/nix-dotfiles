@@ -1,11 +1,7 @@
 {
   imports = [
-        ./homer
-    #    ./mediarr
-    #    ./minecraft
-    #TODO: ./miniflux
+    ./gitea.nix
     ./nextcloud
-    ./vaultwarden
   ];
 
 }
