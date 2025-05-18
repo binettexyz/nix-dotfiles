@@ -11,7 +11,6 @@ let
   cfg = config.modules.server.containers.nextcloud.enable;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.10";
-  ports.nextcloud = 8181;
 in
 {
 
@@ -43,12 +42,6 @@ in
         privateNetwork = true;
         hostBridge = "br0";
         inherit localAddress hostAddress;
-#        forwardPorts = [
-#          {
-#            containerPort = 80;
-#            hostPort = ports.nextcloud;
-#          }
-#        ];
 
         bindMounts = {
           ${datadir} = {
@@ -65,6 +58,8 @@ in
           { pkgs, ... }:
           {
             system.stateVersion = "25.05";
+            networking.firewall.allowedTCPPorts = [ 80 443 ];
+
             services.nextcloud = {
               enable = true;
               package = pkgs.nextcloud31;
@@ -100,21 +95,11 @@ in
               };
               extraAppsEnable = true;
             };
-
-            networking = {
-              firewall = {
-                enable = true;
-                allowedTCPPorts = [
-                  80
-                  443
-                ];
-              };
-              useHostResolvConf = lib.mkForce false;
-            };
-
-            services.resolved.enable = true;
-          };
+            useHostResolvConf = lib.mkForce false;
+        };
+          services.resolved.enable = true;
       };
+    };
 
   };
 
