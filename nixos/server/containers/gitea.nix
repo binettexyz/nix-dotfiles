@@ -4,6 +4,10 @@ let
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.14";
   ports.gitea = 3000;
+  ports.ssh = {
+    container = 2222;
+    host = 22;
+  };
 in {
 
   options.modules.server.containers.gitea.enable = lib.mkOption {
@@ -35,7 +39,7 @@ in {
       format = "yaml";
     };
 
-    networking.firewall.allowedTCPPorts = [ 2222 ];
+    networking.firewall.allowedTCPPorts = [ ports.ssh.host ];
   
     containers.gitea =
     let
@@ -58,8 +62,8 @@ in {
       };
       forwardPorts = [
         {
-          containerPort = 2222;
-          hostPort = 2222;
+          containerPort = ports.ssh.container;
+          hostPort = 22;
           protocol = "tcp";
         }
       ];
@@ -67,7 +71,7 @@ in {
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
 
-        networking.firewall.allowedTCPPorts = [ ports.gitea 2222 22 ];
+        networking.firewall.allowedTCPPorts = [ ports.gitea ports.ssh.container ];
 
         systemd.tmpfiles.rules = [
           "d /var/lib/gitea 0750 gitea gitea -"
@@ -109,8 +113,8 @@ in {
               HTTP_PORT = ports.gitea;
               HTTP_ADDR = "0.0.0.0";
               START_SSH_SERVER = true;
-              SSH_PORT = 2222;
-              SSH_LISTEN_PORT = 2222;
+              SSH_PORT = ports.ssh.host;
+              SSH_LISTEN_PORT = ports.ssh.container;
               SSH_DOMAIN = "git.jbinette.xyz";
             };
             service = {
