@@ -32,7 +32,17 @@
     };
 
     # ---Networking---
-    services.nginx.enable = true;
+    services.nginx = {
+      enable = true;
+      virtualHosts."jbinette.xyz" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".extraConfig = ''
+          default_type text/plain;
+          return 200 "Root domain reserved. Use cloud.jbinette.xyz or git.jbinette.xyz";
+        '';
+      };
+    };
 
     networking = {
       firewall.allowedTCPPorts = [ 80 443 ];
