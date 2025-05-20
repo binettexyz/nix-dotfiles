@@ -18,4 +18,11 @@
     };
   };
 
+  services.syncthing.settings.folders = {
+    "minecraft" = {
+      path = "/media/gamesSync/minecraft/saves";
+      devices = ["kokoro" "seiryu"];
+    };
+  };
+
 }
