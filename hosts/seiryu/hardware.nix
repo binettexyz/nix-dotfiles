@@ -67,11 +67,10 @@
       device = "/dev/disk/by-label/hddGames";
       fsType = "ext4";
     };
-    #"/tmp" = {
-    #  #device = "/home/binette/.cache/tmp";
-    #  device = "/nix/persist/tmp";
-    #  options = [ "bind" ];
-    #};
+    "/tmp" = {
+      device = "/home/binette/.cache/tmp";
+      options = [ "bind" ];
+    };
     #    "/mounts/nas" = {
     #      device = "100.71.254.90:/media";
     #      fsType = "nfs";
