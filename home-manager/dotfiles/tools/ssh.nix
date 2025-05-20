@@ -13,7 +13,7 @@ with lib;
     matchBlocks = {
       "seiryu" = {
         user = "${config.home.username}";
-        hostname = "100.78.201.86";
+        hostname = "100.96.225.88";
         port = 704;
       };
       "kageyami" = {
