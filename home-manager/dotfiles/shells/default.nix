@@ -56,7 +56,7 @@
     commit = "git commit -m";
     fetch = "git fetch";
     pull = "git pull origin";
-    push = "git push origin";
+    push = "git push && git push mirror main:master";
     status = "git status";
     tag = "git tag";
     newtag = "git tag -a";
