@@ -10,7 +10,7 @@ in
 {
   users = {
     # FIXME: if set to pkgs.zsh, error saying that programs.zsh.enable is not true, which is not true...
-    defaultUserShell = lib.mkForce "/etc/profiles/per-user/${username}/bin/zsh";
+    defaultUserShell = lib.mkForce pkgs.fish;
     mutableUsers = false;
     groups.${username}.gid = 1000;
     users.${username} = {
