@@ -60,6 +60,12 @@
       gpuType = "amdgpu";
       hostname = "gyorai";
     })
+    # Lenovo Thinkpad t480 (Swift Wind)
+    (mkNixOSConfig {
+      deviceType = "laptop";
+      deviceTags = ["workstation" "dev" "battery"];
+      hostname = "hayate";
+    })
     # Lenovo Thinkpad t440p (Heart/Spirit)
     (mkNixOSConfig {
       deviceType = "laptop";
