@@ -1,9 +1,12 @@
-{osConfig, ...}: {
+{osConfig, pkgs, ...}: {
   services.hyprpaper = {
     enable = osConfig.programs.hyprland.enable;
     settings = {
-      preload = ["/home/binette/pictures/wallpapers/gruvbox/004.jpg"];
-      wallpaper = ["HDMI-A-1,/home/binette/pictures/wallpapers/gruvbox/004.jpg"];
+      preload = ["${pkgs.wallpapers.gruvbox}"];
+      wallpaper = [
+        "HDMI-A-1,${pkgs.wallpapers.gruvbox}"
+        "eDP-1,${pkgs.wallpapers.gruvbox}"
+      ];
     };
   };
 }
