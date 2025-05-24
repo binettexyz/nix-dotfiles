@@ -11,8 +11,9 @@ in
   gruvbox = mkWallpaperGithub {
     name = "gruvbox-face";
     theme = "gruvbox";
-    id = "002";
-    sha256 = "sha256-VUxP06aCKh365lzaQ17Sug8rZ5oVXRmoAh7ifwdjY6w=";
+    id = "004";
+    ext = "jpg";
+    sha256 = "sha256-wxDlFBHGaC4yJZpb8v3Qc/WKykPtyQasYmptl1k/Nwc=";
   };
 
   catppuccin = mkWallpaperGithub {
