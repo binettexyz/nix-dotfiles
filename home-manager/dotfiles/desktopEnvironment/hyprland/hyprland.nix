@@ -99,7 +99,7 @@ in {
 
       animations = {
         enabled =
-          if (lib.elem "lowSpec" deviceTags)
+          if deviceType =="laptop"
           then false
           else true;
         bezier = [
