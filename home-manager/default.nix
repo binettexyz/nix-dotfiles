@@ -1,6 +1,7 @@
 {deviceType, lib, ...}: {
   imports = [
     ./meta
+    ../modules/colorSchemes
     ./packages.nix
     ./pc.nix
     ./dotfiles/browsers/chromium.nix
