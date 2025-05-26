@@ -101,6 +101,13 @@ in {
       padding-right: 2px;
       padding-left: 2px;
     }
+    
+    #battery {
+      background: #282828;
+      border-radius: 4px;
+      margin-right: 4px;
+      padding: 0px 4px 0px 4px;
+    }
 
     #workspaces {
       background: #282828;

@@ -1,5 +1,6 @@
 {
   deviceTags,
+  deviceType,
   lib,
   osConfig,
   ...
@@ -11,7 +12,12 @@
       mainBar = {
         layer = "top";
         position = "top";
-        margin = "8px, 8px, 0px, 8px";
+        margin =
+          if deviceType == "desktop"
+            then "8px, 8px, 0px, 8px"
+          else if deviceType == "laptop"
+            then "4px, 4px, 0px, 4px"
+          else "";
         reload_style_on_change = true;
         #output = ["${lib.elemAt osConfig.device.videoOutput 0}"];
         #include = [ ~/.config/waybar/modules.json ];
@@ -36,10 +42,8 @@
           ++ (
             if (lib.elem "battery" deviceTags)
             then [
-              "custom/sep"
               "battery"
               "battery#bat2"
-              "custom/sep"
             ]
             else []
           )
@@ -163,11 +167,11 @@
             critical = 15;
           };
           tooltip = false;
-          format = "{icon}  {capacity}%";
-          format-full = "{icon}  {capacity}%";
-          format-charging = "  {capacity}%";
-          format-plugged = "  {capacity}%";
-          format-alt = "{time}  {icon}";
+          format = "{icon} {capacity}%";
+          format-full = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{time} {icon}";
           format-icons = [
             ""
             ""
