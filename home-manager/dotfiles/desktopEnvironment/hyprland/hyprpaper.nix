@@ -1,12 +1,28 @@
-{osConfig, pkgs, ...}: {
-  services.hyprpaper = {
-    enable = osConfig.programs.hyprland.enable;
-    settings = {
-      preload = ["${pkgs.wallpapers.gruvbox}"];
-      wallpaper = [
-        "HDMI-A-1,${pkgs.wallpapers.gruvbox}"
-        "eDP-1,${pkgs.wallpapers.gruvbox}"
-      ];
+{config, flake, lib, osConfig, ...}: {
+
+
+  options.modules.hm.theme.wallpaper = lib.mkOption {
+    type = lib.types.str;
+    default = "003";
+    description = "Wallpaper filename without extension.";
+  };
+
+  config = {
+    services.hyprpaper = {
+      enable = osConfig.programs.hyprland.enable;
+      settings = let
+        getWallpaper = {colorScheme, name}: "~/pictures/wallpapers/${colorScheme}/${name}.png";
+        selectedWallpaper = getWallpaper {
+          colorScheme = config.modules.hm.theme.colorScheme;
+          name = config.modules.hm.theme.wallpaper;
+        };
+      in {
+        preload = ["${selectedWallpaper}"];
+        wallpaper = [
+          "HDMI-A-1,${selectedWallpaper}"
+          "eDP-1,${selectedWallpaper}"
+        ];
+      };
     };
   };
 }

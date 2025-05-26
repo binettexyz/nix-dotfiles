@@ -6,14 +6,14 @@ in {
     description = "ColorScheme Selection";
     type = with lib.types;
     nullOr (enum [
-      "gruvbox-material"
+      "gruvbox"
       "catppuccin"
     ]);
     default = "gruvbox-material";
   };
 
   config = lib.mkMerge [
-    (lib.mkIf (cfg == "gruvbox-material") {
+    (lib.mkIf (cfg == "gruvbox") {
       colorScheme = {
         name = "Gruvbox Material";
         description = "Gruvbox Material Dark";

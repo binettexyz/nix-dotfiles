@@ -9,8 +9,6 @@ in {
     #    flake.inputs.nixvim.homeManagerModules.nixvim
   ];
 
-  #colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
-
   modules.hm = {
     browser = {
       librewolf.enable = true;
@@ -18,7 +16,8 @@ in {
     };
     mpv.enable = true;
     theme = {
-      colorScheme = "gruvbox-material";
+      colorScheme = "gruvbox";
+      wallpaper = "003";
     };
   };
 }
