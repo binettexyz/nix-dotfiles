@@ -5,6 +5,7 @@
 }: let
   cfg = config.colorScheme.palette;
 in {
+  #TODO: Add mkMerge per host.
   programs.waybar.style = lib.mkIf config.programs.waybar.enable ''
 
     * {

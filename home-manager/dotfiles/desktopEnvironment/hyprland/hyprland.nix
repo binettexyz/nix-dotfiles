@@ -90,7 +90,10 @@ in {
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         blur = {
-          enabled = true;
+          enabled =
+            if deviceType == "laptop"
+            then false
+            else true;
           size = 3;
           passes = 1;
           vibrancy = 0.1696;
@@ -99,7 +102,7 @@ in {
 
       animations = {
         enabled =
-          if deviceType =="laptop"
+          if deviceType == "laptop"
           then false
           else true;
         bezier = [
@@ -254,12 +257,12 @@ in {
         "noanim,selection"
       ];
 
-      windowrulev2 = [
+      windowrulev2 = [ #TODO: Add mkMerge per host.
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
         "workspace 2 silent, class:librewolf"
-        "workspace 2 silent, class:qutebrowser"
+        "workspace 2 silent, class:^(.*qutebrowser.*)$"
         "workspace 3 silent, class:^(.*steam.*)$"
         "workspace 3 silent, class:^(.*lutris.*)$"
         "workspace 3 silent, class:^(.*prismlauncher.*)$"
