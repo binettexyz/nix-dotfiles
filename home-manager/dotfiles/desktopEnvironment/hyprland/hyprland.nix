@@ -43,7 +43,7 @@ in {
         if hostname == "seiryu"
         then [
           "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
-          "${lib.elemAt output 1},disable"
+          "${lib.elemAt output 1},1920x1080@60,0x1080,1"
         ]
         else if hostname == "kokoro"
         then [
