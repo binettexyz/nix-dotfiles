@@ -30,7 +30,7 @@ in {
 
   boot.initrd.luks.devices = {
     crypted = {
-      device = "/dev/disk/by-uuid/a4fe62f9-d991-422c-a605-fde380d92d29";
+      device = "/dev/disk/by-uuid/5c4d86fb-32ef-4aae-8e1e-7bc5a8dcc2bc";
       preLVM = true;
     };
   };
