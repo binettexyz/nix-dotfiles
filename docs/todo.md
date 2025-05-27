@@ -3,11 +3,12 @@
   - [ ] Clean config.
   - [ ] Fix standalone home-manager install in fake.nix.
   - [ ] Update readme.org file.
-  - [ ] Write an installation guide in installation.org.
+  - [ ] Write an installation guide in installation.md.
   - [ ] Configure nixvim.
-  - [ ] Fix and update server.
-  - [ ] Setup home server with tailscale/domain.
+  - [X] Fix and update server.
+  - [X] Setup home server with tailscale/domain.
   - [ ] Convert configs with idiomatics.
+  - [ ] Setup catppuccin coloscheme.
 ## Home-Manager
   - [ ] Updates packages config (mpv, etc.)
 ## Scripts
