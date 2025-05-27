@@ -43,6 +43,7 @@ in
           device = "nodev";
           efiInstallAsRemovable = config.modules.bootloader.asRemovable;
           efiSupport = true;
+          enableCryptodisk = true;
           gfxmodeEfi = "1280x800";
           useOSProber = config.modules.bootloader.useOSProber;
           backgroundColor = lib.mkDefault "#000000";
