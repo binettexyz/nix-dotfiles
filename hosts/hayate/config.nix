@@ -22,17 +22,7 @@ in {
     };
   };
 
-  #device.videoOutput = [""];
-
-  boot.loader.grub = {
-    enableCryptodisk = true;
-  };
-
-  boot.initrd.luks.devices = {
-    crypted = {
-      device = "/dev/disk/by-uuid/5c4d86fb-32ef-4aae-8e1e-7bc5a8dcc2bc";
-      preLVM = true;
-    };
-  };
+  device.videoOutput = ["eDP-1"];
+  device.storage.ssd = true;
 
 }

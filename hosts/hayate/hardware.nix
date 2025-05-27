@@ -1,17 +1,35 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, flake, lib, pkgs, modulesPath, ... }:
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+      flake.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [];
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ "dm-snapshot" ];
+      luks.devices = {
+        crypted.device = "/dev/disk/by-uuid/5c4d86fb-32ef-4aae-8e1e-7bc5a8dcc2bc";
+        crypted.preLVM = true;
+      };
+    };
+  };
 
-  fileSystems."/" =
-    { device = "none";
+  fileSystems = {
+    "/" = { 
+      device = "none";
       fsType = "tmpfs";
       options = [
         "defaults"
@@ -19,22 +37,20 @@
         "mode=755"
       ];
     };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-label/nix";
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/home";
+    "/home" = {
+      device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
+  };
 
   swapDevices = [ {device = "/dev/disk/by-label/swap";} ];
 
@@ -75,9 +91,6 @@
   };
 
   # ---CPU Stuff---
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   nix.settings.max-jobs = 8; # CPU Treads
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  services.throttled.enable = true;
 
 }
