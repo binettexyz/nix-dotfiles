@@ -34,6 +34,8 @@
 
     # Enable laptop specific services
     services = {
+      # Device's firmware updater
+      fwupd.enable = true;
       # Enable Blueman to manage Bluetooth
       blueman = {
         enable = true;
