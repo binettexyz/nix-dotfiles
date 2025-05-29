@@ -20,6 +20,7 @@
         preload = ["${selectedWallpaper}"];
         wallpaper = [
           "HDMI-A-1,${selectedWallpaper}"
+          "HDMI-A-2,${selectedWallpaper}"
           "eDP-1,${selectedWallpaper}"
         ];
       };

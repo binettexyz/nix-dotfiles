@@ -134,7 +134,8 @@ in {
     }
 
     #workspaces button {
-      color: #${cfgColor.blackBright};
+      color: #${cfgColor.fg2};
+
       padding: 0;
       margin-right: 0px;
     }
@@ -152,7 +153,7 @@ in {
     }
 
     #workspaces button.empty {
-      color: #${cfgColor.black};
+      color: #${cfgColor.blackBright};
     }
 
     #workspaces button.empty.active {
