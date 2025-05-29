@@ -16,8 +16,8 @@ in {
     };
     mpv.enable = true;
     theme = {
-      colorScheme = "gruvbox";
-      wallpaper = "003";
+      colorScheme = "jmbi";
+      wallpaper = "001";
     };
   };
 }
