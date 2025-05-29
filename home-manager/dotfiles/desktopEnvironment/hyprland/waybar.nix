@@ -1,4 +1,5 @@
 {
+  config,
   deviceTags,
   deviceType,
   lib,
@@ -74,13 +75,13 @@
           tooltip = false;
           format = "{} {icon} ";
           format-icons = {
-            notification = "<span foreground='#ea6962'><sup></sup></span>";
+            notification = "<span foreground='#${config.colorScheme.palette.red}'><sup></sup></span>";
             none = "";
-            dnd-notification = "<span foreground='#ea6962'><sup></sup></span>";
+            dnd-notification = "<span foreground='#${config.colorScheme.palette.red}'><sup></sup></span>";
             dnd-none = "";
-            inhibited-notification = "<span foreground='#ea6962'><sup></sup></span>";
+            inhibited-notification = "<span foreground='#${config.colorScheme.palette.red}'><sup></sup></span>";
             inhibited-none = "";
-            dnd-inhibited-notification = "<span foreground='#ea6962'><sup></sup></span>";
+            dnd-inhibited-notification = "<span foreground='#${config.colorScheme.palette.red}'><sup</sup></span>";
             dnd-inhibited-none = "";
           };
           return-type = "json";
@@ -113,7 +114,7 @@
           format = "{icon} {volume}% -";
           format-bluetooth = "{icon} {volume}%  {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " Muted -";
+          format-muted = "<span foreground='#${config.colorScheme.palette.red}' size='100%'> Muted</span> -";
           format-icons = {
             headphone = "";
             hands-free = "";
@@ -132,7 +133,7 @@
         "pulseaudio#mic" = {
           format = "{format_source}";
           format-source = " {volume}%";
-          format-source-muted = " Muted";
+          format-source-muted = "<span foreground='#${config.colorScheme.palette.red}' size='100%'> Muted</span>";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+ -l 1.0";
           on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%- -l 1.0";
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
@@ -157,7 +158,7 @@
           interval = 10;
           hwmon-path = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input";
           critical-threshold = 100;
-          format-critical = " {temperatureC}";
+          format-critical = "<span foreground='#${config.colorScheme.palette.red}' size='100%'></span> {temperatureC}";
           format = " {temperatureC}°C";
           tooltip = false;
         };
@@ -169,15 +170,15 @@
           tooltip = false;
           format = "{icon} {capacity}%";
           format-full = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
+          format-charging = "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span> {capacity}%";
           format-plugged = " {capacity}%";
           format-alt = "{time} {icon}";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            "<span foreground='#${config.colorScheme.palette.red}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.yellow}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.yellow}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span>"
           ];
         };
         "battery#bat2" = {
@@ -187,7 +188,7 @@
         clock = {
           format = "{:%A - %B %d, %Y - %R}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          tooltip = true;
+          tooltip = false;
         };
         bluetooth = {
           format = " {status}";

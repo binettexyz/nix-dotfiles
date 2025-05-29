@@ -11,7 +11,7 @@
       cursor = {
         style = "beam";
         beam-thickness = 1;
-        color = "${config.colorScheme.palette.background} ${config.colorScheme.palette.foreground}";
+        color = "${config.colorScheme.palette.bg0} ${config.colorScheme.palette.fg0}";
       };
       url = {
         launch = "xdg-open \${url}";
@@ -38,8 +38,8 @@
       };
       colors = {
         alpha = "0.9";
-        background = "${config.colorScheme.palette.background}";
-        foreground = "${config.colorScheme.palette.foreground}";
+        background = "${config.colorScheme.palette.bg0}";
+        foreground = "${config.colorScheme.palette.fg0}";
         flash = "7f7f00";
         flash-alpha = "0.5";
         # Normal/regular colors (color palette 0-7)

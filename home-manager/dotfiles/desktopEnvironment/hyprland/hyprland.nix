@@ -75,8 +75,8 @@ in {
       general = {
         allow_tearing = false;
         border_size = 2;
-        "col.active_border" = "rgba(7daea3aa)";
-        "col.inactive_border" = "rgba(a9b665aa)";
+        "col.active_border" = "rgba(${config.colorScheme.palette.activeBorder}aa)";
+        "col.inactive_border" = "rgba(${config.colorScheme.palette.inactiveBorder}aa)";
         gaps_in = 8;
         gaps_out = 8;
         layout = "dwindle";
@@ -90,10 +90,7 @@ in {
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         blur = {
-          enabled =
-            if deviceType == "laptop"
-            then false
-            else true;
+          enabled = true;
           size = 3;
           passes = 1;
           vibrancy = 0.1696;

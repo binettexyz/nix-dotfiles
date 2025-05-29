@@ -1,43 +1,32 @@
-# gruvbox dark hard qutebrowser theme by Florian Bruhin <me@the-compiler.org>
-#
-# Originally based on:
-#   base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-#   Base16 qutebrowser template by theova and Daniel Mulford
-#   Gruvbox dark, hard scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+bg0 = "#141617"
+bg1 = "#1d2021"
+bg2 = "#282828"
+bg3 = "#3c3836"
+bg4 = "#504945"
 
-bg0_hard = "#1d2021"
-bg0_soft = '#32302f'
-bg0_normal = '#282828'
+fg0 = "#d4be98"
+fg1 = "#ddc7a1"
+fg2 = "#bdae93"
+fg3 = "#a89984"
+fg4 = "#928374"
 
-bg0 = bg0_normal
-bg1 = "#3c3836"
-bg2 = "#504945"
-bg3 = "#665c54"
-bg4 = "#7c6f64"
-
-fg0 = "#fbf1c7"
-fg1 = "#ebdbb2"
-fg2 = "#d5c4a1"
-fg3 = "#bdae93"
-fg4 = "#a89984"
-
-bright_red = "#fb4934"
-bright_green = "#b8bb26"
-bright_yellow = "#fabd2f"
-bright_blue = "#83a598"
+bright_red = "#ea6962"
+bright_green = "#a9b665"
+bright_yellow = "#d8a657"
+bright_blue = "#7daea3"
 bright_purple = "#d3869b"
-bright_aqua = "#8ec07c"
-bright_gray = "#928374"
-bright_orange = "#fe8019"
+bright_aqua = "#89b482"
+bright_gray = "#7c6f64"
+bright_orange = "#e78a4e"
 
-dark_red = "#cc241d"
-dark_green = "#98971a"
-dark_yellow = "#d79921"
-dark_blue = "#458588"
-dark_purple = "#b16286"
-dark_aqua = "#689d6a"
-dark_gray = "#a89984"
-dark_orange = "#d65d0e"
+dark_red = bright_red
+dark_green = bright_green
+dark_yellow = bright_yellow
+dark_blue = bright_blue
+dark_purple = bright_purple
+dark_aqua = bright_aqua
+dark_gray = bright_gray
+dark_orange = bright_orange
 
 ### Completion
 

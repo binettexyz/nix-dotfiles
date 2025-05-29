@@ -3,7 +3,8 @@
   lib,
   ...
 }: let
-  cfg = config.colorScheme.palette;
+  cfg = config.modules.hm.theme.colorScheme;
+  cfgColor = config.colorScheme.palette;
 in {
   #TODO: Add mkMerge per host.
   programs.waybar.style = lib.mkIf config.programs.waybar.enable ''
@@ -17,7 +18,7 @@ in {
     }
 
     window#waybar {
-      background: alpha(#${cfg.background}, 0.96);
+      background: #${cfgColor.bg0};
     }
 
     .modules-left {
@@ -31,16 +32,16 @@ in {
     }
 
     .modules-center {
-      color: #d4be98;
-      /*background: #282828;*/
+      color: #${cfgColor.fg0};
+      /*background: #${cfgColor.bg2};*/
       border-radius: 4px;
       margin: 4px 0px 4px 0px;
       padding: 0px 0px 0px 8px;
     }
 
     #custom-sep {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 0px;
       border-right: 0px;
       border-left: 0px;
@@ -48,29 +49,37 @@ in {
       padding: 0px 0px 0px 0px;
     }
     #custom-notification {
-      background: #282828;
+      background: #${cfgColor.bg2};
       border-radius: 0px 4px 4px 0px;
       padding: 0px 0px 0px 2px;
     }
 
     #clock {
-      background: #282828;
+      background: #${cfgColor.bg2};
       border-radius: 4px 0px 0px 4px;
       padding: 0px 2px 0px 4px;
     }
 
     #custom-nixos {
       font-size: 20px;
-      color: #7daea3;
-      background: #282828;
+      color: #${
+        if cfg == "catppuccin"
+          then cfgColor.peach
+        else if cfg == "gruvbox"
+          then cfgColor.blue
+        else if cfg == "jmbi"
+          then cfgColor.red
+        else cfgColor.fg0
+      };
+      background: #${cfgColor.bg2};
       border-radius: 4px;
       padding: 0px 0px 0px 4px;
       margin: 0px 4px 0px 0px;
     }
 
     #cpu {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 4px 0px 0px 4px;
       border-right: 0px;
       padding: 0px 4px 0px 4px;
@@ -78,8 +87,8 @@ in {
     }
 
     #memory {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 0px 0px 0px 0px;
       border-left: 0px;
       border-right: 0px;
@@ -87,15 +96,15 @@ in {
     }
 
     #temperature {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 0px 4px 4px 0px;
       border-left: 0px;
       padding: 0px 4px 0px 4px;
     }
 
     #tray {
-      background: #282828;
+      background: #${cfgColor.bg2};
       border-radius: 4px;
       margin-right: 4px;
       padding-right: 2px;
@@ -103,39 +112,64 @@ in {
     }
     
     #battery {
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
+      border-radius: 4px;
+      margin-right: 4px;
+      padding: 0px 4px 0px 4px;
+    }
+
+    #battery#2 {
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 4px;
       margin-right: 4px;
       padding: 0px 4px 0px 4px;
     }
 
     #workspaces {
-      background: #282828;
+      background: #${cfgColor.bg2};
       border-radius: 4px;
       margin-right: 4px;
     }
 
     #workspaces button {
-      color: #d4be98;
+      color: #${cfgColor.blackBright};
       padding: 0;
       margin-right: 0px;
     }
 
     #workspaces button.active {
-      color: #7daea3;
+      color: #${
+        if cfg == "catppuccin"
+          then cfgColor.peach
+        else if cfg == "gruvbox"
+          then cfgColor.blue
+        else if cfg == "jmbi"
+          then cfgColor.blue
+        else cfgColor.fg0
+      };
     }
 
     #workspaces button.empty {
-      color: #928374;
+      color: #${cfgColor.black};
     }
 
     #workspaces button.empty.active {
-      color: #7daea3;
+      color: #${
+        if cfg == "catppuccin"
+          then cfgColor.peach
+        else if cfg == "gruvbox"
+          then cfgColor.blue
+        else if cfg == "jmbi"
+          then cfgColor.blue
+        else cfgColor.fg0
+      };
     }
 
     #network {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 4px 0px 0px 4px;
       border-right: 0px;
       padding: 0px 4px 0px 4px;
@@ -143,8 +177,8 @@ in {
     }
 
     #pulseaudio {
-      color: #d4be98;
-      background: #282828;
+      color: #${cfgColor.fg0};
+      background: #${cfgColor.bg2};
       border-radius: 0px 0px 0px 0px;
       border-left: 0px;
       border-right: 0px;
@@ -152,8 +186,8 @@ in {
     }
 
     #custom-power {
-      background: #282828;
-      color: #ea6962;
+      background: #${cfgColor.bg2};
+      color: #${cfgColor.red};
       border-radius: 0px 4px 4px 0px;
       border-left: 0px;
       padding: 0px 2px 0px 4px;

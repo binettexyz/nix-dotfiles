@@ -8,6 +8,7 @@ with lib;
 
 let
   cfg = config.modules.hm.browser.qutebrowser;
+  cfgTheme = config.modules.hm.theme.colorScheme;
 in
 {
 
@@ -39,7 +40,14 @@ in
         "wq" = "quit--save";
       };
 
-      extraConfig = (builtins.readFile ./themes/gruvbox.py);
+      extraConfig =
+        if cfgTheme == "catppucin"
+          then (builtins.readFile ./themes/catppuccin.py)
+        else if cfgTheme == "jmbi"
+          then (builtins.readFile ./themes/jmbi.py)
+        else if cfgTheme == "gruvbox"
+          then (builtins.readFile ./themes/gruvbox-material.py)
+        else "";
 
       searchEngines = {
         yt = "https://www.youtube.com/results?search_query={}";
