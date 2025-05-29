@@ -16,12 +16,10 @@
     );
 
     # Install laptop related packages
-    environment.systemPackages = with pkgs; [
-      # iw
-      powertop
-      acpid
-      #     acpi
-      brightnessctl
+    environment.systemPackages = [
+      pkgs.powertop
+      pkgs.acpid
+      pkgs.brightnessctl
     ];
 
     # Configure special hardware in laptops

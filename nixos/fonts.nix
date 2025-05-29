@@ -10,19 +10,19 @@
   };
 
   config = lib.mkIf config.modules.system.customFonts.enable {
-    environment.systemPackages = with pkgs; [faba-mono-icons];
+    #environment.systemPackages = [pkgs.faba-mono-icons];
 
     fonts = {
       fontDir.enable = true;
 
       enableDefaultPackages = true;
-      packages = with pkgs; [
-        lmodern
-        font-awesome
-        noto-fonts-emoji
-        material-design-icons
-        nerd-fonts.fantasque-sans-mono
-        nerd-fonts.jetbrains-mono
+      packages = [
+        pkgs.lmodern
+        pkgs.font-awesome
+        pkgs.noto-fonts-emoji
+        pkgs.material-design-icons
+        pkgs.nerd-fonts.fantasque-sans-mono
+        pkgs.nerd-fonts.jetbrains-mono
       ];
 
       fontconfig = {

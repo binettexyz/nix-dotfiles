@@ -140,18 +140,18 @@
     '';
   };
 
-  home.packages = with pkgs; [
-    ueberzug # Image preview
-    ffmpeg # for video file thumbnails
-    #ghostscript # pdf preview # FIXME: error with texlive
-    file # Shows the type of file
-    chafa
-    #    mediainfo
-    #    odt2txt
-    #    python39Packages.pdftotext
-    #    imagemagick
-    #    poppler
-    #    wkhtmltopdf
+  home.packages = [
+    pkgs.ueberzug # Image preview
+    pkgs.ffmpeg # for video file thumbnails
+    #pkgs.ghostscript # pdf preview # FIXME: error with texlive
+    pkgs.file # Shows the type of file
+    pkgs.chafa
+    #    pkgs.mediainfo
+    #    pkgs.odt2txt
+    #    pkgs.python39Packages.pdftotext
+    #    pkgs.imagemagick
+    #    pkgs.poppler
+    #    pkgs.wkhtmltopdf
   ];
 
   home.file.".config/lf/cleaner".source = ./src/cleaner;

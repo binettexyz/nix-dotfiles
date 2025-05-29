@@ -73,7 +73,7 @@ in {
           "i" = "script-binding stats/display-stats-toggle";
         }; # // mkIf (device.type == "desktop") anime4kHighSpecs;
 
-        scripts = with pkgs.mpvScripts; [sponsorblock];
+        scripts = [pkgs.mpvScripts.sponsorblock];
       };
 
       home.file.".config/mpv/shaders".source = ./src/shaders;

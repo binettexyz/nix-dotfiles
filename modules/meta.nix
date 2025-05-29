@@ -1,14 +1,13 @@
-{lib, ...}:
-with lib; {
+{lib, ...}: {
   options.meta = {
-    username = mkOption {
+    username = lib.mkOption {
       description = "Main username";
-      type = types.str;
+      type = lib.types.str;
       default = "binette";
     };
-    configPath = mkOption {
+    configPath = lib.mkOption {
       description = "Location of this config";
-      type = types.path;
+      type = lib.types.path;
       default = "/etc/nixos";
     };
   };

@@ -7,12 +7,11 @@
 in {
   options.modules.hm.theme.colorScheme = lib.mkOption {
     description = "ColorScheme Selection";
-    type = with lib.types;
-      nullOr (enum [
-        "gruvbox"
-        "catppuccin"
-        "jmbi"
-      ]);
+    type = lib.types.nullOr (lib.types.enum [
+      "gruvbox"
+      "catppuccin"
+      "jmbi"
+    ]);
     default = "gruvbox-material";
   };
 

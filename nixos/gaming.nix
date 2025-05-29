@@ -100,7 +100,7 @@ in {
       hardware.xpadneo.enable = true; # Xbox One Controller
 
       # ---Udev Rules---
-      #services.udev.packages = with pkgs; [ game-devices-udev-rules ];
+      #services.udev.packages = [ pkgs.game-devices-udev-rules ];
       # Disable DualSense controller touchpad being recognized as a trackpad
       services.udev.extraRules = ''
         ACTION=="add|change", KERNEL=="event[0-9]*", ATTRS{name}=="*Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
@@ -168,10 +168,10 @@ in {
 
       hardware.steam-hardware.enable = true;
 
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = [
         # Allow downloading of GE-Proton and other versions
-        protonup-qt
-        mangohud
+        pkgs.protonup-qt
+        pkgs.mangohud
       ];
     })
 
@@ -198,7 +198,7 @@ in {
       };
 
       # Steamdeck firmwate updater
-      environment.systemPackages = with pkgs; [steamdeck-firmware];
+      environment.systemPackages = [pkgs.steamdeck-firmware];
     })
 
     (lib.mkIf config.modules.gaming.valveControllersRules {

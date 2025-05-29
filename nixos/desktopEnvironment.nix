@@ -4,32 +4,30 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   inherit (flake) inputs;
   inherit (config.meta) username;
   cfg = config.modules.system.desktopEnvironment;
 in {
   # ---Desktop Environment Module---
-  options.modules.system.desktopEnvironment = mkOption {
+  options.modules.system.desktopEnvironment = lib.mkOption {
     description = "Enable Desktop Environment";
-    type = with types;
-      nullOr (enum [
-        "gamescope-wayland"
-        "plasma"
-        "qtile"
-        "hyprland-uwsm"
-      ]);
+    type = lib.types.nullOr (lib.types.enum [
+      "gamescope-wayland"
+      "plasma"
+      "qtile"
+      "hyprland-uwsm"
+    ]);
     default = null;
   };
 
   # ---Configuration---
-  config = mkMerge [
+  config = lib.mkMerge [
     {
     }
-    (mkIf (cfg == "plasma") {
+    (lib.mkIf (cfg == "plasma") {
       services.greetd.enable = true;
-      services.greetd.settings = rec {
+      services.greetd.settings = let
         initial_session = {
           user =
             if config.jovian.steam.enable
@@ -40,26 +38,28 @@ in {
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
             else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
         };
+      in {
+        initial_session = initial_session;
         default_session = initial_session;
       };
       services.xserver.enable = true;
       services.desktopManager.plasma6.enable = true;
-      environment.plasma6.excludePackages = with pkgs.libsForQt5; [
-        elisa
-        khelpcenter
-        oxygen
-        discover
-        ark
+      environment.plasma6.excludePackages = [
+        pkgs.libsForQt5.elisa
+        pkgs.libsForQt5.khelpcenter
+        pkgs.libsForQt5.oxygen
+        pkgs.libsForQt5.discover
+        pkgs.libsForQt5.ark
       ];
 
-      environment.systemPackages = with pkgs; [kdePackages.ark];
+      environment.systemPackages = [pkgs.kdePackages.ark];
     })
 
-    (mkIf (cfg == "qtile") {
+    (lib.mkIf (cfg == "qtile") {
       services.xserver.windowManager.qtile.enable = true;
 
       services.greetd.enable = true;
-      services.greetd.settings = rec {
+      services.greetd.settings = let
         initial_session = {
           user = username;
           command =
@@ -67,6 +67,8 @@ in {
             + " -t -r"
             + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
         };
+      in {
+        initial_session = initial_session;
         default_session = initial_session;
       };
 
@@ -83,7 +85,7 @@ in {
       };
     })
 
-    (mkIf (cfg == "hyprland-uwsm") {
+    (lib.mkIf (cfg == "hyprland-uwsm") {
       programs.hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -91,7 +93,7 @@ in {
       };
 
       services.greetd.enable = true;
-      services.greetd.settings = rec {
+      services.greetd.settings = let
         initial_session = {
           user =
             if config.jovian.steam.enable
@@ -102,6 +104,8 @@ in {
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
             else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r";
         };
+      in {
+        initial_session = initial_session;
         default_session = initial_session;
       };
     })

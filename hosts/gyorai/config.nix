@@ -38,6 +38,4 @@
 
   # ---Stuff I Dont Want---
   services.timesyncd.enable = lib.mkForce false;
-
-  environment.systemPackages = with pkgs; [zsh];
 }

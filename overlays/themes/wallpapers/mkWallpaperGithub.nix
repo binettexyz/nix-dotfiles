@@ -24,9 +24,9 @@ stdenvNoCC.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "https://github.com/binettexyz/wallpapers";
-    platforms = platforms.all;
-    license = licenses.unfree;
+    platforms = lib.platforms.all;
+    license = lib.licenses.unfree;
   };
 }

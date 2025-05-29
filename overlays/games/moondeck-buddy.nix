@@ -15,8 +15,7 @@
   version = "1.8.2";
 
   inherit (kdePackages) qtbase wrapQtAppsHook;
-  qtEnv = with qt6;
-    env "qt-env-custom-${qtbase.version}" [qthttpserver qtwebsockets];
+  qtEnv = qt6.env "qt-env-custom-${qtbase.version}" [qt6.qthttpserver qt6.qtwebsockets];
 in
   stdenv.mkDerivation {
     inherit pname version;
@@ -42,7 +41,7 @@ in
       homepage = "https://github.com/FrogTheFrog/${pname}";
       changelog = "https://github.com/FrogTheFrog/${pname}/releases/tag/v${version}";
       license = lib.licenses.mit;
-      maintainers = with lib.maintainers; [redxtech];
+      maintainers = [lib.maintainers.redxtech];
       platforms = ["x86_64-linux"];
     };
   }

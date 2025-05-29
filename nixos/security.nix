@@ -33,7 +33,7 @@ in {
   # Add StevenBlack hosts.
   networking.extraHosts = hostsContent;
 
-  environment.systemPackages = with pkgs; [doas-sudo-shim];
+  environment.systemPackages = [pkgs.doas-sudo-shim];
 
   boot.blacklistedKernelModules = [
     # Obscure network protocols

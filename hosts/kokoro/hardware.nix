@@ -15,7 +15,7 @@
   # ---Kernel Stuff---
   boot = {
     # acpi_call makes tlp work for newer thinkpads
-    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    extraModulePackages = [pkgs.linuxPackages_latest.acpi_call];
     kernelModules = ["kvm-intel"];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [];
@@ -87,11 +87,11 @@
   # ---Graphic Card---
   services.xserver.videoDrivers = ["modesetting"];
   hardware.enableRedistributableFirmware = true;
-  hardware.graphics.extraPackages = with pkgs; [
-    vaapiIntel
-    vaapiVdpau
-    libvdpau-va-gl
-    intel-media-driver
+  hardware.graphics.extraPackages = [
+    pkgs.vaapiIntel
+    pkgs.vaapiVdpau
+    pkgs.libvdpau-va-gl
+    pkgs.intel-media-driver
   ];
 
   # ---Network---

@@ -72,11 +72,11 @@
   # ---Graphic Card---
   services.xserver.videoDrivers = ["modesetting"];
   hardware.enableRedistributableFirmware = true;
-  hardware.graphics.extraPackages = with pkgs; [
-    vaapiIntel
-    vaapiVdpau
-    libvdpau-va-gl
-    intel-media-driver
+  hardware.graphics.extraPackages = [
+    pkgs.vaapiIntel
+    pkgs.vaapiVdpau
+    pkgs.libvdpau-va-gl
+    pkgs.intel-media-driver
   ];
 
   networking = {

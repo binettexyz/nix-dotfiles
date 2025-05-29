@@ -12,16 +12,16 @@
     withRuby = false;
     withNodeJs = false;
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       # Language servers
-      vim-nix
+      pkgs.vimPlugins.vim-nix
       # Quality of life
-      colorizer
-      vim-illuminate
-      auto-pairs
-      quick-scope
-      telescope-nvim
-      vim-table-mode
+      pkgs.vimPlugins.colorizer
+      pkgs.vimPlugins.vim-illuminate
+      pkgs.vimPlugins.auto-pairs
+      pkgs.vimPlugins.quick-scope
+      pkgs.vimPlugins.telescope-nvim
+      pkgs.vimPlugins.vim-table-mode
     ];
 
     extraConfig = builtins.replaceStrings ["<COLOURSCHEME>"] ["gruvbox-material"] (
