@@ -15,9 +15,9 @@
         position = "top";
         margin =
           if deviceType == "desktop"
-            then "8px, 8px, 0px, 8px"
+          then "8px, 8px, 0px, 8px"
           else if deviceType == "laptop"
-            then "4px, 4px, 0px, 4px"
+          then "4px, 4px, 0px, 4px"
           else "";
         reload_style_on_change = true;
         #output = ["${lib.elemAt osConfig.device.videoOutput 0}"];

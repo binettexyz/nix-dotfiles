@@ -1,6 +1,4 @@
-{ lib, ... }:
-{
-
+{lib, ...}: {
   # Select internationalisation properties.
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -18,5 +16,4 @@
     latitude = 45.30;
     longitude = -73.35;
   };
-
 }

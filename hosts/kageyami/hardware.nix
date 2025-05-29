@@ -6,9 +6,7 @@
   pkgs,
   system,
   ...
-}:
-{
-
+}: {
   # ---Imports---
   imports = [
     #(flake.inputs.nixos-hardware + "/raspberry-pi/4")
@@ -49,14 +47,19 @@
       ];
     };
   };
-  swapDevices = [ { device = "/swapFile"; size = 1024 * 8; } ];
+  swapDevices = [
+    {
+      device = "/swapFile";
+      size = 1024 * 8;
+    }
+  ];
 
   # ---Networking---
   networking = {
     hostName = "kageyami";
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
-    wireless.interfaces = [ "wlan0" ];
+    wireless.interfaces = ["wlan0"];
     defaultGateway = "192.168.2.1";
     nameservers = ["192.168.2.1"];
   };

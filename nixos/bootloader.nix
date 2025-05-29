@@ -3,39 +3,38 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-let
+}: let
   cfg = config.modules.bootloader.default;
-in
-{
-
+in {
   # ---Bootloader Modules---
   options.modules.bootloader = {
-    default = mkOption {
+    default = lib.mkOption {
       description = "Enable bootloader";
-      type = types.enum [
+      type = lib.types.enum [
         "grub"
         "rpi4"
       ];
       default = "grub";
     };
-    asRemovable = mkOption {
+    asRemovable = lib.mkOption {
       description = "Enable efiInstallAsRemovable option.";
       default = false;
     };
-    useOSProber = mkOption {
+    useOSProber = lib.mkOption {
       description = "Enable OS-Prober.";
       default = false;
     };
   };
 
   # ---Configuration---
-  config = mkMerge [
-    (mkIf (cfg == "grub") {
+  config = lib.mkMerge [
+    (lib.mkIf (cfg == "grub") {
       boot.loader = {
         timeout = 1;
-        efi.canTouchEfiVariables = if config.modules.bootloader.asRemovable then false else true;
+        efi.canTouchEfiVariables =
+          if config.modules.bootloader.asRemovable
+          then false
+          else true;
         efi.efiSysMountPoint = "/boot";
         grub = {
           enable = true;
@@ -54,18 +53,18 @@ in
             set menu_color_highlight=black/white
           '';
           extraEntries = ''
-                      menuentry "Poweroff" {
-            	          halt
-                     }
-            	        menuentry "Reboot" {
-                       reboot
-                      }
+             menuentry "Poweroff" {
+              halt
+            }
+            menuentry "Reboot" {
+              reboot
+             }
           '';
         };
       };
     })
 
-    (mkIf (cfg == "rpi4") {
+    (lib.mkIf (cfg == "rpi4") {
       boot.loader = {
         efi.canTouchEfiVariables = lib.mkForce false;
         generic-extlinux-compatible.enable = true;
@@ -73,5 +72,4 @@ in
       };
     })
   ];
-
 }

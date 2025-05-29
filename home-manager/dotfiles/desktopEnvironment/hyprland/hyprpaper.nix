@@ -1,6 +1,10 @@
-{config, flake, lib, osConfig, ...}: {
-
-
+{
+  config,
+  flake,
+  lib,
+  osConfig,
+  ...
+}: {
   options.modules.hm.theme.wallpaper = lib.mkOption {
     type = lib.types.str;
     default = "003";
@@ -11,7 +15,10 @@
     services.hyprpaper = {
       enable = osConfig.programs.hyprland.enable;
       settings = let
-        getWallpaper = {colorScheme, name}: "~/pictures/wallpapers/${colorScheme}/${name}.png";
+        getWallpaper = {
+          colorScheme,
+          name,
+        }: "~/pictures/wallpapers/${colorScheme}/${name}.png";
         selectedWallpaper = getWallpaper {
           colorScheme = config.modules.hm.theme.colorScheme;
           name = config.modules.hm.theme.wallpaper;

@@ -1,6 +1,8 @@
-{ flake, pkgs, ... }:
 {
-
+  flake,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../home-manager
     flake.inputs.plasma-manager.homeManagerModules.plasma-manager
@@ -13,5 +15,4 @@
     gaming.enable = true;
     browser.librewolf.enable = true;
   };
-
 }

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   programs.foot = {
     enable = true;
     package = pkgs.stable.foot;
@@ -63,5 +65,4 @@
       };
     };
   };
-
 }

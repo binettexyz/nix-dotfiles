@@ -6,9 +6,7 @@
   pkgs,
   system,
   ...
-}:
-
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     #flake.inputs.hardware.nixosModules.common-cpu-intel
@@ -17,10 +15,10 @@
   # ---Kernel Stuff---
   boot = {
     # acpi_call makes tlp work for newer thinkpads
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    kernelModules = ["kvm-intel"];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [ ];
+    kernelParams = [];
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -72,7 +70,7 @@
       ];
     };
   };
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [{device = "/dev/disk/by-label/swap";}];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;
@@ -87,7 +85,7 @@
   };
 
   # ---Graphic Card---
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = ["modesetting"];
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.extraPackages = with pkgs; [
     vaapiIntel
@@ -102,7 +100,7 @@
     interfaces.wlp3s0.useDHCP = true;
     interfaces.enp0s25.useDHCP = true;
     wireless = {
-      interfaces = [ "wlp3s0" ];
+      interfaces = ["wlp3s0"];
     };
   };
 

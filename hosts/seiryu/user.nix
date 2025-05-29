@@ -1,5 +1,4 @@
-{ flake, ... }: {
-
+{flake, ...}: {
   imports = [
     ../../home-manager
     (flake.inputs.impermanence + "/home-manager.nix")
@@ -20,5 +19,4 @@
       wallpaper = "003";
     };
   };
-
 }

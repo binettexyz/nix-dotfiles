@@ -1,6 +1,8 @@
-{ lib, flake, ... }:
 {
-
+  lib,
+  flake,
+  ...
+}: {
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
@@ -24,5 +26,4 @@
       devices = ["kokoro" "seiryu"];
     };
   };
-
 }

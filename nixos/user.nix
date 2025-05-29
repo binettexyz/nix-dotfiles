@@ -3,11 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (config.meta) username;
-in
-{
+in {
   users = {
     # FIXME: if set to pkgs.zsh, error saying that programs.zsh.enable is not true, which is not true...
     defaultUserShell = lib.mkForce pkgs.fish;
@@ -32,5 +30,4 @@ in
       hashedPassword = "$6$rxT./glTrsUdqrsW$Wzji63op8yTEBoIEcWBc26KOlFJtqx.EKpsGV1A2bQT9oB1JKtrlfdArYICc/Ape.msHcj6ObyXlmRKTWTC/J.";
     };
   };
-
 }

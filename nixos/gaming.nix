@@ -5,8 +5,7 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   inherit (config.meta) username;
 in {
   imports = [
@@ -15,30 +14,30 @@ in {
   ];
 
   options.modules.gaming = {
-    enable = mkOption {
+    enable = lib.mkOption {
       description = "Gaming config";
       default = false;
     };
-    steam.enable = mkOption {
+    steam.enable = lib.mkOption {
       description = "Enable Steam.";
       default = false;
     };
-    device.isSteamdeck = mkOption {
+    device.isSteamdeck = lib.mkOption {
       description = "If device is a steamdeck";
       default = false;
     };
-    valveControllersRules = mkOption {
+    valveControllersRules = lib.mkOption {
       description = "Add controllers rules from valve";
       default = false;
     };
-    openPorts = mkOption {
+    openPorts = lib.mkOption {
       description = "Open firewall ports for selected games";
       default = false;
     };
   };
 
-  config = mkMerge [
-    (mkIf config.modules.gaming.enable {
+  config = lib.mkMerge [
+    (lib.mkIf config.modules.gaming.enable {
       # --Gamemode--
       programs.gamemode = {
         enable = true;
@@ -145,7 +144,7 @@ in {
       ];
     })
 
-    (mkIf config.modules.gaming.steam.enable {
+    (lib.mkIf config.modules.gaming.steam.enable {
       programs.steam = {
         enable = true;
         # Option from nix-gaming.
@@ -177,7 +176,7 @@ in {
     })
 
     # ---Jovian-NixOS---
-    (mkIf (deviceType == "handheld") {
+    (lib.mkIf (deviceType == "handheld") {
       jovian.steam = {
         enable = true;
         user = username;
@@ -202,7 +201,7 @@ in {
       environment.systemPackages = with pkgs; [steamdeck-firmware];
     })
 
-    (mkIf config.modules.gaming.valveControllersRules {
+    (lib.mkIf config.modules.gaming.valveControllersRules {
       services.udev.extraRules = ''
         # Valve USB devices
         SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0660", TAG+="uaccess"
@@ -236,7 +235,7 @@ in {
     })
 
     # ---Games Related Networking---
-    (mkIf config.modules.gaming.openPorts {
+    (lib.mkIf config.modules.gaming.openPorts {
       networking = let
         ports.mindustry = 6567;
         ports.factorio = 6566;

@@ -1,6 +1,4 @@
-{ ... }:
-{
-
+{...}: {
   programs.wofi = {
     enable = true;
     settings = {
@@ -46,10 +44,9 @@
       }
 
       #entry:selected {
-              
+
         background-color: #1d2021;
       }
     '';
   };
-
 }

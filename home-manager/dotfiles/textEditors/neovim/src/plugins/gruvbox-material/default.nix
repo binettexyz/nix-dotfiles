@@ -1,13 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install gruvbox-material
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = gruvbox-material;
+        plugin = pkgs.vimPlugins.gruvbox-material;
         type = "viml";
         config = ''
           " Available values: 'hard', 'medium'(default), 'soft'

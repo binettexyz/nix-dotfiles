@@ -1,13 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install vimtex
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = vimtex;
+        plugin = pkgs.vimPlugins.vimtex;
         type = "viml";
         config = ''
           " This is necessary for VimTeX to load properly. The "indent" is optional.
@@ -33,5 +30,4 @@
       }
     ];
   };
-
 }

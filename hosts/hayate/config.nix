@@ -1,6 +1,9 @@
-{ config, flake, ... }:
-let
-inherit (config.meta) username;
+{
+  config,
+  flake,
+  ...
+}: let
+  inherit (config.meta) username;
 in {
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
@@ -24,5 +27,4 @@ in {
 
   device.videoOutput = ["eDP-1"];
   device.storage.ssd = true;
-
 }

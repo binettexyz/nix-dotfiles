@@ -1,15 +1,11 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install plugins related to lualine
-    plugins = with pkgs.vimPlugins; [
-
+    plugins = [
       # Install lualine
       {
-        plugin = lualine-nvim;
+        plugin = pkgs.vimPlugins.lualine-nvim;
         type = "lua";
         config = ''
           ----------------------------------
@@ -25,7 +21,7 @@
       }
 
       # Install devicons to improve appearance
-      nvim-web-devicons
+      pkgs.vimPlugins.nvim-web-devicons
     ];
   };
 }

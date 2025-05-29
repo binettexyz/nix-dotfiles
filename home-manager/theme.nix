@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   # Gtk
   gtk = {
     enable = true;
@@ -36,7 +34,6 @@
         gtk-application-prefer-dark-theme = 1;
       };
     };
-
   };
 
   home.sessionVariables = {
@@ -54,5 +51,4 @@
   #    enable = true;
   #    platformTheme.name = "gtk";
   #  };
-
 }

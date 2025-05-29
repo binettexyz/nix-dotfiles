@@ -2,9 +2,7 @@
   lib,
   pkgs,
   ...
-}:
-
-{
+}: {
   # Import overlays
   imports = [
     ../../overlays
@@ -13,12 +11,12 @@
   ];
 
   # Add some Nix related packages
-  home.packages = with pkgs; [
-    #    hydra-check
-    #    nix-cleanup
-    #    nix-update
-    #    nix-whereis
-    #    nixpkgs-fmt
+  home.packages = [
+    #    pkgs.hydra-check
+    #    pkgs.nix-cleanup
+    #    pkgs.nix-update
+    #    pkgs.nix-whereis
+    #    pkgs.nixpkgs-fmt
   ];
 
   # To make cachix work you need add the current user as a trusted-user on Nix

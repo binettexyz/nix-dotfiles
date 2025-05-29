@@ -3,16 +3,11 @@
   config,
   lib,
   ...
-}:
-with lib;
-
-let
+}: let
   cfg = config.modules.hm.browser.qutebrowser;
   cfgTheme = config.modules.hm.theme.colorScheme;
-in
-{
-
-  options.modules.hm.browser.qutebrowser.enable = mkOption {
+in {
+  options.modules.hm.browser.qutebrowser.enable = lib.mkOption {
     description = "Enable qutebrowser";
     default = false;
   };
@@ -42,11 +37,11 @@ in
 
       extraConfig =
         if cfgTheme == "catppucin"
-          then (builtins.readFile ./themes/catppuccin.py)
+        then (builtins.readFile ./themes/catppuccin.py)
         else if cfgTheme == "jmbi"
-          then (builtins.readFile ./themes/jmbi.py)
+        then (builtins.readFile ./themes/jmbi.py)
         else if cfgTheme == "gruvbox"
-          then (builtins.readFile ./themes/gruvbox-material.py)
+        then (builtins.readFile ./themes/gruvbox-material.py)
         else "";
 
       searchEngines = {
@@ -76,13 +71,13 @@ in
       loadAutoconfig = false;
       settings = {
         auto_save.session = true;
-        confirm_quit = [ "downloads" ];
+        confirm_quit = ["downloads"];
         content = {
           autoplay = false;
           blocking = {
             enabled = true;
             method = "both"; # Brave’s ABP-style adblocker & host
-            whitelist = [ ];
+            whitelist = [];
             hosts.lists = [
               "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
               "https://www.github.developerdan.com/hosts/lists/facebook-extended.txt"
@@ -179,5 +174,4 @@ in
       };
     };
   };
-
 }

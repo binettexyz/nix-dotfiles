@@ -3,7 +3,6 @@
   fetchurl,
   unzip,
 }:
-
 stdenvNoCC.mkDerivation rec {
   pname = "freedoom";
   version = "0.13.0";
@@ -13,7 +12,7 @@ stdenvNoCC.mkDerivation rec {
     sha256 = "sha256-P5smTz485QO0+39r3LH0Gdk8e1RvTfPodN2Hjbloj1k=";
   };
 
-  buildInputs = [ unzip ];
+  buildInputs = [unzip];
 
   phases = [
     "unpackPhase"
@@ -32,5 +31,4 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "Freedoom is an entirely free software game based on the Doom engine.";
   };
-
 }

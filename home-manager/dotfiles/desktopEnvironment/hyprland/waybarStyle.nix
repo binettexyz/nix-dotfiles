@@ -63,14 +63,14 @@ in {
     #custom-nixos {
       font-size: 20px;
       color: #${
-        if cfg == "catppuccin"
-          then cfgColor.peach
-        else if cfg == "gruvbox"
-          then cfgColor.blue
-        else if cfg == "jmbi"
-          then cfgColor.red
-        else cfgColor.fg0
-      };
+      if cfg == "catppuccin"
+      then cfgColor.peach
+      else if cfg == "gruvbox"
+      then cfgColor.blue
+      else if cfg == "jmbi"
+      then cfgColor.red
+      else cfgColor.fg0
+    };
       background: #${cfgColor.bg2};
       border-radius: 4px;
       padding: 0px 0px 0px 4px;
@@ -110,7 +110,7 @@ in {
       padding-right: 2px;
       padding-left: 2px;
     }
-    
+
     #battery {
       color: #${cfgColor.fg0};
       background: #${cfgColor.bg2};
@@ -142,14 +142,14 @@ in {
 
     #workspaces button.active {
       color: #${
-        if cfg == "catppuccin"
-          then cfgColor.peach
-        else if cfg == "gruvbox"
-          then cfgColor.blue
-        else if cfg == "jmbi"
-          then cfgColor.blue
-        else cfgColor.fg0
-      };
+      if cfg == "catppuccin"
+      then cfgColor.peach
+      else if cfg == "gruvbox"
+      then cfgColor.blue
+      else if cfg == "jmbi"
+      then cfgColor.blue
+      else cfgColor.fg0
+    };
     }
 
     #workspaces button.empty {
@@ -158,14 +158,14 @@ in {
 
     #workspaces button.empty.active {
       color: #${
-        if cfg == "catppuccin"
-          then cfgColor.peach
-        else if cfg == "gruvbox"
-          then cfgColor.blue
-        else if cfg == "jmbi"
-          then cfgColor.blue
-        else cfgColor.fg0
-      };
+      if cfg == "catppuccin"
+      then cfgColor.peach
+      else if cfg == "gruvbox"
+      then cfgColor.blue
+      else if cfg == "jmbi"
+      then cfgColor.blue
+      else cfgColor.fg0
+    };
     }
 
     #network {

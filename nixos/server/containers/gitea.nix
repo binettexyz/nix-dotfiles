@@ -1,5 +1,8 @@
-{config, lib, ...}:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.modules.server.containers.gitea;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.14";
@@ -9,7 +12,6 @@ let
     host = 22;
   };
 in {
-
   options.modules.server.containers.gitea.enable = lib.mkOption {
     description = "Enable Gitea";
     default = false;
@@ -39,10 +41,9 @@ in {
       format = "yaml";
     };
 
-    networking.firewall.allowedTCPPorts = [ ports.ssh.host ];
-  
-    containers.gitea =
-    let
+    networking.firewall.allowedTCPPorts = [ports.ssh.host];
+
+    containers.gitea = let
       passwordFile = "/var/lib/gitea/secret-password";
     in {
       autoStart = true;
@@ -71,22 +72,21 @@ in {
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
 
-        networking.firewall.allowedTCPPorts = [ ports.gitea ports.ssh.container ];
+        networking.firewall.allowedTCPPorts = [ports.gitea ports.ssh.container];
 
         systemd.tmpfiles.rules = [
           "d /var/lib/gitea 0750 gitea gitea -"
         ];
 
-        systemd.services."prepare-gitea-secret" =
-          let
-            script = pkgs.writeShellScript "prepare-gitea-secret" ''
-              cp /run/secrets/server/containers/gitea-password /var/lib/gitea/secret-password
-              chown gitea:gitea /var/lib/gitea/secret-password
-              chmod 400 /var/lib/gitea/secret-password
-            '';
-          in {
-          wantedBy = [ "multi-user.target" ];
-          before = [ "gitea.service" ];
+        systemd.services."prepare-gitea-secret" = let
+          script = pkgs.writeShellScript "prepare-gitea-secret" ''
+            cp /run/secrets/server/containers/gitea-password /var/lib/gitea/secret-password
+            chown gitea:gitea /var/lib/gitea/secret-password
+            chmod 400 /var/lib/gitea/secret-password
+          '';
+        in {
+          wantedBy = ["multi-user.target"];
+          before = ["gitea.service"];
           serviceConfig = {
             Type = "oneshot";
             ExecStart = script;
@@ -95,10 +95,10 @@ in {
 
         services.postgresql = {
           enable = true;
-          ensureDatabases = [ config.services.gitea.user ];
+          ensureDatabases = [config.services.gitea.user];
           ensureUsers = [{name = config.services.gitea.database.user;}];
         };
-      
+
         services.gitea = {
           enable = true;
           appName = "Binette's Git Repository";
@@ -132,5 +132,4 @@ in {
       };
     };
   };
-
 }

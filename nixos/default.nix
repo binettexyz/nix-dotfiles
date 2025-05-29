@@ -1,6 +1,4 @@
-{ ... }:
-{
-
+{...}: {
   imports = [
     ./audio.nix
     ./bootloader.nix
@@ -19,5 +17,4 @@
     ./system.nix
     ./user.nix
   ];
-
 }

@@ -1,17 +1,18 @@
-{ pkgs, flake, ... }:
-let
-  inherit (flake) inputs;
-in
 {
-
+  pkgs,
+  flake,
+  ...
+}: let
+  inherit (flake) inputs;
+in {
   # Add some Nix related packages
-  environment.systemPackages = with pkgs; [
-    nixos-cleanup
-    nix-rebuild
-    screenshot
-    sysact
-    clipboard
-    wofirun
+  environment.systemPackages = [
+    pkgs.nixos-cleanup
+    pkgs.nix-rebuild
+    pkgs.screenshot
+    pkgs.sysact
+    pkgs.clipboard
+    pkgs.wofirun
   ];
 
   programs = {
@@ -68,5 +69,4 @@ in
   systemd.services.nix-daemon.environment.TMPDIR = "/tmp";
 
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

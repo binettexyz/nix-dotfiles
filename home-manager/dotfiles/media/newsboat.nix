@@ -3,17 +3,12 @@
   config,
   lib,
   ...
-}:
-with lib;
-
-let
+}: let
   browser = "${pkgs.firefox}/bin/librewolf";
   mpv = "${pkgs.mpv}/bin/mpv";
   cfg = config.modules.hm.newsboat;
-in
-{
-
-  options.modules.hm.newsboat.enable = mkOption {
+in {
+  options.modules.hm.newsboat.enable = lib.mkOption {
     description = "Enable newsboat";
     default = false;
   };
@@ -51,7 +46,7 @@ in
         ''
         # Gruvbox theme
         ''
-          #color background         color3    color0 
+          #color background         color3    color0
           color listnormal         color7    default
           color listfocus          color7    color237  standout
           color listnormal_unread  color2    default
@@ -89,24 +84,24 @@ in
       ];
 
       urls = [
-        { url = "--------REDDIT----------"; }
+        {url = "--------REDDIT----------";}
         {
           title = "r/Switch";
           url = "https://www.reddit.com/r/Switch.rss";
         }
-        { url = "--------YOUTUBE---------"; }
+        {url = "--------YOUTUBE---------";}
         {
           title = "Lukesmith";
           url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA";
         }
-        { url = "-------NEWSFEEDS--------"; }
-        { url = "https://lukesmith.xyz/rss.xml"; }
-        { url = "https://www.archlinux.org/feeds/news/"; }
-        { url = "https://www.phoronix.com/rss.php"; }
-        { url = "https://xeiaso.net/blog.rss"; }
-        { url = "https://www.gamingonlinux.com/article_rss.php"; }
-        { url = "https://nixos.org/blog/announcements-rss.xml"; }
-        { url = "-------GIT-COMMITS------"; }
+        {url = "-------NEWSFEEDS--------";}
+        {url = "https://lukesmith.xyz/rss.xml";}
+        {url = "https://www.archlinux.org/feeds/news/";}
+        {url = "https://www.phoronix.com/rss.php";}
+        {url = "https://xeiaso.net/blog.rss";}
+        {url = "https://www.gamingonlinux.com/article_rss.php";}
+        {url = "https://nixos.org/blog/announcements-rss.xml";}
+        {url = "-------GIT-COMMITS------";}
         {
           title = "NixOS Home-Manager";
           url = "https://github.com/nix-community/home-manager/commits.atom";
@@ -114,5 +109,4 @@ in
       ];
     };
   };
-
 }

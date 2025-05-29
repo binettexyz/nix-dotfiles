@@ -1,5 +1,4 @@
-{ writeShellApplication }:
-
+{writeShellApplication}:
 writeShellApplication {
   name = "nix-rebuild";
   text = ''

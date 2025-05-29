@@ -3,11 +3,7 @@
   config,
   lib,
   ...
-}:
-with lib;
-
-{
-
+}: {
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -99,5 +95,4 @@ with lib;
       br = "branch";
     };
   };
-
 }

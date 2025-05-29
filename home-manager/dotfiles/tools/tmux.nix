@@ -3,11 +3,7 @@
   config,
   lib,
   ...
-}:
-with lib;
-
-{
-
+}: {
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -16,5 +12,4 @@ with lib;
     clock24 = true;
     terminal = "screen-256color";
   };
-
 }

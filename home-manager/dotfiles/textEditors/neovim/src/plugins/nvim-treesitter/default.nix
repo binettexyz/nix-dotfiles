@@ -1,20 +1,14 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install plugins related to treesitter
-    plugins = with pkgs.vimPlugins; [
-
+    plugins = [
       # Install nvim-treesitter
       {
-        plugin = nvim-treesitter;
+        plugin = pkgs.vimPlugins.nvim-treesitter;
         type = "lua";
         config = builtins.readFile ./config.lua;
       }
-
     ];
   };
-
 }

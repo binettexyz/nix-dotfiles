@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   programs.helix = {
     enable = true;
     settings = {
@@ -54,13 +52,13 @@
         name = "nix";
         auto-format = true;
         formatter.command = "${pkgs.alejandra}/bin/alejandra";
-        language-servers = [ "nil" ];
+        language-servers = ["nil"];
       }
     ];
     themes = {
       gruvbox_material_dark = {
         inherits = "gruvbox_dark_hard";
-        "ui.background" = { };
+        "ui.background" = {};
         "ui.cursor.match" = {
           bg = "bg3";
         };
@@ -107,9 +105,9 @@
         };
       };
     };
-    extraPackages = with pkgs; [
-      nil
-      nixfmt-rfc-style
+    extraPackages = [
+      pkgs.nil
+      pkgs.nixfmt-rfc-style
     ];
   };
 }

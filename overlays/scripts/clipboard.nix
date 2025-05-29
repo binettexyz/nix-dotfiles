@@ -1,5 +1,4 @@
-{ writeShellApplication }:
-
+{writeShellApplication}:
 writeShellApplication {
   name = "clipboard";
   text = ''

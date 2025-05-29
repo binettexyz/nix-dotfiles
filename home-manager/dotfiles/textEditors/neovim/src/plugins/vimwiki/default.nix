@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = vimwiki;
+        plugin = pkgs.vimPlugins.vimwiki;
         type = "lua";
         config = ''
           vim.g.vimwiki_list = {

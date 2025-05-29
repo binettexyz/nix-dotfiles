@@ -3,15 +3,13 @@
   lib,
   stdenvNoCC,
   fetchurl,
-}:
-{
+}: {
   name,
   theme,
   id ? "gruvbox",
   sha256,
   ext ? "png",
 }:
-
 stdenvNoCC.mkDerivation {
   name = "wallpaper-${name}.${ext}";
   src = fetchurl {

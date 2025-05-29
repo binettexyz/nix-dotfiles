@@ -1,5 +1,4 @@
-{flake, ...}:
-{
+{flake, ...}: {
   imports = [
     ../../home-manager
     (flake.inputs.impermanence + "/home-manager.nix")
@@ -8,5 +7,4 @@
   ];
 
   colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
-
 }

@@ -6,7 +6,6 @@
   pkgs,
   ...
 }: {
-
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
@@ -14,8 +13,8 @@
   ];
 
   boot = {
-    extraModulePackages = [ ];
-    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [];
+    kernelModules = ["kvm-amd"];
     kernelPackages = pkgs.linuxPackages_xanmod;
     kernelParams = [
       "mitigations=off"
@@ -32,7 +31,7 @@
         "usb_storage"
         "sd_mod"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
   };
 
@@ -69,7 +68,7 @@
     };
     "/tmp" = {
       device = "/home/binette/.cache/tmp";
-      options = [ "bind" ];
+      options = ["bind"];
     };
     #    "/mounts/nas" = {
     #      device = "100.71.254.90:/media";
@@ -79,10 +78,9 @@
     #    };
   };
 
-  swapDevices =
-    [
-      # { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }
-    ];
+  swapDevices = [
+    # { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }
+  ];
 
   environment.persistence = {
     "/nix/persist" = {
@@ -115,13 +113,12 @@
     amdgpu.initrd.enable = true;
     graphics.enable = true;
     graphics.enable32Bit = true;
-    graphics.extraPackages = [ pkgs.amdvlk ];
-    graphics.extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+    graphics.extraPackages = [pkgs.amdvlk];
+    graphics.extraPackages32 = [pkgs.driversi686Linux.amdvlk];
   };
 
   # ---Processor---
   #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 }

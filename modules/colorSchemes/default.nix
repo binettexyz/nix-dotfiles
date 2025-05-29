@@ -1,15 +1,18 @@
-{config, lib, ...}:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.modules.hm.theme.colorScheme;
 in {
   options.modules.hm.theme.colorScheme = lib.mkOption {
     description = "ColorScheme Selection";
     type = with lib.types;
-    nullOr (enum [
-      "gruvbox"
-      "catppuccin"
-      "jmbi"
-    ]);
+      nullOr (enum [
+        "gruvbox"
+        "catppuccin"
+        "jmbi"
+      ]);
     default = "gruvbox-material";
   };
 
@@ -64,7 +67,7 @@ in {
       };
     })
     (lib.mkIf (cfg == "gruvbit") {
-    })
+      })
     (lib.mkIf (cfg == "jmbi") {
       colorScheme = {
         name = "JMBI";
@@ -90,7 +93,7 @@ in {
           fg0 = "#e6dedb";
           fg1 = "#d1c6c3";
           fg2 = "#bcb0ad";
-          
+
           # Regular Colors 0-7
           black = "#485348";
           red = "#8f423c";

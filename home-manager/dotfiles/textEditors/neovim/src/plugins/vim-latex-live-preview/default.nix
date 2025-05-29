@@ -1,13 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install vim-latex-live-preview
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = vim-latex-live-preview;
+        plugin = pkgs.vimPlugins.vim-latex-live-preview;
         type = "viml";
         config = ''
           let g:livepreview_previewer = 'zathura'
@@ -15,5 +12,4 @@
       }
     ];
   };
-
 }

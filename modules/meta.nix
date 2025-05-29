@@ -1,7 +1,5 @@
-{ lib, ... }:
-
-with lib;
-{
+{lib, ...}:
+with lib; {
   options.meta = {
     username = mkOption {
       description = "Main username";

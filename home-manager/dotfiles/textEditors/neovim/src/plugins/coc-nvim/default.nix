@@ -1,10 +1,10 @@
-{ pkgs, lib, ... }:
-with lib;
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # Configure neovim
   programs.neovim = {
-
     # Install coc
     coc = {
       enable = true;
@@ -47,10 +47,10 @@ with lib;
     };
 
     # Install plugins related to coc plugin
-    plugins = with pkgs.vimPlugins; [
-      coc-clangd
-      coc-prettier
-      coc-pairs
+    plugins = [
+      pkgs.vimPlugins.coc-clangd
+      pkgs.vimPlugins.coc-prettier
+      pkgs.vimPlugins.coc-pairs
     ];
   };
 }

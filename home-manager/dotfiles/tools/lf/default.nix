@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
-with lib;
-
 {
-
+  pkgs,
+  lib,
+  ...
+}: {
   programs.lf = {
     enable = true;
     settings = {
@@ -17,25 +17,25 @@ with lib;
 
     commands = {
       open = ''
-                ''${{
-                  case $(file --mime-type "$(readlink -f $f)" -b) in
-        	      application/pdf) setsid -f zathura $fx >/dev/null 2>&1 ;;
-                      text/*|application/json|inode/x-empty) $EDITOR $fx;;
-        	      image/svg+xml) display -- $f ;;
-        	      image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-        		      setsid -f nsxiv -aio 2>/dev/null | while read -r file; do
-        			      [ -z "$file" ] && continue
-        			      lf -remote "send select \"$file\""
-        			      lf -remote "send toggle"
-        		      done &
-        		      ;;
-        	      audio/*) mpv --audio-display=no $f ;;
-        	      video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-        	      application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        	      application/pgp-encrypted) $EDITOR $fx ;;
-                      *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-                  esac
-                }}
+         ''${{
+           case $(file --mime-type "$(readlink -f $f)" -b) in
+        application/pdf) setsid -f zathura $fx >/dev/null 2>&1 ;;
+               text/*|application/json|inode/x-empty) $EDITOR $fx;;
+        image/svg+xml) display -- $f ;;
+        image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+         setsid -f nsxiv -aio 2>/dev/null | while read -r file; do
+          [ -z "$file" ] && continue
+          lf -remote "send select \"$file\""
+          lf -remote "send toggle"
+         done &
+         ;;
+        audio/*) mpv --audio-display=no $f ;;
+        video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+        application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        application/pgp-encrypted) $EDITOR $fx ;;
+               *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+           esac
+         }}
       '';
 
       mkdir = ''$mkdir -p "$(echo $* | tr ' ' '\ ')" '';
@@ -157,5 +157,4 @@ with lib;
   home.file.".config/lf/cleaner".source = ./src/cleaner;
   home.file.".config/lf/preview".source = ./src/preview;
   home.file.".local/bin/lfrun".source = ./src/lfrun;
-
 }

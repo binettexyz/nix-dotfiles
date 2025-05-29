@@ -3,11 +3,7 @@
   config,
   lib,
   ...
-}:
-with lib;
-
-{
-
+}: {
   programs.ssh = {
     enable = true;
     matchBlocks = {
@@ -32,5 +28,4 @@ with lib;
       };
     };
   };
-
 }

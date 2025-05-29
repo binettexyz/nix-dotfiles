@@ -1,13 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Configure neovim
   programs.neovim = {
-
     # Install vimsence
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = vimsence;
+        plugin = pkgs.vimPlugins.vimsence;
         type = "viml";
         config = ''
           let g:vimsence_client_id = '439476230543245312'
@@ -22,5 +19,4 @@
       }
     ];
   };
-
 }
