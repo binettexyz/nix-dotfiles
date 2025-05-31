@@ -12,7 +12,6 @@
   modules = {
     bootloader.default = "rpi4";
     server.containers = {
-      nextcloud.enable = true;
       gitea.enable = true;
     };
     system = {
@@ -21,9 +20,13 @@
   };
 
   services.syncthing.settings.folders = {
-    "minecraft" = {
-      path = "/media/gamesSync/minecraft/saves";
-      devices = ["kokoro" "seiryu"];
+    "gameSaves" = {
+      path = "/data/gaming/saves";
+      devices = ["seiryu" "gyorai"];
+    };
+    "notes" = {
+      path = "/data/library/notes";
+      devices = ["seiryu" "hayate"];
     };
   };
 }
