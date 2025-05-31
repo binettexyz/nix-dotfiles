@@ -37,13 +37,6 @@ in {
     hdd = true;
   };
 
-  services.syncthing.settings.folders = {
-    "Notes" = {
-      # Name of folder in Syncthing, also the folder ID
-      path = "/home/${username}/documents/notes"; # Which folder to add to Syncthing
-      devices = ["kokoro"];
-    };
-  };
   ## Networking ##
   networking = {
     interfaces.wlo1.useDHCP = true;
