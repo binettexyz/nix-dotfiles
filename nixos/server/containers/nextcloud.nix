@@ -38,7 +38,7 @@ in {
 
       bindMounts = {
         ${datadir} = {
-          hostPath = "/media/nextcloud";
+          hostPath = "/data/nextcloud";
           isReadOnly = false;
         };
         ${adminpassFile} = {
@@ -80,7 +80,6 @@ in {
             inherit
               (pkgs.nextcloud30Packages.apps)
               news
-              contacts
               calendar
               tasks
               mail

@@ -1,6 +1,6 @@
 {
   imports = [
     ./gitea.nix
-    ./nextcloud
+    ./nextcloud.nix
   ];
 }
