@@ -70,12 +70,12 @@
       device = "/home/binette/.cache/tmp";
       options = ["bind"];
     };
-    #    "/mounts/nas" = {
-    #      device = "100.71.254.90:/media";
-    #      fsType = "nfs";
-    # don't freeze system if mount point not available on boot
-    #      options = [ "x-systemd.automount" "noauto" ];
-    #    };
+    "/home/homelab" = {
+      device = "100.110.153.50:/data";
+      fsType = "nfs";
+      # don't freeze system if mount point not available on boot
+      options = [ "x-systemd.automount" "noauto" ];
+     };
   };
 
   swapDevices = [
