@@ -33,5 +33,6 @@ in {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPxsgVkgA8fBxOOsL8WmqGa1hAzYgl7YNz/OvLiDq5fO binette@desktop"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICWNbKHKSSjQAEGlWVhrPQ8vcolszTiwNKXB0FMEBtfw binette@decky"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3Fo8FZrrTYGqIH84r67dkmSIxcOD3DhJrIJe6ndJ0z binette@t440p"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGG8dyKr7nc8NU5WelH7qZMqZ/nzVjSMNAmlQcunSmiP binette@hayate"
   ];
 }
