@@ -12,7 +12,7 @@ in {
       "catppuccin"
       "jmbi"
     ]);
-    default = "gruvbox-material";
+    default = null;
   };
 
   config = lib.mkMerge [
