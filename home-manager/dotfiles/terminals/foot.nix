@@ -1,10 +1,12 @@
 {
   config,
+  deviceTags,
+  lib,
   pkgs,
   ...
 }: {
   programs.foot = {
-    enable = true;
+    enable = if lib.elem "workstation" deviceTags then true else false;
     package = pkgs.stable.foot;
     settings = {
       main = {
