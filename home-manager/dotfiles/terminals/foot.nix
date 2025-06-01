@@ -6,7 +6,10 @@
   ...
 }: {
   programs.foot = {
-    enable = if lib.elem "workstation" deviceTags then true else false;
+    enable =
+      if lib.elem "workstation" deviceTags
+      then true
+      else false;
     package = pkgs.stable.foot;
     settings = {
       main = {

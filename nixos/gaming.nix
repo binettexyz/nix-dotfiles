@@ -154,12 +154,12 @@ in {
         dedicatedServer.openFirewall = true;
         gamescopeSession.enable = true;
       };
-      programs.gamescope =let
+      programs.gamescope = let
         # https://github.com/ValveSoftware/gamescope/issues/1711#issuecomment-2779673006
         oldPkgs = import (fetchTarball {
           url = "https://github.com/NixOS/nixpkgs/archive/b9bb118646d853692578bf6204df2ffbc8a499ec.tar.gz";
           sha256 = "0hq5x6x00xwzf75msmfm7i6mfq128nrgv194vx475p5agj02vdjw";
-        }) { system = pkgs.system; };
+        }) {system = pkgs.system;};
       in {
         enable = true;
         package = oldPkgs.gamescope;

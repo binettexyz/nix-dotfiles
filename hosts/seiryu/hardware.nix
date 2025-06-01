@@ -74,8 +74,8 @@
       device = "100.110.153.50:/data";
       fsType = "nfs";
       # don't freeze system if mount point not available on boot
-      options = [ "x-systemd.automount" "noauto" ];
-     };
+      options = ["x-systemd.automount" "noauto"];
+    };
   };
 
   swapDevices = [
