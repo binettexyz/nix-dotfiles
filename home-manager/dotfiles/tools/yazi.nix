@@ -133,6 +133,8 @@
 
         # Toggle
         (keymap "<Space>" ["toggle" "arrow next"] "Toggle the current selection state")
+        (keymap "<C-a>" "toggle_all --state=on" "Select all files")
+        (keymap "<C-r>" "toggle_all" "Invert selection of all files")
 
         # Operation
         (keymap "y" "yank" "Yank selected files (copy)")
@@ -158,6 +160,18 @@
         (keymap "<Esc>" "escape" "Exit visual mode, clear selection, or cancel search")
         (keymap "q" "quit" "Quit the process")
         (keymap "<C-c>" "close" "Close the current tab, or quit if it's last")
+
+        # Sorting
+        (keymap ["," "m"] ["sort mtime --reverse=no" "linemode mtime"] "Sort by modified time")
+        (keymap ["," "M"] ["sort mtime --reverse" "linemode mtime"] "Sort by modified time (reverse)")
+        (keymap ["," "e"] "sort extension --reverse=no" "Sort by extension")
+        (keymap ["," "E"] "sort extension --reverse" "Sort by extension (reverse)")
+        (keymap ["," "a"] "sort alphabetical --reverse=no" "Sort alphabetically")
+        (keymap ["," "A"] "sort alphabetical --reverse" "Sort alphabetically (reverse)")
+        (keymap ["," "n"] "sort natural --reverse=no" "Sort naturally")
+        (keymap ["," "N"] "sort natural --reverse" "Sort naturally (reverse)")
+        (keymap ["," "s"] ["sort size --reverse=no" "linemode size"] "Sort by size")
+        (keymap ["," "S"] ["sort size --reverse" "linemode size"] "Sort by size (reverse)")
       ];
     };
   };
