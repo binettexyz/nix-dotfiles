@@ -18,6 +18,10 @@ in {
       # Remove greeting
       set fish_greeting
 
+      function fish_mode_prompt
+        # Do nothing — disables the [I]/[N] indicator
+      end
+
       # Prompt
       function fish_prompt
         set_color magenta
