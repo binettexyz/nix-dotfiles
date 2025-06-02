@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./zsh.nix
+    ./fish.nix
   ];
 
   home.shellAliases = {
@@ -47,23 +48,10 @@
 
     fm = "yazi";
 
-    # git
-    addup = "git add -u";
-    addall = "git add .";
-    branch = "git branch";
-    checkout = "git checkout";
-    clone = "git clone";
-    commit = "git commit -m";
-    fetch = "git fetch";
-    pull = "git pull origin";
+    # Git
     push = "git push && git push mirror main:master";
-    status = "git status";
-    tag = "git tag";
-    newtag = "git tag -a";
-    subadd = "git submodule add";
-    subup = "git submodule update --remote --merge";
-
-    # fetch computer specs
-    pfetch = "curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh";
+    checkout = "git checkout";
+    commit = "git commit -m";
+    branch = "git branch";
   };
 }
