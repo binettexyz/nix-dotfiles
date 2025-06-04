@@ -73,6 +73,8 @@ in {
       # Set up vi mode and bind !! / !$
       fish_user_key_bindings = ''
         fish_vi_key_bindings
+        bind -Minsert \cf forward-char
+        bind -Minsert ctrl-space forward-char
         bind -Minsert ! __history_previous_command
         bind -Minsert '$' __history_previous_command_arguments
       '';
