@@ -51,16 +51,32 @@ in {
       group = username;
       user = username;
       configDir = "/home/${username}/.config/syncthing"; # Folder for Syncthing's settings and keys
-      dataDir = "/home/${username}/.syncthing";
+      dataDir = "/home/${username}/.local/sync";
       overrideDevices = true; # overrides any devices added or deleted through the WebUI
-      overrideFolders = true; # overrides any folders added or deleted through the WebUI
+      overrideFolders = false; # overrides any folders added or deleted through the WebUI
       settings = {
+        gui.theme = "black";
         devices = {
-          "kokoro".id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
-          "seiryu".id = "BO5YFRS-FAJ5PNX-IM7L3F2-MYZNHYW-NLXUQEA-565PTSJ-HEITGFV-YBYANAA";
-          "gyorai".id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
-          "kageyami".id = "3H6X5PB-BXBVXDM-FEI4VNL-EXEPUNM-6VW6TWO-273GWRH-4QA3EYS-OOETRQN";
-          "hayate".id = "YJDWZRL-XHRLD6X-Z5U5YG4-BQE44GI-PMU4RD4-LPNYCZF-4SUY5RY-2VMFQQK";
+          "kokoro" = {
+            id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
+            autoAcceptFolders = true;
+          };
+          "seiryu" = {
+            id = "BO5YFRS-FAJ5PNX-IM7L3F2-MYZNHYW-NLXUQEA-565PTSJ-HEITGFV-YBYANAA";
+            autoAcceptFolders = true;
+          };
+          "gyorai" = {
+            id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
+            autoAcceptFolders = true;
+          };
+          "kageyami" = {
+            id = "3H6X5PB-BXBVXDM-FEI4VNL-EXEPUNM-6VW6TWO-273GWRH-4QA3EYS-OOETRQN";
+            autoAcceptFolders = false;
+          };
+          "hayate" = {
+            id = "YJDWZRL-XHRLD6X-Z5U5YG4-BQE44GI-PMU4RD4-LPNYCZF-4SUY5RY-2VMFQQK";
+            autoAcceptFolders = true;
+          };
         };
       };
       #      gui = {
