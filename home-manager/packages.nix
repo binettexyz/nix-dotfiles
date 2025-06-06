@@ -65,6 +65,7 @@
       pkgs.wineWowPackages.waylandFull
       pkgs.jdk
       pkgs.dxvk
+      pkgs.steamtinkerlaunch
     ])
     (lib.mkIf (config.modules.hm.gaming.enable && deviceType == "desktop") [
       pkgs.moondeck-buddy
