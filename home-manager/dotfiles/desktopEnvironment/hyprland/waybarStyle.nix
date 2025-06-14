@@ -119,7 +119,7 @@ in {
       padding: 0px 4px 0px 4px;
     }
 
-    #battery#2 {
+    #battery.bat1 {
       color: #${cfgColor.fg0};
       background: #${cfgColor.bg2};
       border-radius: 4px;

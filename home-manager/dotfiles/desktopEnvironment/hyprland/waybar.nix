@@ -44,7 +44,7 @@
             if (lib.elem "battery" deviceTags)
             then [
               "battery"
-              "battery#bat2"
+              "battery#bat1"
             ]
             else []
           )
@@ -163,6 +163,8 @@
           tooltip = false;
         };
         battery = {
+          bat = "BAT0";
+          full-at = 95;
           states = {
             warning = 30;
             critical = 15;
@@ -181,9 +183,26 @@
             "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span>"
           ];
         };
-        "battery#bat2" = {
-          bat = "BAT2";
+        "battery#bat1" = {
+          bat = "BAT1";
+          full-at = 95;
+          states = {
+            warning = 30;
+            critical = 15;
+          };
           tooltip = false;
+          format = "{icon} {capacity}%";
+          format-full = "{icon} {capacity}%";
+          format-charging = "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span> {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{time} {icon}";
+          format-icons = [
+            "<span foreground='#${config.colorScheme.palette.red}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.yellow}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.yellow}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span>"
+            "<span foreground='#${config.colorScheme.palette.green}' size='100%'></span>"
+          ];
         };
         clock = {
           format = "{:%A - %B %d, %Y - %R}";
