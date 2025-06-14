@@ -169,9 +169,12 @@ in {
         "$mod2, Delete, exec, uwsm stop"
 
         # Switch workspaces
-        "$mod1, 1, workspace, 1"
-        "$mod1, 2, workspace, 2"
-        "$mod1, 3, workspace, 3"
+        #"$mod1, 1, workspace, 1"
+        #"$mod1, 2, workspace, 2"
+        #"$mod1, 3, workspace, 3"
+        "$mod1, 1, split:workspace, 1"
+        "$mod1, 2, split:workspace, 2"
+        "$mod1, 3, split:workspace, 3"
 
         # Move Focus
         "$mod1, H, movefocus, l"
@@ -186,11 +189,14 @@ in {
         "$mod2, L, movewindow, r"
         "$mod2, K, movewindow, u"
         "$mod2, J, movewindow, d"
-        "$mod2, 1, movetoworkspacesilent, 1"
-        "$mod2, 2, movetoworkspacesilent, 2"
-        "$mod2, 3, movetoworkspacesilent, 3"
-        "$mod2, Period, movewindow, mon: +1 silent"
-        "$mod2, Comma, movewindow, mon: -1 silent"
+        #"$mod2, 1, movetoworkspacesilent, 1"
+        #"$mod2, 2, movetoworkspacesilent, 2"
+        #"$mod2, 3, movetoworkspacesilent, 3"
+        "$mod2, 1, split:movetoworkspacesilent, 1"
+        "$mod2, 2, split:movetoworkspacesilent, 2"
+        "$mod2, 3, split:movetoworkspacesilent, 3"
+        "$mod2, Period, movewindow, mon:+1 silent"
+        "$mod2, Comma, movewindow, mon:-1 silent"
 
         "$mod1, Space, togglefloating"
         "$mod1, F , fullscreenstate, 1 0 # Make client maximize"
@@ -201,10 +207,10 @@ in {
 
         # Sratchpad
         "$mod1, S, togglespecialworkspace, scratchpad"
-        "$mod2, S, movetoworkspacesilent, special:scratchpad"
+        "$mod2, S, split:movetoworkspacesilent, special:scratchpad"
 
         "$mod1, C, togglespecialworkspace, discord"
-        "$mod2, C, movetoworkspacesilent, special:discord"
+        "$mod2, C, split:movetoworkspacesilent, special:discord"
 
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
@@ -274,7 +280,12 @@ in {
       workspace = [
         "special:scratchpad, on-created-empty:foot"
       ];
+
+      plugin = {
+        hyprsplit.num_workspaces = 3;
+      };
     };
+    
     plugins = lib.mkMerge [
       [
         pkgs.hyprlandPlugins.hyprsplit
