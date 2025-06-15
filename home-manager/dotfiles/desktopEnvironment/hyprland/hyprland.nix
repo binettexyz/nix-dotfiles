@@ -19,7 +19,7 @@ in {
       "$mod4" = "SUPERALT";
       "$mod5" = "ALTCTRL";
       "$terminal" = "foot";
-      "$browser" = "librewolf";
+      "$browser" = "qutebrowser";
       "$editor" = "nvim";
       "$menu" = "wofirun";
 

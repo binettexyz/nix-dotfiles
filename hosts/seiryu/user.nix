@@ -9,7 +9,10 @@
   modules.hm = {
     gaming.enable = true;
     gui.packages = true;
-    browser.librewolf.enable = true;
+    browser = {
+      librewolf.enable = true;
+      qutebrowser.enable = true;
+    };
     mpv = {
       enable = true;
       lowSpec = false;
