@@ -40,6 +40,8 @@
       pkgs.pulsemixer
       pkgs.cliphist
       pkgs.wl-clipboard
+      pkgs.wtype # Simulate keyboard inputs
+      pkgs.zenity # Prompt
       pkgs.wlr-randr
       pkgs.vimiv-qt
       pkgs.waylock
