@@ -138,7 +138,7 @@ in {
         repeat_rate = 50;
         repeat_delay = 150;
         follow_mouse = 1;
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        sensitivity = -0.6; # -1.0 - 1.0, 0 means no modification.
         accel_profile = "flat";
         touchpad = {
           natural_scroll = true;
@@ -227,6 +227,8 @@ in {
 
         # Apps Launched with CTRL + ALT + KEY
         "$mod5, C, exec, clipboard"
+        "$mod5, B, exec, bookmarks"
+        "$mod5, Y, exec, bookmarkthis"
       ];
 
       bindm = [
