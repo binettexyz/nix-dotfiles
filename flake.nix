@@ -63,7 +63,7 @@
     # Lenovo Thinkpad t480 (Swift Wind)
     (mkNixOSConfig {
       deviceType = "laptop";
-      deviceTags = ["workstation" "dev" "battery"];
+      deviceTags = ["workstation" "dev" "battery" "lowSpec"];
       hostname = "hayate";
     })
     # Lenovo Thinkpad t440p (Heart/Spirit)
