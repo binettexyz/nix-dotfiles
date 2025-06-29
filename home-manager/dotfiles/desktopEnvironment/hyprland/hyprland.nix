@@ -68,7 +68,7 @@ in {
           "wl-paste --watch cliphist store &"
         ])
         (lib.mkIf (deviceType == "desktop") [
-          "librewolf &"
+          "qutebrowser &"
         ])
       ];
 
@@ -99,7 +99,7 @@ in {
 
       animations = {
         enabled =
-          if deviceType == "laptop"
+          if lib.elem "lowSpec" deviceTags
           then false
           else true;
         bezier = [
@@ -138,8 +138,8 @@ in {
         repeat_rate = 50;
         repeat_delay = 150;
         follow_mouse = 1;
-        sensitivity = -0.6; # -1.0 - 1.0, 0 means no modification.
-        accel_profile = "flat";
+        sensitivity = -1; # -1.0 - 1.0, 0 means no modification.
+        accel_profile = "adaptive";
         touchpad = {
           natural_scroll = true;
         };
