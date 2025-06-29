@@ -47,7 +47,7 @@
       ];
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/852A-D1CD";
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
     "/nix" = {
@@ -105,6 +105,7 @@
     enable = true;
     powerOnBoot = true;
   };
+  services.blueman.enable = true;
 
   # ---Video Driver---
   hardware = {
