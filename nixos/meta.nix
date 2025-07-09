@@ -7,7 +7,7 @@
 in {
   # Add some Nix related packages
   environment.systemPackages = [
-    pkgs.nixos-cleanup
+    #pkgs.nixos-cleanup
     pkgs.nix-rebuild
     pkgs.screenshot
     pkgs.sysact

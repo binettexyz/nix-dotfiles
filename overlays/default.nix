@@ -25,7 +25,7 @@
       # ---Tools---
       anime4k = prev.callPackage ./tools/anime4k.nix {};
       nix-cleanup = prev.callPackage ./tools/nix-cleanup {};
-      nixos-cleanup = prev.callPackage ./tools/nix-cleanup {isNixOS = true;};
+      #nixos-cleanup = prev.callPackage ./tools/nix-cleanup {isNixOS = true;};
       nix-rebuild = prev.callPackage ./tools/nix-rebuild {};
       # ---Games---
       freedoom = prev.callPackage ./games/freedoom.nix {};
