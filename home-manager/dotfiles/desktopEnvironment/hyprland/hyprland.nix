@@ -32,7 +32,6 @@ in {
         "MOZ_WEBRENDER,1"
         "OZONE_PLATFORM,wayland"
         "NIXOS_OZONE_WL,1"
-        "SDL_VIDEODRIVER,wayland"
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
         "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
@@ -212,6 +211,9 @@ in {
         "$mod1, C, togglespecialworkspace, discord"
         "$mod2, C, split:movetoworkspacesilent, special:discord"
 
+        "$mod1, G, togglespecialworkspace, steam"
+        "$mod2, G, split:movetoworkspacesilent, special:steam"
+
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
         "$mod1, E, exec, $editor"
@@ -269,14 +271,14 @@ in {
 
         "workspace 2 silent, class:librewolf"
         "workspace 2 silent, class:^(.*qutebrowser.*)$"
-        "workspace 3 silent, class:^(.*steam.*)$"
-        "workspace 3 silent, class:^(.*lutris.*)$"
-        "workspace 3 silent, class:^(.*prismlauncher.*)$"
         "workspace 3 silent, class:^(.*Minecraft.*)$"
         "workspace 3 silent, class:gamescope"
+        "workspace 5 silent, class:$(.*mpv.*)$"
         "workspace special:discord silent, class:discord"
         "workspace special:discord silent, class:vesktop"
-        "workspace 5 silent, class:$(.*mpv.*)$"
+        "workspace special:steam silent, class:^(.*steam.*)$"
+        "workspace special:steam silent, class:^(.*lutris.*)$"
+        "workspace special:steam silent, class:^(.*prismlauncher.*)$"
       ];
 
       workspace = [
