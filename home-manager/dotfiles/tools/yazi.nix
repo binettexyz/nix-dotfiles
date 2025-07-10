@@ -2,7 +2,7 @@
   programs.yazi = {
     enable = true;
     settings = {
-      manager = {
+      mgr = {
         ratio = [1 4 3];
         sort_by = "alphabetical";
         sort_sensitive = false;
@@ -114,7 +114,7 @@
     keymap = let
       keymap = on: run: desc: {inherit on run desc;};
     in {
-      manager.keymap = [
+      mgr.keymap = [
         # Navigation
         (keymap "k" "arrow prev" "Previous file")
         (keymap "j" "arrow next" "Next file")
