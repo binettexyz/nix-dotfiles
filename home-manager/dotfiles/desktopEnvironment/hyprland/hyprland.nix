@@ -137,8 +137,8 @@ in {
         repeat_rate = 50;
         repeat_delay = 150;
         follow_mouse = 1;
-        sensitivity = -1; # -1.0 - 1.0, 0 means no modification.
-        accel_profile = "adaptive";
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        accel_profile = "flat";
         touchpad = {
           natural_scroll = true;
         };
@@ -211,9 +211,6 @@ in {
         "$mod1, C, togglespecialworkspace, discord"
         "$mod2, C, split:movetoworkspacesilent, special:discord"
 
-        "$mod1, G, togglespecialworkspace, steam"
-        "$mod2, G, split:movetoworkspacesilent, special:steam"
-
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
         "$mod1, E, exec, $editor"
@@ -276,7 +273,7 @@ in {
         "workspace 5 silent, class:$(.*mpv.*)$"
         "workspace special:discord silent, class:discord"
         "workspace special:discord silent, class:vesktop"
-        "workspace special:steam silent, class:^(.*steam.*)$"
+        "workspace 3 silent, class:^(.*steam.*)$"
         "workspace special:steam silent, class:^(.*lutris.*)$"
         "workspace special:steam silent, class:^(.*prismlauncher.*)$"
       ];
