@@ -66,20 +66,21 @@
       device = "/dev/disk/by-label/hddGames";
       fsType = "ext4";
     };
-    "/tmp" = {
-      device = "/home/binette/.cache/tmp";
-      options = ["bind"];
-    };
-    "/home/homelab" = {
-      device = "100.110.153.50:/data";
-      fsType = "nfs";
-      # don't freeze system if mount point not available on boot
-      options = ["x-systemd.automount" "noauto"];
-    };
+#    "/tmp" = {
+#      device = "/home/binette/.cache/tmp";
+#      options = ["bind"];
+#    };
+#    "/home/homelab" = {
+#      device = "100.110.153.50:/data";
+#      fsType = "nfs";
+#      # don't freeze system if mount point not available on boot
+#      options = ["x-systemd.automount" "noauto"];
+#    };
   };
 
   swapDevices = [
     # { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }
+    { device = "/dev/disk/by-label/swap"; }
   ];
 
   environment.persistence = {
