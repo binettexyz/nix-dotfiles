@@ -137,8 +137,8 @@ in {
         repeat_rate = 50;
         repeat_delay = 150;
         follow_mouse = 1;
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-        accel_profile = "flat";
+        sensitivity = -0.8; # -1.0 - 1.0, 0 means no modification.
+        accel_profile = "adaptive"; # "flat" "adaptive"
         touchpad = {
           natural_scroll = true;
         };
