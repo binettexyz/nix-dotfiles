@@ -51,6 +51,8 @@
       };
       bridges.br0.interfaces = ["eth0"]; # Adjust interface accordingly
       # Set bridge-ip static
+      # If bridge stop working and theres no internet inside containers,
+      # change address to "192.168.2.100", rebuild, reboot and put it back to 192.168.100.1.
       interfaces."br0".ipv4.addresses = [
         {
           address = "192.168.100.1";
