@@ -1,6 +1,6 @@
 # ❄️ Binette's NixOS config
 
-![](https://github.com/binettexyz/nix-dotfiles/blob/master/docs/images/screenshot-desktop.png)
+![](https://raw.githubusercontent.com/binettexyz/nix-dotfiles/refs/heads/master/docs/images/screenshot-desktop.png)
 
 # About
 
