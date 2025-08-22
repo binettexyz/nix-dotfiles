@@ -31,13 +31,27 @@
     # ---Networking---
     services.nginx = {
       enable = true;
-      virtualHosts."jbinette.xyz" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".extraConfig = ''
-          default_type text/plain;
-          return 200 "Root domain reserved. Use cloud.jbinette.xyz or git.jbinette.xyz";
-        '';
+      virtualHosts = {
+        "default" = {
+          # Set this vhost as the default.
+          default = true;
+          listen = [
+            { port = 443; ssl = true; addr = "[::]"; }
+            { port = 80; addr = "[::]"; }
+            { port = 443; ssl = true; addr = "0.0.0.0"; }
+            { port = 80; addr = "0.0.0.0"; }
+          ];
+          # Avoid any subdomaine being redirect to another vhost.
+          rejectSSL = true;
+        };
+        "jbinette.xyz" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".extraConfig = ''
+            default_type text/plain;
+            return 200 "Root domain reserved.";
+          '';
+        };
       };
     };
 
