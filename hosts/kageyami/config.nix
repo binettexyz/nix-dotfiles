@@ -12,6 +12,7 @@
   modules = {
     bootloader.default = "rpi4";
     server.containers = {
+      cloudflare-ddns.enable = true;
       gitea.enable = true;
       miniflux.enable = true;
     };
