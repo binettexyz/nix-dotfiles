@@ -13,6 +13,7 @@
     bootloader.default = "rpi4";
     server.containers = {
       gitea.enable = true;
+      miniflux.enable = true;
     };
     system = {
       home.enable = true;
