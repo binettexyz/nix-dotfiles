@@ -47,7 +47,6 @@
       pkgs.waylock
       pkgs.wofi
       pkgs.mupdf
-      pkgs.newsboat
       pkgs.udiskie
       pkgs.zathura
     ])
