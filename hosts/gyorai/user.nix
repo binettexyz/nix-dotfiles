@@ -9,10 +9,12 @@
     flake.inputs.nix-colors.homeManagerModule
   ];
 
-  colorScheme = import ../../modules/colorSchemes/gruvbox-material.nix;
-
   modules.hm = {
     gaming.enable = true;
     browser.librewolf.enable = true;
+    theme = {
+      colorScheme = "gruvbox";
+      wallpaper = "003";
+    };
   };
 }
