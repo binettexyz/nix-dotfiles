@@ -15,6 +15,7 @@
       cloudflare-ddns.enable = true;
       gitea.enable = true;
       miniflux.enable = true;
+      vaultwarden.enable = true;
     };
     system = {
       home.enable = true;
