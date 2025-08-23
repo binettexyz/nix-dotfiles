@@ -14,6 +14,7 @@
     server.containers = {
       cloudflare-ddns.enable = true;
       gitea.enable = true;
+      home-assistant.enable = false;
       miniflux.enable = true;
       vaultwarden.enable = true;
     };
