@@ -49,9 +49,13 @@
     fm = "yazi";
 
     # Git
-    push = "git push && git push mirror main:master";
+    push = "git push origin && git push mirror main:master";
     checkout = "git checkout";
     commit = "git commit -m";
     branch = "git branch";
+
+    # Sops
+    sopsadd = "nix-shell -p sops --run 'sops /etc/nixos/secrets/secrets.yaml'";
+    sopsup = "nix-shell -p sops --run 'sops updatekeys /etc/nixos/secrets/secrets.yaml'";
   };
 }
