@@ -124,10 +124,10 @@ in {
 
   systemd = {
     # Reduce default service stop timeouts for faster shutdown
-    extraConfig = ''
-      DefaultTimeoutStopSec=15s
-      DefaultTimeoutAbortSec=5s
-    '';
+    settings.Manager = {
+      DefaultTimeoutStopSec = "15";
+      DefaultTimeoutAbortSec = "5s";
+    };
     # systemd's out-of-memory daemon
     oomd = {
       enable = lib.mkDefault true;

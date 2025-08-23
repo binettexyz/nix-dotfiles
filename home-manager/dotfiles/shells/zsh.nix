@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{config, pkgs, ...}: {
   programs.zsh = {
     enable = true;
     # zsh directory
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -21,7 +21,7 @@
     };
 
     # .zshrc
-    initExtra = ''
+    initContent = ''
       # Enable vcs_info for Git
       autoload -Uz vcs_info
       zstyle ':vcs_info:*' enable git

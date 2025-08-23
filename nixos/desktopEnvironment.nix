@@ -36,7 +36,7 @@ in {
           command =
             if config.jovian.steam.enable
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
-            else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+            else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
         };
       in {
         initial_session = initial_session;
@@ -63,7 +63,7 @@ in {
         initial_session = {
           user = username;
           command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet"
+            "${pkgs.tuigreet}/bin/tuigreet"
             + " -t -r"
             + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
         };
@@ -102,7 +102,7 @@ in {
           command =
             if config.jovian.steam.enable
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
-            else "${pkgs.greetd.tuigreet}/bin/tuigreet" + " -t -r";
+            else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r";
         };
       in {
         initial_session = initial_session;
