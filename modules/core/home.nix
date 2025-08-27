@@ -13,7 +13,7 @@
 in {
   # ---Import Modules/Config---
   imports = [
-    ../modules/meta.nix
+    ../custom/meta.nix
     flake.inputs.home.nixosModules.home-manager
   ];
 
@@ -33,7 +33,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager = {
       useUserPackages = true;
-      users.${config.modules.system.home.username} = ../hosts/${hostname}/user.nix;
+      users.${config.modules.system.home.username} = ../../hosts/${hostname}/user.nix;
       extraSpecialArgs = {
         inherit flake system;
         super = config;

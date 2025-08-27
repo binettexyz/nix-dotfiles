@@ -17,12 +17,7 @@ in {
       asRemovable = false;
       useOSProber = false;
     };
-    gaming = {
-      enable = true;
-      steam.enable = true;
-      valveControllersRules = true;
-      openPorts = false;
-    };
+    gaming.enable = true;
     system = {
       audio.enable = true;
       customFonts.enable = true;

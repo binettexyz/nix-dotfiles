@@ -6,7 +6,7 @@
   imports =
     [
       ./meta
-      ../modules/colorSchemes
+      ../modules/custom/colorSchemes
       ./packages.nix
       ./pc.nix
       ./dotfiles/browsers/chromium.nix

@@ -26,8 +26,8 @@ in {
         [
           ../hosts/${hostname}/config.nix
           ../hosts/${hostname}/hardware.nix
-          ../nixos/default.nix
-          ../modules
+          ../modules/default.nix
+          ../modules/custom
           ../overlays
         ]
         ++ extraMods;

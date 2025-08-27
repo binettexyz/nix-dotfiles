@@ -13,6 +13,7 @@
   boot = {
     kernelModules = ["kvm-amd"];
     kernelParams = [
+      "splash" # Needed for plymouth
       "mitigations=off"
       "nowatchdog"
     ];

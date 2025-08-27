@@ -1,11 +1,20 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
-    ./device.nix
-    ./meta.nix
+    ./core/audio.nix
+    ./core/bootloader.nix
+    ./core/environmentVariables.nix
+    ./core/home.nix
+    ./core/locale.nix
+    ./core/meta.nix
+    ./core/network.nix
+    ./core/security.nix
+    ./core/ssh.nix
+    ./core/system.nix
+    ./core/user.nix
+    ./graphical/desktopEnvironment.nix
+    ./graphical/fonts.nix
+    ./profiles/gaming
+    ./profiles/laptop
+    ./profiles/server
   ];
 }

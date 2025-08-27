@@ -19,7 +19,6 @@
     gaming = {
       enable = true;
       device.isSteamdeck = true;
-      steam.enable = true;
     };
     system = {
       audio.enable = true;
