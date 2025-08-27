@@ -8,7 +8,7 @@
 
     # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
-    stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- Others ---
@@ -21,6 +21,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
@@ -30,6 +31,7 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    jovian-nixos.follows = "chaotic/jovian";
   };
 
   # ---System's Output---
