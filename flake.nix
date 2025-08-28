@@ -67,6 +67,7 @@
       gpuType = "amdgpu";
       hostname = "gyorai";
       extraMods = [
+        ./modules/presets/gaming-handheld.nix.nix
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.jovian-nixos.nixosModules.jovian
         inputs.chaotic.nixosModules.default
@@ -77,18 +78,21 @@
       deviceType = "laptop";
       deviceTags = ["workstation" "dev" "battery" "lowSpec"];
       hostname = "hayate";
+      extraMods = [./modules/presets/laptop.nix];
     })
     # Lenovo Thinkpad t440p (Heart/Spirit)
     (mkNixOSConfig {
       deviceType = "laptop";
       deviceTags = ["workstation" "battery" "lowSpec"];
       hostname = "kokoro";
+      extraMods = [./modules/presets/laptop.nix];
     })
     # Raspberry Pi 4 (Shadow Darkness)
     (mkNixOSConfig {
       deviceType = "server";
       hostname = "kageyami";
       system = "aarch64-linux";
+      extraMods = [./modules/presets/server.nix];
     })
 
     # ---Defining Home-Manager---

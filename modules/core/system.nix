@@ -148,7 +148,7 @@ in {
 
   # Sops-nix password encryption
   sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
       # This will automatically import SSH keys as age keys
       sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
