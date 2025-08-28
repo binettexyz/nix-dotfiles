@@ -34,7 +34,6 @@
         protontricks.enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
-        gamescopeSession.enable = true;
       };
       hardware.steam-hardware.enable = true;
 
@@ -47,7 +46,7 @@
         }) {system = pkgs.system;};
       in {
         enable = true;
-        package = pkgs.gamescope;
+        package = pkgs.stable.gamescope;
         capSysNice = false;
         args = [
           "--rt"
