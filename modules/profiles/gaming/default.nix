@@ -10,17 +10,6 @@
     ./controllers.nix
   ];
 
-  options.modules.gaming = {
-    enable = lib.mkOption {
-      description = "Gaming config";
-      default = false;
-    };
-    device.isSteamdeck = lib.mkOption {
-      description = "If device is a steamdeck";
-      default = false;
-    };
-  };
-
   config = lib.mkMerge [
     (lib.mkIf config.modules.gaming.enable {
       # Kernel
