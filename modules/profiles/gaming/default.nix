@@ -8,10 +8,6 @@
 }: {
   imports = [
     ./controllers.nix
-    ./handheld.nix
-    flake.inputs.chaotic.nixosModules.default
-    flake.inputs.jovian-nixos.nixosModules.jovian
-    flake.inputs.nix-gaming.nixosModules.platformOptimizations
   ];
 
   options.modules.gaming = {
@@ -51,7 +47,7 @@
         }) {system = pkgs.system;};
       in {
         enable = true;
-        #package = oldPkgs.gamescope;
+        package = pkgs.gamescope;
         capSysNice = false;
         args = [
           "--rt"

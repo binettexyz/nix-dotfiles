@@ -1,5 +1,6 @@
 {
   config,
+  deviceType,
   flake,
   lib,
   pkgs,
@@ -30,11 +31,11 @@ in {
       services.greetd.settings = let
         initial_session = {
           user =
-            if config.jovian.steam.enable
+            if (config.modules.gaming.enable && deviceType == "handheld")
             then "root"
             else username;
           command =
-            if config.jovian.steam.enable
+            if (config.modules.gaming.enable && deviceType == "handheld")
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
             else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
         };
@@ -96,11 +97,11 @@ in {
       services.greetd.settings = let
         initial_session = {
           user =
-            if config.jovian.steam.enable
+            if (config.modules.gaming.enable && deviceType == "handheld")
             then "root"
             else username;
           command =
-            if config.jovian.steam.enable
+            if (config.modules.gaming.enable && deviceType == "handheld")
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
             else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r";
         };

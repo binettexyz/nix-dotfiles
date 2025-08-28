@@ -54,6 +54,10 @@
       deviceTags = ["workstation" "gaming" "highSpec"];
       gpuType = "amdgpu";
       hostname = "seiryu";
+      extraMods = [
+        inputs.nix-gaming.nixosModules.platformOptimizations
+        inputs.chaotic.nixosModules.default
+      ];
     })
     # Steamdeck (Torpedo)
     (mkNixOSConfig {
@@ -61,6 +65,11 @@
       deviceTags = ["battery" "gaming" "lowSpec" "steamdeck" "touchscreen"];
       gpuType = "amdgpu";
       hostname = "gyorai";
+      extraMods = [
+        inputs.nix-gaming.nixosModules.platformOptimizations
+        inputs.jovian-nixos.nixosModules.jovian
+        inputs.chaotic.nixosModules.default
+      ];
     })
     # Lenovo Thinkpad t480 (Swift Wind)
     (mkNixOSConfig {

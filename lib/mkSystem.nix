@@ -29,6 +29,8 @@ in {
           ../modules/default.nix
           ../modules/custom
           ../overlays
+          inputs.sops-nix.nixosModules.sops
+          inputs.impermanence.nixosModules.impermanence
         ]
         ++ extraMods;
       specialArgs = {
