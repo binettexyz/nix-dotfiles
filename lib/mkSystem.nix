@@ -26,7 +26,6 @@ in {
         [
           ../hosts/${hostname}/config.nix
           ../hosts/${hostname}/hardware.nix
-          ../modules/default.nix
           ../modules/custom
           ../overlays
           inputs.sops-nix.nixosModules.sops

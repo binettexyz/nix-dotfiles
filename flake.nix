@@ -55,6 +55,7 @@
       gpuType = "amdgpu";
       hostname = "seiryu";
       extraMods = [
+        ./modules/presets/gaming-desktop.nix
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.chaotic.nixosModules.default
       ];
