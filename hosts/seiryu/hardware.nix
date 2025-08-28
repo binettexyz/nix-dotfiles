@@ -115,8 +115,6 @@
     amdgpu.initrd.enable = true;
     graphics.enable = true;
     graphics.enable32Bit = true;
-    graphics.extraPackages = [pkgs.amdvlk];
-    graphics.extraPackages32 = [pkgs.driversi686Linux.amdvlk];
   };
 
   # ---Processor---
