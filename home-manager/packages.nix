@@ -53,9 +53,10 @@
 
     (lib.mkIf (lib.elem "gaming" deviceTags) [
       # Games
+      #pkgs.gzdoom # Doom
       #pkgs.openmw # TES: Morrowind
       pkgs.prismlauncher # Minecraft
-      #pkgs.gzdoom # Doom
+      pkgs.vintagestory
       #pkgs.zeroad # 0 a.d.
 
       # Launcher/Tools
