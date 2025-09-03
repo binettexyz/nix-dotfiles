@@ -10,7 +10,7 @@
       if lib.elem "workstation" deviceTags
       then true
       else false;
-    package = pkgs.stable.foot;
+    package = pkgs.foot;
     settings = {
       main = {
         font = "monospace:size=10";
