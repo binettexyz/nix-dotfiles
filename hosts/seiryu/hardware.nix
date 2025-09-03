@@ -33,6 +33,7 @@
       ];
       kernelModules = [];
     };
+    tmp.useTmpfs = lib.mkForce false;
   };
 
   # ---FileSystem---
@@ -66,10 +67,10 @@
       device = "/dev/disk/by-label/hddGames";
       fsType = "ext4";
     };
-#    "/tmp" = {
-#      device = "/home/binette/.cache/tmp";
-#      options = ["bind"];
-#    };
+    "/tmp" = {
+      device = "/home/binette/.cache/tmp";
+      options = ["bind"];
+    };
 #    "/home/homelab" = {
 #      device = "100.110.153.50:/data";
 #      fsType = "nfs";
