@@ -98,7 +98,7 @@ in {
     '';
 
     # Suspend when power key is pressed
-    logind.powerKey =
+    logind.settings.Login.HandlePowerKey =
       if deviceType == "handheld"
       then "ignore"
       else "suspend";
