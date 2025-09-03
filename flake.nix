@@ -4,7 +4,8 @@
   # --- System's Inputs---
   inputs = {
     # --- Default Nixpkgs ---
-    nixpkgs.follows = "unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.follows = "unstable";
 
     # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
@@ -13,7 +14,7 @@
 
     # --- Others ---
     flake-utils.url = "github:numtide/flake-utils";
-    home.url = "github:nix-community/home-manager/master";
+    home.url = "github:nix-community/home-manager";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
