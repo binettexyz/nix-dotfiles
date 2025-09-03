@@ -3,7 +3,7 @@
     ../../home-manager
     (flake.inputs.impermanence + "/home-manager.nix")
     flake.inputs.nix-colors.homeManagerModule
-    flake.inputs.plasma-manager.homeManagerModules.plasma-manager
+    flake.inputs.plasma-manager.homeModules.plasma-manager
   ];
 
   modules.hm = {

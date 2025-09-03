@@ -3,13 +3,6 @@
   pkgs,
   ...
 }: {
-  # Import overlays
-  imports = [
-    ../../overlays
-    #   ../../../modules/device.nix
-    #   ../../../modules/meta.nix
-  ];
-
   # Add some Nix related packages
   home.packages = [
     #    pkgs.hydra-check

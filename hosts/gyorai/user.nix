@@ -5,7 +5,7 @@
 }: {
   imports = [
     ../../home-manager
-    flake.inputs.plasma-manager.homeManagerModules.plasma-manager
+    flake.inputs.plasma-manager.homeModules.plasma-manager
     flake.inputs.nix-colors.homeManagerModule
   ];
 
