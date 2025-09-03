@@ -46,11 +46,11 @@ in {
       services.xserver.enable = true;
       services.desktopManager.plasma6.enable = true;
       environment.plasma6.excludePackages = [
-        pkgs.libsForQt5.elisa
-        pkgs.libsForQt5.khelpcenter
-        pkgs.libsForQt5.oxygen
-        pkgs.libsForQt5.discover
-        pkgs.libsForQt5.ark
+        pkgs.kdePackages.elisa
+        pkgs.kdePackages.khelpcenter
+        pkgs.kdePackages.oxygen
+        pkgs.kdePackages.discover
+        #pkgs.kdePackages.ark
       ];
 
       environment.systemPackages = [pkgs.kdePackages.ark];
