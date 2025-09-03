@@ -27,8 +27,10 @@ in {
     consoleLogLevel = 0;
     kernelParams = [
       "quiet"
-      "udev.log_level=3"
-      "console=tty1"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
     ];
   };
   # Get rid of defaults packages
