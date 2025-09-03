@@ -11,7 +11,7 @@
         config.allowUnfree = true;
         config.allowBroken = true;
       };
-      stable = import flake.inputs.nixpkgs {
+      stable = import flake.inputs.stable {
         inherit system;
         config.allowUnfree = true;
         config.allowBroken = true;
