@@ -31,9 +31,8 @@
         "usb_storage"
         "sd_mod"
       ];
-      kernelModules = [];
+      kernelModules = ["amdgpu"];
     };
-    tmp.useTmpfs = lib.mkForce false;
   };
 
   # ---FileSystem---
@@ -110,13 +109,20 @@
   services.blueman.enable = true;
 
   # ---Video Driver---
-  hardware = {
-    # Enable loading amdgpu kernelModule in stage 1.
-    # Can fix lower resolution in boot screen during initramfs phase
-    amdgpu.initrd.enable = true;
-    graphics.enable = true;
-    graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = [
+      pkgs.amdvlk  # AMD Vulkan driver
+    ];
+    # For 32 bit applications 
+    extraPackages32 = [
+      pkgs.driversi686Linux.amdvlk # AMD Vulkan Driver
+    ];
   };
+  # Some games choose AMDVLK over RADV
+  # which can cause noticeable performance issues (e.g. <50% less FPS in games) 
+  environment.variables.AMD_VULKAN_ICD = "RADV";
 
   # ---Processor---
   #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";

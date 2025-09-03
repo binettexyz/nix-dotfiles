@@ -114,7 +114,7 @@
       # ---System Configuration---
       # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
       # Instead, bind it into home. See "host/gyorai/hardware.nix".
-      #boot.tmp.useTmpfs = lib.mkForce false;
+      boot.tmp.useTmpfs = lib.mkForce false;
       boot.plymouth.enable = true; # Enable plymouth.
       # Needed for some **legit** games to run with lutris/wine.
       boot.kernelParams = [ "clearcpuid=512" ];
