@@ -68,7 +68,7 @@
       gpuType = "amdgpu";
       hostname = "gyorai";
       extraMods = [
-        ./modules/presets/gaming-handheld.nix.nix
+        ./modules/presets/gaming-handheld.nix
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.jovian-nixos.nixosModules.jovian
         inputs.chaotic.nixosModules.default
