@@ -58,10 +58,6 @@
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/tmp" = {
-      device = "/nix/persist/tmp";
-      options = ["bind"];
-    };
   };
   swapDevices = [];
 
