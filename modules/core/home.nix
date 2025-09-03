@@ -32,6 +32,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home-manager = {
+      useGlobalPkgs = true;
       useUserPackages = true;
       users.${config.modules.system.home.username} = ../../hosts/${hostname}/user.nix;
       extraSpecialArgs = {
