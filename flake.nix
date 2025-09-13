@@ -5,17 +5,19 @@
   inputs = {
     # --- Default Nixpkgs ---
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    #nixpkgs.follows = "unstable";
 
     # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
     stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # --- Others ---
-    flake-utils.url = "github:numtide/flake-utils";
+    # ---Games---
+    vintage-story.url = "github:NixOS/nixpkgs/7b04f942cf745f4e43ce772a692b68bdd1315524";
+
+    # ---Tools---
     home.url = "github:nix-community/home-manager";
     impermanence.url = "github:nix-community/impermanence";
+    flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-gaming.url = "github:fufexan/nix-gaming";
     plasma-manager.url = "github:nix-community/plasma-manager";

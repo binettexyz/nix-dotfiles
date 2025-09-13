@@ -509,7 +509,8 @@
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix",
         "stable": "stable",
-        "unstable": "unstable"
+        "unstable": "unstable",
+        "vintage-story": "vintage-story"
       }
     },
     "rust-overlay": {
@@ -627,6 +628,22 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "vintage-story": {
+      "locked": {
+        "lastModified": 1757414245,
+        "narHash": "sha256-CRsFsTGlGZCTeGiMWszAeoLM3lch8WAtjX57dp08FA8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7b04f942cf745f4e43ce772a692b68bdd1315524",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7b04f942cf745f4e43ce772a692b68bdd1315524",
         "type": "github"
       }
     }

@@ -3,7 +3,12 @@
   pkgs,
   system,
   ...
-}: {
+}: let
+  pkgs_vs = import flake.inputs.vintage-story {
+    inherit system;
+    config.allowUnfree = true;
+  };
+in {
   nixpkgs.overlays = [
     (final: prev: {
       unstable = import flake.inputs.unstable {
@@ -30,6 +35,7 @@
       # ---Games---
       freedoom = prev.callPackage ./games/freedoom.nix {};
       moondeck-buddy = prev.callPackage ./games/moondeck-buddy.nix {};
+      vintagestory = pkgs_vs.vintagestory;
       # ---Themes---
       wallpapers = prev.callPackage ./themes/wallpapers {};
       gruvbox-material-gtk = prev.callPackage ./themes/gruvbox-material-gtk.nix {};
