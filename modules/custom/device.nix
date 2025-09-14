@@ -21,5 +21,17 @@
         default = true;
       };
     };
+    network.ipv4 = {
+      internal = lib.mkOption {
+        description = "Declare internal ipv4 adresses";
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
+      tailscale = lib.mkOption {
+        description = "Declare tailscale ipv4 adresses";
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
+    };
   };
 }

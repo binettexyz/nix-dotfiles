@@ -27,7 +27,11 @@ in {
       mode = "0400";
       format = "yaml";
     };
-    sops.secrets."server/containers/cloudflare-recordID" = {
+    sops.secrets."server/containers/cloudflare-public_recordID" = {
+      mode = "0400";
+      format = "yaml";
+    };
+    sops.secrets."server/containers/cloudflare-private_recordID" = {
       mode = "0400";
       format = "yaml";
     };
@@ -47,8 +51,12 @@ in {
           hostPath = config.sops.secrets."server/containers/cloudflare-zoneID".path;
           isReadOnly = true;
         };
-        "/run/secrets/server/containers/cloudflare-recordID" = {
-          hostPath = config.sops.secrets."server/containers/cloudflare-recordID".path;
+        "/run/secrets/server/containers/cloudflare-public_recordID" = {
+          hostPath = config.sops.secrets."server/containers/cloudflare-public_recordID".path;
+          isReadOnly = true;
+        };
+        "/run/secrets/server/containers/cloudflare-private_recordID" = {
+          hostPath = config.sops.secrets."server/containers/cloudflare-private_recordID".path;
           isReadOnly = true;
         };
       };
@@ -66,12 +74,24 @@ in {
             #!/usr/bin/env bash
             CLOUDFLARE_API_TOKEN="$(cat "/run/secrets/server/containers/cloudflare-token")";
             CLOUDFLARE_ZONE_ID="$(cat "/run/secrets/server/containers/cloudflare-zoneID")";
-            CLOUDFLARE_A_RECORD_IDS="$(cat "/run/secrets/server/containers/cloudflare-recordID")";
+            CLOUDFLARE_A_PUBLIC_RECORD_IDS="$(cat "/run/secrets/server/containers/cloudflare-public_recordID")";
+            CLOUDFLARE_A_PRIVATE_RECORD_IDS="$(cat "/run/secrets/server/containers/cloudflare-private_recordID")";
             #set -euo pipefail
             echo "updating"
-            if [ -n "''${CLOUDFLARE_A_RECORD_IDS:-}" ]; then
+            if [ -n "''${CLOUDFLARE_A_PUBLIC_RECORD_IDS:-}" ]; then
             	addr=$(curl -sS 'https://1.1.1.1/cdn-cgi/trace' | grep 'ip=' | cut -d '=' -f 2)
-            	for rid in $CLOUDFLARE_A_RECORD_IDS; do
+            	for rid in $CLOUDFLARE_A_PUBLIC_RECORD_IDS; do
+            		echo "''${rid} A ''${addr}"
+            		curl -sS \
+            			-X PATCH "https://api.cloudflare.com/client/v4/zones/''${CLOUDFLARE_ZONE_ID}/dns_records/''${rid}" \
+            			-H "Authorization: Bearer ''${CLOUDFLARE_API_TOKEN}" \
+            			-H 'Content-Type: application/json' \
+            			--data "{\"content\": \"''${addr}\"}"
+            	done
+            fi
+            if [ -n "''${CLOUDFLARE_A_PRIVATE_RECORD_IDS:-}" ]; then
+            	addr=${config.device.network.ipv4.tailscale}
+            	for rid in $CLOUDFLARE_A_PRIVATE_RECORD_IDS; do
             		echo "''${rid} A ''${addr}"
             		curl -sS \
             			-X PATCH "https://api.cloudflare.com/client/v4/zones/''${CLOUDFLARE_ZONE_ID}/dns_records/''${rid}" \
