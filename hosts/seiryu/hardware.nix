@@ -70,12 +70,12 @@
       device = "/home/binette/.cache/tmp";
       options = ["bind"];
     };
-#    "/home/homelab" = {
-#      device = "100.110.153.50:/data";
-#      fsType = "nfs";
-#      # don't freeze system if mount point not available on boot
-#      options = ["x-systemd.automount" "noauto"];
-#    };
+    "/home/homelab" = {
+      device = "100.110.153.50:/data";
+      fsType = "nfs";
+      # don't freeze system if mount point not available on boot
+      options = ["x-systemd.automount" "noauto"];
+    };
   };
 
   swapDevices = [
@@ -114,10 +114,12 @@
     enable32Bit = true;
     extraPackages = [
       pkgs.amdvlk  # AMD Vulkan driver
+      pkgs.gamescope-wsi
     ];
     # For 32 bit applications 
     extraPackages32 = [
       pkgs.driversi686Linux.amdvlk # AMD Vulkan Driver
+      pkgs.pkgsi686Linux.gamescope-wsi
     ];
   };
   # Some games choose AMDVLK over RADV
