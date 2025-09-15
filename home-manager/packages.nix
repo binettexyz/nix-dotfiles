@@ -30,6 +30,7 @@
     (lib.mkIf (lib.elem "workstation" deviceTags) [
       pkgs.libreoffice
       pkgs.texlive.combined.scheme-full
+      pkgs.xfce.thunar
     ])
 
     (lib.mkIf osConfig.programs.hyprland.enable [

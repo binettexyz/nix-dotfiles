@@ -99,6 +99,12 @@ in {
       MaxFileSec=7day
     '';
 
+    # Thunar functionalities
+    # Mount, trash, and other functionalities
+    gvfs.enable = true;
+    # Thumbnail support for images
+    tumbler.enable = true;
+
     # Suspend when power key is pressed
     logind.settings.Login.HandlePowerKey =
       if deviceType == "handheld"
