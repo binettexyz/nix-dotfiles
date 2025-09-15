@@ -18,6 +18,8 @@ in {
     # This allows PipeWire to run with realtime privileges (i.e: less cracks)
     security.rtkit.enable = true;
 
+    programs.noisetorch.enable = true;
+
     services.pipewire = {
       enable = lib.mkDefault true;
       audio.enable = true;
