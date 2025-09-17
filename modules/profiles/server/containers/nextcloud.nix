@@ -82,9 +82,6 @@ in {
               news
               calendar
               tasks
-              mail
-              bookmarks
-              notes
               ;
           };
           extraAppsEnable = true;

@@ -8,6 +8,7 @@
       gitea.enable = true;
       home-assistant.enable = true;
       miniflux.enable = true;
+      nextcloud.enable = true;
       vaultwarden.enable = true;
     };
     system = {
