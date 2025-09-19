@@ -18,8 +18,23 @@
       # ---Enabling Steam---
       programs.steam = {
         enable = true;
-        # Option from nix-gaming.
-        platformOptimizations.enable = true;
+        # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1523177264
+        package = pkgs.steam.override {
+          extraPkgs = pkgs': with pkgs'; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib # Provides libstdc++.so.6
+            libkrb5
+            keyutils
+            # Add other libraries as needed
+          ];
+        };
+        platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
