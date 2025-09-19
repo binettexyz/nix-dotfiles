@@ -1,25 +1,24 @@
 {
   flake,
+  lib,
   pkgs,
   system,
   ...
 }: let
   pkgs_vs = import flake.inputs.vintage-story {
     inherit system;
-    config.allowUnfree = true;
+    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "vintagestory"
+    ];
   };
 in {
   nixpkgs.overlays = [
     (final: prev: {
       unstable = import flake.inputs.unstable {
         inherit system;
-        config.allowUnfree = true;
-        config.allowBroken = true;
       };
       stable = import flake.inputs.stable {
         inherit system;
-        config.allowUnfree = true;
-        config.allowBroken = true;
       };
 
       # --- Scripts---

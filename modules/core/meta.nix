@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   flake,
   ...
@@ -63,7 +64,12 @@ in {
   };
 
   # Enable unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-unwrapped"
+    "vintagestory"
+  ];
 
   # Change build dir to /var/tmp
   systemd.services.nix-daemon.environment.TMPDIR = "/tmp";
