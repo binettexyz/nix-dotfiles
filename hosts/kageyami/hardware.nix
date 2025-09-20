@@ -37,15 +37,6 @@
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
     };
-    "/media" = {
-      device = "/dev/disk/by-label/media";
-      fsType = "ext4";
-      options = [
-        "nofail"
-        "x-systemd.automount"
-        "x-systemd.device-timout=5s"
-      ];
-    };
     "/data" = {
       device = "/dev/disk/by-label/data01";
       fsType = "ext4";
