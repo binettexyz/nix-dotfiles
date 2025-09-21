@@ -19,7 +19,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets."server/containers/cloudflare-token" = {
+    sops.secrets."server/containers/CF_DNS_API_TOKEN_FILE" = {
       mode = "0400";
       format = "yaml";
     };
@@ -44,7 +44,7 @@ in {
 
       bindMounts = {
         "/run/secrets/server/containers/cloudflare-token" = {
-          hostPath = config.sops.secrets."server/containers/cloudflare-token".path;
+          hostPath = config.sops.secrets."server/containers/CF_DNS_API_TOKEN_FILE".path;
           isReadOnly = true;
         };
         "/run/secrets/server/containers/cloudflare-zoneID" = {
