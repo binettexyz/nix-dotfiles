@@ -28,7 +28,7 @@
       oci-containers.backend = "podman";
     };
 
-        # ---Nginx---
+    # ---Nginx---
     services.nginx = {
       enable = true;
       virtualHosts = {
@@ -46,9 +46,7 @@
         };
         "jbinette.xyz" = {
           forceSSL = true;
-          enableACME = true;
-          # All serverAliases will be added as extra domain names on the certificate.
-          serverAliases = [ "*.jbinette.xyz" ];
+          useACMEHost = "jbinette.xyz";
           locations."/".extraConfig = ''
             default_type text/plain;
             return 200 "Root domain reserved.";
@@ -57,35 +55,37 @@
       };
     };
 
-    # ---ACME Certs---
-    security.acme.acceptTerms = true;
-    security.acme.defaults.email = "binettexyz@proton.me";
-#    security.acme = {
-#    acceptTerms = true;
-#    defaults = {
-#    	reloadServices = [ "nginx" ];
-#    	email = "binettexyz@proton.me"; #TODO: Change to own mail service
-#    	group = config.services.nginx.group;
-#      	dnsProvider = "cloudflare";
-#      	dnsPropagationCheck = true;
-#    };
-#    certs."jbinette.xyz" = {
-#      domain = "jbinette.xyz";
-#      extraDomainNames = [ "*.jbinette.xyz" ];
-#      credentialsFile = /var/lib/secrets/nginx/acme;
-#    };
-#  };
-#
-#  users.users.nginx.extraGroups = [ "acme" ];
-#  # Always use Nginx
-#  services.httpd.enable = lib.mkForce false;
-#  # Override the user and group to match the Nginx ones
-#  # Since some services uses the httpd user and group
-#  services.httpd = {
-#    user = lib.mkForce config.services.nginx.user;
-#    group = lib.mkForce config.services.nginx.group;
-#  };
+    users.users.nginx.extraGroups = [ "acme" ];
+    # Always use Nginx
+    services.httpd.enable = lib.mkForce false;
+    # Override the user and group to match the Nginx ones
+    # Since some services uses the httpd user and group
+    services.httpd = {
+      user = lib.mkForce config.services.nginx.user;
+      group = lib.mkForce config.services.nginx.group;
+    };
 
+
+    # ---ACME Certs---
+    sops.secrets."server/containers/acme-cf-token" = {
+      mode = "0400";
+    };
+    security.acme = {
+      acceptTerms = true;
+      defaults = {
+    	  reloadServices = [ "nginx" ];
+    	  email = "binettexyz@proton.me";
+    	  group = config.services.nginx.group;
+    	  dnsProvider = "cloudflare";
+    	  dnsPropagationCheck = true;
+      };
+      certs."jbinette.xyz" = {
+        domain = "*.jbinette.xyz";
+        environmentFile = config.sops.secrets."server/containers/acme-cf-token".path;
+      };
+    };
+
+ 
     # Bridge for Ethernet
 #    networking = {
 #      firewall.allowedTCPPorts = [80 443];
@@ -130,6 +130,5 @@
         }
       ];
     };
-
   };
 }

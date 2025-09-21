@@ -20,7 +20,7 @@ in
 
   config = lib.mkIf (cfg.enable) {
     services.nginx.virtualHosts."vault.jbinette.xyz" = {
-      enableACME = true;
+      useACMEHost = "jbinette.xyz";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${localAddress}:" + toString (ports.vaultwarden);

@@ -19,7 +19,7 @@ in
 
   config = lib.mkIf (cfg.enable) {
     services.nginx.virtualHosts."feed.jbinette.xyz" = {
-      enableACME = true;
+      useACMEHost = "jbinette.xyz";
       forceSSL = true;
       locations."/".proxyPass = "http://${localAddress}:" + toString (ports.miniflux);
     };

@@ -15,7 +15,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     services.nginx.virtualHosts."budget.jbinette.xyz" = {
-      enableACME = true;
+      useACMEHost = "jbinette.xyz";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${localAddress}:" + toString (ports.actual-budget);

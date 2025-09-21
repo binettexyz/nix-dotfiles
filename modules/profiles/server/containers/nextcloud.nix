@@ -16,7 +16,7 @@ in {
 
   config = lib.mkIf config.modules.server.containers.nextcloud.enable {
     services.nginx.virtualHosts."cloud.jbinette.xyz" = {
-      enableACME = true;
+      useACMEHost = "jbinette.xyz";
       forceSSL = true;
       locations."/".proxyPass = "http://${localAddress}";
     };
