@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.modules.server.containers.mediarr;
+  cfg = config.modules.server.containers.servarr;
   #  privateKeyFile = [
   #    config.sops.secrets.apiKey.sonarr.path;
   #    config.sops.secrets.apiKey.radarr.path;
@@ -25,13 +25,13 @@
     jellyfin = 8096;
   };
   mkProxy = port: {
-    enableACME = true;
+    useACMEHost = "jbinette.xyz";
     forceSSL = true;
     locations."/".proxyPass = "http://${localAddress}:" + toString (port);
   };
 in
 {
-  options.modules.server.containers.mediarr.enable = lib.mkOption {
+  options.modules.server.containers.servarr.enable = lib.mkOption {
     description = "Enable torrents related services";
     default = false;
   };
