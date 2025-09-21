@@ -5,9 +5,9 @@
     ./gitea.nix
     ./home-assistant.nix
     ./homer.nix
-    ./mediarr.nix
     ./miniflux.nix
     ./nextcloud.nix
+    ./servarr.nix
     ./vaultwarden.nix
   ];
 }
