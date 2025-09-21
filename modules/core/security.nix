@@ -26,8 +26,6 @@ in {
         }
       ];
     };
-    acme.acceptTerms = true;
-    acme.defaults.email = "binettexyz@proton.me";
   };
 
   # Add StevenBlack hosts.
