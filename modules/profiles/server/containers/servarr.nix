@@ -108,7 +108,7 @@ in
             "d ${builtins.toString mediaDir + "/movies"} 777 radarr media -"
             "d ${builtins.toString mediaDir + "/tv"} 777 sonarr media -"
             "d ${builtins.toString mediaDir + "/animes"} 777 sonarr media -"
-            "d ${builtins.toString downloadDir} 777 transmission media -"
+            "d ${builtins.toString downloadDir + "/tv-sonarr"} 777 transmission media -"
           ];
 
           networking.firewall = {
