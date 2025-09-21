@@ -5,14 +5,11 @@
   ...
 }: let
   cfg = config.modules.server.containers.servarr;
-  #  privateKeyFile = [
-  #    config.sops.secrets.apiKey.sonarr.path;
-  #    config.sops.secrets.apiKey.radarr.path;
-  #  ];
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.17";
   sonarrDataDir = "/nix/persist/srv/container-service-data/sonarr";
   radarrDataDir = "/nix/persist/srv/container-service-data/radarr";
+  prowlarrDataDir = "/nix/persist/srv/container-service-data/prowlarr";
   jackettDataDir = "/nix/persist/srv/container-service-data/jackett";
   jellyfinDataDir = "/nix/persist/srv/container-service-data/jellyfin";
   mediaDir = "/data/library/media/";
@@ -20,9 +17,11 @@
   ports = {
     sonarr = 8989;
     radarr = 7878;
+    prowlarr = 9696;
     jackett = 9117;
     transmission = 9091;
     jellyfin = 8096;
+    flaresolverr = 8191;
   };
   mkProxy = port: {
     useACMEHost = "jbinette.xyz";
@@ -41,6 +40,7 @@ in
       "sonarr.jbinette.xyz" = mkProxy ports.sonarr;
       "radarr.jbinette.xyz" = mkProxy ports.radarr;
       "jackett.jbinette.xyz" = mkProxy ports.jackett;
+      "prowlarr.jbinette.xyz" = mkProxy ports.prowlarr;
       "trans.jbinette.xyz" = mkProxy ports.transmission;
       "jellyfin.jbinette.xyz" = mkProxy ports.jellyfin;
     };
@@ -48,6 +48,7 @@ in
     systemd.tmpfiles.rules = [
       "d ${sonarrDataDir} - - - -"
       "d ${radarrDataDir} - - - -"
+      "d ${prowlarrDataDir} - - - -"
       "d ${jackettDataDir} - - - -"
       "d ${jellyfinDataDir} - - - -"
     ];
@@ -84,6 +85,10 @@ in
           hostPath = radarrDataDir;
           isReadOnly = false;
         };
+        "/var/lib/private/prowlarr/.config" = {
+          hostPath = prowlarrDataDir;
+          isReadOnly = false;
+        };
         "/var/lib/jackett/.config" = {
           hostPath = jackettDataDir;
           isReadOnly = false;
@@ -97,6 +102,7 @@ in
       config =
         { pkgs, ... }:
         {
+          system.stateVersion = "22.11";
           networking.firewall.enable = false;
           systemd.tmpfiles.rules = [
             "d ${builtins.toString mediaDir + "/movies"} 777 radarr media -"
@@ -109,15 +115,16 @@ in
             allowedTCPPorts = [
               ports.radarr
               ports.sonarr
+              ports.prowlarr
               ports.jackett
               ports.transmission
               ports.jellyfin
+              ports.flaresolverr
             ];
           };
 
           users.groups.media = {
             members = [
-              "radarr"
               "radarr"
               "sonarr"
               "transmission"
@@ -126,20 +133,50 @@ in
             gid = 3000;
           };
 
-          #TODO: readarr service
           services.radarr = {
             enable = true;
             group = "media";
+            settings = {
+              app.theme = "dark";
+              auth = {
+                methode = "forms";
+                required = "enabled";
+              };
+            };
           };
           services.sonarr = {
             enable = true;
             group = "media";
+            settings = {
+              app.theme = "dark";
+              auth = {
+                methode = "forms";
+                required = "enabled";
+              };
+            };
           };
           services.jellyfin = {
             enable = true;
             group = "media";
           };
+          services.prowlarr = { #TODO: Fix Me
+            enable = true;
+            settings = {
+              app.theme = "dark";
+              auth = {
+                methode = "forms";
+                required = "enabled";
+              };
+            };
+          };
+
+          services.flaresolverr.enable = true;
           services.jackett.enable = true;
+
+          systemd.services.transmission.serviceConfig = {
+            RootDirectoryStartOnly = lib.mkForce null;
+            RootDirectory = lib.mkForce null;
+          };
           services.transmission = {
             enable = true;
             group = "media";
@@ -166,20 +203,7 @@ in
               utp-enabled = true;
             };
           };
-
-          virtualisation.oci-containers.containers = {
-            flaresolverr = {
-              image = "flaresolverr:latest";
-              autoStart = true;
-              ports = [
-                "8191:8191"
-              ];
-            };
-          };
-
-          system.stateVersion = "22.11";
         };
     };
   };
 }
-
