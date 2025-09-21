@@ -4,8 +4,10 @@
     ./cloudflare-DDNS.nix
     ./gitea.nix
     ./home-assistant.nix
-    ./nextcloud.nix
+    ./homer.nix
+    ./mediarr.nix
     ./miniflux.nix
+    ./nextcloud.nix
     ./vaultwarden.nix
   ];
 }

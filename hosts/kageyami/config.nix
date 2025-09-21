@@ -7,6 +7,8 @@
       cloudflare-ddns.enable = true;
       gitea.enable = true;
       home-assistant.enable = true;
+      homer.enable = true;
+      mediarr.enable = true;
       miniflux.enable = true;
       nextcloud.enable = true;
       vaultwarden.enable = true;
