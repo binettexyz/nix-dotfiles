@@ -113,7 +113,7 @@
   };
 
   # ---Processor---
-  powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
