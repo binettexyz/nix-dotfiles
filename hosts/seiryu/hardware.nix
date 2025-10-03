@@ -19,8 +19,6 @@
     kernelParams = [
       "mitigations=off"
       "nowatchdog"
-      "video=HDMI-A-1:1920x1080@179.981955"
-      "video=HDMI-A-2:3840x2160@120"
     ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
     initrd = {
@@ -51,7 +49,7 @@
       fsType = "vfat";
     };
     "/nix" = {
-      device = "/dev/disk/by-label/nix";
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
     "/home" = {
@@ -112,22 +110,10 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = [
-      pkgs.amdvlk  # AMD Vulkan driver
-      pkgs.gamescope-wsi
-    ];
-    # For 32 bit applications 
-    extraPackages32 = [
-      pkgs.driversi686Linux.amdvlk # AMD Vulkan Driver
-      pkgs.pkgsi686Linux.gamescope-wsi
-    ];
   };
-  # Some games choose AMDVLK over RADV
-  # which can cause noticeable performance issues (e.g. <50% less FPS in games) 
-  environment.variables.AMD_VULKAN_ICD = "RADV";
 
   # ---Processor---
-  #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
   nix.settings.max-jobs = 16; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

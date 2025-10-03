@@ -20,20 +20,20 @@
         enable = true;
         # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1523177264
         package = pkgs.steam.override {
-          extraPkgs = pkgs': with pkgs'; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib # Provides libstdc++.so.6
-            libkrb5
-            keyutils
-            # Add other libraries as needed
+          extraPkgs = pkgs: [
+            pkgs.xorg.libXcursor
+            pkgs.xorg.libXi
+            pkgs.xorg.libXinerama
+            pkgs.xorg.libXScrnSaver
+            pkgs.libpng
+            pkgs.libpulseaudio
+            pkgs.libvorbis
+            pkgs.stdenv.cc.cc.lib # Provides libstdc++.so.6
+            pkgs.libkrb5
+            pkgs.keyutils
           ];
         };
+        extraPackages = [ pkgs.gamescope pkgs.gamemode pkgs.mangohud ];
         platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
         remotePlay.openFirewall = true;
@@ -50,12 +50,10 @@
         }) {system = pkgs.system;};
       in {
         enable = true;
-        package = pkgs.stable.gamescope;
+        package = pkgs.gamescope;
         capSysNice = false;
         args = [
-          "--rt"
           "--force-grab-cursor"
-          "--expose-wayland"
           "--backend sdl"
           "--nested-unfocused-refresh 30"
         ];
