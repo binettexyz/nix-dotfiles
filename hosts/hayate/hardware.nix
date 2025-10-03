@@ -54,6 +54,11 @@
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
+    "/home/homelab" = {
+      device = "100.110.153.50:/data";
+      fsType = "nfs";
+      options = ["x-systemd.automount" "noauto"];
+    };
   };
 
   swapDevices = [{device = "/dev/disk/by-label/swap";}];
