@@ -64,7 +64,7 @@ in {
             autoAcceptFolders = true;
           };
           "seiryu" = {
-            id = "BO5YFRS-FAJ5PNX-IM7L3F2-MYZNHYW-NLXUQEA-565PTSJ-HEITGFV-YBYANAA";
+            id = "RWDBRPT-5UQFQH6-X5TSCEC-R2EENOZ-2OIO57D-AJZDJTD-ALPDILE-ME2CVQF";
             autoAcceptFolders = true;
           };
           "gyorai" = {
