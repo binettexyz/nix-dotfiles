@@ -28,6 +28,20 @@ in {
     hdd = true;
   };
 
+  ## Mouse Acceleration ##
+  hardware.yeetmouse = {
+    enable = true;
+    sensitivity = 1.65;
+    outputCap = 2.0;
+    rotation.angle = 5.0;
+    mode.synchronous = {
+      gamma = 10.0;
+      smoothness = 0.5;
+      motivity = 4.0;
+      syncspeed = 30.0;
+    };
+  };
+
   ## Networking ##
   networking = {
     interfaces.wlo1.useDHCP = true;

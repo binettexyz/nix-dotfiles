@@ -27,6 +27,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
 
     # --- Minimize duplicate instances of inputs ---
     home.inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +60,7 @@
       hostname = "seiryu";
       extraMods = [
         ./modules/presets/gaming-desktop.nix
+        inputs.yeetmouse.nixosModules.default
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.chaotic.nixosModules.default
       ];
