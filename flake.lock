@@ -422,6 +422,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1756349143,
+        "narHash": "sha256-65oRt2D57ST5Gsa2Q4WCtpgCmKHEWt4+CQ1chWQ3Fos=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c3e5d9f86b3f5678d0d8c9f0b9f081ab1ccdbe05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -510,7 +526,8 @@
         "sops-nix": "sops-nix",
         "stable": "stable",
         "unstable": "unstable",
-        "vintage-story": "vintage-story"
+        "vintage-story": "vintage-story",
+        "yeetmouse": "yeetmouse"
       }
     },
     "rust-overlay": {
@@ -644,6 +661,26 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "7b04f942cf745f4e43ce772a692b68bdd1315524",
+        "type": "github"
+      }
+    },
+    "yeetmouse": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1759709668,
+        "narHash": "sha256-HeB9WHkyFORJbbMfeH+6+2zLfAfD+Pm1pmGapKooEWQ=",
+        "owner": "binettexyz",
+        "repo": "YeetMouse",
+        "rev": "d6b90a4604abf9361f742ef10b1fad90799ca330",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "binettexyz",
+        "repo": "YeetMouse",
         "type": "github"
       }
     }
