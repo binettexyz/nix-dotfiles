@@ -111,6 +111,14 @@
     enable = true;
     enable32Bit = true;
   };
+  #FIXME: Break gamescope
+#  hardware.amdgpu = {
+#    initrd.enable = true;
+#    amdvlk = {
+#      enable = true;
+#      support32Bit.enable = true;
+#    };
+#  };
 
   # ---Processor---
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
