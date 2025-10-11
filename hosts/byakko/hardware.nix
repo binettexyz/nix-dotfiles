@@ -86,7 +86,6 @@
   ];
 
   networking = {
-    hostName = "hayate";
     interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp3s0.useDHCP = true;
     wireless.interfaces = ["wlp3s0"];
