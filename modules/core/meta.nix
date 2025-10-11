@@ -69,6 +69,8 @@ in {
     "steam"
     "steam-unwrapped"
     "vintagestory"
+    "steam-jupiter-unwrapped"
+    "steamdeck-hw-theme"
   ];
 
   # Change build dir to /var/tmp

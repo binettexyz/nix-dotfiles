@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$(hostname)" = "seiryu" ]; then
+if [ "$(hostname)" = "suzaku" ]; then
     {
       sleep 5 && \
       wlr-randr --output HDMI-A-1 --pos 0,0    --mode 1920x1080@179.981995 \

@@ -24,6 +24,7 @@ in {
       inherit system;
       modules =
         [
+          {networking.hostName = hostname;}
           ../hosts/${hostname}/config.nix
           ../hosts/${hostname}/hardware.nix
           ../modules/custom

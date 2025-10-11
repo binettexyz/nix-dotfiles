@@ -26,11 +26,11 @@
   services.syncthing.settings.folders = {
     "gameSaves" = {
       path = "/data/gaming/saves";
-      devices = ["seiryu" "gyorai"];
+      devices = ["suzaku" "seiryu"];
     };
     "notes" = {
       path = "/data/library/notes";
-      devices = ["seiryu" "hayate"];
+      devices = ["suzaku" "byakko"];
     };
   };
 }

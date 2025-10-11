@@ -17,12 +17,12 @@
       pkgs.gcc
       pkgs.gnused
       pkgs.htop
-      pkgs.killall
-      pkgs.ncdu
-      pkgs.ouch # easily compressing and decompressing files and directories
-      pkgs.rsync # replace scp
-      pkgs.wget
-      pkgs.yt-dlp
+#      pkgs.killall
+#      pkgs.ncdu
+#      pkgs.ouch # easily compressing and decompressing files and directories
+#      pkgs.rsync # replace scp
+#      pkgs.wget
+#      pkgs.yt-dlp
 
       pkgs.capitaine-cursors-themed
     ]
@@ -31,6 +31,8 @@
       pkgs.libreoffice
       pkgs.texlive.combined.scheme-full
       pkgs.xfce.thunar
+      # https://wiki.archlinux.org/title/Discord#Mic_volume_keeps_lowering_when_Discord_is_active_using_Wireplumber
+      pkgs.vesktop
     ])
 
     (lib.mkIf osConfig.programs.hyprland.enable [
@@ -70,11 +72,10 @@
       pkgs.dxvk
       pkgs.steamtinkerlaunch
     ])
-    (lib.mkIf (config.modules.hm.gaming.enable && deviceType == "desktop") [
+    (lib.mkIf (config.modules.hm.gaming.enable && lib.elem "highSpec" deviceTags) [
       pkgs.moondeck-buddy
-      pkgs.vesktop
     ])
-    (lib.mkIf (deviceType == "handheld" && lib.elem "gaming" deviceTags) [
+    (lib.mkIf (lib.elem "console" deviceTags && lib.elem "gaming" deviceTags) [
       # Emulation
     ])
   ];

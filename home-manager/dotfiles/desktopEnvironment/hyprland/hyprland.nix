@@ -39,16 +39,16 @@ in {
       ];
 
       monitor =
-        if hostname == "seiryu"
+        if hostname == "suzaku"
         then [
           "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
           "${lib.elemAt output 1},1920x1080@60,0x1080,1"
         ]
-        else if hostname == "kokoro"
+        else if hostname == "kei"
         then [
           "${lib.elemAt output 0},1280x720@60,0x0,1"
         ]
-        else if hostname == "gyorai"
+        else if hostname == "seiryu"
         then [
           "${lib.elemAt output 0},800x1280@60,1920x0,1,transform,3"
           "${lib.elemAt output 1},1920x1080@60,0x0,1"
@@ -143,7 +143,7 @@ in {
           natural_scroll = true;
         };
         touchdevice =
-          if hostname == "gyorai"
+          if hostname == "seiryu"
           then {
             output = "${lib.elemAt output 0}";
             transform = 3;

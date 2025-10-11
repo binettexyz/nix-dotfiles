@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  deviceTags,
   deviceType,
   ...
 }: let
@@ -59,23 +60,23 @@ in {
       settings = {
         gui.theme = "black";
         devices = {
-          "kokoro" = {
+          "kei" = {
             id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
             autoAcceptFolders = true;
           };
-          "seiryu" = {
+          "suzaku" = {
             id = "RWDBRPT-5UQFQH6-X5TSCEC-R2EENOZ-2OIO57D-AJZDJTD-ALPDILE-ME2CVQF";
             autoAcceptFolders = true;
           };
-          "gyorai" = {
+          "seiryu" = {
             id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
             autoAcceptFolders = true;
           };
-          "kageyami" = {
+          "genbu" = {
             id = "3H6X5PB-BXBVXDM-FEI4VNL-EXEPUNM-6VW6TWO-273GWRH-4QA3EYS-OOETRQN";
             autoAcceptFolders = false;
           };
-          "hayate" = {
+          "byakko" = {
             id = "YJDWZRL-XHRLD6X-Z5U5YG4-BQE44GI-PMU4RD4-LPNYCZF-4SUY5RY-2VMFQQK";
             autoAcceptFolders = true;
           };
@@ -107,7 +108,7 @@ in {
 
     # Suspend when power key is pressed
     logind.settings.Login.HandlePowerKey =
-      if deviceType == "handheld"
+      if lib.elem "console" deviceTags
       then "ignore"
       else "suspend";
 

@@ -1,14 +1,14 @@
 keys:
   # Hosts
   - &hosts:
-    - &seiryu age1kjzv2r2xd4hzysv7kcwjkfvahsyq7h95w2kakqa7qlyzuafhpdhszvu5ge
-    - &kageyami age1a8mhamphaxuky344d2f4qc6rmtvkpx9lqn74v56dllwtlhg533wq7drw67
-    - &kokoro age1jrjxtjjzn02jt9sna8hrj45erkzguxh0jn3x66dp0ymq9k2rjptswe9mnz
+    - &suzaku age1kjzv2r2xd4hzysv7kcwjkfvahsyq7h95w2kakqa7qlyzuafhpdhszvu5ge
+    - &genbu age1a8mhamphaxuky344d2f4qc6rmtvkpx9lqn74v56dllwtlhg533wq7drw67
+    - &kei age1jrjxtjjzn02jt9sna8hrj45erkzguxh0jn3x66dp0ymq9k2rjptswe9mnz
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
     - age:
-      - *seiryu
-      - *kageyami
-      - *kokoro
+      - *suzaku
+      - *genbu
+      - *kei

@@ -1,6 +1,6 @@
 {
   imports = [
     ./gaming-desktop.nix
-    ../profiles/gaming/handheld.nix
+    ../profiles/gaming/console.nix
   ];
 }

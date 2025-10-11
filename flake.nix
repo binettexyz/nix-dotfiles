@@ -52,50 +52,46 @@
     inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
   in (recursiveMergeAttrs [
     # ---Defining Systems---
-    # Gaming Desktop (Azure Dragon)
-    (mkNixOSConfig {
+    (mkNixOSConfig { # Steam Machine
       deviceType = "desktop";
-      deviceTags = ["workstation" "gaming" "highSpec"];
+      deviceTags = ["console" "workstation" "gaming" "highSpec"];
       gpuType = "amdgpu";
-      hostname = "seiryu";
+      hostname = "suzaku"; # Zhuque / Vermilion Bird
       extraMods = [
-        ./modules/presets/gaming-desktop.nix
+        ./modules/presets/gaming-console.nix
         inputs.yeetmouse.nixosModules.default
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.chaotic.nixosModules.default
+        inputs.jovian-nixos.nixosModules.jovian
       ];
     })
-    # Steamdeck (Torpedo)
-    (mkNixOSConfig {
+    (mkNixOSConfig { # Steamdeck
       deviceType = "handheld";
-      deviceTags = ["battery" "gaming" "lowSpec" "steamdeck" "touchscreen"];
+      deviceTags = ["battery" "console" "gaming" "lowSpec" "steamdeck" "touchscreen"];
       gpuType = "amdgpu";
-      hostname = "gyorai";
+      hostname = "seiryu"; # Qinglong / Azure Dragon
       extraMods = [
-        ./modules/presets/gaming-handheld.nix
+        ./modules/presets/gaming-console.nix
         inputs.nix-gaming.nixosModules.platformOptimizations
         inputs.jovian-nixos.nixosModules.jovian
         inputs.chaotic.nixosModules.default
       ];
     })
-    # Lenovo Thinkpad t480 (Swift Wind)
-    (mkNixOSConfig {
+    (mkNixOSConfig { # Thinkpad T480
       deviceType = "laptop";
       deviceTags = ["workstation" "dev" "battery" "lowSpec"];
-      hostname = "hayate";
+      hostname = "byakko"; # Baihu / White Tiger
       extraMods = [./modules/presets/laptop.nix];
     })
-    # Lenovo Thinkpad t440p (Heart/Spirit)
-    (mkNixOSConfig {
+    (mkNixOSConfig { # Thinkpad T440
       deviceType = "laptop";
       deviceTags = ["workstation" "battery" "lowSpec"];
-      hostname = "kokoro";
+      hostname = "kei"; # Kui / Legs
       extraMods = [./modules/presets/laptop.nix];
     })
-    # Raspberry Pi 4 (Shadow Darkness)
-    (mkNixOSConfig {
+    (mkNixOSConfig { # Raspberry Pi 4
       deviceType = "server";
-      hostname = "kageyami";
+      hostname = "genbu"; # Xuanwu / Black Turtoise
       system = "aarch64-linux";
       extraMods = [./modules/presets/server.nix];
     })

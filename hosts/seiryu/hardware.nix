@@ -1,38 +1,36 @@
 {
   config,
-  flake,
   lib,
-  modulesPath,
   pkgs,
+  modulesPath,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
-    flake.inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
   ];
 
+  # ---Kernel Stuff---
   boot = {
-    extraModulePackages = [];
     kernelModules = ["kvm-amd"];
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod;
     kernelParams = [
+      "splash" # Needed for plymouth
       "mitigations=off"
       "nowatchdog"
     ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
+    extraModulePackages = [];
     initrd = {
       availableKernelModules = [
+        "nvme"
         "xhci_pci"
-        "ahci" # "nvme"
         "usbhid"
         "usb_storage"
         "sd_mod"
+        "sdhci_pci"
       ];
-      kernelModules = ["amdgpu"];
+      kernelModules = [];
     };
   };
-
   # ---FileSystem---
   fileSystems = {
     "/" = {
@@ -47,81 +45,67 @@
     "/boot" = {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
     "/nix" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nix";
       fsType = "ext4";
     };
     "/home" = {
       device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-    "/home/games/ssd" = {
-      device = "/dev/disk/by-label/ssdGames";
-      fsType = "ext4";
-    };
-    "/home/games/hdd" = {
-      device = "/dev/disk/by-label/hddGames";
-      fsType = "ext4";
-    };
-    "/tmp" = {
-      device = "/home/binette/.cache/tmp";
-      options = ["bind"];
-    };
-    "/home/homelab" = {
-      device = "100.110.153.50:/data";
-      fsType = "nfs";
-      # don't freeze system if mount point not available on boot
-      options = ["x-systemd.automount" "noauto"];
-    };
   };
+  swapDevices = [];
 
-  swapDevices = [
-    # { device = "/swap"; size = 1024 * 8; options = [ "mode=600"]; }
-    { device = "/dev/disk/by-label/swap"; }
-  ];
-
-  environment.persistence = {
-    "/nix/persist" = {
-      hideMounts = true;
-      directories = [
-        "/etc/nixos"
-        "/var/lib"
-        "/var/log"
-        "/root"
-      ];
-    };
+  environment.persistence."/nix/persist" = {
+    hideMounts = true;
+    directories = [
+      "/etc/NetworkManager"
+      "/etc/nixos"
+      "/var/log"
+      "/var/lib"
+      "/root"
+      "/srv"
+    ];
   };
 
   # ---Networking---
   networking = {
-    hostName = "seiryu";
-    useDHCP = lib.mkForce false;
+    hostName = "gyorai";
+    useDHCP = lib.mkForce true;
+    wireless.enable = lib.mkForce false;
+    networkmanager.enable = lib.mkForce true;
   };
 
   # ---Bluetooth---
+  # Enable experimental settings or else theres no bluetooth on boot.
+  # https://discourse.nixos.org/t/bluetooth-not-working/27812
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings = {
+      General = {
+        Name = "gyorai";
+        ControllerMode = "dual";
+        Experimental = "true";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
   };
-  services.blueman.enable = true;
 
-  # ---Video Driver---
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  #FIXME: Break gamescope
-#  hardware.amdgpu = {
-#    initrd.enable = true;
-#    amdvlk = {
-#      enable = true;
-#      support32Bit.enable = true;
-#    };
-#  };
+  hardware.enableAllFirmware = true;
 
-  # ---Processor---
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-  nix.settings.max-jobs = 16; # CPU Treads
+  # ---CPU Stuff---
+  # Dont know yet what the default value is.
+  #powerManagement.cpuFreqGorvernor = lib.mkDefault "performance";
+  nix.settings.max-jobs = 8; # CPU Treads
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
