@@ -16,6 +16,7 @@
     extraModulePackages = [];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [];
+    extraModprobeConfig = "options thinkpad_acpi fan_control=1";
     initrd = {
       availableKernelModules = [
         "xhci_pci"
