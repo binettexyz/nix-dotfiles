@@ -28,11 +28,15 @@
     ]
 
     (lib.mkIf (lib.elem "workstation" deviceTags) [
+      # https://wiki.archlinux.org/title/Discord#Mic_volume_keeps_lowering_when_Discord_is_active_using_Wireplumber
+      pkgs.vesktop
+    ])
+
+    (lib.mkIf (lib.elem "dev" deviceTags) [
       pkgs.libreoffice
       pkgs.texlive.combined.scheme-full
       pkgs.xfce.thunar
-      # https://wiki.archlinux.org/title/Discord#Mic_volume_keeps_lowering_when_Discord_is_active_using_Wireplumber
-      pkgs.vesktop
+      pkgs.calibre
     ])
 
     (lib.mkIf osConfig.programs.hyprland.enable [
