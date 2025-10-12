@@ -54,7 +54,7 @@
     # ---Defining Systems---
     (mkNixOSConfig { # Steam Machine
       deviceType = "desktop";
-      deviceTags = ["console" "workstation" "gaming" "highSpec"];
+      deviceTags = ["console" "gaming" "highSpec"];
       gpuType = "amdgpu";
       hostname = "suzaku"; # Zhuque / Vermilion Bird
       extraMods = [

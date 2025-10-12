@@ -18,7 +18,7 @@
     };
   };
 
-  device.videoOutput = ["eDP-1"];
+  device.videoOutput = ["eDP-1" "HDMI-A-2"];
   device.storage.ssd = true;
 
 }

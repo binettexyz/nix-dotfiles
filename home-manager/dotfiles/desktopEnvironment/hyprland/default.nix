@@ -1,5 +1,6 @@
 {
   imports = [
+    ./customModules.nix
     ./hyprpaper.nix
     ./hyprland.nix
     ./hyprlock.nix

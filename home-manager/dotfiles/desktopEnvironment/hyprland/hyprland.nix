@@ -1,15 +1,11 @@
 {
   config,
-  deviceType,
   deviceTags,
-  hostname,
   lib,
   osConfig,
   pkgs,
   ...
-}: let
-  output = osConfig.device.videoOutput;
-in {
+}: {
   wayland.windowManager.hyprland = {
     enable = osConfig.programs.hyprland.enable;
     settings = {
@@ -38,38 +34,9 @@ in {
         "XCURSOR_SIZE,${toString config.gtk.cursorTheme.size}"
       ];
 
-      monitor =
-        if hostname == "suzaku"
-        then [
-          "${lib.elemAt output 0},1920x1080@179.981995,0x0,1"
-          "${lib.elemAt output 1},1920x1080@60,0x1080,1"
-        ]
-        else if hostname == "kei"
-        then [
-          "${lib.elemAt output 0},1280x720@60,0x0,1"
-        ]
-        else if hostname == "seiryu"
-        then [
-          "${lib.elemAt output 0},800x1280@60,1920x0,1,transform,3"
-          "${lib.elemAt output 1},1920x1080@60,0x0,1"
-        ]
-        else [];
+      monitor = config.modules.hm.hyprland.monitor;
 
-      exec-once = lib.mkMerge [
-        [
-          "waybar &"
-        ]
-        (lib.mkIf (lib.elem "gaming" deviceTags && lib.elem "highSpec" deviceTags) [
-          "steam &"
-          "vesktop &"
-        ])
-        (lib.mkIf (lib.elem "workstation" deviceTags) [
-          "wl-paste --watch cliphist store &"
-        ])
-        (lib.mkIf (deviceType == "desktop") [
-          "qutebrowser &"
-        ])
-      ];
+      exec-once = config.modules.hm.hyprland.exec-once;
 
       general = {
         allow_tearing = false;
@@ -137,18 +104,11 @@ in {
         repeat_rate = 50;
         repeat_delay = 150;
         follow_mouse = 1;
-        sensitivity = -0.8; # -1.0 - 1.0, 0 means no modification.
-        accel_profile = "adaptive"; # "flat" "adaptive"
+        sensitivity = config.modules.hm.hyprland.general.sensitivity;
+        accel_profile = config.modules.hm.hyprland.general.accel_profile;
         touchpad = {
           natural_scroll = true;
         };
-        touchdevice =
-          if hostname == "seiryu"
-          then {
-            output = "${lib.elemAt output 0}";
-            transform = 3;
-          }
-          else {};
       };
 
       gestures = {
@@ -156,10 +116,7 @@ in {
       };
       cursor = {
         hide_on_key_press = true;
-        no_hardware_cursors =
-          if deviceType == "handheld"
-          then true
-          else false;
+        no_hardware_cursors = false;
       };
 
       bind = [
@@ -287,13 +244,8 @@ in {
       };
     };
     
-    plugins = lib.mkMerge [
-      [
-        pkgs.hyprlandPlugins.hyprsplit
-      ]
-      (lib.mkIf (lib.elem "touchscreen" deviceTags) [
-        pkgs.hyprlandPlugins.hyprgrass
-      ])
+    plugins = [
+      pkgs.hyprlandPlugins.hyprsplit
     ];
   };
 }
