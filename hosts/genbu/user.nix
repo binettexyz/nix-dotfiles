@@ -5,4 +5,6 @@
     flake.inputs.nix-colors.homeManagerModule
     flake.inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
+
+  modules.hm.theme.colorScheme = "jmbi";
 }
