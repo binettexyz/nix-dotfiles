@@ -31,7 +31,7 @@
       ./dotfiles/tools/yazi.nix
       (inputs.impermanence + "/home-manager.nix")
       inputs.nix-colors.homeManagerModule
-      inputs.plasma-manager.homeManagerModules.plasma-manager
+      inputs.plasma-manager.homeModules.plasma-manager
     ];
 
   options = {
