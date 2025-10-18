@@ -11,9 +11,7 @@
     laptop.onLowBattery.enable = true;
 
     # Configure hibernation
-    boot.resumeDevice = lib.mkIf (config.swapDevices != []) (
-      lib.mkDefault (builtins.head config.swapDevices).device
-    );
+    #FIXME: boot.resumeDevice = "/dev/disk/by-label/swap";
 
     # Install laptop related packages
     environment.systemPackages = [
@@ -43,19 +41,12 @@
         enable = true;
       };
       # Only suspend on lid closed when laptop is disconnected
-      logind = {
-        # For hibernate to work you need to set
-        # - `boot.resumeDevice` set to the swap partition/partition
-        #   containing swap file
-        # - If using swap file, also set
-        #  `boot.kernelParams = [ "resume_offset=XXX" ]`
-        lidSwitch = lib.mkDefault (
-          if (config.boot.resumeDevice != "")
-          then "suspend-then-hibernate"
-          else "suspend"
-        );
-        lidSwitchDocked = lib.mkDefault "ignore";
-        lidSwitchExternalPower = lib.mkDefault "lock";
+      logind.settings.Login = {
+        HandleLidSwitch = lib.mkDefault "suspend";
+        HandleLidSwitchDocked = lib.mkDefault "ignore";
+        HandleLidSwitchExternalPower = lib.mkDefault "suspend";
+        HandlepowerKey = "lock";
+        HandlePowerKeyLongPress = "suspend";
       };
 
       # Fans Control
@@ -122,6 +113,5 @@
         };
       };
     };
-#    powerManagement.cpuFreqGovernor = "powersave";
   };
 }
