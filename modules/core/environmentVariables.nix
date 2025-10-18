@@ -1,4 +1,4 @@
-{deviceType, ...}: {
+{config, ...}: {
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
@@ -6,7 +6,7 @@
     VISUAL = "nvim";
     TERMINAL = "foot";
     BROWSER =
-      if deviceType == "laptop"
+      if config.modules.device.type == "laptop"
       then "qutebrowser"
       else "librefox";
     READER = "zathura";

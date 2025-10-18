@@ -1,10 +1,7 @@
 {
   config,
-  deviceType,
-  deviceTags,
   lib,
   pkgs,
-  osConfig,
   ...
 }: {
   config.home.packages = lib.mkMerge [
@@ -27,19 +24,19 @@
       pkgs.capitaine-cursors-themed
     ]
 
-    (lib.mkIf (lib.elem "workstation" deviceTags) [
+    (lib.mkIf (lib.elem "workstation" config.modules.device.tags) [
       # https://wiki.archlinux.org/title/Discord#Mic_volume_keeps_lowering_when_Discord_is_active_using_Wireplumber
       pkgs.vesktop
     ])
 
-    (lib.mkIf (lib.elem "dev" deviceTags) [
+    (lib.mkIf (lib.elem "dev" config.modules.device.tags) [
       pkgs.libreoffice
       pkgs.texlive.combined.scheme-full
       pkgs.xfce.thunar
       pkgs.calibre
     ])
 
-    (lib.mkIf osConfig.programs.hyprland.enable [
+    (lib.mkIf config.wayland.windowManager.hyprland.enable [
       pkgs.wf-recorder
       pkgs.grim
       pkgs.slurp
@@ -58,7 +55,7 @@
       pkgs.zathura
     ])
 
-    (lib.mkIf (lib.elem "gaming" deviceTags) [
+    (lib.mkIf (lib.elem "gaming" config.modules.device.tags) [
       # Games
       #pkgs.gzdoom # Doom
       #pkgs.openmw # TES: Morrowind
@@ -76,10 +73,10 @@
       pkgs.dxvk
       pkgs.steamtinkerlaunch
     ])
-    (lib.mkIf (config.modules.hm.gaming.enable && lib.elem "highSpec" deviceTags) [
+    (lib.mkIf (config.modules.hm.gaming.enable && lib.elem "highSpec" config.modules.device.tags) [
       pkgs.moondeck-buddy
     ])
-    (lib.mkIf (lib.elem "console" deviceTags && lib.elem "gaming" deviceTags) [
+    (lib.mkIf (lib.elem "console" config.modules.device.tags && lib.elem "gaming" config.modules.device.tags) [
       # Emulation
     ])
   ];

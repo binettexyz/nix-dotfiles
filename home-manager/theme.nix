@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{config, lib, pkgs, ...}: {
+
+  config = lib.mkIf (config.modules.device.type != "server") {
   # Gtk
   gtk = {
     enable = true;
@@ -51,4 +53,6 @@
   #    enable = true;
   #    platformTheme.name = "gtk";
   #  };
+  
+  };
 }

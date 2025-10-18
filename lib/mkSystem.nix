@@ -11,10 +11,7 @@
 in {
   # --Function to configure a nixosSystem--
   mkNixOSConfig = {
-    deviceType,
-    deviceTags ? [],
     hostname,
-    gpuType ? "",
     system ? "x86_64-linux",
     nixosSystem ? nixpkgs.lib.nixosSystem,
     extraMods ? [],
@@ -36,9 +33,6 @@ in {
       specialArgs = {
         inherit system;
         flake = self;
-        deviceType = deviceType;
-        deviceTags = deviceTags;
-        gpuType = gpuType;
         hostname = hostname;
       };
     };
@@ -49,31 +43,25 @@ in {
     hostname,
     username ? "binette",
     homePath ? "/home",
-    configuration ? ../home-manager/desktop.nix,
-    deviceType,
+    homeDirectory ? "${homePath}/${username}",
+    configuration ? ../hosts/${hostname}/user.nix,
     system ? "x86_64-linux",
     homeManagerConfiguration ? home.lib.homeManagerConfiguration,
   }: let
     pkgs = import nixpkgs {inherit system;};
     homeDirectory = "${homePath}/${username}";
   in {
-    homeConfigurations.${hostname} = homeManagerConfiguration rec {
+    homeConfigurations.${hostname} = homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        (
-          {...}: {
-            home = {inherit username homeDirectory;};
-            imports = [configuration];
-          }
-        )
+        ({ ... }: {
+            home = { inherit username homeDirectory; };
+            imports = [ configuration ];
+          })
       ];
       extraSpecialArgs = {
         inherit inputs system;
-        flake = self;
-        #super = {
-        #device.type = deviceType;
-        #meta.username = username;
-        #};
+        hostname = hostname;
       };
     };
 

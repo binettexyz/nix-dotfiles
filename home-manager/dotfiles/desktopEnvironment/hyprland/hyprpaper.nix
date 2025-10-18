@@ -2,7 +2,6 @@
   config,
   flake,
   lib,
-  osConfig,
   ...
 }: {
   options.modules.hm.theme.wallpaper = lib.mkOption {
@@ -13,7 +12,7 @@
 
   config = {
     services.hyprpaper = {
-      enable = osConfig.programs.hyprland.enable;
+      enable = config.wayland.windowManager.hyprland.enable;
       settings = let
         getWallpaper = {
           colorScheme,

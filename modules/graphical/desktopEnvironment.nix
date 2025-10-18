@@ -1,7 +1,5 @@
 {
   config,
-  deviceTags,
-  deviceType,
   flake,
   lib,
   pkgs,
@@ -32,11 +30,11 @@ in {
       services.greetd.settings = let
         initial_session = {
           user =
-            if (config.modules.gaming.enable && lib.elem "console" deviceTags)
+            if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags)
             then "root"
             else username;
           command =
-            if (config.modules.gaming.enable && lib.elem "console" deviceTags)
+            if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags)
             then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
             else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
         };

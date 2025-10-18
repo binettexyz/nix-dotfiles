@@ -1,10 +1,9 @@
 {
-  osConfig,
   pkgs,
   ...
 }: {
   programs.plasma = {
-    enable = osConfig.services.desktopManager.plasma6.enable;
+    enable = true;
     overrideConfig = true;
     workspace = {
       clickItemTo = "open";

@@ -1,5 +1,4 @@
 {
-  deviceType,
   flake,
   pkgs,
   lib,

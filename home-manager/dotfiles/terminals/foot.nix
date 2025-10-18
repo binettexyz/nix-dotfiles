@@ -1,13 +1,12 @@
 {
   config,
-  deviceTags,
   lib,
   pkgs,
   ...
 }: {
   programs.foot = {
     enable =
-      if lib.elem "workstation" deviceTags
+      if lib.elem "workstation" config.modules.device.tags
       then true
       else false;
     package = pkgs.foot;

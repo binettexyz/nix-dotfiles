@@ -1,12 +1,11 @@
 {
   config,
   lib,
-  deviceType,
   ...
 }: {
   imports = [./containers];
 
-  config = lib.mkIf (deviceType == "server") {
+  config = lib.mkIf (config.modules.device.type == "server") {
     # ---Network File System---
     services.nfs.server = {
       enable = true;

@@ -1,6 +1,4 @@
 {
-  deviceTags,
-  deviceType,
   flake,
   pkgs,
   lib,
@@ -9,7 +7,7 @@
 }: let
   inherit (config.meta) username;
 in {
-  config = lib.mkIf (config.modules.gaming.enable && lib.elem "console" deviceTags) {
+  config = lib.mkIf (config.modules.gaming.enable && lib.elem "console" config.device.tags) {
     jovian.steam = {
       enable = true;
       user = username;

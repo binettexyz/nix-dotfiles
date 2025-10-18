@@ -1,22 +1,19 @@
 {
   config,
-  deviceTags,
-  deviceType,
   lib,
-  osConfig,
   ...
 }: {
   programs.waybar = {
-    enable = osConfig.programs.hyprland.enable;
+    enable = config.wayland.windowManager.hyprland.enable;
     systemd.enable = false;
     settings = {
       mainBar = {
         layer = "top";
         position = "top";
         margin =
-          if deviceType == "desktop"
+          if config.modules.device.type == "desktop"
           then "8px, 8px, 0px, 8px"
-          else if deviceType == "laptop"
+          else if config.modules.device.type == "laptop"
           then "4px, 4px, 0px, 4px"
           else "";
         reload_style_on_change = true;
@@ -41,7 +38,7 @@
             "hyprland/workspaces"
           ]
           ++ (
-            if (lib.elem "battery" deviceTags)
+            if (lib.elem "battery" config.modules.device.tags)
             then [
               "battery"
               "battery#bat1"

@@ -1,13 +1,11 @@
 {
   config,
-  deviceTags,
   lib,
-  osConfig,
   pkgs,
   ...
 }: {
   wayland.windowManager.hyprland = {
-    enable = osConfig.programs.hyprland.enable;
+    enable = true;
     settings = {
       "$mod1" = "SUPER";
       "$mod2" = "SUPERSHIFT";
@@ -65,7 +63,7 @@
 
       animations = {
         enabled =
-          if lib.elem "lowSpec" deviceTags
+          if lib.elem "lowSpec" config.modules.device.tags
           then false
           else true;
         bezier = [

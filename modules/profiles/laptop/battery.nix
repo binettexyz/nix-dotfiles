@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  deviceType,
   ...
 }: let
   cfg = config.laptop.onLowBattery;
@@ -25,7 +24,7 @@ in {
     };
   };
 
-  config = lib.mkIf (deviceType == "laptop") {
+  config = lib.mkIf (config.modules.device.type == "laptop") {
     services.udev = lib.mkIf cfg.enable {
       extraRules = lib.concatStrings [
         ''SUBSYSTEM=="power_supply", ''

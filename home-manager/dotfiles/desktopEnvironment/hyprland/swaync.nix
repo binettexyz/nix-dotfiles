@@ -1,6 +1,6 @@
-{osConfig, ...}: {
+{config, ...}: {
   services.swaync = {
-    enable = osConfig.programs.hyprland.enable;
+    enable = config.wayland.windowManager.hyprland.enable;
     #settings = {};
     style = ''
       * {

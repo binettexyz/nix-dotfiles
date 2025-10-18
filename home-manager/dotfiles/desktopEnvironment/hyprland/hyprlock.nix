@@ -1,5 +1,5 @@
-{osConfig, ...}: {
+{config, ...}: {
   programs.hyprlock = {
-    enable = osConfig.programs.hyprland.enable;
+    enable = config.wayland.windowManager.hyprland.enable;
   };
 }

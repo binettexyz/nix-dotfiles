@@ -1,12 +1,16 @@
 {
-  deviceType,
+  config,
+  inputs,
   lib,
   ...
 }: {
   imports =
     [
-      ./meta
       ../modules/custom/colorSchemes
+      ../modules/custom
+      ../overlays
+      ./meta
+      ./theme.nix
       ./packages.nix
       ./pc.nix
       ./dotfiles/browsers/chromium.nix
@@ -25,8 +29,10 @@
       ./dotfiles/tools/ssh.nix
       ./dotfiles/tools/tmux.nix
       ./dotfiles/tools/yazi.nix
-    ]
-    ++ lib.optional (deviceType != "server") ./theme.nix;
+      (inputs.impermanence + "/home-manager.nix")
+      inputs.nix-colors.homeManagerModule
+      inputs.plasma-manager.homeManagerModules.plasma-manager
+    ];
 
   options = {
     modules.hm.gaming = {

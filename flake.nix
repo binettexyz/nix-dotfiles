@@ -53,9 +53,6 @@
   in (recursiveMergeAttrs [
     # ---Defining Systems---
     (mkNixOSConfig { # Steam Machine
-      deviceType = "desktop";
-      deviceTags = ["console" "gaming" "highSpec" "workstation"];
-      gpuType = "amdgpu";
       hostname = "suzaku"; # Zhuque / Vermilion Bird
       extraMods = [
         ./modules/presets/gaming-console.nix
@@ -66,9 +63,6 @@
       ];
     })
     (mkNixOSConfig { # Steamdeck
-      deviceType = "handheld";
-      deviceTags = ["battery" "console" "gaming" "lowSpec" "steamdeck" "touchscreen"];
-      gpuType = "amdgpu";
       hostname = "seiryu"; # Qinglong / Azure Dragon
       extraMods = [
         ./modules/presets/gaming-console.nix
@@ -78,19 +72,14 @@
       ];
     })
     (mkNixOSConfig { # Thinkpad T480
-      deviceType = "laptop";
-      deviceTags = ["workstation" "dev" "battery" "lowSpec"];
       hostname = "byakko"; # Baihu / White Tiger
       extraMods = [./modules/presets/laptop.nix];
     })
     (mkNixOSConfig { # Thinkpad T440
-      deviceType = "laptop";
-      deviceTags = ["workstation" "battery" "lowSpec"];
       hostname = "kei"; # Kui / Legs
       extraMods = [./modules/presets/laptop.nix];
     })
     (mkNixOSConfig { # Raspberry Pi 4
-      deviceType = "server";
       hostname = "genbu"; # Xuanwu / Black Turtoise
       system = "aarch64-linux";
       extraMods = [./modules/presets/server.nix];
@@ -98,8 +87,7 @@
 
     # ---Defining Home-Manager---
     (mkHomeConfig {
-      deviceType = "gaming-desktop";
-      hostname = "seiryu";
+      hostname = "linux";
     })
   ]);
 }

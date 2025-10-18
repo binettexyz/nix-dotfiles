@@ -36,10 +36,7 @@ in {
       useUserPackages = true;
       users.${config.modules.system.home.username} = ../../hosts/${hostname}/user.nix;
       extraSpecialArgs = {
-        inherit flake system;
-        super = config;
-        deviceType = deviceType;
-        deviceTags = deviceTags;
+        inherit inputs system;
         hostname = hostname;
       };
     };

@@ -1,6 +1,6 @@
-{deviceType, lib, osConfig, ...}: {
+{config, lib, ...}: {
   services.hypridle = {
-    enable = osConfig.programs.hyprland.enable;
+    enable = config.wayland.windowManager.hyprland.enable;
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
@@ -19,7 +19,7 @@
             on-timeout = "loginctl lock-session";
           }
         ]
-        (lib.mkIf (deviceType == "laptop") [
+        (lib.mkIf (config.modules.device.type == "laptop") [
           {
             timeout = 120;
             on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";

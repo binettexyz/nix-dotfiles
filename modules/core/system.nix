@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  deviceTags,
-  deviceType,
   ...
 }: let
   inherit (config.meta) username;
@@ -24,15 +22,15 @@ in {
       "vm.swappiness" = 10;
     };
     # --Silent boot--
-    initrd.verbose = false;
-    consoleLogLevel = 0;
-    kernelParams = [
-      "quiet"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
+#    initrd.verbose = false;
+#    consoleLogLevel = 0;
+#    kernelParams = [
+#      "quiet"
+#      "loglevel=3"
+#      "rd.systemd.show_status=false"
+#      "rd.udev.log_level=3"
+#      "udev.log_priority=3"
+#    ];
   };
   # Get rid of defaults packages
   environment.defaultPackages = [];
@@ -107,10 +105,7 @@ in {
     tumbler.enable = true;
 
     # Suspend when power key is pressed
-    logind.settings.Login.HandlePowerKey =
-      if lib.elem "console" deviceTags
-      then "ignore"
-      else "suspend";
+    logind.settings.Login.HandlePowerKey = lib.mkDefault "ignore";
 
     # Enable NTP
     timesyncd.enable = lib.mkDefault true;

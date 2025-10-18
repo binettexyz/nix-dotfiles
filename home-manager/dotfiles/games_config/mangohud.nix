@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  xdg.configFile."MangoHud/horizontal_minimal.conf".text = lib.mkIf (lib.elem "gaming" deviceTags) ''
+  xdg.configFile."MangoHud/horizontal_minimal.conf".text = lib.mkIf (lib.elem "gaming" config.device.tags) ''
     fps
     cpu_util
     gpu_util

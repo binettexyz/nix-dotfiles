@@ -2,12 +2,11 @@
   config,
   pkgs,
   lib,
-  deviceType,
   ...
 }: {
   imports = [./battery.nix];
 
-  config = lib.mkIf (deviceType == "laptop") {
+  config = lib.mkIf (config.modules.device.type == "laptop") {
     laptop.onLowBattery.enable = true;
 
     # Configure hibernation
