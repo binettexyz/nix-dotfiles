@@ -44,7 +44,7 @@ in {
     username ? "binette",
     homePath ? "/home",
     homeDirectory ? "${homePath}/${username}",
-    configuration ? ../hosts/${hostname}/user.nix,
+    configuration ? ../home-manager/default.nix,
     system ? "x86_64-linux",
     homeManagerConfiguration ? home.lib.homeManagerConfiguration,
   }: let
