@@ -8,7 +8,6 @@
     [
       ../modules/custom/colorSchemes
       ../modules/custom
-      ../overlays
       ./meta
       ./theme.nix
       ./packages.nix

@@ -75,7 +75,6 @@
 
   # ---Networking---
   networking = {
-    hostName = "gyorai";
     useDHCP = lib.mkForce true;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
@@ -87,19 +86,7 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings = {
-      General = {
-        Name = "gyorai";
-        ControllerMode = "dual";
-        Experimental = "true";
-      };
-      Policy = {
-        AutoEnable = "true";
-      };
-    };
   };
-
-  hardware.enableAllFirmware = true;
 
   # ---CPU Stuff---
   # Dont know yet what the default value is.

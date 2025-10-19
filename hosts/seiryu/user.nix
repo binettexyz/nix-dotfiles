@@ -1,20 +1,22 @@
-{
-  flake,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ../../home-manager
-    flake.inputs.plasma-manager.homeModules.plasma-manager
-    flake.inputs.nix-colors.homeManagerModule
   ];
 
-  modules.hm = {
-    gaming.enable = true;
-    browser.librewolf.enable = true;
-    theme = {
-      colorScheme = "gruvbox";
-      wallpaper = "003";
+  modules = {
+    device = {
+      videoOutput = ["eDP-1" "DP-3"];
+      type = "handheld";
+      tags = ["battery" "gaming" "lowSpec" "steamdeck" "touchscreen"];
+    };
+    hm = {
+      gaming.enable = true;
+      browser.librewolf.enable = true;
+      theme = {
+        colorScheme = "gruvbox";
+        wallpaper = "003";
+      };
     };
   };
+
 }

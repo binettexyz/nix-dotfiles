@@ -1,15 +1,17 @@
-{
-  lib,
-  flake,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   # ---Custom modules---
   modules = {
     bootloader = {
       default = "grub";
       asRemovable = true;
       useOSProber = false;
+    };
+    device = {
+      videoOutput = ["eDP-1" "DP-3"];
+      hasBattery = true;
+      storage.ssd = true;
+      type = "handheld";
+      tags = ["battery" "gaming" "lowSpec" "steamdeck" "touchscreen"];
     };
     gaming = {
       enable = true;
@@ -21,8 +23,6 @@
       home.enable = true;
     };
   };
-  device.videoOutput = ["eDP-1" "DP-3"];
-  device.hasBattery = true;
 
   # ---Networking---
   networking = {
