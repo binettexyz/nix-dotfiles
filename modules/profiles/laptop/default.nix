@@ -43,9 +43,8 @@
       logind.settings.Login = {
         HandleLidSwitch = lib.mkDefault "suspend";
         HandleLidSwitchDocked = lib.mkDefault "ignore";
-        HandleLidSwitchExternalPower = lib.mkDefault "suspend";
-        HandlepowerKey = "lock";
-        HandlePowerKeyLongPress = "suspend";
+        HandleLidSwitchExternalPower = lib.mkDefault "ignore";
+        HandlePowerKey = "suspend";
       };
 
       # Fans Control
