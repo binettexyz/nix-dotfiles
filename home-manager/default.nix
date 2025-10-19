@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  flake,
   lib,
   ...
 }: {
@@ -28,9 +28,9 @@
       ./theme.nix
       ../modules/custom
       ../modules/custom/colorScheme.nix
-      (inputs.impermanence + "/home-manager.nix")
-      inputs.nix-colors.homeManagerModule
-      inputs.plasma-manager.homeModules.plasma-manager
+      (flake.inputs.impermanence + "/home-manager.nix")
+      flake.inputs.nix-colors.homeManagerModule
+      flake.inputs.plasma-manager.homeModules.plasma-manager
     ];
 
   options = {

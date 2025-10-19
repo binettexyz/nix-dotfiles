@@ -4,11 +4,8 @@
   lib,
   flake,
   system,
-  deviceType,
-  deviceTags,
   ...
 }: let
-  inherit (flake) inputs;
   cfg = config.modules.system.home;
 in {
   options.modules.system.home = {
@@ -30,7 +27,7 @@ in {
       useUserPackages = true;
       users.${config.modules.system.home.username} = ../../hosts/${hostname}/user.nix;
       extraSpecialArgs = {
-        inherit flake inputs system;
+        inherit flake system;
         hostname = hostname;
       };
     };

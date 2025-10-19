@@ -3,12 +3,13 @@
   pkgs,
   flake,
   ...
-}: let
-  inherit (flake) inputs;
-in {
+}: {
+  imports = [
+    ../custom/default.nix
+    ../../overlays
+  ];
   # Add some Nix related packages
   environment.systemPackages = [
-    #pkgs.nixos-cleanup
     pkgs.nix-rebuild
     pkgs.screenshot
     pkgs.sysact
@@ -17,7 +18,6 @@ in {
   ];
 
   programs = {
-    zsh.enable = true;
     fish.enable = true;
     git = {
       enable = true;
@@ -54,8 +54,8 @@ in {
     daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "idle";
     nixPath = [
-      "nixpkgs=${inputs.unstable}"
-      "nixpkgs-unstable=${inputs.unstable}"
+      "nixpkgs=${flake.inputs.unstable}"
+      "nixpkgs-unstable=${flake.inputs.unstable}"
     ];
     extraOptions = ''
       keep-outputs = true
