@@ -11,12 +11,6 @@
   inherit (flake) inputs;
   cfg = config.modules.system.home;
 in {
-  # ---Import Modules/Config---
-  imports = [
-    ../custom/meta.nix
-    flake.inputs.home.nixosModules.home-manager
-  ];
-
   options.modules.system.home = {
     enable =
       lib.mkEnableOption "home config"

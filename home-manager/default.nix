@@ -6,12 +6,6 @@
 }: {
   imports =
     [
-      ../modules/custom/colorSchemes
-      ../modules/custom
-      ./meta
-      ./theme.nix
-      ./packages.nix
-      ./pc.nix
       ./dotfiles/browsers/chromium.nix
       ./dotfiles/browsers/librewolf.nix
       ./dotfiles/browsers/qutebrowser
@@ -28,6 +22,12 @@
       ./dotfiles/tools/ssh.nix
       ./dotfiles/tools/tmux.nix
       ./dotfiles/tools/yazi.nix
+      ./meta
+      ./packages.nix
+      ./pc.nix
+      ./theme.nix
+      ../modules/custom
+      ../modules/custom/colorScheme.nix
       (inputs.impermanence + "/home-manager.nix")
       inputs.nix-colors.homeManagerModule
       inputs.plasma-manager.homeModules.plasma-manager
