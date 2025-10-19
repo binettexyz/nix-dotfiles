@@ -59,6 +59,12 @@
           passes = 1;
           vibrancy = 0.1696;
         };
+        shadow = {
+          enabled = 
+          if lib.elem "lowSpec" config.modules.device.tags
+          then false
+          else true;
+        };
       };
 
       animations = {
@@ -84,13 +90,18 @@
       };
 
       dwindle = {
-        pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        pseudotile = true;
         preserve_split = true; # You probably want this
       };
 
       misc = {
-        force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
+        # Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = 0;
+        # If true disables the random hyprland logo / anime girl background.
+        disable_hyprland_logo = true;
+        # Lower the amount of sent frames when nothing is happening on-screen.
+        vfr = true;
       };
 
       input = {
@@ -206,6 +217,13 @@
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
         ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+      ];
+
+      bindl = [
+        # trigger when the switch is turning off
+        ",switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, 1920x1080, 0x0, 1'"
+        # trigger when the switch is turning on
+        ",switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable'"
       ];
 
       bindr = [
