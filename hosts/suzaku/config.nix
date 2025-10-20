@@ -2,9 +2,7 @@
   config,
   flake,
   ...
-}: let
-  inherit (config.meta) username;
-in {
+}: {
 
   ## Custom modules ##
   modules = {
@@ -13,6 +11,15 @@ in {
       asRemovable = false;
       useOSProber = false;
     };
+    device = {
+      storage = {
+        hdd = true;
+        ssd = true;
+      };
+      tags = [ "workstation" "console" "gaming" "highSpec" ];
+      type = "desktop";
+      videoOutput = ["HDMI-A-1" "HDMI-A-2"];
+    };
     gaming.enable = true;
     system = {
       audio.enable = true;
@@ -20,12 +27,6 @@ in {
       desktopEnvironment = "plasma";
       home.enable = true;
     };
-  };
-
-  device.videoOutput = ["HDMI-A-1" "HDMI-A-2"];
-  device.storage = {
-    ssd = true;
-    hdd = true;
   };
 
   ## Mouse Acceleration ##

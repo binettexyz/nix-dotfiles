@@ -85,6 +85,7 @@
     "/nix/persist" = {
       hideMounts = true;
       directories = [
+        "/etc/networkManager"
         "/etc/nixos"
         "/var/lib"
         "/var/log"
