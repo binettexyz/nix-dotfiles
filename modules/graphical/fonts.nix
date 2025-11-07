@@ -19,7 +19,7 @@
       packages = [
         pkgs.lmodern
         pkgs.font-awesome
-        pkgs.noto-fonts-emoji
+        pkgs.noto-fonts-color-emoji
         pkgs.material-design-icons
         pkgs.nerd-fonts.fantasque-sans-mono
         pkgs.nerd-fonts.jetbrains-mono

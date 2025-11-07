@@ -11,9 +11,6 @@
 
   config = lib.mkMerge [
     (lib.mkIf config.modules.gaming.enable {
-      # Kernel
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
-
       # ---Enabling Steam---
       programs.steam = {
         enable = true;

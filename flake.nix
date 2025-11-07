@@ -35,7 +35,6 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    jovian-nixos.follows = "chaotic/jovian";
   };
 
   # ---System's Output---
