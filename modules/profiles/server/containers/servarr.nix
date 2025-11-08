@@ -57,7 +57,6 @@ in
     containers.servarr = {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br0";
       inherit localAddress hostAddress;
 
       bindMounts = {
@@ -179,6 +178,7 @@ in
           };
           services.transmission = {
             enable = true;
+            package = pkgs.transmission_4;
             group = "media";
             settings = {
               blocklist-enabled = true;

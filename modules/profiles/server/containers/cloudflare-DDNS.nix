@@ -39,7 +39,6 @@ in {
     containers.cloudflare-ddns = {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br0";
       inherit localAddress hostAddress;
 
       bindMounts = {
@@ -90,7 +89,7 @@ in {
             	done
             fi
             if [ -n "''${CLOUDFLARE_A_PRIVATE_RECORD_IDS:-}" ]; then
-            	addr=${config.device.network.ipv4.tailscale}
+            	addr=${config.modules.device.network.ipv4.tailscale}
             	for rid in $CLOUDFLARE_A_PRIVATE_RECORD_IDS; do
             		echo "''${rid} A ''${addr}"
             		curl -sS \

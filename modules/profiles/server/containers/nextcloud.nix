@@ -33,7 +33,6 @@ in {
     in {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br0";
       inherit localAddress hostAddress;
 
       bindMounts = {
@@ -78,7 +77,7 @@ in {
           };
           extraApps = {
             inherit
-              (pkgs.nextcloud30Packages.apps)
+              (pkgs.nextcloud31Packages.apps)
               news
               calendar
               tasks

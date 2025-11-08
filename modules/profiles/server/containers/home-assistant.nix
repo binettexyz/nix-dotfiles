@@ -29,7 +29,6 @@ in {
     containers.home-assistant = {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br0";
       inherit localAddress hostAddress;
 
       config = {pkgs, ...}: {

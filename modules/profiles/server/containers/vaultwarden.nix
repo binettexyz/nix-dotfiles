@@ -49,7 +49,6 @@ in
       in {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br0";
       inherit localAddress hostAddress;
 
       bindMounts = {

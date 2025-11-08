@@ -84,50 +84,13 @@
       };
     };
 
- 
-    # Bridge for Ethernet
-#    networking = {
-#      firewall.allowedTCPPorts = [80 443];
-#      useDHCP = false;
-#      nat = {
-#        enable = true;
-#        internalInterfaces = ["br0"];
-#        externalInterface = "eth0";
-#      };
-#      bridges.br0.interfaces = ["eth0"]; # Adjust interface accordingly
-#      # Set bridge-ip static
-#      # If bridge stop working and theres no internet inside containers,
-#      # change address to "192.168.2.100", rebuild, reboot and put it back to 192.168.100.1.
-#      interfaces."br0".ipv4.addresses = [
-#        {
-#          address = "192.168.100.1";
-#          prefixLength = 24;
-#        }
-#      ];
-#    };
-
-    # Bridge for WIFI
     networking = {
       firewall.allowedTCPPorts = [80 443];
-      useDHCP = false;
-    
-      # NAT: route container traffic out through WiFi
       nat = {
         enable = true;
-        internalInterfaces = [ "br0" ];
-        externalInterface = "wlan0"; # use WiFi instead of eth0
+        internalInterfaces = [ "ve-+" ];
+        externalInterface = "wlan0";
       };
-    
-      # Create a bridge, but don’t enslave wlan0 (WiFi can't be bridged)
-      bridges.br0.interfaces = [ ]; # empty list
-    
-      # Give the bridge a static IP
-      interfaces."br0".ipv4.addresses = [
-        {
-          address = "192.168.100.1";
-          prefixLength = 24;
-        }
-      ];
     };
   };
 }
