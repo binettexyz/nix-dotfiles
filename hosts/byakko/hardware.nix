@@ -78,12 +78,6 @@
   # ---Graphic Card---
   services.xserver.videoDrivers = ["modesetting"];
   hardware.enableRedistributableFirmware = true;
-  hardware.graphics.extraPackages = [
-    pkgs.vaapiIntel
-    pkgs.vaapiVdpau
-    pkgs.libvdpau-va-gl
-    pkgs.intel-media-driver
-  ];
 
   networking = {
     interfaces.enp0s31f6.useDHCP = true;
