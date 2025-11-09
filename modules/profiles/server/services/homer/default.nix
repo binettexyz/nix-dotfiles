@@ -1,11 +1,10 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.modules.server.containers.homer;
-  hostAddress = "192.168.100.1";
-  localAddress = "192.168.100.18";
+  service = "homer";
+  cfg = config.modules.homelab.services.${service};
+  hl = config.modules.homelab;
   logoDir = "https://raw.githubusercontent.com/binettexyz/nix-dotfiles/master/modules/profiles/server/containers/assets/homer-icons";
-  ports.homer = 80;
   cssFile = builtins.toFile "custom.css" ''
     @charset "UTF-8";
     @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
@@ -90,17 +89,34 @@ let
 in
 {
 
-  options.modules.server.containers.homer.enable = lib.mkOption {
-    description = "Enable Homer Dashboard";
-    default = false;
+  options.modules.homelab.services.${service} = {
+    enable = lib.mkEnableOption "Enable ${service}";
+    address = {
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.1";
+      };
+      local = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.18";
+      };
+    };
+    port = lib.mkOption {
+      type = lib.types.int;
+      default = 80;
+    };
+    url = lib.mkOption {
+      type = lib.types.str;
+      default = "home.${hl.baseDomain}";
+    };
   };
 
   config = mkIf (cfg.enable) { 
-    services.nginx.virtualHosts."home.jbinette.xyz" = {
-      useACMEHost = "jbinette.xyz";
+    services.nginx.virtualHosts.${cfg.url} = {
+      useACMEHost = hl.baseDomain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${localAddress}";
+        proxyPass = "http://${cfg.address.local}";
       };
       locations."= /assets/custom.css" = {
         alias = cssFile;
@@ -110,18 +126,19 @@ in
     containers.homer = {
       autoStart = true;
       privateNetwork = true;
-      inherit localAddress hostAddress;
+      localAddress = cfg.address.local;
+      hostAddress = cfg.address.host;
 
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
-        networking.firewall.allowedTCPPorts = [ports.homer];
+        networking.firewall.allowedTCPPorts = [cfg.port];
 
-        services.homer = {
+        services.${service} = {
           enable = true;
           virtualHost.nginx.enable = true;
-          virtualHost.domain = "home.jbinette.xyz";
+          virtualHost.domain = cfg.url;
           settings = {
-            title = "kageyami@homelab";
+            title = "genbu@homelab";
             subtitle = "Self Hosted Services";
             logo = logoDir + "/gruvbox_nwixowos.png";
         
@@ -181,22 +198,22 @@ in
                   {
                     name = "Radarr";
                     logo = logoDir + "/radarr.png";
-                    url = "http://radarr.jbinette.xyz";
+                    url = "http://radarr.${hl.baseDomain}";
                   }
                   {
                     name = "Sonarr";
                     logo = logoDir + "/sonarr.png";
-                    url = "http://sonarr.jbinette.xyz";
+                    url = "http://sonarr.${hl.baseDomain}";
                   }
                   {
                     name = "Jellyfin";
                     logo = logoDir + "/jellyfin.png";
-                    url = "http://jellyfin.jbinette.xyz";
+                    url = "http://jellyfin.${hl.baseDomain}";
                   }
                   {
                     name = "Transmission";
                     logo = logoDir + "/transmission.png";
-                    url = "http://trans.jbinette.xyz";
+                    url = "http://trans.${hl.baseDomain}";
                   }
                 ];
               }
@@ -208,27 +225,27 @@ in
                   {
                     name = "Actual Budget";
                     logo = logoDir + "/actual.png";
-                    url = "http://budget.jbinette.xyz";
+                    url = "http://budget.${hl.baseDomain}";
                   }
                   {
                     name = "Gitea";
                     logo = logoDir + "/gitea.png";
-                    url = "http://git.jbinette.xyz";
+                    url = "http://git.${hl.baseDomain}";
                   }
                   {
                     name = "Miniflux";
                     logo = logoDir + "/miniflux.png";
-                    url = "http://feed.jbinette.xyz";
+                    url = "http://feed.${hl.baseDomain}";
                   }
                   {
                     name = "Nextcloud";
                     logo = logoDir + "/nextcloud.png";
-                    url = "http://cloud.jbinette.xyz";
+                    url = "http://cloud.${hl.baseDomain}";
                   }
                   {
                     name = "Vaultwarden";
                     logo = logoDir + "/bitwarden.png";
-                    url = "http://vault.jbinette.xyz";
+                    url = "http://vault.${hl.baseDomain}";
                   }
                 ];
               }
@@ -240,12 +257,12 @@ in
                   {
                     name = "Jackett";
                     logo = logoDir + "/jackett.png";
-                    url = "http://jackett.jbinette.xyz";
+                    url = "http://jackett.${hl.baseDomain}";
                   }
                   {
                     name = "AdGuardHome";
                     logo = logoDir + "/adguardhome.png";
-                    url = "http://agh.jbinette.xyz";
+                    url = "http://agh.${hl.baseDomain}";
                   }
                 ];
               }
@@ -257,7 +274,7 @@ in
                   {
                     name = "Home Assistant";
                     logo = logoDir + "/home-assistant.png";
-                    url = "http://ha.jbinette.xyz";
+                    url = "http://ha.${hl.baseDomain}";
                   }
                 ];
               }

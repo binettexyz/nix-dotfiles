@@ -3,18 +3,24 @@
   lib,
   ...
 }: let
-  cfg = config.modules.server.containers.cloudflare-ddns;
-  hostAddress = "192.168.100.1";
-  localAddress = "192.168.100.11";
+  service = "cloudflare-ddns";
+  cfg = config.modules.homelab.services.${service};
 in {
-  options.modules.server.containers.cloudflare-ddns = {
-    enable = lib.mkOption {
-      description = "Create systemd service for cloudflare ddns updater";
-      default = false;
-    };
+  options.modules.homelab.services.${service} = {
+    enable = lib.mkEnableOption "Create systemd service for cloudflare ddns updater";
     onCalendar = lib.mkOption {
       type = lib.types.str;
       default = "hourly";
+    };
+    address = {
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.1";
+      };
+      local = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.11";
+      };
     };
   };
 
@@ -36,10 +42,11 @@ in {
       format = "yaml";
     };
 
-    containers.cloudflare-ddns = {
+    containers.${service} = {
       autoStart = true;
       privateNetwork = true;
-      inherit localAddress hostAddress;
+      localAddress = cfg.address.local;
+      hostAddress = cfg.address.host;
 
       bindMounts = {
         "/run/secrets/server/containers/cloudflare-token" = {
@@ -63,7 +70,7 @@ in {
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
 
-        systemd.services.cloudflare-ddns = {
+        systemd.services.${service} = {
           description = "Cloudflare DDNS";
           wantedBy = [ "multi-user.target" ];
           wants = [ "network-online.target" ];
@@ -103,12 +110,12 @@ in {
           '';
         };
     
-        systemd.timers.cloudflare-ddns = {
+        systemd.timers.${service} = {
           description = "Cloudflare DDNS";
           wantedBy = [ "timers.target" ];
           timerConfig = {
-            OnCalendar = config.modules.server.containers.cloudflare-ddns.onCalendar;
-            Unit = "cloudflare-ddns.service";
+            OnCalendar = cfg.onCalendar;
+            Unit = "${service}.service";
           };
         };
       };

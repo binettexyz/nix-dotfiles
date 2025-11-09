@@ -3,26 +3,43 @@
   lib,
   ...
 }: let
-  cfg = config.modules.server.containers.gitea;
-  hostAddress = "192.168.100.1";
-  localAddress = "192.168.100.14";
-  ports.gitea = 3000;
-  ports.ssh = {
-    container = 2222;
-    host = 22;
-  };
+  service = "gitea";
+  cfg = config.modules.homelab.services.${service};
+  hl = config.modules.homelab;
 in {
-  options.modules.server.containers.gitea.enable = lib.mkOption {
-    description = "Enable Gitea";
-    default = false;
+  options.modules.homelab.services.${service} = {
+    enable = lib.mkEnableOption "Enable ${service}";
+    configDir = lib.mkOption {
+      type = lib.types.str;
+      #default = "/nix/persist/srv/container-service-data/${service}";
+      default = "/var/lib/gitea";
+    };
+    address = {
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.1";
+      };
+      local = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.14";
+      };
+    };
+    port = lib.mkOption {
+      type = lib.types.int;
+      default = 3000;
+    };
+    url = lib.mkOption {
+      type = lib.types.str;
+      default = "git.${hl.baseDomain}";
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts."git.jbinette.xyz" = {
-      useACMEHost = "jbinette.xyz";
+    services.nginx.virtualHosts."${cfg.url}" = {
+      useACMEHost = hl.baseDomain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${localAddress}:" + toString (ports.gitea);
+        proxyPass = "http://${cfg.address.local}:" + toString (cfg.port);
         proxyWebsockets = true;
       };
       extraConfig = ''
@@ -41,18 +58,19 @@ in {
       format = "yaml";
     };
 
-    networking.firewall.allowedTCPPorts = [ports.ssh.host];
+    networking.firewall.allowedTCPPorts = [22 cfg.port];
 
     containers.gitea = let
       passwordFile = "/var/lib/gitea/secret-password";
     in {
       autoStart = true;
       privateNetwork = true;
-      inherit localAddress hostAddress;
+      localAddress = cfg.address.local;
+      hostAddress = cfg.address.host;
 
       bindMounts = {
         "/var/lib/gitea" = {
-          hostPath = "/var/lib/gitea";
+          hostPath = cfg.configDir;
           isReadOnly = false;
         };
         "/run/secrets/server/containers/gitea-password" = {
@@ -62,7 +80,7 @@ in {
       };
       forwardPorts = [
         {
-          containerPort = ports.ssh.container;
+          containerPort = 2222;
           hostPort = 22;
           protocol = "tcp";
         }
@@ -71,7 +89,7 @@ in {
       config = {pkgs, ...}: {
         system.stateVersion = "25.05";
 
-        networking.firewall.allowedTCPPorts = [ports.gitea ports.ssh.container];
+        networking.firewall.allowedTCPPorts = [cfg.port 2222];
 
         systemd.tmpfiles.rules = [
           "d /var/lib/gitea 0750 gitea gitea -"
@@ -107,14 +125,14 @@ in {
           };
           settings = {
             server = {
-              DOMAIN = "git.jbinette.xyz";
-              ROOT_URL = "https://git.jbinette.xyz";
-              HTTP_PORT = ports.gitea;
+              DOMAIN = cfg.url;
+              ROOT_URL = "https://${cfg.url}";
+              HTTP_PORT = cfg.port;
               HTTP_ADDR = "0.0.0.0";
               START_SSH_SERVER = true;
-              SSH_PORT = ports.ssh.host;
-              SSH_LISTEN_PORT = ports.ssh.container;
-              SSH_DOMAIN = "git.jbinette.xyz";
+              SSH_PORT = 22;
+              SSH_LISTEN_PORT = 2222;
+              SSH_DOMAIN = cfg.url;
             };
             service = {
               DISABLE_REGISTRATION = true;

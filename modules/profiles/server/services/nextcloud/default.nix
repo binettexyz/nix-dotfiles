@@ -5,20 +5,39 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.server.containers.nextcloud.enable;
+  service = "nextcloud";
+  cfg = config.modules.homelab.services.${service};
+  hl = config.modules.homelab;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.10";
 in {
-  options.modules.server.containers.nextcloud.enable = lib.mkOption {
-    description = "Enable Nextcloud";
-    default = false;
+  options.modules.homelab.services.${service} = {
+    enable = lib.mkEnableOption "Enable ${service}";
+    address = {
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.1";
+      };
+      local = lib.mkOption {
+        type = lib.types.str;
+        default = "192.168.100.10";
+      };
+    };
+    dataDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/data/${service}";
+    };
+    url = lib.mkOption {
+      type = lib.types.str;
+      default = "cloud.${hl.baseDomain}";
+    };
   };
 
-  config = lib.mkIf config.modules.server.containers.nextcloud.enable {
-    services.nginx.virtualHosts."cloud.jbinette.xyz" = {
-      useACMEHost = "jbinette.xyz";
+  config = lib.mkIf cfg.enable {
+    services.nginx.virtualHosts.${cfg.url} = {
+      useACMEHost = hl.baseDomain;
       forceSSL = true;
-      locations."/".proxyPass = "http://${localAddress}";
+      locations."/".proxyPass = "http://${cfg.address.local}";
     };
 
     sops.secrets."server/containers/nextcloud-adminPass" = {
@@ -27,17 +46,17 @@ in {
     };
 
     # ---Main Container---
-    containers.nextcloud = let
+    containers.${service} = let
       adminpassFile = config.sops.secrets."server/containers/nextcloud-adminPass".path;
-      datadir = "/var/lib/nextcloud";
     in {
       autoStart = true;
       privateNetwork = true;
-      inherit localAddress hostAddress;
+      localAddress = cfg.address.local;
+      hostAddress = cfg.address.host;
 
       bindMounts = {
-        ${datadir} = {
-          hostPath = "/data/nextcloud";
+        "/var/lib/${service}" = {
+          hostPath = cfg.dataDir;
           isReadOnly = false;
         };
         ${adminpassFile} = {
@@ -53,11 +72,11 @@ in {
         networking.useHostResolvConf = lib.mkForce false;
         services.resolved.enable = true;
 
-        services.nextcloud = {
+        services.${service} = {
           enable = true;
           package = pkgs.nextcloud31;
-          inherit datadir;
-          hostName = "cloud.jbinette.xyz";
+          datadir = "/var/lib/nextcloud";
+          hostName = cfg.url;
           https = true;
           config = {
             adminuser = "binette";
@@ -69,11 +88,11 @@ in {
               "127.0.0.1"
             ];
             trusted_domains = [
-              "cloud.jbinette.xyz"
+              cfg.url
             ];
             overwriteprotocol = "https";
-            overwritehost = "cloud.jbinette.xyz";
-            overwrite.cli.url = "https://cloud.jbinette.xyz";
+            overwritehost = cfg.url;
+            overwrite.cli.url = "https://${cfg.url}";
           };
           extraApps = {
             inherit
