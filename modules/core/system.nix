@@ -150,6 +150,9 @@ in {
   # Needed by home-manager's impermanence
   programs.fuse.userAllowOther = true;
 
+  # Fix error with home-manager
+  programs.dconf.enable = true;
+
   # Sops-nix password encryption
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
