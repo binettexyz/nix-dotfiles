@@ -1,5 +1,5 @@
 {...}: {
-  ## Custom modules ##
+  # ---Custom modules---
   modules = {
     bootloader.default = "rpi4";
     device = {
@@ -13,18 +13,18 @@
       enable = true;
       services = {
         enable = true;
+        docker.enable = true;
+        nfs.enable = true;
+        # ---Containers---
         cloudflare-ddns.enable = true;
         gitea.enable = true;
         homer.enable = true;
+        home-assistant.enable = false;
         miniflux.enable = true;
         nextcloud.enable = true;
+        sonarr.enable = true;
         vaultwarden.enable = true;
       };
-    };
-    server.containers = {
-      actual-budget.enable = true;
-      home-assistant.enable = false;
-      servarr.enable = true;
     };
     system = {
       home.enable = true;

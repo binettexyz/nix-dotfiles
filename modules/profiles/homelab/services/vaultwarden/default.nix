@@ -42,7 +42,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (hl.enable && cfg.enable) {
     services.nginx.virtualHosts.${cfg.url} = {
       useACMEHost = hl.baseDomain;
       forceSSL = true;

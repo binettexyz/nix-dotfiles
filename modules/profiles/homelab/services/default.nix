@@ -6,23 +6,24 @@ in
 {
   options.modules.homelab.services = {
     enable = lib.mkEnableOption "Enable Services & settings for homelab";
+    docker.enable = lib.mkEnableOption "Enable Docker";
+    nfs.enable = lib.mkEnableOption "Enable NFS";
   };
   
   imports = [
     ./gitea
     ./cloudflareDDNS
     ./homer
+    ./home-assistant
     ./miniflux
     ./nextcloud
+    ./servarr/sonarr.nix
     ./vaultwarden
-    ./actual-budget.nix
-    ./home-assistant.nix
-    ./servarr.nix
   ];
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (hl.enable && cfg.enable) {
     services.nfs.server = {
-      enable = true;
+      enable = cfg.nfs.enable;
       exports = ''
         /data 100.102.30.57(rw,insecure,no_subtree_check)
         /data 100.95.71.37(rw,insecure,no_subtree_check)
@@ -33,7 +34,7 @@ in
     # ---Docker Container---
     virtualisation = {
       podman = {
-        enable = true;
+        enable = cfg.docker.enable;
         dockerCompat = true;
         enableNvidia = lib.mkDefault false;
         autoPrune.enable = true;
@@ -94,15 +95,6 @@ in
       certs."${hl.baseDomain}" = {
         domain = "*.${hl.baseDomain}";
         environmentFile = config.sops.secrets."server/containers/acme-cf-token".path;
-      };
-    };
-
-    networking = {
-      firewall.allowedTCPPorts = [80 443];
-      nat = {
-        enable = true;
-        internalInterfaces = [ "ve-+" ];
-        externalInterface = "wlan0";
       };
     };
   };

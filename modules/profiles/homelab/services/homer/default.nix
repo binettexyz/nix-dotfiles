@@ -4,7 +4,7 @@ let
   service = "homer";
   cfg = config.modules.homelab.services.${service};
   hl = config.modules.homelab;
-  logoDir = "https://raw.githubusercontent.com/binettexyz/nix-dotfiles/master/modules/profiles/server/containers/assets/homer-icons";
+  logoDir = "https://raw.githubusercontent.com/binettexyz/nix-dotfiles/master/modules/profiles/server/services/homer/icons";
   cssFile = builtins.toFile "custom.css" ''
     @charset "UTF-8";
     @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
@@ -111,7 +111,7 @@ in
     };
   };
 
-  config = mkIf (cfg.enable) { 
+  config = mkIf (hl.enable && cfg.enable) { 
     services.nginx.virtualHosts.${cfg.url} = {
       useACMEHost = hl.baseDomain;
       forceSSL = true;

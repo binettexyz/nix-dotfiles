@@ -1,6 +1,6 @@
 {
   imports = [
     ./minimal.nix
-    ../profiles/server
+    ../profiles/homelab
   ];
 }

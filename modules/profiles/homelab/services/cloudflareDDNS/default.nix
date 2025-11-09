@@ -5,6 +5,7 @@
 }: let
   service = "cloudflare-ddns";
   cfg = config.modules.homelab.services.${service};
+  hl = config.modules.homelab;
 in {
   options.modules.homelab.services.${service} = {
     enable = lib.mkEnableOption "Create systemd service for cloudflare ddns updater";
@@ -24,7 +25,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (hl.enable && cfg.enable) {
     sops.secrets."server/containers/cloudflare-token" = {
       mode = "0400";
       format = "yaml";

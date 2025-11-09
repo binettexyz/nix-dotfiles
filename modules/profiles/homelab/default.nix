@@ -13,4 +13,16 @@ in
   };
 
   imports = [./services];
+
+  config = {
+    # ---Nat---
+    networking = {
+      firewall.allowedTCPPorts = [80 443];
+      nat = {
+        enable = true;
+        internalInterfaces = ["ve-+"];
+        externalInterface = "wlan0";
+      };
+    };
+  };
 }

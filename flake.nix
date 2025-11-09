@@ -81,7 +81,7 @@
     (mkNixOSConfig { # Raspberry Pi 4
       hostname = "genbu"; # Xuanwu / Black Turtoise
       system = "aarch64-linux";
-      extraMods = [./modules/presets/server.nix];
+      extraMods = [./modules/presets/homelab.nix];
     })
 
     # ---Defining Home-Manager---
