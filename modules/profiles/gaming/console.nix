@@ -7,6 +7,9 @@
 }: let
   inherit (config.meta) username;
 in {
+  imports = [
+    flake.inputs.joian.nixosModules.jovian
+  ];
   config = lib.mkIf (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags) {
     jovian.steam = {
       enable = true;

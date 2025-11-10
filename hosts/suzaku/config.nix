@@ -3,6 +3,9 @@
   flake,
   ...
 }: {
+  imports = [
+    flake.inputs.yeetmouse.nixosModules.default
+  ];
 
   ## Custom modules ##
   modules = {

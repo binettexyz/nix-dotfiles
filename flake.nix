@@ -23,10 +23,8 @@
     plasma-manager.url = "github:nix-community/plasma-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
-    jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS/development";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     nixvim.url = "github:nix-community/nixvim";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
 
     # --- Minimize duplicate instances of inputs ---
@@ -41,8 +39,6 @@
   outputs = {
     self,
     nixpkgs,
-    unstable,
-    stable,
     nixos-hardware,
     nix-colors,
     ...
@@ -53,22 +49,11 @@
     # ---Defining Systems---
     (mkNixOSConfig { # Steam Machine
       hostname = "suzaku"; # Zhuque / Vermilion Bird
-      extraMods = [
-        ./modules/presets/gaming-console.nix
-        inputs.yeetmouse.nixosModules.default
-        inputs.nix-gaming.nixosModules.platformOptimizations
-        inputs.chaotic.nixosModules.default
-        inputs.jovian-nixos.nixosModules.jovian
-      ];
+      extraMods = [./modules/presets/gaming-console.nix];
     })
     (mkNixOSConfig { # Steamdeck
       hostname = "seiryu"; # Qinglong / Azure Dragon
-      extraMods = [
-        ./modules/presets/gaming-console.nix
-        inputs.nix-gaming.nixosModules.platformOptimizations
-        inputs.jovian-nixos.nixosModules.jovian
-        inputs.chaotic.nixosModules.default
-      ];
+      extraMods = [./modules/presets/gaming-console.nix];
     })
     (mkNixOSConfig { # Thinkpad T480
       hostname = "byakko"; # Baihu / White Tiger

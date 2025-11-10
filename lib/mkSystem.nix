@@ -2,9 +2,7 @@
   flake-utils,
   home,
   nixpkgs,
-  unstable,
   self,
-  stable,
   ...
 } @ inputs: let
   inherit (flake-utils.lib) mkApp;
@@ -15,7 +13,6 @@ in {
     system ? "x86_64-linux",
     nixosSystem ? nixpkgs.lib.nixosSystem,
     extraMods ? [],
-    extraOverlays ? [],
   }: {
     nixosConfigurations.${hostname} = nixosSystem {
       inherit system;

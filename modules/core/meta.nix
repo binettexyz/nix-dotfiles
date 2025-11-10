@@ -53,10 +53,6 @@
     };
     daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "idle";
-    nixPath = [
-      "nixpkgs=${flake.inputs.unstable}"
-      "nixpkgs-unstable=${flake.inputs.unstable}"
-    ];
     extraOptions = ''
       keep-outputs = true
       keep-derivations = true
@@ -64,7 +60,6 @@
   };
 
   # Enable unfree packages
-  #nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-unwrapped"

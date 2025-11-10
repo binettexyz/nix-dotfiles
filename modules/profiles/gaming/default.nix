@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./controllers.nix
+    flake.inputs.nix-gaming.nixosModules.platformOptimizations
   ];
 
   config = lib.mkMerge [

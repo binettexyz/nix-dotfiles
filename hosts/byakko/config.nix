@@ -1,6 +1,7 @@
 {
   config,
   flake,
+  pkgs,
   ...
 }: {
   #---Custom modules---#
@@ -23,7 +24,5 @@
       home.enable = true;
     };
   };
-
-
 
 }
