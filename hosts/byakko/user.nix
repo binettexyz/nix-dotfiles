@@ -28,7 +28,7 @@
         ];
         monitor = [
           "${lib.elemAt config.modules.device.videoOutput 0},1920x1080@60.0,0x1080,1.2"
-          "${lib.elemAt config.modules.device.videoOutput 1},1920x1080@179.981995,0x0,1"
+          "${lib.elemAt config.modules.device.videoOutput 1},1920x1080@60.0,0x0,1"
         ];
       };
     };
