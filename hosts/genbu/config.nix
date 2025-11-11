@@ -20,6 +20,7 @@
         gitea.enable = true;
         homer.enable = true;
         home-assistant.enable = false;
+        immich.enable = true;
         miniflux.enable = true;
         nextcloud.enable = true;
         sonarr.enable = true;

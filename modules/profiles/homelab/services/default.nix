@@ -15,6 +15,7 @@ in
     ./cloudflareDDNS
     ./homer
     ./home-assistant
+    ./immich
     ./miniflux
     ./nextcloud
     ./servarr/sonarr.nix
