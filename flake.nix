@@ -23,6 +23,7 @@
     plasma-manager.url = "github:nix-community/plasma-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     nixvim.url = "github:nix-community/nixvim";
     yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
