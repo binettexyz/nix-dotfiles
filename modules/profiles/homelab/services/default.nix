@@ -25,9 +25,9 @@ in
   config = lib.mkIf (hl.enable && cfg.enable) {
     services.nfs.server = {
       enable = cfg.nfs.enable;
+      # byakko, suzaku
       exports = ''
-        /data 100.102.30.57(rw,insecure,no_subtree_check)
-        /data 100.95.71.37(rw,insecure,no_subtree_check)
+        /data 100.72.86.100(rw,insecure,no_subtree_check)
         /data 100.66.28.9(rw,insecure,no_subtree_check)
       '';
     };
