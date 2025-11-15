@@ -1,6 +1,7 @@
 {
   config,
   flake,
+  lib,
   ...
 }: {
   imports = [
@@ -23,7 +24,10 @@
       type = "desktop";
       videoOutput = ["HDMI-A-1" "HDMI-A-2"];
     };
-    gaming.enable = true;
+    gaming = {
+      enable = true;
+      services.sunshine.enable = true;
+    };
     system = {
       audio.enable = true;
       customFonts.enable = true;
@@ -31,6 +35,8 @@
       home.enable = true;
     };
   };
+
+  services.logind.settings.Login.HandlePowerKey = lib.mkForce "sleep";
 
   ## Mouse Acceleration ##
   hardware.yeetmouse = {

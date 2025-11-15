@@ -10,26 +10,20 @@
     flake.inputs.nix-gaming.nixosModules.platformOptimizations
   ];
 
+  options.modules.gaming = {
+    enable = lib.mkEnableOption "Enable Gaming";
+    device.isSteamdeck = lib.mkOption {
+      description = "If device is a steamdeck";
+      default = false;
+    };
+    services.sunshine.enable = lib.mkEnableOption "Enable Sunshine";
+  };
+
   config = lib.mkMerge [
     (lib.mkIf config.modules.gaming.enable {
       # ---Enabling Steam---
       programs.steam = {
         enable = true;
-        # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1523177264
-        package = pkgs.steam.override {
-          extraPkgs = pkgs: [
-            pkgs.xorg.libXcursor
-            pkgs.xorg.libXi
-            pkgs.xorg.libXinerama
-            pkgs.xorg.libXScrnSaver
-            pkgs.libpng
-            pkgs.libpulseaudio
-            pkgs.libvorbis
-            pkgs.stdenv.cc.cc.lib # Provides libstdc++.so.6
-            pkgs.libkrb5
-            pkgs.keyutils
-          ];
-        };
         extraPackages = [ pkgs.gamescope pkgs.gamemode pkgs.mangohud ];
         platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
@@ -39,13 +33,7 @@
       hardware.steam-hardware.enable = true;
 
       # ---Enabling Gamescope---
-      programs.gamescope = let
-        # https://github.com/ValveSoftware/gamescope/issues/1711#issuecomment-2779673006
-        oldPkgs = import (fetchTarball {
-          url = "https://github.com/NixOS/nixpkgs/archive/b9bb118646d853692578bf6204df2ffbc8a499ec.tar.gz";
-          sha256 = "0hq5x6x00xwzf75msmfm7i6mfq128nrgv194vx475p5agj02vdjw";
-        }) {system = pkgs.system;};
-      in {
+      programs.gamescope = {
         enable = true;
         package = pkgs.gamescope;
         capSysNice = false;
@@ -79,7 +67,7 @@
 
       # ---Services---
       services.sunshine = {
-        enable = true;
+        enable = config.modules.gaming.services.sunshine.enable;
         autoStart = false;
         openFirewall = false;
         capSysAdmin = true;
@@ -109,7 +97,7 @@
         };
       };
       systemd.user.services.moondeck-buddy = {
-        enable = true;
+        enable = config.modules.gaming.device.isSteamdeck;
         unitConfig = {
           Description = "MoonDeckBuddy";
           After = ["graphical-session.target"];
@@ -153,12 +141,10 @@
       nix.settings.substituters = [
         "https://nix-gaming.cachix.org"
         "https://nix-community.cachix.org/"
-        "https://chaotic-nyx.cachix.org/"
       ];
       nix.settings.trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
     })
 
