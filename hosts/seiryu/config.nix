@@ -11,7 +11,7 @@
       hasBattery = true;
       storage.ssd = true;
       type = "handheld";
-      tags = ["battery" "gaming" "lowSpec" "steamdeck" "touchscreen"];
+      tags = ["battery" "console" "gaming" "lowSpec" "steamdeck" "touchscreen"];
     };
     gaming = {
       enable = true;
