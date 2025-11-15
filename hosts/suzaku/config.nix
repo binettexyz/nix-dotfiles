@@ -46,9 +46,4 @@
     };
   };
 
-  ## Networking ##
-  networking = {
-    interfaces.wlo1.useDHCP = true;
-    interfaces.enp34s0.useDHCP = true;
-  };
 }

@@ -52,18 +52,18 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-    "/home" = {
-      device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
+#    "/home" = {
+#      device = "/dev/disk/by-label/home";
+#      fsType = "ext4";
+#    };
     "/home/games/ssd" = {
       device = "/dev/disk/by-label/ssdGames";
       fsType = "ext4";
     };
-    "/home/games/hdd" = {
-      device = "/dev/disk/by-label/hddGames";
-      fsType = "ext4";
-    };
+#    "/home/games/hdd" = {
+#      device = "/dev/disk/by-label/hddGames";
+#      fsType = "ext4";
+#    };
     "/tmp" = {
       device = "/home/binette/.cache/tmp";
       options = ["bind"];
@@ -85,11 +85,12 @@
     "/nix/persist" = {
       hideMounts = true;
       directories = [
-        "/etc/networkManager"
+        "/etc/NetworkManager"
         "/etc/nixos"
         "/var/lib"
         "/var/log"
         "/root"
+        "/home"
       ];
     };
   };
@@ -97,6 +98,8 @@
   # ---Networking---
   networking = {
     useDHCP = lib.mkForce false;
+    interfaces.wlo1.useDHCP = true;
+    intrfaces.enp34s0.useDHCP = true;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
   };
