@@ -58,12 +58,8 @@ in {
       settings = {
         gui.theme = "black";
         devices = {
-          "kei" = {
-            id = "WZFILN5-NZ4YJGE-NEWUFQR-EPQTDYM-ZRG6WO4-FC4EB4M-XE5DPEC-XJV5NQ3";
-            autoAcceptFolders = true;
-          };
           "suzaku" = {
-            id = "RWDBRPT-5UQFQH6-X5TSCEC-R2EENOZ-2OIO57D-AJZDJTD-ALPDILE-ME2CVQF";
+            id = "QK7TWSU-CYQOBEW-MBBEVWM-X37XHVY-GSIBOCM-YHBDRJE-BNM2TIA-ZGW4MQX";
             autoAcceptFolders = true;
           };
           "seiryu" = {

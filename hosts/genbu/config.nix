@@ -39,7 +39,7 @@
     };
     "notes" = {
       path = "/data/library/notes";
-      devices = ["suzaku" "byakko"];
+      devices = ["byakko"];
     };
   };
 }
