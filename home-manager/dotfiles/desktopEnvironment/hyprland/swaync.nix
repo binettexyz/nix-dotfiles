@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.swaync = {
     enable = config.wayland.windowManager.hyprland.enable;
     #settings = {};

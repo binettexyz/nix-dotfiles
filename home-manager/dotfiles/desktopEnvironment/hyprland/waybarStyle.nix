@@ -2,10 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.hm.theme.colorScheme;
   cfgColor = config.colorScheme.palette;
-in {
+in
+{
   #TODO: Add mkMerge per host.
   programs.waybar.style = lib.mkIf config.programs.waybar.enable ''
 
@@ -63,14 +65,15 @@ in {
     #custom-nixos {
       font-size: 20px;
       color: #${
-      if cfg == "catppuccin"
-      then cfgColor.peach
-      else if cfg == "gruvbox"
-      then cfgColor.blue
-      else if cfg == "jmbi"
-      then cfgColor.red
-      else cfgColor.fg0
-    };
+        if cfg == "catppuccin" then
+          cfgColor.peach
+        else if cfg == "gruvbox" then
+          cfgColor.blue
+        else if cfg == "jmbi" then
+          cfgColor.red
+        else
+          cfgColor.fg0
+      };
       background: #${cfgColor.bg2};
       border-radius: 4px;
       padding: 0px 0px 0px 4px;
@@ -142,14 +145,15 @@ in {
 
     #workspaces button.active {
       color: #${
-      if cfg == "catppuccin"
-      then cfgColor.peach
-      else if cfg == "gruvbox"
-      then cfgColor.blue
-      else if cfg == "jmbi"
-      then cfgColor.blue
-      else cfgColor.fg0
-    };
+        if cfg == "catppuccin" then
+          cfgColor.peach
+        else if cfg == "gruvbox" then
+          cfgColor.blue
+        else if cfg == "jmbi" then
+          cfgColor.blue
+        else
+          cfgColor.fg0
+      };
     }
 
     #workspaces button.empty {
@@ -158,14 +162,15 @@ in {
 
     #workspaces button.empty.active {
       color: #${
-      if cfg == "catppuccin"
-      then cfgColor.peach
-      else if cfg == "gruvbox"
-      then cfgColor.blue
-      else if cfg == "jmbi"
-      then cfgColor.blue
-      else cfgColor.fg0
-    };
+        if cfg == "catppuccin" then
+          cfgColor.peach
+        else if cfg == "gruvbox" then
+          cfgColor.blue
+        else if cfg == "jmbi" then
+          cfgColor.blue
+        else
+          cfgColor.fg0
+      };
     }
 
     #network {

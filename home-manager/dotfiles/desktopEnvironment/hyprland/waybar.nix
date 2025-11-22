@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   programs.waybar = {
     enable = config.wayland.windowManager.hyprland.enable;
     systemd.enable = false;
@@ -11,11 +12,12 @@
         layer = "top";
         position = "top";
         margin =
-          if config.modules.device.type == "desktop"
-          then "8px, 8px, 0px, 8px"
-          else if config.modules.device.type == "laptop"
-          then "4px, 4px, 0px, 4px"
-          else "";
+          if config.modules.device.type == "desktop" then
+            "8px, 8px, 0px, 8px"
+          else if config.modules.device.type == "laptop" then
+            "4px, 4px, 0px, 4px"
+          else
+            "";
         reload_style_on_change = true;
         #output = ["${lib.elemAt osConfig.device.videoOutput 0}"];
         #include = [ ~/.config/waybar/modules.json ];
@@ -32,27 +34,27 @@
           "custom/sep"
           "custom/notification"
         ];
-        modules-right =
-          [
-            "tray"
-            "hyprland/workspaces"
-          ]
-          ++ (
-            if (lib.elem "battery" config.modules.device.tags)
-            then [
+        modules-right = [
+          "tray"
+          "hyprland/workspaces"
+        ]
+        ++ (
+          if (lib.elem "battery" config.modules.device.tags) then
+            [
               "battery"
               "battery#bat1"
             ]
-            else []
-          )
-          ++ [
-            "network"
-            "custom/sep"
-            "pulseaudio"
-            "pulseaudio#mic"
-            "custom/sep"
-            "custom/power"
-          ];
+          else
+            [ ]
+        )
+        ++ [
+          "network"
+          "custom/sep"
+          "pulseaudio"
+          "pulseaudio#mic"
+          "custom/sep"
+          "custom/power"
+        ];
 
         # ---Modules---
         "custom/nixos" = {

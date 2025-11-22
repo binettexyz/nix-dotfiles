@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.meta) username;
-in {
+in
+{
   boot = {
     tmp = {
       # Mount /tmp using tmpfs for performance
@@ -14,7 +16,7 @@ in {
       cleanOnBoot = lib.mkDefault true;
     };
     # Enable NTFS support
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
     kernel.sysctl = {
       # Enable Magic keys
       "kernel.sysrq" = 1;
@@ -22,18 +24,18 @@ in {
       "vm.swappiness" = 10;
     };
     # --Silent boot--
-#    initrd.verbose = false;
-#    consoleLogLevel = 0;
-#    kernelParams = [
-#      "quiet"
-#      "loglevel=3"
-#      "rd.systemd.show_status=false"
-#      "rd.udev.log_level=3"
-#      "udev.log_priority=3"
-#    ];
+    #    initrd.verbose = false;
+    #    consoleLogLevel = 0;
+    #    kernelParams = [
+    #      "quiet"
+    #      "loglevel=3"
+    #      "rd.systemd.show_status=false"
+    #      "rd.udev.log_level=3"
+    #      "udev.log_priority=3"
+    #    ];
   };
   # Get rid of defaults packages
-  environment.defaultPackages = [];
+  environment.defaultPackages = [ ];
 
   # Increase file handler limit
   #    security.pam.loginLimits = [{
@@ -154,7 +156,7 @@ in {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
       # This will automatically import SSH keys as age keys
-      sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
+      sshKeyPaths = [ "/home/${username}/.ssh/id_ed25519" ];
       keyFile = "/home/${username}/sops/key.txt";
       # This will generate a new key if the key specified above does not exist
       generateKey = true;

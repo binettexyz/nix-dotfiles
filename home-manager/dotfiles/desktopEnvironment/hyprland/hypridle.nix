@@ -1,4 +1,9 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}:
+{
   services.hypridle = {
     enable = config.wayland.windowManager.hyprland.enable;
     settings = {

@@ -2,9 +2,11 @@
   callPackage,
   fetchurl,
   lib,
-}: let
-  mkWallpaperGithub = callPackage (import ./mkWallpaperGithub.nix) {};
-in {
+}:
+let
+  mkWallpaperGithub = callPackage (import ./mkWallpaperGithub.nix) { };
+in
+{
   gruvbox = mkWallpaperGithub {
     name = "gruvbox-face";
     theme = "gruvbox";

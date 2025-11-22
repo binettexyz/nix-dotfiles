@@ -1,4 +1,5 @@
-{flake, ...}: {
+{ flake, ... }:
+{
   imports = [
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.impermanence.nixosModules.impermanence
@@ -19,5 +20,5 @@
     };
   };
 
-  device.videoOutput = ["eDP-1"];
+  device.videoOutput = [ "eDP-1" ];
 }

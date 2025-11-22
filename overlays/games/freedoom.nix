@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation rec {
     sha256 = "sha256-P5smTz485QO0+39r3LH0Gdk8e1RvTfPodN2Hjbloj1k=";
   };
 
-  buildInputs = [unzip];
+  buildInputs = [ unzip ];
 
   phases = [
     "unpackPhase"

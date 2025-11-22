@@ -1,5 +1,5 @@
-{lib, ...}: {
-
+{ lib, ... }:
+{
   options.modules.hm.hyprland = {
     exec-once = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -8,7 +8,7 @@
     };
     monitor = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
+      default = [ ];
       description = "Screens resolution";
     };
     general = {

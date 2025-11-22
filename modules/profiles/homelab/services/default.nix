@@ -1,4 +1,8 @@
-{config, lib, ...}: 
+{
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.modules.homelab.services;
   hl = config.modules.homelab;
@@ -9,7 +13,7 @@ in
     docker.enable = lib.mkEnableOption "Enable Docker";
     nfs.enable = lib.mkEnableOption "Enable NFS";
   };
-  
+
   imports = [
     ./gitea
     ./cloudflareDDNS
@@ -51,10 +55,24 @@ in
           # Set this vhost as the default.
           default = true;
           listen = [
-            { port = 443; ssl = true; addr = "[::]"; }
-            { port = 80; addr = "[::]"; }
-            { port = 443; ssl = true; addr = "0.0.0.0"; }
-            { port = 80; addr = "0.0.0.0"; }
+            {
+              port = 443;
+              ssl = true;
+              addr = "[::]";
+            }
+            {
+              port = 80;
+              addr = "[::]";
+            }
+            {
+              port = 443;
+              ssl = true;
+              addr = "0.0.0.0";
+            }
+            {
+              port = 80;
+              addr = "0.0.0.0";
+            }
           ];
           # Avoid any subdomaine being redirect to another vhost.
           rejectSSL = true;
@@ -87,11 +105,11 @@ in
     security.acme = {
       acceptTerms = true;
       defaults = {
-    	  reloadServices = [ "nginx" ];
-    	  email = "binettexyz@proton.me";
-    	  group = config.services.nginx.group;
-    	  dnsProvider = "cloudflare";
-    	  dnsPropagationCheck = true;
+        reloadServices = [ "nginx" ];
+        email = "binettexyz@proton.me";
+        group = config.services.nginx.group;
+        dnsProvider = "cloudflare";
+        dnsPropagationCheck = true;
       };
       certs."${hl.baseDomain}" = {
         domain = "*.${hl.baseDomain}";

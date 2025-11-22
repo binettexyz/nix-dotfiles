@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.modules.homelab;
 in
@@ -12,15 +16,18 @@ in
     };
   };
 
-  imports = [./services];
+  imports = [ ./services ];
 
   config = {
     # ---Nat---
     networking = {
-      firewall.allowedTCPPorts = [80 443];
+      firewall.allowedTCPPorts = [
+        80
+        443
+      ];
       nat = {
         enable = true;
-        internalInterfaces = ["ve-+"];
+        internalInterfaces = [ "ve-+" ];
         externalInterface = "wlan0";
       };
     };

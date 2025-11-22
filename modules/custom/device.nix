@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options.modules.device = {
     type = lib.mkOption {
       type = lib.types.str;
@@ -6,7 +7,7 @@
     };
     tags = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
+      default = [ ];
     };
     hasBattery = lib.mkOption {
       description = "Device has battery";

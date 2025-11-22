@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.hm.browser.librewolf;
-in {
+in
+{
   options.modules.hm.browser.librewolf.enable = lib.mkOption {
     description = "Enable librewolf";
     default = false;
@@ -33,6 +35,6 @@ in {
       };
     };
 
-    home.packages = lib.mkIf cfg.enable [pkgs.ff2mpv];
+    home.packages = lib.mkIf cfg.enable [ pkgs.ff2mpv ];
   };
 }

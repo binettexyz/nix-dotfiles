@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   config.home.packages = lib.mkMerge [
     [
       pkgs.bat
@@ -14,12 +15,12 @@
       pkgs.gcc
       pkgs.gnused
       pkgs.htop
-#      pkgs.killall
-#      pkgs.ncdu
-#      pkgs.ouch # easily compressing and decompressing files and directories
-#      pkgs.rsync # replace scp
-#      pkgs.wget
-#      pkgs.yt-dlp
+      #      pkgs.killall
+      #      pkgs.ncdu
+      #      pkgs.ouch # easily compressing and decompressing files and directories
+      #      pkgs.rsync # replace scp
+      #      pkgs.wget
+      #      pkgs.yt-dlp
 
       pkgs.capitaine-cursors-themed
     ]
@@ -76,8 +77,11 @@
     (lib.mkIf (config.modules.hm.gaming.enable && lib.elem "highSpec" config.modules.device.tags) [
       pkgs.moondeck-buddy
     ])
-    (lib.mkIf (lib.elem "console" config.modules.device.tags && lib.elem "gaming" config.modules.device.tags) [
-      # Emulation
-    ])
+    (lib.mkIf
+      (lib.elem "console" config.modules.device.tags && lib.elem "gaming" config.modules.device.tags)
+      [
+        # Emulation
+      ]
+    )
   ];
 }

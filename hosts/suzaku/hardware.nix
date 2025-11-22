@@ -5,7 +5,8 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     # Enable the amd cpu scaling. Can be more energy efficient on recent AMD CPUs.
@@ -13,8 +14,8 @@
   ];
 
   boot = {
-    extraModulePackages = [];
-    kernelModules = ["kvm-amd"];
+    extraModulePackages = [ ];
+    kernelModules = [ "kvm-amd" ];
     kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod;
     kernelParams = [
       "mitigations=off"
@@ -29,7 +30,7 @@
         "usb_storage"
         "sd_mod"
       ];
-      kernelModules = ["amdgpu"];
+      kernelModules = [ "amdgpu" ];
     };
   };
 
@@ -52,27 +53,30 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-#    "/home" = {
-#      device = "/dev/disk/by-label/home";
-#      fsType = "ext4";
-#    };
+    #    "/home" = {
+    #      device = "/dev/disk/by-label/home";
+    #      fsType = "ext4";
+    #    };
     "/home/games/ssd" = {
       device = "/dev/disk/by-label/ssdGames";
       fsType = "ext4";
     };
-#    "/home/games/hdd" = {
-#      device = "/dev/disk/by-label/hddGames";
-#      fsType = "ext4";
-#    };
+    #    "/home/games/hdd" = {
+    #      device = "/dev/disk/by-label/hddGames";
+    #      fsType = "ext4";
+    #    };
     "/tmp" = {
       device = "/home/binette/.cache/tmp";
-      options = ["bind"];
+      options = [ "bind" ];
     };
     "/home/homelab" = {
       device = "100.110.153.50:/data";
       fsType = "nfs";
       # don't freeze system if mount point not available on boot
-      options = ["x-systemd.automount" "noauto"];
+      options = [
+        "x-systemd.automount"
+        "noauto"
+      ];
     };
   };
 
@@ -117,13 +121,13 @@
     enable32Bit = true;
   };
   #FIXME: Break gamescope
-#  hardware.amdgpu = {
-#    initrd.enable = true;
-#    amdvlk = {
-#      enable = true;
-#      support32Bit.enable = true;
-#    };
-#  };
+  #  hardware.amdgpu = {
+  #    initrd.enable = true;
+  #    amdvlk = {
+  #      enable = true;
+  #      support32Bit.enable = true;
+  #    };
+  #  };
 
   # ---Processor---
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

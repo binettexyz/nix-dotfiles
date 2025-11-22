@@ -3,7 +3,8 @@
   flake,
   pkgs,
   ...
-}: {
+}:
+{
   #---Custom modules---#
   modules = {
     bootloader = {
@@ -12,10 +13,18 @@
       useOSProber = false;
     };
     device = {
-      videoOutput = ["eDP-1" "HDMI-A-2"];
+      videoOutput = [
+        "eDP-1"
+        "HDMI-A-2"
+      ];
       storage.ssd = true;
       type = "laptop";
-      tags = ["workstation" "dev" "battery" "lowSpec"];
+      tags = [
+        "workstation"
+        "dev"
+        "battery"
+        "lowSpec"
+      ];
     };
     system = {
       audio.enable = true;
@@ -24,5 +33,4 @@
       home.enable = true;
     };
   };
-
 }

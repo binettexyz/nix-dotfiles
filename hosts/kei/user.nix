@@ -1,6 +1,8 @@
-{flake, ...}: let
+{ flake, ... }:
+let
   inherit (flake) inputs;
-in {
+in
+{
   imports = [
     ../../home-manager
     (inputs.impermanence + "/home-manager.nix")

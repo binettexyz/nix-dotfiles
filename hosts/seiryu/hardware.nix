@@ -4,21 +4,22 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   # ---Kernel Stuff---
   boot = {
-    kernelModules = ["kvm-amd"];
+    kernelModules = [ "kvm-amd" ];
     kernelParams = [
       "splash" # Needed for plymouth
       "mitigations=off"
       "nowatchdog"
     ];
     kernel.sysctl."kernel.nmi_watchdog" = 0; # Disable watchdog. Use with "nowatchdog" in kernelParams.
-    extraModulePackages = [];
+    extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [
         "nvme"
@@ -28,7 +29,7 @@
         "sd_mod"
         "sdhci_pci"
       ];
-      kernelModules = [];
+      kernelModules = [ ];
     };
   };
   # ---FileSystem---
@@ -59,7 +60,7 @@
       fsType = "ext4";
     };
   };
-  swapDevices = [];
+  swapDevices = [ ];
 
   environment.persistence."/nix/persist" = {
     hideMounts = true;

@@ -2,7 +2,8 @@
   lib,
   super,
   ...
-}: {
+}:
+{
   home.file.".config/qtile/config.py".source = ./src/config.py;
   home.file.".config/qtile/autostart.sh" = {
     source = ./src/autostart.sh;

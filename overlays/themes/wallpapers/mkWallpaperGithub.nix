@@ -3,7 +3,8 @@
   lib,
   stdenvNoCC,
   fetchurl,
-}: {
+}:
+{
   name,
   theme,
   id ? "gruvbox",

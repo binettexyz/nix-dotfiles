@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (config.meta) username;
-in {
+in
+{
   users = {
     # FIXME: if set to pkgs.zsh, error saying that programs.zsh.enable is not true, which is not true...
     defaultUserShell = lib.mkForce pkgs.fish;

@@ -3,7 +3,8 @@
   flake,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     flake.inputs.yeetmouse.nixosModules.default
   ];
@@ -20,9 +21,17 @@
         hdd = true;
         ssd = true;
       };
-      tags = [ "workstation" "console" "gaming" "highSpec" ];
+      tags = [
+        "workstation"
+        "console"
+        "gaming"
+        "highSpec"
+      ];
       type = "desktop";
-      videoOutput = ["HDMI-A-1" "HDMI-A-2"];
+      videoOutput = [
+        "HDMI-A-1"
+        "HDMI-A-2"
+      ];
     };
     gaming = {
       enable = true;
@@ -51,5 +60,4 @@
       syncspeed = 30.0;
     };
   };
-
 }

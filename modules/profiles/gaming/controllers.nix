@@ -1,4 +1,9 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}:
+{
   config = lib.mkIf (config.modules.gaming.enable) {
     # ---Drivers---
     hardware.xpadneo.enable = true; # Xbox One Controller

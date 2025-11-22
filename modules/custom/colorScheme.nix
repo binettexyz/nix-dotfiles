@@ -2,16 +2,20 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.hm.theme.colorScheme;
-in {
+in
+{
   options.modules.hm.theme.colorScheme = lib.mkOption {
     description = "ColorScheme Selection";
-    type = lib.types.nullOr (lib.types.enum [
-      "gruvbox"
-      "catppuccin"
-      "jmbi"
-    ]);
+    type = lib.types.nullOr (
+      lib.types.enum [
+        "gruvbox"
+        "catppuccin"
+        "jmbi"
+      ]
+    );
     default = "gruvbox";
   };
 
@@ -66,7 +70,7 @@ in {
       };
     })
     (lib.mkIf (cfg == "gruvbit") {
-      })
+    })
     (lib.mkIf (cfg == "jmbi") {
       colorScheme = {
         name = "JMBI";

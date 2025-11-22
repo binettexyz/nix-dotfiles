@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   service = "gitea";
   cfg = config.modules.homelab.services.${service};
   hl = config.modules.homelab;
-in {
+in
+{
   options.modules.homelab.services.${service} = {
     enable = lib.mkEnableOption "Enable ${service}";
     configDir = lib.mkOption {
@@ -58,95 +60,107 @@ in {
       format = "yaml";
     };
 
-    networking.firewall.allowedTCPPorts = [22 cfg.port];
+    networking.firewall.allowedTCPPorts = [
+      22
+      cfg.port
+    ];
 
-    containers.gitea = let
-      passwordFile = "/var/lib/gitea/secret-password";
-    in {
-      autoStart = true;
-      privateNetwork = true;
-      localAddress = cfg.address.local;
-      hostAddress = cfg.address.host;
+    containers.gitea =
+      let
+        passwordFile = "/var/lib/gitea/secret-password";
+      in
+      {
+        autoStart = true;
+        privateNetwork = true;
+        localAddress = cfg.address.local;
+        hostAddress = cfg.address.host;
 
-      bindMounts = {
-        "/var/lib/gitea" = {
-          hostPath = cfg.configDir;
-          isReadOnly = false;
+        bindMounts = {
+          "/var/lib/gitea" = {
+            hostPath = cfg.configDir;
+            isReadOnly = false;
+          };
+          "/run/secrets/server/containers/gitea-password" = {
+            hostPath = config.sops.secrets."server/containers/gitea-password".path;
+            isReadOnly = true;
+          };
         };
-        "/run/secrets/server/containers/gitea-password" = {
-          hostPath = config.sops.secrets."server/containers/gitea-password".path;
-          isReadOnly = true;
-        };
-      };
-      forwardPorts = [
-        {
-          containerPort = 2222;
-          hostPort = 22;
-          protocol = "tcp";
-        }
-      ];
-
-      config = {pkgs, ...}: {
-        system.stateVersion = "25.05";
-
-        networking.firewall.allowedTCPPorts = [cfg.port 2222];
-
-        systemd.tmpfiles.rules = [
-          "d /var/lib/gitea 0750 gitea gitea -"
+        forwardPorts = [
+          {
+            containerPort = 2222;
+            hostPort = 22;
+            protocol = "tcp";
+          }
         ];
 
-        systemd.services."prepare-gitea-secret" = let
-          script = pkgs.writeShellScript "prepare-gitea-secret" ''
-            cp /run/secrets/server/containers/gitea-password /var/lib/gitea/secret-password
-            chown gitea:gitea /var/lib/gitea/secret-password
-            chmod 400 /var/lib/gitea/secret-password
-          '';
-        in {
-          wantedBy = ["multi-user.target"];
-          before = ["gitea.service"];
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = script;
-          };
-        };
+        config =
+          { pkgs, ... }:
+          {
+            system.stateVersion = "25.05";
 
-        services.postgresql = {
-          enable = true;
-          ensureDatabases = [config.services.gitea.user];
-          ensureUsers = [{name = config.services.gitea.database.user;}];
-        };
+            networking.firewall.allowedTCPPorts = [
+              cfg.port
+              2222
+            ];
 
-        services.gitea = {
-          enable = true;
-          appName = "Binette's Git Repository";
-          database = {
-            type = "postgres";
-            inherit passwordFile;
+            systemd.tmpfiles.rules = [
+              "d /var/lib/gitea 0750 gitea gitea -"
+            ];
+
+            systemd.services."prepare-gitea-secret" =
+              let
+                script = pkgs.writeShellScript "prepare-gitea-secret" ''
+                  cp /run/secrets/server/containers/gitea-password /var/lib/gitea/secret-password
+                  chown gitea:gitea /var/lib/gitea/secret-password
+                  chmod 400 /var/lib/gitea/secret-password
+                '';
+              in
+              {
+                wantedBy = [ "multi-user.target" ];
+                before = [ "gitea.service" ];
+                serviceConfig = {
+                  Type = "oneshot";
+                  ExecStart = script;
+                };
+              };
+
+            services.postgresql = {
+              enable = true;
+              ensureDatabases = [ config.services.gitea.user ];
+              ensureUsers = [ { name = config.services.gitea.database.user; } ];
+            };
+
+            services.gitea = {
+              enable = true;
+              appName = "Binette's Git Repository";
+              database = {
+                type = "postgres";
+                inherit passwordFile;
+              };
+              settings = {
+                server = {
+                  DOMAIN = cfg.url;
+                  ROOT_URL = "https://${cfg.url}";
+                  HTTP_PORT = cfg.port;
+                  HTTP_ADDR = "0.0.0.0";
+                  START_SSH_SERVER = true;
+                  SSH_PORT = 22;
+                  SSH_LISTEN_PORT = 2222;
+                  SSH_DOMAIN = cfg.url;
+                };
+                service = {
+                  DISABLE_REGISTRATION = true;
+                  REGISTER_EMAIL_CONFIRM = false;
+                  REQUIRE_SIGNIN_VIEW = false;
+                };
+                "service.explore" = {
+                  REQUIRE_SIGNIN_VIEW = false;
+                  DISABLE_USERS_PAGE = true;
+                  DISABLE_ORGANIZATIONS_PAGE = true;
+                };
+              };
+            };
           };
-          settings = {
-            server = {
-              DOMAIN = cfg.url;
-              ROOT_URL = "https://${cfg.url}";
-              HTTP_PORT = cfg.port;
-              HTTP_ADDR = "0.0.0.0";
-              START_SSH_SERVER = true;
-              SSH_PORT = 22;
-              SSH_LISTEN_PORT = 2222;
-              SSH_DOMAIN = cfg.url;
-            };
-            service = {
-              DISABLE_REGISTRATION = true;
-              REGISTER_EMAIL_CONFIRM = false;
-              REQUIRE_SIGNIN_VIEW = false;
-            };
-            "service.explore" = {
-              REQUIRE_SIGNIN_VIEW = false;
-              DISABLE_USERS_PAGE = true;
-              DISABLE_ORGANIZATIONS_PAGE = true;
-            };
-          };
-        };
       };
-    };
   };
 }

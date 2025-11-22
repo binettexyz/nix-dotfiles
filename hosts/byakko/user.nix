@@ -1,14 +1,26 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}:
+{
   imports = [
     ../../home-manager
   ];
 
-
   modules = {
     device = {
-      videoOutput = ["eDP-1" "HDMI-A-2"];
+      videoOutput = [
+        "eDP-1"
+        "HDMI-A-2"
+      ];
       type = "laptop";
-      tags = ["workstation" "dev" "battery" "lowSpec"];
+      tags = [
+        "workstation"
+        "dev"
+        "battery"
+        "lowSpec"
+      ];
     };
     hm = {
       browser = {
@@ -33,5 +45,4 @@
       };
     };
   };
-
 }

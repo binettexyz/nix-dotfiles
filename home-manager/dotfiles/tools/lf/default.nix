@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.lf = {
     enable = true;
     settings = {

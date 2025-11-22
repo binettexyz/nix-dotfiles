@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./controllers.nix
     flake.inputs.nix-gaming.nixosModules.platformOptimizations
@@ -27,7 +28,11 @@
       # ---Enabling Steam---
       programs.steam = {
         enable = true;
-        extraPackages = [ pkgs.gamescope pkgs.gamemode pkgs.mangohud ];
+        extraPackages = [
+          pkgs.gamescope
+          pkgs.gamemode
+          pkgs.mangohud
+        ];
         platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
         remotePlay.openFirewall = true;
@@ -75,7 +80,9 @@
         openFirewall = false;
         capSysAdmin = true;
         applications = {
-          env = {PATH = "$(PATH):$(HOME)/.local/bin";};
+          env = {
+            PATH = "$(PATH):$(HOME)/.local/bin";
+          };
           apps = [
             {
               name = "Desktop";
@@ -103,13 +110,13 @@
         enable = config.modules.gaming.device.isSteamdeck;
         unitConfig = {
           Description = "MoonDeckBuddy";
-          After = ["graphical-session.target"];
+          After = [ "graphical-session.target" ];
         };
         serviceConfig = {
           ExecStart = "${pkgs.moondeck-buddy}/bin/MoonDeckBuddy";
           Restart = "on-failure";
         };
-        wantedBy = ["graphical-session.target"];
+        wantedBy = [ "graphical-session.target" ];
       };
 
       # ---System Configuration---
@@ -152,6 +159,5 @@
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
     })
-
   ];
 }

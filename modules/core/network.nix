@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   services.tailscale.enable = true;
 
   networking = {
@@ -27,7 +28,7 @@
       ];
       # tailscale
       checkReversePath = "loose";
-      trustedInterfaces = ["tailscale0"];
+      trustedInterfaces = [ "tailscale0" ];
     };
 
     # ---Wifi---

@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
-  imports = [./battery.nix];
+}:
+{
+  imports = [ ./battery.nix ];
 
   config = lib.mkIf (config.modules.device.type == "laptop") {
     laptop.onLowBattery.enable = true;
@@ -50,28 +51,76 @@
       # Fans Control
       thinkfan = {
         enable = true;
-        sensors = [ { type = "tpacpi"; query = "/proc/acpi/ibm/thermal"; indices = [ 0 1 2  ]; } ];
-        fans = [ { type = "tpacpi"; query = "/proc/acpi/ibm/fan";  } ];
+        sensors = [
+          {
+            type = "tpacpi";
+            query = "/proc/acpi/ibm/thermal";
+            indices = [
+              0
+              1
+              2
+            ];
+          }
+        ];
+        fans = [
+          {
+            type = "tpacpi";
+            query = "/proc/acpi/ibm/fan";
+          }
+        ];
         levels = [
-          [0 0 40]
-          [1 40 55]
-          [2 55 60]
-          [3 60 65]
-          [4 65 70]
-          [5 70 72]
-          [6 72 75]
-          [7 75 80]
-          ["level auto" 80 255]
+          [
+            0
+            0
+            40
+          ]
+          [
+            1
+            40
+            55
+          ]
+          [
+            2
+            55
+            60
+          ]
+          [
+            3
+            60
+            65
+          ]
+          [
+            4
+            65
+            70
+          ]
+          [
+            5
+            70
+            72
+          ]
+          [
+            6
+            72
+            75
+          ]
+          [
+            7
+            75
+            80
+          ]
+          [
+            "level auto"
+            80
+            255
+          ]
         ];
       };
 
       # Reduce power consumption
       thermald.enable = true;
       tlp = {
-        enable =
-          if config.services.desktopManager.plasma6.enable
-          then false
-          else true;
+        enable = if config.services.desktopManager.plasma6.enable then false else true;
         settings = {
           # Operation mode when no power supply can be detected: AC, BAT.
           "TLP_DEFAULT_MODE" = "BAT";
@@ -88,8 +137,8 @@
           # https://lists.freedesktop.org/archives/pulseaudio-discuss/2017-December/029154.html
           "SOUND_POWER_SAVE_ON_AC" = 1;
           "SOUND_POWER_SAVE_ON_BAT" = 1;
-#          "PCIE_ASPM_ON_AC" = "default";
-#          "PCIE_ASPM_ON_BAT" = "powersave";
+          #          "PCIE_ASPM_ON_AC" = "default";
+          #          "PCIE_ASPM_ON_BAT" = "powersave";
           "START_CHARGE_THRESH_BAT0" = 80;
           "START_CHARGE_THRESH_BAT1" = 80;
           "STOP_CHARGE_THRESH_BAT0" = 85;

@@ -15,64 +15,78 @@
     vintage-story.url = "github:NixOS/nixpkgs/7b04f942cf745f4e43ce772a692b68bdd1315524";
 
     # ---Tools---
-    home.url = "github:nix-community/home-manager";
+    home = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.home-manager.follows = "home";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    plasma-manager.url = "github:nix-community/plasma-manager";
-    sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
-    nixvim.url = "github:nix-community/nixvim";
     yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
-
-    # --- Minimize duplicate instances of inputs ---
-    home.inputs.nixpkgs.follows = "nixpkgs";
-    nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # ---System's Output---
-  outputs = {
-    self,
-    nixpkgs,
-    nixos-hardware,
-    nix-colors,
-    ...
-  } @ inputs: let
-    inherit (import ./lib/attrsets.nix {inherit (nixpkgs) lib;}) recursiveMergeAttrs;
-    inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
-  in (recursiveMergeAttrs [
-    # ---Defining Systems---
-    (mkNixOSConfig { # Steam Machine
-      hostname = "suzaku"; # Zhuque / Vermilion Bird
-      extraMods = [./modules/presets/gaming-console.nix];
-    })
-    (mkNixOSConfig { # Steamdeck
-      hostname = "seiryu"; # Qinglong / Azure Dragon
-      extraMods = [./modules/presets/gaming-console.nix];
-    })
-    (mkNixOSConfig { # Thinkpad T480
-      hostname = "byakko"; # Baihu / White Tiger
-      extraMods = [./modules/presets/laptop.nix];
-    })
-    (mkNixOSConfig { # Thinkpad T440
-      hostname = "kei"; # Kui / Legs
-      extraMods = [./modules/presets/laptop.nix];
-    })
-    (mkNixOSConfig { # Raspberry Pi 4
-      hostname = "genbu"; # Xuanwu / Black Turtoise
-      system = "aarch64-linux";
-      extraMods = [./modules/presets/homelab.nix];
-    })
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (import ./lib/attrsets.nix { inherit (nixpkgs) lib; }) recursiveMergeAttrs;
+      inherit (import ./lib/mkSystem.nix inputs) mkNixOSConfig mkHomeConfig;
+    in
+    (recursiveMergeAttrs [
+      # ---Defining Systems---
+      (mkNixOSConfig {
+        # Steam Machine
+        hostname = "suzaku"; # Zhuque / Vermilion Bird
+        extraMods = [ ./modules/presets/gaming-console.nix ];
+      })
+      (mkNixOSConfig {
+        # Steamdeck
+        hostname = "seiryu"; # Qinglong / Azure Dragon
+        extraMods = [ ./modules/presets/gaming-console.nix ];
+      })
+      (mkNixOSConfig {
+        # Thinkpad T480
+        hostname = "byakko"; # Baihu / White Tiger
+        extraMods = [ ./modules/presets/laptop.nix ];
+      })
+      (mkNixOSConfig {
+        # Thinkpad T440
+        hostname = "kei"; # Kui / Legs
+        extraMods = [ ./modules/presets/laptop.nix ];
+      })
+      (mkNixOSConfig {
+        # Raspberry Pi 4
+        hostname = "genbu"; # Xuanwu / Black Turtoise
+        system = "aarch64-linux";
+        extraMods = [ ./modules/presets/homelab.nix ];
+      })
 
-    # ---Defining Home-Manager---
-    (mkHomeConfig {
-      hostname = "linux";
-    })
-  ]);
+      # ---Defining Home-Manager---
+      (mkHomeConfig {
+        hostname = "linux";
+      })
+    ]);
 }

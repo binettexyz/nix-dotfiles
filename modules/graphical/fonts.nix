@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.modules.system.customFonts.enable = lib.mkEnableOption {
     description = "Enable custom fonts";
     default = false;
@@ -30,10 +31,10 @@
         includeUserConf = true;
         cache32Bit = true;
         defaultFonts = {
-          emoji = ["Noto Color Emoji"];
-          serif = ["JetBrainsMono Nerd Font"];
-          sansSerif = ["JetBrainsMono Nerd Font"];
-          monospace = ["FantasqueSansMono Nerd Font mono"];
+          emoji = [ "Noto Color Emoji" ];
+          serif = [ "JetBrainsMono Nerd Font" ];
+          sansSerif = [ "JetBrainsMono Nerd Font" ];
+          monospace = [ "FantasqueSansMono Nerd Font mono" ];
         };
       };
     };

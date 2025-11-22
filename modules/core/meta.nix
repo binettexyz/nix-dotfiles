@@ -3,7 +3,8 @@
   pkgs,
   flake,
   ...
-}: {
+}:
+{
   imports = [
     ../custom/default.nix
     ../../overlays
@@ -60,13 +61,15 @@
   };
 
   # Enable unfree packages
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-unwrapped"
-    "vintagestory"
-    "steam-jupiter-unwrapped"
-    "steamdeck-hw-theme"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-unwrapped"
+      "vintagestory"
+      "steam-jupiter-unwrapped"
+      "steamdeck-hw-theme"
+    ];
 
   # Change build dir to /var/tmp
   systemd.services.nix-daemon.environment.TMPDIR = "/tmp";

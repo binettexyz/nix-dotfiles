@@ -4,20 +4,24 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (flake) inputs;
   inherit (config.meta) username;
   cfg = config.modules.system.desktopEnvironment;
-in {
+in
+{
   # ---Desktop Environment Module---
   options.modules.system.desktopEnvironment = lib.mkOption {
     description = "Enable Desktop Environment";
-    type = lib.types.nullOr (lib.types.enum [
-      "gamescope-wayland"
-      "plasma"
-      "qtile"
-      "hyprland-uwsm"
-    ]);
+    type = lib.types.nullOr (
+      lib.types.enum [
+        "gamescope-wayland"
+        "plasma"
+        "qtile"
+        "hyprland-uwsm"
+      ]
+    );
     default = null;
   };
 
@@ -27,21 +31,25 @@ in {
     }
     (lib.mkIf (cfg == "plasma") {
       services.greetd.enable = true;
-      services.greetd.settings = let
-        initial_session = {
-          user =
-            if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags)
-            then "root"
-            else username;
-          command =
-            if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags)
-            then "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
-            else "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+      services.greetd.settings =
+        let
+          initial_session = {
+            user =
+              if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags) then
+                "root"
+              else
+                username;
+            command =
+              if (config.modules.gaming.enable && lib.elem "console" config.modules.device.tags) then
+                "${pkgs.jovian-greeter}/bin/jovian-greeter ${username}"
+              else
+                "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+          };
+        in
+        {
+          initial_session = initial_session;
+          default_session = initial_session;
         };
-      in {
-        initial_session = initial_session;
-        default_session = initial_session;
-      };
       services.xserver.enable = true;
       services.desktopManager.plasma6.enable = true;
       environment.plasma6.excludePackages = [
@@ -52,25 +60,27 @@ in {
         #pkgs.kdePackages.ark
       ];
 
-      environment.systemPackages = [pkgs.kdePackages.ark];
+      environment.systemPackages = [ pkgs.kdePackages.ark ];
     })
 
     (lib.mkIf (cfg == "qtile") {
       services.xserver.windowManager.qtile.enable = true;
 
       services.greetd.enable = true;
-      services.greetd.settings = let
-        initial_session = {
-          user = username;
-          command =
-            "${pkgs.tuigreet}/bin/tuigreet"
-            + " -t -r"
-            + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
+      services.greetd.settings =
+        let
+          initial_session = {
+            user = username;
+            command =
+              "${pkgs.tuigreet}/bin/tuigreet"
+              + " -t -r"
+              + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
+          };
+        in
+        {
+          initial_session = initial_session;
+          default_session = initial_session;
         };
-      in {
-        initial_session = initial_session;
-        default_session = initial_session;
-      };
 
       services = {
         irqbalance.enable = true;
@@ -93,15 +103,17 @@ in {
       };
 
       services.greetd.enable = true;
-      services.greetd.settings = let
-        initial_session = {
-          user = username;
-          command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r";
+      services.greetd.settings =
+        let
+          initial_session = {
+            user = username;
+            command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r";
+          };
+        in
+        {
+          initial_session = initial_session;
+          default_session = initial_session;
         };
-      in {
-        initial_session = initial_session;
-        default_session = initial_session;
-      };
     })
   ];
 }

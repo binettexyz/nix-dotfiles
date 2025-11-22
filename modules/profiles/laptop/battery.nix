@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.laptop.onLowBattery;
-in {
+in
+{
   options.laptop.onLowBattery = {
     enable = lib.mkEnableOption "Perform action on low battery";
     thresholdPercentage = lib.mkOption {

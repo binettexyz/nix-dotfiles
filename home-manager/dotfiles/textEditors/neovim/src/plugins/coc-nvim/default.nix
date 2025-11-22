@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # Configure neovim
   programs.neovim = {
     # Install coc

@@ -41,40 +41,44 @@ in
     sops.secrets."server/containers/miniflux-credentials" = {
       mode = "777";
     };
-    
+
     # ---Main container---
-    containers.${service} = let
-      adminCredentialsFile = config.sops.secrets."server/containers/miniflux-credentials".path;
-    in {
-      ephemeral = false;
-      autoStart = true;
-      privateNetwork = true;
-      localAddress = cfg.address.local;
-      hostAddress = cfg.address.host;
+    containers.${service} =
+      let
+        adminCredentialsFile = config.sops.secrets."server/containers/miniflux-credentials".path;
+      in
+      {
+        ephemeral = false;
+        autoStart = true;
+        privateNetwork = true;
+        localAddress = cfg.address.local;
+        hostAddress = cfg.address.host;
 
-      bindMounts = {
-        ${adminCredentialsFile} = {
-          hostPath = adminCredentialsFile;
-          isReadOnly = true;
-        };
-        "/var/lib/postgresql" = {
-          hostPath = "/var/lib/containers/miniflux/postgresql";
-          isReadOnly = false;
-        };
-      };
-
-      config = { pkgs, ... }: {
-        system.stateVersion = "22.11";
-        networking.firewall.allowedTCPPorts = [ cfg.port];
-
-        services.${service} = {
-          enable = true;
-          inherit adminCredentialsFile;
-          config = {
-            LISTEN_ADDR = "0.0.0.0:8080";
+        bindMounts = {
+          ${adminCredentialsFile} = {
+            hostPath = adminCredentialsFile;
+            isReadOnly = true;
+          };
+          "/var/lib/postgresql" = {
+            hostPath = "/var/lib/containers/miniflux/postgresql";
+            isReadOnly = false;
           };
         };
+
+        config =
+          { pkgs, ... }:
+          {
+            system.stateVersion = "22.11";
+            networking.firewall.allowedTCPPorts = [ cfg.port ];
+
+            services.${service} = {
+              enable = true;
+              inherit adminCredentialsFile;
+              config = {
+                LISTEN_ADDR = "0.0.0.0:8080";
+              };
+            };
+          };
       };
-    };
   };
 }

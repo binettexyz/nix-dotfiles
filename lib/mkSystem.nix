@@ -4,21 +4,24 @@
   nixpkgs,
   self,
   ...
-} @ inputs: let
+}@inputs:
+let
   inherit (flake-utils.lib) mkApp;
-in {
+in
+{
   # --Function to configure a nixosSystem--
-  mkNixOSConfig = {
-    hostname,
-    system ? "x86_64-linux",
-    nixosSystem ? nixpkgs.lib.nixosSystem,
-    extraMods ? [],
-  }: {
-    nixosConfigurations.${hostname} = nixosSystem {
-      inherit system;
-      modules =
-        [
-          {networking.hostName = hostname;}
+  mkNixOSConfig =
+    {
+      hostname,
+      system ? "x86_64-linux",
+      nixosSystem ? nixpkgs.lib.nixosSystem,
+      extraMods ? [ ],
+    }:
+    {
+      nixosConfigurations.${hostname} = nixosSystem {
+        inherit system;
+        modules = [
+          { networking.hostName = hostname; }
           ../hosts/${hostname}/config.nix
           ../hosts/${hostname}/hardware.nix
           inputs.home.nixosModules.home-manager
@@ -26,45 +29,51 @@ in {
           inputs.impermanence.nixosModules.impermanence
         ]
         ++ extraMods;
-      specialArgs = {
-        inherit system;
-        flake = self;
-        hostname = hostname;
+        specialArgs = {
+          inherit system;
+          flake = self;
+          hostname = hostname;
+        };
       };
     };
-  };
 
   # https://github.com/nix-community/home-manager/issues/1510
-  mkHomeConfig = {
-    hostname,
-    username ? "binette",
-    homePath ? "/home",
-    homeDirectory ? "${homePath}/${username}",
-    configuration ? ../home-manager/default.nix,
-    system ? "x86_64-linux",
-    homeManagerConfiguration ? home.lib.homeManagerConfiguration,
-  }: let
-    pkgs = import nixpkgs {inherit system;};
-    homeDirectory = "${homePath}/${username}";
-  in {
-    homeConfigurations.${hostname} = homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ../overlays
-        ({ ... }: {
-            home = { inherit username homeDirectory; };
-            imports = [ configuration ];
-          })
-      ];
-      extraSpecialArgs = {
-        inherit inputs system;
-        hostname = hostname;
+  mkHomeConfig =
+    {
+      hostname,
+      username ? "binette",
+      homePath ? "/home",
+      homeDirectory ? "${homePath}/${username}",
+      configuration ? ../home-manager/default.nix,
+      system ? "x86_64-linux",
+      homeManagerConfiguration ? home.lib.homeManagerConfiguration,
+    }:
+    let
+      pkgs = import nixpkgs { inherit system; };
+      homeDirectory = "${homePath}/${username}";
+    in
+    {
+      homeConfigurations.${hostname} = homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ../overlays
+          (
+            { ... }:
+            {
+              home = { inherit username homeDirectory; };
+              imports = [ configuration ];
+            }
+          )
+        ];
+        extraSpecialArgs = {
+          inherit inputs system;
+          hostname = hostname;
+        };
+      };
+
+      apps.${system}."homeActivations/${hostname}" = mkApp {
+        drv = self.outputs.homeConfigurations.${hostname}.activationPackage;
+        exePath = "/activate";
       };
     };
-
-    apps.${system}."homeActivations/${hostname}" = mkApp {
-      drv = self.outputs.homeConfigurations.${hostname}.activationPackage;
-      exePath = "/activate";
-    };
-  };
 }

@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Set default directories without CAPS
   xdg.userDirs = {
     enable = true;
@@ -18,25 +19,27 @@
   xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = let
-      browser = "librewolf.desktop";
-    in {
-      "application/pdf" = ["pdf.desktop"];
-      "application/postscript" = ["pdf.desktop"];
-      "image/png" = ["img.desktop"];
-      "image/jpeg" = ["img.desktop"];
-      "image/gif" = ["img.desktop"];
-      "inode/directory" = ["file.desktop"];
-      "text/x-shellscript" = ["text.desktop"];
-      "text/plain" = ["text.desktop"];
-      "text/html" = ["text.desktop"];
-      "video/x-matroska" = ["video.desktop"];
-      "x-scheme-handler/magnet" = ["torrent.desktop"];
-      "x-scheme-handler/http" = [browser];
-      "x-scheme-handler/https " = [browser];
-      "x-scheme-handler/about" = [browser];
-      "x-scheme-handler/unknown" = [browser];
-    };
+    defaultApplications =
+      let
+        browser = "librewolf.desktop";
+      in
+      {
+        "application/pdf" = [ "pdf.desktop" ];
+        "application/postscript" = [ "pdf.desktop" ];
+        "image/png" = [ "img.desktop" ];
+        "image/jpeg" = [ "img.desktop" ];
+        "image/gif" = [ "img.desktop" ];
+        "inode/directory" = [ "file.desktop" ];
+        "text/x-shellscript" = [ "text.desktop" ];
+        "text/plain" = [ "text.desktop" ];
+        "text/html" = [ "text.desktop" ];
+        "video/x-matroska" = [ "video.desktop" ];
+        "x-scheme-handler/magnet" = [ "torrent.desktop" ];
+        "x-scheme-handler/http" = [ browser ];
+        "x-scheme-handler/https " = [ browser ];
+        "x-scheme-handler/about" = [ browser ];
+        "x-scheme-handler/unknown" = [ browser ];
+      };
   };
 
   xdg.desktopEntries = {

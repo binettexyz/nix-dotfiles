@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Configure neovim
   programs.neovim = {
     # Install rainbow FIXME: broke nix syntax

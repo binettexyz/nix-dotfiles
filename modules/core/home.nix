@@ -5,15 +5,15 @@
   flake,
   system,
   ...
-}: let
+}:
+let
   cfg = config.modules.system.home;
-in {
+in
+{
   options.modules.system.home = {
-    enable =
-      lib.mkEnableOption "home config"
-      // {
-        default = true;
-      };
+    enable = lib.mkEnableOption "home config" // {
+      default = true;
+    };
     username = lib.mkOption {
       description = "Main username";
       type = lib.types.str;

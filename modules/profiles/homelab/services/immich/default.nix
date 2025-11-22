@@ -1,59 +1,65 @@
-{config, lib, ...}:
+{
+  config,
+  lib,
+  ...
+}:
 let
   service = "immich";
   cfg = config.modules.homelab.services.${service};
   hl = config.modules.homelab;
 in
-  {
-    options.modules.homelab.services.${service} = {
-      enable = lib.mkEnableOption "Enable ${service}";
-      address = {
-        host = lib.mkOption {
-          type = lib.types.str;
-          default = "192.168.100.1";
-        };
-        local = lib.mkOption {
-          type = lib.types.str;
-          default = "192.168.100.16";
-        };
-      };
-      mediaDir = lib.mkOption {
+{
+  options.modules.homelab.services.${service} = {
+    enable = lib.mkEnableOption "Enable ${service}";
+    address = {
+      host = lib.mkOption {
         type = lib.types.str;
-        default = "/data/library/photos";
+        default = "192.168.100.1";
       };
-      port = lib.mkOption {
-        type = lib.types.int;
-        default = 2283;
-      };
-      url = lib.mkOption {
+      local = lib.mkOption {
         type = lib.types.str;
-        default = "photo.${hl.baseDomain}";
+        default = "192.168.100.16";
       };
     };
+    mediaDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/data/library/photos";
+    };
+    port = lib.mkOption {
+      type = lib.types.int;
+      default = 2283;
+    };
+    url = lib.mkOption {
+      type = lib.types.str;
+      default = "photo.${hl.baseDomain}";
+    };
+  };
 
-    config = lib.mkIf (hl.enable && cfg.enable) {
-      services.nginx.virtualHosts.${cfg.url} = {
-        useACMEHost = hl.baseDomain;
-        forceSSL = true;
-        locations."/".proxyPass = "http://${cfg.address.local}:${toString cfg.port}";
+  config = lib.mkIf (hl.enable && cfg.enable) {
+    services.nginx.virtualHosts.${cfg.url} = {
+      useACMEHost = hl.baseDomain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${cfg.address.local}:${toString cfg.port}";
+    };
+
+    containers.${service} = {
+      autoStart = true;
+      privateNetwork = true;
+      localAddress = cfg.address.local;
+      hostAddress = cfg.address.host;
+
+      bindMounts = {
+        "/var/lib/${service}" = {
+          hostPath = cfg.mediaDir;
+          isReadOnly = false;
+        };
       };
 
-      containers.${service} = {
-        autoStart = true;
-        privateNetwork = true;
-        localAddress = cfg.address.local;
-        hostAddress = cfg.address.host;
-
-        bindMounts = {
-          "/var/lib/${service}" = {
-            hostPath = cfg.mediaDir;
-            isReadOnly = false;
-          };
-        };
-
-        config = {...}: {
+      config =
+        { ... }:
+        {
           system.stateVersion = "25.05";
-          networking.firewall.allowedTCPPorts = [cfg.port];
+          networking.firewall.allowedTCPPorts = [ cfg.port ];
           nixpkgs.config.allowUnsupportedSystem = true;
 
           systemd.tmpfiles.rules = [
@@ -67,8 +73,7 @@ in
             mediaLocation = "/var/lib/${service}";
             machine-learning.enable = false;
           };
-
         };
-      };
     };
-  }
+  };
+}

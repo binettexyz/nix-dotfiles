@@ -3,15 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (config.meta) username;
-in {
+in
+{
   # Enable OpenSSH
   services.openssh = {
     enable = true;
     startWhenNeeded = true;
     allowSFTP = true;
-    ports = [704];
+    ports = [ 704 ];
     authorizedKeysInHomedir = true;
     settings = {
       KbdInteractiveAuthentication = false;

@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   # ---Custom modules---
   modules = {
     bootloader = {
@@ -7,11 +8,21 @@
       useOSProber = false;
     };
     device = {
-      videoOutput = ["eDP-1" "DP-3"];
+      videoOutput = [
+        "eDP-1"
+        "DP-3"
+      ];
       hasBattery = true;
       storage.ssd = true;
       type = "handheld";
-      tags = ["battery" "console" "gaming" "lowSpec" "steamdeck" "touchscreen"];
+      tags = [
+        "battery"
+        "console"
+        "gaming"
+        "lowSpec"
+        "steamdeck"
+        "touchscreen"
+      ];
     };
     gaming = {
       enable = true;

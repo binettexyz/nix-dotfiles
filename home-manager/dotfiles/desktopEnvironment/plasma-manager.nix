@@ -1,7 +1,5 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  ...
-}: {
   programs.plasma = {
     enable = true;
     overrideConfig = true;
@@ -72,7 +70,7 @@
             digitalClock.calendar = {
               firstDayOfWeek = "sunday";
               showWeekNumbers = true;
-              plugins = ["holidaysevents"];
+              plugins = [ "holidaysevents" ];
             };
           }
           "org.kde.plasma.showdesktop"

@@ -4,10 +4,12 @@
   flake,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.modules.system.audio.enable;
-in {
-  imports = [flake.inputs.nix-gaming.nixosModules.pipewireLowLatency];
+in
+{
+  imports = [ flake.inputs.nix-gaming.nixosModules.pipewireLowLatency ];
 
   options.modules.system.audio.enable = lib.mkOption {
     description = "audio config";

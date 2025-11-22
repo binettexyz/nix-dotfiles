@@ -1,13 +1,27 @@
-{config, flake, lib, ...}: {
+{
+  config,
+  flake,
+  lib,
+  ...
+}:
+{
   imports = [
     ../../home-manager
   ];
 
   modules = {
     device = {
-      tags = ["console" "workstation" "gaming" "highSpec"];
+      tags = [
+        "console"
+        "workstation"
+        "gaming"
+        "highSpec"
+      ];
       type = "desktop";
-      videoOutput = ["HDMI-A-1" "HDMI-A-2"];
+      videoOutput = [
+        "HDMI-A-1"
+        "HDMI-A-2"
+      ];
       storage = {
         hdd = true;
         ssd = true;

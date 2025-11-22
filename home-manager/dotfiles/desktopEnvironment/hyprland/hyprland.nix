@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -60,18 +61,12 @@
           vibrancy = 0.1696;
         };
         shadow = {
-          enabled = 
-          if lib.elem "lowSpec" config.modules.device.tags
-          then false
-          else true;
+          enabled = if lib.elem "lowSpec" config.modules.device.tags then false else true;
         };
       };
 
       animations = {
-        enabled =
-          if lib.elem "lowSpec" config.modules.device.tags
-          then false
-          else true;
+        enabled = if lib.elem "lowSpec" config.modules.device.tags then false else true;
         bezier = [
           "smoothIn, 0.25, 1, 0.5, 1"
           "pace, 0.46, 1, 0.29, 0.99"
@@ -256,7 +251,7 @@
         hyprsplit.num_workspaces = 3;
       };
     };
-    
+
     plugins = [
       pkgs.hyprlandPlugins.hyprsplit
     ];

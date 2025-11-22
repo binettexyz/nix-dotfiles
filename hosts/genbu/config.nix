@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   # ---Custom modules---
   modules = {
     bootloader.default = "rpi4";
@@ -35,11 +36,14 @@
   services.syncthing.settings.folders = {
     "gameSaves" = {
       path = "/data/gaming/saves";
-      devices = ["suzaku" "seiryu"];
+      devices = [
+        "suzaku"
+        "seiryu"
+      ];
     };
     "notes" = {
       path = "/data/library/notes";
-      devices = ["byakko"];
+      devices = [ "byakko" ];
     };
   };
 }

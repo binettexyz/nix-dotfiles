@@ -70,47 +70,49 @@ in
     containers.${service} =
       let
         environmentFile = config.sops.secrets."server/containers/vaultwardenAdminToken".path;
-      in {
-      autoStart = true;
-      privateNetwork = true;
-      localAddress = cfg.address.local;
-      hostAddress = cfg.address.host;
+      in
+      {
+        autoStart = true;
+        privateNetwork = true;
+        localAddress = cfg.address.local;
+        hostAddress = cfg.address.host;
 
-      bindMounts = {
-        "/var/lib/bitwarden_rs" = {
-          hostPath = cfg.dataDir;
-          isReadOnly = false;
-        };
-        "/var/lib/bitwarden_rs/backup" = {
-          hostPath = cfg.backupDir;
-          isReadOnly = false;
-        };
-        "/var/lib/bitwarden_rs/vaultwarden.env" = {
-          hostPath = environmentFile;
-          isReadOnly = false;
-        };
-      };
-
-      config = {pkgs, ...}: {
-        system.stateVersion = "22.11";
-        networking.firewall = {
-          allowedTCPPorts = [ cfg.port ];
-          allowedUDPPorts = [ cfg.port ];
-        };
-         services.vaultwarden = {
-          enable = true;
-          backupDir = cfg.backupDir;
-          environmentFile = "/var/lib/bitwarden_rs/vaultwarden.env";
-          config = {
-            DOMAIN = "https://${cfg.url}";
-            SIGNUPS_ALLOWED = false;
-            ROCKET_ADDRESS = "0.0.0.0";
-            ROCKET_PORT = cfg.port;
-            ROCKET_LOG = "critical";
+        bindMounts = {
+          "/var/lib/bitwarden_rs" = {
+            hostPath = cfg.dataDir;
+            isReadOnly = false;
+          };
+          "/var/lib/bitwarden_rs/backup" = {
+            hostPath = cfg.backupDir;
+            isReadOnly = false;
+          };
+          "/var/lib/bitwarden_rs/vaultwarden.env" = {
+            hostPath = environmentFile;
+            isReadOnly = false;
           };
         };
+
+        config =
+          { pkgs, ... }:
+          {
+            system.stateVersion = "22.11";
+            networking.firewall = {
+              allowedTCPPorts = [ cfg.port ];
+              allowedUDPPorts = [ cfg.port ];
+            };
+            services.vaultwarden = {
+              enable = true;
+              backupDir = cfg.backupDir;
+              environmentFile = "/var/lib/bitwarden_rs/vaultwarden.env";
+              config = {
+                DOMAIN = "https://${cfg.url}";
+                SIGNUPS_ALLOWED = false;
+                ROCKET_ADDRESS = "0.0.0.0";
+                ROCKET_PORT = cfg.port;
+                ROCKET_LOG = "critical";
+              };
+            };
+          };
       };
-    };
   };
 }
-

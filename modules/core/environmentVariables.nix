@@ -1,14 +1,12 @@
-{config, ...}: {
+{ config, ... }:
+{
   environment.localBinInPath = true;
   environment.variables = {
     # Default Programs:
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERMINAL = "foot";
-    BROWSER =
-      if config.modules.device.type == "laptop"
-      then "qutebrowser"
-      else "librefox";
+    BROWSER = if config.modules.device.type == "laptop" then "qutebrowser" else "librefox";
     READER = "zathura";
     MANPAGER = "bat -l man -p";
     SHELL = "zsh";

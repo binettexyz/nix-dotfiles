@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.hm.browser.qutebrowser;
   cfgTheme = config.modules.hm.theme.colorScheme;
-in {
+in
+{
   options.modules.hm.browser.qutebrowser.enable = lib.mkOption {
     description = "Enable qutebrowser";
     default = false;
@@ -36,13 +38,14 @@ in {
       };
 
       extraConfig =
-        if cfgTheme == "catppucin"
-        then (builtins.readFile ./themes/catppuccin.py)
-        else if cfgTheme == "jmbi"
-        then (builtins.readFile ./themes/jmbi.py)
-        else if cfgTheme == "gruvbox"
-        then (builtins.readFile ./themes/gruvbox-material.py)
-        else "";
+        if cfgTheme == "catppucin" then
+          (builtins.readFile ./themes/catppuccin.py)
+        else if cfgTheme == "jmbi" then
+          (builtins.readFile ./themes/jmbi.py)
+        else if cfgTheme == "gruvbox" then
+          (builtins.readFile ./themes/gruvbox-material.py)
+        else
+          "";
 
       searchEngines = {
         yt = "https://www.youtube.com/results?search_query={}";
@@ -68,13 +71,13 @@ in {
       loadAutoconfig = false;
       settings = {
         auto_save.session = true;
-        confirm_quit = ["downloads"];
+        confirm_quit = [ "downloads" ];
         content = {
           autoplay = false;
           blocking = {
             enabled = true;
             method = "both"; # Brave’s ABP-style adblocker & host
-            whitelist = [];
+            whitelist = [ ];
             hosts.lists = [
               "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
               "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt"
@@ -99,12 +102,12 @@ in {
           position = "bottom";
           remove_finished = 5;
         };
-#        editor.command = [
-#          "st"
-#          "-e"
-#          "nvim"
-#          "{}"
-#        ];
+        #        editor.command = [
+        #          "st"
+        #          "-e"
+        #          "nvim"
+        #          "{}"
+        #        ];
         scrolling = {
           bar = "never";
           smooth = true;
@@ -138,9 +141,9 @@ in {
       greasemonkey = [
         (pkgs.writeText "yt-addSkip.js" ''
           // ==UserScript==
-          // @name         Auto Skip YouTube Ads 
+          // @name         Auto Skip YouTube Ads
           // @version      1.0.1
-          // @description  Speed up and skip YouTube ads automatically 
+          // @description  Speed up and skip YouTube ads automatically
           // @author       jso8910
           // @match        *://*.youtube.com/*
           // @exclude      *://*.youtube.com/subscribe_embed?*
@@ -154,7 +157,7 @@ in {
                   }
               }
           })
-          
+
           main.observe(document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button'), {attributes: true, characterData: true, childList: true})
         '')
       ];

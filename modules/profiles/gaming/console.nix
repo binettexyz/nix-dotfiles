@@ -4,9 +4,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (config.meta) username;
-in {
+in
+{
   imports = [
     flake.inputs.jovian.nixosModules.jovian
   ];
@@ -34,6 +36,6 @@ in {
     };
 
     # Steamdeck firmwate updater
-    environment.systemPackages = [pkgs.steamdeck-firmware];
+    environment.systemPackages = [ pkgs.steamdeck-firmware ];
   };
 }

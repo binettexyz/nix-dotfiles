@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options = {
     meta = {
       username = lib.mkOption {

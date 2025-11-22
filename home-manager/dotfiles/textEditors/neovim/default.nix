@@ -5,11 +5,9 @@
 }:
 let
   cocConfig = {
-    coc = {
-      preferences = {
-        formatOnSave = true;
-        formatOnType = true;
-      };
+    coc.preferences = {
+      formatOnSave = true;
+      formatOnType = true;
     };
 
     suggest = {
@@ -20,7 +18,7 @@ let
 
     colors.enable = true;
 
-    nixd.formattingCommand = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+    nixd.formattingCommand = [ "${pkgs.nixfmt}/bin/nixfmt" ];
 
     languageserver.nix = {
       command = "${pkgs.nixd}/bin/nixd";
@@ -37,7 +35,7 @@ in
   home.packages = [
     pkgs.nodejs
     pkgs.nixd
-    pkgs.nixfmt-rfc-style
+    pkgs.nixfmt
   ];
 
   xdg.configFile = {

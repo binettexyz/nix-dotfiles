@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.server.containers.servarr;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.17";
@@ -26,7 +27,7 @@
   mkProxy = port: {
     useACMEHost = "jbinette.xyz";
     forceSSL = true;
-    locations."/".proxyPass = "http://${localAddress}:" + toString (port);
+    locations."/".proxyPass = "http://${localAddress}:" + toString port;
   };
 in
 {
@@ -158,7 +159,8 @@ in
             enable = true;
             group = "media";
           };
-          services.prowlarr = { #TODO: Fix Me
+          services.prowlarr = {
+            # TODO: Fix Me
             enable = true;
             settings = {
               app.theme = "dark";

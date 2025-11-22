@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.bootloader.default;
-in {
+in
+{
   # ---Bootloader Modules---
   options.modules.bootloader = {
     default = lib.mkOption {
@@ -31,10 +33,7 @@ in {
     (lib.mkIf (cfg == "grub") {
       boot.loader = {
         timeout = 1;
-        efi.canTouchEfiVariables =
-          if config.modules.bootloader.asRemovable
-          then false
-          else true;
+        efi.canTouchEfiVariables = if config.modules.bootloader.asRemovable then false else true;
         efi.efiSysMountPoint = "/boot";
         grub = {
           enable = true;

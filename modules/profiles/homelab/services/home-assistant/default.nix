@@ -2,14 +2,16 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   service = "home-assistant";
   cfg = config.modules.homelab.services.${service};
   hl = config.modules.homelab;
   hostAddress = "192.168.100.1";
   localAddress = "192.168.100.12";
   ports.home-assistant = 8123;
-in {
+in
+{
   options.modules.homelab.services.${service} = {
     enable = lib.mkEnableOption "Enable Home-Assistant";
     address = {
@@ -51,29 +53,33 @@ in {
       localAddress = cfg.address.local;
       hostAddress = cfg.address.host;
 
-      config = {pkgs, ...}: {
-        system.stateVersion = "25.05";
-        networking.firewall.allowedTCPPorts = [cfg.port];
+      config =
+        { pkgs, ... }:
+        {
+          system.stateVersion = "25.05";
+          networking.firewall.allowedTCPPorts = [ cfg.port ];
 
-        services.${service} = {
-          enable = true;
-          extraComponents = [
-            # Components required to complete the onboarding
-            "esphome"
-            "remote_calendar"
-          ];
-          config = {
-            http = {
-              use_x_forwarded_for = true;
-              trusted_proxies = ["0.0.0.0" "127.0.0.1"];
+          services.${service} = {
+            enable = true;
+            extraComponents = [
+              # Components required to complete the onboarding
+              "esphome"
+              "remote_calendar"
+            ];
+            config = {
+              http = {
+                use_x_forwarded_for = true;
+                trusted_proxies = [
+                  "0.0.0.0"
+                  "127.0.0.1"
+                ];
+              };
+              # Includes dependencies for a basic setup
+              # https://www.home-assistant.io/integrations/default_config/
+              default_config = { };
             };
-            # Includes dependencies for a basic setup
-            # https://www.home-assistant.io/integrations/default_config/
-            default_config = {};
           };
         };
-      };
     };
-
   };
 }

@@ -11,6 +11,5 @@
     ../core/ssh.nix
     ../core/system.nix
     ../core/user.nix
-
   ];
 }
