@@ -10,7 +10,7 @@
     ./dotfiles/browsers/librewolf.nix
     ./dotfiles/browsers/qutebrowser
     ./dotfiles/desktopEnvironment/hyprland
-    #./dotfiles/desktopEnvironment/plasma-manager.nix
+    ./dotfiles/desktopEnvironment/plasma-manager.nix
     ./dotfiles/desktopEnvironment/qtile
     ./dotfiles/media/mpv
     ./dotfiles/media/newsboat.nix
@@ -30,7 +30,7 @@
     ../modules/custom/colorScheme.nix
     (flake.inputs.impermanence + "/home-manager.nix")
     flake.inputs.nix-colors.homeManagerModule
-    #flake.inputs.plasma-manager.homeModules.plasma-manager
+    flake.inputs.plasma-manager.homeModules.plasma-manager
   ];
 
   options = {
