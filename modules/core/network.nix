@@ -35,10 +35,10 @@
     wireless = {
       enable = lib.mkDefault true;
       userControlled.enable = true;
-      networks."BELL920" = {
+      networks."Binette WI-FI" = {
         priority = 0;
         auth = ''
-          psk=612dd63c94323b70287c5785e4e53ecbec25d48ee3330b1b3d42eec0a9225a6b
+          psk=7154d89bdf8d3f5cfa91183ef90259ce3a01bd5c9a6a241c98d1a3031ea13ef2
           proto=RSN
           key_mgmt=WPA-PSK
           pairwise=CCMP
