@@ -60,8 +60,8 @@
     interfaces.eth0.useDHCP = true;
     interfaces.wlan0.useDHCP = true;
     wireless.interfaces = [ "wlan0" ];
-    defaultGateway = "192.168.2.1";
-    nameservers = [ "192.168.2.1" ];
+    defaultGateway = "192.168.18.1";
+    nameservers = [ "192.168.18.1" ];
   };
 
   nix.settings.max-jobs = 4;
