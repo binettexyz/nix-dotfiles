@@ -12,10 +12,13 @@
   # Add some Nix related packages
   environment.systemPackages = [
     pkgs.nix-rebuild
+    pkgs.nix-deploy
     pkgs.screenshot
     pkgs.sysact
     pkgs.clipboard
     pkgs.wofirun
+    pkgs.expect
+    pkgs.nix-output-monitor
   ];
 
   programs = {

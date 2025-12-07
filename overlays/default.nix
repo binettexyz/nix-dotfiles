@@ -14,6 +14,16 @@ let
         "vintagestory"
       ];
   };
+
+  pkgs_steam = import flake.inputs.steam {
+    inherit system;
+    config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "steam"
+        "steam-unwrapped"
+      ];
+  };
 in
 {
   nixpkgs.overlays = [
@@ -35,9 +45,11 @@ in
       nix-cleanup = prev.callPackage ./tools/nix-cleanup { };
       #nixos-cleanup = prev.callPackage ./tools/nix-cleanup {isNixOS = true;};
       nix-rebuild = prev.callPackage ./tools/nix-rebuild { };
+      nix-deploy = prev.callPackage ./tools/nix-deploy { };
       # ---Games---
       freedoom = prev.callPackage ./games/freedoom.nix { };
       moondeck-buddy = prev.callPackage ./games/moondeck-buddy.nix { };
+      steam = pkgs_steam.steam;
       vintagestory = pkgs_vs.vintagestory;
       # ---Themes---
       wallpapers = prev.callPackage ./themes/wallpapers { };

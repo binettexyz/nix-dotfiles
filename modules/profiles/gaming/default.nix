@@ -28,6 +28,7 @@
       # ---Enabling Steam---
       programs.steam = {
         enable = true;
+        package = pkgs.steam;
         extraPackages = [
           pkgs.gamescope
           pkgs.gamemode
