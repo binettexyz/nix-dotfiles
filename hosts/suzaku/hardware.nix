@@ -102,8 +102,8 @@
   # ---Networking---
   networking = {
     useDHCP = lib.mkForce false;
-    interfaces.wlo1.useDHCP = true;
-    intrfaces.enp34s0.useDHCP = true;
+    interfaces.wlp5s0.useDHCP = true;
+    interfaces.eno1.useDHCP = true;
     wireless.enable = lib.mkForce false;
     networkmanager.enable = lib.mkForce true;
   };
