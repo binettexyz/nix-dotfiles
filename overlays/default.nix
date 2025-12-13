@@ -6,20 +6,12 @@
   ...
 }:
 let
-  pkgs_vs = import flake.inputs.vintage-story {
+  pkgs_games = import flake.inputs.games {
     inherit system;
     config.allowUnfreePredicate =
       pkg:
       builtins.elem (lib.getName pkg) [
         "vintagestory"
-      ];
-  };
-
-  pkgs_steam = import flake.inputs.steam {
-    inherit system;
-    config.allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
         "steam"
         "steam-unwrapped"
       ];
@@ -49,8 +41,9 @@ in
       # ---Games---
       freedoom = prev.callPackage ./games/freedoom.nix { };
       moondeck-buddy = prev.callPackage ./games/moondeck-buddy.nix { };
-      steam = pkgs_steam.steam;
-      vintagestory = pkgs_vs.vintagestory;
+      steam = pkgs_games.steam;
+      vintagestory = pkgs_games.vintagestory;
+      prismlauncher = pkgs_games.prismlauncher;
       # ---Themes---
       wallpapers = prev.callPackage ./themes/wallpapers { };
       gruvbox-material-gtk = prev.callPackage ./themes/gruvbox-material-gtk.nix { };

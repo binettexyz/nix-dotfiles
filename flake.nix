@@ -12,8 +12,7 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # ---Games---
-    steam.url = "github:NixOS/nixpkgs/nixos-unstable";
-    vintage-story.url = "github:NixOS/nixpkgs/7b04f942cf745f4e43ce772a692b68bdd1315524";
+    games.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # ---Tools---
     home = {
