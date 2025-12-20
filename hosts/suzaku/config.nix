@@ -7,6 +7,7 @@
 {
   imports = [
     flake.inputs.yeetmouse.nixosModules.default
+    flake.inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
 
   ## Custom modules ##
@@ -44,6 +45,13 @@
       home.enable = true;
     };
   };
+
+  services.flatpak.packages = [
+    "org.prismlauncher.PrismLauncher"
+    "com.heroicgameslauncher.hgl"
+    "net.retrodeck.retrodeck"
+    "dev.vencord.Vesktop"
+  ];
 
   services.logind.settings.Login.HandlePowerKey = lib.mkForce "sleep";
 

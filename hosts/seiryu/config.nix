@@ -1,5 +1,6 @@
-{ lib, ... }:
+{ flake, lib, ... }:
 {
+  imports = [ flake.inputs.nix-flatpak.nixosModules.nix-flatpak ];
   # ---Custom modules---
   modules = {
     bootloader = {
@@ -34,6 +35,12 @@
       home.enable = true;
     };
   };
+
+  services.flatpak.packages = [
+    "org.prismlauncher.PrismLauncher"
+    "com.heroicgameslauncher.hgl"
+    "net.retrodeck.retrodeck"
+  ];
 
   # ---Networking---
   networking = {
