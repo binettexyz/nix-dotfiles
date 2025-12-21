@@ -8,11 +8,13 @@
 
     # --- Nixpkgs branches ---
     master.url = "github:NixOS/nixpkgs/master";
-    stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # ---Games---
-    games.url = "github:NixOS/nixpkgs/nixos-unstable";
+    vintagestory.url = "github:NixOS/nixpkgs/nixos-unstable";
+    steam.url = "github:NixOS/nixpkgs/nixos-unstable";
+    prismlauncher.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # ---Tools---
     home = {
