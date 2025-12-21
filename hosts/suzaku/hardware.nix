@@ -61,10 +61,14 @@
       device = "/dev/disk/by-label/ssdGames";
       fsType = "ext4";
     };
-    #    "/home/games/hdd" = {
-    #      device = "/dev/disk/by-label/hddGames";
-    #      fsType = "ext4";
-    #    };
+    "/home/games/hdd" = {
+      device = "/dev/disk/by-label/hddGames";
+      fsType = "ext4";
+      options = [
+        "x-systemd.automount"
+        "noauto"
+      ];
+    };
     "/tmp" = {
       device = "/home/binette/.cache/tmp";
       options = [ "bind" ];
