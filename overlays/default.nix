@@ -6,7 +6,7 @@
   ...
 }:
 let
-  pkgs_games = import flake.inputs.games {
+  pkgs_vs = import flake.inputs.games {
     inherit system;
     config.allowUnfreePredicate =
       pkg:
@@ -15,6 +15,19 @@ let
         "steam"
         "steam-unwrapped"
       ];
+  };
+  pkgs_steam = import flake.inputs.games {
+    inherit system;
+    config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "vintagestory"
+        "steam"
+        "steam-unwrapped"
+      ];
+  };
+  pkgs_prismlauncher = import flake.inputs.games {
+    inherit system;
   };
 in
 {
@@ -41,9 +54,14 @@ in
       # ---Games---
       freedoom = prev.callPackage ./games/freedoom.nix { };
       moondeck-buddy = prev.callPackage ./games/moondeck-buddy.nix { };
-      steam = pkgs_games.steam;
-      vintagestory = pkgs_games.vintagestory;
-      prismlauncher = pkgs_games.prismlauncher;
+      steam = pkgs_steam.steam;
+      vintagestory = pkgs_vs.vintagestory.overrideAttrs (old: {
+        src = pkgs_vs.fetchurl {
+          url = old.src.url;
+          sha256 = "sha256-LkiL/8W9MKpmJxtK+s5JvqhOza0BLap1SsaDvbLYR0c=";
+        };
+      });
+      prismlauncher = pkgs_prismlauncher.prismlauncher;
       # ---Themes---
       wallpapers = prev.callPackage ./themes/wallpapers { };
       gruvbox-material-gtk = prev.callPackage ./themes/gruvbox-material-gtk.nix { };
