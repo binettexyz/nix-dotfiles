@@ -60,7 +60,7 @@
       # Games
       #pkgs.gzdoom # Doom
       #pkgs.openmw # TES: Morrowind
-      pkgs.prismlauncher # Minecraft
+      #pkgs.prismlauncher # Minecraft
       pkgs.vintagestory
       #pkgs.zeroad # 0 a.d.
 
@@ -83,5 +83,6 @@
         # Emulation
       ]
     )
+    (lib.mkIf (lib.elem "lowSpec" config.modules.device.tags) [ pkgs.moonlight-qt ])
   ];
 }
