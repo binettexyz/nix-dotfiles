@@ -23,7 +23,7 @@
 
   config = lib.mkMerge [
     (lib.mkIf config.modules.gaming.enable {
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+      boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_cachyos;
 
       # ---Enabling Steam---
       programs.steam = {
@@ -77,7 +77,7 @@
       # ---Services---
       services.sunshine = {
         enable = config.modules.gaming.services.sunshine.enable;
-        autoStart = false;
+        autoStart = true;
         openFirewall = false;
         capSysAdmin = true;
         applications = {

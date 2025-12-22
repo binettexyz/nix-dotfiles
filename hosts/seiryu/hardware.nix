@@ -13,6 +13,7 @@
   # ---Kernel Stuff---
   boot = {
     kernelModules = [ "kvm-amd" ];
+    kernelPackages = lib.mkForce pkgs.linuxPackages_jovian;
     kernelParams = [
       "splash" # Needed for plymouth
       "mitigations=off"
