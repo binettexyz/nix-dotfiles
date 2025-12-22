@@ -53,7 +53,7 @@ in
   xdg.portal.config.common.default = "gtk";
 
   services = {
-    flatpak.enable = true;
+    flatpak.enable = lib.mkIf (config.modules.device.type != "server") true;
     syncthing = {
       enable = true;
       group = username;
