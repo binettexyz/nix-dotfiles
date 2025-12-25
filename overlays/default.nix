@@ -6,7 +6,7 @@
   ...
 }:
 let
-  pkgs_vs = import flake.inputs.games {
+  pkgs_vs = import flake.inputs.vintagestory {
     inherit system;
     config.allowUnfreePredicate =
       pkg:
@@ -16,7 +16,7 @@ let
         "steam-unwrapped"
       ];
   };
-  pkgs_steam = import flake.inputs.games {
+  pkgs_steam = import flake.inputs.steam {
     inherit system;
     config.allowUnfreePredicate =
       pkg:
@@ -26,7 +26,7 @@ let
         "steam-unwrapped"
       ];
   };
-  pkgs_prismlauncher = import flake.inputs.games {
+  pkgs_prismlauncher = import flake.inputs.prismlauncher {
     inherit system;
   };
 in
