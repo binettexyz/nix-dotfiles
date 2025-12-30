@@ -84,7 +84,7 @@ in
       title = true;
       syntax = "enable";
 
-      showcmd = true;
+      showcmd = false;
       cmdheight = 0;
 
       # Enable relative line numbers
@@ -175,6 +175,9 @@ in
           vim.opt_local.spelllang = { "en" }
         end
       })
+
+      vim.opt.shortmess:append("c")
+
     '';
 
     extraConfigVim = '''';
@@ -217,12 +220,12 @@ in
           };
         })
         # ---Windows---
-        (keymap "n" "<leader>ww" "<C-W>p" {
-          options = {
-            silent = true;
-            desc = "Other Window";
-          };
-        })
+        #        (keymap "n" "<leader>ww" "<C-W>p" {
+        #          options = {
+        #            silent = true;
+        #            desc = "Other Window";
+        #          };
+        #        })
         (keymap "n" "<leader>wd" "<C-W>c" {
           options = {
             silent = true;
@@ -305,7 +308,7 @@ in
       web-devicons.enable = true;
       project-nvim.enable = true;
       telescope.enable = true;
-      barbar.enable = true;
+      barbar.enable = false;
       gitgutter.enable = true;
       colorizer.enable = true;
       which-key.enable = true;
@@ -334,23 +337,23 @@ in
           };
         };
       };
-      treesitter = {
-        enable = true;
-        #        grammarPackages =
-        #          let
-        #            pkg = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
-        #          in
-        #          [
-        #            pkg.nix
-        #          ];
-        settings = {
-          auto_install = true;
-          ensure_installed = [ "nix" ];
-          highlight = {
-            enable = true;
-          };
-        };
-      };
+      #      treesitter = {
+      #        enable = true;
+      #        #        grammarPackages =
+      #        #          let
+      #        #            pkg = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
+      #        #          in
+      #        #          [
+      #        #            pkg.nix
+      #        #          ];
+      #        settings = {
+      #          auto_install = true;
+      #          ensure_installed = [ "nix" ];
+      #          highlight = {
+      #            enable = true;
+      #          };
+      #        };
+      #      };
       vimwiki = {
         enable = true;
         settings = {
