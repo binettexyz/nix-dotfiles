@@ -3,8 +3,8 @@
 ![](https://raw.githubusercontent.com/binettexyz/nix-dotfiles/refs/heads/master/docs/images/screenshot-desktop.png)
 
 # About
-This config Is still a work in progress. As a dad, i don't have a lot of time to
-debug every issues i can have with a rolling release distribution, which is why,
+This config Is still a work in progress. As a dad, I don't have a lot of time to
+debug every issues I can have with a rolling release distribution, which is why,
 ironically, I'm using NixOS.
 
 # Components
