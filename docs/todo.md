@@ -3,8 +3,8 @@
   - [ ] Clean config.
   - [ ] Fix standalone home-manager install in fake.nix.
   - [ ] Update readme.org file.
-  - [ ] Write an installation guide in installation.md.
-  - [ ] Configure nixvim.
+  - [X] Write an installation guide in installation.md.
+  - [X] Configure nixvim.
   - [X] Fix and update server.
   - [X] Setup home server with tailscale/domain.
   - [ ] Convert configs with idiomatics.
