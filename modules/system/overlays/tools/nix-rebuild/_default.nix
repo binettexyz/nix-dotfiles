@@ -2,7 +2,7 @@
 writeShellApplication {
   name = "nix-rebuild";
   text = ''
-    pushd /etc/nixos
+    pushd ~/.config/nixos
     unbuffer nixos-rebuild "$@" --flake .# --sudo |& nom
     popd
   '';
