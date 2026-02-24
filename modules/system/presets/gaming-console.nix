@@ -12,7 +12,6 @@
 
   flake.modules.homeManager.consoleGamingPreset = {
     imports = with inputs.self.modules.homeManager; [
-      colorScheme
       minimalPreset
       plasma
       emulation
