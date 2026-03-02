@@ -18,7 +18,7 @@
       ];
     };
 
-  flake.modules.homeManager.games =
+  flake.modules.homeManager.gaming =
     { pkgs, ... }:
     {
       home.packages = [
