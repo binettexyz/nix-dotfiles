@@ -28,6 +28,7 @@
           docker.enable = true;
           nfs.enable = true;
           # ---Containers---
+          actual-budget.enable = true;
           cloudflare-ddns.enable = true;
           gitea.enable = true;
           homer.enable = true;
@@ -42,18 +43,18 @@
       };
     };
 
-    #    services.syncthing.settings.folders = {
-    #      "gameSaves" = {
-    #        path = "/data/gaming/saves";
-    #        devices = [
-    #          "suzaku"
-    #          "seiryu"
-    #        ];
-    #      };
-    #      "notes" = {
-    #        path = "/data/library/notes";
-    #        devices = [ "byakko" ];
-    #      };
-    #    };
+    services.syncthing.settings.folders = {
+      "gameSaves" = {
+        path = "/home/data/gaming/saves";
+        devices = [
+          "suzaku"
+          "seiryu"
+        ];
+      };
+      "notes" = {
+        path = "/home/data/library/notes";
+        devices = [ "byakko" ];
+      };
+    };
   };
 }
