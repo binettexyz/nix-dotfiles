@@ -31,21 +31,10 @@
         }
         (lib.mkIf (cfg == "plasma") {
           services.greetd.enable = true;
-          services.greetd.settings =
-            let
-              initial_session = {
-                user = if (lib.elem "console" config.modules.device.tags) then "root" else config.meta.username;
-                command =
-                  if (lib.elem "console" config.modules.device.tags) then
-                    "${pkgs.jovian-greeter}/bin/jovian-greeter ${config.meta.username}"
-                  else
-                    "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
-              };
-            in
-            {
-              initial_session = initial_session;
-              default_session = initial_session;
-            };
+          services.greetd.settings.default_session = lib.mkIf (!(config.jovian.steam.autoStart or false)) {
+            user = config.meta.username;
+            command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+          };
           services.xserver.enable = true;
           services.desktopManager.plasma6.enable = true;
           environment.plasma6.excludePackages = [
