@@ -106,19 +106,19 @@
           hostAddress = cfg.address.host;
 
           bindMounts = {
-            "${cfg.directories.media}/movies" = {
+            "/data/movies" = {
               hostPath = "${cfg.directories.media}/movies";
               isReadOnly = false;
             };
-            "${cfg.directories.media}/tv" = {
+            "/data/tv" = {
               hostPath = "${cfg.directories.media}/tv";
               isReadOnly = false;
             };
-            "${cfg.directories.media}/animes" = {
+            "/data/animes" = {
               hostPath = "${cfg.directories.media}/animes";
               isReadOnly = false;
             };
-            "${cfg.directories.media}/.downloads" = {
+            "/data/.downloads" = {
               hostPath = cfg.directories.download;
               isReadOnly = false;
             };
@@ -143,10 +143,12 @@
           config = {
             system.stateVersion = "25.11";
             systemd.tmpfiles.rules = [
-              "d ${cfg.directories.media}/movies 777 radarr media -"
-              "d ${cfg.directories.media}/tv 777 sonarr media -"
-              "d ${cfg.directories.media}/animes 777 sonarr media -"
-              "d ${cfg.directories.media}/tv-sonarr 777 transmission media -"
+              "d /data/movies 777 radarr media -"
+              "d /data/tv 777 sonarr media -"
+              "d /data/animes 777 sonarr media -"
+              "d /data/tv-sonarr 777 transmission media -"
+              "d /data/.downloads 777 transmission media -"
+              "d /data/.downloads/.incomplete 777 transmission media -"
             ];
 
             networking.firewall = {
@@ -224,9 +226,9 @@
               settings = {
                 blocklist-enabled = true;
                 blocklist-url = "http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz";
-                download-dir = cfg.directories.download;
+                download-dir = "/data/.downloads";
                 incomplete-dir-enabled = true;
-                incomplete-dir = "${cfg.directories.download}/.incomplete";
+                incomplete-dir = "/data/.downloads/.incomplete";
                 encryption = 1;
                 message-level = 1;
                 peer-port = 50778;
