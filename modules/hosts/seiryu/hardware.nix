@@ -1,8 +1,6 @@
 {
   flake.nixosModules.seiryu =
     {
-      lib,
-      pkgs,
       modulesPath,
       ...
     }:
