@@ -15,6 +15,7 @@
         security
         ssh
         storage
+        syncthing
         systemd
         tmp
       ]
