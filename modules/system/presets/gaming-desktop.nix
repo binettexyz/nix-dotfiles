@@ -27,7 +27,7 @@
   flake.modules.homeManager.desktopGamingPreset = {
     imports = with inputs.self.modules.homeManager; [
       graphicalPreset
-      games
+      gaming
     ];
   };
 }
