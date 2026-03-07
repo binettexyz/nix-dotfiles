@@ -33,7 +33,7 @@
           ];
           videoOutputs = [
             "eDP-1"
-            "HDMI-A-2"
+            "DP-1"
           ];
         };
       };
@@ -41,8 +41,8 @@
       # Only suspend on lid closed when laptop is disconnected
       services.logind.settings.Login = {
         HandleLidSwitch = lib.mkForce "suspend";
-        #HandleLidSwitchDocked = lib.mkForce "ignore";
-        #HandleLidSwitchExternalPower = lib.mkForce "ignore";
+        HandleLidSwitchDocked = lib.mkForce "ignore";
+        HandleLidSwitchExternalPower = lib.mkForce "ignore";
         HandlePowerKey = "suspend";
       };
 

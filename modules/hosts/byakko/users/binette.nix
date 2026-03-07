@@ -24,7 +24,7 @@
           ];
           videoOutputs = [
             "eDP-1"
-            "HDMI-A-2"
+            "DP-1"
           ];
         };
         hm = {
