@@ -58,6 +58,7 @@
         ];
         wayland.windowManager.hyprland = {
           enable = true;
+          systemd.enable = false;
           package = null;
           portalPackage = null;
           settings = {
@@ -179,12 +180,9 @@
               "$mod2, Delete, exec, uwsm stop"
 
               # Switch workspaces
-              "$mod1, 1, workspace, 1"
-              "$mod1, 2, workspace, 2"
-              "$mod1, 3, workspace, 3"
-              #"bind = $mod1, 1, split-workspace, 1"
-              #"bind = $mod1, 2, split-workspace, 2"
-              #"bind = $mod1, 3, split-workspace, 3"
+              "$mod1, 1, focusworkspaceoncurrentmonitor, 1"
+              "$mod1, 2, focusworkspaceoncurrentmonitor, 2"
+              "$mod1, 3, focusworkspaceoncurrentmonitor, 3"
 
               # Move Focus
               "$mod1, H, movefocus, l"
@@ -202,9 +200,6 @@
               "$mod2, 1, movetoworkspacesilent, 1"
               "$mod2, 2, movetoworkspacesilent, 2"
               "$mod2, 3, movetoworkspacesilent, 3"
-              #"bind = $mod2, 1, split-movetoworkspacesilent, 1"
-              #"bind = $mod2, 2, split-movetoworkspacesilent, 2"
-              #"bind = $mod2, 3, split-movetoworkspacesilent, 3"
               "$mod2, Period, movewindow, mon:+1 silent"
               "$mod2, Comma, movewindow, mon:-1 silent"
 
@@ -305,36 +300,14 @@
             ];
 
             workspace = [
-              #"1, defaultName: dev"
-              #"2, defaultName:󰈹 web"
-              #"3, defaultName:󰓓 game"
               "special:scratchpad, on-created-empty:foot"
             ];
 
             plugin = {
-              #split-monitor-workspaces = {
-              #  count = 3;
-              #  keep_focused = 0;
-              #  enable_notifications = 0;
-              #  enable_persistent_workspaces = 1;
-
-              # set this to 1 for gnome-like workspace switching
-              #  link_monitors = 0;
-
-              # if you want a different monitor order
-              #  monitor_priority = "${lib.concatStringsSep ", " config.modules.device.videoOutputs}";
-
-              # you can also set max workspaces per monitor
-              #  max_workspaces = lib.mkIf (config.modules.device.hostname == "byakko") [
-              #    "${lib.elemAt config.modules.device.videoOutputs 0}, 3"
-              #    "${lib.elemAt config.modules.device.videoOutputs 1}, 3"
-              #  ];
-              #};
             };
           };
 
           plugins = [
-            #inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
           ];
         };
       };
