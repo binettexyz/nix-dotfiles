@@ -107,10 +107,9 @@
                 default = "";
               };
               persistent-workspaces = {
-                #"1" = [ ];
-                #"2" = [ ];
-                #"3" = [ ];
-                "*" = 3;
+                "1" = [ ];
+                "2" = [ ];
+                "3" = [ ];
               };
               sort-by-name = false;
               sort-by-coordinates = false;
