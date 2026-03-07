@@ -137,7 +137,7 @@
         #workspaces button {
           color: #${cfgColor.fg2};
 
-          /*padding: 0px 4px 0px 4px;*/
+          /*padding: 0px 4px 0px 4px;*/ /* If workspaces are names instead of numbers */
           padding: 0;
           margin-right: 0px;
         }
