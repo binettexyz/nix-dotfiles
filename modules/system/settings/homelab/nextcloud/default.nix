@@ -102,7 +102,7 @@
                     overwrite.cli.url = "https://${cfg.url}";
                   };
                   extraApps = {
-                    inherit (pkgs.nextcloud31Packages.apps)
+                    inherit (pkgs.nextcloud32Packages.apps)
                       news
                       calendar
                       tasks
