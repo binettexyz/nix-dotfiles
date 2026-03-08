@@ -89,12 +89,18 @@
           };
 
           services.greetd.enable = true;
-          services.greetd.settings = {
-            initial_session = {
-              user = config.meta.username;
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --asterisks --time --remember";
+          services.greetd.settings =
+            let
+              session = {
+                user = config.meta.username;
+                command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember";
+              };
+            in
+            {
+              initial_session = session;
+              default_session = session;
             };
-          };
+
         })
       ];
     };
