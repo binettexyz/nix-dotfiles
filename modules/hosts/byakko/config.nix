@@ -9,6 +9,7 @@
         home-manager
         impermanence
         laptopPreset
+        steam
       ];
 
       modules = {
