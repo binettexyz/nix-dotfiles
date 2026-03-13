@@ -4,6 +4,7 @@
     {
       config,
       lib,
+      pkgs,
       ...
     }:
     {
@@ -51,6 +52,6 @@
         };
       };
       home.username = "binette";
-      home.packages = [ ];
+      home.packages = [ pkgs.moonlight-qt ];
     };
 }
