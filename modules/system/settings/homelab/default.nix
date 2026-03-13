@@ -23,6 +23,7 @@
         miniflux
         nextcloud
         servarr
+        teamspeak
         vaultwarden
       ];
 
