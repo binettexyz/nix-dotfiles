@@ -49,6 +49,11 @@
           fsType = "ext4";
         };
 
+        "/home/games" = {
+          device = "/dev/disk/by-label/games";
+          fsType = "ext4";
+        };
+
         "/boot" = {
           device = "/dev/disk/by-label/boot";
           fsType = "vfat";
