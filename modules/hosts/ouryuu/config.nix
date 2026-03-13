@@ -28,7 +28,6 @@
           docker.enable = true;
           nfs.enable = true;
           # ---Containers---
-          actual-budget.enable = true;
           cloudflare-ddns.enable = true;
           gitea.enable = true;
           homer.enable = true;
