@@ -59,6 +59,8 @@
         pkg:
         builtins.elem (lib.getName pkg) [
           "teamspeak3"
+          "teamspeak6-client"
+          "teamspeak-server"
         ];
 
       nixpkgs.config.permittedInsecurePackages = [
