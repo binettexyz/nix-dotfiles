@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.nixosModules.defaultPackages =
-    { config, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       imports = with inputs.self.nixosModules; [ thunar ];
       environment.defaultPackages = [
@@ -49,5 +54,15 @@
           flake = "/etc/nixos";
         };
       };
+
+      nixpkgs.config.allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "teamspeak3"
+        ];
+
+      nixpkgs.config.permittedInsecurePackages = [
+        "qtwebengine-5.15.19"
+      ];
     };
 }
