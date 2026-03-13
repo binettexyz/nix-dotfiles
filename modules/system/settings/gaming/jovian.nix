@@ -34,6 +34,7 @@
             enable = false;
             autoUpdate = false;
           };
+      jovian.hardware.has.amd.gpu = true;
 
       jovian.decky-loader = {
         # Requires enabling CEF remote debugging in dev mode settings.

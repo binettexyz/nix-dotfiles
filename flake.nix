@@ -57,7 +57,6 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/main";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
     yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
 

@@ -30,12 +30,14 @@
         {
         }
         (lib.mkIf (cfg == "plasma") {
-          services.greetd.enable = true;
-          services.greetd.settings.default_session = lib.mkIf (!(config.jovian.steam.autoStart or false)) {
-            user = config.meta.username;
-            command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
-          };
-          services.xserver.enable = true;
+          services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
+          services.greetd.settings.default_session =
+            lib.mkIf (!(lib.elem "console" config.modules.device.tags))
+              {
+                user = config.meta.username;
+                command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+              };
+          services.xserver.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
           services.desktopManager.plasma6.enable = true;
           environment.plasma6.excludePackages = [
             pkgs.kdePackages.elisa
@@ -51,7 +53,7 @@
         (lib.mkIf (cfg == "qtile") {
           services.xserver.windowManager.qtile.enable = true;
 
-          services.greetd.enable = true;
+          services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
           services.greetd.settings =
             let
               initial_session = {
@@ -62,7 +64,7 @@
                   + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
               };
             in
-            {
+            lib.mkIf (!(lib.elem "console" config.modules.device.tags)) {
               initial_session = initial_session;
               default_session = initial_session;
             };
@@ -88,7 +90,7 @@
             withUWSM = true;
           };
 
-          services.greetd.enable = true;
+          services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
           services.greetd.settings =
             let
               session = {
@@ -96,11 +98,10 @@
                 command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember";
               };
             in
-            {
+            lib.mkIf (!(lib.elem "console" config.modules.device.tags)) {
               initial_session = session;
               default_session = session;
             };
-
         })
       ];
     };
