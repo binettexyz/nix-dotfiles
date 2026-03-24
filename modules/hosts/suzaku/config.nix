@@ -7,7 +7,7 @@
       consoleGamingPreset
       home-manager
       impermanence
-      #sunshine
+      sunshine
     ];
 
     modules = {

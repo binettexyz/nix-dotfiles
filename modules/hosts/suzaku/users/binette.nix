@@ -5,6 +5,7 @@
       binettePkgsConfig
       consoleGamingPreset
       emulation
+      gaming
     ];
 
     modules = {
