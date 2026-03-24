@@ -33,6 +33,7 @@
     };
 
     # --- Tools ---
+    teamspeak.url = "github:NixOS/nixpkgs/dd9b079222d43e1943b6ebd802f04fd959dc8e61";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     home-manager = {

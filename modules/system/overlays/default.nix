@@ -22,6 +22,18 @@
           ];
       };
       pkgs_prismlauncher = import inputs.prismlauncher { system = pkgs.stdenv.hostPlatform.system; };
+      pkgs_teamspeak = import inputs.teamspeak {
+        system = pkgs.stdenv.hostPlatform.system;
+        config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "teamspeak3"
+            "teamspeak6-client"
+          ];
+        config.permittedInsecurePackages = [
+          "qtwebengine-5.15.19"
+        ];
+      };
     in
     {
       nixpkgs.overlays = [
@@ -50,6 +62,8 @@
             };
           });
           prismlauncher = pkgs_prismlauncher.prismlauncher;
+          teamspeak = pkgs_teamspeak.teamspeak3;
+          teamspeak6 = pkgs_teamspeak.teamspeak6-client;
           # ---Themes---
           wallpapers = prev.callPackage ./themes/_wallpapers { };
           gruvbox-material-gtk = prev.callPackage ./themes/_gruvbox-material-gtk.nix { };
