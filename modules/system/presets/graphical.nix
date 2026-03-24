@@ -5,6 +5,7 @@
       audio
       bluetooth
       desktopEnvironment
+      flatpak
       fonts
       minimalPreset
     ];
