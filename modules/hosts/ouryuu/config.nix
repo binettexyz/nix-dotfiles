@@ -37,6 +37,7 @@
           miniflux.enable = true;
           nextcloud.enable = true;
           servarr.enable = true;
+          teamspeak.enable = false;
           vaultwarden.enable = true;
         };
       };

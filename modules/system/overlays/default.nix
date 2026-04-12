@@ -41,6 +41,8 @@
           unstable = import inputs.unstable { inherit system; };
           stable = import inputs.stable { inherit system; };
 
+          # ---Packages---
+          teamspeak6-server = pkgs.callPackage ./package/_teamspeak6-server.nix { };
           # ---Scripts---
           clipboard = prev.callPackage ./scripts/_clipboard.nix { };
           wofirun = prev.callPackage ./scripts/_wofirun.nix { };
