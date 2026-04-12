@@ -41,7 +41,12 @@
         services.nginx.virtualHosts.${cfg.url} = {
           useACMEHost = baseDomain;
           forceSSL = true;
-          locations."/".proxyPass = "http://${cfg.address.local}:${toString cfg.port}";
+          locations."/" = {
+            proxyPass = "http://${cfg.address.local}:${toString cfg.port}";
+            extraConfig = ''
+              client_max_body_size 500M;
+            '';
+          };
         };
 
         containers.${service} = {
