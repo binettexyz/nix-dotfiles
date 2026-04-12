@@ -32,10 +32,10 @@
                 on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
                 on-resume = "brightnessctl -rd rgb:kbd_backlight";
               }
-              {
-                timeout = 1800;
-                on-timeout = "systemctl suspend";
-              }
+              #  {
+              #    timeout = 1800;
+              #    on-timeout = "systemctl suspend";
+              #  }
             ])
           ];
         };
