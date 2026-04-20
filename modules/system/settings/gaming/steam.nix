@@ -12,6 +12,7 @@
           pkgs.gamemode
           pkgs.mangohud
         ];
+        gamescopeSession.enable = true;
         platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
         remotePlay.openFirewall = true;
