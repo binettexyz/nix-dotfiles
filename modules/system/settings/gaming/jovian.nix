@@ -15,7 +15,7 @@
       jovian.steam = {
         enable = true;
         # Boot straight into gamemode.
-        autoStart = true;
+        autoStart = if (lib.elem "console" config.modules.device.tags) then true else false;
         user = config.meta.username;
         # Gamescope's desktop mode. Need to force disable "services.xserver.displayManager".
         desktopSession = "plasma";

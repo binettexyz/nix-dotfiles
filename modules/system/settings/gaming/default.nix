@@ -2,6 +2,7 @@
 {
   flake.nixosModules.gaming =
     {
+      config,
       pkgs,
       lib,
       ...
@@ -12,7 +13,11 @@
         steam
       ];
 
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_jovian;
+      boot.kernelPackages =
+        if (lib.elem "console" config.modules.device.tags) then
+          lib.mkForce pkgs.linuxPackages_jovian
+        else
+          lib.mkForce pkgs.linuxPackages_xanmod;
 
       # ---System Configuration---
       # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
