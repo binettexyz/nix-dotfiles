@@ -22,6 +22,10 @@
         syncspeed = 30.0;
       };
     };
+
+    services.udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0c10", MODE="0660", GROUP="binette", TAG+="uaccess", TAG+="udev-acl"
+    '';
   };
 
   flake.modules.homeManager.desktopGamingPreset = {
