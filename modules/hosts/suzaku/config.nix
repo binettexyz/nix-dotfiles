@@ -4,7 +4,7 @@
   flake.nixosModules.suzaku = {
     imports = with inputs.self.nixosModules; [
       binette
-      consoleGamingPreset
+      desktopGamingPreset
       home-manager
       impermanence
       sunshine
@@ -27,7 +27,6 @@
         type = "desktop";
         tags = [
           "workstation"
-          "console"
           "gaming"
           "highSpec"
         ];
