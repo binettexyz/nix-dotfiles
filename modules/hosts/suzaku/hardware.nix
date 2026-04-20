@@ -76,12 +76,12 @@
         };
         "/tmp" = {
           device = "/home/binette/.cache/tmp";
+          fsType = "none";
           options = [ "bind" ];
         };
         "/home/homelab" = {
-          device = "100.110.153.50:/data";
+          device = "100.127.182.62:/home/data";
           fsType = "nfs";
-          # don't freeze system if mount point not available on boot
           options = [
             "x-systemd.automount"
             "noauto"
