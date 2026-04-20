@@ -36,7 +36,7 @@
             # unbind keys
             cancel = "Escape";
           };
-          colors = {
+          colors-dark = {
             alpha = "0.9";
             background = "${config.colorScheme.palette.bg0}";
             foreground = "${config.colorScheme.palette.fg0}";
