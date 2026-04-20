@@ -167,7 +167,7 @@
             (keymap [ "g" "h" ] "cd ~" "Go Home")
             (keymap [ "g" "d" ] "cd ~/documents" "Go ~/documents")
             (keymap [ "g" "p" ] "cd ~/pictures" "Go ~/pictures")
-            (keymap [ "g" "n" ] "cd /etc/nixos" "Go NixOS config")
+            (keymap [ "g" "n" ] "cd ~/.config/nixos" "Go NixOS config")
             (keymap [ "g" "<Space>" ] "cd --interactive" "Jump interactively")
             (keymap [ "g" "f" ] "follow" "Follow hovered symlink")
 
