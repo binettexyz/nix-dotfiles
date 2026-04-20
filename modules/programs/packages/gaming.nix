@@ -33,7 +33,6 @@
         pkgs.protonup-qt
         pkgs.r2modman
         pkgs.lutris
-        pkgs.wineWow64Packages.waylandFull
         pkgs.jdk
         pkgs.dxvk
         pkgs.steamtinkerlaunch
