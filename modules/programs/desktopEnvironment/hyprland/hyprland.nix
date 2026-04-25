@@ -290,13 +290,11 @@
               "workspace 3 silent, match:class gamescope"
               "workspace 3 silent, match:class ^(.*steam.*)$"
 
-              "workspace 5 silent, match:class ^(.*mpv.*)$"
-
               "workspace special:discord silent, match:class discord"
               "workspace special:discord silent, match:class vesktop"
 
-              "workspace special:steam silent, match:class ^(.*lutris.*)$"
-              "workspace special:steam silent, match:class ^(.*prismlauncher.*)$"
+              "workspace 3 silent, match:class ^(.*lutris.*)$"
+              "workspace 3 silent, match:class ^(.*prismlauncher.*)$"
             ];
 
             workspace = [
