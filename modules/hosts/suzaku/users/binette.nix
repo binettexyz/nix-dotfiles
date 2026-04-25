@@ -1,39 +1,57 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.suzakuBinette = {
-    imports = with inputs.self.modules.homeManager; [
-      binettePkgsConfig
-      consoleGamingPreset
-      emulation
-      gaming
-    ];
+  flake.modules.homeManager.suzakuBinette =
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      imports = with inputs.self.modules.homeManager; [
+        binettePkgsConfig
+        desktopGamingPreset
+        emulation
+        gaming
+      ];
 
-    modules = {
-      device = {
-        hostname = "suzaku";
-        type = "desktop";
-        tags = [
-          "console"
-          "workstation"
-          "gaming"
-          "highSpec"
-        ];
-        videoOutputs = [
-          "HDMI-A-1"
-          "HDMI-A-2"
-        ];
-        storage = {
-          hdd = true;
-          ssd = true;
+      modules = {
+        device = {
+          hostname = "suzaku";
+          type = "desktop";
+          tags = [
+            "console"
+            "workstation"
+            "gaming"
+            "highSpec"
+          ];
+          videoOutputs = [
+            "HDMI-A-1"
+            "HDMI-A-2"
+          ];
+          storage = {
+            hdd = true;
+            ssd = true;
+          };
         };
-      };
-      hm = {
-        browser.librewolf.enable = true;
-        theme = {
-          colorScheme = "gruvbox";
-          wallpaper = "003";
+        hm = {
+          browser.librewolf.enable = true;
+          theme = {
+            colorScheme = "gruvbox";
+            wallpaper = "003";
+          };
+          hyprland = {
+            exec-once = [
+              "waybar &"
+              "wl-paste --watch cliphist store &"
+              "librewolf &"
+              "vesktop &"
+            ];
+            monitor = [
+              "${lib.elemAt config.modules.device.videoOutputs 0}, 3440x1440@165, 0x0, 1" # , cm, wide"
+            ];
+          };
         };
       };
     };
-  };
 }
