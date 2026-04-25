@@ -7,7 +7,7 @@
     }:
     {
       services.hypridle = {
-        enable = true;
+        enable = false;
         settings = {
           general = {
             lock_cmd = "pidof hyprlock || hyprlock";
@@ -17,25 +17,25 @@
           listener = lib.mkMerge [
             [
               {
-                timeout = 120;
+                timeout = 600;
                 on-timeout = "hyprctl dispatch dpms off";
                 on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
               }
               {
-                timeout = 180;
+                timeout = 600;
                 on-timeout = "loginctl lock-session";
               }
             ]
             (lib.mkIf (config.modules.device.type == "laptop") [
               {
-                timeout = 120;
+                timeout = 600;
                 on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
                 on-resume = "brightnessctl -rd rgb:kbd_backlight";
               }
-              #  {
-              #    timeout = 1800;
-              #    on-timeout = "systemctl suspend";
-              #  }
+              {
+                timeout = 1800;
+                on-timeout = "systemctl suspend";
+              }
             ])
           ];
         };
