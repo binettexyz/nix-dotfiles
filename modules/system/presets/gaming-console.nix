@@ -12,9 +12,7 @@
 
   flake.modules.homeManager.consoleGamingPreset = {
     imports = with inputs.self.modules.homeManager; [
-      emulation
-      gaming
-      graphicalPreset
+      desktopGamingPreset
     ];
   };
 }
