@@ -10,7 +10,7 @@
         pkgs.pcsx2 # PS2
         pkgs.ppsspp # PSP
         pkgs.rpcs3 # PS3
-        pkgs.ryubing # Ryujinx fork with updated features
+        pkgs.eden
         pkgs.xemu # OG Xbox emulator
         pkgs.xenia-canary # Fork of Xenia, Xbox 360
         pkgs.ares # Multi-emulators
