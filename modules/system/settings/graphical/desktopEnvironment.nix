@@ -19,7 +19,7 @@
             "gamescope-wayland"
             "plasma"
             "qtile"
-            "hyprland"
+            "hyprland-uwsm"
           ]
         );
         default = null;
@@ -82,7 +82,7 @@
           };
         })
 
-        (lib.mkIf (cfg == "hyprland") {
+        (lib.mkIf (cfg == "hyprland-uwsm") {
           programs.hyprland = {
             enable = true;
             #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
