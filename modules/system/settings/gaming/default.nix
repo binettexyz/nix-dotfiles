@@ -14,10 +14,10 @@
       ];
 
       boot.kernelPackages =
-        if (lib.elem "console" config.modules.device.tags) then
-          lib.mkForce pkgs.linuxPackages_jovian
+        if (!(lib.elem "console" config.modules.device.tags)) then
+          lib.mkForce pkgs.linuxPackages_xanmod
         else
-          lib.mkForce pkgs.linuxPackages_xanmod;
+          lib.mkForce pkgs.linuxPackages_jovian;
 
       # ---System Configuration---
       # Don't mount /tmp to tmpfs since there's not enough space to build valve kernel.
