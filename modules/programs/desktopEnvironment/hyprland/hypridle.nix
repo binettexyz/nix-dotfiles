@@ -7,7 +7,7 @@
     }:
     {
       services.hypridle = {
-        enable = false;
+        enable = true;
         settings = {
           general = {
             lock_cmd = "pidof hyprlock || hyprlock";
@@ -17,7 +17,7 @@
           listener = lib.mkMerge [
             [
               {
-                timeout = 600;
+                timeout = 300;
                 on-timeout = "hyprctl dispatch dpms off";
                 on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
               }
@@ -31,10 +31,6 @@
                 timeout = 600;
                 on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
                 on-resume = "brightnessctl -rd rgb:kbd_backlight";
-              }
-              {
-                timeout = 1800;
-                on-timeout = "systemctl suspend";
               }
             ])
           ];
