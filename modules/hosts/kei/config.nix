@@ -15,7 +15,7 @@
         asRemovable = false;
         useOSProber = false;
       };
-      desktopEnvironment = "hyprland";
+      desktopEnvironment = "hyprland-uwsm";
       device = {
         hostname = "kei";
         storage.hdd = true;
