@@ -26,7 +26,7 @@
             "highSpec"
           ];
           videoOutputs = [
-            "HDMI-A-1"
+            "DP-1"
             "HDMI-A-2"
           ];
           storage = {
@@ -46,9 +46,11 @@
               "wl-paste --watch cliphist store &"
               "librewolf &"
               "vesktop &"
+              "steam &"
             ];
             monitor = [
               "${lib.elemAt config.modules.device.videoOutputs 0}, 3440x1440@165, 0x0, 1" # , cm, wide"
+              "${lib.elemAt config.modules.device.videoOutputs 1}, disable"
             ];
           };
         };
