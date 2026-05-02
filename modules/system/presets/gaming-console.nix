@@ -4,7 +4,8 @@
     imports =
       with inputs.self.nixosModules;
       [
-        desktopGamingPreset
+        gaming
+        graphicalPreset
         jovian
       ]
       ++ [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
@@ -12,7 +13,9 @@
 
   flake.modules.homeManager.consoleGamingPreset = {
     imports = with inputs.self.modules.homeManager; [
-      desktopGamingPreset
+      graphicalPreset
+      emulation
+      gaming
     ];
   };
 }
