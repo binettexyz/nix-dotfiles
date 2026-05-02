@@ -95,7 +95,7 @@
             let
               session = {
                 user = config.meta.username;
-                command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember";
+                command = "${pkgs.tuigreet}/bin/tuigreet --asterisks -t -r -c 'uwsm start hyprland-uwsm.desktop'";
               };
             in
             lib.mkIf (!(lib.elem "console" config.modules.device.tags)) {
