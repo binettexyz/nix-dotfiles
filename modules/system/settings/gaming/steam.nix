@@ -24,12 +24,6 @@
       programs.gamescope = {
         enable = true;
         package = pkgs.gamescope;
-        capSysNice = false;
-        args = [
-          "--force-grab-cursor"
-          "--backend sdl"
-          "--nested-unfocused-refresh 30"
-        ];
       };
 
       # ---Enabling Gamemode---
