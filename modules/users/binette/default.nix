@@ -44,15 +44,15 @@
   flake.modules.homeManager.binette =
     { config, pkgs, ... }:
     {
-      # Set default directories without CAPS
+      # Set default directories
       xdg.userDirs = {
         enable = true;
-        createDirectories = false;
-        desktop = "/home/${config.home.username}/desktop";
-        documents = "/home/${config.home.username}/documents";
-        download = "/home/${config.home.username}/downloads";
-        pictures = "/home/${config.home.username}/pictures";
-        videos = "/home/${config.home.username}/videos";
+        createDirectories = true;
+        desktop = "/home/${config.home.username}/Desktop";
+        documents = "/home/${config.home.username}/Documents";
+        download = "/home/${config.home.username}/Downloads";
+        pictures = "/home/${config.home.username}/Pictures";
+        videos = "/home/${config.home.username}/Videos";
       };
 
       # Some applications like to overwrite this file, so let's just force it
