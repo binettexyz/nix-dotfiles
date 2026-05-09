@@ -12,7 +12,7 @@
                   colorScheme,
                   name,
                 }:
-                "~/pictures/wallpapers/${colorScheme}/${name}.png";
+                "~/Pictures/wallpapers/${colorScheme}/${name}.png";
               selectedWallpaper = getWallpaper {
                 colorScheme = config.modules.hm.theme.colorScheme;
                 name = config.modules.hm.theme.wallpaper;
