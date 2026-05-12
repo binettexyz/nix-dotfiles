@@ -57,12 +57,7 @@
           freedoom = prev.callPackage ./games/_freedoom.nix { };
           moondeck-buddy = prev.callPackage ./games/_moondeck-buddy.nix { };
           steam = pkgs_steam.steam;
-          vintagestory = pkgs_vs.vintagestory.overrideAttrs (old: {
-            src = pkgs_vs.fetchurl {
-              url = old.src.url;
-              sha256 = "sha256-LkiL/8W9MKpmJxtK+s5JvqhOza0BLap1SsaDvbLYR0c=";
-            };
-          });
+          vintagestory = pkgs_vs.vintagestory;
           prismlauncher = pkgs_prismlauncher.prismlauncher;
           teamspeak = pkgs_teamspeak.teamspeak3;
           teamspeak6 = pkgs_teamspeak.teamspeak6-client;
