@@ -406,7 +406,6 @@
           pkgs.vimPlugins.coc-nvim
           pkgs.vimPlugins.auto-pairs
           pkgs.vimPlugins.quick-scope
-          pkgs.vimPlugins.vim-table-mode
         ];
       };
     };
