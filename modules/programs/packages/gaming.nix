@@ -9,7 +9,6 @@
         #pkgs.dolphin-emu-primehack # Wii (Metroid Prime-specific fixes)
         pkgs.pcsx2 # PS2
         pkgs.ppsspp # PSP
-        pkgs.rpcs3 # PS3
         pkgs.eden
         pkgs.xemu # OG Xbox emulator
         pkgs.xenia-canary # Fork of Xenia, Xbox 360
@@ -32,7 +31,7 @@
         pkgs.heroic
         pkgs.protonup-qt
         pkgs.r2modman
-        pkgs.lutris
+        #FIXME pkgs.lutris
         pkgs.jdk
         pkgs.dxvk
         pkgs.steamtinkerlaunch
