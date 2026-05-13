@@ -1,11 +1,12 @@
 {
 
   flake.nixosModules.bluetooth =
-    { config, ... }:
+    { config, lib, ... }:
     {
       hardware.bluetooth.enable = true;
       hardware.bluetooth.powerOnBoot = true;
-      services.blueman.enable = if (!(config.modules.device.type == "server")) then true else false;
+      services.blueman.enable =
+        config.modules.device.type != "server" && !(lib.elem "console" config.modules.device.tags);
 
       environment.persistence."/nix/persist".directories = [ "/var/lib/bluetooth" ];
     };
