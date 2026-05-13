@@ -138,6 +138,13 @@
               ];
             };
 
+            # https://www.reddit.com/r/linux_gaming/comments/1rlnhhz/comment/o8t9xqq/
+            # One thing that hyprland does stupidly is it doesn't enable direct scanout by default.
+            # If your games feel less smooth than on other DEs that's why, add render {direct_scanout=1} to your config
+            render = {
+              direct_scanout = 1;
+            };
+
             dwindle = {
               # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
               pseudotile = true;
