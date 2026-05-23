@@ -19,7 +19,7 @@
           asRemovable = false;
           useOSProber = false;
         };
-        desktopEnvironment = "hyprland-uwsm";
+        desktopEnvironment = "plasma"; # plasma, hyprland-uwsm
         device = {
           cpu = "amd";
           hostname = "suzaku";
