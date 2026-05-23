@@ -38,15 +38,9 @@
               efiInstallAsRemovable = config.modules.bootloader.asRemovable;
               efiSupport = true;
               enableCryptodisk = true;
-              gfxmodeEfi = lib.mkDefault "1280x800";
               useOSProber = config.modules.bootloader.useOSProber;
               backgroundColor = lib.mkDefault "#000000";
               splashImage = null;
-              splashMode = "normal";
-              extraConfig = ''
-                set menu_color_normal=white/black
-                set menu_color_highlight=black/white
-              '';
               extraEntries = ''
                  menuentry "Poweroff" {
                   halt
