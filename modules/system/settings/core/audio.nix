@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.audio = {
-    imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
+    #imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
 
     # This allows PipeWire to run with realtime privileges (i.e: less cracks)
     security.rtkit.enable = true;
@@ -13,11 +13,11 @@
       wireplumber.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-      lowLatency = {
-        enable = true;
-        quantum = 64;
-        rate = 48000;
-      };
+      #lowLatency = {
+      #  enable = true;
+      #  quantum = 64;
+      #  rate = 48000;
+      #};
     };
   };
 }
