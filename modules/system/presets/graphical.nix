@@ -4,7 +4,7 @@
     imports = with inputs.self.nixosModules; [
       audio
       bluetooth
-      desktopEnvironment
+      displayManager
       flatpak
       fonts
       minimalPreset

@@ -1,5 +1,40 @@
 { inputs, ... }:
 {
+  # ---Nixos Module--- #
+  flake.nixosModules.plasma =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.modules.desktopEnvironment;
+    in
+    {
+      config = lib.mkIf (cfg == "plasma") {
+        services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
+        services.greetd.settings.default_session =
+          lib.mkIf (!(lib.elem "console" config.modules.device.tags))
+            {
+              user = config.meta.username;
+              command = "${pkgs.tuigreet}/bin/tuigreet" + " -t -r" + " --cmd startplasma-wayland";
+            };
+        services.xserver.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
+        services.desktopManager.plasma6.enable = true;
+        environment.plasma6.excludePackages = [
+          pkgs.kdePackages.elisa
+          pkgs.kdePackages.khelpcenter
+          pkgs.kdePackages.oxygen
+          pkgs.kdePackages.discover
+          #pkgs.kdePackages.ark
+        ];
+
+        environment.systemPackages = [ pkgs.kdePackages.ark ];
+      };
+    };
+
+  # ---HomeManager Module--- #
   flake.modules.homeManager.plasma =
     { pkgs, ... }:
     {
