@@ -11,6 +11,8 @@
       hyprInputs
       hyprMonitors
       hyprWorkspaces
+      hyprTheme
+      hyprPackages
     ];
   };
 }

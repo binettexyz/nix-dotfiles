@@ -8,7 +8,7 @@
             hyprctl --batch "\
                 keyword animations:enabled 0;\
                 keyword decoration:shadow:enabled 0;\
-                keyword decoration:blur:enabled 0;\
+                keyword decoration:blur:enabled 0"
             hyprctl notify 1 5000 "rgb(40a02b)" "Gamemode [ON]"
         else
             hyprctl notify 1 5000 "rgb(d20f39)" "Gamemode [OFF]"
