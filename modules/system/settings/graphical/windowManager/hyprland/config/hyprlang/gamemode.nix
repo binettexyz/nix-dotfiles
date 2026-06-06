@@ -32,7 +32,7 @@
           direct_scanout = 1;
         };
         bind = [
-          "$mainMod, G, exec, ${gamemode}/bin/gamemode"
+          "$mod1, G, exec, ${gamemode}/bin/gamemode"
         ];
       };
     };
