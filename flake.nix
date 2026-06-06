@@ -48,10 +48,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.home-manager.follows = "home-manager";
@@ -59,7 +56,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/main";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
-    yeetmouse.url = "github:binettexyz/YeetMouse?dir=nix";
+    yeetmouse.url = "github:AndyFilter/YeetMouse?dir=nix";
 
   };
 }
