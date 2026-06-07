@@ -27,7 +27,7 @@
           ];
           videoOutputs = [
             "DP-1"
-            "HDMI-A-2"
+            "HDMI-A-1"
           ];
           storage = {
             hdd = true;

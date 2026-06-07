@@ -7,7 +7,6 @@
       imports = with inputs.self.nixosModules; [
         binette
         desktopGamingPreset
-        jovian
         home-manager
         impermanence
         sunshine
@@ -19,7 +18,7 @@
           asRemovable = false;
           useOSProber = false;
         };
-        desktopEnvironment = "plasma"; # plasma, hyprland-uwsm
+        desktopEnvironment = "hyprland-uwsm"; # plasma, hyprland-uwsm
         device = {
           cpu = "amd";
           hostname = "suzaku";
@@ -29,21 +28,20 @@
           };
           type = "desktop";
           tags = [
-            "console"
             "workstation"
             "gaming"
             "highSpec"
           ];
           videoOutputs = [
             "DP-1"
-            "HDMI-A-2"
+            "HDMI-A-1"
           ];
         };
       };
 
-      #services.logind.settings.Login = {
-      #  HandlePowerKey = lib.mkForce "suspend";
-      #};
+      services.logind.settings.Login = {
+        HandlePowerKey = lib.mkForce "suspend";
+      };
 
       services.udev.extraRules = ''
         # Disable wake on USB
