@@ -77,7 +77,7 @@
         open.rules = [
           # Folder
           {
-            name = "*/";
+            url = "*/";
             use = [
               "edit"
               "open"
@@ -141,7 +141,7 @@
           }
           # Fallback
           {
-            name = "*";
+            url = "*";
             use = [
               "open"
               "reveal"
