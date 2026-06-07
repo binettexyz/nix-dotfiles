@@ -15,13 +15,14 @@
       hardware.yeetmouse = {
         enable = true;
         sensitivity = 1.65;
-        outputCap = 2.0;
+        outputCap = 1.5;
+        preScale = 0.5;
         rotation.angle = 5.0;
         mode.synchronous = {
           gamma = 10.0;
           smoothness = 0.5;
           motivity = 4.0;
-          syncspeed = 30.0;
+          syncspeed = 20.0;
         };
       };
 
