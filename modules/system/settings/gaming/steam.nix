@@ -13,6 +13,17 @@
           pkgs.mangohud
         ];
         gamescopeSession.enable = true;
+        gamescopeSession.args = [
+          "-w 2560"
+          "-W 3440"
+          "-h 1440"
+          "-H 2560"
+          "-r 120"
+          "--steam"
+          "--adaptive-sync"
+          "--hdr-enabled"
+          "--prefer-output 'HDMI-A-1'"
+        ];
         platformOptimizations.enable = true; # Option from nix-gaming.
         protontricks.enable = true;
         remotePlay.openFirewall = true;
