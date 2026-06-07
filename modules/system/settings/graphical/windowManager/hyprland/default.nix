@@ -17,19 +17,6 @@
           xwayland.enable = true;
           withUWSM = true;
         };
-
-        services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
-        services.greetd.settings =
-          let
-            session = {
-              user = config.meta.username;
-              command = "${pkgs.tuigreet}/bin/tuigreet --asterisks -t -r -c 'uwsm start hyprland-uwsm.desktop'";
-            };
-          in
-          lib.mkIf (!(lib.elem "console" config.modules.device.tags)) {
-            initial_session = session;
-            default_session = session;
-          };
       };
     };
 
@@ -52,14 +39,6 @@
           enable = true;
           package = null;
           portalPackage = null;
-          systemd = {
-            enable = true;
-            variables = [ "--all" ];
-            extraCommands = [
-              "systemctl --user stop graphical-session.target"
-              "systemctl --user start hyprland-session.target"
-            ];
-          };
           configType = "hyprlang";
           settings = {
             ecosystem = {

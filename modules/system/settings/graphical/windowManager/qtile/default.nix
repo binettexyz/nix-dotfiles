@@ -3,7 +3,6 @@
     {
       config,
       lib,
-      pkgs,
       ...
     }:
     let
@@ -12,22 +11,6 @@
     {
       config = lib.mkIf (cfg == "qtile") {
         services.xserver.windowManager.qtile.enable = true;
-
-        services.greetd.enable = lib.mkIf (!(lib.elem "console" config.modules.device.tags)) true;
-        services.greetd.settings =
-          let
-            initial_session = {
-              user = config.meta.username;
-              command =
-                "${pkgs.tuigreet}/bin/tuigreet"
-                + " -t -r"
-                + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
-            };
-          in
-          lib.mkIf (!(lib.elem "console" config.modules.device.tags)) {
-            initial_session = initial_session;
-            default_session = initial_session;
-          };
 
         services = {
           irqbalance.enable = true;
