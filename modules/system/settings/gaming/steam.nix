@@ -13,6 +13,9 @@
           pkgs.mangohud
         ];
         gamescopeSession.enable = true;
+        gamescopeSession.env = {
+          #DXVK_HDR = "1"; # HDR not workin
+        };
         gamescopeSession.args = [
           "-w 2560"
           "-W 3440"
@@ -20,6 +23,7 @@
           "-H 2560"
           "-r 120"
           "--steam"
+          "-F fsr"
           "--adaptive-sync"
           "--hdr-enabled"
           "--prefer-output 'HDMI-A-1'"
