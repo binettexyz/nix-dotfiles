@@ -8,14 +8,18 @@
       ...
     }:
     {
-      imports = with inputs.self.nixosModules; [
+    imports = [
+	        inputs.chaotic.nixosModules.default
+	      ]
+	      ++ (with inputs.self.nixosModules; [
+
         gamingController
         steam
-      ];
+      ]);
 
       boot.kernelPackages =
         if (!(lib.elem "console" config.modules.device.tags)) then
-          lib.mkForce pkgs.linuxPackages_xanmod
+          lib.mkForce pkgs.linuxPackages_xanmod_stable
         else
           lib.mkForce pkgs.linuxPackages_jovian;
 

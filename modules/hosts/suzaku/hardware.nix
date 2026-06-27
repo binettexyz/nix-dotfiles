@@ -17,7 +17,7 @@
       boot = {
         extraModulePackages = [ ];
         kernelModules = [ "kvm-amd" ];
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod_stable;
         kernelParams = [
           "mitigations=off"
           "nowatchdog"
