@@ -21,7 +21,7 @@
         xdg.portal = {
           enable = true;
           wlr.enable = true;
-          config.common.default = "xdg-desktop-portal-wlr";
+          config.common.default = lib.mkForce "xdg-desktop-portal-wlr";
         };
 
       };

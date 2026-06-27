@@ -33,7 +33,7 @@ from libqtile.utils import guess_terminal
 from libqtile.backend.wayland import InputConfig
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "foot"
 wallpaper_path = os.path.expanduser("~") + "/Pictures/wallpapers/"
 has_battery = any(os.path.exists(f"/sys/class/power_supply/{bat}") for bat in os.listdir("/sys/class/power_supply/"))
 def get_network_status():
@@ -56,7 +56,7 @@ keys = [
     Key([mod, "shift"], "q", lazy.spawn("sysact"), desc="Launch system script"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "d", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
