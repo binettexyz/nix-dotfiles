@@ -9,7 +9,14 @@
     }:
     {
       imports = with inputs.self.modules.homeManager; [
-        binettePkgsConfig
+        binetteShell
+        binetteLibrewolf
+        binetteMpv
+        binetteYazi
+        #binetteNeovim
+        binetteFoot
+        binetteGit
+        binetteTmux
         graphicalPreset
       ];
 
@@ -31,7 +38,6 @@
         hm = {
           browser = {
             librewolf.enable = true;
-            qutebrowser.enable = true;
           };
           mpv.enable = true;
           theme = {

@@ -2,7 +2,10 @@
 {
   flake.modules.homeManager.ouryuuBinette = {
     imports = with inputs.self.modules.homeManager; [
-      binettePkgsConfig
+      binetteShell
+      binetteYazi
+      binetteTmux
+      #binetteNeovim
       minimalPreset
     ];
   };
