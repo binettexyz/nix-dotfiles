@@ -52,6 +52,5 @@
         };
       };
       home.username = "binette";
-      home.packages = [ pkgs.moonlight-qt ];
     };
 }
