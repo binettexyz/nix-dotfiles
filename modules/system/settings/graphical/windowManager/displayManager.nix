@@ -13,8 +13,9 @@
         {
           qtile =
             "${pkgs.tuigreet}/bin/tuigreet"
-            + "-t -r"
-            + "--cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
+            + " --asterisks"
+            + " -t -r"
+            + " --cmd '${pkgs.python312Packages.qtile}/bin/qtile start -b wayland'";
           hyprland-uwsm = "${pkgs.tuigreet}/bin/tuigreet --asterisks -t -r -c 'uwsm start hyprland-uwsm.desktop'";
           plasma = "${pkgs.tuigreet}/bin/tuigreet -t -r --cmd startplasma-wayland";
         }
