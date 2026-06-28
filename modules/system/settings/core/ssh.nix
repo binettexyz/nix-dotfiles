@@ -57,7 +57,7 @@
             hostname = "100.72.86.100";
             port = 704;
           };
-          "ouryuu" = {
+          "kura" = {
             hostname = "100.127.182.62";
             user = "${config.meta.username}";
             port = 704;

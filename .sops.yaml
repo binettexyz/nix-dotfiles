@@ -4,7 +4,7 @@ keys:
     - &katana age1kjzv2r2xd4hzysv7kcwjkfvahsyq7h95w2kakqa7qlyzuafhpdhszvu5ge
     - &tsuki age1py9z9wfxrap89jllw4yxfug668av0223cwah38t7j5q9nn7704lqfwxxk7
     - &kei age19ayfruqeq6lhm8jyzqd7ulmpz78f2jxqrj7jst4sm7q7u0ce6gpsatmvd6
-    - &ouryuu age1a8mhamphaxuky344d2f4qc6rmtvkpx9lqn74v56dllwtlhg533wq7drw67
+    - &kura age1a8mhamphaxuky344d2f4qc6rmtvkpx9lqn74v56dllwtlhg533wq7drw67
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
@@ -13,4 +13,4 @@ creation_rules:
       - *katana
       - *kei
       - *tsuki
-      - *ouryuu
+      - *kura

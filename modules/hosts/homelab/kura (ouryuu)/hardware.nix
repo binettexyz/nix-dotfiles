@@ -1,5 +1,9 @@
+{ ... }:
+let
+  host = "kura";
+in
 {
-  flake.nixosModules.ouryuu =
+  flake.nixosModules.${host} =
     {
       lib,
       modulesPath,

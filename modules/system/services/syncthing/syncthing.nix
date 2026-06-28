@@ -21,7 +21,7 @@
               id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
               autoAcceptFolders = true;
             };
-            "ouryuu" = {
+            "kura" = {
               id = "TEGLOVR-2AL23J2-5C5XDT7-X3DKOIM-E5QBGA5-M6FVRUA-A5TEJ3J-P3VEUAQ";
               autoAcceptFolders = false;
             };

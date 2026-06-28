@@ -1,7 +1,11 @@
 { inputs, ... }:
+let
+  host = "kura";
+  system = "x86_64-linux";
+in
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "ouryuu";
-  flake.nixosModules.ouryuu = {
+  flake.nixosConfigurations = inputs.self.lib.mkNixos system host;
+  flake.nixosModules.${host} = {
     imports = with inputs.self.nixosModules; [
       binette
       home-manager
@@ -13,7 +17,7 @@
       bootloader.default = "grub";
       device = {
         cpu = "intel";
-        hostname = "ouryuu";
+        hostname = host;
         network.ipv4 = {
           internal = "192.168.18.15";
           tailscale = "100.127.182.62";
