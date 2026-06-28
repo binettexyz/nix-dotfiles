@@ -10,13 +10,13 @@
     {
       imports = with inputs.self.modules.homeManager; [
         binetteShell
-	binetteLibrewolf
-	binetteMpv
-	binetteYazi
-	binetteNeovim
-	binetteFoot
-	binetteGit
-	binetteTmux
+        binetteLibrewolf
+        binetteMpv
+        binetteYazi
+        binetteNeovim
+        binetteFoot
+        binetteGit
+        binetteTmux
         desktopGamingPreset
         emulation
         gaming

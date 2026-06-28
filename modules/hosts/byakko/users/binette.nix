@@ -13,7 +13,7 @@
         binetteLibrewolf
         binetteMpv
         binetteYazi
-        #binetteNeovim
+        binetteNeovim
         binetteFoot
         binetteGit
         binetteTmux
