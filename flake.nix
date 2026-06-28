@@ -48,10 +48,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.home-manager.follows = "home-manager";
