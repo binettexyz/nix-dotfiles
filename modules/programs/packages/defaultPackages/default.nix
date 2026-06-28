@@ -29,6 +29,7 @@
         pkgs.rsync
         pkgs.expect
         pkgs.nix-output-monitor
+	pkgs.tmux
         pkgs.wget
       ]
       ++ (
