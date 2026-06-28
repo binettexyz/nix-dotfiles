@@ -1,6 +1,9 @@
 { inputs, ... }:
+let
+  host = "katana";
+in
 {
-  flake.nixosModules.suzaku =
+  flake.nixosModules.${host} =
     {
       lib,
       modulesPath,

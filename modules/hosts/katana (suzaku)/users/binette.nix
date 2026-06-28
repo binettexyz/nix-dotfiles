@@ -1,10 +1,12 @@
 { inputs, ... }:
+let
+  host = "katana";
+in
 {
-  flake.modules.homeManager.suzakuBinette =
+  flake.modules.homeManager."${host}Binette" =
     {
       lib,
       config,
-      pkgs,
       ...
     }:
     {
@@ -24,17 +26,15 @@
 
       modules = {
         device = {
-          hostname = "suzaku";
+          hostname = host;
           type = "desktop";
           tags = [
             "console"
             "workstation"
-            "gaming"
             "highSpec"
           ];
           videoOutputs = [
             "DP-1"
-            "HDMI-A-1"
           ];
           storage = {
             hdd = true;
@@ -55,7 +55,6 @@
             ];
             monitor = [
               "${lib.elemAt config.modules.device.videoOutputs 0}, 3440x1440@165, 0x0, 1" # , cm, wide"
-              "${lib.elemAt config.modules.device.videoOutputs 1}, disable"
             ];
           };
         };

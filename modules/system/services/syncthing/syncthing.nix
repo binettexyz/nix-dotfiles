@@ -13,7 +13,7 @@
         settings = {
           gui.theme = "black";
           devices = {
-            "suzaku" = {
+            "katana" = {
               id = "QK7TWSU-CYQOBEW-MBBEVWM-X37XHVY-GSIBOCM-YHBDRJE-BNM2TIA-ZGW4MQX";
               autoAcceptFolders = true;
             };
