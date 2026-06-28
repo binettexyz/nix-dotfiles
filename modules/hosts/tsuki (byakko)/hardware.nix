@@ -1,6 +1,9 @@
 { inputs, ... }:
+let
+  host = "tsuki";
+in
 {
-  flake.nixosModules.byakko =
+  flake.nixosModules.${host} =
     {
       pkgs,
       modulesPath,

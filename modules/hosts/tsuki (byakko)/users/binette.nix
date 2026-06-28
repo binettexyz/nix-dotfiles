@@ -1,10 +1,12 @@
 { inputs, ... }:
+let
+  host = "tsuki";
+in
 {
-  flake.modules.homeManager.byakkoBinette =
+  flake.modules.homeManager."${host}Binette" =
     {
       config,
       lib,
-      pkgs,
       ...
     }:
     {
@@ -22,7 +24,7 @@
 
       modules = {
         device = {
-          hostname = "byakko";
+          hostname = host;
           type = "laptop";
           tags = [
             "workstation"
@@ -36,9 +38,7 @@
           ];
         };
         hm = {
-          browser = {
-            librewolf.enable = true;
-          };
+          browser.librewolf.enable = true;
           mpv.enable = true;
           theme = {
             colorScheme = "gruvbox";
@@ -52,7 +52,7 @@
             ];
             monitor = [
               "${lib.elemAt config.modules.device.videoOutputs 0},1920x1080@60.0,0x1080,1"
-              #"${lib.elemAt config.modules.device.videoOutputs 1},1920x1080@60.0,0x0,1"
+              "${lib.elemAt config.modules.device.videoOutputs 1},1920x1080@60.0,0x0,1"
             ];
           };
         };

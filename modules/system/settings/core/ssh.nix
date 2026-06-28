@@ -26,7 +26,7 @@
     users.users.binette.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPxsgVkgA8fBxOOsL8WmqGa1hAzYgl7YNz/OvLiDq5fO binette@katana"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICWNbKHKSSjQAEGlWVhrPQ8vcolszTiwNKXB0FMEBtfw binette@seiryu"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJGCeXiJDdM7HHV4lB9pr/hghNYfUSrAe9MSbYygcSgK binette@byakko"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJGCeXiJDdM7HHV4lB9pr/hghNYfUSrAe9MSbYygcSgK binette@tsuki"
     ];
   };
 
@@ -67,7 +67,7 @@
             user = "${config.meta.username}";
             port = 704;
           };
-          "byakko" = {
+          "tsuki" = {
             hostname = "100.114.180.61";
             user = "${config.meta.username}";
             port = 704;

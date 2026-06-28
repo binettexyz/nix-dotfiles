@@ -47,13 +47,13 @@
       "gameSaves" = {
         path = "/home/data/gaming/saves";
         devices = [
-          "suzaku"
+          "katana"
           "seiryu"
         ];
       };
       "notes" = {
         path = "/home/data/library/notes";
-        devices = [ "byakko" ];
+        devices = [ "tsuki" ];
       };
     };
   };

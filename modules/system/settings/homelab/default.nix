@@ -44,7 +44,7 @@
         # ---NFS---
         services.nfs.server = {
           enable = cfg.nfs.enable;
-          # byakko
+          # tsuki
           exports = ''
             /home/data 100.114.180.61(rw,insecure,no_subtree_check)
           '';

@@ -1,7 +1,11 @@
 { inputs, ... }:
+let
+  host = "tsuki";
+  system = "x86_64-linux";
+in
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "byakko";
-  flake.nixosModules.byakko =
+  flake.nixosConfigurations = inputs.self.lib.mkNixos system host;
+  flake.nixosModules.${host} =
     { lib, ... }:
     {
       imports = with inputs.self.nixosModules; [
@@ -20,7 +24,7 @@
         desktopEnvironment = "hyprland-uwsm";
         device = {
           cpu = "intel";
-          hostname = "byakko";
+          hostname = host;
           storage = {
             ssd = true;
           };

@@ -25,7 +25,7 @@
               id = "TEGLOVR-2AL23J2-5C5XDT7-X3DKOIM-E5QBGA5-M6FVRUA-A5TEJ3J-P3VEUAQ";
               autoAcceptFolders = false;
             };
-            "byakko" = {
+            "tsuki" = {
               id = "55FSEXM-6SGGQXG-IUSWZ4X-Q7SVLY7-SU7UV3G-5XJUZRP-6I7KMQH-NB74IAF";
               autoAcceptFolders = true;
             };
