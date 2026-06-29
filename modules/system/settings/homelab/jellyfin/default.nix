@@ -111,6 +111,9 @@
               openFirewall = true;
               dataDir = "/var/lib/${service}";
             };
+
+            networking.useHostResolvConf = lib.mkForce false;
+            services.resolved.enable = true;
           };
         };
       };
