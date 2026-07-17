@@ -29,7 +29,7 @@
         pkgs.rsync
         pkgs.expect
         pkgs.nix-output-monitor
-	pkgs.tmux
+        pkgs.tmux
         pkgs.wget
       ]
       ++ (
@@ -56,17 +56,9 @@
         };
       };
 
-      nixpkgs.config.allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "teamspeak3"
-          "teamspeak6-client"
-          "teamspeak-server"
-          "teamspeak6-server"
-        ];
-
       nixpkgs.config.permittedInsecurePackages = [
         "qtwebengine-5.15.19"
+        "pnpm-9.15.9" # Until decky-loader update pnpm
       ];
     };
 }

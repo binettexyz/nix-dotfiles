@@ -35,7 +35,6 @@
         pkgs.jdk
         pkgs.dxvk
         pkgs.steamtinkerlaunch
-        pkgs.vesktop
       ];
     };
 }
