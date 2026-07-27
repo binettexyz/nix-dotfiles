@@ -6,7 +6,7 @@
       "$mod3" = "SUPERCONTROL";
       "$mod4" = "SUPERALT";
       "$mod5" = "ALTCTRL";
-      "$terminal" = "foot";
+      "$terminal" = "footclient";
       "$browser" = "librewolf";
       "$editor" = "nvim";
       "$menu" = "wofirun";
@@ -49,9 +49,6 @@
         "$mod1, S, togglespecialworkspace, scratchpad"
         "$mod2, S, movetoworkspacesilent, special:scratchpad"
 
-        "$mod1, C, togglespecialworkspace, discord"
-        "$mod2, C, movetoworkspacesilent, special:discord"
-
         # Apps Launched with SUPER + KEY
         "$mod1, Return, exec, $terminal"
         "$mod1, E, exec, $editor"
@@ -59,7 +56,7 @@
 
         # Apps Launched with SUPER + ALT + KEY
         "$mod4, b, exec, $browser"
-        "$mod4, d, exec, discord"
+        "$mod4, n, exec, footclient -L nvim -c VimwikiIndex"
 
         # Apps Launched with SUPER + SHIFT + KEY
         "$mod2, Q, exec, sysact"

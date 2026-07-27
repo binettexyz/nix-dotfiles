@@ -48,7 +48,7 @@ in
             exec-once = [
               "waybar &"
               "wl-paste --watch cliphist store &"
-              "librewolf &"
+              "foot --server"
             ];
             monitor = [
               "${lib.elemAt config.modules.device.videoOutputs 0},1920x1080@60.0,0x1080,1"
