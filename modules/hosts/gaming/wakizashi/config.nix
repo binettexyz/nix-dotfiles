@@ -35,16 +35,13 @@
             "gaming"
             "lowSpec"
             "steamdeck"
-            "touchscreen"
+            "workstation"
           ];
           videoOutputs = [
             "eDP-1"
-            "DP-4"
+            "DP-3"
           ];
         };
       };
-
-      # ---Stuff I Dont Want---
-      services.timesyncd.enable = lib.mkForce false;
     };
 }

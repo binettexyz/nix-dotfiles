@@ -1,12 +1,25 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.wakizashiBinette =
-    { pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       imports = with inputs.self.modules.homeManager; [
-        binettePkgsConfig
+        binetteShell
+        binetteFoot
+        binetteGit
+        binetteLibrewolf
+        binetteMpv
+        binetteNeovim
+        binetteTmux
+        binetteYazi
         consoleGamingPreset
         emulation
+        graphicalPreset
       ];
 
       modules = {
@@ -19,6 +32,7 @@
             "lowSpec"
             "steamdeck"
             "touchscreen"
+            "workstation"
           ];
           videoOutputs = [
             "eDP-1"
@@ -33,6 +47,17 @@
           theme = {
             colorScheme = "gruvbox";
             wallpaper = "003";
+          };
+          hyprland = {
+            exec-once = [
+              "waybar &"
+              "wl-paste --watch cliphist store &"
+              "foot --server"
+            ];
+            monitor = [
+              "${lib.elemAt config.modules.device.videoOutputs 0},disabled"
+              "${lib.elemAt config.modules.device.videoOutputs 1},3440x1440@99.98,0x0,1"
+            ];
           };
         };
       };
