@@ -69,27 +69,27 @@ in
           device = "/dev/disk/by-label/ssdGames";
           fsType = "ext4";
         };
-        "/home/games/hdd" = {
-          device = "/dev/disk/by-label/hddGames";
-          fsType = "ext4";
-          options = [
-            "x-systemd.automount"
-            "noauto"
-          ];
-        };
+        #"/home/games/hdd" = {
+        #  device = "/dev/disk/by-label/hddGames";
+        #  fsType = "ext4";
+        #  options = [
+        #    "x-systemd.automount"
+        #    "noauto"
+        #  ];
+        #};
         "/tmp" = {
           device = "/home/binette/.cache/tmp";
           fsType = "none";
           options = [ "bind" ];
         };
-        "/home/homelab" = {
-          device = "100.127.182.62:/home/data";
-          fsType = "nfs";
-          options = [
-            "x-systemd.automount"
-            "noauto"
-          ];
-        };
+        #"/home/homelab" = {
+        #  device = "100.127.182.62:/home/data";
+        #  fsType = "nfs";
+        #  options = [
+        #    "x-systemd.automount"
+        #    "noauto"
+        #  ];
+        #};
       };
 
       swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];

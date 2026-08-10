@@ -19,7 +19,7 @@ in
         binetteFoot
         binetteGit
         binetteTmux
-        desktopGamingPreset
+        minimalPreset
         emulation
         gaming
       ];
@@ -27,7 +27,7 @@ in
       modules = {
         device = {
           hostname = host;
-          type = "desktop";
+          type = "console";
           tags = [
             "console"
             "workstation"
@@ -39,23 +39,6 @@ in
           storage = {
             hdd = true;
             ssd = true;
-          };
-        };
-        hm = {
-          browser.librewolf.enable = true;
-          theme = {
-            colorScheme = "gruvbox";
-            wallpaper = "003";
-          };
-          hyprland = {
-            exec-once = [
-              "waybar &"
-              "wl-paste --watch cliphist store &"
-              "librewolf &"
-            ];
-            monitor = [
-              "${lib.elemAt config.modules.device.videoOutputs 0}, 3440x1440@165, 0x0, 1" # , cm, wide"
-            ];
           };
         };
       };
