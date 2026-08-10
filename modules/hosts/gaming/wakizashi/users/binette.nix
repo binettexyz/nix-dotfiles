@@ -17,9 +17,8 @@
         binetteNeovim
         binetteTmux
         binetteYazi
-        consoleGamingPreset
+        desktopGamingPreset
         emulation
-        graphicalPreset
       ];
 
       modules = {

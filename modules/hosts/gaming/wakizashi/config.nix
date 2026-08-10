@@ -8,9 +8,10 @@
         with inputs.self.nixosModules;
         [
           binette
-          consoleGamingPreset
+          desktopGamingPreset
           home-manager
           impermanence
+          jovian
         ]
         ++ [
           inputs.nix-flatpak.nixosModules.nix-flatpak

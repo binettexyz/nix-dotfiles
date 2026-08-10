@@ -13,10 +13,10 @@
 
   flake.modules.homeManager.consoleGamingPreset = {
     imports = with inputs.self.modules.homeManager; [
-      minimalPreset
-      plasma
       emulation
       gaming
+      minimalPreset
+      plasma
     ];
   };
 }
