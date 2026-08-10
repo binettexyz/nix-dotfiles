@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "seiryu";
-  flake.nixosModules.seiryu =
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "wakizashi";
+  flake.nixosModules.wakizashi =
     { lib, ... }:
     {
       imports =
@@ -11,7 +11,6 @@
           consoleGamingPreset
           home-manager
           impermanence
-          moondeck
         ]
         ++ [
           inputs.nix-flatpak.nixosModules.nix-flatpak
@@ -23,11 +22,11 @@
           asRemovable = true;
           useOSProber = false;
         };
-        desktopEnvironment = "plasma";
+        desktopEnvironment = "hyprland";
         device = {
           cpu = "amd";
           hasBattery = true;
-          hostname = "seiryu";
+          hostname = "wakizashi";
           storage.ssd = true;
           type = "handheld";
           tags = [
@@ -40,16 +39,10 @@
           ];
           videoOutputs = [
             "eDP-1"
-            "DP-3"
+            "DP-4"
           ];
         };
       };
-
-      #services.flatpak.packages = [
-      #  "org.prismlauncher.PrismLauncher"
-      #  "com.heroicgameslauncher.hgl"
-      #  "net.retrodeck.retrodeck"
-      #];
 
       # ---Stuff I Dont Want---
       services.timesyncd.enable = lib.mkForce false;

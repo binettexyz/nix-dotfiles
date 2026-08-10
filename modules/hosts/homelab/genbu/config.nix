@@ -46,7 +46,7 @@
         path = "/data/gaming/saves";
         devices = [
           "suzaku"
-          "seiryu"
+          "wakizashi"
         ];
       };
       "notes" = {

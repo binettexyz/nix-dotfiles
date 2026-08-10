@@ -52,7 +52,7 @@ in
         path = "/home/data/gaming/saves";
         devices = [
           "katana"
-          "seiryu"
+          "wakizashi"
         ];
       };
       "notes" = {

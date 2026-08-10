@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.seiryu =
+  flake.nixosModules.wakizashi =
     {
       modulesPath,
       ...

@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.seiryuBinette =
+  flake.modules.homeManager.wakizashiBinette =
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.homeManager; [
@@ -11,7 +11,7 @@
 
       modules = {
         device = {
-          hostname = "seiryu";
+          hostname = "wakizashi";
           type = "handheld";
           tags = [
             "battery"
