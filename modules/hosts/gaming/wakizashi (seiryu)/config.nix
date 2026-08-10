@@ -22,7 +22,7 @@
           asRemovable = true;
           useOSProber = false;
         };
-        desktopEnvironment = "hyprland";
+        desktopEnvironment = "hyprland-uwsm";
         device = {
           cpu = "amd";
           hasBattery = true;
