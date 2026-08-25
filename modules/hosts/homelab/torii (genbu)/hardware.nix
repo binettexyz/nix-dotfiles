@@ -1,6 +1,9 @@
 { inputs, ... }:
+let
+  host = "torii";
+in
 {
-  flake.nixosModules.genbu =
+  flake.nixosModules.${host} =
     {
       lib,
       modulesPath,
