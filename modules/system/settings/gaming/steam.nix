@@ -35,12 +35,6 @@
       };
       hardware.steam-hardware.enable = true;
 
-      # ---Enabling Gamescope---
-      programs.gamescope = {
-        enable = true;
-        package = pkgs.gamescope;
-      };
-
       # ---Enabling Gamemode---
       programs.gamemode = {
         enable = true;
