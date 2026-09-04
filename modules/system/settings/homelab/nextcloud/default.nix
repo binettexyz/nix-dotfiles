@@ -3,12 +3,14 @@
     {
       config,
       lib,
+      pkgs,
       ...
     }:
     let
       service = "nextcloud";
       cfg = config.modules.homelab.services.${service};
       baseDomain = config.my.baseDomain;
+      nextcloudPackage = pkgs.nextcloud34;
     in
     {
       options.modules.homelab.services.${service} = {
@@ -37,7 +39,12 @@
         services.nginx.virtualHosts.${cfg.url} = {
           useACMEHost = baseDomain;
           forceSSL = true;
-          locations."/".proxyPass = "http://${cfg.address.local}";
+          locations."/" = {
+            proxyPass = "http://${cfg.address.local}";
+            extraConfig = ''
+              client_max_body_size 500M;
+            '';
+          };
         };
 
         sops.secrets."server/containers/nextcloud-adminPass" = {
@@ -68,7 +75,7 @@
             };
 
             config =
-              { pkgs, ... }:
+              { config, ... }:
               {
                 system.stateVersion = "25.05";
                 networking.firewall.allowedTCPPorts = [
@@ -81,7 +88,7 @@
 
                 services.${service} = {
                   enable = true;
-                  package = pkgs.nextcloud32;
+                  package = nextcloudPackage;
                   datadir = "/var/lib/nextcloud";
                   hostName = cfg.url;
                   https = true;
@@ -101,12 +108,8 @@
                     overwritehost = cfg.url;
                     overwrite.cli.url = "https://${cfg.url}";
                   };
-                  extraApps = {
-                    inherit (pkgs.nextcloud32Packages.apps)
-                      news
-                      calendar
-                      tasks
-                      ;
+                  extraApps = with config.services.nextcloud.package.packages.apps; {
+                    inherit news calendar tasks;
                   };
                   extraAppsEnable = true;
                 };
