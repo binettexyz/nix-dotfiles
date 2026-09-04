@@ -34,7 +34,6 @@ in
           ];
           videoOutputs = [
             "eDP-1"
-            "DP-1"
           ];
         };
         hm = {
@@ -51,8 +50,7 @@ in
               "foot --server"
             ];
             monitor = [
-              "${lib.elemAt config.modules.device.videoOutputs 0},1920x1080@60.0,0x1080,1"
-              "${lib.elemAt config.modules.device.videoOutputs 1},1920x1080@60.0,0x0,1"
+              "${lib.elemAt config.modules.device.videoOutputs 0},1920x1080@60.0,0x0,1"
             ];
           };
         };
