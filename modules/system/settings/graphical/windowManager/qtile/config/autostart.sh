@@ -11,3 +11,11 @@ if [ "$(hostname)" = "katana" ]; then
       steam &
     } &
 fi
+
+if [ "$(hostname)" = "tsuki" ]; then
+  {
+    sleep 5 && \
+      librewolf &
+    foot --server &
+  } &
+fi
