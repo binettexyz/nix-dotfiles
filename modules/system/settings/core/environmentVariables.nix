@@ -9,7 +9,7 @@
       BROWSER = "librefox";
       READER = "zathura";
       MANPAGER = "bat -l man -p";
-      SHELL = "zsh";
+      SHELL = "fish";
 
       # Themes
       BAT_THEME = "ansi";
