@@ -27,6 +27,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPxsgVkgA8fBxOOsL8WmqGa1hAzYgl7YNz/OvLiDq5fO binette@katana"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICWNbKHKSSjQAEGlWVhrPQ8vcolszTiwNKXB0FMEBtfw binette@wakizashi"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJGCeXiJDdM7HHV4lB9pr/hghNYfUSrAe9MSbYygcSgK binette@tsuki"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSCs0LTpqOFmalhEbJKGyM5GtomJD6+yKozmvzlFphV binette@ouryuu"
     ];
   };
 
