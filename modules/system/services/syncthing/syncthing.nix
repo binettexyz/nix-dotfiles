@@ -13,10 +13,6 @@
         settings = {
           gui.theme = "black";
           devices = {
-            "katana" = {
-              id = "QK7TWSU-CYQOBEW-MBBEVWM-X37XHVY-GSIBOCM-YHBDRJE-BNM2TIA-ZGW4MQX";
-              autoAcceptFolders = true;
-            };
             "wakizashi" = {
               id = "VHONWML-AZNC73N-KBJ62KW-NEM27CZ-ZRDTB34-TUHPCYS-7X4B2HF-4L7NTQA";
               autoAcceptFolders = true;

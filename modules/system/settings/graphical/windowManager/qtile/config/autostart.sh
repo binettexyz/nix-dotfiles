@@ -1,21 +1,10 @@
 #!/bin/sh
 
-if [ "$(hostname)" = "katana" ]; then
-    {
-      sleep 5 && \
-      wlr-randr --output HDMI-A-1 --pos 0,0    --mode 1920x1080@179.981995 \
-                --output HDMI-A-2 --pos 1920,0 --mode 3840x2160@120 --off
-      emacs --daemon &
-      discord &
-      librewolf &
-      steam &
-    } &
-fi
-
 if [ "$(hostname)" = "tsuki" ]; then
   {
     sleep 5 && \
+      kanshi &
       librewolf &
-    foot --server &
+      foot --server &
   } &
 fi
