@@ -39,7 +39,7 @@
         opener = {
           edit = [
             {
-              run = ''''${EDITOR:-nvim} "$@"'';
+              run = "$EDITOR %s";
               desc = "$EDITOR";
               block = true;
               for = "unix";
