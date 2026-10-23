@@ -31,8 +31,8 @@
 
         (lib.mkIf (lib.elem "dev" config.modules.device.tags) [
           pkgs.libreoffice
-          pkgs.texlive.combined.scheme-full
-          pkgs.calibre
+          pkgs.texliveBasic
+          #pkgs.calibre # Build failed
         ])
       ];
     };
